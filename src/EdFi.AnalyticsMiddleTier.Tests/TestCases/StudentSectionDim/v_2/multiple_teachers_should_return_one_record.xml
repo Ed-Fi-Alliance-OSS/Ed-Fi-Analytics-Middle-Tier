@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COUNT(1) AS CountValue
+    FROM analytics.StudentSectionDim
+    WHERE StudentSectionKey = '190276-867530022-B08-CHAPMAN-CAFR41-530-2012-17128-1-20110822';
+  </Query>
+  <Result>
+  <CountValue>1</CountValue>
+</Result>
+</TestCase>

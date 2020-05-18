@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT StudentSectionStartDateKey
+    FROM analytics.StudentSectionDim
+    WHERE StudentSectionKey = '190276-867530022-FA01-2110-LENR41-530-2012-4575-1-20110822';
+  </Query>
+  <Result>
+    <StudentSectionStartDateKey>20110822</StudentSectionStartDateKey>
+</Result>
+</TestCase>

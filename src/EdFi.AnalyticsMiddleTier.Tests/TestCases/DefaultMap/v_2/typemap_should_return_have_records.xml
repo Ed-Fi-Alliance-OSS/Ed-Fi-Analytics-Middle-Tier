@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT TOP 1 1 AS CountValue
+    FROM analytics_config.TypeMap;
+  </Query>
+  <Result>
+  <CountValue>1</CountValue>
+</Result>
+</TestCase>

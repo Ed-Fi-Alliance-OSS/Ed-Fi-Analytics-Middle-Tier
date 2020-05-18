@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT CourseTitle
+    FROM analytics.StudentSectionDim
+    WHERE StudentSectionKey = '190276-867530022-CAFR41-2012-17128-Traditional-20110822';
+  </Query>
+  <Result>
+</Result>
+</TestCase>

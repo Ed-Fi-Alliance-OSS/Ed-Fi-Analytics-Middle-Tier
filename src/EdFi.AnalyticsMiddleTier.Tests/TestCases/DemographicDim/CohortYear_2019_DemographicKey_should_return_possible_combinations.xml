@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicKey
+    FROM analytics.DemographicDim
+    WHERE DemographicKey like 'CohortYear:2019-%'
+  </Query>
+  <Result>
+    <DemographicKey>CohortYear:2019-Eighth grade</DemographicKey>
+  </Result>
+  <Result>
+    <DemographicKey>CohortYear:2019-Eleventh grade</DemographicKey>
+  </Result>
+</TestCase>

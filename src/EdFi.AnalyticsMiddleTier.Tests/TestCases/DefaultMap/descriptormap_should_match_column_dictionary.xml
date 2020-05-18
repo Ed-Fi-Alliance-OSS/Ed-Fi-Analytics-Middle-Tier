@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics_config'
+    AND table_name = 'DescriptorMap'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+    <Result>
+        <ColumnName>DescriptorConstantId</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>DescriptorId</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>CreateDate</ColumnName>
+        <DataType>datetime</DataType>
+    </Result>
+</TestCase>

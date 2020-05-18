@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT CountByDayOfStateOffenses
+    FROM analytics.ews_StudentEarlyWarningFact
+    WHERE StudentKey = '189889' AND SchoolKey='867530022' AND DateKey=20111205;
+  </Query>
+  <Result>
+    <CountByDayOfStateOffenses>0</CountByDayOfStateOffenses>
+  </Result>
+</TestCase>

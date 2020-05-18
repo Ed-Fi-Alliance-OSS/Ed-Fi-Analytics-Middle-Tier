@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select LocalEducationAgencyKey from analytics.SchoolDim where SchoolKey = 867530020",
+  "Result": [
+    {
+      "LocalEducationAgencyKey": "867530020"
+    }
+  ]
+}

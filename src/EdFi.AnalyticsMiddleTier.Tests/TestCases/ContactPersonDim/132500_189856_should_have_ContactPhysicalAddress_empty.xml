@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ContactPhysicalAddress
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey = '132500-189856';
+  </Query>
+  <Result>
+    <ContactPhysicalAddress></ContactPhysicalAddress>
+  </Result>
+</TestCase>

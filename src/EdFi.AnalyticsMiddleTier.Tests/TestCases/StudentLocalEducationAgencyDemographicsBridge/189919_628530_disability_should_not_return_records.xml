@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.StudentLocalEducationAgencyDemographicsBridge
+      WHERE StudentSchoolDemographicBridgeKey='Disability:AUT-193964-628530';
+  </Query>
+  <Result>
+    <CountValue>0</CountValue>
+  </Result>
+</TestCase>

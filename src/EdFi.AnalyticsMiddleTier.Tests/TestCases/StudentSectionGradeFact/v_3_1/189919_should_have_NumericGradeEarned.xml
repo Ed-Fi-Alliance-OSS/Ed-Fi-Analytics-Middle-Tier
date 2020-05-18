@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT NumericGradeEarned
+    FROM analytics.ews_StudentSectionGradeFact
+    WHERE StudentKey = 189919
+      AND SchoolKey = 867530020
+      AND GradingPeriodKey = '54-867530020-20110822'
+      AND StudentSectionKey = '189919-867530020-XLTV41-2012-14142-Traditional-20110822'
+      AND SectionKey = '867530020-XLTV41-2012-14142-Traditional';
+  </Query>
+  <Result>
+    <NumericGradeEarned>90.00</NumericGradeEarned>
+  </Result>
+</TestCase>

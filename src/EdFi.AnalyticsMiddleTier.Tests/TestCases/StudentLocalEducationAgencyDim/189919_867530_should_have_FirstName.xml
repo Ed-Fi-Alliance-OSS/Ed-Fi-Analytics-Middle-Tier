@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentFirstName
+      FROM analytics.StudentLocalEducationAgencyDim
+      WHERE StudentLocalEducationAgencyKey='189919-867530';
+  </Query>
+  <Result>
+      <StudentFirstName>Deeanna</StudentFirstName>
+  </Result>
+</TestCase>

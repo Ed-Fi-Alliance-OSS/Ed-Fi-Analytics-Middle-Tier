@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ContactHomeAddress
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey  = '156809-231203';
+  </Query>
+  <Result>
+    <ContactHomeAddress>644 Old Sandtown Rd, Florence TX 77550</ContactHomeAddress>
+  </Result>
+</TestCase>

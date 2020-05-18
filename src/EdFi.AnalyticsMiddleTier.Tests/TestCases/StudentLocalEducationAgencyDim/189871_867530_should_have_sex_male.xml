@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT Sex
+    FROM analytics.StudentLocalEducationAgencyDim
+    WHERE StudentLocalEducationAgencyKey='189871-867530';
+  </Query>
+  <Result>
+    <Sex>Male</Sex>
+  </Result>
+</TestCase>

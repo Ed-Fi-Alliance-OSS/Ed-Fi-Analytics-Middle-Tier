@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select StateEducationAgencyName from analytics.SchoolDim where SchoolKey = 867530020",
+  "Result": [
+    {
+      "StateEducationAgencyName": "Glendale ISD"
+    }
+  ]
+}

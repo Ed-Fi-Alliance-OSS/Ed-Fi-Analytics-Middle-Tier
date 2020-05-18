@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+INSERT INTO edfi.Descriptor
+(DescriptorId, 
+ Namespace, 
+ CodeValue, 
+ ShortDescription, 
+ Description, 
+ PriorDescriptorId, 
+ EffectiveBeginDate, 
+ EffectiveEndDate, 
+ Id, 
+ LastModifiedDate, 
+ CreateDate
+)
+(
+    SELECT TOP 1 '54', 
+                 'http://www.ed-fi.org/Descriptor/GradingPeriodDescriptor.xml', 
+                 'First Six Weeks', 
+                 'First Six Weeks', 
+                 'First Six Weeks', 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 'ABE1098D-9723-48ED-AA29-BEF3E458FC5E', 
+                 'Jun 19 2015 11:42AM', 
+                 'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.Descriptor
+        WHERE DescriptorId = 54
+    )
+);
+SET IDENTITY_INSERT edfi.Descriptor OFF;
+INSERT INTO edfi.EducationOrganization
+([EducationOrganizationId], 
+ [StateOrganizationId], 
+ [NameOfInstitution], 
+ [ShortNameOfInstitution], 
+ [WebSite], 
+ [OperationalStatusTypeId], 
+ [Id], 
+ [LastModifiedDate], 
+ [CreateDate]
+)
+(
+    SELECT TOP 1 '628530', 
+                 '628530', 
+                 'Lander ISD', 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 '13CC7674-8E27-443F-88B8-F8FDDD4601F1', 
+                 'Sep 18 2015 11:34AM', 
+                 'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.EducationOrganization
+        WHERE EducationOrganizationId = 628530
+    )
+); 
+INSERT INTO edfi.EducationOrganization
+([EducationOrganizationId], 
+ [StateOrganizationId], 
+ [NameOfInstitution], 
+ [ShortNameOfInstitution], 
+ [WebSite], 
+ [OperationalStatusTypeId], 
+ [Id], 
+ [LastModifiedDate], 
+ [CreateDate]
+)
+(
+    SELECT TOP 1 '628530001', 
+                 '628530001', 
+                 'Lander Middle', 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 '4E368F85-6A25-42F3-8D61-D972C421AC58', 
+                 'Sep 18 2015 11:34AM', 
+                 'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.EducationOrganization
+        WHERE EducationOrganizationId = 628530001
+    )
+); 
+INSERT INTO edfi.EducationOrganization
+([EducationOrganizationId], 
+ [StateOrganizationId], 
+ [NameOfInstitution], 
+ [ShortNameOfInstitution], 
+ [WebSite], 
+ [OperationalStatusTypeId], 
+ [Id], 
+ [LastModifiedDate], 
+ [CreateDate]
+)
+(
+    SELECT TOP 1 '152950', 
+                 '152950', 
+                 'ESC Region 17', 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 '03DE6F94-316A-4B06-8C67-2C8748DCA1A9', 
+                 'Sep 18 2015 11:34AM', 
+                 'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.EducationOrganization
+        WHERE EducationOrganizationId = 152950
+    )
+); 
+INSERT INTO edfi.EducationServiceCenter
+([EducationServiceCenterId], 
+ [StateEducationAgencyId]
+)
+(
+    SELECT TOP 1 '152950', 
+                 NULL
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.EducationServiceCenter
+        WHERE EducationServiceCenterId = 152950
+    )
+);
+SET IDENTITY_INSERT edfi.CharterStatusType ON;
+INSERT INTO edfi.CharterStatusType
+([CharterStatusTypeId], 
+ [CodeValue], 
+ [Description], 
+ [ShortDescription], 
+ [Id], 
+ [LastModifiedDate], 
+ [CreateDate]
+)
+(
+    SELECT TOP 1 '1', 
+                 'School Charter', 
+                 'School Charter', 
+                 'School Charter', 
+                 '375AFD84-484B-418D-BAA8-1E49B7AE36B4', 
+                 'Jun 19 2015 11:41AM', 
+                 'Jun 19 2015 11:41AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.CharterStatusType
+        WHERE CharterStatusTypeId = 1
+    )
+);
+SET IDENTITY_INSERT edfi.CharterStatusType OFF;
+SET IDENTITY_INSERT edfi.LocalEducationAgencyCategoryType ON;
+INSERT INTO edfi.LocalEducationAgencyCategoryType
+([LocalEducationAgencyCategoryTypeId], 
+ [CodeValue], 
+ [Description], 
+ [ShortDescription], 
+ [Id], 
+ [LastModifiedDate], 
+ [CreateDate]
+)
+(
+    SELECT TOP 1 '1', 
+                 'Independent', 
+                 'Independent', 
+                 'Independent', 
+                 'D726338D-016E-4777-BCA4-F277699F009A', 
+                 'Jun 19 2015 11:41AM', 
+                 'Jun 19 2015 11:41AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.LocalEducationAgencyCategoryType
+        WHERE LocalEducationAgencyCategoryTypeId = 1
+    )
+);
+SET IDENTITY_INSERT edfi.LocalEducationAgencyCategoryType OFF;
+INSERT INTO edfi.LocalEducationAgency
+([LocalEducationAgencyId], 
+ [ParentLocalEducationAgencyId], 
+ [LocalEducationAgencyCategoryTypeId], 
+ [CharterStatusTypeId], 
+ [EducationServiceCenterId], 
+ [StateEducationAgencyId]
+)
+(
+    SELECT TOP 1 '628530', 
+                 NULL, 
+                 '1', 
+                 NULL, 
+                 '152950', 
+                 NULL
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.LocalEducationAgency
+        WHERE LocalEducationAgencyId = 628530
+    )
+);
+SET IDENTITY_INSERT edfi.schooltype ON;
+INSERT INTO edfi.schooltype
+([SchoolTypeId], 
+ [CodeValue], 
+ [Description], 
+ [ShortDescription], 
+ [Id], 
+ [LastModifiedDate], 
+ [CreateDate]
+)
+(
+    SELECT TOP 1 '2', 
+                 'Regular', 
+                 'Regular', 
+                 'Regular', 
+                 'FA037C41-5BAE-4077-B48D-3C2308185F37', 
+                 'Jun 19 2015 11:41AM', 
+                 'Jun 19 2015 11:41AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.schooltype
+        WHERE schooltypeId = 2
+    )
+);
+SET IDENTITY_INSERT edfi.schooltype OFF;
+INSERT INTO edfi.school
+(SchoolId, 
+ LocalEducationAgencyId, 
+ SchoolTypeId, 
+ CharterStatusTypeId, 
+ TitleIPartASchoolDesignationTypeId, 
+ MagnetSpecialProgramEmphasisSchoolTypeId, 
+ AdministrativeFundingControlDescriptorId, 
+ InternetAccessTypeId, 
+ CharterApprovalAgencyTypeId, 
+ CharterApprovalSchoolYear
+)
+(
+    SELECT TOP 1 '628530001', 
+                 '628530', 
+                 '2', 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 NULL, 
+                 NULL
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.school
+        WHERE SchoolId = 628530001
+    )
+);
+SET IDENTITY_INSERT edfi.GradingPeriodType ON;
+INSERT INTO edfi.GradingPeriodType
+(GradingPeriodTypeId, 
+ CodeValue, 
+ Description, 
+ PeriodSequence, 
+ ShortDescription, 
+ Id, 
+ LastModifiedDate, 
+ CreateDate
+)
+(
+    SELECT TOP 1 '1', 
+                 'First Six Weeks', 
+                 'First Six Weeks', 
+                 '1', 
+                 'First Six Weeks', 
+                 '11CA4AD4-AF55-46A2-839E-BDA63CC824BF', 
+                 'Jun 19 2015 11:41AM', 
+                 'Jun 19 2015 11:41AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.GradingPeriodType
+        WHERE GradingPeriodTypeId = 1
+    )
+);
+SET IDENTITY_INSERT edfi.GradingPeriodType OFF;
+INSERT INTO edfi.GradingPeriodDescriptor
+(GradingPeriodDescriptorId, 
+ GradingPeriodTypeId
+)
+(
+    SELECT TOP 1 '54', 
+                 '1'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM edfi.GradingPeriodDescriptor
+        WHERE GradingPeriodDescriptorid = 54
+    )
+); 
+INSERT INTO [edfi].[GradingPeriod]
+(GradingPeriodDescriptorId, 
+ SchoolId, 
+ BeginDate, 
+ TotalInstructionalDays, 
+ EndDate, 
+ PeriodSequence, 
+ Id, 
+ LastModifiedDate, 
+ CreateDate
+)
+(
+    SELECT TOP 1 '54', 
+                 '628530001', 
+                 '2011-08-22', 
+                 '29', 
+                 '2011-09-30', 
+                 NULL, 
+                 '0488184B-5AAC-4D54-838B-B180D53CD136', 
+                 'Sep 18 2015 11:34AM', 
+                 'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM [edfi].[GradingPeriod]
+        WHERE [GradingPeriodDescriptorId] = 54
+              AND [SchoolId] = 628530001
+              AND [BeginDate] = '2011-08-22'
+    )
+); 
+INSERT INTO [edfi].[GradingPeriod]
+(GradingPeriodDescriptorId, 
+ SchoolId, 
+ BeginDate, 
+ TotalInstructionalDays, 
+ EndDate, 
+ PeriodSequence, 
+ Id, 
+ LastModifiedDate, 
+ CreateDate
+)
+(
+    SELECT TOP 1 '54', 
+                 '628530001', 
+                 '2011-11-20', 
+                 '27', 
+                 '2011-12-30', 
+                 NULL, 
+                 '557EE073-9E3D-4B92-B832-FA9266CD7D26', 
+                 'Sep 18 2015 11:34AM', 
+                 'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM [edfi].[GradingPeriod]
+        WHERE [GradingPeriodDescriptorId] = 54
+              AND [SchoolId] = 628530001
+              AND [BeginDate] = '2011-11-20'
+    )
+);
+	</ControlDataInsertion>
+</TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT LocalEducationAgencyKey
+    FROM analytics.StudentLocalEducationAgencyDim
+    WHERE StudentLocalEducationAgencyKey='189919-867530';
+  </Query>
+  <Result>
+    <LocalEducationAgencyKey>867530</LocalEducationAgencyKey>
+  </Result>
+</TestCase>

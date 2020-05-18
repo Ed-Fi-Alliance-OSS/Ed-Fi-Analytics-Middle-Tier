@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Ed-Fi Alliance</Authors>
+    <Copyright>Copyright (c) 2019, Ed-Fi Alliance LLC and contributors</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="**\*.sql" />
+    <EmbeddedResource Include="**\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.Common\EdFi.AnalyticsMiddleTier.Common.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ContactPersonKey
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey  = '156809-231203';
+  </Query>
+  <Result>
+    <ContactPersonKey>156809</ContactPersonKey>
+  </Result>
+</TestCase>

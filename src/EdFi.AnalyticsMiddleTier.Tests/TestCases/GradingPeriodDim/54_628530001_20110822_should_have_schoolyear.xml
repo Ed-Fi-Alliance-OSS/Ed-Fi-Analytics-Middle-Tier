@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT SchoolYear
+    FROM analytics.GradingPeriodDim
+    WHERE GradingPeriodKey = '54-628530001-20110822';
+  </Query>
+  <Result>
+      <SchoolYear>2011</SchoolYear>
+</Result>
+</TestCase>
