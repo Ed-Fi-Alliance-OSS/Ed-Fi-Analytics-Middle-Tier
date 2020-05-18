@@ -1,0 +1,16 @@
+{
+  "name": "analytics-middle-tier-pdf",
+  "version": "1.0.0",
+  "description": "Converts Analytics Middle Tier documentation to a PDF",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "Ed-Fi License",
+  "dependencies": {
+    "html-pdf": "^2.2.0",
+    "markdown-pdf": "^9.0.0",
+    "primer-markdown": "^3.7.9"
+  }
+}

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT UserEmail
+    FROM analytics.rls_UserDim
+    WHERE UserKey = '11324';
+  </Query>
+  <Result>
+    <UserEmail>teresa.hood@edfi.org</UserEmail>
+  </Result>
+</TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT LastModifiedDate
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey = '132500-189856';
+  </Query>
+  <Result>
+    <LastModifiedDate>2015-09-18T11:47:00</LastModifiedDate>
+  </Result>
+</TestCase>

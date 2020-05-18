@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Ed-Fi Alliance</Authors>
+    <Company>Ed-Fi Alliance</Company>
+    <Copyright>Copyright (c) 2018, Ed-Fi Alliance</Copyright>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="publish\**" />
+    <EmbeddedResource Remove="publish\**" />
+    <None Remove="publish\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.3.0" />
+    <PackageReference Include="DbUp" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.Common\EdFi.AnalyticsMiddleTier.Common.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard2\EdFi.AnalyticsMiddleTier.DataStandard2.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard31\EdFi.AnalyticsMiddleTier.DataStandard31.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard32\EdFi.AnalyticsMiddleTier.DataStandard32.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="**\*.sql" />
+    <None Remove="**\EdFi-postgresql.table.names.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="**\*.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicLabel
+    FROM analytics.DemographicDim
+    WHERE DemographicParentKey = 'TribalAffiliation'
+  </Query>
+  <Result>
+    <DemographicLabel>Afognak</DemographicLabel>
+  </Result>
+  <Result>
+    <DemographicLabel>Agdaagux</DemographicLabel>
+  </Result>
+</TestCase>

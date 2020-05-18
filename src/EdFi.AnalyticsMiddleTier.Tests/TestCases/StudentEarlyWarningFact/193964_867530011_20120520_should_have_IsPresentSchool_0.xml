@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT IsPresentSchool
+    FROM analytics.ews_StudentEarlyWarningFact
+    WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey=20120520;
+  </Query>
+  <Result>
+    <IsPresentSchool>0</IsPresentSchool>
+  </Result>
+</TestCase>

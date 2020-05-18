@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicLabel
+    FROM analytics.DemographicDim
+    WHERE DemographicKey like '%Eleventh grade'
+  </Query>
+  <Result>
+    <DemographicLabel>2019-Eleventh grade</DemographicLabel>
+  </Result>
+  <Result>
+    <DemographicLabel>2018-Eleventh grade</DemographicLabel>
+  </Result>
+</TestCase>

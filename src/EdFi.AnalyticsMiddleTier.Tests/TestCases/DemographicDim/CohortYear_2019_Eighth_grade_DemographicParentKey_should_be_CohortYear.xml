@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicParentKey
+    FROM analytics.DemographicDim
+    WHERE DemographicKey = 'CohortYear:2019-Eighth grade'
+  </Query>
+  <Result>
+    <DemographicParentKey>CohortYear</DemographicParentKey>
+  </Result>
+</TestCase>

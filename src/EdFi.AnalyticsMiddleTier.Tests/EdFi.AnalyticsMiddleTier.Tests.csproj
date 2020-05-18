@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestCases\**\*.json" />
+	<None Remove="TestCases\**\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestCases\**\*.json" />
+    <EmbeddedResource Include="TestCases\**\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="dbup" Version="4.2.0" />
+    <PackageReference Include="dbup-core" Version="4.2.0" />
+    <PackageReference Include="dbup-sqlserver" Version="4.2.0" />
+    <PackageReference Include="FakeItEasy" Version="6.0.0" />
+    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="150.4534.2-preview" />
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Shouldly" Version="3.0.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.0-preview1.19504.10" />
+    <PackageReference Include="XmlDiffPatch.Core" Version="1.0.1" />
+    <PackageReference Include="XmlDiffView.Core" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.Common\EdFi.AnalyticsMiddleTier.Common.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard2\EdFi.AnalyticsMiddleTier.DataStandard2.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard31\EdFi.AnalyticsMiddleTier.DataStandard31.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard32\EdFi.AnalyticsMiddleTier.DataStandard32.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="EdFi_Ods_2.0.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EdFi_Ods_3.1.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="EdFi_Ods_3.2.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

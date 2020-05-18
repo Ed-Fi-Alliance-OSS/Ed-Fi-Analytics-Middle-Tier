@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ContactPhysicalAddress
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey  = '133012-190142';
+  </Query>
+  <Result>
+    <ContactPhysicalAddress>79 Yellow St, Trent TX 72312</ContactPhysicalAddress>
+  </Result>
+</TestCase>

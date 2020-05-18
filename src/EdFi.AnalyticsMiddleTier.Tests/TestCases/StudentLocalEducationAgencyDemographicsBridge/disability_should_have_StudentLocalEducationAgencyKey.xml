@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentLocalEducationAgencyKey
+      FROM analytics.StudentLocalEducationAgencyDemographicsBridge
+      WHERE StudentSchoolDemographicBridgeKey='Disability:AUT-193964-867530';
+  </Query>
+  <Result>
+      <StudentLocalEducationAgencyKey>193964-867530</StudentLocalEducationAgencyKey>
+  </Result>
+</TestCase>

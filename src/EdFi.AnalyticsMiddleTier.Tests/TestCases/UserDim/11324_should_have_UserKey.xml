@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT UserKey
+    FROM analytics.rls_UserDim
+    WHERE UserKey = '11324';
+  </Query>
+  <Result>
+    <UserKey>11324</UserKey>
+  </Result>
+</TestCase>

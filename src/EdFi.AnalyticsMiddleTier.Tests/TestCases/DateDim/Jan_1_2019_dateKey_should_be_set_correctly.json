@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "SELECT DateKey \n FROM analytics.DateDim \nWHERE DateKey=20190101;",
+  "Result": [
+    {
+      "DateKey": "20190101"
+    }
+  ]
+}

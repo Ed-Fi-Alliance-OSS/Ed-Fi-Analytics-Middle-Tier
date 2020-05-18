@@ -1,0 +1,20 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select StudentPermission from analytics.rls_UserAuthorization",
+  "Result": [
+    {
+      "StudentPermission": "ALL"
+    },
+    {
+      "StudentPermission": "ALL"
+    },
+    {
+      "StudentPermission": "ALL"
+    },
+    {
+      "StudentPermission": "ALL"
+    }
+  ]
+}

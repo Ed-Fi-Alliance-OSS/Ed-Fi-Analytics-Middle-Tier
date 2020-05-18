@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Ed-Fi Alliance</Authors>
+    <Copyright>Copyright (c) 2018, Ed-Fi Alliance</Copyright>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="**\*.sql" />
+    <None Remove="**\EdFi-postgresql.table.names.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="**\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.Common\EdFi.AnalyticsMiddleTier.Common.csproj" />
+  </ItemGroup>
+
+</Project>

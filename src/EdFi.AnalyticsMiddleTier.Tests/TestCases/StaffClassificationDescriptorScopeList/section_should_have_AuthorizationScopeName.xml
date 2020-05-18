@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT AuthorizationScopeName
+      FROM analytics_config.rls_StaffClassificationDescriptorScopeList
+      WHERE AuthorizationScopeName = 'AuthorizationScope.Section'
+      AND CodeValue='Teacher';
+  </Query>
+  <Result>
+      <AuthorizationScopeName>AuthorizationScope.Section</AuthorizationScopeName>
+  </Result>
+</TestCase>

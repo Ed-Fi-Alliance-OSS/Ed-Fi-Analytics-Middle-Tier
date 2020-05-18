@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+    SET IDENTITY_INSERT edfi.ElectronicMailType ON;
+    INSERT INTO edfi.ElectronicMailType(ElectronicMailTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'4','Work','Work','Work','8543D01A-8193-4EAF-8776-097C143EB3AE','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.ElectronicMailType WHERE   ElectronicMailTypeId= '4'));
+    SET IDENTITY_INSERT edfi.ElectronicMailType OFF;
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'105','http://www.ed-fi.org/Descriptor/LevelofEducationDescriptor.xml','Master''s','Master''s','Master''s',NULL,NULL,NULL,'E050EF7D-228F-42F9-964B-31882A1C35BC','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '105'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    SET IDENTITY_INSERT edfi.LevelOfEducationType ON;
+    INSERT INTO edfi.LevelOfEducationType(LevelOfEducationTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'5','Master''s','Master''s','Master''s','F2948A8B-F747-478C-8DB7-C7D9433537E7','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.LevelOfEducationType WHERE   LevelOfEducationTypeId= '5'));
+    SET IDENTITY_INSERT edfi.LevelOfEducationType OFF;
+
+    INSERT INTO edfi.LevelOfEducationDescriptor(LevelOfEducationDescriptorId,LevelOfEducationTypeId)(SELECT TOP 1'105','5'  WHERE NOT EXISTS(SELECT  1  FROM edfi.LevelOfEducationDescriptor WHERE   LevelOfEducationDescriptorId= '105'));
+
+    SET IDENTITY_INSERT edfi.OldEthnicityType ON;
+    INSERT INTO edfi.OldEthnicityType(OldEthnicityTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'4','Hispanic','Hispanic','Hispanic','72E6FB11-05D5-47BE-A69D-F00428895BCD','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.OldEthnicityType WHERE   OldEthnicityTypeId= '4'));
+    SET IDENTITY_INSERT edfi.OldEthnicityType OFF;
+
+    SET IDENTITY_INSERT edfi.SexType ON;
+    INSERT INTO edfi.SexType(SexTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1','Female','Female','Female','277F0B63-88DE-4DD0-9292-34B016B9585A','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SexType WHERE   SexTypeId= '1'));
+    SET IDENTITY_INSERT edfi.SexType OFF;
+
+    SET IDENTITY_INSERT edfi.Staff ON;
+    INSERT INTO edfi.Staff(StaffUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,SexTypeId,BirthDate,HispanicLatinoEthnicity,OldEthnicityTypeId,HighestCompletedLevelOfEducationDescriptorId,YearsOfPriorProfessionalExperience,YearsOfPriorTeachingExperience,HighlyQualifiedTeacher,LoginId,CitizenshipStatusTypeId,StaffUniqueId,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1009',NULL,'Teresa','A','Hood',NULL,NULL,'1','1950-09-09','1','4','105','39.00',NULL,NULL,NULL,NULL,'11324','C5C450D5-AE21-4836-B523-7B2822E65421','Aug 10 2014 12:00AM','Aug 10 2014 12:00AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1009'));
+    SET IDENTITY_INSERT edfi.Staff OFF;
+
+    INSERT INTO edfi.StaffElectronicMail(StaffUSI,ElectronicMailTypeId,ElectronicMailAddress,PrimaryEmailAddressIndicator,CreateDate)(SELECT TOP 1'1009','4','teresa.hood@edfi.org',NULL,'Feb  1 2015 12:00AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffElectronicMail WHERE StaffUSI=1009  AND ElectronicMailTypeId =4));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'102','http://www.ed-fi.org/Descriptor/LevelofEducationDescriptor.xml','Bachelor''s','Bachelor''s','Bachelor''s',NULL,NULL,NULL,'15AEB8F9-2E80-4A7D-AF64-5A852C89AAD3','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '102'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    SET IDENTITY_INSERT edfi.LevelOfEducationType ON;
+    INSERT INTO edfi.LevelOfEducationType(LevelOfEducationTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'4','Bachelor''s','Bachelor''s','Bachelor''s','82647AD0-1935-435D-A9FF-3720CB486FDC','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.LevelOfEducationType WHERE   LevelOfEducationTypeId= '4'));
+    SET IDENTITY_INSERT edfi.LevelOfEducationType OFF;
+
+    INSERT INTO edfi.LevelOfEducationDescriptor(LevelOfEducationDescriptorId,LevelOfEducationTypeId)(SELECT TOP 1'102','4'  WHERE NOT EXISTS(SELECT  1  FROM edfi.LevelOfEducationDescriptor WHERE   LevelOfEducationDescriptorId= '102'));
+
+    SET IDENTITY_INSERT edfi.OldEthnicityType ON;
+    INSERT INTO edfi.OldEthnicityType(OldEthnicityTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'5','White, Not Of Hispanic Origin','White, Not Of Hispanic Origin','White, Not Of Hispanic Origin','4CD04A4A-F353-4606-8192-3011397B8162','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.OldEthnicityType WHERE   OldEthnicityTypeId= '5'));
+    SET IDENTITY_INSERT edfi.OldEthnicityType OFF;
+
+    SET IDENTITY_INSERT edfi.Staff ON;
+    INSERT INTO edfi.Staff(StaffUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,SexTypeId,BirthDate,HispanicLatinoEthnicity,OldEthnicityTypeId,HighestCompletedLevelOfEducationDescriptorId,YearsOfPriorProfessionalExperience,YearsOfPriorTeachingExperience,HighlyQualifiedTeacher,LoginId,CitizenshipStatusTypeId,StaffUniqueId,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1401',NULL,'Zenaida','R','Kenny',NULL,NULL,'1','1982-08-11','1','5','102','6.00',NULL,'1',NULL,NULL,'11472','B2C93CF6-63A3-4BFA-B26C-EDB079FD5865','Nov 19 2015  4:09PM','Sep 18 2015 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1401'));
+    SET IDENTITY_INSERT edfi.Staff OFF;
+
+    INSERT INTO edfi.StaffElectronicMail(StaffUSI,ElectronicMailTypeId,ElectronicMailAddress,PrimaryEmailAddressIndicator,CreateDate)(SELECT TOP 1'1401','4','zenaida.kenny@edfi.org',NULL,'Sep 18 2015 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffElectronicMail WHERE StaffUSI=1401  AND ElectronicMailTypeId =4));
+
+    SET IDENTITY_INSERT edfi.ElectronicMailType ON;
+    INSERT INTO edfi.ElectronicMailType(ElectronicMailTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1','Home/Personal','Home/Personal','Home/Personal','A5E17233-6F71-47A1-ABAC-228BAC3D5866','Jun 19 2015 11:41AM','Jun 19 2015 11:41AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.ElectronicMailType WHERE   ElectronicMailTypeId= '1'));
+    SET IDENTITY_INSERT edfi.ElectronicMailType OFF;
+
+    INSERT INTO edfi.StaffElectronicMail(StaffUSI,ElectronicMailTypeId,ElectronicMailAddress,PrimaryEmailAddressIndicator,CreateDate)(SELECT TOP 1'1401','1','zenaida.kenny@gmail.com',NULL,'Jan  1 2019 12:00AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffElectronicMail WHERE StaffUSI=1401  AND ElectronicMailTypeId =1));
+
+    SET IDENTITY_INSERT edfi.Staff ON;
+    INSERT INTO edfi.Staff(StaffUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,SexTypeId,BirthDate,HispanicLatinoEthnicity,OldEthnicityTypeId,HighestCompletedLevelOfEducationDescriptorId,YearsOfPriorProfessionalExperience,YearsOfPriorTeachingExperience,HighlyQualifiedTeacher,LoginId,CitizenshipStatusTypeId,StaffUniqueId,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1086',NULL,'Jennifer','U','Devito',NULL,NULL,'1','1972-06-14','0','5','105','10.00',NULL,'1',NULL,NULL,'11358','5404E7C3-B9BD-424F-ACFE-E6F1617139D0','Nov 19 2015  4:09PM','Sep 18 2015 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1086'));
+    SET IDENTITY_INSERT edfi.Staff OFF;
+
+    INSERT INTO edfi.StaffElectronicMail(StaffUSI,ElectronicMailTypeId,ElectronicMailAddress,PrimaryEmailAddressIndicator,CreateDate)(SELECT TOP 1'1086','4','jennifer.devito@edfi.org',NULL,'Sep 18 2016 12:00AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffElectronicMail WHERE StaffUSI=1086  AND ElectronicMailTypeId =4));
+
+  </ControlDataInsertion>
+</TestCase>

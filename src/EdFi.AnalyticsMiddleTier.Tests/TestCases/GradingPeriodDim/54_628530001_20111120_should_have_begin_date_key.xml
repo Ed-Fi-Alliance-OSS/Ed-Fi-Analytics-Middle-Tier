@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT GradingPeriodBeginDateKey
+    FROM analytics.GradingPeriodDim
+    WHERE GradingPeriodKey = '54-628530001-20111120';
+  </Query>
+  <Result>
+    <GradingPeriodBeginDateKey>20111120</GradingPeriodBeginDateKey>
+  </Result>
+</TestCase>

@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select LocalEducationAgencyName from analytics.SchoolDim where SchoolKey = 867530020",
+  "Result": [
+    {
+      "LocalEducationAgencyName": "Beverly Hills High School"
+    }
+  ]
+}

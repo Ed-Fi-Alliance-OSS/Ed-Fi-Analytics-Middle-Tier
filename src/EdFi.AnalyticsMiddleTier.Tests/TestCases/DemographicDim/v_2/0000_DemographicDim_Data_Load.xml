@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+
+      --- Cohort Year
+
+			SET IDENTITY_INSERT edfi.CohortYearType ON;
+			MERGE INTO edfi.CohortYearType AS Target
+			USING (VALUES
+				(1,'Eighth grade','Eighth grade','Eighth grade','28DD0896-EB80-4D71-ABAA-B2CA86D8E64B'),
+				(2,'Eleventh grade','Eleventh grade','Eleventh grade','83BC8B09-CECF-46BD-A9E8-30662D8ECA79')
+			) AS Source(CohortYearTypeId, CodeValue, Description, ShortDescription, Id
+			)
+			ON TARGET.CohortYearTypeId = Source.CohortYearTypeId
+				WHEN NOT MATCHED BY TARGET
+				THEN
+					INSERT (CohortYearTypeId, CodeValue, Description, ShortDescription, Id, LastModifiedDate, CreateDate)
+					VALUES (CohortYearTypeId, CodeValue, Description, ShortDescription, Id, getdate(), getdate())
+			OUTPUT $action,
+					 inserted.*;
+			SET IDENTITY_INSERT edfi.CohortYearType OFF;
+
+			MERGE INTO edfi.SchoolYearType AS Target
+			USING (VALUES
+				(2018,'2017-2018',0,'FCB17AE4-F68C-49F0-866E-0A9EB15E816B'),
+				(2019,'2018-2019',0,'FCB17AE4-F68C-49F0-866E-0A9EB15E816A')
+			) AS Source(SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id)
+
+			ON TARGET.SchoolYear = Source.SchoolYear
+				WHEN NOT MATCHED BY TARGET
+				THEN
+					INSERT (SchoolYear, SchoolYearDescription, CurrentSchoolYear, Id, LastModifiedDate, CreateDate)
+					VALUES (SchoolYear, SchoolYearDescription, CurrentSchoolYear, Id, getdate(), getdate())
+			OUTPUT $action,
+					 inserted.*;
+
+			SET IDENTITY_INSERT edfi.SexType ON;
+			MERGE INTO edfi.SexType AS Target
+			USING (VALUES
+				(2,'Male','Male','Male','3374E923-0E2E-4C63-B012-BCE0308D32F5')
+			) AS Source(SexTypeId,CodeValue,Description,ShortDescription,Id)
+
+			ON TARGET.SexTypeId = Source.SexTypeId
+				WHEN NOT MATCHED BY TARGET
+				THEN
+					INSERT (SexTypeId,CodeValue,Description,ShortDescription,Id,LastModifiedDate,CreateDate)
+					VALUES (SexTypeId,CodeValue,Description,ShortDescription,Id, getdate(), getdate())
+			OUTPUT $action,
+					 inserted.*;
+			SET IDENTITY_INSERT edfi.SexType OFF;
+
+			SET IDENTITY_INSERT edfi.Student ON;
+			MERGE INTO edfi.Student AS Target
+			USING (VALUES
+				(10100494,'Toby','K','Garner','2','1978-09-04','1','189854','1FBB3B53-A219-40FB-8FF9-676659EED948'),
+				(10100495,'David','J','Jimenez','2','1984-10-10','1','189855','1FBB3B53-A219-40FB-8FF9-676659EED949')
+			) AS Source(StudentUSI,FirstName,MiddleName,LastSurname,SexTypeId,BirthDate,HispanicLatinoEthnicity,StudentUniqueId,Id
+			)
+			ON TARGET.StudentUSI = Source.StudentUSI
+				WHEN NOT MATCHED BY TARGET
+				THEN
+					INSERT (StudentUSI,FirstName,MiddleName,LastSurname,SexTypeId,BirthDate,HispanicLatinoEthnicity,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+					VALUES (StudentUSI,FirstName,MiddleName,LastSurname,SexTypeId,BirthDate,HispanicLatinoEthnicity,StudentUniqueId,Id, getdate(), getdate())
+			OUTPUT $action,
+					 inserted.*;
+			SET IDENTITY_INSERT edfi.Student OFF;
+
+			MERGE INTO edfi.StudentCohortYear AS Target
+			USING (VALUES
+				(10100494,'1','2018'),
+				(10100495,'2','2019')
+			) AS Source(StudentUSI,CohortYearTypeId,SchoolYear
+			)
+			ON TARGET.CohortYearTypeId = Source.CohortYearTypeId
+				WHEN NOT MATCHED BY TARGET
+				THEN
+					INSERT (StudentUSI,CohortYearTypeId,SchoolYear, CreateDate)
+					VALUES (StudentUSI,CohortYearTypeId,SchoolYear, getdate())
+			OUTPUT $action,
+					 inserted.*;
+	  
+      --- Language
+
+	    SET IDENTITY_INSERT edfi.Descriptor ON;
+	    MERGE INTO edfi.Descriptor AS Target
+	    USING (VALUES
+		    (468,'uri://ed-fi.org/LanguageDescriptor','English','English','English','A755EE79-9BCB-4DD5-848C-1B81FAE9D369'),
+		    (469,'uri://ed-fi.org/LanguageDescriptor','Persian','Persian','Persian','8012945F-E68F-438A-B0CD-89B717B8082C')
+	    ) AS Source(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id
+	    )
+	    ON TARGET.DescriptorId = Source.DescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, LastModifiedDate, CreateDate)
+		      VALUES (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.Descriptor OFF;
+	
+	    MERGE INTO edfi.LanguageDescriptor AS Target
+	    USING (VALUES
+		    (469),
+		    (468)
+	    ) AS Source(LanguageDescriptorId
+	    )
+	    ON TARGET.LanguageDescriptorId = Source.LanguageDescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (LanguageDescriptorId)
+		      VALUES (LanguageDescriptorId)
+	    OUTPUT $action,
+		       inserted.*;
+
+      MERGE INTO edfi.StudentCohortYear AS Target
+      USING (VALUES
+      (10100494,'1','2018'),
+      (10100495,'2','2019')
+      ) AS Source(StudentUSI,CohortYearTypeId,SchoolYear
+      )
+      ON TARGET.CohortYearTypeId = Source.CohortYearTypeId
+      WHEN NOT MATCHED BY TARGET
+      THEN
+      INSERT (StudentUSI,CohortYearTypeId,SchoolYear, CreateDate)
+      VALUES (StudentUSI,CohortYearTypeId,SchoolYear, getdate())
+      OUTPUT $action,
+      inserted.*;
+	  
+      --- LanguageUse
+
+	    SET IDENTITY_INSERT edfi.LanguageUseType ON;
+	    MERGE INTO edfi.LanguageUseType AS Target
+	    USING (VALUES
+		    (4,'Correspondence language','Correspondence language','Correspondence language','5630E416-ACC3-4ADB-896B-AD7A311F6FCF'),
+		    (5,'Dominant language','Dominant language','Dominant language','09EEBF0B-B155-4DB3-A7F5-4ECC5EC30FB4')
+	    ) AS Source(LanguageUseTypeId,CodeValue,Description,ShortDescription,Id
+	    )
+	    ON TARGET.LanguageUseTypeId = Source.LanguageUseTypeId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (LanguageUseTypeId,CodeValue,Description,ShortDescription,Id, LastModifiedDate, CreateDate)
+		      VALUES (LanguageUseTypeId,CodeValue,Description,ShortDescription,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.LanguageUseType OFF;
+	
+      --- Race
+
+	    SET IDENTITY_INSERT edfi.RaceType ON;
+	    MERGE INTO edfi.RaceType AS Target
+	    USING (VALUES
+		    (2,'Asian','Asian','Asian','B0F164F6-A79E-4222-A732-87EEF99456A4'),
+		    (5,'White','White','White','B30F6B4C-8B66-4984-B444-3D5D5C6E5244')
+	    ) AS Source(RaceTypeId,CodeValue,Description,ShortDescription,Id
+	    )
+	    ON TARGET.RaceTypeId = Source.RaceTypeId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (RaceTypeId,CodeValue,Description,ShortDescription,Id, LastModifiedDate, CreateDate)
+		      VALUES (RaceTypeId,CodeValue,Description,ShortDescription,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.RaceType OFF;
+	
+      --- Student Characteristic
+	  
+	    SET IDENTITY_INSERT edfi.Descriptor ON;
+	    MERGE INTO edfi.Descriptor AS Target
+	    USING (VALUES
+		    (660,'http://www.ed-fi.org/Descriptor/StudentCharacteristicDescriptor.xml','Migrant','Migrant','Migrant','3150327C-6466-40BF-B940-2D8763EAA694'),
+		    (661,'http://www.ed-fi.org/Descriptor/StudentCharacteristicDescriptor.xml','Asylee','Asylee','Asylee','BA2F13EF-275B-4AF0-B4B0-8BED0194CE3E')
+	    ) AS Source(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id
+	    )
+	    ON TARGET.DescriptorId = Source.DescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, LastModifiedDate, CreateDate)
+		      VALUES (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.Descriptor OFF;
+	
+      MERGE INTO edfi.StudentCharacteristicDescriptor AS Target
+      USING (VALUES
+				(660,NULL),
+				(661,NULL)
+      ) AS Source(StudentCharacteristicDescriptorId,StudentCharacteristicTypeId
+      )
+      ON TARGET.StudentCharacteristicDescriptorId = Source.StudentCharacteristicDescriptorId
+				WHEN NOT MATCHED BY TARGET
+				THEN
+					INSERT (StudentCharacteristicDescriptorId,StudentCharacteristicTypeId)
+					VALUES (StudentCharacteristicDescriptorId,StudentCharacteristicTypeId)
+      OUTPUT $action,
+			inserted.*;
+
+      --- Disability
+	  
+	    SET IDENTITY_INSERT edfi.Descriptor ON;
+	    MERGE INTO edfi.Descriptor AS Target
+	    USING (VALUES
+		    (747,'http://www.ed-fi.org/Descriptor/DisabilityDescriptor.xml','Medical condition','Medical condition','Medical condition','37C5406D-8C92-4646-9038-F0AB9F517FB6'),
+		    (757,'http://www.ed-fi.org/Descriptor/DisabilityDescriptor.xml','Physical Disability','Physical Disability','Physical Disability','B53BB05E-C6E2-4D30-8E60-C1AEAF57D96B')
+	    ) AS Source(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id
+	    )
+	    ON TARGET.DescriptorId = Source.DescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, LastModifiedDate, CreateDate)
+		      VALUES (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.Descriptor OFF;
+	
+	    SET IDENTITY_INSERT edfi.DisabilityCategoryType ON;
+	    MERGE INTO edfi.DisabilityCategoryType AS Target
+	    USING (VALUES
+		    (1,'Section 504','Section 504','Section 504','C201DC47-C984-45F8-970D-20B8F83BF1D0'),
+		    (2,'Other','Other','Other','B972F3E0-BC8C-4B4B-A52C-878744D95BCB')
+	    ) AS Source(DisabilityCategoryTypeId,ShortDescription,CodeValue,Description,Id
+	    )
+	    ON TARGET.DisabilityCategoryTypeId = Source.DisabilityCategoryTypeId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DisabilityCategoryTypeId,ShortDescription,CodeValue,Description,Id)
+		      VALUES (DisabilityCategoryTypeId,ShortDescription,CodeValue,Description,Id)
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.DisabilityCategoryType OFF;
+
+	    MERGE INTO edfi.DisabilityDescriptor AS Target
+	    USING (VALUES
+		    (747,2),
+		    (757,1)
+	    ) AS Source(DisabilityDescriptorId,DisabilityCategoryTypeId
+	    )
+	    ON TARGET.DisabilityDescriptorId = Source.DisabilityDescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DisabilityDescriptorId,DisabilityCategoryTypeId)
+		      VALUES (DisabilityDescriptorId,DisabilityCategoryTypeId)
+	    OUTPUT $action,
+		       inserted.*;
+	  
+    </ControlDataInsertion>
+</TestCase>

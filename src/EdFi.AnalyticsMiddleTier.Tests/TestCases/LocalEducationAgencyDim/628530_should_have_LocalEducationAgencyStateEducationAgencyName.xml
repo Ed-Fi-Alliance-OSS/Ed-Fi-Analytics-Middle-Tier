@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT LocalEducationAgencyStateEducationAgencyName
+    FROM analytics.LocalEducationAgencyDim
+    WHERE LocalEducationAgencyKey = 628530;
+  </Query>
+  <Result>
+    <LocalEducationAgencyStateEducationAgencyName>Mesa ISD</LocalEducationAgencyStateEducationAgencyName>
+  </Result>
+</TestCase>
