@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT IsAbsentFromAnySection
+      FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+      WHERE StudentKey = '193975' AND SchoolKey='867530033' AND DateKey=20120520;
+  </Query>
+  <Result>
+      <IsAbsentFromAnySection>1</IsAbsentFromAnySection>
+  </Result>
+</TestCase>

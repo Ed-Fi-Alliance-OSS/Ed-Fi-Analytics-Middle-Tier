@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COUNT(1) AS CountValue
+      FROM analytics_config.rls_StaffClassificationDescriptorScopeList
+      WHERE AuthorizationScopeName = 'AttendanceEvent.UnexcusedAbsence'
+      AND CodeValue='Unexcused Absence';
+  </Query>
+  <Result>
+    <CountValue>0</CountValue>
+  </Result>
+</TestCase>

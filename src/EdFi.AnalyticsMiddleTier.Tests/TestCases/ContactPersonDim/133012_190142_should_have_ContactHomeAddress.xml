@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ContactHomeAddress
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey  = '133012-190142';
+  </Query>
+  <Result>
+    <ContactHomeAddress>640 Brown Farm Rd, Trent TX 72312</ContactHomeAddress>
+  </Result>
+</TestCase>

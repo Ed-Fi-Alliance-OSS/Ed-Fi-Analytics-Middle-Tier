@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT StudentKey
+        FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+        WHERE StudentKey = '189855' AND SchoolKey='867530012' AND DateKey=20120502;
+    </Query>
+    <Result>
+        <StudentKey>189855</StudentKey>
+    </Result>
+</TestCase>

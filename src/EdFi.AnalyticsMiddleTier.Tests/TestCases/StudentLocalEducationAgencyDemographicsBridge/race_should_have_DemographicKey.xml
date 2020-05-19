@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT DemographicKey
+      FROM analytics.StudentLocalEducationAgencyDemographicsBridge
+      WHERE StudentSchoolDemographicBridgeKey='Race:Asian-193964-867530';
+  </Query>
+  <Result>
+      <DemographicKey>Race:Asian</DemographicKey>
+  </Result>
+</TestCase>

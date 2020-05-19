@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT IsHispanic
+    FROM analytics.StudentSchoolDim
+    WHERE StudentKey = '189914';
+  </Query>
+  <Result>
+    <IsHispanic>1</IsHispanic>
+  </Result>
+</TestCase>

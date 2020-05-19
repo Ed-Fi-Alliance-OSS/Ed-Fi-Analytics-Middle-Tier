@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT IsPresentInAllSections
+        FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+        WHERE StudentKey = '189889' AND SchoolKey='867530022' AND DateKey=20111205;
+    </Query>
+    <Result>
+        <IsPresentInAllSections>0</IsPresentInAllSections>
+    </Result>
+</TestCase>

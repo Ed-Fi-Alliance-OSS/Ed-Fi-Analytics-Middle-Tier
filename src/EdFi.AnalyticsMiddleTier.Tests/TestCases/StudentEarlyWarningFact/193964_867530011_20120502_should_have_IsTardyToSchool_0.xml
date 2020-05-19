@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT IsTardyToSchool
+    FROM analytics.ews_StudentEarlyWarningFact
+    WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey=20120502;
+  </Query>
+  <Result>
+    <IsTardyToSchool>0</IsTardyToSchool>
+  </Result>
+</TestCase>

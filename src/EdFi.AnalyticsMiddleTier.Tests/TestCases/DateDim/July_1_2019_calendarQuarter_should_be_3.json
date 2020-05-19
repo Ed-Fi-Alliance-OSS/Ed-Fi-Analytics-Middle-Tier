@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "SELECT CalendarQuarter \n FROM analytics.DateDim \nWHERE DateKey=20190701;",
+  "Result": [
+    {
+      "CalendarQuarter": "3"
+    }
+  ]
+}

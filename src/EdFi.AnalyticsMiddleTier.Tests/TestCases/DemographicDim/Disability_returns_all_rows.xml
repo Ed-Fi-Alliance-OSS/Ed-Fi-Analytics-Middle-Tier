@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicLabel
+    FROM analytics.DemographicDim
+    WHERE DemographicParentKey = 'Disability'
+  </Query>
+  <Result>
+    <DemographicLabel>Medical condition</DemographicLabel>
+  </Result>
+  <Result>
+    <DemographicLabel>Physical Disability</DemographicLabel>
+  </Result>
+</TestCase>

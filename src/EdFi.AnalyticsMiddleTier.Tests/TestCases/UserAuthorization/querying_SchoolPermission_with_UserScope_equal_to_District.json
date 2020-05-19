@@ -1,0 +1,12 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select UserScope, SchoolPermission from analytics.rls_UserAuthorization where UserKey = 13449",
+  "Result": [
+    {
+        "UserScope": "AuthorizationScope.District",
+        "SchoolPermission": "ALL"
+    }
+  ]
+}

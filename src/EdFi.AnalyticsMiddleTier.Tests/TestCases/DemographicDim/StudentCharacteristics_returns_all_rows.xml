@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicLabel
+    FROM analytics.DemographicDim
+    WHERE DemographicParentKey = 'StudentCharacteristic'
+  </Query>
+  <Result>
+    <DemographicLabel>Migrant</DemographicLabel>
+  </Result>
+  <Result>
+    <DemographicLabel>Asylee</DemographicLabel>
+  </Result>
+  <Result>
+    <DemographicLabel>Economic Disadvantaged</DemographicLabel>
+  </Result>
+</TestCase>

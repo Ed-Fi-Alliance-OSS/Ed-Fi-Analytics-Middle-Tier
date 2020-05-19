@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "SELECT SchoolAddress FROM analytics.SchoolDim WHERE SchoolKey = 867530009",
+  "Result": [
+    {
+      "SchoolAddress": "2602 2ND ST, GlendaleTX 75862-0001"
+    }
+  ]
+}

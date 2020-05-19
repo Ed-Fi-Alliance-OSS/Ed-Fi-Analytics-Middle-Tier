@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ContactHomeAddress
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey = '132500-189856';
+  </Query>
+  <Result>
+    <ContactHomeAddress>527 Garland No 1 Rd, Richardson TX 75270</ContactHomeAddress>
+  </Result>
+</TestCase>

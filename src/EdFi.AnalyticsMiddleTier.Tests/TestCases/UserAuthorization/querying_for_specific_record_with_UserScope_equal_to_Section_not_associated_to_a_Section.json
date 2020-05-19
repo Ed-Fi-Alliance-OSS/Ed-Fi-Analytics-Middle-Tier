@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select count(1) as CountValue from analytics.rls_UserAuthorization where UserKey = 11370",
+  "Result": [
+    {
+      "CountValue": 0
+    }
+  ]
+}

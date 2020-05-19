@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT DemographicKey
+      FROM analytics.StudentSchoolDemographicsBridge
+      WHERE StudentSchoolDemographicBridgeKey = 'CohortYear:2011-Eighth grade-193964-867530007';
+  </Query>
+  <Result>
+      <DemographicKey>CohortYear:2011-Eighth grade</DemographicKey>
+  </Result>
+</TestCase>

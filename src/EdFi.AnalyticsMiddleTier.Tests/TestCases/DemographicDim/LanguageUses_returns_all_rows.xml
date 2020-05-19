@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT DemographicLabel
+    FROM analytics.DemographicDim
+    WHERE DemographicParentKey = 'LanguageUse'
+  </Query>
+  <Result>
+    <DemographicLabel>Correspondence language</DemographicLabel>
+  </Result>
+  <Result>
+    <DemographicLabel>Dominant language</DemographicLabel>
+  </Result>
+</TestCase>

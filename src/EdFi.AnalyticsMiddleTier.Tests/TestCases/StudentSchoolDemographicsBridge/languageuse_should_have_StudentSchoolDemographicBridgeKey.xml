@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentSchoolDemographicBridgeKey
+      FROM analytics.StudentSchoolDemographicsBridge
+      WHERE StudentSchoolDemographicBridgeKey = 'LanguageUse:Dominant language-193964-867530007';
+  </Query>
+  <Result>
+      <StudentSchoolDemographicBridgeKey>LanguageUse:Dominant language-193964-867530007</StudentSchoolDemographicBridgeKey>
+  </Result>
+</TestCase>
