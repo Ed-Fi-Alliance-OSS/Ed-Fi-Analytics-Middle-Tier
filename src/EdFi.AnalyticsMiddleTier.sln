@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.DataStandard32", "EdFi.AnalyticsMiddleTier.DataStandard32\EdFi.AnalyticsMiddleTier.DataStandard32.csproj", "{283AC53E-C4A5-41AB-90CB-7D0EF9EFF5C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{DE1426B4-7773-4A66-BC6F-E151B9A265E6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Project Information", "_Project Information", "{DE1426B4-7773-4A66-BC6F-E151B9A265E6}"
 	ProjectSection(SolutionItems) = preProject
 		..\CONTRIBUTORS.md = ..\CONTRIBUTORS.md
 		..\NOTICES.md = ..\NOTICES.md
