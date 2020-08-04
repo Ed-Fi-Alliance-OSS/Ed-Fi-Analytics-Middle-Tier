@@ -21,6 +21,10 @@
     {
       "ColumnName": "SchoolPermission",
       "DataType": "varchar"
+    },
+    {
+      "ColumnName": "DistrictId",
+      "DataType": "int"
     }
   ]
 }
