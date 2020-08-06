@@ -50,7 +50,6 @@ AS
               CASE staffToScopeMap.UserScope
                   WHEN 'AuthorizationScope.District'
                   THEN staffToScopeMap.EducationOrganizationId
-                  ELSE null
               END AS DistrictId
           FROM
               staffToScopeMap
