@@ -77,6 +77,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_District(TestHarness dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
+            public void Then_DistrictId_with_UserScope_equal_to_District_is_returned_properly()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_DistrictId_with_UserScope_equal_to_District.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
             public void Then_SchoolPermission_with_UserScope_equal_to_District_is_returned_properly()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SchoolPermission_with_UserScope_equal_to_District.json");
@@ -98,6 +104,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_School(TestHarness dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
+            public void Then_DistrictId_with_UserScope_equal_to_School_is_returned_properly()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_DistrictId_with_UserScope_equal_to_School.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_SchoolPermission_with_UserScope_equal_to_School_is_returned_properly()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SchoolPermission_with_UserScope_equal_to_School.json");
@@ -117,6 +130,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             : When_querying_the_UserAuthorization_view
         {
             public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_Section(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            [Test]
+            public void Then_DistrictId_with_UserScope_equal_to_Section_is_returned_properly()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_DistrictId_with_UserScope_equal_to_Section.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
 
             [Test]
             public void Then_SchoolPermission_with_UserScope_equal_to_Section_is_returned_properly()
