@@ -9,6 +9,6 @@
       WHERE ClassPeriodKey = 'T07-ACER08-867530007-2012-21855-Traditional';
   </Query>
   <Result>
-      <LocalCourseCode>867530007</LocalCourseCode>
+      <LocalCourseCode>ACER08</LocalCourseCode>
   </Result>
 </TestCase>
