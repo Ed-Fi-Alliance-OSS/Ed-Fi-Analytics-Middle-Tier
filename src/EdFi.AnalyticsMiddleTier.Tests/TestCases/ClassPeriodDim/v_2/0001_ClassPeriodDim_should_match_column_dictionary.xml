@@ -8,99 +8,39 @@
         DATA_TYPE AS DataType
         FROM information_schema.columns
         WHERE table_schema = 'analytics'
-        AND table_name = 'ContactPersonDim'
+        AND table_name = 'ClassPeriodDim'
         ORDER BY ORDINAL_POSITION ASC;
     </Query>
     <Result>
-        <ColumnName>UniqueKey</ColumnName>
+        <ColumnName>ClassPeriodKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>ContactPersonKey</ColumnName>
+        <ColumnName>ClassPeriodName</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>StudentKey</ColumnName>
+        <ColumnName>LocalCourseCode</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>ContactFirstName</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactLastName</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>RelationshipToStudent</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactHomeAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactPhysicalAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactMailingAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactWorkAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactTemporaryAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>HomePhoneNumber</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>MobilePhoneNumber</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>WorkPhoneNumber</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>PrimaryEmailAddress</ColumnName>
-        <DataType>varchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>PersonalEmailAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>WorkEmailAddress</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>IsPrimaryContact</ColumnName>
-        <DataType>bit</DataType>
-    </Result>
-    <Result>
-        <ColumnName>StudentLivesWith</ColumnName>
-        <DataType>bit</DataType>
-    </Result>
-    <Result>
-        <ColumnName>IsEmergencyContact</ColumnName>
-        <DataType>bit</DataType>
-    </Result>
-    <Result>
-        <ColumnName>ContactPriority</ColumnName>
+        <ColumnName>SchoolId</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>ContactRestrictions</ColumnName>
+        <ColumnName>SchoolYear</ColumnName>
+        <DataType>smallint</DataType>
+    </Result>
+    <Result>
+        <ColumnName>TermDescriptorId</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>UniqueSectionCode</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>LastModifiedDate</ColumnName>
-        <DataType>datetime</DataType>
+        <ColumnName>SessionName</ColumnName>
+        <DataType>nvarchar</DataType>
     </Result>
 </TestCase>
