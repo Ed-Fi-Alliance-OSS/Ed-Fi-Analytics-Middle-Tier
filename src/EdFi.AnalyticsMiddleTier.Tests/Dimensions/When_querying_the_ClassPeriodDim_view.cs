@@ -72,35 +72,35 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_have_ClassPeriodKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_ClassPeriodKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_ClassPeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ClassPeriodName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_ClassPeriodName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_ClassPeriodName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_LocalCourseCode()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LocalCourseCode.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LocalCourseCode.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_SchoolId()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SchoolId.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SchoolId.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_SchoolYear()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SchoolYear.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SchoolYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -110,7 +110,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     (bool success, string errorMessage) testResult =
-                        DataStandard.RunTestCase<UserDim>(
+                        DataStandard.RunTestCase<ClassPeriodDim>(
                             $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SectionIdentifier.xml");
                     testResult.success.ShouldBe(true, testResult.errorMessage);
                 }
@@ -123,7 +123,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_have_SessionName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SessionName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SessionName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -133,7 +133,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     (bool success, string errorMessage) testResult =
-                        DataStandard.RunTestCase<UserDim>(
+                        DataStandard.RunTestCase<ClassPeriodDim>(
                             $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_TermDescriptorId.xml");
                     testResult.success.ShouldBe(true, testResult.errorMessage);
                 }
@@ -149,7 +149,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     (bool success, string errorMessage) testResult =
-                        DataStandard.RunTestCase<UserDim>(
+                        DataStandard.RunTestCase<ClassPeriodDim>(
                             $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_UniqueSectionCode.xml");
                     testResult.success.ShouldBe(true, testResult.errorMessage);
                 }
