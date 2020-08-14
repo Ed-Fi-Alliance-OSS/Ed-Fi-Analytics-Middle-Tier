@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT UniqueSectionCode
+      SELECT SectionIdentifier
       FROM analytics.ClassPeriodDim
       WHERE ClassPeriodKey = 'T01-QALR11-867530007-2012-530-21958-Traditional';
   </Query>
   <Result>
-      <UniqueSectionCode>21958</UniqueSectionCode>
+      <SectionIdentifier>21958</SectionIdentifier>
   </Result>
 </TestCase>

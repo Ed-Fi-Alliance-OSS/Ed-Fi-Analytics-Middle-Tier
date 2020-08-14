@@ -16,8 +16,7 @@ CREATE VIEW analytics.ClassPeriodDim AS
        Section.LocalCourseCode, 
        Section.SchoolId, 
        Section.SchoolYear, 
-       Section.TermDescriptorId, 
-       Section.UniqueSectionCode, 
+       Section.UniqueSectionCode as SectionIdentifier, 
        Session.SessionName
     FROM 
          edfi.Section

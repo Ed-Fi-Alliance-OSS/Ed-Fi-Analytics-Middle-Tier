@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_ClassPeriodDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_ClassPeriodDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -107,17 +107,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_have_SectionIdentifier()
             {
-                if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    (bool success, string errorMessage) testResult =
-                        DataStandard.RunTestCase<ClassPeriodDim>(
-                            $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SectionIdentifier.xml");
-                    testResult.success.ShouldBe(true, testResult.errorMessage);
-                }
-                else
-                {
-                    Assert.Ignore("Data Standard 2 does not have SectionIdentifier on the ClassPeriodDim view.");
-                }
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<ClassPeriodDim>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SectionIdentifier.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
@@ -125,38 +118,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SessionName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_TermDescriptorId()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    (bool success, string errorMessage) testResult =
-                        DataStandard.RunTestCase<ClassPeriodDim>(
-                            $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_TermDescriptorId.xml");
-                    testResult.success.ShouldBe(true, testResult.errorMessage);
-                }
-                else
-                {
-                    Assert.Ignore("Only Data Standard 2 have TermDescriptorId on the ClassPeriodDim view.");
-                }
-            }
-
-            [Test]
-            public void Then_should_have_UniqueSectionCode()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    (bool success, string errorMessage) testResult =
-                        DataStandard.RunTestCase<ClassPeriodDim>(
-                            $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_UniqueSectionCode.xml");
-                    testResult.success.ShouldBe(true, testResult.errorMessage);
-                }
-                else
-                {
-                    Assert.Ignore("Only Data Standard 2 have UniqueSectionCode on the ClassPeriodDim view.");
-                }
             }
         }
     }
