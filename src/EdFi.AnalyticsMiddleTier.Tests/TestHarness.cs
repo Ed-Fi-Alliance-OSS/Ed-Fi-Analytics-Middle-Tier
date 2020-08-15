@@ -75,7 +75,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        private string _connectionString => $"server=DESKTOP-A3LB20V,1434;database={_databaseName};user=sa;password=4$fdjewkQ";
+        private string _connectionString => $"server=localhost;database={_databaseName};integrated security=sspi";
 
         private string _snapshotName => $"{_databaseName}_ss";
 
@@ -229,7 +229,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public void PrepareDatabase()
         {
-            using (var connection = new SqlConnection("server=DESKTOP-A3LB20V,1434;database=master;user=sa;password=4$fdjewkQ"))
+            using (var connection = new SqlConnection("server=localhost;database={_databaseName};integrated security=sspi"))
             {
                 if (NotUsingSnapshots())
                 {
@@ -324,7 +324,6 @@ SELECT REPLACE([physical_name], '{_databaseName}_Primary.mdf', '') as FilePath
 FROM pathname
 ";
                     var filePath = connection.ExecuteScalar<string>(defaultFilePathForSqlDbFiles);
-                    filePath = @"C:\Projects\IndianaUEdFi\Ed-Fi-Analytics-Middle-Tier\snapshots";
 
                     var createOrReplaceSnapshotTemplate = $@"
 CREATE DATABASE {_snapshotName} ON
