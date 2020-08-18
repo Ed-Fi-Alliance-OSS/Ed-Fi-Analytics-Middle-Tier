@@ -14,4 +14,3 @@ CREATE OR REPLACE VIEW analytics.ClassPeriodDim AS
            SessionName
     FROM 
          edfi.SectionClassPeriod;
-GO
