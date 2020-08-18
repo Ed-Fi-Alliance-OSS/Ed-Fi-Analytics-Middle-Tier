@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT ClassPeriodName
+      FROM analytics.ClassPeriodDim
+      WHERE ClassPeriodKey = 'T07-ACER08-867530007-2012-21855-Traditional';
+  </Query>
+  <Result>
+      <ClassPeriodName>T07</ClassPeriodName>
+  </Result>
+</TestCase>
