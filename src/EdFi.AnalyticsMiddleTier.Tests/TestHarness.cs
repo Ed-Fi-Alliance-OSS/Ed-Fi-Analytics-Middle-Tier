@@ -229,7 +229,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public void PrepareDatabase()
         {
-            using (var connection = new SqlConnection("server=localhost;database={_databaseName};integrated security=sspi"))
+            using (var connection = new SqlConnection("server=localhost;database=master;integrated security=sspi"))
             {
                 if (NotUsingSnapshots())
                 {
