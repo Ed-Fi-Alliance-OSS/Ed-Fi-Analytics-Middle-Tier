@@ -11,20 +11,21 @@ GO
 
 CREATE VIEW analytics.ClassPeriodDim AS
     SELECT 
-       CONCAT(Section.ClassPeriodName, '-', Section.LocalCourseCode, '-', Section.SchoolId, '-', Section.SchoolYear, '-', Section.TermDescriptorId, '-', Section.UniqueSectionCode, '-', Session.SessionName) ClassPeriodKey, 
-       Section.ClassPeriodName, 
-       Section.LocalCourseCode, 
-       Section.SchoolId, 
-       Section.SchoolYear, 
-       Section.UniqueSectionCode as SectionIdentifier, 
-       Session.SessionName
+        CONCAT(Section.ClassPeriodName, '-', Section.LocalCourseCode, '-', Section.SchoolId, '-', Section.SchoolYear, '-', Section.TermDescriptorId, '-', Section.UniqueSectionCode, '-', Session.SessionName) ClassPeriodKey, 
+        CONCAT(section.SchoolId, '-', Section.ClassPeriodName, '-', section.ClassroomIdentificationCode, '-', Section.LocalCourseCode, '-', Section.TermDescriptorId, '-', Section.SchoolYear, '-', Section.UniqueSectionCode, '-', Section.SequenceOfCourse) as SectionKey,
+        Section.ClassPeriodName, 
+        Section.LocalCourseCode, 
+        Section.SchoolId, 
+        Section.SchoolYear, 
+        Section.UniqueSectionCode as SectionIdentifier, 
+        Session.SessionName
     FROM 
-         edfi.Section
+        edfi.Section
     INNER JOIN
         edfi.Session ON
             Section.SchoolId = Session.SchoolId
             AND
             Section.SchoolYear = Session.SchoolYear
             AND
-           Section.TermDescriptorId = Session.TermDescriptorId
+            Section.TermDescriptorId = Session.TermDescriptorId
 GO

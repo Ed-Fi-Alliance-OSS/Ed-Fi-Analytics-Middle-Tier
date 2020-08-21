@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT SectionKey
+      FROM analytics.ClassPeriodDim
+      WHERE SectionKey = '867530007-ACER08-2012-21855-Traditional';
+  </Query>
+  <Result>
+      <SectionKey>867530007-ACER08-2012-21855-Traditional</SectionKey>
+  </Result>
+</TestCase>

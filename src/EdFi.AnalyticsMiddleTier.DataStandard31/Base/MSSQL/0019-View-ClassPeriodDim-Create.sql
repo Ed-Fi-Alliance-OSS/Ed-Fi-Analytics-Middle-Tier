@@ -10,14 +10,15 @@ END
 GO
 
 CREATE VIEW analytics.ClassPeriodDim AS
-    SELECT 
-           CONCAT(ClassPeriodName, '-', LocalCourseCode, '-', SchoolId, '-', SchoolYear, '-', SectionIdentifier, '-', SessionName) ClassPeriodKey, 
-           ClassPeriodName,
-           LocalCourseCode, 
-           SchoolId, 
-           SchoolYear, 
-           SectionIdentifier, 
-           SessionName
+    SELECT
+        CONCAT(ClassPeriodName, '-', LocalCourseCode, '-', SchoolId, '-', SchoolYear, '-', SectionIdentifier, '-', SessionName) ClassPeriodKey,
+        CONCAT(SchoolId, '-', LocalCourseCode, '-', SchoolYear, '-', SectionIdentifier, '-', SessionName) SectionKey,
+        ClassPeriodName,
+        LocalCourseCode, 
+        SchoolId, 
+        SchoolYear, 
+        SectionIdentifier, 
+        SessionName
     FROM 
          edfi.SectionClassPeriod;
 GO

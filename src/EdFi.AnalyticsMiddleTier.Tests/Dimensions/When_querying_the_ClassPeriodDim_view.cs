@@ -77,6 +77,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
+            public void Then_should_have_SectionKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_ClassPeriodName()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_ClassPeriodName.xml");

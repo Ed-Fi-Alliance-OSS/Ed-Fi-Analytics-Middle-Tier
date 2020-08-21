@@ -16,6 +16,10 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>SectionKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>ClassPeriodName</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
