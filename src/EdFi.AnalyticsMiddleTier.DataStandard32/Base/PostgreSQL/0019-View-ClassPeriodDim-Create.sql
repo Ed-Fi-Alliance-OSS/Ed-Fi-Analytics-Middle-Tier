@@ -6,6 +6,7 @@
 CREATE OR REPLACE VIEW analytics.ClassPeriodDim AS
     SELECT 
            CONCAT(ClassPeriodName, '-', LocalCourseCode, '-', SchoolId, '-', SchoolYear, '-', SectionIdentifier, '-', SessionName) ClassPeriodKey, 
+           CONCAT(SchoolId, '-', LocalCourseCode, '-', SchoolYear, '-', SectionIdentifier, '-', SessionName) SectionKey,
            ClassPeriodName,
            LocalCourseCode, 
            SchoolId, 
