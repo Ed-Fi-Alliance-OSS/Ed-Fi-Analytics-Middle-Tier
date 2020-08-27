@@ -10,7 +10,7 @@ AS
       Student.StudentUniqueId AS StudentKey,
       CAST(StudentSectionAssociation.SchoolId AS VARCHAR) || '-' || StudentSectionAssociation.LocalCourseCode || '-' || CAST(StudentSectionAssociation.SchoolYear AS VARCHAR) || '-' || StudentSectionAssociation.SectionIdentifier || '-' || StudentSectionAssociation.SessionName AS SectionKey,
       StudentSectionAssociation.LocalCourseCode,
-      COALESCE(AcademicSubjectType.CodeValue, '') AS Subject,
+      COALESCE(AcademicSubjectType.Description, '') AS Subject,
       COALESCE(Course.CourseTitle, '') AS CourseTitle,
 
       -- There could be multiple teachers for a section - reduce those to a single string.

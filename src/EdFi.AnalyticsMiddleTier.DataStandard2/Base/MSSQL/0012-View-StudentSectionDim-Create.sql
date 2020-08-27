@@ -21,7 +21,7 @@ AS
             [Student].[StudentUniqueId] AS [StudentKey],
             CAST([StudentSectionAssociation].[SchoolId] AS NVARCHAR) + '-' + [StudentSectionAssociation].[ClassPeriodName] + '-' + [StudentSectionAssociation].[ClassroomIdentificationCode] + '-' + [StudentSectionAssociation].[LocalCourseCode] + '-' + CAST([StudentSectionAssociation].[TermDescriptorId] AS NVARCHAR) + '-' + CAST([StudentSectionAssociation].[SchoolYear] AS NVARCHAR) + '-' + [StudentSectionAssociation].[UniqueSectionCode] + '-' + CAST([StudentSectionAssociation].[SequenceOfCourse] AS NVARCHAR) AS [SectionKey],
             [StudentSectionAssociation].[LocalCourseCode],
-            ISNULL([AcademicSubjectType].[CodeValue], '') AS [Subject],
+            ISNULL([Descriptor].[Description], '') AS [Subject],
             ISNULL([Course].[CourseTitle], '') AS [CourseTitle],
 
             -- There could be multiple teachers for a section - reduce those to a single string.
@@ -48,7 +48,7 @@ AS
             CAST(StudentSectionAssociation.SchoolYear AS NVARCHAR) AS SchoolYear,
      (
          SELECT MAX([MaxLastModifiedDate])
-         FROM(VALUES([StudentSectionAssociation].[LastModifiedDate]), ([Course].[LastModifiedDate]), ([CourseOffering].[LastModifiedDate]), ([AcademicSubjectType].[LastModifiedDate])) AS VALUE([MaxLastModifiedDate])
+         FROM(VALUES([StudentSectionAssociation].[LastModifiedDate]), ([Course].[LastModifiedDate]), ([CourseOffering].[LastModifiedDate]), ([Descriptor].[LastModifiedDate])) AS VALUE([MaxLastModifiedDate])
      ) AS [LastModifiedDate]
      FROM [edfi].[StudentSectionAssociation]
           INNER JOIN [edfi].[Student]
@@ -63,6 +63,6 @@ AS
              AND [Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
           LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor]
           ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
-          LEFT OUTER JOIN [edfi].[AcademicSubjectType]
-          ON [AcademicSubjectType].[AcademicSubjectTypeId] = [AcademicSubjectDescriptor].[AcademicSubjectTypeId];
+          LEFT OUTER JOIN [edfi].[Descriptor]
+          ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
 GO
