@@ -24,7 +24,7 @@ AS
             Student.StudentUniqueId AS StudentKey, 
             CAST(StudentSectionAssociation.SchoolId AS NVARCHAR) + '-' + StudentSectionAssociation.LocalCourseCode + '-' + CAST(StudentSectionAssociation.SchoolYear AS NVARCHAR) + '-' + StudentSectionAssociation.SectionIdentifier + '-' + StudentSectionAssociation.SessionName AS SectionKey, 
             StudentSectionAssociation.LocalCourseCode, 
-            ISNULL(AcademicSubjectType.Description, '') AS Subject, 
+            ISNULL(AcademicSubjectType.CodeValue, '') AS Subject, 
             ISNULL(Course.CourseTitle, '') AS CourseTitle,
 
             -- There could be multiple teachers for a section - reduce those to a single string.
