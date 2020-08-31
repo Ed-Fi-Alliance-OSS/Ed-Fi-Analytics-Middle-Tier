@@ -241,7 +241,7 @@
         SET IDENTITY_INSERT edfi.AcademicSubjectType OFF;
 
         SET IDENTITY_INSERT edfi.Descriptor ON;
-        INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'18','http://www.ed-fi.org/Descriptor/AcademicSubjectDescriptor.xml','Other','Other','Other',NULL,NULL,NULL,'2E655CCA-FF7D-4A97-86B8-ED13CF8BF38E','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '18'));
+        INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'18','http://www.ed-fi.org/Descriptor/AcademicSubjectDescriptor.xml','Other','Other','Other',NULL,NULL,NULL,'2E655CCA-FF7D-4A97-86B8-ED13CF8BF38E','Nov 18 2019 11:47AM','Nov 18 2019 11:47AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '18'));
         SET IDENTITY_INSERT edfi.Descriptor OFF;
 
         INSERT INTO edfi.AcademicSubjectDescriptor(AcademicSubjectDescriptorId,AcademicSubjectTypeId)(SELECT TOP 1'18','31'  WHERE NOT EXISTS(SELECT  1  FROM edfi.AcademicSubjectDescriptor WHERE   AcademicSubjectDescriptorId= '18'));
