@@ -16,6 +16,8 @@ Param (
 
 $baseUrl = "https://api.github.com";
 $contentType = "application/vnd.github+json";
+$licenseFile = "LICENSE"
+$noticesFile = "NOTICES.md"
 
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls";
 
@@ -24,7 +26,6 @@ $headers = @{
     "Content-Type" = $contentType;
     "User-Agent" = $gitHubUserName;
 };
-
 
 Try {
     # Create the release
@@ -44,13 +45,19 @@ Try {
     $uploadUrl = $result.upload_url;
     $headers.'Content-Type' = "application/zip";
 
-    # Upload Framework-dependent deployment zip file
-    $uploadUrlFdd = $uploadUrl.replace("{?name,label}", "?name=$fddZipFile");
+    # Add NOTICES and License files to Framework-dependent deployment zip file.
+	Compress-Archive -Path $licenseFile, $noticesFile -Update  -DestinationPath $fddZipFile
+	
+	# Upload Framework-dependent deployment zip file
+	$uploadUrlFdd = $uploadUrl.replace("{?name,label}", "?name=$fddZipFile");
     $result = Invoke-RestMethod -Method POST -Uri "$uploadUrlFdd" -Headers $headers -Infile "$publishDirectory\$fddZipFile";
     Write-Host $result;
 
+	# Add NOTICES and License files to Self-contained deployment zip file.
+	Compress-Archive -Path $licenseFile, $noticesFile -Update  -DestinationPath $scdZipFile
+	
     # Upload Self-contained deployment zip file
-    $uploadUrlScd = $uploadUrl.replace("{?name,label}", "?name=$scdZipFile");
+	$uploadUrlScd = $uploadUrl.replace("{?name,label}", "?name=$scdZipFile");
     $result = Invoke-RestMethod -Method POST -Uri "$uploadUrlScd" -Headers $headers -Infile "$publishDirectory\$scdZipFile";
     Write-Host $result;
 }
