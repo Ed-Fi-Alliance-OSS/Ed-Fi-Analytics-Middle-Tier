@@ -28,27 +28,27 @@
         <DataType>varchar</DataType>
     </Result>
     <Result>
-        <ColumnName>IsPresentAtSchool</ColumnName>
+        <ColumnName>ReportedAsPresentAtSchool</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>IsAbsentFromSchool</ColumnName>
+        <ColumnName>ReportedAsAbsentFromSchool</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>IsPresentAtHomeRoom</ColumnName>
+        <ColumnName>ReportedAsAbsentFromSchoolReportedAsPresentAtHomeRoom</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>IsAbsentFromHomeRoom</ColumnName>
+        <ColumnName>ReportedAsAbsentFromHomeRoom</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>IsPresentInAllSections</ColumnName>
+        <ColumnName>ReportedAsIsPresentInAllSections</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>IsAbsentFromAnySection</ColumnName>
+        <ColumnName>ReportedAsAbsentFromAnySection</ColumnName>
         <DataType>int</DataType>
     </Result>
 </TestCase>

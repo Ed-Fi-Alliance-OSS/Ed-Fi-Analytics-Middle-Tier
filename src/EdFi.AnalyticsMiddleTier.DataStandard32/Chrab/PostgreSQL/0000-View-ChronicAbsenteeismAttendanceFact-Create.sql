@@ -32,14 +32,14 @@ AS
             AND
                 schoolAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present' THEN 1
             ELSE 0
-        END) AS IsPresentAtSchool,
+        END) AS ReportedAsPresentAtSchool,
         MAX(CASE
             WHEN
                 StudentSchoolAttendanceEvent.Id IS NOT NULL
             AND
                 schoolAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Absence' THEN 1
             ELSE 0
-        END) AS IsAbsentFromSchool,
+        END) AS ReportedAsAbsentFromSchool,
 
         MAX(CASE
             WHEN
@@ -49,7 +49,7 @@ AS
             AND
                 StudentSectionAssociation.HomeroomIndicator = TRUE THEN 1
             ELSE 0
-        END) AS IsPresentAtHomeRoom,
+        END) AS ReportedAsAbsentFromSchoolReportedAsPresentAtHomeRoom,
         MAX(CASE
             WHEN
                 StudentSectionAttendanceEvent.Id IS NOT NULL
@@ -58,7 +58,7 @@ AS
             AND 
                 StudentSectionAssociation.HomeroomIndicator = TRUE THEN 1
             ELSE 0
-        END) AS IsAbsentFromHomeRoom,
+        END) AS ReportedAsAbsentFromHomeRoom,
 
         CASE
             WHEN
@@ -79,14 +79,14 @@ AS
                 END) > 0)
             THEN 1
             ELSE 0 
-        END as IsPresentInAllSections,
+        END as ReportedAsIsPresentInAllSections,
         MAX(CASE
             WHEN
                 StudentSectionAttendanceEvent.Id IS NOT NULL
             AND
                 sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Absence' THEN 1
             ELSE 0
-        END) AS IsAbsentFromAnySection
+        END) AS ReportedAsAbsentFromAnySection
     FROM
 		edfi.StudentSchoolAssociation
     INNER JOIN

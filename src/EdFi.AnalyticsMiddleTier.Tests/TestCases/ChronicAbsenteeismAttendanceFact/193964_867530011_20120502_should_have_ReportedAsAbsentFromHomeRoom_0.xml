@@ -4,11 +4,11 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT IsAbsentFromAnySection
+        SELECT ReportedAsAbsentFromHomeRoom
         FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
         WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey=20120502;
     </Query>
     <Result>
-        <IsAbsentFromAnySection>1</IsAbsentFromAnySection>
+        <ReportedAsAbsentFromHomeRoom>0</ReportedAsAbsentFromHomeRoom>
     </Result>
 </TestCase>
