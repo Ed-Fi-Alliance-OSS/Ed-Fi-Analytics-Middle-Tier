@@ -108,7 +108,7 @@ WITH present as (
 			edfi.CalendarEventDescriptor ON
 				Descriptor.DescriptorId = CalendarEventDescriptor.CalendarEventDescriptorId
 		WHERE
-			Descriptor.CodeValue IN ('Instructional Day', 'Make-up day')
+			Descriptor.CodeValue IN ('Instructional day', 'Make-up day')
 	) as d
 	WHERE DescriptorConstant.ConstantName = 'CalendarEvent.InstructionalDay'
 )
