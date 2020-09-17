@@ -90,7 +90,7 @@ WITH present as (
 			edfi.CalendarEventDescriptor ON
 				Descriptor.DescriptorId = CalendarEventDescriptor.CalendarEventDescriptorId
 		WHERE
-			Descriptor.CodeValue IN ('Instructional Day', 'Instructional day', 'Make-up day', 'Make-up day')
+			Descriptor.CodeValue IN ('Instructional Day', 'Instructional day', 'Make-up Day', 'Make-up day')
 	) as d
 	WHERE DescriptorConstant.ConstantName = 'CalendarEvent.InstructionalDay'
 ), stateOffenses as (
