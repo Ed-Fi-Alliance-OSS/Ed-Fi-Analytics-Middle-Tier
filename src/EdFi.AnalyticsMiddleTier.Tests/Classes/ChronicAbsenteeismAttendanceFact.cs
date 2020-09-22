@@ -11,11 +11,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string StudentKey { get; set; }
         public string SchoolKey { get; set; }
         public string DateKey { get; set; }
-        public int? IsPresentAtSchool { get; set; }
-        public int? IsAbsentFromSchool { get; set; }
-        public int? IsPresentAtHomeRoom { get; set; }
-        public int? IsAbsentFromHomeRoom { get; set; }
-        public int? IsPresentInAllSections { get; set; }
-        public int? IsAbsentFromAnySection { get; set; }
+        public int? ReportedAsPresentAtSchool { get; set; }
+        public int? ReportedAsAbsentFromSchool { get; set; }
+        public int? ReportedAsAbsentFromSchoolReportedAsPresentAtHomeRoom { get; set; }
+        public int? ReportedAsAbsentFromHomeRoom { get; set; }
+        public int? ReportedAsIsPresentInAllSections { get; set; }
+        public int? ReportedAsAbsentFromAnySection { get; set; }
     }
 }

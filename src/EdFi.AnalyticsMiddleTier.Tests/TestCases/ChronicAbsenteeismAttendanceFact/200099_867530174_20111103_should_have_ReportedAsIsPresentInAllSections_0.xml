@@ -4,11 +4,11 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT IsPresentInAllSections
+        SELECT ReportedAsIsPresentInAllSections
         FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
         WHERE StudentKey = '200099' AND SchoolKey='867530174' AND DateKey=20111103;
     </Query>
     <Result>
-        <IsPresentInAllSections>0</IsPresentInAllSections>
+        <ReportedAsIsPresentInAllSections>0</ReportedAsIsPresentInAllSections>
     </Result>
 </TestCase>
