@@ -55,7 +55,11 @@ SELECT DISTINCT staffToScopeMap.StaffUniqueId AS UserKey
 		WHEN 'AuthorizationScope.District'
 			THEN 'ALL'
 		ELSE CAST(staffToScopeMap.EducationOrganizationId AS VARCHAR)
-		END AS SchoolPermission
+		END AS SchoolPermission,
+    CASE staffToScopeMap.UserScope
+        WHEN 'AuthorizationScope.District'
+            THEN staffToScopeMap.EducationOrganizationId
+        END AS DistrictId
 FROM staffToScopeMap
 LEFT OUTER JOIN 
 	edfi.StaffSectionAssociation

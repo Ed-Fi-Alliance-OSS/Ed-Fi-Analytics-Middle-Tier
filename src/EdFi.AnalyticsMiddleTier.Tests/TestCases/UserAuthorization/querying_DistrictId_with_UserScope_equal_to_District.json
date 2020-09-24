@@ -1,0 +1,12 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select UserScope, DistrictId from analytics.rls_UserAuthorization where UserKey = 13449",
+  "Result": [
+    {
+        "UserScope": "AuthorizationScope.District",
+        "DistrictId": 867530
+    }
+  ]
+}
