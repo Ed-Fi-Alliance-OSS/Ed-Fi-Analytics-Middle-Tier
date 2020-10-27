@@ -2,22 +2,11 @@
 
 This is the list of Ed-Fi-Analytics-Middle-Tier's significant contributors.
 
-Inteport
-*  Updated queries in .Lib for ODS v3.x
-
-Clackamas Education service district
-*  Student Dimension includes future exited students
-
-Pratik Shrestha
-*  Fixed design documentation typo
-
-Edwire
-*  Added letter grades to the StudentSectionGradeFact
-*  Fixed descriptor in StudentEarlyWarningFact
-*  Fixed embedded files and SQL errrors
-
-Clear Launch
-*  Added DistrictId to UserAuthorization view
+*  Inteport (https://www.inteport.com/)
+*  Clackamas Education service district (https://www.clackesd.org/)
+*  Pratik Shrestha
+*  Edwire (https://www.edgraph.com/)
+*  Clear Launch (https://www.clearlaunch.com/)
 
 
 This does not necessarily list everyone who has contributed code, especially
