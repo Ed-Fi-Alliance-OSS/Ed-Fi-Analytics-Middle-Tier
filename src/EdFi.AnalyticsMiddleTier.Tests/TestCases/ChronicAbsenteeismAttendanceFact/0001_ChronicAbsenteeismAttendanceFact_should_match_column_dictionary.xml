@@ -36,7 +36,7 @@
         <DataType>int</DataType>
     </Result>
     <Result>
-        <ColumnName>ReportedAsAbsentFromSchoolReportedAsPresentAtHomeRoom</ColumnName>
+        <ColumnName>ReportedAsPresentAtHomeRoom</ColumnName>
         <DataType>int</DataType>
     </Result>
     <Result>
