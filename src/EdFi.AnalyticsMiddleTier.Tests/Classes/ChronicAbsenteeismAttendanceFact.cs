@@ -13,7 +13,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string DateKey { get; set; }
         public int? ReportedAsPresentAtSchool { get; set; }
         public int? ReportedAsAbsentFromSchool { get; set; }
-        public int? ReportedAsAbsentFromSchoolReportedAsPresentAtHomeRoom { get; set; }
+        public int? ReportedAsPresentAtHomeRoom { get; set; }
         public int? ReportedAsAbsentFromHomeRoom { get; set; }
         public int? ReportedAsIsPresentInAllSections { get; set; }
         public int? ReportedAsAbsentFromAnySection { get; set; }
