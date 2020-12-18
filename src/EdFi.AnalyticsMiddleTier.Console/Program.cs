@@ -34,6 +34,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                                                                                                                                          System.Environment.NewLine
                                                                                                                                                          + "* Data Standard 3.2 (auto-detect presence of DeployJournal table)" +
                                                                                                                                                          System.Environment.NewLine;
+        private static readonly string _asmtNotSupportedOnDS2
+            = "Assessment collection is not currently supported on Data Standard 2. Please remove this option and try again.";
+
         internal static void Main(string[] args)
         {
             var parser = new Parser(settings =>
@@ -141,6 +144,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                     break;
                             }
                         }
+
+                        if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(Component.Asmt))
+                            message = _asmtNotSupportedOnDS2;
 
                         if (String.IsNullOrEmpty(message))
                         {
