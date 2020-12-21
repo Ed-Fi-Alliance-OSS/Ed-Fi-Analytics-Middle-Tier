@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT Version
+      FROM analytics.asmt_AssessmentDim
+      WHERE AssessmentKey = '3s4ch0knpb4va28uqve6mn269bavkdx2';
+  </Query>
+  <Result>
+    <Version>0</Version>
+  </Result>
+</TestCase>
