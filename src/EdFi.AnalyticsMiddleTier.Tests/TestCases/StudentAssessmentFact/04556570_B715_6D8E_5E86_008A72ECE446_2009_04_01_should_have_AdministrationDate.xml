@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT AdministrationDate
+        FROM analytics.asmt_StudentAssessmentFact
+        WHERE StudentAssessmentKey = '04556570-B715-6D8E-5E86-008A72ECE446_2009-04-01';
+    </Query>
+    <Result>
+        <AdministrationDate>20090401</AdministrationDate>
+    </Result>
+</TestCase>

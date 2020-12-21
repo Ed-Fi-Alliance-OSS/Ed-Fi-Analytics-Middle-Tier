@@ -3,13 +3,13 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics' AND TABLE_NAME = 'StudentAssessmentFact')
+IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics' AND TABLE_NAME = 'asmt_StudentAssessmentFact')
 BEGIN
-	DROP VIEW analytics.StudentAssessmentFact
+	DROP VIEW analytics.asmt_StudentAssessmentFact
 END
 GO
 
-CREATE VIEW analytics.StudentAssessmentFact AS
+CREATE VIEW analytics.asmt_StudentAssessmentFact AS
 
 	SELECT
         StudentAssessment.StudentAssessmentIdentifier AS StudentAssessmentKey,
@@ -43,6 +43,11 @@ CREATE VIEW analytics.StudentAssessmentFact AS
             ON StudentAssessment.AssessmentIdentifier = StudentAssessmentScoreResult.AssessmentIdentifier
                 AND StudentAssessment.StudentUSI = StudentAssessmentScoreResult.StudentUSI
     INNER JOIN
+        edfi.AssessmentPerformanceLevel
+            ON Assessment.AssessmentIdentifier = AssessmentPerformanceLevel.AssessmentIdentifier
+                AND AssessmentPerformanceLevel.MaximumScore > StudentAssessmentScoreResult.Result
+                AND AssessmentPerformanceLevel.MinimumScore < StudentAssessmentScoreResult.Result
+    INNER JOIN
         edfi.ResultDatatypeTypeDescriptor
             ON StudentAssessmentScoreResult.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptor.ResultDatatypeTypeDescriptorId
     INNER JOIN
@@ -55,13 +60,11 @@ CREATE VIEW analytics.StudentAssessmentFact AS
         edfi.Descriptor AS AssessmentReportingMethodDescriptorDist
             ON AssessmentReportingMethodDescriptor.AssessmentReportingMethodDescriptorId = AssessmentReportingMethodDescriptorDist.DescriptorId
     INNER JOIN
-        edfi.AssessmentPerformanceLevel
-            ON Assessment.AssessmentIdentifier = AssessmentPerformanceLevel.AssessmentIdentifier
-                AND AssessmentPerformanceLevel.MaximumScore > StudentAssessmentScoreResult.Result
-                AND AssessmentPerformanceLevel.MinimumScore < StudentAssessmentScoreResult.Result
-    INNER JOIN
         edfi.PerformanceLevelDescriptor
             ON AssessmentPerformanceLevel.PerformanceLevelDescriptorId = PerformanceLevelDescriptor.PerformanceLevelDescriptorId
     INNER JOIN
         edfi.Descriptor AS PerformanceLevelDescriptorDist
             ON PerformanceLevelDescriptor.PerformanceLevelDescriptorId = PerformanceLevelDescriptorDist.DescriptorId
+    WHERE(
+        StudentSchoolAssociation.ExitWithdrawDate IS NULL
+        OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE());
