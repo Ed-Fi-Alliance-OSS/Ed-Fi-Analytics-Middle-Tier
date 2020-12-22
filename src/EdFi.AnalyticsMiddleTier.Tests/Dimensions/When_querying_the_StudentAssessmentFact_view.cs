@@ -125,7 +125,45 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+        }
 
+        public class Given_student_assessment_fact_EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01
+        : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01";
+            [Test]
+            public void Then_should_return_no_records()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_no_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_assessment_fact_C2036C8D_1333_F75D_0B6B_380756666AF8_2008_03_01
+        : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_C2036C8D_1333_F75D_0B6B_380756666AF8_2008_03_01(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "C2036C8D_1333_F75D_0B6B_380756666AF8_2008_03_01";
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_assessment_fact_0E886CBB_AB8F_ABD3_747F_C455C5141145_2009_04_01
+        : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_0E886CBB_AB8F_ABD3_747F_C455C5141145_2009_04_01(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "0E886CBB_AB8F_ABD3_747F_C455C5141145_2009_04_01";
+            [Test]
+            public void Then_should_return_no_records()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_no_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }
