@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_AssessmentDim_view : When_querying_a_view
+    public abstract class When_querying_the_AssessmentDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.AssessmentDim";
 
