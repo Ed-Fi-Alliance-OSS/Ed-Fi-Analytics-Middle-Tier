@@ -113,5 +113,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_student_assessment_fact_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_2010_04_01
+        : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_2010_04_01(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "D0FEA09D_5781_D6EF_7232_59E9BE3212A0_2010_04_01";
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+        }
     }
 }
