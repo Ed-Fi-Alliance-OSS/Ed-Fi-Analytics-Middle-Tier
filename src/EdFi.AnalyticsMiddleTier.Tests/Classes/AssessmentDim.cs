@@ -16,6 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public int Version { get; set; }
         public string Category { get; set; }
         public string AssessedGradeLevel { get; set; }
+        public string AcademicSubject { get; set; }
         public string MinScore { get; set; }
         public string MaxScore { get; set; }
     }

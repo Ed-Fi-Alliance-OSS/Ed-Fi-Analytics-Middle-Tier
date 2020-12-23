@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT Category
+      SELECT AcademicSubject
       FROM analytics.asmt_AssessmentDim
       WHERE AssessmentKey = '2s3ch0knpb4val7uqve6mn269bavkdx2';
   </Query>
   <Result>
-    <Category>Other</Category>
+      <AcademicSubject>English</AcademicSubject>
   </Result>
 </TestCase>

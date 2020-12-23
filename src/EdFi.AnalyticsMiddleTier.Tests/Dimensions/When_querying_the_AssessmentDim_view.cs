@@ -130,6 +130,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Version.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+            
+            [Test]
+            public void Then_should_have_AcademicSubject()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AcademicSubject.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx2
@@ -181,6 +188,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_Version_0()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Version_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_Category_Empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Category_Empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_AcademicSubject_Empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AcademicSubject_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

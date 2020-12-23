@@ -32,6 +32,10 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>AcademicSubject</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>MinScore</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

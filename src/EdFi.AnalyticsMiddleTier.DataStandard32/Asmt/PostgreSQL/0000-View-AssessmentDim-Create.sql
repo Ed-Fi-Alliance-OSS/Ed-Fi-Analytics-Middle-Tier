@@ -8,11 +8,12 @@ AS
 	SELECT 
        Assessment.AssessmentIdentifier AS AssessmentKey, 
        Assessment.AssessmentTitle AS Title, 
-       COALESCE(Assessment.AssessmentVersion,0) AS Version, 
-       Descriptor.CodeValue AS Category, 
+       COALESCE(Assessment.AssessmentVersion, 0) AS Version, 
+       COALESCE(CategoryDescriptor.Description, '') AS Category, 
        Descriptor.Description AS AssessedGradeLevel, 
+       COALESCE(AcademicSubjectDescriptor.Description,'') AS AcademicSubject, 
        COALESCE(AssessmentScore.MinimumScore, '') AS MinScore, 
-       COALESCE(AssessmentScore.MaximumScore,'') AS MaxScore
+       COALESCE(AssessmentScore.MaximumScore, '') AS MaxScore
     FROM 
          edfi.Assessment
     INNER JOIN
@@ -27,4 +28,15 @@ AS
             Assessment.Namespace = AssessmentScore.Namespace
     INNER JOIN
         edfi.Descriptor ON
-            Descriptor.DescriptorId = AssessmentAssessedGradeLevel.GradeLevelDescriptorId;
+            Descriptor.DescriptorId = AssessmentAssessedGradeLevel.GradeLevelDescriptorId
+    LEFT JOIN
+        edfi.AssessmentAcademicSubject ON
+            Assessment.AssessmentIdentifier = AssessmentAcademicSubject.AssessmentIdentifier
+            AND
+            Assessment.Namespace = AssessmentAcademicSubject.Namespace
+    LEFT JOIN
+        edfi.Descriptor AcademicSubjectDescriptor ON
+            AcademicSubjectDescriptor.DescriptorId = AssessmentAcademicSubject.AcademicSubjectDescriptorId
+    LEFT JOIN
+        edfi.Descriptor CategoryDescriptor ON
+            CategoryDescriptor.DescriptorId = Assessment.AssessmentCategoryDescriptorId;
