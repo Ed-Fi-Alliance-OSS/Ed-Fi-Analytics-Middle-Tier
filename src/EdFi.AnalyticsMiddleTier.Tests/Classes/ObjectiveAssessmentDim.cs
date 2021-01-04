@@ -19,7 +19,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string Namespace { get; set; }
         public decimal PercentOfAssessment { get; set; }
         public string AcademicSubject { get; set; }
-        public string MinScore { get; set; }
-        public string MaxScore { get; set; }
+        public string MinimumScore { get; set; }
+        public string MaximumScore { get; set; }
     }
 }

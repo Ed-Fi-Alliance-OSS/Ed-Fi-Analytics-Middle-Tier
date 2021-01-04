@@ -9,6 +9,6 @@
       WHERE ObjectiveAssessmentKey = 'MP-2013-Mathematics-Seventh grade-Seventh grade Mathematics-38-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <MinimumScore>0</MinimumScore>
+      <MinimumScore></MinimumScore>
   </Result>
 </TestCase>
