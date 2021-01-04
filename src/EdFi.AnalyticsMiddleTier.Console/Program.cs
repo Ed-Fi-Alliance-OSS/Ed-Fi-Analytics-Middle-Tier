@@ -20,10 +20,6 @@ namespace EdFi.AnalyticsMiddleTier.Console
 {
     internal class Program
     {
-        private static readonly string _postgresqlWarning
-            = "> .\\EdFi.AnalytcsMiddleTier.Console.exe --connectionString \"...\" --engine postgres " + System.Environment.NewLine + System.Environment.NewLine
-              + "Warning: PostgreSQL is an experimental feature that has not been fully tested " + System.Environment.NewLine
-              + "yet. To proceed with the install, rerun the command using switch --experimental.";
 
         private static readonly string _odsVersionNotSupportedMessage
             = "Unable to determine the ODS database version. Please submit a ticket in Tracker for assistance: https://tracker.ed-fi.org/projects/EDFI." + System.Environment.NewLine + System.Environment.NewLine
@@ -112,15 +108,8 @@ namespace EdFi.AnalyticsMiddleTier.Console
                             case Engine.Postgres:
                             case Engine.Postgresql:
                             case Engine.PostgreSQL:
-                                if (options.Experimental)
-                                {
-                                    var pgsqlOrm = new DapperWrapper(new NpgsqlConnection(options.ConnectionString));
-                                    migrationStrategy = new PostgresMigrationStrategy(pgsqlOrm);
-                                }
-                                else
-                                {
-                                    message = _postgresqlWarning;
-                                }
+                                var pgsqlOrm = new DapperWrapper(new NpgsqlConnection(options.ConnectionString));
+                                migrationStrategy = new PostgresMigrationStrategy(pgsqlOrm);
                                 break;
                         }
 
