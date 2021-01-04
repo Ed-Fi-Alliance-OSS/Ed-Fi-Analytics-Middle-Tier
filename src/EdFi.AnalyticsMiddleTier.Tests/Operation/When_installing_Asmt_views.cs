@@ -35,7 +35,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        //[TestCase("asmt_StudentAssessmentFact")]
         [TestCase("asmt_AssessmentDim")]
         [TestCase("asmt_ObjectiveAssessmentDim")]
         [TestCase("asmt_StudentAssessmentFact")]
