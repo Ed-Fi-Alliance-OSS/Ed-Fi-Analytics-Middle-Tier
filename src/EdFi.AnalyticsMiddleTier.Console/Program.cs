@@ -121,7 +121,6 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                 case DataStandard.Ds2:
                                     install = new Ds2.Install(migrationStrategy);
                                     break;
-
                                 case DataStandard.Ds31:
                                     install = new Ds31.Install(migrationStrategy);
                                     break;
@@ -191,9 +190,6 @@ namespace EdFi.AnalyticsMiddleTier.Console
 
         [Option('u', "uninstall", Required = false, Default = false, HelpText = "Uninstall all analytics views and indexes")]
         public bool Uninstall { get; set; }
-
-        [Option("experimental", Required = false, Default = false, HelpText = "PostgreSQL is an experimental feature that has not been fully tested yet. To proceed with the install, rerun the command using switch --experimental.")]
-        public bool Experimental { get; set; }
 
         [Option('t', "timeout", Required = false, Default = 30, HelpText = "SQL Execution timeout in seconds")]
         public int TimeoutSeconds { get; set; }
