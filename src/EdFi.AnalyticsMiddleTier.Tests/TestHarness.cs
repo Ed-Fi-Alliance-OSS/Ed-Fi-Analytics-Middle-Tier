@@ -161,6 +161,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             ? ToString()
             : "v_" + _dataStandardFolderName;
 
+        public string CurrentDataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
+            ? ToString()
+            : "v_" + _dataStandardVersionName;
+
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
             get

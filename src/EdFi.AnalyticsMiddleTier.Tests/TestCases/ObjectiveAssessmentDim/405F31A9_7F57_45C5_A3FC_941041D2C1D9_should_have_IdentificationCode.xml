@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT IdentificationCode
+      FROM analytics.asmt_ObjectiveAssessmentDim
+      WHERE ObjectiveAssessmentKey = 'MP-2013-Mathematics-Seventh grade-Seventh grade Mathematics-38-uri://ed-fi.org/Assessment/Assessment.xml';
+  </Query>
+  <Result>
+      <IdentificationCode>Seventh grade Mathematics-38</IdentificationCode>
+  </Result>
+</TestCase>
