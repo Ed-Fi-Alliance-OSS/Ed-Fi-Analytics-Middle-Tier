@@ -49,8 +49,8 @@ CREATE VIEW analytics.asmt_StudentAssessmentFact AS
         edfi.AssessmentPerformanceLevel
             ON Assessment.AssessmentIdentifier = AssessmentPerformanceLevel.AssessmentIdentifier
                 AND Assessment.Namespace = AssessmentPerformanceLevel.Namespace
-                AND AssessmentPerformanceLevel.MaximumScore > StudentAssessmentScoreResult.Result
-                AND AssessmentPerformanceLevel.MinimumScore < StudentAssessmentScoreResult.Result
+                AND AssessmentPerformanceLevel.MaximumScore >= StudentAssessmentScoreResult.Result
+                AND AssessmentPerformanceLevel.MinimumScore <= StudentAssessmentScoreResult.Result
     INNER JOIN
         edfi.ResultDatatypeTypeDescriptor
             ON StudentAssessmentScoreResult.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptor.ResultDatatypeTypeDescriptorId

@@ -20,6 +20,7 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact AS
     INNER JOIN
         edfi.Assessment
             ON StudentAssessment.AssessmentIdentifier = Assessment.AssessmentIdentifier
+            AND StudentAssessment.Namespace = Assessment.Namespace
     INNER JOIN
         edfi.Student
             ON StudentAssessment.StudentUSI = Student.StudentUSI
@@ -42,8 +43,8 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact AS
         edfi.AssessmentPerformanceLevel
             ON Assessment.AssessmentIdentifier = AssessmentPerformanceLevel.AssessmentIdentifier
                 AND Assessment.Namespace = AssessmentPerformanceLevel.Namespace
-                AND AssessmentPerformanceLevel.MaximumScore > StudentAssessmentScoreResult.Result
-                AND AssessmentPerformanceLevel.MinimumScore < StudentAssessmentScoreResult.Result
+                AND AssessmentPerformanceLevel.MaximumScore >= StudentAssessmentScoreResult.Result
+                AND AssessmentPerformanceLevel.MinimumScore <= StudentAssessmentScoreResult.Result
     INNER JOIN
         edfi.ResultDatatypeTypeDescriptor
             ON StudentAssessmentScoreResult.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptor.ResultDatatypeTypeDescriptorId
