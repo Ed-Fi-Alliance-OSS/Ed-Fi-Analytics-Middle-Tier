@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COUNT(1) AS CountValue
+        FROM analytics.asmt_StudentAssessmentFact
+        WHERE AssessmentKey = 'A71C02C3-CBC5-9C2F-2D04-012CA2B007A2';
+    </Query>
+    <Result>
+        <CountValue>1</CountValue>
+    </Result>
+</TestCase>

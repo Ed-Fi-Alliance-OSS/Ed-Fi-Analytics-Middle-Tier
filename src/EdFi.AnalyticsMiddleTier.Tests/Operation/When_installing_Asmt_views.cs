@@ -35,9 +35,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        //[TestCase("asmt_StudentAssessmentFact")]
         [TestCase("asmt_AssessmentDim")]
         [TestCase("asmt_ObjectiveAssessmentDim")]
+        [TestCase("asmt_StudentAssessmentFact")]
         public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
 
         [TestFixture]
