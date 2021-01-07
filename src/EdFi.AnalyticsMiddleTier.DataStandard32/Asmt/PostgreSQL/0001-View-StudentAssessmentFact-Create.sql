@@ -21,8 +21,6 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact AS
 					WHEN EXTRACT(DAY FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
 					ELSE CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as varchar(2))
 				END as AdministrationDate,
-		
-		
         StudentAssessmentScoreResult.Result AS StudentScore,
         ResultDatatypeTypeDescriptorDist.Description AS ResultDataType,
         AssessmentReportingMethodDescriptorDist.Description AS ReportingMethod,
