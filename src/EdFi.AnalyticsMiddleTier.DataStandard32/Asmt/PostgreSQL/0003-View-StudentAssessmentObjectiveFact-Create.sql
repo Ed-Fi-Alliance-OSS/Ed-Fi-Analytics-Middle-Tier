@@ -3,7 +3,7 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-CREATE OR REPLACE analytics.asmt_StudentAssessmentObjectiveFact
+CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentObjectiveFact
 AS
 	SELECT CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) AS StudentObjectiveAssessmentKey, 
        Assessment.AssessmentIdentifier AS AssessmentKey, 
@@ -64,4 +64,4 @@ AS
             PerformanceLevelDescriptor.DescriptorId = SASOAPL.PerformanceLevelDescriptorId
     WHERE(
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
-        OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE());
+        OR StudentSchoolAssociation.ExitWithdrawDate >= NOW());
