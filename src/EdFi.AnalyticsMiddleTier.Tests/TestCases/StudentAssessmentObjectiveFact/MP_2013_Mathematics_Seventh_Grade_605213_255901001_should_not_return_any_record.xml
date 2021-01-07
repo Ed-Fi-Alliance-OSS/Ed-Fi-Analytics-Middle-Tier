@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COUNT(1) as CountValue
+      FROM analytics.asmt_StudentAssessmentObjectiveFact
+      WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml'
+      AND StudentSchoolKey='605213-255901001'
+      AND ResultDataType='Decimal'
+      AND ReportingMethod='Achievement/proficiency level';
+  </Query>
+  <Result>
+      <CountValue>0</CountValue>
+  </Result>
+</TestCase>
