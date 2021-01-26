@@ -4,11 +4,11 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT COUNT(1) AS CountValue
+        SELECT StudentUSI
         FROM analytics.asmt_StudentAssessmentFact
-        WHERE StudentAssessmentKey = '0E886CBB-AB8F-ABD3-747F-C455C5141145-0E886CBB-AB8F-ABD3-747F-C455C5141145_2009-04-01-uri://edfi.org/Assessment-100041249';
+        WHERE StudentAssessmentKey = '04556570-B715-6D8E-5E86-008A72ECE446-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE446_2009-04-01-100075337';
     </Query>
     <Result>
-        <CountValue>0</CountValue>
+        <StudentUSI>100075337</StudentUSI>
     </Result>
 </TestCase>

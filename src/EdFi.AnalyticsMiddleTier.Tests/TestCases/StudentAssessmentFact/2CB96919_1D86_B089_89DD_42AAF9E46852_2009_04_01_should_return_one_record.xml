@@ -6,7 +6,7 @@
     <Query>
         SELECT COUNT(1) AS CountValue
         FROM analytics.asmt_StudentAssessmentFact
-        WHERE AssessmentKey = '2CB96919-1D86-B089-89DD-42AAF9E46852';
+        WHERE AssessmentKey = '2CB96919-1D86-B089-89DD-42AAF9E46852-uri://edfi.org/Assessment';
     </Query>
     <Result>
         <CountValue>1</CountValue>

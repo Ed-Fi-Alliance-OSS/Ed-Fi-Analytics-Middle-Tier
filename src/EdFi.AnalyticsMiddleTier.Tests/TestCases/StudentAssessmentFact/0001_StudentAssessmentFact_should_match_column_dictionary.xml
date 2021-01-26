@@ -20,6 +20,22 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>AssessmentIdentifier</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Namespace</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentAssessmentIdentifier</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentUSI</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
         <ColumnName>StudentSchoolKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

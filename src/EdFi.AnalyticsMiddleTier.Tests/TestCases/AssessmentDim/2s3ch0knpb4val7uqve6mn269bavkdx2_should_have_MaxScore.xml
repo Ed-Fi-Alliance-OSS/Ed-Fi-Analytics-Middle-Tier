@@ -6,7 +6,7 @@
   <Query>
       SELECT MaxScore
       FROM analytics.asmt_AssessmentDim
-      WHERE AssessmentKey = '2s3ch0knpb4val7uqve6mn269bavkdx2';
+      WHERE AssessmentKey = '2s3ch0knpb4val7uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
       <MaxScore>25</MaxScore>

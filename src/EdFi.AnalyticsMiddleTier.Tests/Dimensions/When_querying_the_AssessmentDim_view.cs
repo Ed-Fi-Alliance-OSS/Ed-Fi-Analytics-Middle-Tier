@@ -90,6 +90,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
+            public void Then_should_have_Namespace()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Namespace.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_AssessedGradeLevel()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessedGradeLevel.xml");
