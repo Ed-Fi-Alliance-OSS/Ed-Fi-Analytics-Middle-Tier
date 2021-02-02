@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT Version
+      SELECT Namespace
       FROM analytics.asmt_AssessmentDim
-      WHERE AssessmentKey = '3s4ch0knpb4va28uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/Assessment.xml';
+      WHERE AssessmentKey = '2s3ch0knpb4val7uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-    <Version>0</Version>
+      <Namespace>uri://ed-fi.org/Assessment/Assessment.xml</Namespace>
   </Result>
 </TestCase>

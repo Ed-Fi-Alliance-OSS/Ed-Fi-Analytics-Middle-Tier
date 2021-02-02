@@ -12,7 +12,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class StudentAssessmentObjectiveFact
     {
         public string StudentObjectiveAssessmentKey { get; set; }
+        public string ObjectiveAssessmentKey { get; set; }
         public string AssessmentKey { get; set; }
+        public string Namespace { get; set; }
         public string StudentSchoolKey { get; set; }
         public string SchoolKey { get; set; }
         public string StudentScore { get; set; }

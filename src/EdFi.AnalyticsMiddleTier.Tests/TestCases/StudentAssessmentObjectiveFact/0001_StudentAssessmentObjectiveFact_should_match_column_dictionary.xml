@@ -20,6 +20,14 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>ObjectiveAssessmentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Namespace</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>StudentSchoolKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

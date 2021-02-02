@@ -4,7 +4,7 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT AssessmentKey
+      SELECT Namespace
       FROM analytics.asmt_StudentAssessmentObjectiveFact
       WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml'
       AND StudentSchoolKey='605213-255901044'
@@ -14,6 +14,6 @@
       AND ReportingMethod='Raw score';
   </Query>
   <Result>
-      <AssessmentKey>MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml</AssessmentKey>
+      <Namespace>uri://ed-fi.org/Assessment/Assessment.xml</Namespace>
   </Result>
 </TestCase>
