@@ -12,6 +12,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class AssessmentDim
     {
         public string AssessmentKey { get; set; }
+        public string Namespace { get; set; }
         public string Title { get; set; }
         public int Version { get; set; }
         public string Category { get; set; }
