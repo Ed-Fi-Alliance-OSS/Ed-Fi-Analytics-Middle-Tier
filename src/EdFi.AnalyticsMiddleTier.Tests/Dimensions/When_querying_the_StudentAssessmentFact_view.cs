@@ -223,5 +223,122 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_student_assessment_fact_C2036C8D_1333_F75D_0B6B_380756666AF8_2008_03_02_100039988
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_C2036C8D_1333_F75D_0B6B_380756666AF8_2008_03_02_100039988(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "C2036C8D_1333_F75D_0B6B_380756666AF8_2008_03_02_100039988";
+            [Test]
+            public void Then_should_have_ReportingMethod_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_ResultDataType_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ResultDataType_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentScore_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentScore_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_PerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_assessment_fact_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_2010_04_01_100035251
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_2010_04_01_100035251(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "D0FEA09D_5781_D6EF_7232_59E9BE3212A0_2010_04_01_100035251";
+            [Test]
+            public void Then_should_have_ReportingMethod_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_ResultDataType_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ResultDataType_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentScore_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentScore_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_PerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+        public class Given_student_assessment_fact_EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01_100074717
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01_100074717(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01_100074717";
+            [Test]
+            public void Then_should_have_ReportingMethod_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_ResultDataType_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ResultDataType_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentScore_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentScore_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_PerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_assessment_fact_EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01_100074717_ns
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01_100074717_ns(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "EC3D3C28_3C31_4C94_4C50_FB0F25EE5E71_2012_04_01_100074717_ns";
+            [Test]
+            public void Then_should_have_PerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+        public class Given_student_assessment_fact_0E886CBB_AB8F_ABD3_747F_C455C5141146_2009_04_01_100041249
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_0E886CBB_AB8F_ABD3_747F_C455C5141146_2009_04_01_100041249(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "0E886CBB_AB8F_ABD3_747F_C455C5141146_2009_04_01_100041249";
+            [Test]
+            public void Then_should_have_PerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
