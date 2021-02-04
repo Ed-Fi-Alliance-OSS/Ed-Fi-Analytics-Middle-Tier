@@ -26,10 +26,10 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact AS
 					WHEN EXTRACT(DAY FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
 					ELSE CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as varchar(2))
 				END as AdministrationDate,
-        StudentAssessmentScoreResult.Result AS StudentScore,
-        ResultDatatypeTypeDescriptorDist.Description AS ResultDataType,
-        AssessmentReportingMethodDescriptorDist.Description AS ReportingMethod,
-        PerformanceLevelDescriptorDist.Description AS PerformanceResult
+        COALESCE(StudentAssessmentScoreResult.Result,'') AS StudentScore,
+        COALESCE(ResultDatatypeTypeDescriptorDist.Description,'') AS ResultDataType,
+        COALESCE(AssessmentReportingMethodDescriptorDist.Description,'') AS ReportingMethod,
+        COALESCE(PerformanceLevelDescriptorDist.Description,'') AS PerformanceResult
     FROM
         edfi.StudentAssessment
     INNER JOIN
@@ -48,34 +48,34 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact AS
     INNER JOIN
         edfi.School
             ON StudentSchoolAssociation.SchoolId = School.SchoolId
-    INNER JOIN
+    LEFT JOIN
         edfi.StudentAssessmentScoreResult
             ON StudentAssessment.AssessmentIdentifier = StudentAssessmentScoreResult.AssessmentIdentifier
                AND StudentAssessment.Namespace = StudentAssessmentScoreResult.Namespace
                AND StudentAssessment.StudentAssessmentIdentifier = StudentAssessmentScoreResult.StudentAssessmentIdentifier
                AND StudentAssessment.StudentUSI = StudentAssessmentScoreResult.StudentUSI
-    INNER JOIN
+    LEFT JOIN
         edfi.AssessmentPerformanceLevel
             ON Assessment.AssessmentIdentifier = AssessmentPerformanceLevel.AssessmentIdentifier
                 AND Assessment.Namespace = AssessmentPerformanceLevel.Namespace
                 AND AssessmentPerformanceLevel.MaximumScore >= StudentAssessmentScoreResult.Result
                 AND AssessmentPerformanceLevel.MinimumScore <= StudentAssessmentScoreResult.Result
-    INNER JOIN
+    LEFT JOIN
         edfi.ResultDatatypeTypeDescriptor
             ON StudentAssessmentScoreResult.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptor.ResultDatatypeTypeDescriptorId
-    INNER JOIN
+    LEFT JOIN
         edfi.Descriptor AS ResultDatatypeTypeDescriptorDist
             ON ResultDatatypeTypeDescriptor.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptorDist.DescriptorId
-    INNER JOIN
+    LEFT JOIN
         edfi.AssessmentReportingMethodDescriptor
             ON StudentAssessmentScoreResult.AssessmentReportingMethodDescriptorId = AssessmentReportingMethodDescriptor.AssessmentReportingMethodDescriptorId
-    INNER JOIN
+    LEFT JOIN
         edfi.Descriptor AS AssessmentReportingMethodDescriptorDist
             ON AssessmentReportingMethodDescriptor.AssessmentReportingMethodDescriptorId = AssessmentReportingMethodDescriptorDist.DescriptorId
-    INNER JOIN
+    LEFT JOIN
         edfi.PerformanceLevelDescriptor
             ON AssessmentPerformanceLevel.PerformanceLevelDescriptorId = PerformanceLevelDescriptor.PerformanceLevelDescriptorId
-    INNER JOIN
+    LEFT JOIN
         edfi.Descriptor AS PerformanceLevelDescriptorDist
             ON PerformanceLevelDescriptor.PerformanceLevelDescriptorId = PerformanceLevelDescriptorDist.DescriptorId
     WHERE(

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT ReportingMethod
+        FROM analytics.asmt_StudentAssessmentFact
+        WHERE StudentAssessmentKey = 'C2036C8D-1333-F75D-0B6B-380756666AF8-uri://edfi.org/Assessment-C2036C8D-1333-F75D-0B6B-380756666AF8_2008-03-02-100039988'
+        AND StudentAssessmentIdentifier='C2036C8D-1333-F75D-0B6B-380756666AF8_2008-03-02';
+    </Query>
+    <Result>
+        <ReportingMethod></ReportingMethod>
+    </Result>
+</TestCase>
