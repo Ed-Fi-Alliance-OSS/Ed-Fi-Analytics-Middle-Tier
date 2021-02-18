@@ -214,6 +214,31 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
         }
 
+        public class Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx3
+        : When_querying_the_AssessmentFact_view
+        {
+            public Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx3(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "3s4ch0knpb4va28uqve6mn269bavkdx3";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         ///
 
         public class Given_assessment_14707154_4B38_473B_8C74_14804BA75595
