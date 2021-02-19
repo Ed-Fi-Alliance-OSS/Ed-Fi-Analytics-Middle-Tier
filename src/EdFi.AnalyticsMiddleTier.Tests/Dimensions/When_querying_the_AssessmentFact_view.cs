@@ -112,16 +112,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_AssessmentMaxScore()
+            public void Then_should_have_MaxScore()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentMaxScore.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MaxScore.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
-            public void Then_should_have_AssessmentMinScore()
+            public void Then_should_have_MinScore()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentMinScore.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MinScore.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -179,16 +179,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
             
             [Test]
-            public void Then_should_have_AssessmentMaxScore_Empty()
+            public void Then_should_have_MaxScore_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentMaxScore_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MaxScore_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
-            public void Then_should_have_AssessmentMinScore_Empty()
+            public void Then_should_have_MinScore_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentMinScore_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MinScore_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -238,8 +238,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-
-        ///
 
         public class Given_assessment_14707154_4B38_473B_8C74_14804BA75595
         : When_querying_the_AssessmentFact_view
@@ -301,16 +299,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_ObjectiveAssessmentScoreMaxScore()
+            public void Then_should_have_MaxScore()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ObjectiveAssessmentScoreMaxScore.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MaxScore.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
-            public void Then_should_have_ObjectiveAssessmentScoreMinScore()
+            public void Then_should_have_MinScore()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ObjectiveAssessmentScoreMinScore.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MinScore.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -375,16 +373,48 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_ObjectiveAssessmentScoreMaxScore_Empty()
+            public void Then_should_have_MaxScore_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ObjectiveAssessmentScoreMaxScore_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MaxScore_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
-            public void Then_should_have_ObjectiveAssessmentScoreMinScore_Empty()
+            public void Then_should_have_MinScore_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ObjectiveAssessmentScoreMinScore_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MinScore_Empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CD
+        : When_querying_the_AssessmentFact_view
+        {
+            public Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CD(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "C793689F_593D_4B92_85C9_B563A53B87CD";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_have_MaxScore()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MaxScore.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_MinScore()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MinScore.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

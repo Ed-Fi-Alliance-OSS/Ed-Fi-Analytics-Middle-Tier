@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT AssessmentMaxScore
+      SELECT MaxScore
       FROM analytics.asmt_AssessmentFact
       WHERE AssessmentKey = '3s4ch0knpb4va28uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <AssessmentMaxScore></AssessmentMaxScore>
+      <MaxScore></MaxScore>
   </Result>
 </TestCase>

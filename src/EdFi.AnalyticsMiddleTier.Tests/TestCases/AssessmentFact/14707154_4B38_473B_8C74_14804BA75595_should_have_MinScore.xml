@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT ObjectiveAssessmentScoreMinScore
+      SELECT MinScore
       FROM analytics.asmt_AssessmentFact
       WHERE ObjectiveAssessmentKey = 'MP-2013-Mathematics-Seventh grade-Seventh grade Mathematics-39-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <ObjectiveAssessmentScoreMinScore>0</ObjectiveAssessmentScoreMinScore>
+      <MinScore>0</MinScore>
   </Result>
 </TestCase>

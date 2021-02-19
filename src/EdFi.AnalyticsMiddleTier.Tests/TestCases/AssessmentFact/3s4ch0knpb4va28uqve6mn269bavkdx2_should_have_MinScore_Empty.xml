@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT AssessmentMaxScore
+      SELECT MinScore
       FROM analytics.asmt_AssessmentFact
-      WHERE AssessmentKey = '2s3ch0knpb4val7uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/Assessment.xml';
+      WHERE AssessmentKey = '3s4ch0knpb4va28uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <AssessmentMaxScore>25</AssessmentMaxScore>
+      <MinScore></MinScore>
   </Result>
 </TestCase>

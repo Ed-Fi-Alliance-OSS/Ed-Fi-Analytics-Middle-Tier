@@ -40,15 +40,6 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>AssessmentMinScore</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <Result>
-        <ColumnName>AssessmentMaxScore</ColumnName>
-        <DataType>nvarchar</DataType>
-    </Result>
-    <!---->
-    <Result>
         <ColumnName>ObjectiveAssessmentKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
@@ -69,11 +60,11 @@
         <DataType>decimal</DataType>
     </Result>
     <Result>
-        <ColumnName>ObjectiveAssessmentScoreMinScore</ColumnName>
+        <ColumnName>MinScore</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>ObjectiveAssessmentScoreMaxScore</ColumnName>
+        <ColumnName>MaxScore</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
 </TestCase>

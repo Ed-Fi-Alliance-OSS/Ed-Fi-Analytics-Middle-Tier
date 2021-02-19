@@ -14,9 +14,6 @@ AS
        COALESCE(CategoryDescriptor.Description, '') AS Category, 
        Descriptor.Description AS AssessedGradeLevel, 
        COALESCE(AcademicSubjectDescriptor.Description,'') AS AcademicSubject, 
-       COALESCE(AssessmentScore.MinimumScore, '') AS AssessmentMinScore,
-       COALESCE(AssessmentScore.MaximumScore, '') AS AssessmentMaxScore,
-       --
        CONCAT(ObjectiveAssessment.AssessmentIdentifier, '-', ObjectiveAssessment.IdentificationCode, '-', ObjectiveAssessment.Namespace) AS ObjectiveAssessmentKey,
        ObjectiveAssessment.IdentificationCode,
        CASE WHEN ObjectiveAssessment.ParentIdentificationCode IS NOT NULL
@@ -25,8 +22,8 @@ AS
           END AS ParentObjectiveAssessmentKey,
        COALESCE(ObjectiveAssessment.Description, '') as ObjectiveAssessmentDescription,
        COALESCE(ObjectiveAssessment.PercentOfAssessment,0) as PercentOfAssessment,
-       COALESCE(ObjectiveAssessmentScore.MinimumScore, '') as ObjectiveAssessmentScoreMinScore,
-       COALESCE(ObjectiveAssessmentScore.MaximumScore, '') as ObjectiveAssessmentScoreMaxScore
+       COALESCE(AssessmentScore.MinimumScore, ObjectiveAssessmentScore.MinimumScore, '') as MinScore,
+       COALESCE(AssessmentScore.MaximumScore, ObjectiveAssessmentScore.MaximumScore, '') as MaxScore
     FROM 
          edfi.Assessment
     INNER JOIN
@@ -53,7 +50,6 @@ AS
     LEFT JOIN
         edfi.Descriptor CategoryDescriptor ON
             CategoryDescriptor.DescriptorId = Assessment.AssessmentCategoryDescriptorId
-    --
     LEFT JOIN
         edfi.ObjectiveAssessment ON
             Assessment.AssessmentIdentifier = ObjectiveAssessment.AssessmentIdentifier
