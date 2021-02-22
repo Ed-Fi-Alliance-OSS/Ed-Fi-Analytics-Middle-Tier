@@ -147,11 +147,15 @@ early warning flag for a grade below 72.0.
 
 Where available, it is best to let analytics engines perform these calculations.
 Some systems will not be capable of this, or it might be only with a great deal
-of scripting and manipulation. There are a handful of "EWS" views that can
-optionally be installed with the command line flag `-o Ews`:
+of scripting and manipulation. There are a handful of views that can
+optionally be installed with the command line flag `-o Qews`, which were originally
+created to support the Early Warning System solution using AWS QuickSight:
+
+| :no_entry: WARNING: do not install these views into a production ODS database |
+| -- |
 
 ```powershell
-.\EdFi.AnalyticsMiddleTier.Console.exe -c "Server=.;Database=EdFi_Glendale;Trusted_connection=true" -o Ews
+.\EdFi.AnalyticsMiddleTier.Console.exe -c "Server=.;Database=EdFi_Glendale;Trusted_connection=true" -o Qews
 ```
 
 * `StudentIndicators` returns the grades, behavior incident count, attendance
