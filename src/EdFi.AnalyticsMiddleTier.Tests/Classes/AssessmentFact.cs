@@ -12,21 +12,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class AssessmentFact
     {
         public string AssessmentKey { get; set; }
+        public string AssessmentIdentifier { get; set; }
         public string Namespace { get; set; }
         public string Title { get; set; }
         public int Version { get; set; }
         public string Category { get; set; }
         public string AssessedGradeLevel { get; set; }
         public string AcademicSubject { get; set; }
-        public string AssessmentMinScore { get; set; }
-        public string AssessmentMaxScore { get; set; }
-        //
         public string ObjectiveAssessmentKey { get; set; }
         public string IdentificationCode { get; set; }
         public string ParentObjectiveAssessmentKey { get; set; }
         public string ObjectiveAssessmentDescription { get; set; }
         public string PercentOfAssessment { get; set; }
-        public string ObjectiveAssessmentScoreMinScore { get; set; }
-        public string ObjectiveAssessmentScoreMaxScore { get; set; }
+        public string MinScore { get; set; }
+        public string MaxScore { get; set; }
     }
 }

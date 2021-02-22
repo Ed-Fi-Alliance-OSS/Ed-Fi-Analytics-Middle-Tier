@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT MinScore
+      SELECT COUNT(1) AS CountValue
       FROM analytics.asmt_AssessmentFact
-      WHERE ObjectiveAssessmentKey = 'MP-2013-Mathematics-Seventh grade-Seventh grade Mathematics-38-uri://ed-fi.org/Assessment/Assessment.xml';
+      WHERE AssessmentKey = 'MP-2012-Mathematics-nineth grade-uri://ed-fi.org/Assessment/Assessment.xml'
   </Query>
   <Result>
-      <MinScore>0</MinScore>
+      <CountValue>1</CountValue>
   </Result>
 </TestCase>

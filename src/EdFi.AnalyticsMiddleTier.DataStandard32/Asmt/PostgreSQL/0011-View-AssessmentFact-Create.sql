@@ -8,6 +8,7 @@ CREATE OR REPLACE VIEW analytics.asmt_AssessmentFact
 AS
 	SELECT 
        CONCAT(Assessment.AssessmentIdentifier, '-', Assessment.Namespace)  AS AssessmentKey,
+       Assessment.AssessmentIdentifier,
        Assessment.Namespace,
        Assessment.AssessmentTitle AS Title, 
        COALESCE(Assessment.AssessmentVersion, 0) AS Version, 

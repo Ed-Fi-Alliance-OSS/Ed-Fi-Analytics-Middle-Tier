@@ -16,6 +16,10 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>AssessmentIdentifier</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>Namespace</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

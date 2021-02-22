@@ -91,6 +91,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
+            public void Then_should_have_AssessmentIdentifier()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentIdentifier.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_Namespace()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Namespace.xml");
@@ -177,7 +184,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
+            [Test]
+            public void Then_should_have_AssessmentIdentifier()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentIdentifier.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
             [Test]
             public void Then_should_have_MaxScore_Empty()
             {
@@ -415,6 +429,31 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_MinScore()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_MinScore.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CB
+        : When_querying_the_AssessmentFact_view
+        {
+            public Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CB(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "C793689F_593D_4B92_85C9_B563A53B87CB";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
