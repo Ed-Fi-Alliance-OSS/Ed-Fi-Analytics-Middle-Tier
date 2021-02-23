@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COLUMN_NAME AS ColumnName,
+      DATA_TYPE AS DataType
+      FROM information_schema.columns
+      WHERE table_schema = 'analytics'
+      AND table_name = 'asmt_AssessmentFact'
+      ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+    <Result>
+        <ColumnName>AssessmentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>AssessmentIdentifier</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Namespace</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Title</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Version</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Category</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>AssessedGradeLevel</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>AcademicSubject</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ObjectiveAssessmentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>IdentificationCode</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ParentObjectiveAssessmentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ObjectiveAssessmentDescription</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>PercentOfAssessment</ColumnName>
+        <DataType>decimal</DataType>
+    </Result>
+    <Result>
+        <ColumnName>MinScore</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>MaxScore</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+</TestCase>
