@@ -75,7 +75,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        private string _connectionString => $"server=localhost;database={_databaseName};integrated security=sspi";
+        private string _connectionString => $"server=RUBEN-PC\\MSSQLSERVER19;database={_databaseName};integrated security=sspi";
 
         private string _snapshotName => $"{_databaseName}_ss";
 
@@ -233,7 +233,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public void PrepareDatabase()
         {
-            using (var connection = new SqlConnection("server=localhost;database=master;integrated security=sspi"))
+            using (var connection = new SqlConnection(@"server=RUBEN-PC\MSSQLSERVER19;database=master;integrated security=sspi"))
             {
                 if (NotUsingSnapshots())
                 {
@@ -328,7 +328,7 @@ SELECT REPLACE([physical_name], '{_databaseName}_Primary.mdf', '') as FilePath
 FROM pathname
 ";
                     var filePath = connection.ExecuteScalar<string>(defaultFilePathForSqlDbFiles);
-
+                    //var filePath = @"C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER19\MSSQL\DATA\";
                     var createOrReplaceSnapshotTemplate = $@"
 CREATE DATABASE {_snapshotName} ON
   (Name = {_databaseName}, FileName = '{filePath}\{_snapshotName}.ss')
