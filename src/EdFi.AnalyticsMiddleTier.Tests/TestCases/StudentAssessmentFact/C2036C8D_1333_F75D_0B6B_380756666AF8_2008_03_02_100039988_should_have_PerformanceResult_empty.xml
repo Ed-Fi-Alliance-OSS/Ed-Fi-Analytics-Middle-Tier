@@ -10,6 +10,5 @@
         AND StudentAssessmentIdentifier='C2036C8D-1333-F75D-0B6B-380756666AF8_2008-03-02';
     </Query>
     <Result>
-        <PerformanceResult></PerformanceResult>
     </Result>
 </TestCase>

@@ -14,6 +14,5 @@
       AND ReportingMethod='Raw score';
   </Query>
   <Result>
-      <PerformanceResult></PerformanceResult>
   </Result>
 </TestCase>

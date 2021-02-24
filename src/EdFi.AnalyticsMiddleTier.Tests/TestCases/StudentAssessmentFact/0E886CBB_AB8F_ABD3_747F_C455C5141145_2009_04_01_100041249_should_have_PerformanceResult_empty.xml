@@ -9,6 +9,5 @@
         WHERE StudentAssessmentKey = '0E886CBB-AB8F-ABD3-747F-C455C5141145-uri://edfi.org/Assessment-0E886CBB-AB8F-ABD3-747F-C455C5141145_2009-04-01-100041249';
     </Query>
     <Result>
-        <PerformanceResult></PerformanceResult>
     </Result>
 </TestCase>
