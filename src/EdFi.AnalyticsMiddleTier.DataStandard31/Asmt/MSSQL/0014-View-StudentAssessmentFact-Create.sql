@@ -13,8 +13,16 @@ CREATE VIEW analytics.asmt_StudentAssessmentFact AS
 
 	SELECT
         CONCAT(StudentAssessment.AssessmentIdentifier, '-', StudentAssessment.Namespace, '-', StudentAssessment.StudentAssessmentIdentifier, '-', StudentAssessment.StudentUSI) AS StudentAssessmentKey,
-		CASE WHEN SASOA.StudentUSI IS NULL THEN NULL ELSE CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) END AS StudentObjectiveAssessmentKey,
-        CASE WHEN SASOA.AssessmentIdentifier IS NULL THEN NULL ELSE CONCAT(SASOA.AssessmentIdentifier, '-', SASOA.IdentificationCode, '-', SASOA.Namespace) END AS ObjectiveAssessmentKey,
+		CASE WHEN SASOA.StudentUSI IS NULL 
+                THEN NULL 
+             ELSE 
+                CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) 
+        END AS StudentObjectiveAssessmentKey,
+        CASE WHEN SASOA.AssessmentIdentifier IS NULL 
+                THEN NULL 
+             ELSE 
+                CONCAT(SASOA.AssessmentIdentifier, '-', SASOA.IdentificationCode, '-', SASOA.Namespace) 
+        END AS ObjectiveAssessmentKey,
 		CONCAT(Assessment.AssessmentIdentifier, '-', StudentAssessment.Namespace) AS AssessmentKey,
         Assessment.AssessmentIdentifier,
         StudentAssessment.Namespace,
@@ -23,10 +31,10 @@ CREATE VIEW analytics.asmt_StudentAssessmentFact AS
         CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey,
         School.SchoolId AS SchoolKey,
         CONVERT(varchar, StudentAssessment.AdministrationDate, 112) as AdministrationDate,
-        COALESCE(ISNULL(StudentAssessmentScoreResult.Result,SASOASR.Result),'') AS StudentScore,
-        COALESCE(ISNULL(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description),'') AS ResultDataType,
-        COALESCE(ISNULL(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description),'') AS ReportingMethod,
-        COALESCE(ISNULL(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description),'') AS PerformanceResult
+        COALESCE(StudentAssessmentScoreResult.Result,SASOASR.Result) AS StudentScore,
+        COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description) AS ResultDataType,
+        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description) AS ReportingMethod,
+        COALESCE(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description) AS PerformanceResult
     FROM
         edfi.StudentAssessment
     INNER JOIN

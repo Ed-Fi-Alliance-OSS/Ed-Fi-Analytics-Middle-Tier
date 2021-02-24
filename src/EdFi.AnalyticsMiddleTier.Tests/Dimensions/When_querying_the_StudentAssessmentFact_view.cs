@@ -355,7 +355,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     Assert.Ignore(
-                        $"The StudentAssessmentObjectiveFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
                 }
             }
 
@@ -369,70 +369,70 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_have_AssessmentKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ObjectiveAssessmentKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ObjectiveAssessmentKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ObjectiveAssessmentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_Namespace()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Namespace.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Namespace.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StudentObjectiveAssessmentKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentObjectiveAssessmentKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentObjectiveAssessmentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StudentSchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_SchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StudentScore()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentScore.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentScore.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ResultDataType()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ResultDataType.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ResultDataType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ReportingMethod()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_PerformanceResult_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -450,7 +450,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     Assert.Ignore(
-                        $"The StudentAssessmentObjectiveFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
                 }
             }
 
@@ -464,7 +464,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_have_PerformanceResult_Basic()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentObjectiveFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Basic.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Basic.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -482,7 +482,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     Assert.Ignore(
-                        $"The StudentAssessmentObjectiveFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
                 }
             }
 

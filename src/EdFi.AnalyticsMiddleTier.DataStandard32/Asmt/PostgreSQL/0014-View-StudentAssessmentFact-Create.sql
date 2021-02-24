@@ -8,8 +8,16 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact
 AS
 	SELECT
         CONCAT(StudentAssessment.AssessmentIdentifier, '-', StudentAssessment.Namespace, '-', StudentAssessment.StudentAssessmentIdentifier, '-', StudentAssessment.StudentUSI) AS StudentAssessmentKey,
-		CASE WHEN SASOA.StudentUSI IS NULL THEN NULL ELSE CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) END AS StudentObjectiveAssessmentKey,
-        CASE WHEN SASOA.AssessmentIdentifier IS NULL THEN NULL ELSE CONCAT(SASOA.AssessmentIdentifier, '-', SASOA.IdentificationCode, '-', SASOA.Namespace) END AS ObjectiveAssessmentKey,
+		CASE WHEN SASOA.StudentUSI IS NULL 
+                THEN NULL 
+             ELSE 
+                CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) 
+        END AS StudentObjectiveAssessmentKey,
+        CASE WHEN SASOA.AssessmentIdentifier IS NULL 
+                THEN NULL 
+             ELSE 
+                CONCAT(SASOA.AssessmentIdentifier, '-', SASOA.IdentificationCode, '-', SASOA.Namespace) 
+        END AS ObjectiveAssessmentKey,
 		CONCAT(Assessment.AssessmentIdentifier, '-', StudentAssessment.Namespace) AS AssessmentKey,
         Assessment.AssessmentIdentifier,
         StudentAssessment.Namespace,
@@ -17,11 +25,21 @@ AS
         StudentAssessment.StudentUSI,
         CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey,
         School.SchoolId AS SchoolKey,
-        CONVERT(varchar, StudentAssessment.AdministrationDate, 112) as AdministrationDate,
-        COALESCE(ISNULL(StudentAssessmentScoreResult.Result,SASOASR.Result),'') AS StudentScore,
-        COALESCE(ISNULL(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description),'') AS ResultDataType,
-        COALESCE(ISNULL(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description),'') AS ReportingMethod,
-        COALESCE(ISNULL(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description),'') AS PerformanceResult
+        CAST(EXTRACT(YEAR FROM StudentAssessment.AdministrationDate) AS VARCHAR(4)) 
+			|| 
+				CASE 
+					WHEN EXTRACT(MONTH FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(MONTH FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
+					ELSE CAST(EXTRACT(MONTH FROM StudentAssessment.AdministrationDate) as varchar(2))
+				END
+			|| 
+				CASE 
+					WHEN EXTRACT(DAY FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
+					ELSE CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as varchar(2))
+				END as AdministrationDate,
+        COALESCE(StudentAssessmentScoreResult.Result,SASOASR.Result) AS StudentScore,
+        COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description) AS ResultDataType,
+        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description) AS ReportingMethod,
+        COALESCE(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description) AS PerformanceResult
     FROM
         edfi.StudentAssessment
     INNER JOIN
@@ -110,4 +128,4 @@ AS
             PerformanceLevelDescriptorObj.DescriptorId = SASOAPL.PerformanceLevelDescriptorId
     WHERE(
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
-        OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE());
+        OR StudentSchoolAssociation.ExitWithdrawDate >= now());
