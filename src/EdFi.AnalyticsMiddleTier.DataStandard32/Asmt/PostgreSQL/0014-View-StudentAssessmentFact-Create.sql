@@ -36,10 +36,10 @@ AS
 					WHEN EXTRACT(DAY FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
 					ELSE CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as varchar(2))
 				END as AdministrationDate,
-        COALESCE(StudentAssessmentScoreResult.Result,SASOASR.Result) AS StudentScore,
-        COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description) AS ResultDataType,
-        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description) AS ReportingMethod,
-        COALESCE(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description) AS PerformanceResult
+        COALESCE(StudentAssessmentScoreResult.Result,SASOASR.Result,'') AS StudentScore,
+        COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description,'') AS ResultDataType,
+        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description,'') AS ReportingMethod,
+        COALESCE(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description,'') AS PerformanceResult
     FROM
         edfi.StudentAssessment
     INNER JOIN

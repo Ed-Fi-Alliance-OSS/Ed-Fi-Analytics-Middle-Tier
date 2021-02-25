@@ -31,10 +31,10 @@ CREATE VIEW analytics.asmt_StudentAssessmentFact AS
         CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey,
         School.SchoolId AS SchoolKey,
         CONVERT(varchar, StudentAssessment.AdministrationDate, 112) as AdministrationDate,
-        COALESCE(StudentAssessmentScoreResult.Result,SASOASR.Result) AS StudentScore,
-        COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description) AS ResultDataType,
-        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description) AS ReportingMethod,
-        COALESCE(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description) AS PerformanceResult
+        COALESCE(StudentAssessmentScoreResult.Result,SASOASR.Result,'') AS StudentScore,
+        COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description,'') AS ResultDataType,
+        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description,'') AS ReportingMethod,
+        COALESCE(PerformanceLevelDescriptorDist.Description,PerformanceLevelDescriptorObj.Description,'') AS PerformanceResult
     FROM
         edfi.StudentAssessment
     INNER JOIN
