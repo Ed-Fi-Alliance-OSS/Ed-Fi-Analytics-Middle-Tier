@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT TOP 1 ObjectiveAssessmentKey
+      FROM analytics.asmt_StudentAssessmentFact
+      WHERE StudentUSI IS NULL AND StudentObjectiveAssessmentKey &lt; &gt; ''
+    </Query>
+</TestCase>
