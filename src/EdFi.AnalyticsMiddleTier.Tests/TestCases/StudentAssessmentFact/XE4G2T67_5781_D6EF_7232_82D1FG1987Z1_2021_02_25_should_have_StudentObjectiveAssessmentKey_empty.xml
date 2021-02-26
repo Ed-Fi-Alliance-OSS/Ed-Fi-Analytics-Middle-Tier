@@ -4,8 +4,11 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-      SELECT TOP 1 StudentObjectiveAssessmentKey
+      SELECT StudentObjectiveAssessmentKey
       FROM analytics.asmt_StudentAssessmentFact
-      WHERE StudentUSI IS NULL AND StudentObjectiveAssessmentKey &lt; &gt; ''
-  </Query>
+      WHERE StudentAssessmentKey = 'D0FEA09D-5781-D6EF-7232-59E9BE3212A0-uri://edfi.org/Assessment-D0FEA09D-5781-D6EF-7232-59E9BE3212A0_2010-04-01-100035252';
+    </Query>
+    <Result>
+      <StudentObjectiveAssessmentKey></StudentObjectiveAssessmentKey>
+    </Result>
 </TestCase>
