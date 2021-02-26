@@ -13,12 +13,12 @@ CREATE VIEW analytics.asmt_StudentAssessmentFact AS
 
 	SELECT
         CONCAT(StudentAssessment.AssessmentIdentifier, '-', StudentAssessment.Namespace, '-', StudentAssessment.StudentAssessmentIdentifier, '-', StudentAssessment.StudentUSI) AS StudentAssessmentKey,
-		CASE WHEN SASOA.StudentUSI IS NULL 
+		CASE WHEN SASOA.StudentUSI = '' 
                 THEN NULL 
              ELSE 
                 CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) 
         END AS StudentObjectiveAssessmentKey,
-        CASE WHEN SASOA.AssessmentIdentifier IS NULL 
+        CASE WHEN SASOA.AssessmentIdentifier = ''
                 THEN NULL 
              ELSE 
                 CONCAT(SASOA.AssessmentIdentifier, '-', SASOA.IdentificationCode, '-', SASOA.Namespace) 
@@ -86,7 +86,7 @@ CREATE VIEW analytics.asmt_StudentAssessmentFact AS
 	LEFT JOIN
 		edfi.StudentAssessmentStudentObjectiveAssessment SASOA
 			ON Assessment.AssessmentIdentifier = SASOA.AssessmentIdentifier
-            AND 
+            AND
             Assessment.Namespace = SASOA.Namespace
 	LEFT JOIN
         edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult SASOASR ON

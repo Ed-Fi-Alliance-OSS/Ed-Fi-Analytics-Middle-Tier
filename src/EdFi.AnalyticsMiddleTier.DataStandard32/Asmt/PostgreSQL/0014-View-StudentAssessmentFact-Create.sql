@@ -8,12 +8,12 @@ CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact
 AS
 	SELECT
         CONCAT(StudentAssessment.AssessmentIdentifier, '-', StudentAssessment.Namespace, '-', StudentAssessment.StudentAssessmentIdentifier, '-', StudentAssessment.StudentUSI) AS StudentAssessmentKey,
-		CASE WHEN SASOA.StudentUSI IS NULL 
+		CASE WHEN SASOA.StudentUSI = ''
                 THEN NULL 
              ELSE 
                 CONCAT(SASOA.StudentUSI, '-', SASOA.IdentificationCode, '-', SASOA.AssessmentIdentifier, '-', SASOA.StudentAssessmentIdentifier, '-', SASOA.Namespace) 
         END AS StudentObjectiveAssessmentKey,
-        CASE WHEN SASOA.AssessmentIdentifier IS NULL 
+        CASE WHEN SASOA.AssessmentIdentifier = ''
                 THEN NULL 
              ELSE 
                 CONCAT(SASOA.AssessmentIdentifier, '-', SASOA.IdentificationCode, '-', SASOA.Namespace) 
