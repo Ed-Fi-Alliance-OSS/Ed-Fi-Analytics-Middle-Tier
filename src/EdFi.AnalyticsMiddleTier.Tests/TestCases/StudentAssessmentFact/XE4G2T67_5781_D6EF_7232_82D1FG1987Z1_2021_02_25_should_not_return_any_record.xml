@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.asmt_StudentAssessmentFact
+      WHERE StudentAssessmentKey = 'MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-392'
+      AND (StudentObjectiveAssessmentKey = '71-State Assessment_Mathematics8-4-SA-2011-Mathematics-Eighth grade-rtkQAv1VoyjupI9nWZs5NwSKslxpjJgbPj5Sa5tp-uri://ed-fi.org/Assessment/Assessment.xml'
+      OR   StudentObjectiveAssessmentKey = '392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment-TestCase.xml');
+    </Query>
+    <Result>
+        <CountValue>0</CountValue>
+    </Result>
+</TestCase>

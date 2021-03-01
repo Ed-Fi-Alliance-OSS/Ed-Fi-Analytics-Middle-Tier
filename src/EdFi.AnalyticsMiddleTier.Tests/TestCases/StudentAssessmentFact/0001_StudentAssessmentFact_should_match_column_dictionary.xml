@@ -16,6 +16,14 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+      <ColumnName>StudentObjectiveAssessmentKey</ColumnName>
+      <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+      <ColumnName>ObjectiveAssessmentKey</ColumnName>
+      <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>AssessmentKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

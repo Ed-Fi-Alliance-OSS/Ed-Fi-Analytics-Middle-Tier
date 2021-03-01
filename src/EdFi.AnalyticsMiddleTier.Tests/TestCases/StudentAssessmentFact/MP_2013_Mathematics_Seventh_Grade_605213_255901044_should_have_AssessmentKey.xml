@@ -4,8 +4,8 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT AssessmentKey
-      FROM analytics.asmt_StudentAssessmentObjectiveFact
+      SELECT TOP 1 AssessmentKey
+      FROM analytics.asmt_StudentAssessmentFact
       WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml'
       AND StudentSchoolKey='605213-255901044'
       AND SchoolKey='255901044'

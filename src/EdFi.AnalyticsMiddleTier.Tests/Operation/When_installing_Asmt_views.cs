@@ -37,7 +37,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
         [TestCase("asmt_AssessmentFact")]
         [TestCase("asmt_StudentAssessmentFact")]
-        [TestCase("asmt_StudentAssessmentObjectiveFact")]
         public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
 
         [TestFixture]

@@ -4,16 +4,14 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT Namespace
-      FROM analytics.asmt_StudentAssessmentObjectiveFact
+      SELECT COUNT(1) as CountValue
+      FROM analytics.asmt_StudentAssessmentFact
       WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml'
-      AND StudentSchoolKey='605213-255901044'
-      AND SchoolKey='255901044'
-      AND StudentScore='1'
+      AND StudentSchoolKey='605213-255901001'
       AND ResultDataType='Decimal'
-      AND ReportingMethod='Raw score';
+      AND ReportingMethod='Achievement/proficiency level';
   </Query>
   <Result>
-      <Namespace>uri://ed-fi.org/Assessment/Assessment.xml</Namespace>
+      <CountValue>0</CountValue>
   </Result>
 </TestCase>
