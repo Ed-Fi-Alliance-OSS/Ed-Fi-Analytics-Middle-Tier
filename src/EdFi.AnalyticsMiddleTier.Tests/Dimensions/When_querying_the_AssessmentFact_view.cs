@@ -118,8 +118,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
-            //
-
             [Test]
             public void Then_should_have_ResultDataType()
             {
@@ -133,8 +131,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-
-            //
 
             [Test]
             public void Then_should_have_MaxScore()
@@ -245,8 +241,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
-            //
-
             [Test]
             public void Then_should_have_ResultDataType_Empty()
             {
@@ -260,8 +254,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-
-            //
         }
 
         public class Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx3
@@ -362,8 +354,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
-            //
-
             [Test]
             public void Then_should_have_ResultDataType()
             {
@@ -377,9 +367,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-
-            //
-
         }
 
         public class Given_assessment_405F31A9_7F57_45C5_A3FC_941041D2C1D9
