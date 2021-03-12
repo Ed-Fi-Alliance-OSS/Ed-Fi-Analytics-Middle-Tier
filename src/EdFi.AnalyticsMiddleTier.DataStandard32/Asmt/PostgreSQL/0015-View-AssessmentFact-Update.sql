@@ -14,10 +14,10 @@ AS
        COALESCE(Assessment.AssessmentVersion, 0) AS Version, 
        COALESCE(CategoryDescriptor.Description, '') AS Category, 
        Descriptor.Description AS AssessedGradeLevel, 
-       COALESCE(AcademicSubjectDescriptor.Description,'') AS AcademicSubject,
+       COALESCE(AcademicSubjectDescriptor.Description,'') AS AcademicSubject, 
        --
-       COALESCE(ResultDatatypeTypeDescriptorDist.Description,ResultDescriptor.Description,'') AS ResultDataType,
-       COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptor.Description,'') AS ReportingMethod,
+       COALESCE(ResultDataTypeDescriptorAssessment.Description,ResultDataTypeDescriptorObjectiveAssessment.Description,'') AS ResultDataType,
+       AssessmentReportingMethodDescriptorDist.Description AS ReportingMethod,
        --
        CONCAT(ObjectiveAssessment.AssessmentIdentifier, '-', ObjectiveAssessment.IdentificationCode, '-', ObjectiveAssessment.Namespace) AS ObjectiveAssessmentKey,
        ObjectiveAssessment.IdentificationCode,
@@ -41,6 +41,11 @@ AS
             Assessment.AssessmentIdentifier = AssessmentScore.AssessmentIdentifier
             AND
             Assessment.Namespace = AssessmentScore.Namespace
+--
+    INNER JOIN
+        edfi.Descriptor AS AssessmentReportingMethodDescriptorDist
+            ON AssessmentScore.AssessmentReportingMethodDescriptorId = AssessmentReportingMethodDescriptorDist.DescriptorId
+--
     INNER JOIN
         edfi.Descriptor ON
             Descriptor.DescriptorId = AssessmentAssessedGradeLevel.GradeLevelDescriptorId
@@ -57,12 +62,8 @@ AS
             CategoryDescriptor.DescriptorId = Assessment.AssessmentCategoryDescriptorId
 --
     LEFT JOIN
-        edfi.Descriptor AS ResultDatatypeTypeDescriptorDist
-            ON AssessmentScore.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptorDist.DescriptorId
---
-    LEFT JOIN
-        edfi.Descriptor AS AssessmentReportingMethodDescriptorDist
-            ON AssessmentScore.AssessmentReportingMethodDescriptorId = AssessmentReportingMethodDescriptorDist.DescriptorId
+        edfi.Descriptor AS ResultDataTypeDescriptorAssessment
+            ON AssessmentScore.ResultDatatypeTypeDescriptorId = ResultDataTypeDescriptorAssessment.DescriptorId
 --
     LEFT JOIN
         edfi.ObjectiveAssessment ON
@@ -78,12 +79,8 @@ AS
             ObjectiveAssessment.Namespace = ObjectiveAssessmentScore.Namespace
 --
     LEFT JOIN
-        edfi.Descriptor AS ResultDescriptor ON
-            ResultDescriptor.DescriptorId = ObjectiveAssessmentScore.ResultDatatypeTypeDescriptorId
---
-	LEFT JOIN
-        edfi.Descriptor AS ReportingMethodDescriptor ON
-            ReportingMethodDescriptor.DescriptorId = ObjectiveAssessmentScore.AssessmentReportingMethodDescriptorId
+        edfi.Descriptor AS ResultDataTypeDescriptorObjectiveAssessment ON
+            ObjectiveAssessmentScore.ResultDatatypeTypeDescriptorId = ResultDataTypeDescriptorObjectiveAssessment.DescriptorId
 --
     LEFT JOIN
         edfi.ObjectiveAssessment ParentAssesment ON
