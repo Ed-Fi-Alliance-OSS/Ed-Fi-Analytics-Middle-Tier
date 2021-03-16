@@ -19,6 +19,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string Category { get; set; }
         public string AssessedGradeLevel { get; set; }
         public string AcademicSubject { get; set; }
+        public string ResultDataType { get; set; }
+        public string ReportingMethod { get; set; }
         public string ObjectiveAssessmentKey { get; set; }
         public string IdentificationCode { get; set; }
         public string ParentObjectiveAssessmentKey { get; set; }

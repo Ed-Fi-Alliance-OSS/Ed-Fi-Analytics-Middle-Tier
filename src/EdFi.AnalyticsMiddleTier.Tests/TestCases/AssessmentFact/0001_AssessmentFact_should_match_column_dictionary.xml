@@ -44,6 +44,14 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>ResultDataType</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ReportingMethod</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>ObjectiveAssessmentKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
