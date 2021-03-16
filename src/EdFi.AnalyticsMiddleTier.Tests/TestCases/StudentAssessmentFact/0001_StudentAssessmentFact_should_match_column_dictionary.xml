@@ -56,6 +56,10 @@
         <DataType>varchar</DataType>
     </Result>
     <Result>
+        <ColumnName>AssessedGradeLevel</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>StudentScore</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

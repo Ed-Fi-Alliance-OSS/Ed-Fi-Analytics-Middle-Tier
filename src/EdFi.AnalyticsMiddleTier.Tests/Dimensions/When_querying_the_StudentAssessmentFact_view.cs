@@ -430,9 +430,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_PerformanceResult_Empty()
+            public void Then_should_have_PerformanceResult()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -552,6 +552,78 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentObjectiveAssessmentKey_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+        }
+        
+        public class Given_student_assessment_fact_100035251_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns_should_return_one_record
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_100035251_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns_should_return_one_record(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "100035251_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            
+            [Test]
+            public void Then_should_have_AssessedGradeLevel_Empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessedGradeLevel_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_PerformanceResult_Empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_assessment_fact_100035252_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns_should_return_one_record
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_100035252_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns_should_return_one_record(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "100035252_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ReportingMethod_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
         }
     }
 }

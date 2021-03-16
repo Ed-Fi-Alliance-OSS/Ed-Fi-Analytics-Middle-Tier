@@ -6,10 +6,7 @@
   <Query>
       SELECT COUNT(1) as CountValue
       FROM analytics.asmt_StudentAssessmentFact
-      WHERE StudentObjectiveAssessmentKey='396-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml'
-      AND StudentSchoolKey='605215-255901044'
-      AND ResultDataType='Decimal'
-      AND ReportingMethod='Raw score';
+      WHERE StudentObjectiveAssessmentKey='396-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
       <CountValue>1</CountValue>

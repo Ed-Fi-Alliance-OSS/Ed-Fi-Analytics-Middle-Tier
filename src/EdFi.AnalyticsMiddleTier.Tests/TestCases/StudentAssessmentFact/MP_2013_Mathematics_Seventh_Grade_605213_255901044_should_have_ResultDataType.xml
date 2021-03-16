@@ -4,16 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT TOP 1 ResultDataType
+      SELECT ResultDataType
       FROM analytics.asmt_StudentAssessmentFact
-      WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml'
-      AND StudentSchoolKey='605213-255901044'
-      AND SchoolKey='255901044'
-      AND StudentScore='1'
-      AND ResultDataType='Decimal'
-      AND ReportingMethod='Raw score';
+      WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <ResultDataType>Decimal</ResultDataType>
+      <ResultDataType>Integer</ResultDataType>
   </Result>
 </TestCase>
