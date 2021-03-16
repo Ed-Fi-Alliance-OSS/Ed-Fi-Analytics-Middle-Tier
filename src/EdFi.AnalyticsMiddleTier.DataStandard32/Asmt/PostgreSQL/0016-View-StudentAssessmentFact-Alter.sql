@@ -23,7 +23,18 @@ AS
            StudentAssessment.StudentUSI, 
            CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey, 
            School.SchoolId AS SchoolKey, 
-           CONVERT(VARCHAR, StudentAssessment.AdministrationDate, 112) AS AdministrationDate, 
+           CAST(EXTRACT(YEAR FROM StudentAssessment.AdministrationDate) AS VARCHAR(4)) 
+			|| 
+				CASE 
+					WHEN EXTRACT(MONTH FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(MONTH FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
+					ELSE CAST(EXTRACT(MONTH FROM StudentAssessment.AdministrationDate) as varchar(2))
+				END
+			|| 
+				CASE 
+					WHEN EXTRACT(DAY FROM StudentAssessment.AdministrationDate) BETWEEN 1 AND 9 THEN '0' || CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as VARCHAR(4))
+					ELSE CAST(EXTRACT(DAY FROM StudentAssessment.AdministrationDate) as varchar(2))
+				END as AdministrationDate,
+           COALESCE(WhenAssessedGradeLevelDescriptor.CodeValue,'') as AssessedGradeLevel,
            COALESCE(StudentAssessmentScoreResult.Result, SASOASR.Result, '') AS StudentScore, 
            COALESCE(ResultDatatypeTypeDescriptorDist.Description, ResultDescriptor.Description, '') AS ResultDataType, 
            COALESCE(AssessmentReportingMethodDescriptorDist.Description, ReportingMethodDescriptor.Description, '') AS ReportingMethod, 
@@ -47,6 +58,8 @@ AS
     INNER JOIN
         edfi.School ON
             StudentSchoolAssociation.SchoolId = School.SchoolId
+    LEFT JOIN edfi.Descriptor AS WhenAssessedGradeLevelDescriptor
+        ON StudentAssessment.WhenAssessedGradeLevelDescriptorId = WhenAssessedGradeLevelDescriptor.DescriptorId        
     LEFT JOIN
         edfi.StudentAssessmentScoreResult ON
             StudentAssessment.AssessmentIdentifier = StudentAssessmentScoreResult.AssessmentIdentifier
@@ -61,6 +74,8 @@ AS
             Assessment.AssessmentIdentifier = AssessmentPerformanceLevel.AssessmentIdentifier
             AND
             Assessment.Namespace = AssessmentPerformanceLevel.Namespace
+            AND
+            AssessmentPerformanceLevel.AssessmentReportingMethodDescriptorId = StudentAssessmentScoreResult.AssessmentReportingMethodDescriptorId
             AND
             AssessmentPerformanceLevel.MaximumScore >= StudentAssessmentScoreResult.Result
             AND
@@ -104,7 +119,7 @@ AS
             AND
             SASOA.Namespace = SASOASR.Namespace
             AND
-            SASOASR.AssessmentReportingMethodDescriptorId = AssessmentPerformanceLevel.AssessmentReportingMethodDescriptorId
+            COALESCE(AssessmentPerformanceLevel.AssessmentReportingMethodDescriptorId,SASOASR.AssessmentReportingMethodDescriptorId)= SASOASR.AssessmentReportingMethodDescriptorId
     LEFT JOIN
         edfi.Descriptor AS ResultDescriptor ON
             ResultDescriptor.DescriptorId = SASOASR.ResultDatatypeTypeDescriptorId
