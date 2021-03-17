@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT TOP 1 SchoolKey
+      SELECT PerformanceResult
       FROM analytics.asmt_StudentAssessmentFact
       WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <SchoolKey>255901044</SchoolKey>
+    <PerformanceResult>Basic</PerformanceResult>
   </Result>
 </TestCase>

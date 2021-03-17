@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COUNT(1) AS CountValue
+        FROM analytics.asmt_StudentAssessmentFact
+        WHERE StudentObjectiveAssessmentKey='100035251-Seventh grade Mathematics-48-D0FEA09D-5781-D6EF-7232-59E9BE3212A0_ns-D0FEA09D-5781-D6EF-7232-59E9BE3212A0_2010-04-01-uri://edfi.org/Assessment'
+        AND ReportingMethod = 'Raw Score';
+    </Query>
+    <Result>
+        <CountValue>1</CountValue>
+    </Result>
+</TestCase>
