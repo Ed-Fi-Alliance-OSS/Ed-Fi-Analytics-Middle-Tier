@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT GradeType
+      FROM analytics.ews_StudentSectionGradeFact
+      WHERE StudentKey = 205689
+      AND SchoolKey = 867530068
+      AND GradingPeriodKey = '60-867530068-20110822'
+      AND StudentSectionKey = '205689-867530068-T01-113-NBIR06-530-2012-7117-1-20110822'
+      AND SectionKey = '867530068-T01-113-NBIR06-530-2012-7117-1';
+  </Query>
+  <Result>
+      <GradeType>Semester</GradeType>
+  </Result>
+</TestCase>

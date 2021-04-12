@@ -17,5 +17,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string SectionKey { get; set; } //(nvarchar(482), null)
         public decimal? NumericGradeEarned { get; set; } //(decimal(9,2), null)
         public string LetterGradeEarned { get; set; } //(nvarchar(20), null)
+        public string GradeType { get; set; }
     }
 }

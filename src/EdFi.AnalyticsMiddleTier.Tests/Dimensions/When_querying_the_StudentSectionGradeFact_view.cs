@@ -15,7 +15,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     public abstract class When_querying_the_StudentSectionGradeFact_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentSectionGradeFact";
-        
+
         protected (bool success, string errorMessage) Result;
 
         [OneTimeSetUp]
@@ -49,10 +49,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_return_one_record()
             {
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_StudentKey()
             {
@@ -107,6 +107,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_GradeType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentSectionGradeFact>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -179,6 +188,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned_null.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+            [Test]
+            public void Then_should_have_GradeType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentSectionGradeFact>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_sudent_section_grade_fact_190966
@@ -249,6 +266,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+            [Test]
+            public void Then_should_have_GradeType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentSectionGradeFact>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_sudent_section_grade_fact_189914
@@ -317,6 +342,56 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_GradeType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentSectionGradeFact>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+        public class Given_sudent_section_grade_fact_203451
+        : When_querying_the_StudentSectionGradeFact_view
+        {
+            public Given_sudent_section_grade_fact_203451(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "203451";
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_GradeType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentSectionGradeFact>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+        public class Given_sudent_section_grade_fact_205689
+       : When_querying_the_StudentSectionGradeFact_view
+        {
+            public Given_sudent_section_grade_fact_205689(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "205689";
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_GradeType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentSectionGradeFact>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
