@@ -27,11 +27,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeSetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Qews);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-
             Result = DataStandard.LoadTestCaseData<StudentDataAuthorization>($"{TestCasesFolder}.0000_StaffClassificationDescriptorScopeList_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
+
+            Result = DataStandard.Install(10, Component.Qews);
+            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
         }
 
         [Test]
