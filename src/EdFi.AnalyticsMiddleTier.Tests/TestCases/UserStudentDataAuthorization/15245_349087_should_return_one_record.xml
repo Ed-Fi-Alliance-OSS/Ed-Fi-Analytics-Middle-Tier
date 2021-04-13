@@ -6,9 +6,9 @@
   <Query>
     SELECT COUNT(1) AS CountValue
     FROM analytics.rls_UserStudentDataAuthorization
-    WHERE UserKey='11721' AND StudentKey='218268';
+    WHERE (UserKey='11721' AND StudentKey='218271') OR (UserKey='11324' AND StudentKey='218271');
   </Query>
   <Result>
-    <CountValue>0</CountValue>
+    <CountValue>1</CountValue>
   </Result>
 </TestCase>
