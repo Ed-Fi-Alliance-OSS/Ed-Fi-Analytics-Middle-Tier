@@ -39,4 +39,8 @@
     <ColumnName>LetterGradeEarned</ColumnName>
     <DataType>nvarchar</DataType>
   </Result>
+  <Result>
+    <ColumnName>GradeType</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
 </TestCase>
