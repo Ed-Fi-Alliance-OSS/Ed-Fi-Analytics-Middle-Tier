@@ -161,21 +161,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
         }
 
-        public class Given_UserStudentDataAuthorization_11721_218271
-            : When_querying_the_UserStudentDataAuthorization_view
-        {
-            public Given_UserStudentDataAuthorization_11721_218271(TestHarness dataStandard) => SetDataStandard(dataStandard);
-
-            private const string _caseIdentifier = "11721_218271";
-
-            [Test]
-            public void Then_should_not_return_any_record()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-        }
-
         public class Given_UserStudentDataAuthorization_12143_197085
             : When_querying_the_UserStudentDataAuthorization_view
         {
@@ -247,6 +232,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_not_return_any_record()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_UserStudentDataAuthorization_11721_218271
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_11721_218271(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "11721_218271";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
