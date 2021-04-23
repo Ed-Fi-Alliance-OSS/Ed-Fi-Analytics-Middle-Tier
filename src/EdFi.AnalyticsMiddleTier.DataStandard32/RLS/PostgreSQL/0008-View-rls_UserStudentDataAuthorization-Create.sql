@@ -95,4 +95,4 @@ UNION ALL
 	WHERE 
 		DescriptorConstant.ConstantName = 'AuthorizationScope.Section'
 		AND StaffEducationOrganizationAssignmentAssociation.EndDate IS NULL
-		AND (StudentSectionAssociation.EndDate IS NULL OR StudentSectionAssociation.EndDate >= now())
+		AND StudentSectionAssociation.EndDate IS NULL;
