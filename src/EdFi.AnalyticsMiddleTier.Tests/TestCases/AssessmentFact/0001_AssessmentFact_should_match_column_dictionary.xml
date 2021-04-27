@@ -79,4 +79,8 @@
         <ColumnName>MaxScore</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+    <Result>
+        <ColumnName>LearningStandard</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
 </TestCase>
