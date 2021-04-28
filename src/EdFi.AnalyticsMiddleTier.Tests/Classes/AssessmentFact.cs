@@ -28,5 +28,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string PercentOfAssessment { get; set; }
         public string MinScore { get; set; }
         public string MaxScore { get; set; }
+        public string LearningStandard { get; set; }
     }
 }
