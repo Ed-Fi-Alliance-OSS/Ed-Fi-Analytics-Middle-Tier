@@ -3,13 +3,9 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics' AND TABLE_NAME = 'asmt_AssessmentFact')
-BEGIN
-	DROP VIEW analytics.asmt_AssessmentFact
-END
-GO
+DROP VIEW IF EXISTS analytics.asmt_AssessmentFact;
 
-CREATE VIEW analytics.asmt_AssessmentFact
+CREATE OR REPLACE VIEW analytics.asmt_AssessmentFact
 AS
 	SELECT 
        CONCAT(Assessment.AssessmentIdentifier, '-', Assessment.Namespace)  AS AssessmentKey,
@@ -93,7 +89,4 @@ AS
             AND
             ObjectiveAssessment.IdentificationCode = ObjectiveAssessmentLearningStandard.IdentificationCode
             AND
-            ObjectiveAssessment.Namespace = ObjectiveAssessmentLearningStandard.Namespace
-    LEFT JOIN
-        edfi.LearningStandard ON
-            ObjectiveAssessmentLearningStandard.LearningStandardId = LearningStandard.LearningStandardId;
+            ObjectiveAssessment.Namespace = ObjectiveAssessmentLearningStandard.Namespace;

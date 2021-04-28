@@ -93,7 +93,4 @@ AS
             AND
             ObjectiveAssessment.IdentificationCode = ObjectiveAssessmentLearningStandard.IdentificationCode
             AND
-            ObjectiveAssessment.Namespace = ObjectiveAssessmentLearningStandard.Namespace
-     LEFT JOIN
-        edfi.LearningStandard ON
-            ObjectiveAssessmentLearningStandard.LearningStandardId = LearningStandard.LearningStandardId;
+            ObjectiveAssessment.Namespace = ObjectiveAssessmentLearningStandard.Namespace;
