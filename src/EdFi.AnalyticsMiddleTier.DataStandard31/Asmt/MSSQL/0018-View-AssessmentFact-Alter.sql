@@ -22,10 +22,13 @@ AS
        COALESCE(AcademicSubjectDescriptor.Description,'') AS AcademicSubject,
        COALESCE(ResultDataTypeDescriptorAssessment.Description,ResultDataTypeDescriptorObjectiveAssessment.Description,'') AS ResultDataType,
        COALESCE(AssessmentReportingMethodDescriptorDist.Description,ReportingMethodDescriptorObjectiveAssessment.Description,'') AS ReportingMethod,
-       CONCAT_WS('-',ObjectiveAssessment.AssessmentIdentifier, ObjectiveAssessment.IdentificationCode, ObjectiveAssessment.Namespace) AS ObjectiveAssessmentKey,
+       CASE WHEN ObjectiveAssessment.AssessmentIdentifier IS NOT NULL
+            THEN CONCAT(ObjectiveAssessment.AssessmentIdentifier, '-',ObjectiveAssessment.IdentificationCode, '-',ObjectiveAssessment.Namespace) 
+             ELSE ''
+          END AS ObjectiveAssessmentKey,
        COALESCE(ObjectiveAssessment.IdentificationCode,'') as IdentificationCode,
        CASE WHEN ObjectiveAssessment.ParentIdentificationCode IS NOT NULL
-            THEN CONCAT_WS('-',ParentAssesment.AssessmentIdentifier, ParentAssesment.IdentificationCode, ParentAssesment.Namespace)
+            THEN CONCAT(ParentAssesment.AssessmentIdentifier, '-',ParentAssesment.IdentificationCode, '-',ParentAssesment.Namespace)
           ELSE ''
           END AS ParentObjectiveAssessmentKey,
        COALESCE(ObjectiveAssessment.Description, '') as ObjectiveAssessmentDescription,
