@@ -524,5 +524,44 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_assessment_MP_2013_Mathematics_Seventh_grade
+        : When_querying_the_AssessmentFact_view
+        {
+            public Given_assessment_MP_2013_Mathematics_Seventh_grade(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "MP_2013_Mathematics_Seventh_grade";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_AssessedGradeLevel_Empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessedGradeLevel_Empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ReportingMethod()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
