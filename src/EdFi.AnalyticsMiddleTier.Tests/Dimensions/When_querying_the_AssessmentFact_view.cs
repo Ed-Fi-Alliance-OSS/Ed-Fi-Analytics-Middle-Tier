@@ -557,9 +557,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_ReportingMethod()
+            public void Then_should_have_ReportingMethod_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
