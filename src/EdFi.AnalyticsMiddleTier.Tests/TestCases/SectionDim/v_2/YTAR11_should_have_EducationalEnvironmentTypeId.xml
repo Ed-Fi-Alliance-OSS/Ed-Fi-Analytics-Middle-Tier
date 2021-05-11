@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT EducationalEnvironmentTypeId
+    FROM analytics.SectionDim
+    WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
+  </Query>
+  <Result>
+    <EducationalEnvironmentTypeId>AUDITORIUM</EducationalEnvironmentTypeId>
+  </Result>
+</TestCase>
