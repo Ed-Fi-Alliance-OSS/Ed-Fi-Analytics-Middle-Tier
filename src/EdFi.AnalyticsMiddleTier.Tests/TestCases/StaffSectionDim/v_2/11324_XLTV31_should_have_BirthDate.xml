@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT BirthDate
+      FROM analytics.StaffSectionDim
+      WHERE StaffSectionKey = '11324-867530010-A01-702-XLTV31-540-2012-14139-1';
+  </Query>
+  <Result>
+      <BirthDate>1950-09-09</BirthDate>
+  </Result>
+</TestCase>

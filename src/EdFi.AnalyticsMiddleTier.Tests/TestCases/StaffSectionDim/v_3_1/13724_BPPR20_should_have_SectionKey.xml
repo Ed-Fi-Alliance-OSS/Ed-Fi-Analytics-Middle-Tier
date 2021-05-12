@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT SectionKey
+      FROM analytics.StaffSectionDim
+      WHERE StaffSectionKey = '13724-867530020-BPPR20-2012-21445-Traditional-Spring Semester';
+  </Query>
+  <Result>
+      <SectionKey>867530020-BPPR20-2012-21445-Traditional-Spring Semester</SectionKey>
+  </Result>
+</TestCase>

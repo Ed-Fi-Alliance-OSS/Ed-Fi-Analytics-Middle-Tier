@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StaffSectionKey
+      FROM analytics.StaffSectionDim
+      WHERE StaffSectionKey = '11331-867530020-A02-108-NCMR21-530-2012-7363-1';
+  </Query>
+  <Result>
+      <StaffSectionKey>11331-867530020-A02-108-NCMR21-530-2012-7363-1</StaffSectionKey>
+  </Result>
+</TestCase>
