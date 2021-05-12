@@ -17,16 +17,16 @@ END;
 GO
 CREATE VIEW [analytics].[StudentProgramDim]
 AS
-    SELECT [BeginDate],program.[EducationOrganizationId],program.[ProgramName],program.[ProgramTypeDescriptorId],student.[StudentUSI],
+    SELECT [BeginDate],program.[EducationOrganizationId],program.[ProgramName],student.[StudentUSI],
     CONCAT (Student.StudentUniqueId,'-',StudentSchoolAssociation.SchoolId) AS StudentSchoolKey
-    FROM [edfi].[Program] Program
+    FROM [edfi].[Program]
     INNER JOIN
         [edfi].[StudentProgramAssociation] StudentProgram
         ON StudentProgram.ProgramName = Program.ProgramName
-        AND StudentProgram.ProgramTypeDescriptorId = Program.ProgramTypeDescriptorId
+        AND StudentProgram.ProgramTypeId = Program.ProgramTypeId
         AND StudentProgram.ProgramEducationOrganizationId = Program.EducationOrganizationId
     INNER JOIN 
-        edfi.Student Student
+        edfi.Student
         ON StudentProgram.StudentUSI = Student.StudentUSI
     INNER JOIN 
         edfi.StudentSchoolAssociation
