@@ -18,29 +18,35 @@ GO
 CREATE VIEW [analytics].[SectionDim]
 AS
      SELECT DISTINCT 
-		  CAST([ssa].[SchoolId] AS VARCHAR) AS [SchoolKey],
-          CAST([ssa].[SchoolId] AS NVARCHAR) + '-' + [ssa].[ClassPeriodName] + '-' + [ssa].[ClassroomIdentificationCode] + '-' + [ssa].[LocalCourseCode] + '-' + CAST([ssa].[TermDescriptorId] AS NVARCHAR) + '-' + CAST([ssa].[SchoolYear] AS NVARCHAR) + '-' + [ssa].[UniqueSectionCode] + '-' + CAST([ssa].[SequenceOfCourse] AS NVARCHAR) AS [SectionKey],
-		  CONCAT([ssa].[LocalCourseCode],'-',ISNULL([Course].[CourseTitle], '')) AS [SectionName],
-		  ISNULL([Course].[CourseTitle], '') AS [SessionName],
-		  [ssa].[LocalCourseCode],
-		  ssa.SchoolYear, 
-		  s.ClassroomIdentificationCode as EducationalEnvironmentTypeId,
+		  CAST([s].[SchoolId] AS VARCHAR) AS [SchoolKey],
+          CONCAT(CAST([s].[SchoolId] AS NVARCHAR),'-',[s].[ClassPeriodName],'-',[s].[ClassroomIdentificationCode],'-',[s].[LocalCourseCode],'-',CAST([s].[TermDescriptorId] AS NVARCHAR),'-',CAST(s.[SchoolYear] AS NVARCHAR),'-',s.[UniqueSectionCode],'-',CAST(s.[SequenceOfCourse] AS NVARCHAR)) AS [SectionKey],
+          CONCAT([Descriptor].[Description],'(',s.[LocalCourseCode],')','-',[Course].[CourseTitle],'(',s.[ClassPeriodName],')',TermType.Description) as Description,
+		  CONCAT([s].[LocalCourseCode],'-',COALESCE([Course].[CourseTitle], '')) AS [SectionName],
+		  [Course].[CourseTitle] AS [SessionName],
+		  [s].[LocalCourseCode],
+		  s.SchoolYear, 
+		  EducationalEnvironmentType.Description as EducationalEnvironmentDescriptor,
 		  sch.LocalEducationAgencyId
    FROM 
         [edfi].[Section] s
-   INNER JOIN
-		[edfi].StudentSectionAssociation ssa ON
-			ssa.[SchoolId] = s.SchoolId  
-			AND ssa.[ClassPeriodName] = s.ClassPeriodName 
-			AND ssa.[ClassroomIdentificationCode] = s.ClassroomIdentificationCode 
    LEFT JOIN
        [edfi].[School] sch ON
            s.SchoolId = sch.SchoolId
    INNER JOIN [edfi].[CourseOffering]
-          ON [CourseOffering].[SchoolId] = [ssa].[SchoolId]
-             AND [CourseOffering].[LocalCourseCode] = [ssa].[LocalCourseCode]
+          ON [CourseOffering].[SchoolId] = s.[SchoolId]
+             AND [CourseOffering].[LocalCourseCode] = s.[LocalCourseCode]
     INNER JOIN [edfi].[Course]
           ON [Course].[CourseCode] = [CourseOffering].[CourseCode]
              AND [Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
+    LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor]
+          ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
+    LEFT OUTER JOIN [edfi].[Descriptor]
+          ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
+	LEFT OUTER JOIN [edfi].TermDescriptor
+		  ON TermDescriptor.TermDescriptorId = s.TermDescriptorId
+	LEFT OUTER JOIN [edfi].TermType
+		  ON TermDescriptor.TermTypeId = TermType.TermTypeId
+	LEFT OUTER JOIN [edfi].EducationalEnvironmentType
+		  ON EducationalEnvironmentType.EducationalEnvironmentTypeId = s.EducationalEnvironmentTypeId
 
 GO

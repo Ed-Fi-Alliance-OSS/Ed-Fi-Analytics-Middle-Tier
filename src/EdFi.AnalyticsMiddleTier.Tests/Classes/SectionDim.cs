@@ -17,7 +17,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string SessionName { get; set; } //(nvarchar(60), not null)
         public string LocalCourseCode { get; set; } //(nvarchar(60), not null)
         public int SchoolYear { get; set; } //(smallint, not null)
-        public string EducationalEnvironmentTypeId { get; set; } //(nvarchar(75), null)
+        public string EducationalEnvironmentDescriptor { get; set; } //(nvarchar(1024), null)
         public int LocalEducationAgencyId { get; set; } //(int, null)
+        public string Description { get; set; } //(nvarchar(75), null)
     }
 }

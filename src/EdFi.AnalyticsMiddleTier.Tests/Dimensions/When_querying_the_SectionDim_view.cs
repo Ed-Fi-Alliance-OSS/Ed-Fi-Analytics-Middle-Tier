@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeSetUp]
         public void Act()
         {
-            Result = DataStandard.LoadTestCaseData<SectionDim>($"{TestCasesFolder}.{DataStandard}.0000_SectionDim_Data_Load.xml");
+            Result = DataStandard.LoadTestCaseData<SectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_SectionDim_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
 
             // Install the default map so that we can test for Section address
@@ -65,9 +65,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         }
 
         [Test]
-        public void Then_should_have_EducationalEnvironmentTypeId()
+        public void Then_should_have_EducationalEnvironmentDescriptor()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.YTAR11_should_have_EducationalEnvironmentTypeId.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.YTAR11_should_have_EducationalEnvironmentDescriptor.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -125,6 +125,28 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void SetUp()
             {
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds31) || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32))
+                {
+                    Assert.Ignore($"No validation needed because the query is different. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0002_Should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class When_querying_the_SectionDim_V3_view
+            : When_querying_the_SectionDim_view_base
+        {
+            public When_querying_the_SectionDim_V3_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            [SetUp]
+            public void SetUp()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
                     Assert.Ignore($"No validation needed because the query is different. ({DataStandard.DataStandardVersion.ToString()})");
                 }

@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT EducationalEnvironmentTypeId
+    SELECT EducationalEnvironmentDescriptor
     FROM analytics.SectionDim
     WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
   </Query>
   <Result>
-    <EducationalEnvironmentTypeId>950</EducationalEnvironmentTypeId>
+    <EducationalEnvironmentDescriptor>950</EducationalEnvironmentDescriptor>
   </Result>
 </TestCase>

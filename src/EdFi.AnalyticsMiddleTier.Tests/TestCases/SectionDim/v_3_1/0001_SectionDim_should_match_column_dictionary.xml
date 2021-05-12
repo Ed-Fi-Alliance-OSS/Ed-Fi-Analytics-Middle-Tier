@@ -20,6 +20,10 @@
     <DataType>nvarchar</DataType>
   </Result>
   <Result>
+    <ColumnName>Description</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
     <ColumnName>SectionName</ColumnName>
     <DataType>nvarchar</DataType>
   </Result>
@@ -36,11 +40,11 @@
     <DataType>smallint</DataType>
   </Result>
   <Result>
-    <ColumnName>EducationalEnvironmentTypeId</ColumnName>
+    <ColumnName>LocalEducationAgencyId</ColumnName>
     <DataType>int</DataType>
   </Result>
   <Result>
-    <ColumnName>LocalEducationAgencyId</ColumnName>
-    <DataType>int</DataType>
+    <ColumnName>EducationalEnvironmentDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
   </Result>
 </TestCase>
