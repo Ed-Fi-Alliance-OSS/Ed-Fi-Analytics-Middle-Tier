@@ -37,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         }
 
         public class Given_student_100021874
-            : When_querying_a_view
+            : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "100021874";
             public Given_student_100021874(TestHarness dataStandard) => SetDataStandard(dataStandard);
