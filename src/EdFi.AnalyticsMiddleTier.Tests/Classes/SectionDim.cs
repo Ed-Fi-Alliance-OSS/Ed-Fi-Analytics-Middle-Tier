@@ -11,13 +11,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class SectionDim
     {
-        public int SchoolKey { get; set; } //(int, not null)
-        public string SectionKey { get; set; } //(nvarchar(75), not null)
-        public string SectionName { get; set; } //(nvarchar(75), not null)
-        public string SessionName { get; set; } //(nvarchar(75), not null)
-        public string LocalCourseCode { get; set; } //(nvarchar(75), not null)
-        public int SchoolYear { get; set; } //(int, not null)
-        public string EducationalEnvironmentTypeId { get; set; } //(nvarchar(75), not null)
-        public int LocalEducationAgencyId { get; set; } //(int, not null)
+        public string SchoolKey { get; set; } //(nvarchar(30), null)
+        public string SectionKey { get; set; } //(nvarchar(439), null)
+        public string SectionName { get; set; } //(nvarchar(121), not null)
+        public string SessionName { get; set; } //(nvarchar(60), not null)
+        public string LocalCourseCode { get; set; } //(nvarchar(60), not null)
+        public int SchoolYear { get; set; } //(smallint, not null)
+        public string EducationalEnvironmentTypeId { get; set; } //(nvarchar(75), null)
+        public int LocalEducationAgencyId { get; set; } //(int, null)
     }
 }

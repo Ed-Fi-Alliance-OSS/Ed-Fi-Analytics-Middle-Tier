@@ -42,9 +42,5 @@ AS
     INNER JOIN [edfi].[Course]
           ON [Course].[CourseCode] = [CourseOffering].[CourseCode]
              AND [Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
-	LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor]
-          ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
-    LEFT OUTER JOIN [edfi].[Descriptor]
-          ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
 
 GO
