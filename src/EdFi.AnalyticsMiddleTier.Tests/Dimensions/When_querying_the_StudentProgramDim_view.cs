@@ -32,10 +32,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_StudentProgramDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult =
+                DataStandard.RunTestCase<TableColumns>(
+                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_StudentProgramDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class Given_student_100021874
             : When_querying_the_StudentProgramDim_view
         {
@@ -45,7 +48,71 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_BeginDate()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_EducationOrganizationId()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_EducationOrganizationId.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ProgramName()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_ProgramName.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentSchoolKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentUSI()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentUSI.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_100039988
+            : When_querying_the_StudentProgramDim_view
+        {
+            private const string _caseIdentifier = "100039988";
+            public Given_student_100039988(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
