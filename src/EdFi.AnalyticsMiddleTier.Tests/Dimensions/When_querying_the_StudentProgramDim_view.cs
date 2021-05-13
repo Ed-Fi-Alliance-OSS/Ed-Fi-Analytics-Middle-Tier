@@ -48,6 +48,51 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_have_BeginDate()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_EducationOrganizationId()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_EducationOrganizationId.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ProgramName()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_ProgramName.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentSchoolKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentUSI()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentUSI.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }
