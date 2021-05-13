@@ -6,9 +6,9 @@
   <Query>
     SELECT COUNT(1) AS CountValue
     FROM analytics.SectionDim
-    WHERE SectionKey = '628530001-QAGR40-2012-18940-Traditional-Spring Semester';
+    WHERE SectionKey = '628530001-QAGR40-2012-18940-Traditional';
   </Query>
   <Result>
-    <CountValue>1</CountValue>
+    <CountValue>0</CountValue>
   </Result>
 </TestCase>
