@@ -161,5 +161,22 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_100039889
+            : When_querying_the_StudentProgramDim_view
+        {
+            private const string _caseIdentifier = "100039889";
+            public Given_student_100039889(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            [Test]
+            public void Then_should_not_return_any_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
