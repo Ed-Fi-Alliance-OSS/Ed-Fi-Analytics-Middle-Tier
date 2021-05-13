@@ -194,6 +194,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                         $"{TestCasesFolder}.{_caseIdentifier}_should_return_three_records.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_return_three_unique_programs()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_three_unique_programs.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }
