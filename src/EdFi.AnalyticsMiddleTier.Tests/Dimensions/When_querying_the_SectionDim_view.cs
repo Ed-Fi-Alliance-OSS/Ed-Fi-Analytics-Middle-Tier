@@ -136,6 +136,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0002_Should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_return_one_record_2()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0003_Should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class When_querying_the_SectionDim_V3_view
@@ -198,6 +205,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_return_one_record_6()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0008_Should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_return_one_record_7()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0009_Should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_return_one_record_8()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0010_Should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

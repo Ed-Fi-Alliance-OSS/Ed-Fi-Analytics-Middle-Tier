@@ -6,11 +6,11 @@
 CREATE OR REPLACE VIEW analytics.SectionDim AS
     SELECT DISTINCT CAST(s.SchoolId AS VARCHAR) AS SchoolKey
 		,CONCAT (
-			CAST(Course.EducationOrganizationId AS VARCHAR)
+			CAST(s.SchoolId AS NVARCHAR)
 			,'-'
 			,s.LocalCourseCode
 			,'-'
-			,CAST(CourseOffering.SchoolYear AS VARCHAR)
+			,CAST(s.SchoolYear AS NVARCHAR)
 			,'-'
 			,s.SectionIdentifier
 			,'-'
@@ -35,7 +35,7 @@ CREATE OR REPLACE VIEW analytics.SectionDim AS
 			) AS SectionName
 		,Session.SessionName
 		,COALESCE(SectionClassPeriod.LocalCourseCode,CourseOffering.LocalCourseCode) as LocalCourseCode
-		,CourseOffering.SchoolYear
+		,COALESCE(Session.SchoolYear,CourseOffering.SchoolYear) as SchoolYear
 		,eed.Description AS EducationalEnvironmentDescriptor
 		,sch.LocalEducationAgencyId
 	FROM edfi.Section s

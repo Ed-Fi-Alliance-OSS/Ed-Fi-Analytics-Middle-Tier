@@ -18,8 +18,8 @@ GO
 CREATE VIEW [analytics].[SectionDim]
 AS
      SELECT DISTINCT 
-		  CAST([Course].[EducationOrganizationId] AS VARCHAR) AS [SchoolKey],
-          CONCAT(CAST([CourseOffering].[SchoolId] AS NVARCHAR),'-',[s].[ClassPeriodName],'-',[s].[ClassroomIdentificationCode],'-',[CourseOffering].[LocalCourseCode],'-',CAST([s].[TermDescriptorId] AS NVARCHAR),'-',CAST(s.[SchoolYear] AS NVARCHAR),'-',s.[UniqueSectionCode],'-',CAST(s.[SequenceOfCourse] AS NVARCHAR)) AS [SectionKey],
+		  CAST(s.SchoolId AS VARCHAR) AS [SchoolKey],
+          CONCAT(CAST(s.SchoolId AS NVARCHAR),'-',[s].[ClassPeriodName],'-',[s].[ClassroomIdentificationCode],'-',s.[LocalCourseCode],'-',CAST([s].[TermDescriptorId] AS NVARCHAR),'-',CAST(s.[SchoolYear] AS NVARCHAR),'-',s.[UniqueSectionCode],'-',CAST(s.[SequenceOfCourse] AS NVARCHAR)) AS [SectionKey],
           CONCAT([Descriptor].[Description],'(',s.[LocalCourseCode],')','-',[Course].[CourseTitle],'(',s.[ClassPeriodName],')',TermType.Description) as Description,
 		  CONCAT([s].[LocalCourseCode],'-',COALESCE([Course].[CourseTitle], '')) AS [SectionName],
 		  [Course].[CourseTitle] AS [SessionName],

@@ -609,5 +609,7 @@
 
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','APAR31',867530011,2011,'18940','Traditional-Spring Semester','2021-01-01');
 
+      INSERT INTO edfi.Session VALUES (867530010,2011,'Traditional','2011-08-22','2011-12-20',535,82,NULL,'2015-09-18','2015-09-18',NEWID())
+      
     </ControlDataInsertion>
 </TestCase>
