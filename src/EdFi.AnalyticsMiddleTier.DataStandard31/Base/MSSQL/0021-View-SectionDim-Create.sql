@@ -45,7 +45,6 @@ CREATE VIEW analytics.SectionDim AS
 		,eed.Description AS EducationalEnvironmentDescriptor
 		,sch.LocalEducationAgencyId
 	FROM [edfi].[Section] s
-	LEFT JOIN [edfi].[School] sch ON s.SchoolId = sch.SchoolId
 	INNER JOIN [edfi].[CourseOffering] ON 
 		[CourseOffering].[SchoolId] = s.[SchoolId]
 		AND 
@@ -57,6 +56,7 @@ CREATE VIEW analytics.SectionDim AS
 		[Course].[CourseCode] = [CourseOffering].[CourseCode]
 		AND 
 		[Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
+	LEFT JOIN [edfi].[School] sch ON s.SchoolId = sch.SchoolId
 	LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor] ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
 	LEFT OUTER JOIN [edfi].[Descriptor] ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
 	LEFT JOIN edfi.Descriptor eed ON eed.DescriptorId = s.EducationalEnvironmentDescriptorId
