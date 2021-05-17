@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COUNT(1) AS CountValue
+    FROM analytics.SectionDim
+    WHERE SectionKey = '867530011-APAR31-2012-18940-Traditional-Spring Semester';
+  </Query>
+  <Result>
+    <CountValue>1</CountValue>
+  </Result>
+</TestCase>
