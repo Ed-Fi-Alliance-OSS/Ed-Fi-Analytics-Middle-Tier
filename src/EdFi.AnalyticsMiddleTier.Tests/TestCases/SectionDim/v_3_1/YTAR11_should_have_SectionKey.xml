@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT SectionKey
+    FROM analytics.SectionDim
+    WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
+  </Query>
+  <Result>
+    <SectionKey>867530022-YTAR11-2012-15583-Traditional</SectionKey>
+  </Result>
+</TestCase>
