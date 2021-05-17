@@ -43,6 +43,18 @@
     (SELECT TOP 1'778530','Section 504 Placement',NULL,'AEA3B510-849C-47E6-87D3-FC7502B1144C','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','1682',NULL
     WHERE NOT EXISTS(SELECT  1  FROM edfi.Program WHERE   EducationOrganizationId= '778530'  AND ProgramName= 'Section 504 Placement'  AND ProgramTypeDescriptorId= '1682'));
 
+    INSERT INTO edfi.Program(EducationOrganizationId,ProgramName,ProgramId,Id,LastModifiedDate,CreateDate,ProgramTypeDescriptorId,Discriminator)
+    (SELECT TOP 1'867530','Special Education',NULL,'C4C225E0-147B-47B1-9175-30A0334FDC48','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','1637',NULL
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Program WHERE   EducationOrganizationId= '867530'  AND ProgramName= 'Special Education'  AND ProgramTypeDescriptorId= '1637'));
+
+    INSERT INTO edfi.Program(EducationOrganizationId,ProgramName,ProgramId,Id,LastModifiedDate,CreateDate,ProgramTypeDescriptorId,Discriminator)
+    (SELECT TOP 1'867530','Gifted and Talented',NULL,'DEE06296-F9AE-4C23-A876-E23BA56E72BD','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','1637',NULL
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Program WHERE   EducationOrganizationId= '867530'  AND ProgramName= 'Gifted and Talented'  AND ProgramTypeDescriptorId= '1637'));
+
+    INSERT INTO edfi.Program(EducationOrganizationId,ProgramName,ProgramId,Id,LastModifiedDate,CreateDate,ProgramTypeDescriptorId,Discriminator)
+    (SELECT TOP 1'867530','Section 504 Placement',NULL,'B7382F8B-A046-43BF-B3BE-370A830A540E','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','1637',NULL
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Program WHERE   EducationOrganizationId= '867530'  AND ProgramName= 'Section 504 Placement'  AND ProgramTypeDescriptorId= '1637'));
+
     INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT TOP 1'867530','Glendale ISD',NULL,NULL,'9CC29A49-637C-4882-A7DB-99AD87690CFB','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.LocalEducationAgency'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530'));
 
     INSERT INTO edfi.Program(EducationOrganizationId,ProgramName,ProgramId,Id,LastModifiedDate,CreateDate,ProgramTypeDescriptorId,Discriminator)(SELECT TOP 1'867530','Section 504 Placement',NULL,'2785C957-6B77-4E35-8DBE-AFB143E42DCF','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','1682',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Program WHERE   EducationOrganizationId= '867530'  AND ProgramName= 'Section 504 Placement'  AND ProgramTypeDescriptorId= '1682'));
