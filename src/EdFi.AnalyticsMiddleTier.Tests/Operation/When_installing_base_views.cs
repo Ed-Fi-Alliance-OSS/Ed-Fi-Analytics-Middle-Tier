@@ -58,6 +58,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("StudentLocalEducationAgencyDim")]
         [TestCase("DemographicDim")]
         [TestCase("StudentLocalEducationAgencyDemographicsBridge")]
+        [TestCase("StaffSectionDim")]
         [TestCase("SectionDim")]
         [TestCase("StudentProgramDim")]
         public void Then_should_create_analytics_view(string viewName) =>

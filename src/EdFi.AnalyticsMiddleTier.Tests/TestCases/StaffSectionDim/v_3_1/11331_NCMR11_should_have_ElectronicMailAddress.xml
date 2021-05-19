@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT ElectronicMailAddress
+      FROM analytics.StaffSectionDim
+      WHERE StaffSectionKey = '11331-867530020-NCMR11-2012-17362-Traditional';
+  </Query>
+  <Result>
+      <ElectronicMailAddress>lakonya.higgins@edfi.org</ElectronicMailAddress>
+  </Result>
+</TestCase>
