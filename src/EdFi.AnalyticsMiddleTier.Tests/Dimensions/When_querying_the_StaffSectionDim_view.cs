@@ -402,9 +402,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_HighlyQualifiedTeacher()
+            public void Then_should_have_HighlyQualifiedTeacher_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -480,15 +480,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_YearsOfPriorProfessionalExperience()
+            public void Then_should_have_YearsOfPriorProfessionalExperience_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_YearsOfPriorTeachingExperience()
+            public void Then_should_have_YearsOfPriorTeachingExperience_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
