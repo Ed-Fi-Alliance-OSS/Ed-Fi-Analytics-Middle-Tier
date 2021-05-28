@@ -19,4 +19,8 @@
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.Common\EdFi.AnalyticsMiddleTier.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Equity\MSSQL\" />
+  </ItemGroup>
+
 </Project>

@@ -101,7 +101,7 @@ To switch to installing into a Data Standard 3.1 ODS database, use command line 
 | ---------- | --------- | ----------- |
 | -c | --connectionString | Full connection string for the SQL server database on which to install the solution. |
 | -d | --dataStandard | The data standard version to install. Options: `Ds2` (default), `Ds31` or `Ds31`. |
-| -o | --options | Can be one or more of (EWS, Indexes, DefaultMap) to install these optional components |
+| -o | --options | Can be one or more of (EWS, Indexes, DefaultMap, rls, qews, ews, chrab, asmt, equity) to install these optional components |
 | -u | --uninstall | Default: false. Removes all views and indexes, leaving in place the tables `AuthorizationScope` and `StaffClassificationDescriptorScope` and role `analytics_middle_tier` |
 | -e | --engine |  The target engine. Options: `SqlServer` (default), `PostgresSQl`. |
 
