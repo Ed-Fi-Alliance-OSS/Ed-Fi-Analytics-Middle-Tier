@@ -33,6 +33,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
         private static readonly string _asmtNotSupportedOnDS2
             = "Assessment collection is not currently supported on Data Standard 2. Please remove this option and try again.";
 
+        private static readonly string _equityNotSupportedOnDS2
+            = "Equity collection is not currently supported on Data Standard 2. Please remove this option and try again.";
+
         internal static void Main(string[] args)
         {
             var parser = new Parser(settings =>
@@ -135,6 +138,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
 
                         if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(Component.Asmt))
                             message = _asmtNotSupportedOnDS2;
+
+                        if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(Component.Equity))
+                            message = _equityNotSupportedOnDS2;
 
                         if (String.IsNullOrEmpty(message))
                         {

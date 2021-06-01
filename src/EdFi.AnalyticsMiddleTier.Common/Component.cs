@@ -20,7 +20,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
         Ews,
         RLS,
         Chrab,
-        Asmt
+        Asmt,
+        Equity
     }
     public enum DataStandard
     {
