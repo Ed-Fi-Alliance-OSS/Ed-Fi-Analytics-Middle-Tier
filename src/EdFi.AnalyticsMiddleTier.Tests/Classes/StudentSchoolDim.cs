@@ -18,6 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string StudentFirstName { get; set; } //(nvarchar(75), not null)
         public string StudentMiddleName { get; set; } //(nvarchar(75), not null)
         public string StudentLastName { get; set; } //(nvarchar(75), not null)
+        public DateTime BirthDate { get; set; } //(datetime, not null)
         public string EnrollmentDateKey { get; set; } //(string, not null)
         public string GradeLevel { get; set; } //(nvarchar(50), not null)
         public string LimitedEnglishProficiency { get; set; } //(nvarchar(50), not null)

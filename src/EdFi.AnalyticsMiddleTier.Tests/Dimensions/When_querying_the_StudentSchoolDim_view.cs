@@ -257,6 +257,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
+            public void Then_should_have_BirthDate()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentSchoolDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BirthDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_SchoolKey()
             {
                 (bool success, string errorMessage) testResult =
