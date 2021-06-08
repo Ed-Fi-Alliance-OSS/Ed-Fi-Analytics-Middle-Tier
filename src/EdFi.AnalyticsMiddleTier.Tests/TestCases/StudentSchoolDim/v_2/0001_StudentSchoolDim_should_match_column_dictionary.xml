@@ -39,6 +39,10 @@
         <ColumnName>StudentLastName</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+	<Result>
+		<ColumnName>BirthDate</ColumnName>
+		<DataType>date</DataType>
+	</Result>
     <Result>
         <ColumnName>EnrollmentDateKey</ColumnName>
         <DataType>nvarchar</DataType>
