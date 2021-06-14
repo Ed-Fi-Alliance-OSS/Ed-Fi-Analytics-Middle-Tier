@@ -205,6 +205,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_not_have_PrimaryEmailAddress.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
+            [Test]
+            public void Then_should_have_PostalCode()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<ContactPersonDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_PostalCode.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_contact_person_133012_190142
@@ -371,6 +379,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PrimaryEmailAddress.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
+            [Test]
+            public void Then_should_have_PostalCode()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<ContactPersonDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_PostalCode.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_contact_person_154283_189864
@@ -536,6 +552,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             {
                 Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_not_have_PrimaryEmailAddress.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
+            }
+            [Test]
+            public void Then_should_not_have_PostalCode()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<ContactPersonDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_not_have_PostalCode.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
 
