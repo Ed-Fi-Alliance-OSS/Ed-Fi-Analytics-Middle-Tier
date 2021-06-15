@@ -103,4 +103,8 @@
         <ColumnName>LastModifiedDate</ColumnName>
         <DataType>datetime2</DataType>
     </Result>
+    <Result>
+        <ColumnName>PostalCode</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
 </TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT PostalCode
+    FROM analytics.ContactPersonDim
+    WHERE UniqueKey  = '133012-190142';
+  </Query>
+  <Result>
+    <PostalCode>72312</PostalCode>
+  </Result>
+</TestCase>

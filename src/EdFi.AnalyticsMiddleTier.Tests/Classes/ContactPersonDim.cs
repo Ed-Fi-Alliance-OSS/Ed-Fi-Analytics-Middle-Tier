@@ -33,5 +33,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public int? ContactPriority { get; set; } //(int, not null)
         public string ContactRestrictions { get; set; } //(nvarchar(250), not null)
         public DateTime LastModifiedDate { get; set; } //(datetime, null)
+        public string PostalCode { get; set; } //(nvarchar(250), not null)
     }
 }
