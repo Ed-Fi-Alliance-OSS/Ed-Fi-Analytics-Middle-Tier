@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentKey
+      FROM analytics.equity_StudentDisciplineActionDim
+      WHERE DisciplineActionUniqueKey = '27061-2011-11-14-100055074';
+  </Query>
+  <Result>
+      <StudentKey>193964</StudentKey>
+  </Result>
+</TestCase>
