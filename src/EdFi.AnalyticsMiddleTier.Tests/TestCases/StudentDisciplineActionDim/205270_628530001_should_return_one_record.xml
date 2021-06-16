@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.equity_StudentDisciplineActionDim
+      WHERE DisciplineActionUniqueKey = '11061-2011-10-05-100082817';
+  </Query>
+  <Result>
+    <CountValue>1</CountValue>
+  </Result>
+</TestCase>
