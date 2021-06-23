@@ -26,7 +26,8 @@ AS
 		  [CourseOffering].[LocalCourseCode],
 		  s.SchoolYear, 
 		  EducationalEnvironmentType.Description as EducationalEnvironmentDescriptor,
-		  sch.LocalEducationAgencyId
+		  sch.LocalEducationAgencyId,
+		  s.LastModifiedDate
    FROM 
         [edfi].[Section] s
     INNER JOIN [edfi].[CourseOffering]
