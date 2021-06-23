@@ -44,7 +44,6 @@ CREATE VIEW analytics.SectionDim AS
 		,COALESCE(Session.SchoolYear,[CourseOffering].SchoolYear) as SchoolYear
 		,eed.Description AS EducationalEnvironmentDescriptor
 		,sch.LocalEducationAgencyId
-		,s.LastModifiedDate
 	FROM [edfi].[Section] s
 	INNER JOIN [edfi].[CourseOffering] ON 
 		[CourseOffering].[SchoolId] = s.[SchoolId]
