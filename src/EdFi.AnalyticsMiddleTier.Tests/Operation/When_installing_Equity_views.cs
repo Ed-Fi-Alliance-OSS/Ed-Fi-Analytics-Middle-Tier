@@ -35,6 +35,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
+        [TestCase("equity_FeederSchoolDim")]
         [TestCase("equity_StudentDisciplineActionDim")]
         public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
 

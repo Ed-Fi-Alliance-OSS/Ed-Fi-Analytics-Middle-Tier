@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COLUMN_NAME AS ColumnName,
+        DATA_TYPE AS DataType
+        FROM information_schema.columns
+        WHERE table_schema = 'analytics'
+        AND table_name = 'equity_FeederSchoolDim'
+        ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>SchoolKey</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>FeederSchoolKey</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>FeederSchoolName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime</DataType>
+    </Result>
+</TestCase>
