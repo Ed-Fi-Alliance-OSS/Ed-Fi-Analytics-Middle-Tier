@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT Race
+      FROM analytics.StaffSectionDim
+      WHERE StaffSectionKey = '11324-867530010-XLTV31-2012-14139-SHORT';
+  </Query>
+  <Result>
+      <Race>Native Hawaiian - Pacific Islander</Race>
+  </Result>
+</TestCase>

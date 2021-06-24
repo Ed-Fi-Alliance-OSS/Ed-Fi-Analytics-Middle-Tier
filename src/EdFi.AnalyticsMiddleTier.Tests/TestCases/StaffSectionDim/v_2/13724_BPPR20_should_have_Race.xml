@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT Race
+      FROM analytics.StaffSectionDim
+      WHERE StaffSectionKey = '13724-867530020-A03-LIBRARY-BPPR20-535-2012-21445-1';
+  </Query>
+  <Result>
+      <Race>Multiracial</Race>
+  </Result>
+</TestCase>

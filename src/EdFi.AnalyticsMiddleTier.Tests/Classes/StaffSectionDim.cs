@@ -12,18 +12,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class StaffSectionDim
     {
         public string StaffSectionKey { get; set; }
-        public int StaffUSI { get; set; }
         public string UserKey { get; set; }
         public string SchoolKey { get; set; }
         public string SectionKey { get; set; }
         public string PersonalTitlePrefix { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastSurname { get; set; }
+        public string StaffFirstName { get; set; }
+        public string StaffMiddleName { get; set; }
+        public string StaffLastName { get; set; }
         public string ElectronicMailAddress { get; set; }
-        public string SexType { get; set; }
+        public string Sex { get; set; }
         public string BirthDate { get; set; }
-        public string RaceType { get; set; }
+        public string Race { get; set; }
         public int? HispanicLatinoEthnicity { get; set; }
         public string HighestCompletedLevelOfEducation { get; set; }
         public decimal? YearsOfPriorProfessionalExperience { get; set; }

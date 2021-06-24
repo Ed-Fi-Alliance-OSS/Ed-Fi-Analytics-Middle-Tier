@@ -78,9 +78,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_FirstName()
+            public void Then_should_have_StaffFirstName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_FirstName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffFirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -102,9 +102,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LastSurname()
+            public void Then_should_have_StaffLastName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LastSurname.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffLastName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -114,9 +114,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_MiddleName()
+            public void Then_should_have_StaffMiddleName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_MiddleName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffMiddleName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -126,9 +126,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_RaceType()
+            public void Then_should_have_Race()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_RaceType.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_Race.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -144,15 +144,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_SexType()
+            public void Then_should_have_Sex()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SexType.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-            [Test]
-            public void Then_should_have_StaffUSI()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffUSI.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_Sex.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -217,9 +211,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_FirstName()
+            public void Then_should_have_StaffFirstName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_FirstName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffFirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -241,9 +235,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LastSurname()
+            public void Then_should_have_StaffLastName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LastSurname.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffLastName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -253,9 +247,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_MiddleName()
+            public void Then_should_have_StaffMiddleName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_MiddleName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffMiddleName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -265,9 +259,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_RaceType()
+            public void Then_should_have_Race()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_RaceType.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_Race.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -283,15 +277,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_SexType()
+            public void Then_should_have_Sex()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SexType.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-            [Test]
-            public void Then_should_have_StaffUSI()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffUSI.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_Sex.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -390,9 +378,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_FirstName()
+            public void Then_should_have_StaffFirstName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_FirstName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffFirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -414,9 +402,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LastSurname()
+            public void Then_should_have_StaffLastName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LastSurname.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffLastName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -426,9 +414,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_MiddleName_Empty()
+            public void Then_should_have_StaffMiddleName_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_MiddleName_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffMiddleName_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -438,9 +426,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_RaceType()
+            public void Then_should_have_Race()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_RaceType.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_Race.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -456,15 +444,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_SexType_Empty()
+            public void Then_should_have_Sex_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SexType_Empty.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-            [Test]
-            public void Then_should_have_StaffUSI()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StaffUSI.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_Sex_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
