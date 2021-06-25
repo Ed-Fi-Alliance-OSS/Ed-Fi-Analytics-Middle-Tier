@@ -4,7 +4,9 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 CREATE OR ALTER VIEW analytics.equity_FeederSchoolDim
 AS
-SELECT FeederSchoolAssociation.SchoolId AS SchoolKey
+SELECT 
+    CONCAT(FeederSchoolAssociation.SchoolId,'-',FeederSchoolAssociation.FeederSchoolId) AS FeederSchoolUniqueKey
+    ,FeederSchoolAssociation.SchoolId AS SchoolKey
     ,FeederSchoolAssociation.FeederSchoolId AS FeederSchoolKey
     ,EducationOrganization.NameOfInstitution AS FeederSchoolName
     ,(

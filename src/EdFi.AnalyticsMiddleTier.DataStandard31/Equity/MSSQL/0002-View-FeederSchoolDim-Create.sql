@@ -15,7 +15,9 @@ GO
 
 CREATE VIEW analytics.equity_FeederSchoolDim
 AS
-SELECT FeederSchoolAssociation.SchoolId AS SchoolKey
+SELECT 
+    CONCAT(FeederSchoolAssociation.SchoolId,'-',FeederSchoolAssociation.FeederSchoolId) AS FeederSchoolUniqueKey
+    ,FeederSchoolAssociation.SchoolId AS SchoolKey
     ,FeederSchoolAssociation.FeederSchoolId AS FeederSchoolKey
     ,EducationOrganization.NameOfInstitution AS FeederSchoolName
     ,(

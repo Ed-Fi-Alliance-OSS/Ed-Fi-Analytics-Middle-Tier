@@ -11,6 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class FeederSchoolDim
     {
+        public string FeederSchoolUniqueKey { get; set; }
         public int SchoolKey { get; set; }
         public int FeederSchoolKey { get; set; }
         public string FeederSchoolName { get; set; }
