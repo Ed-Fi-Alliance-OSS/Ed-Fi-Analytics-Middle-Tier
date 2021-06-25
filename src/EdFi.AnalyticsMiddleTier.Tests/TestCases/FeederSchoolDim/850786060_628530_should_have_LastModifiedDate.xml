@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT LastModifiedDate
+      FROM analytics.equity_FeederSchoolDim
+      WHERE FeederSchoolUniqueKey = '850786060-628530';
+  </Query>
+  <Result>
+      <LastModifiedDate>2020-08-08T00:00:00</LastModifiedDate>
+  </Result>
+</TestCase>
