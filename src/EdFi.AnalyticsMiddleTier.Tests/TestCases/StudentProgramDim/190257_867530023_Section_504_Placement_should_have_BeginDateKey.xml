@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT BeginDateKey
+      FROM analytics.StudentProgramDim
+      WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement';
+  </Query>
+  <Result>
+      <BeginDateKey>20110822</BeginDateKey>
+  </Result>
+</TestCase>

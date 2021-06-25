@@ -39,11 +39,87 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_student_100021874
+        public class Given_student_190009_867530020_Special_Education
             : When_querying_the_StudentProgramDim_view
         {
-            private const string _caseIdentifier = "100021874";
-            public Given_student_100021874(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "190009_867530020_Special_Education";
+            public Given_student_190009_867530020_Special_Education(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_BeginDateKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDateKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentSchoolProgramKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolProgramKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_EducationOrganizationId()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_EducationOrganizationId.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ProgramName()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_ProgramName.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentSchoolKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_190257_867530023_Section_504_Placement
+            : When_querying_the_StudentProgramDim_view
+        {
+            private const string _caseIdentifier = "190257_867530023_Section_504_Placement";
+            public Given_student_190257_867530023_Section_504_Placement(TestHarness dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -55,11 +131,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_BeginDate()
+            public void Then_should_have_BeginDateKey()
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDate.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDateKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -91,78 +167,32 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_StudentUSI()
+            public void Then_should_have_StudentKey()
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentUSI.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentSchoolProgramKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolProgramKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
 
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_student_100039988
-            : When_querying_the_StudentProgramDim_view
-        {
-            private const string _caseIdentifier = "100039988";
-            public Given_student_100039988(TestHarness dataStandard) => SetDataStandard(dataStandard);
-
-            [Test]
-            public void Then_should_return_one_record()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_BeginDate()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDate.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_EducationOrganizationId()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_EducationOrganizationId.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_ProgramName()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_ProgramName.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_StudentSchoolKey()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_StudentUSI()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<StudentProgramDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentUSI.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-        }
-
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
+    /*    [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class Given_student_100039889
             : When_querying_the_StudentProgramDim_view
         {
@@ -177,30 +207,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                         $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-        }
+        }*/
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_student_100023237
+        public class Given_student_190020_867530023_Bilingual
             : When_querying_the_StudentProgramDim_view
         {
-            private const string _caseIdentifier = "100023237";
-            public Given_student_100023237(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "190020_867530023_Bilingual";
+            public Given_student_190020_867530023_Bilingual(TestHarness dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
-            public void Then_should_return_three_records()
+            public void Then_should_not_return_any_records()
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_three_records.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_return_three_unique_programs()
-            {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_three_unique_programs.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_records.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

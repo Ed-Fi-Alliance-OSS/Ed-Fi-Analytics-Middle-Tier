@@ -6,9 +6,9 @@
   <Query>
     SELECT ProgramName
     FROM analytics.StudentProgramDim
-    WHERE StudentUSI = '100039988';
+    WHERE StudentSchoolProgramKey = '190009-867530020-Special Education';
   </Query>
   <Result>
-    <ProgramName>Section 504 Placement</ProgramName>
+    <ProgramName>Special Education</ProgramName>
   </Result>
 </TestCase>

@@ -11,24 +11,36 @@
     AND table_name = 'StudentProgramDim'
     ORDER BY ORDINAL_POSITION ASC;
   </Query>
-  <Result>
-    <ColumnName>BeginDate</ColumnName>
-    <DataType>date</DataType>
-  </Result>
-  <Result>
-    <ColumnName>EducationOrganizationId</ColumnName>
-    <DataType>int</DataType>
-  </Result>
-  <Result>
-    <ColumnName>ProgramName</ColumnName>
-    <DataType>nvarchar</DataType>
-  </Result>
-  <Result>
-    <ColumnName>StudentUSI</ColumnName>
-    <DataType>int</DataType>
-  </Result>
-  <Result>
-    <ColumnName>StudentSchoolKey</ColumnName>
-    <DataType>nvarchar</DataType>
-  </Result>
+    <Result>
+        <ColumnName>StudentSchoolProgramKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>BeginDateKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>EducationOrganizationId</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ProgramName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolKey</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentSchoolKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
+    </Result>
 </TestCase>

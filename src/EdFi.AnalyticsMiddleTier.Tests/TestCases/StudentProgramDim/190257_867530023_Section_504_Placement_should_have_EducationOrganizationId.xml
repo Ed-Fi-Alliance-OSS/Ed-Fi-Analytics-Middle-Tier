@@ -6,7 +6,7 @@
   <Query>
     SELECT EducationOrganizationId
     FROM analytics.StudentProgramDim
-    WHERE StudentUSI = '100039988';
+    WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement';
   </Query>
   <Result>
     <EducationOrganizationId>867530</EducationOrganizationId>

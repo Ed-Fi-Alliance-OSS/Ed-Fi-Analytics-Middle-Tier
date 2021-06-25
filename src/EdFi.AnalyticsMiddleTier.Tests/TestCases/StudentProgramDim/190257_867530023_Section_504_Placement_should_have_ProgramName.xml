@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT StudentSchoolKey
+    SELECT ProgramName
     FROM analytics.StudentProgramDim
-    WHERE StudentUSI = '100021874';
+    WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement';
   </Query>
   <Result>
-    <StudentSchoolKey>190009-867530020</StudentSchoolKey>
+    <ProgramName>Section 504 Placement</ProgramName>
   </Result>
 </TestCase>
