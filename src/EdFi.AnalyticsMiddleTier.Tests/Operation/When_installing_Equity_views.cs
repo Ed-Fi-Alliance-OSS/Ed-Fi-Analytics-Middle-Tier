@@ -37,6 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
         [TestCase("equity_FeederSchoolDim")]
         [TestCase("equity_StudentDisciplineActionDim")]
+        [TestCase("equity_StudentSchoolFoodServiceProgramDim")]
         public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
 
         [TestFixture]
