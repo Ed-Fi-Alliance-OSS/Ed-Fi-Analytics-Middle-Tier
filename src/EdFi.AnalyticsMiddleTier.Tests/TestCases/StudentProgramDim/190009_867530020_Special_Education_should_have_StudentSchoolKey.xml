@@ -4,9 +4,9 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT StudentSchoolKey
-    FROM analytics.StudentProgramDim
-    WHERE StudentSchoolProgramKey = '190009-867530020-Special Education';
+      SELECT StudentSchoolKey
+      FROM analytics.StudentProgramDim
+      WHERE StudentSchoolProgramKey = '190009-867530020-Special Education-1684-867530-867530-20060814';
   </Query>
   <Result>
     <StudentSchoolKey>190009-867530020</StudentSchoolKey>

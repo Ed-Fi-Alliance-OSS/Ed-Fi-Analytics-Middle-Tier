@@ -18,12 +18,20 @@ GO
 CREATE VIEW [analytics].[StudentProgramDim]
 AS
     SELECT CONCAT (
-            Student.StudentUniqueId
-            ,'-'
-            ,StudentSchoolAssociation.SchoolId
-            ,'-'
-            ,program.ProgramName
-            ) AS StudentSchoolProgramKey
+			Student.StudentUniqueId,
+			'-',
+			StudentSchoolAssociation.SchoolId,
+			'-',
+			program.ProgramName,
+			'-',
+			program.ProgramTypeDescriptorId,
+			'-',
+			program.EducationOrganizationId,
+			'-',
+			StudentProgram.ProgramEducationOrganizationId,
+			'-',
+			CONVERT(varchar, StudentProgram.BeginDate, 112)
+        ) AS StudentSchoolProgramKey 
         ,CONVERT(NVARCHAR, BeginDate, 112) AS BeginDateKey
         ,program.EducationOrganizationId
         ,program.ProgramName
@@ -48,7 +56,7 @@ AS
     INNER JOIN edfi.Student ON StudentProgram.StudentUSI = Student.StudentUSI
     INNER JOIN edfi.StudentSchoolAssociation ON Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI
     WHERE (
-            StudentSchoolAssociation.ExitWithdrawDate IS NULL
+           StudentSchoolAssociation.ExitWithdrawDate IS NULL
             OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE()
             );
 GO

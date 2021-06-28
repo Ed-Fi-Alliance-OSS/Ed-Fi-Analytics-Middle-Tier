@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT StudentSchoolKey
+      SELECT COUNT(1) AS CountValue
       FROM analytics.StudentProgramDim
-      WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement-1682-867530-867530-20110822';
+      WHERE StudentSchoolProgramKey = '190257-867530023-Bilingual-1682-867530-867530-20110822';
   </Query>
   <Result>
-    <StudentSchoolKey>190257-867530023</StudentSchoolKey>
+    <CountValue>0</CountValue>
   </Result>
 </TestCase>

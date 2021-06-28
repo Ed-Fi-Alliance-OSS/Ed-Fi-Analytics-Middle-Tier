@@ -6,9 +6,9 @@
   <Query>
       SELECT StudentSchoolProgramKey
       FROM analytics.StudentProgramDim
-      WHERE StudentSchoolProgramKey = '190009-867530020-Special Education';
+      WHERE StudentSchoolProgramKey = '190009-867530020-Special Education-1684-867530-867530-20060814';
   </Query>
   <Result>
-      <StudentSchoolProgramKey>190009-867530020-Special Education</StudentSchoolProgramKey>
+      <StudentSchoolProgramKey>190009-867530020-Special Education-1684-867530-867530-20060814</StudentSchoolProgramKey>
   </Result>
 </TestCase>

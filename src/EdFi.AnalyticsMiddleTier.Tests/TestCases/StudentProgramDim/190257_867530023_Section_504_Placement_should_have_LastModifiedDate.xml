@@ -6,7 +6,7 @@
   <Query>
       SELECT LastModifiedDate
       FROM analytics.StudentProgramDim
-      WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement';
+      WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement-1682-867530-867530-20110822';
   </Query>
   <Result>
       <LastModifiedDate>2020-09-18T11:47:00</LastModifiedDate>

@@ -6,7 +6,7 @@
   <Query>
       SELECT COUNT(1) AS CountValue
       FROM analytics.StudentProgramDim
-      WHERE StudentSchoolProgramKey = '190020-867530023-Bilingual';
+      WHERE StudentSchoolProgramKey = '190020-867530023-Bilingual-1637-867530-867530-20100810-867530-20100810-867530-20100810';
   </Query>
   <Result>
     <CountValue>0</CountValue>

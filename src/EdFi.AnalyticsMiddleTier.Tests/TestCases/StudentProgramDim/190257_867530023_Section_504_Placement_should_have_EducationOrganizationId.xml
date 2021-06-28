@@ -4,9 +4,9 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT EducationOrganizationId
-    FROM analytics.StudentProgramDim
-    WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement';
+      SELECT EducationOrganizationId
+      FROM analytics.StudentProgramDim
+      WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement-1682-867530-867530-20110822';
   </Query>
   <Result>
     <EducationOrganizationId>867530</EducationOrganizationId>

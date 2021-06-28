@@ -4,13 +4,21 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 
 CREATE OR REPLACE VIEW analytics.StudentProgramDim AS
-    SELECT CONCAT (
-            Student.StudentUniqueId
-            ,'-'
-            ,StudentSchoolAssociation.SchoolId
-            ,'-'
-            ,program.ProgramName
-            ) AS StudentSchoolProgramKey
+    SELECT  CONCAT (
+			Student.StudentUniqueId,
+			'-',
+			StudentSchoolAssociation.SchoolId,
+			'-',
+			program.ProgramName,
+			'-',
+			program.ProgramTypeDescriptorId,
+			'-',
+			program.EducationOrganizationId,
+			'-',
+			StudentProgram.ProgramEducationOrganizationId,
+			'-',
+			TO_CHAR(BeginDate, 'yyyymmdd')
+        ) AS StudentSchoolProgramKey 
         ,TO_CHAR(BeginDate, 'yyyymmdd') AS BeginDateKey
         ,program.EducationOrganizationId
         ,program.ProgramName

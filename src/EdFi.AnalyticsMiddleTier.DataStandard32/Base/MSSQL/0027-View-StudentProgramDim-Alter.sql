@@ -18,12 +18,20 @@ GO
 CREATE VIEW [analytics].[StudentProgramDim]
 AS
     SELECT CONCAT (
-            Student.StudentUniqueId
-            ,'-'
-            ,StudentSchoolAssociation.SchoolId
-            ,'-'
-            ,program.ProgramName
-            ) AS StudentSchoolProgramKey
+			Student.StudentUniqueId,
+			'-',
+			StudentSchoolAssociation.SchoolId,
+			'-',
+			program.ProgramName,
+			'-',
+			program.ProgramTypeDescriptorId,
+			'-',
+			program.EducationOrganizationId,
+			'-',
+			StudentProgram.ProgramEducationOrganizationId,
+			'-',
+			CONVERT(varchar, StudentProgram.BeginDate, 112)
+        ) AS StudentSchoolProgramKey 
         ,CONVERT(NVARCHAR, BeginDate, 112) AS BeginDateKey
         ,program.EducationOrganizationId
         ,program.ProgramName
