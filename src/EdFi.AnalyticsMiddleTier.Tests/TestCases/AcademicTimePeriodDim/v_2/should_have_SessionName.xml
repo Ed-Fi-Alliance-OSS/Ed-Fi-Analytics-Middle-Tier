@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT SessionName
+        FROM analytics.AcademicTimePeriodDim;
+    </Query>
+    <Result>
+        <SessionName>
+            Traditional
+        </SessionName>
+    </Result>
+</TestCase>
