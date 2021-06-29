@@ -9,11 +9,9 @@ BEGIN
 END
 GO
 
--- ToDo: Think of a better name for this view.
 CREATE VIEW analytics.equity_StudentSchoolFoodServiceProgramDim
 AS
 	SELECT
-		-- Good unique key?
 		CONCAT (
 			Student.StudentUniqueId, 
 			'-',
@@ -53,7 +51,7 @@ AS
 		) AS StudentSchoolKey
 		,StudentSchoolFoodServiceProgramAssociation.ProgramName
 		,SchoolFoodServiceProgramServiceDescriptor.Description as SchoolFoodServiceProgramServiceDescriptor
-		,Student.LastModifiedDate
+		,GeneralStudentProgramAssociation.LastModifiedDate
 	FROM
 		edfi.StudentSchoolFoodServiceProgramAssociation
 	INNER JOIN

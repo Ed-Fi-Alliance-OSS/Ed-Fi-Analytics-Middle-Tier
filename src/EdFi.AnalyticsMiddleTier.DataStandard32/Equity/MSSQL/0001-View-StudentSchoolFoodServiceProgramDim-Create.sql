@@ -9,11 +9,9 @@ BEGIN
 END
 GO
 
--- ToDo: Think of a better name for this view.
 CREATE VIEW analytics.equity_StudentSchoolFoodServiceProgramDim
 AS
 	SELECT
-		-- Good unique key?
 		CONCAT (
 			Student.StudentUniqueId, 
 			'-',

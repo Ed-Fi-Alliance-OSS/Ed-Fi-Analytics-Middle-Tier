@@ -148,5 +148,30 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_StudentSchoolFoodServiceProgramDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892
+        : When_querying_the_StudentSchoolFoodServiceProgramDim_view
+        {
+            public Given_StudentSchoolFoodServiceProgramDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolFoodServiceProgramDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
