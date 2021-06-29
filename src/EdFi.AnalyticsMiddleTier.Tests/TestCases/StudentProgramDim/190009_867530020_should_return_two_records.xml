@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.StudentProgramDim
+      WHERE StudentKey = '190009';
+  </Query>
+  <Result>
+    <CountValue>2</CountValue>
+  </Result>
+</TestCase>
