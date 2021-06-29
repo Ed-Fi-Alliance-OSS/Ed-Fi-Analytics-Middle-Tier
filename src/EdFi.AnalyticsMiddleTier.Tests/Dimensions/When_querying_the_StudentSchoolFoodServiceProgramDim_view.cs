@@ -91,28 +91,35 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_have_StudentSchoolProgramKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FeederSchoolDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolProgramKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentSchoolFoodServiceProgramDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolProgramKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StudentSchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FeederSchoolDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentSchoolFoodServiceProgramDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ProgramName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FeederSchoolDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ProgramName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentSchoolFoodServiceProgramDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ProgramName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_SchoolFoodServiceProgramServiceDescriptor()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_SchoolFoodServiceProgramServiceDescriptor.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentSchoolFoodServiceProgramDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_SchoolFoodServiceProgramServiceDescriptor.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentSchoolFoodServiceProgramDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

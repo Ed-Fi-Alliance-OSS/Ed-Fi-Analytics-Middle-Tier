@@ -53,8 +53,17 @@ AS
 		) AS StudentSchoolKey
 		,StudentSchoolFoodServiceProgramAssociation.ProgramName
 		,SchoolFoodServiceProgramServiceDescriptor.Description as SchoolFoodServiceProgramServiceDescriptor
+		,Student.LastModifiedDate
 	FROM
 		edfi.StudentSchoolFoodServiceProgramAssociation
+	INNER JOIN
+		edfi.GeneralStudentProgramAssociation ON
+			StudentSchoolFoodServiceProgramAssociation.BeginDate = GeneralStudentProgramAssociation.BeginDate
+			AND StudentSchoolFoodServiceProgramAssociation.EducationOrganizationId = GeneralStudentProgramAssociation.EducationOrganizationId
+			AND StudentSchoolFoodServiceProgramAssociation.ProgramEducationOrganizationId = GeneralStudentProgramAssociation.ProgramEducationOrganizationId
+			AND StudentSchoolFoodServiceProgramAssociation.ProgramName = GeneralStudentProgramAssociation.ProgramName
+			AND StudentSchoolFoodServiceProgramAssociation.ProgramTypeDescriptorId = GeneralStudentProgramAssociation.ProgramTypeDescriptorId
+			AND StudentSchoolFoodServiceProgramAssociation.StudentUSI = GeneralStudentProgramAssociation.StudentUSI
 	INNER JOIN
 		edfi.StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService ON
 			StudentSchoolFoodServiceProgramAssociation.BeginDate = StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService.BeginDate
@@ -68,7 +77,7 @@ AS
 			StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService.SchoolFoodServiceProgramServiceDescriptorId = SchoolFoodServiceProgramServiceDescriptor.DescriptorId
 	INNER JOIN
 		edfi.Student ON
-			StudentSchoolFoodServiceProgramAssociation.StudentUSI = Student.StudentUSI
+			GeneralStudentProgramAssociation.StudentUSI = Student.StudentUSI
 	INNER JOIN
 		edfi.StudentSchoolAssociation ON
 			Student.StudentUSI = StudentSchoolAssociation.StudentUSI
