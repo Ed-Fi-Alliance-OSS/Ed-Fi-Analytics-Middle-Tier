@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+	  SELECT COUNT(1) AS CountValue
+	  FROM analytics.equity_StudentSchoolFoodServiceProgramDim
+	  WHERE StudentSchoolFoodServiceProgramKey = '189890-867530023-Food Service 2-1666-867531-867531-20060815-2892';
+  </Query>
+  <Result>
+      <CountValue>1</CountValue>
+  </Result>
+</TestCase>

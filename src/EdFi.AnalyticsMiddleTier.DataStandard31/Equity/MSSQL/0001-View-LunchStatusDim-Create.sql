@@ -64,19 +64,11 @@ AS
 			AND StudentSchoolFoodServiceProgramAssociation.ProgramTypeDescriptorId = StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService.ProgramTypeDescriptorId
 			AND StudentSchoolFoodServiceProgramAssociation.StudentUSI = StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService.StudentUSI
 	INNER JOIN
-		edfi.GeneralStudentProgramAssociation ON
-			StudentSchoolFoodServiceProgramAssociation.BeginDate = GeneralStudentProgramAssociation.BeginDate
-			AND StudentSchoolFoodServiceProgramAssociation.EducationOrganizationId = GeneralStudentProgramAssociation.EducationOrganizationId
-			AND StudentSchoolFoodServiceProgramAssociation.ProgramEducationOrganizationId = GeneralStudentProgramAssociation.ProgramEducationOrganizationId
-			AND StudentSchoolFoodServiceProgramAssociation.ProgramName = GeneralStudentProgramAssociation.ProgramName
-			AND StudentSchoolFoodServiceProgramAssociation.ProgramTypeDescriptorId = GeneralStudentProgramAssociation.ProgramTypeDescriptorId
-			AND StudentSchoolFoodServiceProgramAssociation.StudentUSI = GeneralStudentProgramAssociation.StudentUSI
-	INNER JOIN
 		edfi.Descriptor SchoolFoodServiceProgramServiceDescriptor ON
 			StudentSchoolFoodServiceProgramAssociationSchoolFoodServiceProgramService.SchoolFoodServiceProgramServiceDescriptorId = SchoolFoodServiceProgramServiceDescriptor.DescriptorId
 	INNER JOIN
 		edfi.Student ON
-			GeneralStudentProgramAssociation.StudentUSI = Student.StudentUSI
+			StudentSchoolFoodServiceProgramAssociation.StudentUSI = Student.StudentUSI
 	INNER JOIN
 		edfi.StudentSchoolAssociation ON
 			Student.StudentUSI = StudentSchoolAssociation.StudentUSI
