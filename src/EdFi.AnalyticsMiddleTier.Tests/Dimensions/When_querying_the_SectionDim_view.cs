@@ -71,7 +71,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_SectionDim_view
             : When_querying_the_SectionDim_view_base
         {
@@ -108,9 +107,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_LocalEducationAgencyId()
+            public void Then_should_have_LocalEducationAgencyKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyId.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -118,6 +117,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_LastModifiedDate()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_CourseTitle()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CourseTitle.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_SessionKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_SessionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

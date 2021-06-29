@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT LocalEducationAgencyId
+    SELECT LocalEducationAgencyKey
     FROM analytics.SectionDim
     WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
   </Query>
   <Result>
-    <LocalEducationAgencyId>867530</LocalEducationAgencyId>
+      <LocalEducationAgencyKey>867530</LocalEducationAgencyKey>
   </Result>
 </TestCase>
