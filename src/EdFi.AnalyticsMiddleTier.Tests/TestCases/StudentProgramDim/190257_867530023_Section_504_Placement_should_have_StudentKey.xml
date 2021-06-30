@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentKey
+      FROM analytics.StudentProgramDim
+      WHERE StudentSchoolProgramKey = '190257-867530023-Section 504 Placement-1682-867530-867530-20110822';
+  </Query>
+  <Result>
+      <StudentKey>190257</StudentKey>
+  </Result>
+</TestCase>

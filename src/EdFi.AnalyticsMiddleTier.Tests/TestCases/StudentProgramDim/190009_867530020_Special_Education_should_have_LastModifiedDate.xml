@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT LastModifiedDate
+      FROM analytics.StudentProgramDim
+      WHERE StudentSchoolProgramKey = '190009-867530020-Special Education-1684-867530-867530-20060814';
+  </Query>
+  <Result>
+      <LastModifiedDate>2015-11-19T16:14:00</LastModifiedDate>
+  </Result>
+</TestCase>

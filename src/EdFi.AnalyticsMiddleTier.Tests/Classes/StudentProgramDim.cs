@@ -11,10 +11,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class StudentProgramDim
     {
-        public DateTime BeginDate { get; set; } //(date, not null)
-        public int EducationOrganizationId { get; set; } //(int, not null)
-        public string ProgramName { get; set; } //(nvarchar(60), not null)
-        public int StudentUsi { get; set; } //(int, not null)
-        public string StudentSchoolKey { get; set; } //(nvarchar(45), not null)
+        public string StudentSchoolProgramKey { get; set; }
+        public string BeginDateKey { get; set; }
+        public int EducationOrganizationId { get; set; }
+        public string ProgramName { get; set; }
+        public string StudentKey { get; set; }
+        public int SchoolKey { get; set; }
+        public string StudentSchoolKey { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
+
     }
 }

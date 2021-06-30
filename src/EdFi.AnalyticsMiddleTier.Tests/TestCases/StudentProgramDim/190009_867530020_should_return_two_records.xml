@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT BeginDate
-    FROM analytics.StudentProgramDim
-    WHERE StudentUSI = '100039988';
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.StudentProgramDim
+      WHERE StudentKey = '190009';
   </Query>
   <Result>
-    <BeginDate>2011-08-22</BeginDate>
+    <CountValue>2</CountValue>
   </Result>
 </TestCase>
