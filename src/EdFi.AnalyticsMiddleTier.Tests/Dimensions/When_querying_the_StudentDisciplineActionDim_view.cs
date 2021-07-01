@@ -84,6 +84,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
+            public void Then_should_have_DisciplineDateKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DisciplineDateKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_DisciplineActionDescription()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DisciplineActionDescription.xml");
@@ -91,9 +98,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_DisciplineActionUniqueKey()
+            public void Then_should_have_StudentDisciplineActionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DisciplineActionUniqueKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentDisciplineActionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -105,9 +112,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_StaffUSI()
+            public void Then_should_have_UserKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StaffUSI.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_UserKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -122,6 +129,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_StudentSchoolKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -151,9 +165,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_StaffUSI_Empty()
+            public void Then_should_have_UserKey_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StaffUSI_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_UserKey_Empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -233,7 +254,63 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+        }
 
+        public class Given_studentDisciplineAction_11431_20111007_213503_867530193
+       : When_querying_the_StudentDisciplineActionDim_view
+        {
+            public Given_studentDisciplineAction_11431_20111007_213503_867530193(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "11431_20111007_213503_867530193";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentDisciplineActionDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDisciplineActionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_studentDisciplineAction_10463_20111004_202109_867530022
+       : When_querying_the_StudentDisciplineActionDim_view
+        {
+            public Given_studentDisciplineAction_10463_20111004_202109_867530022(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "10463_20111004_202109_867530022";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentDisciplineActionDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_not_return_any_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }
