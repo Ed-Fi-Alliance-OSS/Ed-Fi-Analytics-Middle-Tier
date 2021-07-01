@@ -16,5 +16,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string StudentSchoolKey { get; set; } //(nvarchar, not null)
         public string ProgramName { get; set; } //(nvarchar, not null)
         public string SchoolFoodServiceProgramServiceDescriptor { get; set; } //(nvarchar, not null)
+        public DateTime LastModifiedDate { get; set; } //(datetime, not null)
     }
 }
