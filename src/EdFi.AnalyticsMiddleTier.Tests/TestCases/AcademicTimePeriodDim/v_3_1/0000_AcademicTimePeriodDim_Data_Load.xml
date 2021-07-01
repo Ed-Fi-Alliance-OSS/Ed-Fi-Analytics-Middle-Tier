@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        INSERT INTO edfi.SchoolYearType (
+        SchoolYear,
+        SchoolYearDescription,
+        CurrentSchoolYear
+        )
+        VALUES (
+        2012,
+        '2012-2013',
+        1
+        );
+
+        INSERT INTO edfi.EducationOrganization (
+        EducationOrganizationId,
+        NameOfInstitution
+        )
+        VALUES (
+        867530010,
+        'Irrelevant'
+        );
+
+        INSERT INTO edfi.School (
+        SchoolId
+        )
+        VALUES (
+        867530010
+        );
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'SpringSemester',
+        'Spring Semester',
+        'Spring-Semester',
+        'uri://ed-fi.org/TermDescriptorId'
+        );
+
+        DECLARE @termDescriptorId as INT;
+        SELECT @termDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.TermDescriptor (
+        TermDescriptorId
+        )
+        VALUES (
+        @termDescriptorId
+        )
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        TermDescriptorId,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TotalInstructionalDays
+        )
+        VALUES (
+        867530010,
+        2012,
+        @termDescriptorId,
+        'Traditional',
+        '1999-12-31',
+        '2012-12-31 23:59:59',
+        180
+        )
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'First six weeks',
+        'First six weeks',
+        'First six weeks',
+        'uri://ed-fi.org/GradingPeriodDescriptor'
+        );
+
+        DECLARE @gradingPeriodDescriptorId as INT;
+        SELECT @gradingPeriodDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.GradingPeriodDescriptor (
+        GradingPeriodDescriptorId
+        )
+        VALUES (
+        @gradingPeriodDescriptorId
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        PeriodSequence,
+        SchoolYear
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        867530010,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        42,
+        2012
+        );
+
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        SchoolYear,
+        PeriodSequence,
+        SchoolId,
+        GradingPeriodDescriptorId,
+        SessionName
+        )
+        VALUES (
+        2012,
+        42,
+        867530010,
+        @gradingPeriodDescriptorId,
+        'Traditional'
+        );
+    </ControlDataInsertion>
+</TestCase>
