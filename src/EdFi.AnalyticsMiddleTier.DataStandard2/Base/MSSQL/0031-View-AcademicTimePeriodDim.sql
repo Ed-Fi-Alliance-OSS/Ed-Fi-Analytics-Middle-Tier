@@ -72,6 +72,8 @@ AS
 		SessionGradingPeriod.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
 	AND
 		SessionGradingPeriod.BeginDate = GradingPeriod.BeginDate
+	AND
+		SessionGradingPeriod.SchoolId = GradingPeriod.SchoolId
 	INNER JOIN
 		edfi.Descriptor as gpDescriptor
 	ON
