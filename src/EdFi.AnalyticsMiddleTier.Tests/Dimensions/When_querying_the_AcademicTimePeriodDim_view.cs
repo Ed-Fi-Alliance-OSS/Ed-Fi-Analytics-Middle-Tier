@@ -33,17 +33,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
         }
 
-        [Test]
-        public void Then_view_should_match_column_dictionary()
-        {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.should_match_column_dictionary.xml");
-            testResult.success.ShouldBe(true, testResult.errorMessage);
-        }
-
         public class Given_default_record_When_querying_the_AcademicTimePeriodDim_view
         : When_querying_the_AcademicTimePeriodDim_view
         {
             public Given_default_record_When_querying_the_AcademicTimePeriodDim_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            [Test]
+            public void Then_view_should_match_column_dictionary()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_match_column_dictionary.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
 
             [Test]
             public void Then_should_return_one_record()
