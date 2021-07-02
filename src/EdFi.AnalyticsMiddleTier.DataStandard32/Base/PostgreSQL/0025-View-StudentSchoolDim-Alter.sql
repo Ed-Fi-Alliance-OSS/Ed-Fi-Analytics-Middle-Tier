@@ -13,7 +13,6 @@ SELECT
         Student.FirstName AS StudentFirstName,
         COALESCE(Student.MiddleName, '') AS StudentMiddleName,
         COALESCE(Student.LastSurname, '') AS StudentLastName,
-		Student.BirthDate,
         CAST(StudentSchoolAssociation.EntryDate AS VARCHAR) AS EnrollmentDateKey,
         Descriptor.CodeValue AS GradeLevel,
         COALESCE(CASE
@@ -39,7 +38,8 @@ SELECT
                 ,(schoolEdOrg.LastModifiedDate)
                 ,(districtEdOrg.LastModifiedDate)
             ) AS VALUE(MaxLastModifiedDate)
-        ) AS LastModifiedDate
+        ) AS LastModifiedDate,
+		Student.BirthDate
     FROM
         edfi.Student
     INNER JOIN

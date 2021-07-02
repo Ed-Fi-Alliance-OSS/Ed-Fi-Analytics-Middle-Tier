@@ -82,6 +82,3 @@ LEFT JOIN edfi.Descriptor AS RT ON RaceDisp.Race = CAST(RT.DescriptorId AS VARCH
 LEFT JOIN edfi.Descriptor AS d ON s.HighestCompletedLevelOfEducationDescriptorId = d.DescriptorId
 WHERE StaffSectionAssociation.EndDate IS NULL
     OR StaffSectionAssociation.EndDate > NOW();
-GO
-
-
