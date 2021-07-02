@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+	  SELECT LastModifiedDate
+	  FROM analytics.equity_StudentSchoolFoodServiceProgramDim
+	  WHERE StudentSchoolFoodServiceProgramKey = '189889-867530022-Food Service 1-1666-867530-867530-20060814-2892';
+  </Query>
+  <Result>
+	  <LastModifiedDate>2015-09-18T11:53:00</LastModifiedDate>
+  </Result>
+</TestCase>
