@@ -9,7 +9,7 @@ BEGIN
 END
 GO
 
-CREATE VIEW [analytics].[AcademicTimePeriodDim]
+CREATE VIEW analytics.AcademicTimePeriodDim
 AS
      SELECT
 		FORMATMESSAGE(
