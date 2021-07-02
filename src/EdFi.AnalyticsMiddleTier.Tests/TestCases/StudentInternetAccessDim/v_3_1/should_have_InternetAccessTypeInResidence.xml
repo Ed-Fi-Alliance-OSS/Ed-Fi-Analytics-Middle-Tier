@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT InternetAccessTypeInResidence
+        FROM analytics.AcademicTimePeriodDim
+        WHERE StudentSchoolKey = 'this is unique-867530010';
+    </Query>
+    <Result>
+        <InternetAccessTypeInResidence>
+            ResidentialBroadband
+        </InternetAccessTypeInResidence>
+    </Result>
+</TestCase>
