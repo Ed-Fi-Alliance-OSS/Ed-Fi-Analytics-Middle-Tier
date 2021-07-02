@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentSchoolKey
+      FROM analytics.StudentInternetAccessDim
+      WHERE StudentSchoolKey = 'this is unique-867530010';
+  </Query>
+  <Result>
+      <StudentSchoolKey>
+          this is unique-867530010
+      </StudentSchoolKey>
+  </Result>
+</TestCase>
