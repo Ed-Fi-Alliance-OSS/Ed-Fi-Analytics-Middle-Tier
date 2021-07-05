@@ -140,56 +140,57 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+
+            public class Given_StudentProgramCohortDim_189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004
+            : When_querying_the_StudentProgramCohortDim_view
+            {
+                public Given_StudentProgramCohortDim_189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+                private const string _caseIdentifier = "189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004";
+
+                [SetUp]
+                public void IgnoreTestCase()
+                {
+                    if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                    {
+                        Assert.Ignore(
+                            $"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                    }
+                }
+
+                [Test]
+                public void Then_should_return_one_record()
+                {
+                    (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            public class Given_StudentProgramCohortDim_189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007
+            : When_querying_the_StudentProgramCohortDim_view
+            {
+                public Given_StudentProgramCohortDim_189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+                private const string _caseIdentifier = "189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007";
+
+                [SetUp]
+                public void IgnoreTestCase()
+                {
+                    if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                    {
+                        Assert.Ignore(
+                            $"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                    }
+                }
+
+                [Test]
+                public void Then_should_return_one_record()
+                {
+                    (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
         }
-
-            //public class Given_StudentProgramCohortDim_189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892
-            //: When_querying_the_StudentProgramCohortDim_view
-            //{
-            //    public Given_StudentProgramCohortDim_189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892(TestHarness dataStandard) => SetDataStandard(dataStandard);
-
-            //    private const string _caseIdentifier = "189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892";
-
-            //    [SetUp]
-            //    public void IgnoreTestCase()
-            //    {
-            //        if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            //        {
-            //            Assert.Ignore(
-            //                $"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            //        }
-            //    }
-
-            //    [Test]
-            //    public void Then_should_return_one_record()
-            //    {
-            //        (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
-            //        testResult.success.ShouldBe(true, testResult.errorMessage);
-            //    }
-            //}
-
-            //public class Given_StudentProgramCohortDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892
-            //: When_querying_the_StudentProgramCohortDim_view
-            //{
-            //    public Given_StudentProgramCohortDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892(TestHarness dataStandard) => SetDataStandard(dataStandard);
-
-            //    private const string _caseIdentifier = "189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892";
-
-            //    [SetUp]
-            //    public void IgnoreTestCase()
-            //    {
-            //        if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            //        {
-            //            Assert.Ignore(
-            //                $"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            //        }
-            //    }
-
-            //    [Test]
-            //    public void Then_should_return_one_record()
-            //    {
-            //        (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
-            //        testResult.success.ShouldBe(true, testResult.errorMessage);
-            //    }
-            //}
-        }
+    }
 }

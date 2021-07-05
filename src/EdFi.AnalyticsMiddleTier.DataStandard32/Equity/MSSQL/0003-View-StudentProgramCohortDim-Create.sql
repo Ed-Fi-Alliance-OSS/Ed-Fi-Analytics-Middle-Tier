@@ -61,21 +61,21 @@ AS
 			AND CohortProgram.ProgramName = program.ProgramName
 			AND CohortProgram.ProgramTypeDescriptorId = program.ProgramTypeDescriptorId
 	INNER JOIN
-		edfi.StudentProgramAssociation ON 
-			StudentProgramAssociation.ProgramName = Program.ProgramName
-			AND StudentProgramAssociation.ProgramTypeDescriptorId = Program.ProgramTypeDescriptorId
-			AND StudentProgramAssociation.ProgramEducationOrganizationId = Program.EducationOrganizationId
-	INNER JOIN
 		edfi.GeneralStudentProgramAssociation ON
-			StudentProgramAssociation.BeginDate = GeneralStudentProgramAssociation.BeginDate
-			AND StudentProgramAssociation.EducationOrganizationId = GeneralStudentProgramAssociation.EducationOrganizationId
-			AND StudentProgramAssociation.ProgramEducationOrganizationId = GeneralStudentProgramAssociation.ProgramEducationOrganizationId
-			AND StudentProgramAssociation.ProgramName = GeneralStudentProgramAssociation.ProgramName
-			AND StudentProgramAssociation.ProgramTypeDescriptorId = GeneralStudentProgramAssociation.ProgramTypeDescriptorId
-			AND StudentProgramAssociation.StudentUSI = GeneralStudentProgramAssociation.StudentUSI
+			Program.EducationOrganizationId = GeneralStudentProgramAssociation.EducationOrganizationId
+			AND Program.ProgramName = GeneralStudentProgramAssociation.ProgramName
+			AND Program.ProgramTypeDescriptorId = GeneralStudentProgramAssociation.ProgramTypeDescriptorId
+	INNER JOIN
+		edfi.StudentProgramAssociation ON
+			GeneralStudentProgramAssociation.BeginDate = StudentProgramAssociation.BeginDate
+			AND GeneralStudentProgramAssociation.EducationOrganizationId = StudentProgramAssociation.EducationOrganizationId
+			AND GeneralStudentProgramAssociation.ProgramEducationOrganizationId = StudentProgramAssociation.ProgramEducationOrganizationId
+			AND GeneralStudentProgramAssociation.ProgramName = StudentProgramAssociation.ProgramName
+			AND GeneralStudentProgramAssociation.ProgramTypeDescriptorId = StudentProgramAssociation.ProgramTypeDescriptorId
+			AND GeneralStudentProgramAssociation.StudentUSI = StudentProgramAssociation.StudentUSI
 	INNER JOIN 
 		edfi.Student ON 
-			StudentProgramAssociation.StudentUSI = Student.StudentUSI
+			GeneralStudentProgramAssociation.StudentUSI = Student.StudentUSI
 	INNER JOIN 
 		edfi.StudentSchoolAssociation ON 
 			Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI;
