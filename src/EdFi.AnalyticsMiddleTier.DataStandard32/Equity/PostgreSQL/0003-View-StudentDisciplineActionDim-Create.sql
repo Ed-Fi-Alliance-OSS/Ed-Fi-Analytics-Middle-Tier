@@ -45,4 +45,3 @@ LEFT JOIN edfi.Staff ON DisciplineActionStaff.StaffUSI = Staff.StaffUSI
  WHERE(
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
         OR StudentSchoolAssociation.ExitWithdrawDate >= NOW());
-GO
