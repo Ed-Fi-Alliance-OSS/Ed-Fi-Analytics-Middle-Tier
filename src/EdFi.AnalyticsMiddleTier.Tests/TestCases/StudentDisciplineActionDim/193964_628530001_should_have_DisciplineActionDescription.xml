@@ -6,7 +6,7 @@
   <Query>
       SELECT DisciplineActionDescription
       FROM analytics.equity_StudentDisciplineActionDim
-      WHERE DisciplineActionUniqueKey = '27061-2011-11-14-100055074';
+      WHERE StudentDisciplineActionKey = '27061-20111114-193964-628530001';
   </Query>
   <Result>
       <DisciplineActionDescription>Community Service</DisciplineActionDescription>

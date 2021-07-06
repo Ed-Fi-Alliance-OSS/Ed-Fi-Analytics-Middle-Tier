@@ -11,12 +11,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class StudentDisciplineActionDim
     {
-        public string DisciplineActionUniqueKey { get; set; }
+        public string StudentDisciplineActionKey { get; set; }
+        public string DisciplineDateKey { get; set; }
         public string StudentSchoolKey { get; set; }
         public string StudentKey { get; set; }
         public int SchoolKey { get; set; }
         public string DisciplineActionDescription { get; set; }
-        public int? StaffUSI { get; set; }
+        public string UserKey { get; set; }
+        public DateTime? LastModifiedDate { get; set; }
     }
 
 }

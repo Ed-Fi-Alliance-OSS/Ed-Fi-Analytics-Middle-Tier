@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT SchoolKey
+      SELECT COUNT(1) AS CountValue
       FROM analytics.equity_StudentDisciplineActionDim
-      WHERE StudentDisciplineActionKey = '27061-20111114-193964-628530001';
+      WHERE StudentDisciplineActionKey = '11431-20111007-213503-867530193';
   </Query>
   <Result>
-      <SchoolKey>628530001</SchoolKey>
+    <CountValue>1</CountValue>
   </Result>
 </TestCase>

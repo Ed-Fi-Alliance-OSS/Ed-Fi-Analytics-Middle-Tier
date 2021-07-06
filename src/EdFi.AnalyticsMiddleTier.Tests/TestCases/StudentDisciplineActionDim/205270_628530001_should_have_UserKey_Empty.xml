@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT SchoolKey
+      SELECT UserKey
       FROM analytics.equity_StudentDisciplineActionDim
-      WHERE StudentDisciplineActionKey = '27061-20111114-193964-628530001';
+      WHERE StudentDisciplineActionKey = '11061-20111005-205270-628530001';
   </Query>
   <Result>
-      <SchoolKey>628530001</SchoolKey>
+      <UserKey></UserKey>
   </Result>
 </TestCase>

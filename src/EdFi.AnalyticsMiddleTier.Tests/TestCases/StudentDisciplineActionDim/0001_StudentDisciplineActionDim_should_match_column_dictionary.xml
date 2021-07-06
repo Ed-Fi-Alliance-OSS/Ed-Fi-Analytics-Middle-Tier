@@ -12,7 +12,11 @@
       ORDER BY ORDINAL_POSITION ASC;
   </Query>
     <Result>
-        <ColumnName>DisciplineActionUniqueKey</ColumnName>
+        <ColumnName>StudentDisciplineActionKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>DisciplineDateKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
@@ -32,7 +36,11 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>StaffUSI</ColumnName>
-        <DataType>int</DataType>
+        <ColumnName>UserKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
     </Result>
 </TestCase>
