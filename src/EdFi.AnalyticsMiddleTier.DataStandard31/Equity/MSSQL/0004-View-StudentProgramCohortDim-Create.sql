@@ -89,9 +89,13 @@ AS
 			AND GeneralStudentProgramAssociation.ProgramTypeDescriptorId = StudentProgramAssociation.ProgramTypeDescriptorId
 			AND GeneralStudentProgramAssociation.StudentUSI = StudentProgramAssociation.StudentUSI
 	INNER JOIN 
-		edfi.Student ON 
+		edfi.Student ON
 			GeneralStudentProgramAssociation.StudentUSI = Student.StudentUSI
 	INNER JOIN 
 		edfi.StudentSchoolAssociation ON 
-			Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI;
+			Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI
+	WHERE (
+        StudentSchoolAssociation.ExitWithdrawDate IS NULL
+			OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE()
+        );
 GO

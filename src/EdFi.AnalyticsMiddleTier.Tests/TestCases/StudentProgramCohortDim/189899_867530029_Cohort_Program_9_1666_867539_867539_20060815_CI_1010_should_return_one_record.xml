@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+	  SELECT COUNT(1) AS CountValue
+	  FROM analytics.equity_StudentProgramCohortDim
+	  WHERE StudentProgramCohortKey = '189899-867530029-Cohort Program 9-1666-867539-867539-20060815-CI-1010';
+  </Query>
+  <Result>
+      <CountValue>1</CountValue>
+  </Result>
+</TestCase>
