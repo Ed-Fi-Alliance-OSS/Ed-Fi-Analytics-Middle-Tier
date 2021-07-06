@@ -456,5 +456,68 @@
 
 		--/ StudentUSI
 
+		--###### 189896-867530028-Cohort Program 8-1666-867538-867538-20060815-CI-1009
+
+		INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate,Discriminator)
+		(SELECT TOP 1'867538','Glendale ISJ','9CC29A49-637C-4882-A7DB-99AD87690108','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','edfi.LocalEducationAgency'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867538'));
+
+		INSERT INTO edfi.Program(EducationOrganizationId,ProgramName,Id,LastModifiedDate,CreateDate,ProgramTypeDescriptorId,Discriminator)
+		(SELECT TOP 1'867538','Cohort Program 8','E078EB62-CDB6-40B3-ADDD-C37C34D5D108','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','1666',NULL
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Program WHERE   EducationOrganizationId= '867538'  AND ProgramName= 'Cohort Program 8'  AND ProgramTypeDescriptorId= '1666'));
+
+		SET IDENTITY_INSERT edfi.Student ON;
+		INSERT INTO edfi.Student
+		(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,BirthCity,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'100014888','Nene','D','Smith','1989-06-05','Lubbock','189896','989B461B-45DD-4947-B310-51229E206107','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100014888'));
+		SET IDENTITY_INSERT edfi.Student OFF;
+
+		INSERT INTO edfi.GeneralStudentProgramAssociation
+		(BeginDate,EducationOrganizationId,ProgramEducationOrganizationId,ProgramName,ProgramTypeDescriptorId,StudentUSI,CreateDate,LastModifiedDate,Id,Discriminator)
+		(SELECT TOP 1'2006-08-15','867538','867538','Cohort Program 8','1666','100014888','Sep 18 2015 11:53AM','Sep 18 2019 11:53AM','BD76D484-3CB3-4A67-B020-E47407154109','edfi.StudentProgramAssociation'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.GeneralStudentProgramAssociation WHERE BeginDate = '2006-08-15' and EducationOrganizationId = 867538 and ProgramEducationOrganizationId = 867538 and ProgramName = 'Cohort Program 8' and ProgramTypeDescriptorId = 1666 and StudentUSI = 100014888));
+
+		INSERT INTO edfi.StudentProgramAssociation
+		(BeginDate,EducationOrganizationId,ProgramEducationOrganizationId,ProgramName,ProgramTypeDescriptorId,StudentUSI)
+		VALUES
+		('2006-08-15',867538,867538,'Cohort Program 8','1666','100014888');
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate,Discriminator)
+		(SELECT TOP 1'867530028','Hollywood High School 8','032A4662-74DA-448B-B881-C88B82DAD106','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','edfi.School'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530028'));
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate,Discriminator)
+		(SELECT TOP 1'152956','ESC Region 21','03DE6F94-316A-4B06-8C67-2C8748DCA106','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','edfi.EducationServiceCenter'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '152956'));
+
+		INSERT INTO edfi.EducationServiceCenter(EducationServiceCenterId,StateEducationAgencyId)
+		(SELECT TOP 1'152956',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationServiceCenter WHERE   EducationServiceCenterId= '152956'));
+
+		INSERT INTO edfi.LocalEducationAgency(
+		LocalEducationAgencyId,EducationServiceCenterId,LocalEducationAgencyCategoryDescriptorId)
+		(SELECT TOP 1'867538','152956','1086'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.LocalEducationAgency WHERE   LocalEducationAgencyId= '867539'));
+
+		INSERT INTO edfi.School(
+		SchoolId,LocalEducationAgencyId)
+		(SELECT TOP 1'867530028','867538' WHERE NOT EXISTS(SELECT  1  FROM edfi.School WHERE   SchoolId= '867530028'));
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,GraduationPlanTypeDescriptorId,GraduationSchoolYear,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'100014888','867530028','2011-10-01','38','631','2013','AEA4CD3C-ECD8-428B-AE72-F48F60E39107','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI = 100014888 and SchoolId = 867530028));
+
+		INSERT INTO edfi.Cohort(
+		CohortIdentifier,EducationOrganizationId,CohortDescription,CohortTypeDescriptorId,CreateDate,LastModifiedDate,Id)
+		VALUES
+		('CI-1009',867538,'Cohort description 07',1515,GETDATE(),'Dec 13 2018  2:31PM','3A180521-456F-4884-97AA-EE83F4B52109')
+
+		INSERT INTO edfi.CohortProgram
+		(CohortIdentifier,EducationOrganizationId,ProgramEducationOrganizationId,ProgramName,ProgramTypeDescriptorId,CreateDate)
+		VALUES
+		('CI-1009',867538,867538,'Cohort Program 8',1666,GETDATE());
+
 	</ControlDataInsertion>
 </TestCase>
