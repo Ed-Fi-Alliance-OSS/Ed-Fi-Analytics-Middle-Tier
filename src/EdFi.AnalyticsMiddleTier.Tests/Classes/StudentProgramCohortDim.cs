@@ -11,10 +11,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class StudentProgramCohortDim
     {
-        public string StudentProgramCohortKey { get; set; } //(nvarchar, not null)
-        public string StudentSchoolKey { get; set; } //(nvarchar, not null)
-        public string CohortDescription { get; set; } //(nvarchar, not null)
-        public string ProgramName { get; set; } //(nvarchar, not null)
-        public DateTime LastModifiedDate { get; set; } //(datetime, not null)
+        public string StudentProgramCohortKey { get; set; }
+        public string StudentSchoolProgramKey { get; set; }
+        public string StudentSchoolKey { get; set; }
+        public string CohortDescription { get; set; }
+        public string ProgramName { get; set; }
+        public DateTime LastModifiedDate { get; set; }
     }
 }

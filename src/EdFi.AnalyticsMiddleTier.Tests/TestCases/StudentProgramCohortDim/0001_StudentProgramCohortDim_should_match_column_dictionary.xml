@@ -15,6 +15,10 @@
         <ColumnName>StudentProgramCohortKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+	<Result>
+		<ColumnName>StudentSchoolProgramKey</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
     <Result>
         <ColumnName>StudentSchoolKey</ColumnName>
         <DataType>nvarchar</DataType>

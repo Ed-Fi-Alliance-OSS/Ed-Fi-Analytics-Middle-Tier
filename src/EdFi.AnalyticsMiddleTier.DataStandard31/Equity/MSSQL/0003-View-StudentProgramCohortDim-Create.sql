@@ -33,7 +33,22 @@ AS
 			CONVERT(varchar, StudentProgramAssociation.BeginDate, 112),
 			'-',
 			Cohort.CohortIdentifier
-		) AS StudentProgramCohortKey
+		) AS StudentProgramCohortKey,
+		CONCAT(
+			Student.StudentUniqueId,
+			'-',
+			StudentSchoolAssociation.SchoolId,
+			'-',
+			StudentProgramAssociation.ProgramName,
+			'-',
+			StudentProgramAssociation.ProgramTypeDescriptorId,
+			'-',
+			StudentProgramAssociation.EducationOrganizationId,
+			'-',
+			StudentProgramAssociation.ProgramEducationOrganizationId,
+			'-',
+			CONVERT(varchar, StudentProgramAssociation.BeginDate, 112)
+        ) AS StudentSchoolProgramKey
 		,CONCAT(
 			Student.StudentUniqueId,
 			'-',

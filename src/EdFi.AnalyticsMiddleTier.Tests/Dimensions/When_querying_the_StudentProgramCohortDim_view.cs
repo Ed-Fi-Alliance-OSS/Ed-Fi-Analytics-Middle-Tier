@@ -89,6 +89,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
+            public void Then_should_have_StudentSchoolProgramKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentProgramCohortDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolProgramKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_StudentSchoolKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentProgramCohortDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
@@ -188,6 +195,31 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 public void Then_should_return_one_record()
                 {
                     (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            public class Given_StudentProgramCohortDim_189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007
+            : When_querying_the_StudentProgramCohortDim_view
+            {
+                public Given_StudentProgramCohortDim_189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+                private const string _caseIdentifier = "189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007";
+
+                [SetUp]
+                public void IgnoreTestCase()
+                {
+                    if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                    {
+                        Assert.Ignore(
+                            $"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                    }
+                }
+
+                [Test]
+                public void Then_should_return_no_records()
+                {
+                    (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_no_records.xml");
                     testResult.success.ShouldBe(true, testResult.errorMessage);
                 }
             }
