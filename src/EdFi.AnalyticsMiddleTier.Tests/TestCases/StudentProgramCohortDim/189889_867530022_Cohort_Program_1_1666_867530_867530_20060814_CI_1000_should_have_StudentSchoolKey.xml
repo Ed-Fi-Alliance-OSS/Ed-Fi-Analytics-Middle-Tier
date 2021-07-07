@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+	  SELECT StudentSchoolKey
+	  FROM analytics.equity_StudentProgramCohortDim
+	  WHERE StudentProgramCohortKey = '189889-867530022-Cohort Program 1-1666-867530-867530-20060814-CI-1000';
+  </Query>
+  <Result>
+	  <StudentSchoolKey>189889-867530022</StudentSchoolKey>
+  </Result>
+</TestCase>

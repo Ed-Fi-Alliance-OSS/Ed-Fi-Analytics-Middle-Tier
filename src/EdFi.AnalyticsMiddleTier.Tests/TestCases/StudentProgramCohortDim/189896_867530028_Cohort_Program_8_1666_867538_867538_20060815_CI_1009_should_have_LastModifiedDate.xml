@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+	  SELECT LastModifiedDate
+	  FROM analytics.equity_StudentProgramCohortDim
+	  WHERE StudentProgramCohortKey = '189896-867530028-Cohort Program 8-1666-867538-867538-20060815-CI-1009';
+  </Query>
+  <Result>
+	  <LastModifiedDate>2019-09-18T11:53:00</LastModifiedDate>
+  </Result>
+</TestCase>
