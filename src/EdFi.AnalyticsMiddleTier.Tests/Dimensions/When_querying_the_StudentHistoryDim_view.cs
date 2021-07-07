@@ -27,7 +27,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeSetUp]
         public void Act()
         {
-            Result = DataStandard.LoadTestCaseData<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentHistoryDim_Data_Load.xml");
+            Result = DataStandard.LoadTestCaseData<StudentHistoryDim>($"{TestCasesFolder}.0000_StudentHistoryDim_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
 
             Result = DataStandard.Install(10, Component.Chrab);
@@ -39,7 +39,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentHistoryDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -53,63 +53,139 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StudentKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StudentKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StudentSchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_LastModifiedDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_GradeSummary()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_GradeSummary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_GradeSummary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_CurrentSchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_CurrentSchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CurrentSchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_AttendanceRate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_AttendanceRate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AttendanceRate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_ReferralsAndSuspensions()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_ReferralsAndSuspensions.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReferralsAndSuspensions.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_EnrollmentHistory()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_EnrollmentHistory.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_EnrollmentHistory.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
-            }           
+            }
         }
 
-       
+        public class Given_StudentHistoryDim_224082_867530023
+         : When_querying_the_StudentHistoryDim_view
+        {
+            public Given_StudentHistoryDim_224082_867530023(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "224082_867530023";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentSchoolKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_GradeSummary()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_GradeSummary.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_AttendanceRate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AttendanceRate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ReferralsAndSuspensions()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReferralsAndSuspensions.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_EnrollmentHistory()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_EnrollmentHistory.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_StudentHistoryDim_205414_867530068
+       : When_querying_the_StudentHistoryDim_view
+        {
+            public Given_StudentHistoryDim_205414_867530068(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "205414_867530068";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_AttendanceRate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AttendanceRate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }

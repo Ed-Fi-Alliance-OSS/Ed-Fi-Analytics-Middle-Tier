@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT AttendanceRate
+      FROM analytics.equity_StudentHistoryDim
+      WHERE StudentSchoolKey = '224082-867530023';
+  </Query>
+  <Result>
+      <AttendanceRate>66.6666666666666667</AttendanceRate>
+  </Result>
+</TestCase>

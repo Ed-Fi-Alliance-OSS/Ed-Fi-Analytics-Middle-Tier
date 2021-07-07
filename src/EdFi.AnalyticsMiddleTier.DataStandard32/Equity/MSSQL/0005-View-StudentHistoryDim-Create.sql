@@ -26,7 +26,7 @@ AS (
     ,GradeList
 AS (
     SELECT DISTINCT studentSectionDim.StudentSectionKey
-        ,STRING_AGG(CAST(CONCAT(studentSectionDim.CourseTitle, ': ', CAST(gradeFact.NumericGradeEarned AS VARCHAR(100))) as VARCHAR(MAX)), CONCAT(', ' , CHAR(10), CHAR(13))) AS GradeSummary
+        ,STRING_AGG(CAST(CONCAT(studentSectionDim.CourseTitle, ': ', CAST(gradeFact.NumericGradeEarned AS VARCHAR(100))) as VARCHAR(MAX)), CONCAT(', ' , CHAR(10))) AS GradeSummary
     FROM analytics.ews_StudentSectionGradeFact gradeFact
     INNER JOIN analytics.StudentSectionDim studentSectionDim
         ON gradeFact.StudentSectionKey = studentSectionDim.StudentSectionKey

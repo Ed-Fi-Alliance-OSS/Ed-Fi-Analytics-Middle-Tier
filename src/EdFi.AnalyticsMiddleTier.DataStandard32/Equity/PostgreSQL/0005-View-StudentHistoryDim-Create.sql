@@ -2,18 +2,7 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
-IF EXISTS (
-        SELECT 1
-        FROM INFORMATION_SCHEMA.VIEWS
-        WHERE TABLE_SCHEMA = 'analytics'
-            AND TABLE_NAME = 'equity_StudentHistoryDim'
-        )
-BEGIN
-    DROP VIEW analytics.equity_StudentHistoryDim
-END
-GO
-
-CREATE VIEW analytics.equity_StudentHistoryDim
+CREATE OR REPLACE VIEW analytics.equity_StudentHistoryDim
 AS
 WITH AttendanceHist
 AS (
@@ -26,7 +15,7 @@ AS (
     ,GradeList
 AS (
     SELECT DISTINCT studentSectionDim.StudentSectionKey
-        ,STRING_AGG(CAST(CONCAT(studentSectionDim.CourseTitle, ': ', CAST(gradeFact.NumericGradeEarned AS VARCHAR(100))) as VARCHAR(MAX)), CONCAT(', ' , CHAR(10), CHAR(13))) AS GradeSummary
+        ,STRING_AGG(CAST(CONCAT(studentSectionDim.CourseTitle, ': ', CAST(gradeFact.NumericGradeEarned AS VARCHAR(100))) as VARCHAR(80000)), CONCAT(', ' , CHR(10))) AS GradeSummary
     FROM analytics.ews_StudentSectionGradeFact gradeFact
     INNER JOIN analytics.StudentSectionDim studentSectionDim
         ON gradeFact.StudentSectionKey = studentSectionDim.StudentSectionKey
@@ -36,7 +25,7 @@ AS (
     )
 SELECT DISTINCT studentSchoolDim.StudentKey
     ,studentSchoolDim.StudentSchoolKey
-    ,STRING_AGG(gradeFact.GradeSummary, CONCAT(', ' , CHAR(10))) AS GradeSummary
+    ,STRING_AGG(gradeFact.GradeSummary, CONCAT(', ' , CHR(10))) AS GradeSummary
     ,studentSchoolDim.SchoolKey AS CurrentSchoolKey
     ,COALESCE((CAST((DaysEnrolled - DaysAbsent) AS DECIMAL) / CAST(DaysEnrolled AS DECIMAL) * 100), 100) AS AttendanceRate
     ,(
@@ -49,7 +38,7 @@ SELECT DISTINCT studentSchoolDim.StudentKey
                     SchoolName
                     ,' '
                     ,COALESCE(CAST(ssd.ExitWithdrawDate AS VARCHAR(10)), ' (Current)')
-                    ),CONCAT(', ' , CHAR(10)))
+                    ),CONCAT(', ' , CHR(10)))
         FROM edfi.StudentSchoolAssociation ssd
         INNER JOIN edfi.Student st
             ON st.StudentUSI = ssd.StudentUSI
