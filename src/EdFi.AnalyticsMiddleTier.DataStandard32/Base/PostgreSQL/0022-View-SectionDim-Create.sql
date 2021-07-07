@@ -6,11 +6,11 @@
 CREATE OR REPLACE VIEW analytics.SectionDim AS
     SELECT DISTINCT CAST(s.SchoolId AS VARCHAR) AS SchoolKey
 		,CONCAT (
-			CAST(s.SchoolId AS NVARCHAR)
+			CAST(s.SchoolId AS VARCHAR)
 			,'-'
 			,s.LocalCourseCode
 			,'-'
-			,CAST(s.SchoolYear AS NVARCHAR)
+			,CAST(s.SchoolYear AS VARCHAR)
 			,'-'
 			,s.SectionIdentifier
 			,'-'
@@ -72,5 +72,3 @@ CREATE OR REPLACE VIEW analytics.SectionDim AS
 		SectionClassPeriod.SectionIdentifier=s.SectionIdentifier
 		AND 
 		SectionClassPeriod.SessionName=s.SessionName
-
-GO
