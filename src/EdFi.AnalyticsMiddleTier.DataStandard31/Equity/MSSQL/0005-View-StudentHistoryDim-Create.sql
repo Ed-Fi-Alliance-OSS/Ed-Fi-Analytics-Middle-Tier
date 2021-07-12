@@ -64,7 +64,7 @@ SELECT DISTINCT ssd.StudentKey
                     ,CHAR(10)
                     ,SchoolName
                     ,' '
-                    ,COALESCE(CAST(ssa.ExitWithdrawDate AS VARCHAR(10)), ' (Current)')
+                    ,COALESCE(CAST(ssa.ExitWithdrawDate AS VARCHAR(10)), '')
                     )
             FROM edfi.StudentSchoolAssociation ssa
             INNER JOIN edfi.Student st

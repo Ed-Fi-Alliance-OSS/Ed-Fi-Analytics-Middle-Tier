@@ -47,7 +47,7 @@ SELECT DISTINCT studentSchoolDim.StudentKey
         SELECT STRING_AGG(CONCAT (
                     SchoolName
                     ,' '
-                    ,COALESCE(CAST(ssd.ExitWithdrawDate AS VARCHAR(10)), ' (Current)')
+                    ,COALESCE(CAST(ssd.ExitWithdrawDate AS VARCHAR(10)), '')
                     ), ', ')
         FROM edfi.StudentSchoolAssociation ssd
         INNER JOIN edfi.Student st

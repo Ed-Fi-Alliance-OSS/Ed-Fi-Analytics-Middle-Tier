@@ -9,6 +9,6 @@
       WHERE StudentSchoolKey = '224082-867530023';
   </Query>
   <Result>
-      <EnrollmentHistory>Dorsey High School  (Current)</EnrollmentHistory>
+      <EnrollmentHistory>Dorsey High School</EnrollmentHistory>
   </Result>
 </TestCase>
