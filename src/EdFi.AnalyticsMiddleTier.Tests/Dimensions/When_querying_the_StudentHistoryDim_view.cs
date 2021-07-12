@@ -30,8 +30,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             Result = DataStandard.LoadTestCaseData<StudentHistoryDim>($"{TestCasesFolder}.0000_StudentHistoryDim_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
 
-            Result = DataStandard.Install(10, Component.Chrab);
-            Result = DataStandard.Install(10, Component.Ews);
             Result = DataStandard.Install(10, Component.Equity);
             Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
         }
