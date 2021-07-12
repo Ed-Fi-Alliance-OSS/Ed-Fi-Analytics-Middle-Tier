@@ -26,6 +26,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [SetUp]
         public void Act()
         {
+            _dataStandard.Install(10, Component.Chrab);
+            _dataStandard.Install(10, Component.Ews);
             Result = _dataStandard.Install(10, Component.Equity);
         }
 
