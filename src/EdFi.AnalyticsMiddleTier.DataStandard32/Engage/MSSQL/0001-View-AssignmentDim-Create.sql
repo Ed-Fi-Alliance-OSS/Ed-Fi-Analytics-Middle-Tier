@@ -4,7 +4,7 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 
 CREATE VIEW analytics.engage_AssignmentDim AS
-    
+
     SELECT
         1 as AssignmentKey,
         1 as SchoolKey,
@@ -18,3 +18,16 @@ CREATE VIEW analytics.engage_AssignmentDim AS
         1 as SectionKey,
         1 as GradingPeriodKey,
         1 as LastModifiedDate
+    FROM
+        lmsx.Assignment
+    INNER JOIN
+        analytics_config.DescriptorMap
+    ON
+		Assignment.AssignmentCategoryDescriptorId = DescriptorMap.DescriptorId
+	INNER JOIN
+		analytics_config.DescriptorConstant
+	ON
+		DescriptorMap.DescriptorConstantId = DescriptorConstant.DescriptorConstantId
+	WHERE
+		DescriptorConstant.ConstantName = 'Assignment'
+
