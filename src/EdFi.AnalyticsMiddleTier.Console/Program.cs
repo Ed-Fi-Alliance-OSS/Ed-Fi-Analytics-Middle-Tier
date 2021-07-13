@@ -30,11 +30,6 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                                                                                                                                          System.Environment.NewLine
                                                                                                                                                          + "* Data Standard 3.2 (auto-detect presence of DeployJournal table)" +
                                                                                                                                                          System.Environment.NewLine;
-        private static readonly string _asmtNotSupportedOnDS2
-            = "Assessment collection is not currently supported on Data Standard 2. Please remove this option and try again.";
-
-        private static readonly string _equityNotSupportedOnDS2
-            = "Equity collection is not currently supported on Data Standard 2. Please remove this option and try again.";
 
         internal static void Main(string[] args)
         {
@@ -115,34 +110,29 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                 migrationStrategy = new PostgresMigrationStrategy(pgsqlOrm);
                                 break;
                         }
-
-                        if (String.IsNullOrEmpty(message))
+                        
+                        dataStandardVersion = migrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
+                        switch (dataStandardVersion)
                         {
-                            dataStandardVersion = migrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
-                            switch (dataStandardVersion)
-                            {
-                                case DataStandard.Ds2:
-                                    install = new Ds2.Install(migrationStrategy);
-                                    break;
-                                case DataStandard.Ds31:
-                                    install = new Ds31.Install(migrationStrategy);
-                                    break;
-                                case DataStandard.Ds32:
-                                    install = new Ds32.Install(migrationStrategy);
-                                    break;
-                                default:
-                                    message = _odsVersionNotSupportedMessage;
-                                    break;
-                            }
+                            case DataStandard.Ds2:
+                                install = new Ds2.Install(migrationStrategy);
+                                break;
+                            case DataStandard.Ds31:
+                                install = new Ds31.Install(migrationStrategy);
+                                break;
+                            case DataStandard.Ds32:
+                                install = new Ds32.Install(migrationStrategy);
+                                break;
+                            default:
+                                message = _odsVersionNotSupportedMessage;
+                                break;
                         }
 
-                        if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(Component.Asmt))
-                            message = _asmtNotSupportedOnDS2;
+                        message += NotSupportedOnDs2(dataStandardVersion, options, Component.Asmt);
+                        message += NotSupportedOnDs2(dataStandardVersion, options, Component.Equity);
+                        message += NotSupportedOnDs2(dataStandardVersion, options, Component.Engage);
 
-                        if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(Component.Equity))
-                            message = _equityNotSupportedOnDS2;
-
-                        if (String.IsNullOrEmpty(message))
+                        if (string.IsNullOrEmpty(message))
                         {
                             try
                             {
@@ -179,9 +169,19 @@ namespace EdFi.AnalyticsMiddleTier.Console
                 Environment.ExitCode = 0;
             }
 
-            void WriteArgumentErrorMessage(IEnumerable<Error> errors)
+            static void WriteArgumentErrorMessage(IEnumerable<Error> errors)
             {
                 Environment.ExitCode = -1;
+            }
+
+            static string NotSupportedOnDs2(DataStandard dataStandardVersion, Options options, Component collection)
+            {
+                if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(collection))
+                {
+                    return $"The {collection} collection is not supported on Data Standard 2. Please remove this option and try again.";
+                }
+
+                return null;
             }
         }
     }

@@ -83,7 +83,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public DataStandard DataStandardVersion { get; set; }
 
-        protected IOrm Orm
+        public IOrm Orm
         {
             get
             {
