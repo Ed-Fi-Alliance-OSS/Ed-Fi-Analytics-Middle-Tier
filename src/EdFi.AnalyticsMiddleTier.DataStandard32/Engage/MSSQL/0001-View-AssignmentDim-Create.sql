@@ -6,28 +6,68 @@
 CREATE VIEW analytics.engage_AssignmentDim AS
 
     SELECT
-        1 as AssignmentKey,
-        1 as SchoolKey,
-        1 as SourceSystem,
-        1 as Title,
-        1 as Description,
-        1 as StartDateKey,
-        1 as EndDateKey,
-        1 as DueDateKey,
-        1 as MaxPoints,
-        1 as SectionKey,
-        1 as GradingPeriodKey,
-        1 as LastModifiedDate
+        Assignment.AssignmentIdentifier as AssignmentKey,
+        Assignment.SchoolId as SchoolKey,
+        Descriptor.ShortDescription as SourceSystem,
+        Assignment.Title as Title,
+        Assignment.AssignmentDescription as Description,
+        CONVERT(VARCHAR, Assignment.StartDateTime, 112) as StartDateKey,
+        CONVERT(VARCHAR, Assignment.EndDateTime, 112) as EndDateKey,
+        CONVERT(VARCHAR, Assignment.DueDateTime, 112) as DueDateKey,
+        Assignment.MaxPoints as MaxPoints,
+        FORMATMESSAGE(
+			'%s-%s-%s',
+			CAST(Assignment.SchoolId as VARCHAR),
+			CAST(Assignment.SchoolYear as VARCHAR),
+			Assignment.SessionName
+		) as SessionKey,
+        FORMATMESSAGE(
+			'%s-%s-%s',
+			CAST(SessionGradingPeriod.GradingPeriodDescriptorId as VARCHAR),
+			CAST(Assignment.SchoolId as VARCHAR),
+			CONVERT(VARCHAR, GradingPeriod.BeginDate, 112)
+		) as GradingPeriodKey,
+        Assignment.LastModifiedDate
     FROM
         lmsx.Assignment
+
     INNER JOIN
         analytics_config.DescriptorMap
     ON
 		Assignment.AssignmentCategoryDescriptorId = DescriptorMap.DescriptorId
+
 	INNER JOIN
 		analytics_config.DescriptorConstant
 	ON
 		DescriptorMap.DescriptorConstantId = DescriptorConstant.DescriptorConstantId
+
+	INNER JOIN
+		edfi.SessionGradingPeriod
+	ON
+		Assignment.SessionName = SessionGradingPeriod.SessionName
+	AND
+		Assignment.SchoolYear = SessionGradingPeriod.SchoolYear
+	AND
+		Assignment.SchoolId = SessionGradingPeriod.SchoolId
+	-- TODO: What if the above turns up multiple hits? Do we have a way of getting
+	-- more specific? Stephen to investigate
+
+	INNER JOIN
+		edfi.GradingPeriod
+	ON
+		SessionGradingPeriod.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
+	AND
+		SessionGradingPeriod.PeriodSequence = GradingPeriod.PeriodSequence
+	AND
+		SessionGradingPeriod.SchoolId = GradingPeriod.SchoolId
+	AND
+		SessionGradingPeriod.SchoolYear = GradingPeriod.SchoolYear
+
+	INNER JOIN
+		edfi.Descriptor
+	ON
+		Assignment.LMSSourceSystemDescriptorId = Descriptor.DescriptorId
+
 	WHERE
 		DescriptorConstant.ConstantName = 'Assignment'
 
