@@ -70,8 +70,6 @@ CREATE VIEW analytics.SectionDim AS
         CourseOffering.SchoolYear = s.SchoolYear
     AND
         CourseOffering.SessionName = s.SessionName
-    AND
-        CourseOffering.SchoolYear = s.SchoolYear
 
     INNER JOIN 
         edfi.Course
