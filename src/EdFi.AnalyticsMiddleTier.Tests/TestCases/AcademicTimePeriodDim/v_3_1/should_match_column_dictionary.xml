@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COLUMN_NAME AS ColumnName,
+        DATA_TYPE AS DataType
+        FROM information_schema.columns
+        WHERE table_schema = 'analytics'
+        AND table_name = 'AcademicTimePeriodDim'
+        ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>AcademicTimePeriodKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolYearKey</ColumnName>
+        <DataType>varchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolYearName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>IsCurrentSchoolYear</ColumnName>
+        <DataType>bit</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolKey</ColumnName>
+        <DataType>varchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SessionKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SessionName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>TermName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>GradingPeriodKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>GradingPeriodName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
+    </Result>
+</TestCase>

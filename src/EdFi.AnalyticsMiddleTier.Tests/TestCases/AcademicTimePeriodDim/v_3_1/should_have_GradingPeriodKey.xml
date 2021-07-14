@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT GradingPeriodKey
+        FROM analytics.AcademicTimePeriodDim;
+    </Query>
+    <Result>
+        <GradingPeriodKey>
+            2-867530010-19991231
+        </GradingPeriodKey>
+    </Result>
+</TestCase>
