@@ -44,6 +44,10 @@
         <DataType>int</DataType>
     </Result>
     <Result>
+        <ColumnName>LocalEducationAgencyKey</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
       <ColumnName>EducationalEnvironmentDescriptor</ColumnName>
       <DataType>nvarchar</DataType>
     </Result>
@@ -51,4 +55,12 @@
 		<ColumnName>LastModifiedDate</ColumnName>
 		<DataType>datetime</DataType>
 	</Result>
+    <Result>
+        <ColumnName>CourseTitle</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SessionKey</ColumnName>
+        <DataType>varchar</DataType>
+    </Result>
 </TestCase>
