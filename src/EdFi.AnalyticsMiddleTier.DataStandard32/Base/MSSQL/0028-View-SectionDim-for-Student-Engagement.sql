@@ -37,7 +37,13 @@ CREATE VIEW analytics.SectionDim AS
         ,COALESCE(SectionClassPeriod.LocalCourseCode,CourseOffering.LocalCourseCode) as LocalCourseCode
         ,COALESCE(Session.SchoolYear,CourseOffering.SchoolYear) as SchoolYear
         ,eed.Description AS EducationalEnvironmentDescriptor
+
+        -- NOTE: LocalEducationAgencyId was accidentally introduced in a prior release.
+        -- Rather than creating a breaking change, it is being left in place while the
+        -- correct column name, LocalEducationAgencyKey, is also being introduced
+        ,sch.LocalEducationAgencyId
         ,sch.LocalEducationAgencyId as LocalEducationAgencyKey
+
         ,s.LastModifiedDate
         ,course.CourseTitle
         ,FORMATMESSAGE(

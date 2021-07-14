@@ -20,7 +20,13 @@ AS
 		  [CourseOffering].[LocalCourseCode],
 		  s.SchoolYear, 
 		  EducationalEnvironmentType.Description as EducationalEnvironmentDescriptor,
-		  sch.LocalEducationAgencyId as LocalEducationAgencyKey,
+
+        -- NOTE: LocalEducationAgencyId was accidentally introduced in a prior release.
+        -- Rather than creating a breaking change, it is being left in place while the
+        -- correct column name, LocalEducationAgencyKey, is also being introduced
+        sch.LocalEducationAgencyId,
+        sch.LocalEducationAgencyId as LocalEducationAgencyKey,
+
 		  s.LastModifiedDate
           ,course.CourseTitle
           ,CONCAT(
