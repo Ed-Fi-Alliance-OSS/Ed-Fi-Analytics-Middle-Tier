@@ -12,27 +12,34 @@ GO
 CREATE VIEW analytics.SectionDim AS
     SELECT 
         CAST(s.SchoolId AS VARCHAR) AS SchoolKey
-        ,FORMATMESSAGE(
-            '%s-%s-%s-%s-%s',
-            CAST(s.SchoolId AS NVARCHAR)
-            ,s.LocalCourseCode
-            ,CAST(s.SchoolYear AS NVARCHAR)
-            ,s.SectionIdentifier
-            ,s.SessionName
-        ) AS SectionKey
-        ,FORMATMESSAGE(
-            '%s(%s)-%s(%s)%s',
-            COALESCE(Descriptor.Description, '')
-            ,s.LocalCourseCode
-            ,Course.CourseTitle
-            ,COALESCE(SectionClassPeriod.ClassPeriodName, '')
-            ,COALESCE(td.Description, '')
-        ) AS Description
-        ,FORMATMESSAGE(
-            '%s-%s',
-            s.LocalCourseCode
-            ,s.SessionName
-        ) AS SectionName
+		,CONCAT (
+			CAST(s.SchoolId AS NVARCHAR)
+			,'-'
+			,s.LocalCourseCode
+			,'-'
+			,CAST(s.SchoolYear AS NVARCHAR)
+			,'-'
+			,s.SectionIdentifier
+			,'-'
+			,s.SessionName
+			) AS SectionKey
+		,CONCAT (
+			[Descriptor].[Description]
+			,'('
+			,s.[LocalCourseCode]
+			,')'
+			,'-'
+			,[Course].[CourseTitle]
+			,'('
+			,SectionClassPeriod.ClassPeriodName
+			,')'
+			,td.Description
+			) AS Description
+		,CONCAT (
+			s.LocalCourseCode
+			,'-'
+			,Session.SessionName
+			) AS SectionName
         ,s.SessionName
         ,s.LocalCourseCode
         ,s.SchoolYear
