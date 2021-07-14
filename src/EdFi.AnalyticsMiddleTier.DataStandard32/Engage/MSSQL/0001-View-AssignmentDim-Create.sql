@@ -5,7 +5,6 @@
 
 CREATE VIEW analytics.engage_AssignmentDim AS
 
-
     SELECT
         Assignment.AssignmentIdentifier as AssignmentKey,
         Assignment.SchoolId as SchoolKey,
@@ -17,11 +16,13 @@ CREATE VIEW analytics.engage_AssignmentDim AS
         CONVERT(VARCHAR, Assignment.DueDateTime, 112) as DueDateKey,
         Assignment.MaxPoints as MaxPoints,
         FORMATMESSAGE(
-			'%s-%s-%s',
-			CAST(Assignment.SchoolId as VARCHAR),
-			CAST(Assignment.SchoolYear as VARCHAR),
-			Assignment.SessionName
-		) as SessionKey,
+            '%s-%s-%s-%s-%s',
+            CAST(Assignment.SchoolId AS NVARCHAR)
+            ,Assignment.LocalCourseCode
+            ,CAST(Assignment.SchoolYear AS NVARCHAR)
+            ,Assignment.SectionIdentifier
+            ,Assignment.SessionName
+		) as SectionKey,
         FORMATMESSAGE(
 			'%s-%s-%s',
 			CAST(GradingPeriod.GradingPeriodDescriptorId as VARCHAR),
@@ -78,5 +79,4 @@ CREATE VIEW analytics.engage_AssignmentDim AS
 		Assignment.LMSSourceSystemDescriptorId = Descriptor.DescriptorId
 
 	WHERE
-		DescriptorConstant.ConstantName = 'Assignment'
-
+		DescriptorConstant.ConstantName = 'Assignment';
