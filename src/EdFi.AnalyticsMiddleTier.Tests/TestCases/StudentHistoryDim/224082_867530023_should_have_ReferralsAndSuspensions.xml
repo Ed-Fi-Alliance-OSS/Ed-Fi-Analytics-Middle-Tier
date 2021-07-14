@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT ReferralsAndSuspensions
+      FROM analytics.equity_StudentHistoryDim
+      WHERE StudentSchoolKey = '224082-867530023';
+  </Query>
+  <Result>
+      <ReferralsAndSuspensions>1</ReferralsAndSuspensions>
+  </Result>
+</TestCase>

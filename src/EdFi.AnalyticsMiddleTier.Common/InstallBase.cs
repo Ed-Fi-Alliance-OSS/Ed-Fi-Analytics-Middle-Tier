@@ -18,7 +18,9 @@ namespace EdFi.AnalyticsMiddleTier.Common
         //Some options require other options to be installed first.
         private readonly List<KeyValuePair<Component, List<Component>>> _componentDependency
             = new List<KeyValuePair<Component, List<Component>>>()
-                { new KeyValuePair<Component, List<Component>>(Component.Qews, new List<Component>(){ Component.RLS, Component.Ews })};
+                { (new KeyValuePair<Component, List<Component>>(Component.Qews, new List<Component>(){ Component.RLS, Component.Ews })),
+                  (new KeyValuePair<Component, List<Component>>(Component.Equity, new List<Component>(){ Component.Chrab, Component.Ews }))
+            };
 
         protected InstallBase(IDatabaseMigrationStrategy databaseMigrationStrategy)
         {

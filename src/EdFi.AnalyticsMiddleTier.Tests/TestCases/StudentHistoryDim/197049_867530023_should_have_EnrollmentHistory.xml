@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT EnrollmentHistory
+      FROM analytics.equity_StudentHistoryDim
+      WHERE StudentSchoolKey = '197049-867530023';
+  </Query>
+  <Result>
+      <EnrollmentHistory>
+          Grand Oaks High School NT54 2011-07-07,
+          Dorsey High School
+      </EnrollmentHistory>
+  </Result>
+</TestCase>
