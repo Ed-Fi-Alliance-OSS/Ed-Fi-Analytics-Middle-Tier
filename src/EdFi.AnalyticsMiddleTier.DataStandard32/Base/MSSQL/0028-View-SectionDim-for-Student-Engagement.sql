@@ -70,32 +70,37 @@ CREATE VIEW analytics.SectionDim AS
         CourseOffering.SchoolYear = s.SchoolYear
     AND
         CourseOffering.SessionName = s.SessionName
-	INNER JOIN 
-		[edfi].[Course] ON 
-		[Course].[CourseCode] = [CourseOffering].[CourseCode]
-		AND 
-		[Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
-	LEFT JOIN [edfi].[School] sch ON s.SchoolId = sch.SchoolId
-	LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor] ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
-	LEFT OUTER JOIN [edfi].[Descriptor] ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
-	LEFT JOIN edfi.Descriptor eed ON eed.DescriptorId = s.EducationalEnvironmentDescriptorId
-	LEFT JOIN edfi.Session ON 
-		Session.SchoolId = [Course].[EducationOrganizationId]
-		AND 
-		Session.SchoolYear = CourseOffering.SchoolYear
-		AND 
-		Session.SessionName = s.SessionName
-	LEFT OUTER JOIN [edfi].TermDescriptor ON TermDescriptor.TermDescriptorId = Session.TermDescriptorId
-	LEFT OUTER JOIN [edfi].Descriptor td ON TermDescriptor.TermDescriptorId = td.DescriptorId
-	LEFT OUTER JOIN edfi.SectionClassPeriod ON 
-		SectionClassPeriod.LocalCourseCode = [CourseOffering].[LocalCourseCode]
-		AND 
-		SectionClassPeriod.SchoolId = [Course].[EducationOrganizationId]
-		AND 
-		SectionClassPeriod.SchoolYear = CourseOffering.SchoolYear
-		AND 
-		SectionClassPeriod.SectionIdentifier=s.SectionIdentifier
-		AND 
-		SectionClassPeriod.SessionName=s.SessionName
+
+    INNER JOIN 
+        edfi.Course
+    ON 
+        Course.CourseCode = CourseOffering.CourseCode
+    AND 
+        Course.EducationOrganizationId = CourseOffering.EducationOrganizationId
+
+    LEFT OUTER JOIN edfi.School sch ON s.SchoolId = sch.SchoolId
+    LEFT OUTER JOIN edfi.AcademicSubjectDescriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Course.AcademicSubjectDescriptorId
+    LEFT OUTER JOIN edfi.Descriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Descriptor.DescriptorId
+    LEFT JOIN edfi.Descriptor eed ON eed.DescriptorId = s.EducationalEnvironmentDescriptorId
+
+    LEFT JOIN edfi.Session ON 
+        Session.SchoolId = Course.EducationOrganizationId
+        AND 
+        Session.SchoolYear = CourseOffering.SchoolYear
+        AND 
+        Session.SessionName = s.SessionName
+
+    LEFT OUTER JOIN edfi.TermDescriptor ON TermDescriptor.TermDescriptorId = Session.TermDescriptorId
+    LEFT OUTER JOIN edfi.Descriptor td ON TermDescriptor.TermDescriptorId = td.DescriptorId
+    LEFT OUTER JOIN edfi.SectionClassPeriod ON 
+        SectionClassPeriod.LocalCourseCode = CourseOffering.LocalCourseCode
+        AND 
+        SectionClassPeriod.SchoolId = Course.EducationOrganizationId
+        AND 
+        SectionClassPeriod.SchoolYear = CourseOffering.SchoolYear
+        AND 
+        SectionClassPeriod.SectionIdentifier=s.SectionIdentifier
+        AND 
+        SectionClassPeriod.SessionName=s.SessionName
 
 GO
