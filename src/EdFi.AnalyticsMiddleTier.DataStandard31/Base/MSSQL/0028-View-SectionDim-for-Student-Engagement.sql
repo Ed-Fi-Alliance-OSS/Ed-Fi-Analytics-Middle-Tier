@@ -21,21 +21,21 @@ CREATE VIEW analytics.SectionDim AS
             ,s.SessionName
         ) AS SectionKey
         ,FORMATMESSAGE(
-            '%s-(%s)-%s-(%s)-%s',
-            Descriptor.Description
+            '%s(%s)-%s(%s)%s',
+            COALESCE(Descriptor.Description, '')
             ,s.LocalCourseCode
             ,Course.CourseTitle
-            ,SectionClassPeriod.ClassPeriodName
-            ,td.Description
+            ,COALESCE(SectionClassPeriod.ClassPeriodName, '')
+            ,COALESCE(td.Description, '')
         ) AS Description
         ,FORMATMESSAGE(
             '%s-%s',
             s.LocalCourseCode
-            ,Session.SessionName
+            ,s.SessionName
         ) AS SectionName
-        ,Session.SessionName
-        ,COALESCE(SectionClassPeriod.LocalCourseCode,CourseOffering.LocalCourseCode) as LocalCourseCode
-        ,COALESCE(Session.SchoolYear,CourseOffering.SchoolYear) as SchoolYear
+        ,s.SessionName
+        ,s.LocalCourseCode
+        ,s.SchoolYear
         ,eed.Description AS EducationalEnvironmentDescriptor
 
         -- NOTE: LocalEducationAgencyId was accidentally introduced in a prior release.
@@ -63,21 +63,28 @@ CREATE VIEW analytics.SectionDim AS
         CourseOffering.SchoolYear = s.SchoolYear
     AND
         CourseOffering.SessionName = s.SessionName
+    AND
+        CourseOffering.SchoolYear = s.SchoolYear
+
     INNER JOIN 
-        edfi.Course ON 
+        edfi.Course
+    ON 
         Course.CourseCode = CourseOffering.CourseCode
-        AND 
+    AND 
         Course.EducationOrganizationId = CourseOffering.EducationOrganizationId
-    LEFT JOIN edfi.School sch ON s.SchoolId = sch.SchoolId
+
+    LEFT OUTER JOIN edfi.School sch ON s.SchoolId = sch.SchoolId
     LEFT OUTER JOIN edfi.AcademicSubjectDescriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Course.AcademicSubjectDescriptorId
     LEFT OUTER JOIN edfi.Descriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Descriptor.DescriptorId
     LEFT JOIN edfi.Descriptor eed ON eed.DescriptorId = s.EducationalEnvironmentDescriptorId
+
     LEFT JOIN edfi.Session ON 
         Session.SchoolId = Course.EducationOrganizationId
         AND 
         Session.SchoolYear = CourseOffering.SchoolYear
         AND 
         Session.SessionName = s.SessionName
+
     LEFT OUTER JOIN edfi.TermDescriptor ON TermDescriptor.TermDescriptorId = Session.TermDescriptorId
     LEFT OUTER JOIN edfi.Descriptor td ON TermDescriptor.TermDescriptorId = td.DescriptorId
     LEFT OUTER JOIN edfi.SectionClassPeriod ON 
