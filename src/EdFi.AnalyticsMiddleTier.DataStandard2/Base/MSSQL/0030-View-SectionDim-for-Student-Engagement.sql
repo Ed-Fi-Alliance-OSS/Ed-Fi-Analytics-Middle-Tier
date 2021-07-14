@@ -16,16 +16,16 @@ AS
           CONCAT(CAST(s.SchoolId AS NVARCHAR),'-',[s].[ClassPeriodName],'-',[s].[ClassroomIdentificationCode],'-',s.[LocalCourseCode],'-',CAST([s].[TermDescriptorId] AS NVARCHAR),'-',CAST(s.[SchoolYear] AS NVARCHAR),'-',s.[UniqueSectionCode],'-',CAST(s.[SequenceOfCourse] AS NVARCHAR)) AS [SectionKey],
           CONCAT([Descriptor].[Description],'(',s.[LocalCourseCode],')','-',[Course].[CourseTitle],'(',s.[ClassPeriodName],')',TermType.Description) as Description,
 		  CONCAT([s].[LocalCourseCode],'-',COALESCE([Course].[CourseTitle], '')) AS [SectionName],
-		  [Course].[CourseTitle] AS [SessionName],
+		  [Course].[CourseTitle] as [SessionName],
 		  [CourseOffering].[LocalCourseCode],
 		  s.SchoolYear, 
 		  EducationalEnvironmentType.Description as EducationalEnvironmentDescriptor,
 
-        -- NOTE: LocalEducationAgencyId was accidentally introduced in a prior release.
-        -- Rather than creating a breaking change, it is being left in place while the
-        -- correct column name, LocalEducationAgencyKey, is also being introduced
-        sch.LocalEducationAgencyId,
-        sch.LocalEducationAgencyId as LocalEducationAgencyKey,
+          -- NOTE: LocalEducationAgencyId was accidentally introduced in a prior release.
+          -- Rather than creating a breaking change, it is being left in place while the
+          -- correct column name, LocalEducationAgencyKey, is also being introduced
+          sch.LocalEducationAgencyId,
+          sch.LocalEducationAgencyId as LocalEducationAgencyKey,
 
 		  s.LastModifiedDate
           ,course.CourseTitle
@@ -49,30 +49,20 @@ AS
 	AND
 		CourseOffering.SchoolYear = s.SchoolYear
 
-    INNER JOIN
-		[edfi].[Course]
-    ON 
-		[Course].[CourseCode] = [CourseOffering].[CourseCode]
-	AND
-		[Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
-
-    LEFT OUTER JOIN
-       [edfi].[School] sch
-	ON
-       sch.SchoolId = [Course].[EducationOrganizationId]
-
+    INNER JOIN [edfi].[Course]
+          ON [Course].[CourseCode] = [CourseOffering].[CourseCode]
+             AND [Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
+    LEFT JOIN
+       [edfi].[School] sch ON
+           sch.SchoolId = [Course].[EducationOrganizationId]
     LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor]
           ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
-
     LEFT OUTER JOIN [edfi].[Descriptor]
           ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
-
 	LEFT OUTER JOIN [edfi].TermDescriptor
 		  ON TermDescriptor.TermDescriptorId = s.TermDescriptorId
-
 	LEFT OUTER JOIN [edfi].TermType
 		  ON TermDescriptor.TermTypeId = TermType.TermTypeId
-
 	LEFT OUTER JOIN [edfi].EducationalEnvironmentType
 		  ON EducationalEnvironmentType.EducationalEnvironmentTypeId = s.EducationalEnvironmentTypeId
 
