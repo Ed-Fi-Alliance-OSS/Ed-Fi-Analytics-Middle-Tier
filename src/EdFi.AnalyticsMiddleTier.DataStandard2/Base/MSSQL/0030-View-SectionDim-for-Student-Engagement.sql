@@ -11,7 +11,7 @@ GO
 
 CREATE VIEW [analytics].[SectionDim]
 AS
-     SELECT 
+    SELECT 
           CAST(s.SchoolId AS VARCHAR) AS SchoolKey,
           CONCAT(CAST(s.SchoolId AS NVARCHAR),'-',[s].[ClassPeriodName],'-',[s].[ClassroomIdentificationCode],'-',s.[LocalCourseCode],'-',CAST([s].[TermDescriptorId] AS NVARCHAR),'-',CAST(s.[SchoolYear] AS NVARCHAR),'-',s.[UniqueSectionCode],'-',CAST(s.[SequenceOfCourse] AS NVARCHAR)) AS [SectionKey],
           CONCAT([Descriptor].[Description],'(',s.[LocalCourseCode],')','-',[Course].[CourseTitle],'(',s.[ClassPeriodName],')',TermType.Description) as Description,
@@ -38,25 +38,41 @@ AS
           ) as SessionKey
    FROM 
         [edfi].[Section] s
-    INNER JOIN [edfi].[CourseOffering]
-          ON [CourseOffering].[SchoolId] = s.[SchoolId]
-             AND [CourseOffering].[LocalCourseCode] = s.[LocalCourseCode]
+    INNER JOIN 
+		[edfi].[CourseOffering]
+    ON 
+		[CourseOffering].[SchoolId] = s.[SchoolId]
+    AND
+		[CourseOffering].[LocalCourseCode] = s.[LocalCourseCode]
     AND
         CourseOffering.TermDescriptorId = s.TermDescriptorId
-    INNER JOIN [edfi].[Course]
-          ON [Course].[CourseCode] = [CourseOffering].[CourseCode]
-             AND [Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
-    LEFT JOIN
-       [edfi].[School] sch ON
-           sch.SchoolId = [Course].[EducationOrganizationId]
+	AND
+		CourseOffering.SchoolYear = s.SchoolYear
+
+    INNER JOIN
+		[edfi].[Course]
+    ON 
+		[Course].[CourseCode] = [CourseOffering].[CourseCode]
+	AND
+		[Course].[EducationOrganizationId] = [CourseOffering].[EducationOrganizationId]
+
+    LEFT OUTER JOIN
+       [edfi].[School] sch
+	ON
+       sch.SchoolId = [Course].[EducationOrganizationId]
+
     LEFT OUTER JOIN [edfi].[AcademicSubjectDescriptor]
           ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Course].[AcademicSubjectDescriptorId]
+
     LEFT OUTER JOIN [edfi].[Descriptor]
           ON [AcademicSubjectDescriptor].[AcademicSubjectDescriptorId] = [Descriptor].[DescriptorId]
+
 	LEFT OUTER JOIN [edfi].TermDescriptor
 		  ON TermDescriptor.TermDescriptorId = s.TermDescriptorId
+
 	LEFT OUTER JOIN [edfi].TermType
 		  ON TermDescriptor.TermTypeId = TermType.TermTypeId
+
 	LEFT OUTER JOIN [edfi].EducationalEnvironmentType
 		  ON EducationalEnvironmentType.EducationalEnvironmentTypeId = s.EducationalEnvironmentTypeId
 
