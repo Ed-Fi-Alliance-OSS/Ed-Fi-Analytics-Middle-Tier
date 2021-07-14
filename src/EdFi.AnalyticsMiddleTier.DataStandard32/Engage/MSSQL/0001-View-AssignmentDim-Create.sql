@@ -5,6 +5,7 @@
 
 CREATE VIEW analytics.engage_AssignmentDim AS
 
+
     SELECT
         Assignment.AssignmentIdentifier as AssignmentKey,
         Assignment.SchoolId as SchoolKey,
@@ -23,8 +24,8 @@ CREATE VIEW analytics.engage_AssignmentDim AS
 		) as SessionKey,
         FORMATMESSAGE(
 			'%s-%s-%s',
-			CAST(SessionGradingPeriod.GradingPeriodDescriptorId as VARCHAR),
-			CAST(Assignment.SchoolId as VARCHAR),
+			CAST(GradingPeriod.GradingPeriodDescriptorId as VARCHAR),
+			CAST(GradingPeriod.SchoolId as VARCHAR),
 			CONVERT(VARCHAR, GradingPeriod.BeginDate, 112)
 		) as GradingPeriodKey,
         Assignment.LastModifiedDate
@@ -41,27 +42,35 @@ CREATE VIEW analytics.engage_AssignmentDim AS
 	ON
 		DescriptorMap.DescriptorConstantId = DescriptorConstant.DescriptorConstantId
 
-	INNER JOIN
-		edfi.SessionGradingPeriod
-	ON
-		Assignment.SessionName = SessionGradingPeriod.SessionName
-	AND
-		Assignment.SchoolYear = SessionGradingPeriod.SchoolYear
-	AND
-		Assignment.SchoolId = SessionGradingPeriod.SchoolId
-	-- TODO: What if the above turns up multiple hits? Do we have a way of getting
-	-- more specific? Stephen to investigate
-
-	INNER JOIN
-		edfi.GradingPeriod
-	ON
-		SessionGradingPeriod.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
-	AND
-		SessionGradingPeriod.PeriodSequence = GradingPeriod.PeriodSequence
-	AND
-		SessionGradingPeriod.SchoolId = GradingPeriod.SchoolId
-	AND
-		SessionGradingPeriod.SchoolYear = GradingPeriod.SchoolYear
+	CROSS APPLY (
+		SELECT
+			TOP(1)
+			GradingPeriod.GradingPeriodDescriptorId,
+			GradingPeriod.SchoolId,
+			GradingPeriod.BeginDate
+		FROM
+			edfi.SessionGradingPeriod
+		INNER JOIN
+			edfi.GradingPeriod
+		ON
+			SessionGradingPeriod.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
+		AND
+			SessionGradingPeriod.PeriodSequence = GradingPeriod.PeriodSequence
+		AND
+			SessionGradingPeriod.SchoolId = GradingPeriod.SchoolId
+		AND
+			SessionGradingPeriod.SchoolYear = GradingPeriod.SchoolYear
+		WHERE
+			Assignment.SessionName = SessionGradingPeriod.SessionName
+		AND
+			Assignment.SchoolYear = SessionGradingPeriod.SchoolYear
+		AND
+			Assignment.SchoolId = SessionGradingPeriod.SchoolId
+		AND
+			Assignment.DueDateTime BETWEEN GradingPeriod.BeginDate AND GradingPeriod.EndDate
+		ORDER BY
+			GradingPeriod.PeriodSequence
+	) AS GradingPeriod
 
 	INNER JOIN
 		edfi.Descriptor
