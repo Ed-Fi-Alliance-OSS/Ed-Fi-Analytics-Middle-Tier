@@ -56,7 +56,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_DeviceAccess()
             {
                 
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentInternetAccessDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_DeviceAccess.xml");
+               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_DeviceAccess.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -64,7 +64,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_DigitalDevice()
             {
                 (bool success, string errorMessage) testResult = DataStandard
-                    .RunTestCase<StudentInternetAccessDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_DigitalDevice.xml");
+                    .RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_DigitalDevice.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -72,7 +72,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_InternetAccessInResidence()
             {
                 (bool success, string errorMessage) testResult = DataStandard
-                    .RunTestCase<StudentInternetAccessDim>(
+                    .RunTestCase<CountResult>(
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_InternetAccessInResidence.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
@@ -81,7 +81,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_InternetPerformance()
             {
                 (bool success, string errorMessage) testResult = DataStandard
-                    .RunTestCase<StudentInternetAccessDim>(
+                    .RunTestCase<CountResult>(
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_InternetPerformance.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
@@ -90,7 +90,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_SchoolKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard
-                    .RunTestCase<StudentInternetAccessDim>(
+                    .RunTestCase<CountResult>(
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
@@ -104,6 +104,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
+            [Test]
+            public void Then_should_have_StudentKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentInternetAccessDim>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_StudentKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
 
             [Test]
             public void Then_should_have_SecondStudent()

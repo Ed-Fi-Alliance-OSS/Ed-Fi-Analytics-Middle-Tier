@@ -4,13 +4,12 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT InternetPerformance
+        SELECT COUNT(1) as CountValue
         FROM analytics.StudentInternetAccessDim
-        WHERE StudentSchoolKey = 'this is unique-867530010';
+        WHERE StudentSchoolKey = 'this is unique-867530010'
+        AND InternetPerformance = 'Yes - No issues';
     </Query>
     <Result>
-        <InternetPerformance>
-            Yes - No issues
-        </InternetPerformance>
+        <CountValue>1</CountValue>
     </Result>
 </TestCase>
