@@ -14,12 +14,15 @@ using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.DataStandard2;
 using Microsoft.SqlServer.Dac;
 using Npgsql;
+using Respawn.Postgres;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarness
     {
+        private static PostgresCheckpoint _checkpoint;
+
         public static TestHarness DataStandard2 = new TestHarness
         {
             _dataStandardVersionName = "2",
@@ -266,11 +269,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
         }
 
-        //public void UnloadDatabase()
-        //{
-        //    if (_engine == Engine.PostgreSQL)
-        //        new PowerShellHelper().DeleteDatabase();
-        //}
+        public void UnloadDatabase()
+        {
+            if (_checkpoint != null)
+                _checkpoint.Reset(_connectionString).Wait();
+        }
 
         public void PrepareDatabase()
         {
@@ -291,7 +294,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                     connection2.Open();
                     connection2.Execute("CREATE DATABASE odstest;");
                 }
-                
+
                 connection2.Dispose();
 
                 using (var connection = OpenConnection())
@@ -300,18 +303,30 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                         "SELECT 1 FROM information_schema.schemata WHERE schema_name = 'edfi';") == 1;
 
                     if (!schemaExists)
+                    {
                         psHellper.RestoreDB();
+                        _checkpoint = new PostgresCheckpoint
+                        {
+                            AutoCreateExtensions = true,
 
-                    // Otherwise just truncate all tables.
-                    truncateAllTables(connection);
+                            SchemasToInclude = new[]
+                            {
+                                "public",
+                                "edfi"
+                            }
+                        };
+                    }
+
+                    // Respawn reset
+                    respawnReset(connection);
                 }
 
-                void truncateAllTables(IDbConnection connection)
+                void respawnReset(IDbConnection connection)
                 {
                     var truncateAllTablesLine = connection.ExecuteScalar<string>(
                             @"SELECT 'TRUNCATE TABLE '
-	                            || string_agg(format('%I.%I', schemaname, tablename), ', ')
-	                            || ' CASCADE'
+                             || string_agg(format('%I.%I', schemaname, tablename), ', ')
+                             || ' CASCADE'
                             FROM pg_tables
                             WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config')");
 

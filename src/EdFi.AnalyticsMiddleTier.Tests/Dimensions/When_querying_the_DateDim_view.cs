@@ -37,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeTearDown]
         public void UnLoadDatabase()
         {
-            //DataStandard.UnloadDatabase();
+            DataStandard.UnloadDatabase();
         }
 
         [Test]
