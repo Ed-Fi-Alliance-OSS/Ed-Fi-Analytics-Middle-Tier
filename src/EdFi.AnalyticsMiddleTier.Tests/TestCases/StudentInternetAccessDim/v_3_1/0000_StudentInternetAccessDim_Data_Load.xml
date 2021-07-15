@@ -114,6 +114,14 @@
         @studentUsi,
         @schoolId,
         @sexdescriptorId
+        ), (
+        @studentUsi,
+        @districtId,
+        @sexdescriptorId
+        ),(
+        @studentUsi2,
+        @schoolId,
+        @sexdescriptorId
         ),(
         @studentUsi2,
         @districtId,
@@ -139,7 +147,7 @@
         @schoolId,
         @studentUsi,
         'InternetAccessTypeInResidence',
-        'ResidentialBroadband '
+        'ResidentialBroadband'
         ),(
         @schoolId,
         @studentUsi,
@@ -156,10 +164,41 @@
         'DeviceAccess',
         'School Provided - Dedicated'
         ),
-        -- This is an extra record that should be ignored by the view
-        -- Because it is associated with the District, not the School
+        -- These extra records should be ignored by the view because
+        -- they are associated with the District, not the School
         (
         @districtId,
+        @studentUsi,
+        'InternetAccessInResidence',
+        'Yes__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'InternetAccessTypeInResidence',
+        'ResidentialBroadband__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'InternetPerformance',
+        'Yes - No issues__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'DigitalDevice',
+        'Chromebook__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'DeviceAccess',
+        'School Provided - Dedicated__'
+        ),
+        -- This record is for a different student
+        (
+        @schoolId,
         @studentUsi2,
         'DeviceAccess',
         'School Provided - Dedicated'

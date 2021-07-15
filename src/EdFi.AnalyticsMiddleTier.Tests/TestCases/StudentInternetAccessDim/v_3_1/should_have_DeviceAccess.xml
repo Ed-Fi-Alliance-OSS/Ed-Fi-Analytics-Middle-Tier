@@ -4,13 +4,12 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT DeviceAccess
+        SELECT COUNT(1) as CountValue
         FROM analytics.StudentInternetAccessDim
-        WHERE StudentSchoolKey = 'this is unique-867530010';
+        WHERE StudentKey = 'this is unique'
+        AND DeviceAccess = 'School Provided - Dedicated';
     </Query>
     <Result>
-        <DeviceAccess>
-            School Provided - Dedicated
-        </DeviceAccess>
+        <CountValue>1</CountValue>
     </Result>
 </TestCase>

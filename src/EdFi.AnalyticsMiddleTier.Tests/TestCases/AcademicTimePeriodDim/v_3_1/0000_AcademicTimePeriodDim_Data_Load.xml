@@ -259,5 +259,6 @@
         42,
         'SchoolYear is the last modified'
         );
+
     </ControlDataInsertion>
 </TestCase>

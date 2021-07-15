@@ -6,7 +6,7 @@
   <Query>
       SELECT COUNT(1) as CountValue
       FROM analytics.StudentInternetAccessDim
-      WHERE StudentSchoolKey = 'this is unique-867530010';
+      WHERE StudentSchoolKey = 'this is unique';
   </Query>
     <Result>
         <CountValue>1</CountValue>

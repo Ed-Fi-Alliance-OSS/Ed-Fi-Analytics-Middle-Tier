@@ -18,6 +18,7 @@ AS
 			Student.StudentUniqueId,
 			CAST(edorg.EducationOrganizationId as VARCHAR)
 		) as StudentSchoolKey,
+		StudentUniqueId as StudentKey,
 		CAST(edorg.EducationOrganizationId as VARCHAR) as SchoolKey,
 		COALESCE(InternetAccessInResidence.Indicator,'n/a') as InternetAccessInResidence,
 		COALESCE(InternetAccessTypeInResidence.Indicator,'n/a') as InternetAccessTypeInResidence,

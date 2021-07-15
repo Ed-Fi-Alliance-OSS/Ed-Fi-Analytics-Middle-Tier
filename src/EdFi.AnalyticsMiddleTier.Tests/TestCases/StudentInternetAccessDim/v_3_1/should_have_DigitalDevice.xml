@@ -4,13 +4,12 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT DigitalDevice
+        SELECT COUNT(1) as CountValue
         FROM analytics.StudentInternetAccessDim
-        WHERE StudentSchoolKey = 'this is unique-867530010';
+        WHERE StudentSchoolKey = 'this is unique-867530010'
+        AND DigitalDevice = 'Chromebook';
     </Query>
     <Result>
-        <DigitalDevice>
-            Chromebook
-        </DigitalDevice>
+        <CountValue>1</CountValue>
     </Result>
 </TestCase>

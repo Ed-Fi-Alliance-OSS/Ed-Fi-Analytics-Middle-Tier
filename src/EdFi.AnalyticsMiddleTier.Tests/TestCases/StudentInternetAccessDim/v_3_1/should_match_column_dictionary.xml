@@ -39,4 +39,8 @@
         <ColumnName>SchoolKey</ColumnName>
         <DataType>varchar</DataType>
     </Result>
+    <Result>
+        <ColumnName>StudentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
 </TestCase>
