@@ -8,40 +8,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public void DeleteDatabase()
         {
-            try
-            {
-                //RunScript("dropdb -h localhost -p 5432 -U postgres --no-password --if-exists --maintenance-db=EdFi_ODS odstest", null);
-            }
-            catch (Exception e)
-            {
-                var asdf = string.Empty;
-            }
+            //RunScript("dropdb -h localhost -p 5432 -U postgres --no-password --if-exists --maintenance-db=EdFi_ODS odstest", null);
         }
 
         public void CreateDatabase()
         {
-            try
-            {
-                //RunScript("createdb -h localhost -p 5432 -U postgres --no-password --maintenance-db=EdFi_ODS odstest", null);
-            }
-            catch (Exception e)
-            {
-                var asdf = string.Empty;
-            }
+            //RunScript("createdb -h localhost -p 5432 -U postgres --no-password --maintenance-db=EdFi_ODS odstest", null);
         }
-
 
         public void RestoreDB()
         {
-            try
-            {
-                //RunScript("psql --dbname odstest --host localhost --port 5432 --quiet --username postgres --file \"EdFi.Ods.Minimal.Template.sql\"", null);
-            }
-            catch (Exception e)
-            {
-                var asdf = string.Empty;
-            }
-
+            RunScript("psql --dbname odstest --host localhost --port 5432 --quiet --username postgres --file \"EdFi.Ods.Minimal.Template.sql\"", null);
         }
 
         /// <summary>

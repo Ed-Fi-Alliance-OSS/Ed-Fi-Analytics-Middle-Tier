@@ -266,11 +266,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
         }
 
-        public void UnloadDatabase()
-        {
-            if (_engine == Engine.PostgreSQL)
-                new PowerShellHelper().DeleteDatabase();
-        }
+        //public void UnloadDatabase()
+        //{
+        //    if (_engine == Engine.PostgreSQL)
+        //        new PowerShellHelper().DeleteDatabase();
+        //}
 
         public void PrepareDatabase()
         {
@@ -278,9 +278,46 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             {
                 var psHellper = new PowerShellHelper();
 
-                psHellper.DeleteDatabase();
-                psHellper.CreateDatabase();
-                psHellper.RestoreDB();
+                IDbConnection connection2;
+                connection2 = new NpgsqlConnection(
+                    "User ID=postgres;Password=gapUser123;Host=localhost;Port=5432;Database=postgres;Pooling=false;");
+
+                var databaseExists = connection2.ExecuteScalar<int>(
+                    "SELECT 1 FROM pg_database WHERE datname='odstest';") == 1;
+
+                // If database does not exist, then create it first.
+                if (!databaseExists)
+                {
+                    connection2.Open();
+                    connection2.Execute("CREATE DATABASE odstest;");
+                }
+                
+                connection2.Dispose();
+
+                using (var connection = OpenConnection())
+                {
+                    var schemaExists = connection.ExecuteScalar<int>(
+                        "SELECT 1 FROM information_schema.schemata WHERE schema_name = 'edfi';") == 1;
+
+                    if (!schemaExists)
+                        psHellper.RestoreDB();
+
+                    // Otherwise just truncate all tables.
+                    truncateAllTables(connection);
+                }
+
+                void truncateAllTables(IDbConnection connection)
+                {
+                    var truncateAllTablesLine = connection.ExecuteScalar<string>(
+                            @"SELECT 'TRUNCATE TABLE '
+	                            || string_agg(format('%I.%I', schemaname, tablename), ', ')
+	                            || ' CASCADE'
+                            FROM pg_tables
+                            WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config')");
+
+                    if (!string.IsNullOrEmpty(truncateAllTablesLine))
+                        connection.Execute(truncateAllTablesLine);
+                }
             }
             else
             {

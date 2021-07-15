@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
-            //DataStandard.PrepareDatabase();
+            DataStandard.PrepareDatabase();
         }
 
         [OneTimeSetUp]
@@ -37,13 +37,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeTearDown]
         public void UnLoadDatabase()
         {
-            DataStandard.UnloadDatabase();
+            //DataStandard.UnloadDatabase();
         }
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
