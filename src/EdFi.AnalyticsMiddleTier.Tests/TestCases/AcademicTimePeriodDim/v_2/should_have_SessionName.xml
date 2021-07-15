@@ -5,7 +5,8 @@
     </ControlDataInsertion>
     <Query>
         SELECT SessionName
-        FROM analytics.AcademicTimePeriodDim;
+        FROM analytics.AcademicTimePeriodDim
+        WHERE SessionName = 'Grading period is the last modified';
     </Query>
     <Result>
         <SessionName>

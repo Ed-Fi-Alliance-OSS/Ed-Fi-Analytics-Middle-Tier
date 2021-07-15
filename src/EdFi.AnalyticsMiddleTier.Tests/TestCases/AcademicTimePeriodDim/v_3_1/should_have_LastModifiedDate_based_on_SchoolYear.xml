@@ -4,13 +4,13 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT SchoolYearName
+        SELECT LastModifiedDate
         FROM analytics.AcademicTimePeriodDim
-        WHERE SessionName = 'Grading period is the last modified';
+        WHERE SessionName = 'SchoolYear is the last modified';
     </Query>
     <Result>
-        <SchoolYearName>
-            2012-2013
-        </SchoolYearName>
+        <LastModifiedDate>
+            2005-05-05
+        </LastModifiedDate>
     </Result>
 </TestCase>
