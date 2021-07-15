@@ -2,16 +2,20 @@
 <TestCase>
     <DBMS>Any</DBMS>
     <ControlDataInsertion>
-
+        -- Default Records, with SchoolYearType being the first modified
+        -- record, followed by Session, and finally GradingPeriod has
+        -- the most recently modified  record
         INSERT INTO edfi.SchoolYearType (
         SchoolYear,
         SchoolYearDescription,
-        CurrentSchoolYear
+        CurrentSchoolYear,
+        LastModifiedDate
         )
         VALUES (
         2012,
         '2012-2013',
-        1
+        1,
+        '2001-01-01'
         );
 
         INSERT INTO edfi.EducationOrganization (
@@ -78,16 +82,18 @@
         SessionName,
         BeginDate,
         EndDate,
-        TotalInstructionalDays
+        TotalInstructionalDays,
+        LastModifiedDate
         )
         VALUES (
         867530010,
         2012,
         @termDescriptorId,
-        'Traditional',
+        'Grading period is the last modified',
         '1999-12-31',
         '2012-12-31 23:59:59',
-        180
+        180,
+        '2002-02-02'
         )
 
         INSERT INTO edfi.Descriptor (
@@ -136,14 +142,16 @@
         SchoolId,
         BeginDate,
         TotalInstructionalDays,
-        EndDate
+        EndDate,
+        LastModifiedDate
         )
         VALUES (
         @gradingPeriodDescriptorId,
         867530010,
         '1999-12-31',
         1,
-        '2000-01-01'
+        '2000-01-01',
+        '2003-03-03'
         );
 
         INSERT INTO edfi.SessionGradingPeriod (
@@ -155,6 +163,119 @@
         )
         VALUES (
         2012,
+        @termDescriptorId,
+        867530010,
+        @gradingPeriodDescriptorId,
+        '1999-12-31'
+        );
+
+        -- Scenario where the Session is the most recently modified record
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'SpringSemester2',
+        'Spring Semester2',
+        'Spring-Semester2',
+        'uri://ed-fi.org/TermDescriptorId2'
+        );
+
+        SELECT @termDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.TermDescriptor (
+        TermDescriptorId,
+        TermTypeId
+        )
+        VALUES (
+        @termDescriptorId,
+        @termTypeId
+        );
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        TermDescriptorId,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TotalInstructionalDays,
+        LastModifiedDate
+        )
+        VALUES (
+        867530010,
+        2012,
+        @termDescriptorId,
+        'Session is the last modified',
+        '1999-12-31',
+        '2012-12-31 23:59:59',
+        180,
+        '2004-04-04'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        SchoolYear,
+        TermDescriptorId,
+        SchoolId,
+        GradingPeriodDescriptorId,
+        BeginDate
+        )
+        VALUES (
+        2012,
+        @termDescriptorId,
+        867530010,
+        @gradingPeriodDescriptorId,
+        '1999-12-31'
+        );
+
+
+
+        -- Scenario where the SchoolYear is the most recently modified record
+        INSERT INTO edfi.SchoolYearType (
+        SchoolYear,
+        SchoolYearDescription,
+        CurrentSchoolYear,
+        LastModifiedDate
+        )
+        VALUES (
+        2005,
+        '2005-2013',
+        1,
+        '2005-05-05'
+        );
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        TermDescriptorId,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TotalInstructionalDays,
+        LastModifiedDate
+        )
+        VALUES (
+        867530010,
+        2005,
+        @termDescriptorId,
+        'SchoolYear is the last modified',
+        '1999-12-31',
+        '2012-12-31 23:59:59',
+        180,
+        '2004-04-04'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        SchoolYear,
+        TermDescriptorId,
+        SchoolId,
+        GradingPeriodDescriptorId,
+        BeginDate
+        )
+        VALUES (
+        2005,
         @termDescriptorId,
         867530010,
         @gradingPeriodDescriptorId,

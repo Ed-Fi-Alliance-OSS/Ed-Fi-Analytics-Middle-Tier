@@ -78,11 +78,29 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_LastModifiedDate()
+            public void Then_should_have_LastModifiedDate_based_on_GradingPeriod()
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate_based_on_GradingPeriod.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate_based_on_Session()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<AcademicTimePeriodDim>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate_based_on_Session.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_LastModifiedDate_based_on_SchoolYear()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<AcademicTimePeriodDim>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate_based_on_SchoolYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

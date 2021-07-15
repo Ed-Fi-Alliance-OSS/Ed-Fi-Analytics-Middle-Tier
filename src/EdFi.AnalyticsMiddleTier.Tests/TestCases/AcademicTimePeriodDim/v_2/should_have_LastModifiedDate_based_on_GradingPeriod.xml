@@ -5,11 +5,12 @@
     </ControlDataInsertion>
     <Query>
         SELECT LastModifiedDate
-        FROM analytics.AcademicTimePeriodDim;
+        FROM analytics.AcademicTimePeriodDim
+        WHERE SessionName = 'Grading period is the last modified';
     </Query>
     <Result>
         <LastModifiedDate>
-            2015-09-18 11:34:00.000
+            2003-03-03
         </LastModifiedDate>
     </Result>
 </TestCase>
