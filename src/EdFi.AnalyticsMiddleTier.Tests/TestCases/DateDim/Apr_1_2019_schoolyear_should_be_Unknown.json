@@ -2,7 +2,7 @@
     "DBMS": "Any",
     "ControlDataInsertion": "",
     "DropControlData": "",
-    "Query": "SELECT SchoolYear \n FROM analytics.DateDim \nWHERE DateKey=20190401;",
+    "Query": "SELECT SchoolYear \n FROM analytics.DateDim \nWHERE DateKey='20190401';",
     "Result": [
         {
             "SchoolYear": "Unknown"

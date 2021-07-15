@@ -50,6 +50,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             DataStandardVersion = DataStandard.Ds32
         };
 
+        public static TestHarness DataStandard32PG = new TestHarness
+        {
+            _dataStandardVersionName = "PG_3_2",
+            _dataStandardFolderName = "PG_3_2",
+            _databaseName = "odstest",
+            _engine = Engine.PostgreSQL,
+            _dataStandardInstallType = typeof(DataStandard32.Install),
+            DataStandardVersion = DataStandard.Ds32
+        };
+
         private string _dacpacName;
 
         private IDatabaseMigrationStrategy _databaseMigrationStrategy;
@@ -75,7 +85,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        private string _connectionString => $"server=localhost;database={_databaseName};integrated security=sspi";
+        private string _connectionString =>
+                _engine == Engine.PostgreSQL
+                ? $"User ID=postgres;Password=gapUser123;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;"
+                : $"server=localhost;database={_databaseName};integrated security=sspi";
 
         private string _snapshotName => $"{_databaseName}_ss";
 
@@ -202,9 +215,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             using (var connection = OpenConnection())
             {
-                var sql =
-                    $"select 1 from information_schema.views where table_schema = '{schema}' and table_name='{viewName}'";
-                return connection.ExecuteScalar<int>(sql) == 1;
+                var sql = string.Empty;
+
+                if (_engine == Engine.PostgreSQL)
+                {
+                    return TableExists(schema, viewName);
+                }
+                else
+                {
+                    sql =
+                        $"select 1 from information_schema.views where table_schema = '{schema}' and table_name='{viewName}'";
+
+                    return connection.ExecuteScalar<int>(sql) == 1;
+                }
             }
         }
 
@@ -217,9 +240,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             using (var connection = OpenConnection())
             {
-                var sql =
-                    $"select 1 from information_schema.tables where table_schema = '{schemaName}' and table_name='{tableName}'";
-                return connection.ExecuteScalar<int>(sql) == 1;
+                var sql = string.Empty;
+
+                if (_engine == Engine.PostgreSQL)
+                {
+                    sql =
+                        $"SELECT EXISTS (SELECT FROM information_schema.tables WHERE  table_schema = '{schemaName}' AND table_name = '{tableName}');";
+
+                    return connection.ExecuteScalar<bool>(sql);
+                }
+                else
+                {
+                    sql =
+                        $"select 1 from information_schema.tables where table_schema = '{schemaName}' and table_name='{tableName}'";
+                    return connection.ExecuteScalar<int>(sql) == 1;
+                }
             }
         }
 
@@ -231,94 +266,110 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
         }
 
+        public void UnloadDatabase()
+        {
+            if (_engine == Engine.PostgreSQL)
+                new PowerShellHelper().DeleteDatabase();
+        }
+
         public void PrepareDatabase()
         {
-            using (var connection = new SqlConnection("server=localhost;database=master;integrated security=sspi"))
+            if (_engine == Engine.PostgreSQL)
             {
-                if (NotUsingSnapshots())
+                var psHellper = new PowerShellHelper();
+
+                psHellper.DeleteDatabase();
+                psHellper.CreateDatabase();
+                psHellper.RestoreDB();
+            }
+            else
+            {
+                using (var connection = new SqlConnection("server=localhost;database=master;integrated security=sspi"))
                 {
-                    Console.WriteLine("Not using snapshots for Analytics Middle Tier integration testing");
-                    DropSnapshotIfItExists();
-                    LoadDacpac();
-                }
-                else
-                {
-                    if (TestDatabaseExists() && SnapshotExists())
+                    if (NotUsingSnapshots())
                     {
-                        ReloadFromSnapshotBackup();
+                        Console.WriteLine("Not using snapshots for Analytics Middle Tier integration testing");
+                        DropSnapshotIfItExists();
+                        LoadDacpac();
                     }
                     else
                     {
-                        LoadDacpac();
-                        CreateSnapshot();
+                        if (TestDatabaseExists() && SnapshotExists())
+                        {
+                            ReloadFromSnapshotBackup();
+                        }
+                        else
+                        {
+                            LoadDacpac();
+                            CreateSnapshot();
+                        }
                     }
-                }
 
-                bool NotUsingSnapshots()
-                {
-                    const string analyticsMiddleTierNoSnapshots = "ANALYTICSMIDDLETIER_NO_SNAPSHOTS";
-
-                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) ??
-                                            "false";
-
-                    if (bool.TryParse(noSnapshotsEnvVar, out bool avoidSnapshot))
+                    bool NotUsingSnapshots()
                     {
-                        return avoidSnapshot;
+                        const string analyticsMiddleTierNoSnapshots = "ANALYTICSMIDDLETIER_NO_SNAPSHOTS";
+
+                        var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) ??
+                                                "false";
+
+                        if (bool.TryParse(noSnapshotsEnvVar, out bool avoidSnapshot))
+                        {
+                            return avoidSnapshot;
+                        }
+
+                        return false;
                     }
 
-                    return false;
-                }
+                    bool TestDatabaseExists()
+                    {
+                        return connection.ExecuteScalar<int>(
+                                   $"SELECT 1 FROM sys.databases WHERE[name] = '{_databaseName}'") == 1;
+                    }
 
-                bool TestDatabaseExists()
-                {
-                    return connection.ExecuteScalar<int>(
-                               $"SELECT 1 FROM sys.databases WHERE[name] = '{_databaseName}'") == 1;
-                }
+                    bool SnapshotExists()
+                    {
+                        return connection.ExecuteScalar<int>(
+                                   $"SELECT 1 FROM sys.databases WHERE [name] = '{_snapshotName}'") == 1;
+                    }
 
-                bool SnapshotExists()
-                {
-                    return connection.ExecuteScalar<int>(
-                               $"SELECT 1 FROM sys.databases WHERE [name] = '{_snapshotName}'") == 1;
-                }
-
-                void ReloadFromSnapshotBackup()
-                {
-                    connection.Execute($"ALTER DATABASE[{_databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
-                    connection.Execute($@"
+                    void ReloadFromSnapshotBackup()
+                    {
+                        connection.Execute($"ALTER DATABASE[{_databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+                        connection.Execute($@"
 IF EXISTS(SELECT 1 FROM sys.databases WHERE [name] = '{_snapshotName}')
 BEGIN
     RESTORE DATABASE {_databaseName} FROM DATABASE_SNAPSHOT = '{_snapshotName}'
 END
 ");
-                    connection.Execute($"ALTER DATABASE [{_databaseName}] SET MULTI_USER");
-                }
-
-                void LoadDacpac()
-                {
-                    var dacService = new DacServices(_connectionString);
-                    using (var dacpac = DacPackage.Load(GetDacFilePath()))
-                    {
-                        dacService.Deploy(dacpac, _databaseName, true, CreateDeployOptions());
+                        connection.Execute($"ALTER DATABASE [{_databaseName}] SET MULTI_USER");
                     }
-                }
 
-                DacDeployOptions CreateDeployOptions()
-                {
-                    return new DacDeployOptions
+                    void LoadDacpac()
                     {
-                        CreateNewDatabase = true
-                    };
-                }
+                        var dacService = new DacServices(_connectionString);
+                        using (var dacpac = DacPackage.Load(GetDacFilePath()))
+                        {
+                            dacService.Deploy(dacpac, _databaseName, true, CreateDeployOptions());
+                        }
+                    }
 
-                string GetDacFilePath()
-                {
-                    // ReSharper disable once AssignNullToNotNullAttribute
-                    return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), _dacpacName);
-                }
+                    DacDeployOptions CreateDeployOptions()
+                    {
+                        return new DacDeployOptions
+                        {
+                            CreateNewDatabase = true
+                        };
+                    }
 
-                void CreateSnapshot()
-                {
-                    var defaultFilePathForSqlDbFiles = $@"
+                    string GetDacFilePath()
+                    {
+                        // ReSharper disable once AssignNullToNotNullAttribute
+                        return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), _dacpacName);
+                    }
+
+                    void CreateSnapshot()
+                    {
+                        var defaultFilePathForSqlDbFiles = $@"
 WITH pathname as (
     SELECT [physical_name]
     FROM [{_databaseName}].[sys].[database_files]
@@ -327,29 +378,30 @@ WITH pathname as (
 SELECT REPLACE([physical_name], '{_databaseName}_Primary.mdf', '') as FilePath
 FROM pathname
 ";
-                    var filePath = connection.ExecuteScalar<string>(defaultFilePathForSqlDbFiles);
+                        var filePath = connection.ExecuteScalar<string>(defaultFilePathForSqlDbFiles);
 
-                    var createOrReplaceSnapshotTemplate = $@"
+                        var createOrReplaceSnapshotTemplate = $@"
 CREATE DATABASE {_snapshotName} ON
   (Name = {_databaseName}, FileName = '{filePath}\{_snapshotName}.ss')
 AS SNAPSHOT OF {_databaseName}
 ";
-                    connection.Execute(createOrReplaceSnapshotTemplate);
-                }
+                        connection.Execute(createOrReplaceSnapshotTemplate);
+                    }
 
 #pragma warning disable CS8321 // Local function is declared but never used
-                void DropSnapshotIfItExists()
+                    void DropSnapshotIfItExists()
 #pragma warning restore CS8321 // Local function is declared but never used
-                {
-                    // ReSharper disable once InvertIf - easier to read this way
-                    if (SnapshotExists())
                     {
-                        var dropSnapshotHistory =
-                            $"EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'{_snapshotName}'";
-                        connection.Execute(dropSnapshotHistory);
+                        // ReSharper disable once InvertIf - easier to read this way
+                        if (SnapshotExists())
+                        {
+                            var dropSnapshotHistory =
+                                $"EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'{_snapshotName}'";
+                            connection.Execute(dropSnapshotHistory);
 
-                        var dropSnapshot = $@"DROP DATABASE {_snapshotName}";
-                        connection.Execute(dropSnapshot);
+                            var dropSnapshot = $@"DROP DATABASE {_snapshotName}";
+                            connection.Execute(dropSnapshot);
+                        }
                     }
                 }
             }
@@ -392,7 +444,13 @@ AS SNAPSHOT OF {_databaseName}
 
         private IDbConnection OpenConnection()
         {
-            var connection = new SqlConnection(_connectionString);
+            IDbConnection connection;
+
+            if (_engine == Engine.PostgreSQL)
+                connection = new NpgsqlConnection(_connectionString);
+            else
+                connection = new SqlConnection(_connectionString);
+
             connection.Open();
 
             return connection;

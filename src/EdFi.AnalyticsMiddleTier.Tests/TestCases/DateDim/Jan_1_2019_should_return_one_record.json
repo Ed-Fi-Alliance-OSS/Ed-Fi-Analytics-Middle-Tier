@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "SELECT count(1) as CountValue\n FROM analytics.DateDim \nWHERE DateKey=20190101;",
+  "Query": "SELECT count(1) as CountValue\n FROM analytics.DateDim \nWHERE DateKey='20190101';",
   "Result": [
     {
       "CountValue": "1"

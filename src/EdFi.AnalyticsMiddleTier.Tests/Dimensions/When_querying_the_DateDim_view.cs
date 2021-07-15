@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
-            DataStandard.PrepareDatabase();
+            //DataStandard.PrepareDatabase();
         }
 
         [OneTimeSetUp]
@@ -33,7 +33,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             Result = DataStandard.Install();
             Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
         }
-        
+
+        [OneTimeTearDown]
+        public void UnLoadDatabase()
+        {
+            DataStandard.UnloadDatabase();
+        }
+
         [Test]
         public void Then_view_should_match_column_dictionary()
         {

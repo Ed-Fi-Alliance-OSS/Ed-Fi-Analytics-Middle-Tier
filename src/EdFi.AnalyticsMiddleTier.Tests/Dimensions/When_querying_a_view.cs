@@ -14,7 +14,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     {
         protected TestHarness DataStandard { get; set; }
 
-        protected static TestHarness[] FixtureDataProvider()=>(new []{ TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected static TestHarness[] FixtureDataProvider()=>(new []{ TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32, TestHarness.DataStandard32PG });
 
         protected void SetDataStandard(TestHarness dataStandard)
         {

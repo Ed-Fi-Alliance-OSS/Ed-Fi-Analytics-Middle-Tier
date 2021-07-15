@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "SELECT DateKey \n FROM analytics.DateDim \nWHERE DateKey=20190930;",
+  "Query": "SELECT DateKey \n FROM analytics.DateDim \nWHERE DateKey='20190930';",
   "Result": [
     {
       "DateKey": "20190930"
