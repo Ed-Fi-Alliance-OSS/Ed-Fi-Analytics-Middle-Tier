@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         protected const string QUERY =
             "SELECT COUNT(1) FROM AnalyticsMiddleTierSchemaVersion WHERE ScriptName LIKE '%.Engage.%'";
 
-        protected abstract TestHarness DataStandard { get; }
+        protected abstract TestHarnessSQLServer DataStandard { get; }
 
         protected (bool success, string errorMessage) Result;
 
@@ -48,7 +48,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_two : When_installing_Engage_option
         {
-            protected override TestHarness DataStandard => TestHarness.DataStandard2;
+            protected override TestHarnessSQLServer DataStandard => TestHarnessSQLServer.DataStandard2;
 
             [TestCase()]
             public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
@@ -66,7 +66,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_three_one : When_installing_Engage_option
         {
-            protected override TestHarness DataStandard => TestHarness.DataStandard31;
+            protected override TestHarnessSQLServer DataStandard => TestHarnessSQLServer.DataStandard31;
 
             [TestCase()]
             public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
@@ -84,7 +84,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_three_two : When_installing_Engage_option
         {
-            protected override TestHarness DataStandard => TestHarness.DataStandard32;
+            protected override TestHarnessSQLServer DataStandard => TestHarnessSQLServer.DataStandard32;
 
             // The baseline DS32 database does not have the extension tables
             // that are required to install the "Engage" collection. Thus 

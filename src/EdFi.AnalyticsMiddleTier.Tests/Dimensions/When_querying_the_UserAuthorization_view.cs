@@ -46,7 +46,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffEducationOrganizationAssignmentAssociation_that_has_already_ended
             : When_querying_the_UserAuthorization_view
         {
-            public Given_an_StaffEducationOrganizationAssignmentAssociation_that_has_already_ended(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffEducationOrganizationAssignmentAssociation_that_has_already_ended(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_the_resulting_record_count_is_zero()
@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_AuthorizationScope_equal_to_Section_with_no_section_associated
             : When_querying_the_UserAuthorization_view
         {
-            public Given_an_AuthorizationScope_equal_to_Section_with_no_section_associated(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_AuthorizationScope_equal_to_Section_with_no_section_associated(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_no_records_are_returned()
@@ -74,7 +74,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_District
             : When_querying_the_UserAuthorization_view
         {
-            public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_District(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_District(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_DistrictId_with_UserScope_equal_to_District_is_returned_properly()
@@ -101,7 +101,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_School
             : When_querying_the_UserAuthorization_view
         {
-            public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_School(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_School(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_DistrictId_with_UserScope_equal_to_School_is_returned_properly()
@@ -129,7 +129,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_Section
             : When_querying_the_UserAuthorization_view
         {
-            public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_Section(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffEducationOrganizationAssignmentAssociation_with_AuthorizationScope_equal_to_Section(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_DistrictId_with_UserScope_equal_to_Section_is_returned_properly()
@@ -157,7 +157,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_a_request_to_retrieve_a_specific_record
             : When_querying_the_UserAuthorization_view
         {
-            public Given_a_request_to_retrieve_a_specific_record(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_request_to_retrieve_a_specific_record(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_SectionPermission_is_correct_with_UserKey()
@@ -178,7 +178,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_all_existing_records_returned_by_the_view
             : When_querying_the_UserAuthorization_view
         {
-            public Given_all_existing_records_returned_by_the_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_all_existing_records_returned_by_the_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_StudentPermission_is_always_ALL()

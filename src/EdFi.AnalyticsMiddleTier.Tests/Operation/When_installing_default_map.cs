@@ -17,7 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 
         protected (bool success, string errorMessage) Result;
-        protected When_installing_default_map(TestHarness dataStandard) : base(dataStandard) { }
+        protected When_installing_default_map(TestHarnessSQLServer dataStandard) : base(dataStandard) { }
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public class Given_descriptor_map
             : When_installing_default_map
         {
-            public Given_descriptor_map(TestHarness dataStandard) : base(dataStandard) { }
+            public Given_descriptor_map(TestHarnessSQLServer dataStandard) : base(dataStandard) { }
             [Test]
             public void Then_view_should_match_column_dictionary()
             {
@@ -55,7 +55,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public class Given_type_map
             : When_installing_default_map
         {
-            public Given_type_map(TestHarness dataStandard) : base(dataStandard) { }
+            public Given_type_map(TestHarnessSQLServer dataStandard) : base(dataStandard) { }
             [Test]
             public void Then_view_should_match_column_dictionary()
             {

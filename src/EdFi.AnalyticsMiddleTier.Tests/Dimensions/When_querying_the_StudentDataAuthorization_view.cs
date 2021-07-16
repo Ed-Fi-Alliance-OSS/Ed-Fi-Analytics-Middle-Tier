@@ -45,7 +45,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_StudentDataAuthorization_view_custom
             : When_querying_the_StudentDataAuthorization_view
         {
-            public When_querying_the_StudentDataAuthorization_view_custom(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_StudentDataAuthorization_view_custom(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {

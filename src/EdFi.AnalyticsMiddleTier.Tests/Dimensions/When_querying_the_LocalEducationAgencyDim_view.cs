@@ -43,7 +43,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_528530
             : When_querying_the_LocalEducationAgencyDim_view
         {
-            public Given_grading_period_528530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_528530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "528530";
             [Test]
             public void Then_should_return_one_record()
@@ -117,7 +117,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_628530
             : When_querying_the_LocalEducationAgencyDim_view
         {
-            public Given_grading_period_628530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "628530";
             [Test]
             public void Then_should_return_one_record()
@@ -191,7 +191,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_628531
             : When_querying_the_LocalEducationAgencyDim_view
         {
-            public Given_grading_period_628531(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_628531(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "628531";
 
             [Test]

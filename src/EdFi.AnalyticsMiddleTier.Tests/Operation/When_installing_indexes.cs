@@ -14,7 +14,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
     public abstract class When_installing_indexes
     {
 
-        protected abstract TestHarness _dataStandard { get; }
+        protected abstract TestHarnessSQLServer _dataStandard { get; }
 
         protected (bool success, string errorMessage) Result;
 
@@ -54,7 +54,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_two : When_installing_indexes
         {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
+            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard2;
 
             [TestCase("IX_AMT_Grade_SectionKey")]
             [TestCase("IX_AMT_AcademicSubjectType_CodeValue")]
@@ -70,7 +70,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_three_one : When_installing_indexes
         {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
+            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
 
             [TestCase("IX_AMT_Grade_SectionKey")]
             public void Then_should_create_index(string indexName) => AssertIndexCreated(indexName);
@@ -81,7 +81,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_three_two : When_installing_indexes
         {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
+            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
 
             [TestCase("IX_AMT_Grade_SectionKey")]
             public void Then_should_create_index(string indexName) => AssertIndexCreated(indexName);

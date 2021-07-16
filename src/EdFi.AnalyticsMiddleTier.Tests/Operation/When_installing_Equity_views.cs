@@ -13,7 +13,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_installing_Equity_views
     {
-        protected abstract TestHarness _dataStandard { get; }
+        protected abstract TestHarnessSQLServer _dataStandard { get; }
 
         protected (bool success, string errorMessage) Result;
 
@@ -49,13 +49,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestFixture]
         public class Given_data_standard_three_one : When_installing_Equity_views
         {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
+            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
         }
 
         [TestFixture]
         public class Given_data_standard_three_two : When_installing_Equity_views
         {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
+            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
         }
     }
 }

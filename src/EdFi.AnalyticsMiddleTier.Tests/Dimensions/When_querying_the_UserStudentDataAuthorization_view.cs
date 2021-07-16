@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11324_190019
         : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11324_190019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11324_190019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11324_190019";
 
@@ -59,7 +59,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11324_197085
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11324_197085(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11324_197085(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11324_197085";
 
@@ -74,7 +74,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11324_218269
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11324_218269(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11324_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11324_218269";
 
@@ -89,7 +89,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11453_218269
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11453_218269(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11453_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11453_218269";
 
@@ -104,7 +104,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11492_190019
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11492_190019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11492_190019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11492_190019";
 
@@ -119,7 +119,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11721_190019
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11721_190019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11721_190019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11721_190019";
 
@@ -134,7 +134,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11721_218268
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11721_218268(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11721_218268(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11721_218268";
 
@@ -149,7 +149,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11721_218269
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11721_218269(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11721_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11721_218269";
 
@@ -164,7 +164,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_12143_197085
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_12143_197085(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_12143_197085(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "12143_197085";
 
@@ -179,7 +179,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_12143_197184
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_12143_197184(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_12143_197184(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "12143_197184";
 
@@ -194,7 +194,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_12497_197184
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_12497_197184(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_12497_197184(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "12497_197184";
 
@@ -209,7 +209,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_14162_218269
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_14162_218269(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_14162_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "14162_218269";
 
@@ -224,7 +224,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_13493_218269
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_13493_218269(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_13493_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "13493_218269";
 
@@ -239,7 +239,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_UserStudentDataAuthorization_11721_218271
             : When_querying_the_UserStudentDataAuthorization_view
         {
-            public Given_UserStudentDataAuthorization_11721_218271(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_UserStudentDataAuthorization_11721_218271(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11721_218271";
 

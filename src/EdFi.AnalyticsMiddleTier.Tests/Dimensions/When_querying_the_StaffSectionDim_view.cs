@@ -45,7 +45,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StaffSection_11324_XLTV31
         : When_querying_the_StaffSectionDim_view
         {
-            public Given_StaffSection_11324_XLTV31(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StaffSection_11324_XLTV31(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11324_XLTV31";
 
@@ -178,7 +178,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StaffSection_11331_NCMR11
         : When_querying_the_StaffSectionDim_view
         {
-            public Given_StaffSection_11331_NCMR11(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StaffSection_11331_NCMR11(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11331_NCMR11";
 
@@ -311,7 +311,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StaffSection_11331_2012
         : When_querying_the_StaffSectionDim_view
         {
-            public Given_StaffSection_11331_2012(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StaffSection_11331_2012(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11331_2012";
 
@@ -345,7 +345,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StaffSection_13724_BPPR20
         : When_querying_the_StaffSectionDim_view
         {
-            public Given_StaffSection_13724_BPPR20(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StaffSection_13724_BPPR20(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "13724_BPPR20";
 

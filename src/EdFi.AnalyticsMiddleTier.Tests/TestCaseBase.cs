@@ -12,14 +12,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [TestFixtureSource(nameof(FixtureDataProvider))]
     public abstract class TestCaseBase
     {
-        protected TestHarness DataStandard { get; set; }
+        protected TestHarnessBase DataStandard { get; set; }
 
-        protected static TestHarness[] FixtureDataProvider()=>(new []{ TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected static ITestHarnessBase[] FixtureDataProvider()=>(new []{ TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG });
 
-        protected TestCaseBase(TestHarness dataStandard)
+        protected TestCaseBase(TestHarnessBase dataStandard)
         {
             this.DataStandard = dataStandard;
         }
     }
-
 }

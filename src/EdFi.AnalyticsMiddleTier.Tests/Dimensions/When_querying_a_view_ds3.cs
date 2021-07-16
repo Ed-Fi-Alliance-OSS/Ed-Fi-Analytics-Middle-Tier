@@ -12,6 +12,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     [TestFixtureSource(nameof(FixtureDataProviderDs3))]
     public abstract class When_querying_a_view_ds3 : When_querying_a_view
     {
-        protected static TestHarness[] FixtureDataProviderDs3() => (new[] { TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected static ITestHarnessBase[] FixtureDataProviderDs3() => (new[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG });
     }
 }

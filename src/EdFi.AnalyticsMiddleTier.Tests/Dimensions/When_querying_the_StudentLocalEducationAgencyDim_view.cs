@@ -47,7 +47,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_local_education_agency_189871_867530
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
-            public Given_student_local_education_agency_189871_867530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_local_education_agency_189871_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "189871_867530";
             [Test]
             public void Then_should_return_one_record()
@@ -143,7 +143,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_local_education_agency_189919_867530
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
-            public Given_student_local_education_agency_189919_867530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_local_education_agency_189919_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "189919_867530";
             [Test]
             public void Then_should_return_one_record()
@@ -239,7 +239,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_local_education_agency_193964_867530
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
-            public Given_student_local_education_agency_193964_867530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_local_education_agency_193964_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "193964_867530";
             [Test]
             public void Then_should_return_one_record()
@@ -335,7 +335,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_local_education_agency_189919_628530
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
-            public Given_student_local_education_agency_189919_628530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_local_education_agency_189919_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "189919_628530";
             [Test]
             public void Then_should_not_return_any_record()

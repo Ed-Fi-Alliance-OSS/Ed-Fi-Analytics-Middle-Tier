@@ -47,7 +47,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "CohortYear_2019_Eighth_grade";
-            public Given_CohortYear_Eighth_grade_and_School_year_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_CohortYear_Eighth_grade_and_School_year_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {
@@ -80,7 +80,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "CohortYear_2019";
-            public Given_CohortYear_School_year_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_CohortYear_School_year_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_have_DemographicParentKey_combinations()
@@ -109,7 +109,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "CohortYear_Eleven_Grade";
-            public Given_CohortYear_Eleventh_grade(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_CohortYear_Eleventh_grade(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_have_DemographicParentKey_combinations()
@@ -136,7 +136,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "DisabilityDesignation_Other";
-            public Given_DisabilityDesignation_Other(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_DisabilityDesignation_Other(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -179,7 +179,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "DisabilityDesignation_Section_504";
-            public Given_DisabilityDesignation_Section_504(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_DisabilityDesignation_Section_504(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -222,7 +222,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "DisabilityDesignations";
-            public Given_a_set_of_DisabilityDesignations(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_DisabilityDesignations(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -247,7 +247,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Language_English";
-            public Given_Language_English(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_Language_English(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -281,7 +281,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Language_Persian";
-            public Given_Language_Persian(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_Language_Persian(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -315,7 +315,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Languages";
-            public Given_a_set_of_Languages(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_Languages(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_all_rows()
@@ -331,7 +331,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "LanguageUse_Correspondence_language";
-            public Given_LanguageUse_Correspondence_language(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_LanguageUse_Correspondence_language(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -365,7 +365,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "LanguageUse_Dominant_language";
-            public Given_LanguageUse_Dominant_language(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_LanguageUse_Dominant_language(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -399,7 +399,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "LanguageUses";
-            public Given_a_set_of_LanguagesUse(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_LanguagesUse(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_all_rows()
@@ -415,7 +415,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Race_Asian";
-            public Given_Race_Asian(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_Race_Asian(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -449,7 +449,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Race_White";
-            public Given_Race_White(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_Race_White(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -483,7 +483,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Races";
-            public Given_a_set_of_Races(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_Races(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_all_rows()
@@ -499,7 +499,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "TribalAffiliation_Afognak";
-            public Given_TribalAffiliation_Afognak(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_TribalAffiliation_Afognak(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -542,7 +542,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "TribalAffiliation_Agdaagux";
-            public Given_TribalAffiliation_Agdaagux(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_TribalAffiliation_Agdaagux(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -585,7 +585,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "TribalAffiliations";
-            public Given_a_set_of_TribalAffiliations(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_TribalAffiliations(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -610,7 +610,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "StudentCharacteristic_Migrant";
-            public Given_StudentCharacteristic_Migrant(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentCharacteristic_Migrant(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -644,7 +644,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "StudentCharacteristic_Asylee";
-            public Given_StudentCharacteristic_Asylee(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentCharacteristic_Asylee(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -678,7 +678,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "StudentCharacteristic_EconomicDisadvantaged";
-            public Given_StudentCharacteristic_EconomicDisadvantaged(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentCharacteristic_EconomicDisadvantaged(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -712,7 +712,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "StudentCharacteristics";
-            public Given_a_set_of_StudentCharacteristics(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_StudentCharacteristics(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_all_rows()
@@ -728,7 +728,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Disability_Medical_condition";
-            public Given_Disability_Medical_condition(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_Disability_Medical_condition(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -762,7 +762,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Disability_Physical_disability";
-            public Given_Disability_Physical_Disability(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_Disability_Physical_Disability(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -796,7 +796,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "Disability";
-            public Given_a_set_of_Disabilities(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_a_set_of_Disabilities(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_all_rows()

@@ -45,7 +45,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_user_11324
         : When_querying_the_UserDim_view
         {
-            public Given_user_11324(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_user_11324(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11324";
 
@@ -81,7 +81,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_user_11358
             : When_querying_the_UserDim_view
         {
-            public Given_user_11358(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_user_11358(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11358";
 
@@ -117,7 +117,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_user_11472
             : When_querying_the_UserDim_view
         {
-            public Given_user_11472(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_user_11472(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11472";
 

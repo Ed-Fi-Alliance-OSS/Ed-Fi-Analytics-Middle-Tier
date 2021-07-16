@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentProgramCohortDim_189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000
         : When_querying_the_StudentProgramCohortDim_view
         {
-            public Given_StudentProgramCohortDim_189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentProgramCohortDim_189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000";
 
@@ -127,7 +127,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentProgramCohortDim_189890_867530023_Cohort_Program_2_1666_867531_867531_20060815_CI_1001
         : When_querying_the_StudentProgramCohortDim_view
         {
-            public Given_StudentProgramCohortDim_189890_867530023_Cohort_Program_2_1666_867531_867531_20060815_CI_1001(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentProgramCohortDim_189890_867530023_Cohort_Program_2_1666_867531_867531_20060815_CI_1001(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "189890_867530023_Cohort_Program_2_1666_867531_867531_20060815_CI_1001";
 
@@ -152,7 +152,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public class Given_StudentProgramCohortDim_189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004
             : When_querying_the_StudentProgramCohortDim_view
             {
-                public Given_StudentProgramCohortDim_189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004(TestHarness dataStandard) => SetDataStandard(dataStandard);
+                public Given_StudentProgramCohortDim_189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
                 private const string _caseIdentifier = "189891_867530024_Cohort_Program_3_1666_867533_867533_20060815_CI_1004";
 
@@ -177,7 +177,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public class Given_StudentProgramCohortDim_189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007
             : When_querying_the_StudentProgramCohortDim_view
             {
-                public Given_StudentProgramCohortDim_189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007(TestHarness dataStandard) => SetDataStandard(dataStandard);
+                public Given_StudentProgramCohortDim_189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
                 private const string _caseIdentifier = "189894_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007";
 
@@ -202,7 +202,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public class Given_StudentProgramCohortDim_189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007
             : When_querying_the_StudentProgramCohortDim_view
             {
-                public Given_StudentProgramCohortDim_189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007(TestHarness dataStandard) => SetDataStandard(dataStandard);
+                public Given_StudentProgramCohortDim_189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
                 private const string _caseIdentifier = "189895_867530027_Cohort_Program_6_1666_867536_867536_20060815_CI_1007";
 
@@ -228,7 +228,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public class Given_StudentProgramCohortDim_189896_867530028_Cohort_Program_8_1666_867538_867538_20060815_CI_1009
             : When_querying_the_StudentProgramCohortDim_view
             {
-                public Given_StudentProgramCohortDim_189896_867530028_Cohort_Program_8_1666_867538_867538_20060815_CI_1009(TestHarness dataStandard) => SetDataStandard(dataStandard);
+                public Given_StudentProgramCohortDim_189896_867530028_Cohort_Program_8_1666_867538_867538_20060815_CI_1009(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
                 private const string _caseIdentifier = "189896_867530028_Cohort_Program_8_1666_867538_867538_20060815_CI_1009";
 
@@ -260,7 +260,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public class Given_StudentProgramCohortDim_189899_867530029_Cohort_Program_9_1666_867539_867539_20060815_CI_1010
             : When_querying_the_StudentProgramCohortDim_view
             {
-                public Given_StudentProgramCohortDim_189899_867530029_Cohort_Program_9_1666_867539_867539_20060815_CI_1010(TestHarness dataStandard) => SetDataStandard(dataStandard);
+                public Given_StudentProgramCohortDim_189899_867530029_Cohort_Program_9_1666_867539_867539_20060815_CI_1010(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
                 private const string _caseIdentifier = "189899_867530029_Cohort_Program_9_1666_867539_867539_20060815_CI_1010";
 

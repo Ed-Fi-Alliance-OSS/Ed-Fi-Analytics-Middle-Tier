@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentSchoolFoodServiceProgramDim_189889_867530022_Food_Service_1_1666_867530_867530_20060814_2892
         : When_querying_the_StudentSchoolFoodServiceProgramDim_view
         {
-            public Given_StudentSchoolFoodServiceProgramDim_189889_867530022_Food_Service_1_1666_867530_867530_20060814_2892(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentSchoolFoodServiceProgramDim_189889_867530022_Food_Service_1_1666_867530_867530_20060814_2892(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "189889_867530022_Food_Service_1_1666_867530_867530_20060814_2892";
 
@@ -127,7 +127,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentSchoolFoodServiceProgramDim_189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892
         : When_querying_the_StudentSchoolFoodServiceProgramDim_view
         {
-            public Given_StudentSchoolFoodServiceProgramDim_189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentSchoolFoodServiceProgramDim_189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "189890_867530023_Food_Service_2_1666_867531_867531_20060815_2892";
 
@@ -152,7 +152,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentSchoolFoodServiceProgramDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892
         : When_querying_the_StudentSchoolFoodServiceProgramDim_view
         {
-            public Given_StudentSchoolFoodServiceProgramDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentSchoolFoodServiceProgramDim_189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "189899_867530032_Food_Service_1_1666_867535_867535_20060814_2892";
 

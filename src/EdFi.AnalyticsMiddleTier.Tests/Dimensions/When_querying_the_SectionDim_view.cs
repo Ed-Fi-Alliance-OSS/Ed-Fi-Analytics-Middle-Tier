@@ -74,7 +74,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_SectionDim_view
             : When_querying_the_SectionDim_view_base
         {
-            public When_querying_the_SectionDim_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SectionDim_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "YTAR11";
 
@@ -139,7 +139,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_SectionDim_V2_view
             : When_querying_the_SectionDim_view_base
         {
-            public When_querying_the_SectionDim_V2_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SectionDim_V2_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -168,7 +168,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_SectionDim_V3_view
             : When_querying_the_SectionDim_view_base
         {
-            public When_querying_the_SectionDim_V3_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SectionDim_V3_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()

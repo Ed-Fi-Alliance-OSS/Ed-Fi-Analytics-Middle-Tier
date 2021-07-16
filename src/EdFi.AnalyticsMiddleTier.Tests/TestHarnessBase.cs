@@ -1,0 +1,274 @@
+﻿// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
+using Dapper;
+using EdFi.AnalyticsMiddleTier.Common;
+using Npgsql;
+
+namespace EdFi.AnalyticsMiddleTier.Tests
+{
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public class TestHarnessBase
+    {
+        protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
+
+        public string _databaseName;
+
+        public string _dataStandardFolderName;
+
+        protected InstallBase _dataStandardInstallBase;
+
+        public Type _dataStandardInstallType;
+
+        public string _dataStandardVersionName;
+
+        public Engine _engine = Engine.Default;
+
+        protected Func<string, int, Component[], (bool success, string errorMessage)> _installDelegate;
+
+        protected IUninstallStrategy _uninstallStrategy;
+
+        protected TestHarnessBase()
+        {
+            // private so that this class cannot be instantiated elsewhere
+        }
+
+        public virtual string _connectionString => string.Empty;
+
+        protected IOrm _orm { get; set; }
+
+        public DataStandard DataStandardVersion { get; set; }
+
+        public IOrm Orm
+        {
+            get
+            {
+                if (_orm == null)
+                {
+                    if (_engine == Engine.PostgreSQL)
+                    {
+                        _orm = new DapperWrapper(new NpgsqlConnection(_connectionString));
+                    }
+                    else
+                    {
+                        _orm = new DapperWrapper(new SqlConnection(_connectionString));
+                    }
+                }
+
+                return _orm;
+            }
+            set => _orm = value;
+        }
+
+        protected IDatabaseMigrationStrategy DatabaseMigrationStrategy
+        {
+            get
+            {
+                if (_databaseMigrationStrategy == null)
+                {
+                    if (_engine == Engine.PostgreSQL)
+                    {
+                        _databaseMigrationStrategy = new PostgresMigrationStrategy(Orm);
+                    }
+                    else
+                    {
+                        _databaseMigrationStrategy = new SqlServerMigrationStrategy(Orm);
+                    }
+                }
+
+                return _databaseMigrationStrategy;
+            }
+            set => _databaseMigrationStrategy = value;
+        }
+
+        protected IUninstallStrategy UninstallStrategy
+        {
+            get
+            {
+                if (_uninstallStrategy == null)
+                {
+                    if (_engine == Engine.PostgreSQL)
+                    {
+                        _uninstallStrategy = new PostgresUninstallStrategy(Orm);
+                    }
+                    else
+                    {
+                        _uninstallStrategy = new SqlServerUninstallStrategy(Orm);
+                    }
+                }
+
+                return _uninstallStrategy;
+            }
+            set => _uninstallStrategy = value;
+        }
+
+        protected InstallBase DataStandardInstallBase
+        {
+            get
+            {
+                _dataStandardInstallBase ??= (InstallBase)Activator.CreateInstance(_dataStandardInstallType,
+                    DatabaseMigrationStrategy);
+                return _dataStandardInstallBase;
+            }
+            set => _dataStandardInstallBase = value;
+        }
+
+        public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
+            ? ToString()
+            : "v_" + _dataStandardFolderName;
+
+        public string CurrentDataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
+            ? ToString()
+            : "v_" + _dataStandardVersionName;
+
+        public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
+        {
+            get
+            {
+                _installDelegate ??= DataStandardInstallBase.Run;
+                return _installDelegate;
+            }
+            set => _installDelegate = value;
+        }
+
+        public (bool success, string errorMessage) Install(int timeoutSeconds = 30, params Component[] components)
+        {
+            return InstallDelegate(_connectionString, timeoutSeconds, components);
+        }
+
+        public (bool success, string errorMessage) Uninstall()
+        {
+            return UninstallStrategy.Uninstall();
+        }
+
+        public T ExecuteScalarQuery<T>(string sqlCommand)
+        {
+            using (var connection = OpenConnection())
+            {
+                return connection.ExecuteScalar<T>(sqlCommand);
+            }
+        }
+
+        public bool ViewExists(string viewName)
+        {
+            return ViewExists(viewName, "analytics");
+        }
+
+        public bool ViewExists(string viewName, string schema)
+        {
+            using (var connection = OpenConnection())
+            {
+                var sql = string.Empty;
+
+                // ToDo: Can we use the same guery that works for SQL Server and Postgres?
+                if (_engine == Engine.PostgreSQL)
+                {
+                    return TableExists(schema, viewName);
+                }
+                else
+                {
+                    sql =
+                        $"select 1 from information_schema.views where table_schema = '{schema}' and table_name='{viewName}'";
+
+                    return connection.ExecuteScalar<int>(sql) == 1;
+                }
+            }
+        }
+
+        public bool TableExists(string tableName)
+        {
+            return TableExists("analytics_config", tableName);
+        }
+
+        public bool TableExists(string schemaName, string tableName)
+        {
+            using (var connection = OpenConnection())
+            {
+                var sql = string.Empty;
+
+                // ToDo: Can we use the same guery that works for SQL Server and Postgres?
+                if (_engine == Engine.PostgreSQL)
+                {
+                    sql =
+                        $"SELECT EXISTS (SELECT FROM information_schema.tables WHERE  table_schema = '{schemaName}' AND table_name = '{tableName}');";
+
+                    return connection.ExecuteScalar<bool>(sql);
+                }
+                else
+                {
+                    sql =
+                        $"select 1 from information_schema.tables where table_schema = '{schemaName}' and table_name='{tableName}'";
+                    return connection.ExecuteScalar<int>(sql) == 1;
+                }
+            }
+        }
+
+        public void ExecuteQuery(string sqlCommand)
+        {
+            using (var connection = OpenConnection())
+            {
+                connection.Execute(sqlCommand);
+            }
+        }
+
+        public virtual void PrepareDatabase()
+        {
+            
+        }
+
+        public override string ToString()
+        {
+            return $"v_{_dataStandardVersionName}";
+        }
+
+        public (bool success, string errorMessage) RunTestCase<T>(string testCaseFile)
+        {
+            (bool success, string errorMessage) testCaseResult;
+            var testCase = TestCaseSerializer.LoadTestCase<T>(testCaseFile);
+            using (testCase.Connection = OpenConnection())
+            {
+                testCase.LoadControlData();
+                testCaseResult = testCase.RunTestCase();
+            }
+
+            return testCaseResult;
+        }
+
+        public (bool success, string errorMessage) LoadTestCaseData<T>(string testCaseFile)
+        {
+            try
+            {
+                var testCase = TestCaseSerializer.LoadTestCase<T>(testCaseFile);
+                using (testCase.Connection = OpenConnection())
+                {
+                    testCase.LoadControlData();
+                    return (true, string.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public IDbConnection OpenConnection()
+        {
+            IDbConnection connection;
+
+            if (_engine == Engine.PostgreSQL)
+                connection = new NpgsqlConnection(_connectionString);
+            else
+                connection = new SqlConnection(_connectionString);
+
+            connection.Open();
+
+            return connection;
+        }
+    }
+}

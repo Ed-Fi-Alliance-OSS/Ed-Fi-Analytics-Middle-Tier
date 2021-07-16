@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "SELECT CalendarQuarterName\n FROM analytics.DateDim \nWHERE DateKey=20190101;",
+  "Query": "SELECT CalendarQuarterName\n FROM analytics.DateDim \nWHERE DateKey='20190101';",
   "Result": [
     {
       "CalendarQuarterName": "First"

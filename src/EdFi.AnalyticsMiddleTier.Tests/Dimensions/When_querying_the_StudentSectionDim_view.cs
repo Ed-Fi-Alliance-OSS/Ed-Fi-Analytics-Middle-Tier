@@ -45,7 +45,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_without_teacher
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_without_teacher(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_without_teacher(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "without_teacher";
 
             [Test]
@@ -153,7 +153,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_without_subject
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_without_subject(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_without_subject(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "without_subject";
 
             [Test]
@@ -261,7 +261,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_multiple_teacher
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_multiple_teacher(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_multiple_teacher(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "multiple_teachers";
 
             [Test]
@@ -376,7 +376,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_academic_subject
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_academic_subject(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_academic_subject(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "academic_subject";
 
             [Test]

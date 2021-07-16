@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentHistoryDim_197049_867530023
         : When_querying_the_StudentHistoryDim_view
         {
-            public Given_StudentHistoryDim_197049_867530023(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentHistoryDim_197049_867530023(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "197049_867530023";
 
@@ -111,7 +111,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentHistoryDim_224082_867530023
          : When_querying_the_StudentHistoryDim_view
         {
-            public Given_StudentHistoryDim_224082_867530023(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentHistoryDim_224082_867530023(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "224082_867530023";
 
@@ -167,7 +167,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentHistoryDim_205414_867530068
        : When_querying_the_StudentHistoryDim_view
         {
-            public Given_StudentHistoryDim_205414_867530068(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentHistoryDim_205414_867530068(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "205414_867530068";
 

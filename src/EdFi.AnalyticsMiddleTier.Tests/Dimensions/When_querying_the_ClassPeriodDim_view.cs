@@ -46,7 +46,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_ClassPeriodDim_view
             : When_querying_the_ClassPeriodDim_view_base
         {
-            public When_querying_the_ClassPeriodDim_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_ClassPeriodDim_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "ClassPeriod";
             [Test]
             public void Then_should_return_one_record()

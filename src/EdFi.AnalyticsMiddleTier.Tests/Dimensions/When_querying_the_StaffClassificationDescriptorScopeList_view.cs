@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffClassificationDescriptorScopeList_District
             : When_querying_the_StaffClassificationDescriptorScopeList
         {
-            public Given_an_StaffClassificationDescriptorScopeList_District(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffClassificationDescriptorScopeList_District(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "district";
             [Test]
             public void Then_should_return_one_record()
@@ -68,7 +68,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffClassificationDescriptorScopeList_School
             : When_querying_the_StaffClassificationDescriptorScopeList
         {
-            public Given_an_StaffClassificationDescriptorScopeList_School(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffClassificationDescriptorScopeList_School(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "school";
             [Test]
             public void Then_should_return_one_record()
@@ -92,7 +92,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffClassificationDescriptorScopeList_Section
             : When_querying_the_StaffClassificationDescriptorScopeList
         {
-            public Given_an_StaffClassificationDescriptorScopeList_Section(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffClassificationDescriptorScopeList_Section(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "section";
             [Test]
             public void Then_should_return_one_record()
@@ -116,7 +116,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_an_StaffClassificationDescriptorScopeList_UnexcusedAbsence
             : When_querying_the_StaffClassificationDescriptorScopeList
         {
-            public Given_an_StaffClassificationDescriptorScopeList_UnexcusedAbsence(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_an_StaffClassificationDescriptorScopeList_UnexcusedAbsence(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "unexcusedabsence";
             [Test]
             public void Then_should_not_return_any_record()

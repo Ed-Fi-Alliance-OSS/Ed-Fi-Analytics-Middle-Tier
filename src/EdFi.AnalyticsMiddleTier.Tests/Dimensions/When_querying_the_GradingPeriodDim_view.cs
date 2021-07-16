@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_54_628530001_20110822
         : When_querying_the_GradingPeriodDim_view
         {
-            public Given_grading_period_54_628530001_20110822(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_54_628530001_20110822(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "54_628530001_20110822";
 
             [Test]
@@ -137,7 +137,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_54_628530001_20111120
         : When_querying_the_GradingPeriodDim_view
         {
-            public Given_grading_period_54_628530001_20111120(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_54_628530001_20111120(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "54_628530001_20111120";
 
             [Test]

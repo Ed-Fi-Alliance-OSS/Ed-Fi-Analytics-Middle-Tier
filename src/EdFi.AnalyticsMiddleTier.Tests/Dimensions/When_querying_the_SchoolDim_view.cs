@@ -46,7 +46,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_SchoolDim_view
             : When_querying_the_SchoolDim_view_base
         {
-            public When_querying_the_SchoolDim_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SchoolDim_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()

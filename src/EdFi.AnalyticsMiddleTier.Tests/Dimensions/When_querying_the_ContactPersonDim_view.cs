@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_contact_person_132500_189856
             : When_querying_the_ContactPersonDim_view
         {
-            public Given_contact_person_132500_189856(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_contact_person_132500_189856(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "132500_189856";
 
             [Test]
@@ -218,7 +218,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_contact_person_133012_190142
             : When_querying_the_ContactPersonDim_view
         {
-            public Given_contact_person_133012_190142(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_contact_person_133012_190142(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "133012_190142";
 
             [Test]
@@ -392,7 +392,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_contact_person_154283_189864
             : When_querying_the_ContactPersonDim_view
         {
-            public Given_contact_person_154283_189864(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_contact_person_154283_189864(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "154283_189864";
 
             [Test]
@@ -566,7 +566,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_contact_person_156809_231203
             : When_querying_the_ContactPersonDim_view
         {
-            public Given_contact_person_156809_231203(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_contact_person_156809_231203(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "156809_231203";
 
             [Test]

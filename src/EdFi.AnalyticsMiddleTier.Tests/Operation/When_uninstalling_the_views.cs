@@ -14,11 +14,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
     [TestFixtureSource(nameof(FixtureDataProvider))]
     public class When_uninstalling_the_views
     {
-        protected static TestHarness[] FixtureDataProvider() => (new[] { TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected static TestHarnessSQLServer[] FixtureDataProvider() => (new[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32 });
         // There is only one uninstall procedure, so it is not necessary to run it for every data standard
 
-        protected TestHarness _dataStandard;
-        public When_uninstalling_the_views(TestHarness dataStandard)
+        protected TestHarnessSQLServer _dataStandard;
+        public When_uninstalling_the_views(TestHarnessSQLServer dataStandard)
         {
             _dataStandard = dataStandard;
         }

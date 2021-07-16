@@ -49,7 +49,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "189914";
-            public Given_student_189914(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_189914(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {
@@ -188,7 +188,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "189854";
-            public Given_student_189854(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_189854(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {
@@ -334,7 +334,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
            : When_querying_the_StudentSchoolDim_view
         {
             private const string _caseIdentifier = "189863";
-            public Given_student_189863(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_189863(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {
@@ -471,7 +471,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             : When_querying_the_StudentSchoolDim_view
         {
             private const string _caseIdentifier = "192452";
-            public Given_student_192452(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_192452(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {
@@ -609,7 +609,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
 
             private const string _caseIdentifier = "189936";
-            public Given_student_189936(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_189936(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_not_return_any_record()
             {

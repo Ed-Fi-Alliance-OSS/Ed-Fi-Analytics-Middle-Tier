@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_feederSchoolDim_850786060_628530
         : When_querying_the_FeederSchoolDim_view
         {
-            public Given_feederSchoolDim_850786060_628530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_feederSchoolDim_850786060_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "850786060_628530";
 
@@ -119,7 +119,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_feederSchoolDim_867530_850786060
         : When_querying_the_FeederSchoolDim_view
         {
-            public Given_feederSchoolDim_867530_850786060(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_feederSchoolDim_867530_850786060(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "867530_850786060";
 
@@ -178,7 +178,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_feederSchoolDim_628530_867530
         : When_querying_the_FeederSchoolDim_view
         {
-            public Given_feederSchoolDim_628530_867530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_feederSchoolDim_628530_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "628530_867530";
 

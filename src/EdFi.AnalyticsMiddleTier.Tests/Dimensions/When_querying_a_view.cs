@@ -12,11 +12,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     [TestFixtureSource(nameof(FixtureDataProvider))]
     public abstract class When_querying_a_view
     {
-        protected TestHarness DataStandard { get; set; }
+        protected TestHarnessBase DataStandard { get; set; }
 
-        protected static TestHarness[] FixtureDataProvider()=>(new []{ TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected static ITestHarnessBase[] FixtureDataProvider()=>(new []{ TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG });
 
-        protected void SetDataStandard(TestHarness dataStandard)
+        protected void SetDataStandard(TestHarnessBase dataStandard)
         {
             this.DataStandard = dataStandard;
         }
