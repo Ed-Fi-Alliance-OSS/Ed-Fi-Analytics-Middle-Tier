@@ -2,15 +2,20 @@
 <TestCase>
     <DBMS>Any</DBMS>
     <ControlDataInsertion>
+        -- Default Records, with SchoolYearType being the first modified
+        -- record, followed by Session, and finally GradingPeriod has
+        -- the most recently modified  record
         INSERT INTO edfi.SchoolYearType (
         SchoolYear,
         SchoolYearDescription,
-        CurrentSchoolYear
+        CurrentSchoolYear,
+        LastModifiedDate
         )
         VALUES (
         2012,
         '2012-2013',
-        1
+        1,
+        '2001-01-01'
         );
 
         INSERT INTO edfi.EducationOrganization (
@@ -59,7 +64,8 @@
         SessionName,
         BeginDate,
         EndDate,
-        TotalInstructionalDays
+        TotalInstructionalDays,
+        LastModifiedDate
         )
         VALUES (
         867530010,
@@ -68,7 +74,8 @@
         'Grading period is the last modified',
         '1999-12-31',
         '2012-12-31 23:59:59',
-        180
+        180,
+        '2002-02-02'
         )
 
         INSERT INTO edfi.Descriptor (
@@ -101,7 +108,8 @@
         TotalInstructionalDays,
         EndDate,
         PeriodSequence,
-        SchoolYear
+        SchoolYear,
+        LastModifiedDate
         )
         VALUES (
         @gradingPeriodDescriptorId,
@@ -110,7 +118,8 @@
         1,
         '2000-01-01',
         42,
-        2012
+        2012,
+        '2003-03-03'
         );
 
 
@@ -233,7 +242,8 @@
         TotalInstructionalDays,
         EndDate,
         PeriodSequence,
-        SchoolYear
+        SchoolYear,
+        LastModifiedDate
         )
         VALUES (
         @gradingPeriodDescriptorId,
@@ -242,7 +252,8 @@
         1,
         '2000-01-01',
         42,
-        2005
+        2005,
+        '1234-12-12'
         );
 
         INSERT INTO edfi.SessionGradingPeriod (

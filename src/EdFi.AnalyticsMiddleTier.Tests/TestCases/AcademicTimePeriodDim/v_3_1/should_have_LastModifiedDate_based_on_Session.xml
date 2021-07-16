@@ -4,13 +4,14 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT LastModifiedDate
+        SELECT COUNT(1) as CountValue
         FROM analytics.AcademicTimePeriodDim
-        WHERE SessionName = 'Grading period is the last modified';
+        WHERE SessionName = 'Session is the last modified'
+        and LastModifiedDate = '2004-04-04';
     </Query>
     <Result>
-        <LastModifiedDate>
-            2015-09-18 11:34:00.000
-        </LastModifiedDate>
+        <CountValue>
+            1
+        </CountValue>
     </Result>
 </TestCase>
