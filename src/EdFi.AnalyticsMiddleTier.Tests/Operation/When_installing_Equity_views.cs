@@ -5,28 +5,29 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
+using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_Equity_views
+    public class When_installing_Equity_views : When_querying_a_view_postgres_ds3
     {
-        protected abstract TestHarnessSQLServer _dataStandard { get; }
+        public When_installing_Equity_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         protected (bool success, string errorMessage) Result;
 
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
-            _dataStandard.PrepareDatabase();
+            DataStandard.PrepareDatabase();
         }
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.Equity);
+            Result = DataStandard.Install(10, Component.Equity);
         }
 
         [Test]
@@ -35,12 +36,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestCase("equity_FeederSchoolDim")]
-        [TestCase("equity_StudentDisciplineActionDim")]
-        [TestCase("equity_StudentHistoryDim")]
-        [TestCase("equity_StudentSchoolFoodServiceProgramDim")]
-        [TestCase("equity_StudentProgramCohortDim")]
-        public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
+        [TestCase]
+        public void Then_should_create_analytics_view_equity_FeederSchoolDim() => DataStandard.ViewExists("equity_feederschooldim").ShouldBe(true);
 
         [TestCase("fn_GetStudentEnrollmentHistory")]
         [TestCase("fn_GetStudentGradesSummary")]
@@ -51,11 +48,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         {
             protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
         }
+        
+        [TestCase]
+        public void Then_should_create_analytics_view_equity_StudentDisciplineActionDim() => DataStandard.ViewExists("equity_studentdisciplineactiondim").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_Equity_views
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
-        }
+        [TestCase]
+        public void Then_should_create_analytics_view_equity_StudentHistoryDim() => DataStandard.ViewExists("equity_studenthistorydim").ShouldBe(true);
+
+        [TestCase]
+        public void Then_should_create_analytics_view_equity_StudentSchoolFoodServiceProgramDim() => DataStandard.ViewExists("equity_studentschoolfoodserviceprogramdim").ShouldBe(true);
+
+        [TestCase]
+        public void Then_should_create_analytics_view_equity_StudentProgramCohortDim() => DataStandard.ViewExists("equity_studentprogramcohortdim").ShouldBe(true);
+
     }
 }

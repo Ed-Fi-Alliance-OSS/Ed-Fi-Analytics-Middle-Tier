@@ -4,34 +4,35 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_reinstalling_after_uninstall
+    public class When_reinstalling_after_uninstall: When_querying_a_view_postgres
     {
-        protected abstract TestHarnessSQLServer _dataStandard { get; }
+        public When_reinstalling_after_uninstall(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         protected (bool success, string errorMessage) Result;
 
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
-            _dataStandard.PrepareDatabase();
+            DataStandard.PrepareDatabase();
 
-            Result = _dataStandard.Install();
+            Result = DataStandard.Install();
             Result.success.ShouldBe(true, "initial installation");
 
-            Result = _dataStandard.Uninstall();
+            Result = DataStandard.Uninstall();
             Result.success.ShouldBe(true, "uninstall");
         }
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install();
+            Result = DataStandard.Install();
         }
 
         [Test]
@@ -40,20 +41,5 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestFixture]
-        public class Given_data_standard_two : When_reinstalling_after_uninstall
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard2;
-        }
-        [TestFixture]
-        public class Given_data_standard_three_one : When_reinstalling_after_uninstall
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
-        }
-        [TestFixture]
-        public class Given_data_standard_three_two : When_reinstalling_after_uninstall
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
-        }
     }
 }
