@@ -271,5 +271,41 @@
         'SchoolYear is the last modified'
         );
 
+        -- Extra data to help prove that all join conditions are required - comment one out,
+        -- and you'll get duplicate data or mismatches.
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TermDescriptorId,
+        TotalInstructionalDays
+        )
+        VALUES (
+        867530010,
+        2012,
+        'SchoolYear is the last modified',
+        '1999-12-31',
+        '2012-12-31',
+        @termDescriptorId,
+        21
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        GradingPeriodDescriptorId,
+        PeriodSequence,
+        SchoolId,
+        SchoolYear,
+        SessionName
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        42,
+        867530010,
+        2012,
+        'SchoolYear is the last modified'
+        )
+
     </ControlDataInsertion>
 </TestCase>
