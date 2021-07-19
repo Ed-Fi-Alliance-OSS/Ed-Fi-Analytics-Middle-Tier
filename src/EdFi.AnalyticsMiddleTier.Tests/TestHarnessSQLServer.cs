@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -178,6 +179,14 @@ AS SNAPSHOT OF {_databaseName}
                     }
                 }
             }
+        }
+
+        public override IDbConnection OpenConnection()
+        {
+            IDbConnection connection;
+            connection = new SqlConnection(_connectionString);
+            connection.Open();
+            return connection;
         }
     }
 }

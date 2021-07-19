@@ -3,16 +3,18 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using Dapper;
 using EdFi.AnalyticsMiddleTier.Common;
+using Npgsql;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessPostgres : TestHarnessBase, ITestHarnessBase
     {
-        public static ITestHarnessBase DataStandard32PG = new TestHarnessPostgres
+        public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
         {
             _dataStandardVersionName = "PG_3_2",
             _dataStandardFolderName = "PG_3_2",
@@ -22,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             DataStandardVersion = DataStandard.Ds32
         };
 
-        public override string _connectionString => 
+        public override string _connectionString =>
             $"User ID=postgres;Password=gapUser123;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;";
 
         public override void PrepareDatabase()
@@ -40,6 +42,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))
                     connection.Execute(truncateAllTablesLine);
             }
+        }
+
+        public override IDbConnection OpenConnection()
+        {
+            IDbConnection connection;
+            connection = new NpgsqlConnection(_connectionString);
+            connection.Open();
+            return connection;
         }
     }
 }

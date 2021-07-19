@@ -17,7 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 
         protected (bool success, string errorMessage) Result;
-        protected When_installing_default_map(TestHarnessSQLServer dataStandard) : base(dataStandard) { }
+        protected When_installing_default_map(TestHarnessBase dataStandard) : base(dataStandard) { }
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
@@ -38,24 +38,24 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public class Given_descriptor_map
             : When_installing_default_map
         {
-            public Given_descriptor_map(TestHarnessSQLServer dataStandard) : base(dataStandard) { }
+            public Given_descriptor_map(TestHarnessBase dataStandard) : base(dataStandard) { }
             [Test]
             public void Then_view_should_match_column_dictionary()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.descriptormap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.descriptormap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_rows()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.descriptormap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.descriptormap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
         public class Given_type_map
             : When_installing_default_map
         {
-            public Given_type_map(TestHarnessSQLServer dataStandard) : base(dataStandard) { }
+            public Given_type_map(TestHarnessBase dataStandard) : base(dataStandard) { }
             [Test]
             public void Then_view_should_match_column_dictionary()
             {

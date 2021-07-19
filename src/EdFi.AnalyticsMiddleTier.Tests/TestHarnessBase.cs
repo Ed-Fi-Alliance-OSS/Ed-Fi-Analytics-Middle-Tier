@@ -162,25 +162,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public bool ViewExists(string viewName, string schema)
         {
-            using (var connection = OpenConnection())
-            {
-                var sql = string.Empty;
-
-                // ToDo: Can we use the same guery that works for SQL Server and Postgres?
-                if (_engine == Engine.PostgreSQL)
-                {
-                    return TableExists(schema, viewName);
-                }
-                else
-                {
-                    sql =
-                        $"select 1 from information_schema.views where table_schema = '{schema}' and table_name='{viewName}'";
-
-                    return connection.ExecuteScalar<int>(sql) == 1;
-                }
-            }
+            return TableExists(schema, viewName);
         }
-
         public bool TableExists(string tableName)
         {
             return TableExists("analytics_config", tableName);
@@ -190,22 +173,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             using (var connection = OpenConnection())
             {
-                var sql = string.Empty;
-
-                // ToDo: Can we use the same guery that works for SQL Server and Postgres?
-                if (_engine == Engine.PostgreSQL)
-                {
-                    sql =
-                        $"SELECT EXISTS (SELECT FROM information_schema.tables WHERE  table_schema = '{schemaName}' AND table_name = '{tableName}');";
-
-                    return connection.ExecuteScalar<bool>(sql);
-                }
-                else
-                {
-                    sql =
-                        $"select 1 from information_schema.tables where table_schema = '{schemaName}' and table_name='{tableName}'";
-                    return connection.ExecuteScalar<int>(sql) == 1;
-                }
+                var sql = $"select 1 from information_schema.tables where table_schema = '{schemaName}' and table_name='{tableName}'";
+                return connection.ExecuteScalar<int>(sql) == 1;
             }
         }
 
@@ -257,18 +226,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
         }
 
-        public IDbConnection OpenConnection()
+        public virtual IDbConnection OpenConnection()
         {
-            IDbConnection connection;
-
-            if (_engine == Engine.PostgreSQL)
-                connection = new NpgsqlConnection(_connectionString);
-            else
-                connection = new SqlConnection(_connectionString);
-
-            connection.Open();
-
-            return connection;
+            throw new NotImplementedException();
         }
     }
 }
