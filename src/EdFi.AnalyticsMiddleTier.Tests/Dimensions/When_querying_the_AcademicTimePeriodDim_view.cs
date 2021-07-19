@@ -117,7 +117,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             public void Then_should_have_SchoolYearKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard
-                    .RunTestCase<AcademicTimePeriodDim>(
+                    .RunTestCase<CountResult>(
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolYearKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
