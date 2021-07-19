@@ -148,6 +148,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                         $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_TermName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_additional_join_condition_test()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.additional_join_condition_test.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
         
 

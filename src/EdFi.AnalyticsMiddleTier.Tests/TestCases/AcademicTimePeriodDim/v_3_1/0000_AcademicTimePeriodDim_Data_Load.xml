@@ -305,7 +305,134 @@
         867530010,
         2012,
         'SchoolYear is the last modified'
-        )
+        );
 
+        INSERT INTO edfi.EducationOrganization (
+        EducationOrganizationId,
+        NameOfInstitution
+        )
+        VALUES (
+        34,
+        '34'
+        );
+
+        INSERT INTO edfi.School (
+        SchoolId
+        )
+        VALUES (
+        34
+        );
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TermDescriptorId,
+        TotalInstructionalDays
+        )
+        VALUES (
+        34,
+        2012,
+        'SchoolYear is the last modified',
+        '1999-12-31',
+        '2012-12-31',
+        1,
+        2
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        PeriodSequence,
+        SchoolYear,
+        LastModifiedDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        34,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        42,
+        2012,
+        '2003-03-03'
+        ), (
+        @gradingPeriodDescriptorId,
+        34,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        -- Different sequence number
+        4,
+        2012,
+        '2003-03-03'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        GradingPeriodDescriptorId,
+        PeriodSequence,
+        SchoolId,
+        SchoolYear,
+        SessionName
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        -- Different sequence number
+        4,
+        34,
+        2012,
+        'SchoolYear is the last modified'
+        );
+
+
+
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'Second six weeks',
+        'Second six weeks',
+        'Second six weeks',
+        'uri://ed-fi.org/GradingPeriodDescriptor'
+        );
+
+        SELECT @gradingPeriodDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.GradingPeriodDescriptor (
+        GradingPeriodDescriptorId
+        )
+        VALUES (
+        @gradingPeriodDescriptorId
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        PeriodSequence,
+        SchoolYear,
+        LastModifiedDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        867530010,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        42,
+        2012,
+        '2003-03-03'
+        );
     </ControlDataInsertion>
 </TestCase>
