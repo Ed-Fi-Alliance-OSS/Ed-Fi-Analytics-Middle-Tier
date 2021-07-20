@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        DECLARE @schoolId int = 867530010;
+        DECLARE @districtId int = 13245;
+
+        INSERT INTO edfi.SchoolYearType (
+        SchoolYear,
+        SchoolYearDescription,
+        CurrentSchoolYear
+        )
+        VALUES (
+        2012,
+        '2012-2013',
+        1
+        );
+
+        INSERT INTO edfi.EducationOrganization (
+        EducationOrganizationId,
+        NameOfInstitution
+        )
+        VALUES (
+        @schoolId,
+        'Irrelevant'
+        ), (
+        @districtId,
+        'The District'
+        );
+
+        INSERT INTO edfi.School (
+        SchoolId
+        )
+        VALUES (
+        867530010
+        );
+
+        INSERT INTO edfi.Student (
+        FirstName,
+        LastSurname,
+        BirthDate,
+        StudentUniqueId
+        )
+        VALUES (
+        'Hello',
+        'World',
+        '1970-01-01',
+        'this is unique'
+        );
+
+        DECLARE @studentUsi INT = @@IDENTITY;
+
+        -- Extra student that will be ignored because not
+        -- associated with a school, associated with a district instead
+        INSERT INTO edfi.Student (
+        FirstName,
+        LastSurname,
+        BirthDate,
+        StudentUniqueId
+        )
+        VALUES (
+        'Hello2',
+        'World2',
+        '1972-01-01',
+        'this 2 is unique'
+        );
+
+        DECLARE @studentUsi2 INT = @@IDENTITY;
+
+        -- Third student that _is_ associated with the school
+        -- but will not have any student indicator records
+        INSERT INTO edfi.Student (
+        FirstName,
+        LastSurname,
+        BirthDate,
+        StudentUniqueId
+        )
+        VALUES (
+        'Hello3',
+        'World3',
+        '1972-01-01',
+        'this 3 is unique'
+        );
+
+        DECLARE @studentUsi3 INT = @@IDENTITY;
+
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        ShortDescription,
+        Description,
+        Namespace
+        ) VALUES (
+        'P',
+        'Prefer not to say',
+        'Prefer not to say',
+        'uri://ed-fi.org'
+        );
+
+        DECLARE @sexdescriptorId INT = @@IDENTITY;
+
+        INSERT INTO edfi.SexDescriptor (
+        SexDescriptorId
+        ) VALUES(
+        @sexdescriptorId
+        );
+
+        INSERT INTO edfi.StudentEducationOrganizationAssociation (
+        StudentUSI,
+        EducationOrganizationId,
+        SexDescriptorId
+        )
+        VALUES (
+        @studentUsi,
+        @schoolId,
+        @sexdescriptorId
+        ), (
+        @studentUsi,
+        @districtId,
+        @sexdescriptorId
+        ),(
+        @studentUsi2,
+        @schoolId,
+        @sexdescriptorId
+        ),(
+        @studentUsi2,
+        @districtId,
+        @sexdescriptorId
+        ),(
+        @studentUsi3,
+        @schoolId,
+        @sexdescriptorId
+        );
+
+        INSERT INTO edfi.StudentEducationOrganizationAssociationStudentIndicator (
+        EducationOrganizationId,
+        StudentUSI,
+        IndicatorName,
+        Indicator
+        )
+        VALUES (
+        @schoolId,
+        @studentUsi,
+        'InternetAccessInResidence',
+        'Yes'
+        ),(
+        @schoolId,
+        @studentUsi,
+        'InternetAccessTypeInResidence',
+        'ResidentialBroadband'
+        ),(
+        @schoolId,
+        @studentUsi,
+        'InternetPerformance',
+        'Yes - No issues'
+        ),(
+        @schoolId,
+        @studentUsi,
+        'DigitalDevice',
+        'Chromebook'
+        ),(
+        @schoolId,
+        @studentUsi,
+        'DeviceAccess',
+        'School Provided - Dedicated'
+        ),
+        -- These extra records should be ignored by the view because
+        -- they are associated with the District, not the School
+        (
+        @districtId,
+        @studentUsi,
+        'InternetAccessInResidence',
+        'Yes__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'InternetAccessTypeInResidence',
+        'ResidentialBroadband__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'InternetPerformance',
+        'Yes - No issues__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'DigitalDevice',
+        'Chromebook__'
+        ),
+        (
+        @districtId,
+        @studentUsi,
+        'DeviceAccess',
+        'School Provided - Dedicated__'
+        ),
+        -- This record is for a different student
+        (
+        @schoolId,
+        @studentUsi2,
+        'DeviceAccess',
+        'School Provided - Dedicated'
+        )
+    </ControlDataInsertion>
+</TestCase>

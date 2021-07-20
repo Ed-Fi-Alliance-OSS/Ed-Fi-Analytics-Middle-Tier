@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COUNT(1) as CountValue
+        FROM analytics.AcademicTimePeriodDim
+        WHERE SessionName = 'SchoolYear is the last modified'
+        and LastModifiedDate = '2005-05-05';
+    </Query>
+    <Result>
+        <CountValue>
+            1
+        </CountValue>
+    </Result>
+</TestCase>

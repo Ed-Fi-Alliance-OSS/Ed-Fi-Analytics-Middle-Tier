@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentSchoolKey,
+      InternetAccessInResidence,
+      InternetAccessTypeInResidence,
+      InternetPerformance,
+      DigitalDevice,
+      DeviceAccess,
+      SchoolKey
+      FROM analytics.StudentInternetAccessDim
+      WHERE StudentSchoolKey = 'this 3 is unique-867530010';
+  </Query>
+  <Result>
+      <StudentSchoolKey>
+          this 3 is unique-867530010
+      </StudentSchoolKey>
+      <InternetAccessInResidence>
+          n/a
+      </InternetAccessInResidence>
+      <InternetAccessTypeInResidence>
+          n/a
+      </InternetAccessTypeInResidence>
+      <InternetPerformance>
+          n/a
+      </InternetPerformance>
+      <DigitalDevice>
+          n/a
+      </DigitalDevice>
+      <DeviceAccess>
+          n/a
+      </DeviceAccess>
+      <SchoolKey>
+          867530010
+      </SchoolKey>
+  </Result>
+</TestCase>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT SchoolYearKey
+        FROM analytics.AcademicTimePeriodDim
+        WHERE SessionName = 'Grading period is the last modified';
+    </Query>
+    <Result>
+        <SchoolYearKey>
+            2012
+        </SchoolYearKey>
+    </Result>
+</TestCase>

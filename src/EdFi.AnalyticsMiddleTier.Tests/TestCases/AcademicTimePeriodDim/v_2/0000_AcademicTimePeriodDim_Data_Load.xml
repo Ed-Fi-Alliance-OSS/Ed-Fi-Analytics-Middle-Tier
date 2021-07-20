@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        -- Default Records, with SchoolYearType being the first modified
+        -- record, followed by Session, and finally GradingPeriod has
+        -- the most recently modified  record
+        INSERT INTO edfi.SchoolYearType (
+        SchoolYear,
+        SchoolYearDescription,
+        CurrentSchoolYear,
+        LastModifiedDate
+        )
+        VALUES (
+        2012,
+        '2012-2013',
+        1,
+        '2001-01-01'
+        );
+
+        INSERT INTO edfi.EducationOrganization (
+        EducationOrganizationId,
+        StateOrganizationId,
+        NameOfInstitution
+        )
+        VALUES (
+        867530010,
+        'Irrelevant',
+        'Also irrelevant'
+        );
+
+        INSERT INTO edfi.School (
+        SchoolId
+        )
+        VALUES (
+        867530010
+        );
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'SpringSemester',
+        'Spring Semester',
+        'Spring-Semester',
+        'uri://ed-fi.org/TermDescriptorId'
+        );
+
+        DECLARE @termDescriptorId as INT;
+        SELECT @termDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.TermType (
+        CodeValue,
+        Description,
+        ShortDescription
+        )
+        VALUES (
+        'Dont care',
+        'Still dont care',
+        'Really, I don''t care'
+        );
+
+        DECLARE @termTypeId as INT;
+        SELECT @termTypeId = @@IDENTITY;
+
+        INSERT INTO edfi.TermDescriptor (
+        TermDescriptorId,
+        TermTypeId
+        )
+        VALUES (
+        @termDescriptorId,
+        @termTypeId
+        )
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        TermDescriptorId,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TotalInstructionalDays,
+        LastModifiedDate
+        )
+        VALUES (
+        867530010,
+        2012,
+        @termDescriptorId,
+        'Grading period is the last modified',
+        '1999-12-31',
+        '2012-12-31 23:59:59',
+        180,
+        '2002-02-02'
+        )
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'First six weeks',
+        'First six weeks',
+        'First six weeks',
+        'uri://ed-fi.org/GradingPeriodDescriptor'
+        );
+
+        DECLARE @gradingPeriodDescriptorId as INT;
+        SELECT @gradingPeriodDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.GradingPeriodType (
+        CodeValue,
+        Description,
+        ShortDescription
+        )
+        VALUES (
+        'First six weeks',
+        'First six weeks',
+        'First six weeks'
+        );
+
+        DECLARE @gradingPeriodTypeId as INT;
+        SELECT @gradingPeriodTypeId = @@identity;
+
+
+
+        INSERT INTO edfi.GradingPeriodDescriptor (
+        GradingPeriodDescriptorId,
+        GradingPeriodTypeId
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        @gradingPeriodTypeId
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        LastModifiedDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        867530010,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        '2003-03-03'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        SchoolYear,
+        TermDescriptorId,
+        SchoolId,
+        GradingPeriodDescriptorId,
+        BeginDate
+        )
+        VALUES (
+        2012,
+        @termDescriptorId,
+        867530010,
+        @gradingPeriodDescriptorId,
+        '1999-12-31'
+        );
+
+        -- Scenario where the Session is the most recently modified record
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'SpringSemester2',
+        'Spring Semester2',
+        'Spring-Semester2',
+        'uri://ed-fi.org/TermDescriptorId2'
+        );
+
+        SELECT @termDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.TermDescriptor (
+        TermDescriptorId,
+        TermTypeId
+        )
+        VALUES (
+        @termDescriptorId,
+        @termTypeId
+        );
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        TermDescriptorId,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TotalInstructionalDays,
+        LastModifiedDate
+        )
+        VALUES (
+        867530010,
+        2012,
+        @termDescriptorId,
+        'Session is the last modified',
+        '1999-12-31',
+        '2012-12-31 23:59:59',
+        180,
+        '2004-04-04'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        SchoolYear,
+        TermDescriptorId,
+        SchoolId,
+        GradingPeriodDescriptorId,
+        BeginDate
+        )
+        VALUES (
+        2012,
+        @termDescriptorId,
+        867530010,
+        @gradingPeriodDescriptorId,
+        '1999-12-31'
+        );
+
+
+
+        -- Scenario where the SchoolYear is the most recently modified record
+        INSERT INTO edfi.SchoolYearType (
+        SchoolYear,
+        SchoolYearDescription,
+        CurrentSchoolYear,
+        LastModifiedDate
+        )
+        VALUES (
+        2005,
+        '2005-2013',
+        1,
+        '2005-05-05'
+        );
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        TermDescriptorId,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TotalInstructionalDays,
+        LastModifiedDate
+        )
+        VALUES (
+        867530010,
+        2005,
+        @termDescriptorId,
+        'SchoolYear is the last modified',
+        '1999-12-31',
+        '2012-12-31 23:59:59',
+        180,
+        '2004-04-04'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        SchoolYear,
+        TermDescriptorId,
+        SchoolId,
+        GradingPeriodDescriptorId,
+        BeginDate
+        )
+        VALUES (
+        2005,
+        @termDescriptorId,
+        867530010,
+        @gradingPeriodDescriptorId,
+        '1999-12-31'
+        );
+
+        -- Extra data to help prove that all join conditions are required - comment one out,
+        -- and you'll get duplicate data or mismatches.
+
+        INSERT INTO edfi.EducationOrganization (
+        EducationOrganizationId,
+        NameOfInstitution,
+        StateOrganizationId
+        )
+        VALUES (
+        34,
+        '34',
+        'Irrelevant'
+        );
+
+        INSERT INTO edfi.School (
+        SchoolId
+        )
+        VALUES (
+        34
+        );
+
+
+
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TermDescriptorId,
+        TotalInstructionalDays
+        )
+        VALUES (
+        34,
+        2012,
+        'SchoolYear is the last modified',
+        '1998-11-30',
+        '2012-12-31',
+        @termDescriptorId,
+        2
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        LastModifiedDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        34,
+        '1998-11-30',
+        1,
+        '2000-01-01',
+        '2003-03-03'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TermDescriptorId,
+        SchoolYear
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        34,
+        '1998-11-30',
+        @termDescriptorId,
+        2012
+        );
+
+
+
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'SpringSemester2',
+        'Spring Semester2',
+        'Spring-Semester2',
+        'uri://ed-fi.org/TermDescriptor'
+        );
+
+        SELECT @termDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.TermDescriptor (
+        TermDescriptorId,
+        TermTypeId
+        )
+        VALUES (
+        @termDescriptorId,
+        @termTypeId
+        )
+
+
+        INSERT INTO edfi.Session (
+        SchoolId,
+        SchoolYear,
+        SessionName,
+        BeginDate,
+        EndDate,
+        TermDescriptorId,
+        TotalInstructionalDays
+        )
+        VALUES (
+        34,
+        2012,
+        'SchoolYear is the last modified',
+        '1999-12-31',
+        '2012-12-31',
+        @termDescriptorId,
+        2
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        LastModifiedDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        34,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        '2003-03-03'
+        );
+
+        INSERT INTO edfi.SessionGradingPeriod (
+        GradingPeriodDescriptorId,
+        TermDescriptorId,
+        SchoolId,
+        SchoolYear,
+        BeginDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        @termDescriptorId,
+        34,
+        2012,
+        '1999-12-31'
+        );
+
+
+
+        INSERT INTO edfi.Descriptor (
+        CodeValue,
+        Description,
+        ShortDescription,
+        Namespace
+        )
+        VALUES (
+        'Second six weeks',
+        'Second six weeks',
+        'Second six weeks',
+        'uri://ed-fi.org/GradingPeriodDescriptor'
+        );
+
+        SELECT @gradingPeriodDescriptorId = @@IDENTITY;
+
+        INSERT INTO edfi.GradingPeriodDescriptor (
+        GradingPeriodDescriptorId,
+        GradingPeriodTypeId
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        @gradingPeriodTypeId
+        );
+
+        INSERT INTO edfi.GradingPeriod (
+        GradingPeriodDescriptorId,
+        SchoolId,
+        BeginDate,
+        TotalInstructionalDays,
+        EndDate,
+        PeriodSequence,
+        LastModifiedDate
+        )
+        VALUES (
+        @gradingPeriodDescriptorId,
+        867530010,
+        '1999-12-31',
+        1,
+        '2000-01-01',
+        42,
+        '2003-03-03'
+        );
+    </ControlDataInsertion>
+</TestCase>
