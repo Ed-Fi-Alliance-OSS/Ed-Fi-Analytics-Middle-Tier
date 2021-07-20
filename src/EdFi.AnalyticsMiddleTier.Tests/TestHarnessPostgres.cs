@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             _dataStandardVersionName = "PG_3_2",
             _dataStandardFolderName = "PG_3_2",
-            _databaseName = "odstest",
+            _databaseName = "EdFi_ODS_Tests",
             _engine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
             DataStandardVersion = DataStandard.Ds32

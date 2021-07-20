@@ -33,7 +33,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             Result = DataStandard.Install();
             Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
         }
-        
+
+        [OneTimeTearDown]
+        public void UnLoadDatabase()
+        {
+            DataStandard.Uninstall();
+        }
+
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
