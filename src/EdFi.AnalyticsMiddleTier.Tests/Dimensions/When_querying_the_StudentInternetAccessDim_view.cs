@@ -36,7 +36,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_default_records_When_querying_the_StudentInternetAccessDim_view
         : When_querying_the_StudentInternetAccessDim_view
         {
-            public Given_default_records_When_querying_the_StudentInternetAccessDim_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_default_records_When_querying_the_StudentInternetAccessDim_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_view_should_match_column_dictionary()
