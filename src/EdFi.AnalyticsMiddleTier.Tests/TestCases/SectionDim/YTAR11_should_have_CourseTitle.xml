@@ -9,6 +9,6 @@
       WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
   </Query>
     <Result>
-        <LocalEducationAgencyKey>Animation</LocalEducationAgencyKey>
+        <CourseTitle>Animation</CourseTitle>
     </Result>
 </TestCase>

@@ -40,13 +40,9 @@
     <DataType>smallint</DataType>
   </Result>
   <Result>
-    <ColumnName>LocalEducationAgencyId</ColumnName>
-    <DataType>int</DataType>
+      <ColumnName>LocalEducationAgencyKey</ColumnName>
+      <DataType>int</DataType>
   </Result>
-    <Result>
-        <ColumnName>LocalEducationAgencyKey</ColumnName>
-        <DataType>int</DataType>
-    </Result>
   <Result>
     <ColumnName>EducationalEnvironmentDescriptor</ColumnName>
     <DataType>nvarchar</DataType>
