@@ -29,6 +29,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public override void PrepareDatabase()
         {
+            Uninstall();
+
             // For now I am assuming the ODS exists. So I just truncate all tables.
             using (var connection = OpenConnection())
             {

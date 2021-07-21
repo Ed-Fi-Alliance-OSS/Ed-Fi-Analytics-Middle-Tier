@@ -35,12 +35,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             Result.success.ShouldBeTrue($"Error while installing Base and DefaultMap: '{Result.errorMessage}'");
         }
 
-        [OneTimeTearDown]
-        public void UnLoadDatabase()
-        {
-            DataStandard.Uninstall();
-        }
-
         public class Given_descriptor_map
             : When_installing_default_map
         {

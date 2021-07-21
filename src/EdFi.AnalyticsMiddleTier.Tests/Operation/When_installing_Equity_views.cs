@@ -30,12 +30,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             Result = DataStandard.Install(10, Component.Equity);
         }
 
-        [OneTimeTearDown]
-        public void UnLoadDatabase()
-        {
-            DataStandard.Uninstall();
-        }
-
         [Test]
         public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
 
