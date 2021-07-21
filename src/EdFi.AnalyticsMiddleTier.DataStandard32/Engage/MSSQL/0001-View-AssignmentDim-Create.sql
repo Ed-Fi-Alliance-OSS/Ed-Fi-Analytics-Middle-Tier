@@ -11,9 +11,9 @@ CREATE VIEW analytics.engage_AssignmentDim AS
         Descriptor.ShortDescription as SourceSystem,
         Assignment.Title as Title,
         Assignment.AssignmentDescription as Description,
-        CONVERT(VARCHAR, Assignment.StartDateTime, 23) as StartDateKey,
-        CONVERT(VARCHAR, Assignment.EndDateTime, 23) as EndDateKey,
-        CONVERT(VARCHAR, Assignment.DueDateTime, 23) as DueDateKey,
+        CONVERT(VARCHAR, Assignment.StartDateTime, 112) as StartDateKey,
+        CONVERT(VARCHAR, Assignment.EndDateTime, 112) as EndDateKey,
+        CONVERT(VARCHAR, Assignment.DueDateTime, 112) as DueDateKey,
         Assignment.MaxPoints as MaxPoints,
         FORMATMESSAGE(
             '%s-%s-%s-%s-%s',
