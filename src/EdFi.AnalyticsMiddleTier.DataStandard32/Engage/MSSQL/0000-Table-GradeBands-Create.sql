@@ -3,7 +3,7 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-CREATE TABLE analytics.engage_GradeBands (
+CREATE TABLE analytics_config.engage_GradeBands (
     BandName VARCHAR(15) NOT NULL,
     LowerBound TINYINT NOT NULL,
     UpperBound TINYINT NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE analytics.engage_GradeBands (
 ON [PRIMARY];
 
 
-INSERT INTO analytics.engage_GradeBands (BandName, LowerBound, UpperBound)
+INSERT INTO analytics_config.engage_GradeBands (BandName, LowerBound, UpperBound)
 VALUES 
     ('Less than 50%', 0, 50),
     ('50% to 65%', 50, 65),
