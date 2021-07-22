@@ -22,9 +22,10 @@ AS
 BEGIN
  DECLARE @val VARCHAR(max)
 
- SELECT @val = COALESCE(@VAL, '') + (
+ SELECT  @val = COALESCE(@VAL, '') + (
             CAST(CONCAT (
                     ', '
+					,CHAR(10)
                     ,course.CourseTitle
                     ,': '
                     ,gradeFact.NumericGradeEarned
@@ -46,5 +47,6 @@ BEGIN
     WHERE Descriptor.CodeValue IN ('Semester')
         AND Student.StudentUniqueId = @StudentKey
         AND gradeFact.SchoolId = @SchoolKey;
-    RETURN STUFF(COALESCE(@val,''),1,2,'');
+
+    RETURN STUFF(COALESCE(@val,''),1,3,'');
 END
