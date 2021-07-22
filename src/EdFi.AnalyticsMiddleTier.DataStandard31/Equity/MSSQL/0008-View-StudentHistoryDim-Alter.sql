@@ -36,7 +36,7 @@ SELECT DISTINCT ssd.StudentKey
         ) AS ReferralsAndSuspensions
     ,analytics.fn_GetStudentEnrollmentHistory(ssd.StudentKey) AS EnrollmentHistory
     ,(
-        SELECT MAX(MaxLastModifiedDate)
+        SELECT MaxLastModifiedDate
         FROM (
             VALUES (ssd.LastModifiedDate)
           ) AS VALUE(MaxLastModifiedDate)
