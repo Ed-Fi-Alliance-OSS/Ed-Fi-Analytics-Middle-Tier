@@ -48,7 +48,7 @@ SELECT DISTINCT studentSchoolDim.StudentKey
                     SchoolName
                     ,' '
                     ,COALESCE(CAST(ssd.ExitWithdrawDate AS VARCHAR(10)), '')
-                    ), ', ')
+                    ), CONCAT(', ',(CHR(10))))
         FROM edfi.StudentSchoolAssociation ssd
         INNER JOIN edfi.Student st
             ON st.StudentUSI = ssd.StudentUSI
