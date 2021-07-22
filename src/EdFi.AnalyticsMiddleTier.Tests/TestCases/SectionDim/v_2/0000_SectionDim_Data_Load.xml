@@ -617,5 +617,7 @@
         UPDATE edfi.CourseOffering SET LastModifiedDate='2016-09-18 11:47 AM' WHERE ID='D37895C3-0B27-4B1F-8C6C-43B0F0D4F05D';
 
         UPDATE edfi.AcademicSubjectType SET LastModifiedDate='2019-11-18 11:47 AM' WHERE ID='BB641592-360C-4D4C-B865-944C700F8CD6';
+
+        INSERT INTO edfi.Session(SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'867530022','2011','530','Traditional','2011-08-22','2011-12-20','82','EE8164B5-547B-4C7D-BF41-68FDB90A3482','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530022'  AND SchoolYear= '2011'  AND TermDescriptorId= '530'));
     </ControlDataInsertion>
 </TestCase>
