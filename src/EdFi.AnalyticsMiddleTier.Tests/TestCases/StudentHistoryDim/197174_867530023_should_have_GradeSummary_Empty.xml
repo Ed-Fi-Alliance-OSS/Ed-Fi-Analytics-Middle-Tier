@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT GradeSummary
+    FROM analytics.equity_StudentHistoryDim
+    WHERE StudentSchoolKey = '197174-867530023';
+  </Query>
+  <Result>
+    <GradeSummary></GradeSummary>
+  </Result>
+</TestCase>
