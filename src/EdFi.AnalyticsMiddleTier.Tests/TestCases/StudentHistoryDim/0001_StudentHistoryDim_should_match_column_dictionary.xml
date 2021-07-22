@@ -37,7 +37,7 @@
     </Result>
     <Result>
         <ColumnName>EnrollmentHistory</ColumnName>
-        <DataType>nvarchar</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>LastModifiedDate</ColumnName>
