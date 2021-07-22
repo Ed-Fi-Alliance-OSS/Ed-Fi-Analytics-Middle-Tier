@@ -14,13 +14,13 @@ END
 GO
 
 CREATE FUNCTION analytics.fn_GetStudentGradesSummary (
-    @StudentKey VARCHAR(max)
-    ,@SchoolKey VARCHAR(max)
+    @StudentKey VARCHAR(8000)
+    ,@SchoolKey VARCHAR(8000)
     )
-RETURNS VARCHAR(max)
+RETURNS VARCHAR(8000)
 AS
 BEGIN
- DECLARE @val VARCHAR(max)
+ DECLARE @val VARCHAR(8000)
 
  SELECT  @val = COALESCE(@VAL, '') + (
             CAST(CONCAT (

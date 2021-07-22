@@ -15,13 +15,13 @@ GO
 
 CREATE FUNCTION [analytics].[fn_GetStudentEnrollmentHistory] (
     -- Add the parameters for the function here
-    @StudentKey VARCHAR(max)
+    @StudentKey VARCHAR(8000)
     )
-RETURNS VARCHAR(max)
+RETURNS VARCHAR(8000)
 AS
 BEGIN
     -- Declare the return variable here
-    DECLARE @val VARCHAR(max)
+    DECLARE @val VARCHAR(8000)
 
     SELECT @val = COALESCE(@VAL, '') + (
             CAST(CONCAT (
