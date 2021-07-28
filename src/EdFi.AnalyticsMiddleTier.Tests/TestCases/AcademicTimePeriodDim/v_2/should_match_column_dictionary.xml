@@ -16,7 +16,7 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolYearKey</ColumnName>
+        <ColumnName>SchoolYear</ColumnName>
         <DataType>varchar</DataType>
     </Result>
     <Result>

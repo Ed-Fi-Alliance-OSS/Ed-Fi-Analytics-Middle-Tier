@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     {
         public string AcademicTimePeriodKey { get; set; }
 
-        public string SchoolYearKey { get; set; }
+        public string SchoolYear { get; set; }
 
         public string SchoolYearName { get; set; }
 

@@ -14,7 +14,7 @@ AS
 			CAST(GradingPeriod.GradingPeriodDescriptorId as VARCHAR),
 			to_char(GradingPeriod.BeginDate, 'yyyymmdd')
 		) as AcademicTimePeriodKey,
-		CAST(SchoolYearType.SchoolYear as VARCHAR) as SchoolYearKey,
+		CAST(SchoolYearType.SchoolYear as VARCHAR) as SchoolYear,
 		SchoolYearType.SchoolYearDescription as SchoolYearName,
 		SchoolYearType.CurrentSchoolYear as IsCurrentSchoolYear,
 		CAST(Session.SchoolId as VARCHAR) as SchoolKey,
