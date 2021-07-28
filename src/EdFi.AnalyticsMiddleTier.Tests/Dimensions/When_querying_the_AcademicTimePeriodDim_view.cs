@@ -114,11 +114,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             }
 
             [Test]
-            public void Then_should_have_SchoolYearKey()
+            public void Then_should_have_SchoolYear()
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolYearKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
