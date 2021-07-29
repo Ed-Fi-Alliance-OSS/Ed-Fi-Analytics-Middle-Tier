@@ -169,6 +169,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             return TableExists("analytics_config", tableName);
         }
 
+        public bool ScalarFunctionExists(string scalarFunctionName)
+        {
+            return ScalarFunctionExists(scalarFunctionName, "analytics");
+        }
+
+        public bool ScalarFunctionExists(string scalarFunctionName, string schema)
+        {
+            using (var connection = OpenConnection())
+            {
+                var sql =
+                    $"select 1 from information_schema.ROUTINES where SPECIFIC_SCHEMA = '{schema}' and SPECIFIC_NAME='{scalarFunctionName}'";
+                return connection.ExecuteScalar<int>(sql) == 1;
+            }
+        }
+
         public bool TableExists(string schemaName, string tableName)
         {
             using (var connection = OpenConnection())
