@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_Equity_views : When_querying_a_view_postgres_ds3
+    public class When_installing_Equity_views : When_querying_a_view_ds3
     {
         public When_installing_Equity_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
@@ -41,14 +41,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
         [TestCase("fn_GetStudentEnrollmentHistory")]
         [TestCase("fn_GetStudentGradesSummary")]
-        public void Then_should_create_analytics_functions(string scalarFunctionName) => _dataStandard.ScalarFunctionExists(scalarFunctionName).ShouldBe(true);
+        public void Then_should_create_analytics_functions(string scalarFunctionName) => DataStandard.ScalarFunctionExists(scalarFunctionName).ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_Equity_views
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
-        }
-        
         [TestCase]
         public void Then_should_create_analytics_view_equity_StudentDisciplineActionDim() => DataStandard.ViewExists("equity_studentdisciplineactiondim").ShouldBe(true);
 

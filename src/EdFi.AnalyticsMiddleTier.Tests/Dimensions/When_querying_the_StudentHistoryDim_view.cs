@@ -189,7 +189,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_StudentHistoryDim_197174_867530023
        : When_querying_the_StudentHistoryDim_view
         {
-            public Given_StudentHistoryDim_197174_867530023(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_StudentHistoryDim_197174_867530023(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "197174_867530023";
 
