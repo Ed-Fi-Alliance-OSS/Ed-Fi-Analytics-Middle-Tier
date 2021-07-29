@@ -185,5 +185,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_StudentHistoryDim_197174_867530023
+       : When_querying_the_StudentHistoryDim_view
+        {
+            public Given_StudentHistoryDim_197174_867530023(TestHarness dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "197174_867530023";
+
+            [Test]
+            public void Then_should_have_GradeSummary_Empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_GradeSummary_Empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }

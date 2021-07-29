@@ -22,7 +22,7 @@ CREATE
                             studentSectionDim.CourseTitle
                             ,': '
                             ,gradeFact.NumericGradeEarned
-                            ) AS VARCHAR(8000)), ', ') AS GradeSummary
+                            ) AS VARCHAR(8000)), CONCAT(', ',CHR(10))) AS GradeSummary
             FROM analytics.ews_StudentSectionGradeFact gradeFact
             INNER JOIN analytics.StudentSectionDim studentSectionDim
                 ON gradeFact.StudentSectionKey = studentSectionDim.StudentSectionKey
@@ -48,7 +48,7 @@ SELECT DISTINCT studentSchoolDim.StudentKey
                     SchoolName
                     ,' '
                     ,COALESCE(CAST(ssd.ExitWithdrawDate AS VARCHAR(10)), '')
-                    ), ', ')
+                    ), CONCAT(', ',(CHR(10))))
         FROM edfi.StudentSchoolAssociation ssd
         INNER JOIN edfi.Student st
             ON st.StudentUSI = ssd.StudentUSI

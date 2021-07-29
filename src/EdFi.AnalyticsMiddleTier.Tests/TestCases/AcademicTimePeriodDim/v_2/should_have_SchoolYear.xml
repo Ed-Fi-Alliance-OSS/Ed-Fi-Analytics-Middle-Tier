@@ -4,14 +4,13 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT COUNT(1) as CountValue
+        SELECT SchoolYear
         FROM analytics.AcademicTimePeriodDim
-        WHERE SessionName = 'Grading period is the last modified'
-        AND SchoolYearKey = 2012
+        WHERE SessionName = 'Grading period is the last modified';
     </Query>
     <Result>
-        <CountValue>
-            1
-        </CountValue>
+        <SchoolYear>
+            2012
+        </SchoolYear>
     </Result>
 </TestCase>

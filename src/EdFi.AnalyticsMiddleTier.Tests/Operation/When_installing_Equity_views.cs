@@ -42,6 +42,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("equity_StudentProgramCohortDim")]
         public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
 
+        [TestCase("fn_GetStudentEnrollmentHistory")]
+        [TestCase("fn_GetStudentGradesSummary")]
+        public void Then_should_create_analytics_functions(string scalarFunctionName) => _dataStandard.ScalarFunctionExists(scalarFunctionName).ShouldBe(true);
+
         [TestFixture]
         public class Given_data_standard_three_one : When_installing_Equity_views
         {
