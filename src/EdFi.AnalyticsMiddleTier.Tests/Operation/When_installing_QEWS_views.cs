@@ -10,7 +10,7 @@ using Shouldly;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public class When_installing_QEWS_views : When_querying_a_view
     {
         public When_installing_QEWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);

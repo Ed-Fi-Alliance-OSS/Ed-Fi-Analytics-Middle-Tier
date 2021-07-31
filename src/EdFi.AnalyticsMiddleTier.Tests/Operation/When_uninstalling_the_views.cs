@@ -11,7 +11,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public class When_uninstalling_the_views : When_querying_a_view
     {
         public When_uninstalling_the_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);

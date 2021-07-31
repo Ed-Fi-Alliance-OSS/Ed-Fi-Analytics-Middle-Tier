@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public class When_installing_Chrab_views : When_querying_a_view_postgres
     {
         public When_installing_Chrab_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);

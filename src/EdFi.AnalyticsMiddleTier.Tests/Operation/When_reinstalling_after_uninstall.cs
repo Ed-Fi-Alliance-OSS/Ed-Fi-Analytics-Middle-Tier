@@ -11,7 +11,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public class When_reinstalling_after_uninstall: When_querying_a_view_postgres
     {
         public When_reinstalling_after_uninstall(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);

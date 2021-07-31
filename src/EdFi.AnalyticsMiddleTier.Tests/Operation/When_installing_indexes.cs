@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public abstract class When_installing_indexes : When_querying_a_view
     {
 

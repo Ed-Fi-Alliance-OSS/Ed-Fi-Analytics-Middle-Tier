@@ -19,7 +19,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
     /// Detailed testing of the "Engage" views is handled in the LMS-Toolkit repository.
     /// </summary>
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public abstract class When_installing_Engage_option
     {
         protected const string QUERY =

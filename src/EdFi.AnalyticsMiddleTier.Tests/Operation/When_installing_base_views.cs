@@ -11,7 +11,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [Parallelizable(ParallelScope.Children)]
+    [NonParallelizable]
     public abstract class When_installing_base_views : When_querying_a_view
     {
         [SetUp]
