@@ -9,15 +9,10 @@ using NUnit.Framework;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProvider))]
+    [Parallelizable(ParallelScope.Fixtures)]
     public abstract class TestCaseBase
     {
         protected TestHarnessBase DataStandard { get; set; }
-
-        protected static ITestHarnessBase[] FixtureDataProvider()
-        {
-            return new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG };
-        }
 
         protected TestCaseBase(TestHarnessBase dataStandard)
         {
