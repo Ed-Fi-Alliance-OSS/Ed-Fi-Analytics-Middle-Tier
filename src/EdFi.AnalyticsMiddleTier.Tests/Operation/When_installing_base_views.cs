@@ -5,27 +5,20 @@
 
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views
+    [Parallelizable(ParallelScope.Children)]
+    public abstract class When_installing_base_views : When_querying_a_view
     {
-        protected abstract TestHarnessSQLServer _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
-
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install();
+            DataStandard.PrepareDatabase();
+            Result = DataStandard.Install();
         }
 
         [Test]
@@ -37,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("analytics")]
         [TestCase("analytics_config")]
         public void Then_create_schema(string schema) =>
-            _dataStandard
+            DataStandard
                 .ExecuteScalarQuery<int>($"select 1 from sys.schemas where [name] = '{schema}'")
                 .ShouldBe(1);
 
@@ -62,13 +55,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("SectionDim")]
         [TestCase("StudentProgramDim")]
         public void Then_should_create_analytics_view(string viewName) =>
-            _dataStandard.ViewExists(viewName).ShouldBe(true);
+            DataStandard.ViewExists(viewName).ShouldBe(true);
 
         [Test]
         public void Then_should_create_analytics_middle_tier_role()
         {
             const string sql = "SELECT 1 FROM sys.database_principals WHERE [type] = 'R' AND [name] = 'analytics_middle_tier'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
 
         [TestCase("IX_AMT_Grade_SectionKey")]
@@ -77,60 +70,29 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Then_should_not_install_indexes(string indexName)
         {
             var sql = $"select 1 from sys.indexes where [name] = '{indexName}'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
         }
-
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_base_views
+       
+        public class Given_a_data_standard : When_installing_base_views
         {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard2;
+            public Given_a_data_standard(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
         }
-
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_base_views
+      
+        public class Given_an_expected_table_column_is_missing : When_querying_a_view
         {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
-        }
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_base_views
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
-        }
-
-        [TestFixture]
-        public class And_data_standard_2 : Given_an_expected_table_column_is_missing
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard2;
-        }
-
-        [TestFixture]
-        public class And_data_standard_three_one : Given_an_expected_table_column_is_missing
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
-        }
-        [TestFixture]
-        public class And_data_standard_three_two : Given_an_expected_table_column_is_missing
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
-        }
-
-        public abstract class Given_an_expected_table_column_is_missing
-        {
-            protected abstract TestHarnessSQLServer _dataStandard { get; }
-
-            protected (bool success, string errorMessage) Result;
+            public Given_an_expected_table_column_is_missing(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [OneTimeSetUp]
             public void PrepareDatabase()
             {
-                _dataStandard.PrepareDatabase();
-                _dataStandard.ExecuteQuery("ALTER TABLE [edfi].[GradingPeriod] DROP COLUMN [TotalInstructionalDays]");
+                DataStandard.PrepareDatabase();
+                DataStandard.ExecuteQuery("ALTER TABLE [edfi].[GradingPeriod] DROP COLUMN [TotalInstructionalDays]");
             }
 
             [SetUp]
             public void Act()
             {
-                Result = _dataStandard.Install();
+                Result = DataStandard.Install();
             }
 
             [Test]
@@ -143,28 +105,28 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             public void Then_should_not_install_any_views()
             {
                 const string sql = "SELECT count(1) FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
             }
 
             [Test]
             public void Then_should_not_install_any_indexes()
             {
                 var sql = "select count(1) from sys.indexes where [name] LIKE 'IX_AMT_%'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
             }
 
             [Test]
             public void Then_should_not_install_any_tables()
             {
                 var sql = "SELECT count(1) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'analytics_config'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
             }
 
             [Test]
             public void Then_should_not_install_any_procedures()
             {
                 var sql = "select count(1) from information_schema.routines where routine_schema = 'analytics_config'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
             }
         }
     }

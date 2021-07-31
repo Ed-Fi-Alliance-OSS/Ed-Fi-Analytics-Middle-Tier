@@ -9,30 +9,13 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyDemographicsBridgeTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentLocalEducationAgencyDemographicsBridge";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentLocalEducationAgencyDemographicsBridge>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentLocalEducationAgencyDemographicsBridge_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentLocalEducationAgencyDemographicsBridge_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -41,6 +24,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupStudentLocalEducationAgencyDemographicsBridgeTestCase
+                : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentLocalEducationAgencyDemographicsBridge>(TestCasesFolder, TestCasesDataFileName);
+        }
         public class Given_StudentLocalEducationAgencyDemographicsBridge_2011_Eighth_grade_193964_867530
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {

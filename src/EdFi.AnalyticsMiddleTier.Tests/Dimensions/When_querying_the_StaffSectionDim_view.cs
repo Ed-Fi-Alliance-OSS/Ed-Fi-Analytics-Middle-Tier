@@ -9,31 +9,13 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StaffSectionDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StaffSectionDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StaffSectionDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            // Install the default map so that we can test for school address
-            Result = DataStandard.Install(10);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StaffSectionDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -41,7 +23,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupStaffSectionDimTestCase
+            : When_querying_the_StaffSectionDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StaffSectionDim>(TestCasesFolder, TestCasesDataFileName);
+        }
         public class Given_StaffSection_11324_XLTV31
         : When_querying_the_StaffSectionDim_view
         {

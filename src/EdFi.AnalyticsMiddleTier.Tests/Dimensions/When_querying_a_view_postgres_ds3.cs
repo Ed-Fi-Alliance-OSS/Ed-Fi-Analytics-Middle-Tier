@@ -9,12 +9,9 @@ using NUnit.Framework;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProviderPostgres))]
+    [TestFixtureSource(typeof(TestFixtureListPostgresDs3))]
     public abstract class When_querying_a_view_postgres_ds3 : When_querying_a_view
     {
-        protected static ITestHarnessBase[] FixtureDataProviderPostgres()
-        {
-            return new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG };
-        }
+        public When_querying_a_view_postgres_ds3() => fixtureList = new TestFixtureListPostgresDs3();
     }
 }

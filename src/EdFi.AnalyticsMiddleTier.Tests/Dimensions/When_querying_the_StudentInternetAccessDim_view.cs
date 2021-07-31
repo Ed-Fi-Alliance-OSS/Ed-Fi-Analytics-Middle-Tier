@@ -8,31 +8,21 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentInternetAccessDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentInternetAccessDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentInternetAccessDim";
+        protected const string TestCasesDataFileName = "0000_StudentInternetAccessDim_Data_Load.xml";
 
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
+        [SetUpFixture]
+        public class SetupStudentInternetAccessDimTestCase
+                : When_querying_the_StudentInternetAccessDim_view
         {
-            DataStandard.PrepareDatabase();
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentInternetAccessDim>(TestCasesFolder, TestCasesDataFileName);
         }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<GradingPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentInternetAccessDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
-
         public class Given_default_records_When_querying_the_StudentInternetAccessDim_view
         : When_querying_the_StudentInternetAccessDim_view
         {

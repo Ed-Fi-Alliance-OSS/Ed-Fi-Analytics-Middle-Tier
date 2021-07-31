@@ -17,10 +17,15 @@ using Microsoft.SqlServer.Dac;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessSQLServer : TestHarnessBase, ITestHarnessBase
+    public class TestHarnessSQLServer : TestHarnessBase
     {
         public override string _connectionString =>
                 $"server=localhost;database={_databaseName};integrated security=sspi";
+
+        public TestHarnessSQLServer()
+        {
+            _engine = Engine.MSSQL;
+        }
 
         public static TestHarnessSQLServer DataStandard2 = new TestHarnessSQLServer
         {
@@ -55,7 +60,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         private string _snapshotName => $"{_databaseName}_ss";
 
         private string _dacpacName;
-
 
         public override void PrepareDatabase()
         {

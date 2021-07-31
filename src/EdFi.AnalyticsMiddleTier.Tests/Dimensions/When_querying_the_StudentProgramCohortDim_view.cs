@@ -10,45 +10,13 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramCohortDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentProgramCohortDim_view : When_querying_a_view
+    public abstract class When_querying_the_StudentProgramCohortDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentProgramCohortDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore($"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                DataStandard.PrepareDatabase();
-            }
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore(
-                    $"The StudentProgramCohortDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                Result = DataStandard.LoadTestCaseData<UserDim>($"{TestCasesFolder}.0000_StudentProgramCohortDim_Data_Load.xml");
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-                Result = DataStandard.Install(10, Component.Equity);
-                Result.success.ShouldBeTrue($"Error while installing Base and Equity: '{Result.errorMessage}'");
-            }
-        }
+        protected const string TestCasesDataFileName = "0000_StudentProgramCohortDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -57,6 +25,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupStudentProgramCohortDimTestCase
+                : When_querying_the_StudentProgramCohortDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentProgramCohortDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+        }
         public class Given_StudentProgramCohortDim_189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000
         : When_querying_the_StudentProgramCohortDim_view
         {

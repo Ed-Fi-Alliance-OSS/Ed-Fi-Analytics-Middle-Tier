@@ -8,7 +8,7 @@ using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     /// <summary>
     /// The tests test are very basic, only insuring that:
@@ -19,6 +19,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
     /// Detailed testing of the "Engage" views is handled in the LMS-Toolkit repository.
     /// </summary>
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Parallelizable(ParallelScope.Children)]
     public abstract class When_installing_Engage_option
     {
         protected const string QUERY =
@@ -28,18 +29,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
         protected (bool success, string errorMessage) Result;
 
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
         [SetUp]
         public void Act()
         {
             Result = DataStandard.Install(10, Component.Engage);
         }
-        
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
+        }
+
         protected int GetEngageRecordCount()
         {
             return DataStandard.Orm.ExecuteScalar<int>(QUERY);

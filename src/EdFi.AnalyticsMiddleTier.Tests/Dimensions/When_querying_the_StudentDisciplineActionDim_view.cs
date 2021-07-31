@@ -11,46 +11,13 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentDisciplineActionDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentDisciplineActionDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore($"The StudentDisciplineActionDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                DataStandard.PrepareDatabase();
-            }
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore(
-                    $"The StudentDisciplineActionDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                Result = DataStandard.LoadTestCaseData<StudentDisciplineActionDim>(
-                    $"{TestCasesFolder}.0000_StudentDisciplineActionDim_Data_Load.xml");
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-                Result = DataStandard.Install(10, Component.Equity);
-                Result.success.ShouldBeTrue($"Error while installing Base and Equity: '{Result.errorMessage}'");
-            }
-        }
+        protected const string TestCasesDataFileName = "0000_StudentDisciplineActionDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -58,7 +25,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentDisciplineActionDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupStudentDisciplineActionTestCase
+            : When_querying_the_StudentDisciplineActionDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentDisciplineActionDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+        }
         public class Given_studentDisciplineAction_193964_628530001
         : When_querying_the_StudentDisciplineActionDim_view
         {

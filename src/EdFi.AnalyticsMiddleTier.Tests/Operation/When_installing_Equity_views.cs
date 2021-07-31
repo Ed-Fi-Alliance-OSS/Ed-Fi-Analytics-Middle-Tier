@@ -9,25 +9,24 @@ using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Parallelizable(ParallelScope.Children)]
     public class When_installing_Equity_views : When_querying_a_view_ds3
     {
         public When_installing_Equity_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
 
         [SetUp]
         public void Act()
         {
             Result = DataStandard.Install(10, Component.Equity);
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]

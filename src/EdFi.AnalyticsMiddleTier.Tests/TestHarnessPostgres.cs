@@ -12,12 +12,18 @@ using Npgsql;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessPostgres : TestHarnessBase, ITestHarnessBase
+    public class TestHarnessPostgres : TestHarnessBase
     {
+        public TestHarnessPostgres()
+        {
+            _engine = Engine.PostgreSQL;
+        }
+
         public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
         {
-            _dataStandardVersionName = "PG_3_2",
-            _dataStandardFolderName = "PG_3_2",
+
+            _dataStandardVersionName = "3_2",
+            _dataStandardFolderName = "3_2",
             _databaseName = "edfi_ods_tests",
             _engine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),

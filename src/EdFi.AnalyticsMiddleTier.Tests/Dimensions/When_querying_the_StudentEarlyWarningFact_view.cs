@@ -9,30 +9,13 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentEarlyWarningFact";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentEarlyWarningFact>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentEarlyWarningFact_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.Ews);
-            Result.success.ShouldBeTrue($"Error while installing Base and EWS: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentEarlyWarningFact_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -40,7 +23,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupStudentEarlyWarningFactTestCase
+            : When_querying_the_StudentEarlyWarningFact_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentEarlyWarningFact>(TestCasesFolder, TestCasesDataFileName, Component.Ews);
+        }
         public class Given_student_early_warning_fact_193964_867530011_20120502
         : When_querying_the_StudentEarlyWarningFact_view
         {

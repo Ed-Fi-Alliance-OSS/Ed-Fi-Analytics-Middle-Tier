@@ -9,31 +9,13 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_UserAuthorization_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.UserAuthorization";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentDataAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_UserAuthorization_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.RLS);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-        }
-
+        protected const string TestCasesDataFileName = "0000_UserAuthorization_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -42,6 +24,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupUserAuthorizationTestCase
+                : When_querying_the_UserAuthorization_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<UserAuthorization>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
+        }
 
         public class Given_an_StaffEducationOrganizationAssignmentAssociation_that_has_already_ended
             : When_querying_the_UserAuthorization_view

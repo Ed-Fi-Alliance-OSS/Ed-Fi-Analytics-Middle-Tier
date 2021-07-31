@@ -3,31 +3,14 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentProgramDim_view : When_querying_a_view
     {
 
         protected const string TestCasesFolder = "TestCases.StudentProgramDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentSchoolDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentProgramDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentProgramDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -36,6 +19,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 DataStandard.RunTestCase<TableColumns>(
                     $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_StudentProgramDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupStudentProgramDimTestCase
+                : When_querying_the_StudentProgramDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentProgramDim>(TestCasesFolder, TestCasesDataFileName,true);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]

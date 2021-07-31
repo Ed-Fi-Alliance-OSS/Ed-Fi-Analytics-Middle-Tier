@@ -5,31 +5,28 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
+using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_indexes
+    [Parallelizable(ParallelScope.Children)]
+    public abstract class When_installing_indexes : When_querying_a_view
     {
-
-        protected abstract TestHarnessSQLServer _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.Indexes);
+            Result = DataStandard.Install(10, Component.Indexes);
         }
-
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
+        }
         [Test]
         public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
 
@@ -39,55 +36,75 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         protected void AssertIndexCreated(string index)
         {
             var sql = $"select 1 from sys.indexes where [name] = '{index}'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
 
         protected void AssertIndexJournalPopulated(string tableName, string index)
         {
             var sql = $"select 1 from analytics_config.indexjournal where FullyQualifiedIndexName = '[edfi].[{tableName}].[{index}]'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
 
         [Test]
-        public void Then_should_create_index_journal() => _dataStandard.TableExists("IndexJournal").ShouldBe(true);
+        public void Then_should_create_index_journal() => DataStandard.TableExists("IndexJournal").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_indexes
+        public class Given_data_standard_indexes : When_installing_indexes
         {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard2;
+            public Given_data_standard_indexes(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [TestCase("IX_AMT_Grade_SectionKey")]
             [TestCase("IX_AMT_AcademicSubjectType_CodeValue")]
             [TestCase("IX_AMT_StudentSectionAssociation_StudentSectionDim")]
-            public void Then_should_create_index(string indexName) => AssertIndexCreated(indexName);
+            public void Then_should_create_index_ds2(string indexName) {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    AssertIndexCreated(indexName); 
+                }
+                else {
+                    Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
 
             [TestCase("Grade", "IX_AMT_Grade_SectionKey")]
             [TestCase("AcademicSubjectType", "IX_AMT_AcademicSubjectType_CodeValue")]
             [TestCase("StudentSectionAssociation", "IX_AMT_StudentSectionAssociation_StudentSectionDim")]
-            public void Then_should_record_index_in_journal(string tableName, string indexName) => AssertIndexJournalPopulated(tableName, indexName);
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_indexes
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard31;
-
-            [TestCase("IX_AMT_Grade_SectionKey")]
-            public void Then_should_create_index(string indexName) => AssertIndexCreated(indexName);
-
-            [TestCase("Grade", "IX_AMT_Grade_SectionKey")]
-            public void Then_should_record_index_in_journal(string tableName, string indexName) => AssertIndexJournalPopulated(tableName, indexName);
-        }
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_indexes
-        {
-            protected override TestHarnessSQLServer _dataStandard => TestHarnessSQLServer.DataStandard32;
+            public void Then_should_record_index_in_journal_ds2(string tableName, string indexName)
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    AssertIndexJournalPopulated(tableName, indexName);
+                }
+                else
+                {
+                    Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
 
             [TestCase("IX_AMT_Grade_SectionKey")]
-            public void Then_should_create_index(string indexName) => AssertIndexCreated(indexName);
+            public void Then_should_create_index(string indexName)
+            {
+                if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    AssertIndexCreated(indexName);
+                }
+                else
+                {
+                    Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
 
             [TestCase("Grade", "IX_AMT_Grade_SectionKey")]
-            public void Then_should_record_index_in_journal(string tableName, string indexName) => AssertIndexJournalPopulated(tableName, indexName);
+            public void Then_should_record_index_in_journal(string tableName, string indexName)
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    AssertIndexJournalPopulated(tableName, indexName);
+                }
+                else
+                {
+                    Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
         }
     }
 }

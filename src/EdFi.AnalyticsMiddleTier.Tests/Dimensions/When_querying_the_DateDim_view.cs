@@ -9,36 +9,27 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DateDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_DateDim_view : When_querying_a_view_postgres
+    public abstract class When_querying_the_DateDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.DateDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<DateDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_DateDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_DateDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+        
+        [SetUpFixture]
+        public class SetupDateDimTestCase
+            : When_querying_the_DateDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<DateDim>(TestCasesFolder, TestCasesDataFileName);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]

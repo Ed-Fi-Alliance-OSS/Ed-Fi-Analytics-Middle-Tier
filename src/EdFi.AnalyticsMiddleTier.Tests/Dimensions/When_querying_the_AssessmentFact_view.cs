@@ -11,46 +11,13 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_AssessmentFact_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.AssessmentFact";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore($"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else { 
-                DataStandard.PrepareDatabase();
-            }
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore(
-                    $"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                Result = DataStandard.LoadTestCaseData<AssessmentFact>(
-                    $"{TestCasesFolder}.{DataStandard.CurrentDataStandardFolderName}.0000_AssessmentFact_Data_Load.xml");
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-                // rls_AssessmentFact depends on Email.Work constant; for testing we can rely on DefaultMap to populate a value.
-                Result = DataStandard.Install(10, Component.Asmt);
-                Result.success.ShouldBeTrue($"Error while installing Base and Asmt: '{Result.errorMessage}'");
-            }
-        }
+        protected const string TestCasesDataFileName = "0000_AssessmentFact_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -58,7 +25,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_AssessmentFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupAssessmentFactTestCase
+            : When_querying_the_AssessmentFact_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<AssessmentFact>(TestCasesFolder, TestCasesDataFileName, true, Component.Asmt);
+        }
         public class Given_assessment_2s3ch0knpb4val7uqve6mn269bavkdx2
         : When_querying_the_AssessmentFact_view
         {

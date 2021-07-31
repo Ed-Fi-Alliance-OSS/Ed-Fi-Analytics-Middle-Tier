@@ -9,20 +9,16 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Parallelizable(ParallelScope.Children)]
     public abstract class When_installing_default_map : TestCaseBase
     {
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 
         protected (bool success, string errorMessage) Result;
         protected When_installing_default_map(TestHarnessBase dataStandard) : base(dataStandard) { }
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
 
         [OneTimeSetUp]
         public void Act()

@@ -9,30 +9,13 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescriptorScopeListTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view
+    public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StaffClassificationDescriptorScopeList";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentDataAuthorization>($"{TestCasesFolder}.0000_StaffClassificationDescriptorScopeList_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.Qews);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StaffClassificationDescriptorScopeList_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -40,7 +23,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-        
+
+        [SetUpFixture]
+        public class SetupStaffClassificationDescriptorScopeListTestCase
+            : When_querying_the_StaffClassificationDescriptorScopeList
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StaffClassificationDescriptorScopeList>(TestCasesFolder, TestCasesDataFileName, Component.Qews);
+        }
+
         public class Given_an_StaffClassificationDescriptorScopeList_District
             : When_querying_the_StaffClassificationDescriptorScopeList
         {

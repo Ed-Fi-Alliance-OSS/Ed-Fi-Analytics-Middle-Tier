@@ -9,37 +9,27 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserDimTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_UserDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.UserDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_UserDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            // rls_UserDim depends on Email.Work constant; for testing we can rely on DefaultMap to populate a value.
-            Result = DataStandard.Install(10, Component.RLS);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_UserDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_UserDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupUserDimTestCase
+                : When_querying_the_UserDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<UserDim>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
         }
 
         public class Given_user_11324

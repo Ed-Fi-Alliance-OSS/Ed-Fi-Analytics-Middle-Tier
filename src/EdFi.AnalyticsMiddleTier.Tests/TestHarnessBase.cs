@@ -14,7 +14,7 @@ using Npgsql;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessBase
+    public class TestHarnessBase : ITestHarnessBase
     {
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
@@ -121,11 +121,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
             ? ToString()
-            : "v_" + _dataStandardFolderName;
+            : $"{_engine}.v_{_dataStandardFolderName}";
 
         public string CurrentDataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
             ? ToString()
-            : "v_" + _dataStandardVersionName;
+            : $"{_engine}.v_{_dataStandardVersionName}";
 
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
@@ -147,6 +147,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             return UninstallStrategy.Uninstall();
         }
 
+        public string GetTestDataFolderName(bool useCurrentDataStandard)
+            => useCurrentDataStandard
+                ? $"{CurrentDataStandardFolderName}"
+                : $"{DataStandardFolderName}" ;
+
+  
         public T ExecuteScalarQuery<T>(string sqlCommand)
         {
             using (var connection = OpenConnection())
@@ -203,12 +209,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public virtual void PrepareDatabase()
         {
-            
+
         }
 
         public override string ToString()
         {
-            return $"v_{_dataStandardVersionName}";
+            return $"{_engine}.v_{_dataStandardVersionName}";
         }
 
         public (bool success, string errorMessage) RunTestCase<T>(string testCaseFile)

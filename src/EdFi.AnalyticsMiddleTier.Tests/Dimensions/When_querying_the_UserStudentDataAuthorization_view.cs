@@ -9,36 +9,27 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorizationTests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_UserStudentDataAuthorization_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.UserStudentDataAuthorization";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<UserStudentDataAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_UserStudentDataAuthorization_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.RLS);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_UserStudentDataAuthorization_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_UserStudentDataAuthorization_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupUserStudentDataAuthorizationTestCase
+                : When_querying_the_UserStudentDataAuthorization_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<UserStudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
         }
 
         public class Given_UserStudentDataAuthorization_11324_190019
