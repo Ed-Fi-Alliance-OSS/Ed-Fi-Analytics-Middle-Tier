@@ -6,6 +6,7 @@
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
+using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
@@ -13,12 +14,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [NonParallelizable]
-    public abstract class When_installing_default_map : TestCaseBase
+    public abstract class When_installing_default_map : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 
-        protected (bool success, string errorMessage) Result;
-        protected When_installing_default_map(TestHarnessBase dataStandard) : base(dataStandard) { }
+        protected When_installing_default_map(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [OneTimeSetUp]
         public void Act()
