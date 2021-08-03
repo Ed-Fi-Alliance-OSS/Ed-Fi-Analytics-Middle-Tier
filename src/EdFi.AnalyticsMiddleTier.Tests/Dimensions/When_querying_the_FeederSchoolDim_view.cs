@@ -10,7 +10,8 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FeederSchoolDimTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FeederSchoolDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_FeederSchoolDim_view : When_querying_a_view_ds3

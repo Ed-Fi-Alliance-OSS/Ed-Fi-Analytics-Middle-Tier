@@ -7,11 +7,11 @@ using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
-using System;
 using System.Diagnostics.CodeAnalysis;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentDisciplineActionDim_view : When_querying_a_view_ds3

@@ -9,7 +9,8 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyDemographicsBridgeTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyDemographicsBridgeTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view : When_querying_a_view

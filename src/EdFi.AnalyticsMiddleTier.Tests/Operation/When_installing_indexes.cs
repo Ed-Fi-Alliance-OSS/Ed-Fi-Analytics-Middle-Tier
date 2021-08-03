@@ -6,15 +6,14 @@
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [NonParallelizable]
-    public abstract class When_installing_indexes : When_querying_a_view
+    public abstract class When_installing_indexes : TestCaseBase
     {
 
         [SetUp]

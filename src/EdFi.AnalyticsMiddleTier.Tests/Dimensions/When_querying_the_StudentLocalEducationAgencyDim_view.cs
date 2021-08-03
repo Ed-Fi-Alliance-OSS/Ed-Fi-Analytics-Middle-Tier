@@ -9,7 +9,8 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyDimTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [Ignore("Ignore a fixture")]

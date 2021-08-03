@@ -4,12 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_SchoolDim_view_base : When_querying_a_view

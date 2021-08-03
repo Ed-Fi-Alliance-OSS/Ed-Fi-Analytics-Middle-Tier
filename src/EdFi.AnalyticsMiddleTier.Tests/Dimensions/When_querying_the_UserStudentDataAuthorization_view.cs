@@ -9,7 +9,8 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorizationTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorizationTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_UserStudentDataAuthorization_view : When_querying_a_view

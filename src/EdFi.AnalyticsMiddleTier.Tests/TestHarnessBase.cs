@@ -51,14 +51,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             {
                 if (_orm == null)
                 {
-                    if (_engine == Engine.PostgreSQL)
-                    {
-                        _orm = new DapperWrapper(new NpgsqlConnection(_connectionString));
-                    }
-                    else
-                    {
-                        _orm = new DapperWrapper(new SqlConnection(_connectionString));
-                    }
+                    _orm = _engine == Engine.PostgreSQL 
+                            ? new DapperWrapper(new NpgsqlConnection(_connectionString))
+                            : _orm = new DapperWrapper(new SqlConnection(_connectionString));
                 }
 
                 return _orm;

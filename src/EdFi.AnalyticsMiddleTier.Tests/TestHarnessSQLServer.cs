@@ -187,8 +187,7 @@ AS SNAPSHOT OF {_databaseName}
 
         public override IDbConnection OpenConnection()
         {
-            IDbConnection connection;
-            connection = new SqlConnection(_connectionString);
+            IDbConnection connection = new SqlConnection(_connectionString);
             connection.Open();
             return connection;
         }

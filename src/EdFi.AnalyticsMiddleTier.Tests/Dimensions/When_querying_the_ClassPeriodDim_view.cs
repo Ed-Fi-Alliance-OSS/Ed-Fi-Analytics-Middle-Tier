@@ -9,7 +9,8 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ClassPeriodDimTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ClassPeriodDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_ClassPeriodDim_view_base : When_querying_a_view

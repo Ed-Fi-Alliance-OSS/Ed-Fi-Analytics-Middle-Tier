@@ -4,16 +4,14 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
-using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [SetUpFixture]
-    public class CollectionViews : When_querying_a_view
+    public class CollectionViews : TestCaseBase
     {
         [OneTimeSetUp]
         public void PrepareDatabase() => PrepareTestDatabase();

@@ -3,7 +3,8 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentProgramDim_view : When_querying_a_view

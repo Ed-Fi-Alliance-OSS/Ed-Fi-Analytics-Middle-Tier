@@ -4,11 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Classes
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class StudentLocalEducationAgencyDim
     {
         public string StudentLocalEducationAgencyKey { get; set; } //(nvarchar(61), null)

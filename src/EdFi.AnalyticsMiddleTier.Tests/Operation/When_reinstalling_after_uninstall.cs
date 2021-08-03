@@ -4,34 +4,33 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [NonParallelizable]
-    public class When_reinstalling_after_uninstall: When_querying_a_view_postgres
+    public class When_reinstalling_after_uninstall: TestCaseBase
     {
         public When_reinstalling_after_uninstall(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBe(true, "initial installation");
-
-            Result = DataStandard.Uninstall();
-            Result.success.ShouldBe(true, "uninstall");
-        }
 
         [SetUp]
         public void Act()
         {
             Result = DataStandard.Install();
+            Result.success.ShouldBe(true, "initial installation");
+
+            Result = DataStandard.Uninstall();
+            Result.success.ShouldBe(true, "uninstall");
+
+            Result = DataStandard.Install();
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]

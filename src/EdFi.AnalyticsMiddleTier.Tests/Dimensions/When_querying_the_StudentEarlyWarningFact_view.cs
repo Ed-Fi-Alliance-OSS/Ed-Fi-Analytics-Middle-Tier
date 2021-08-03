@@ -9,7 +9,8 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view

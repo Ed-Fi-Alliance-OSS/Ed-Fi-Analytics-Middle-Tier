@@ -103,14 +103,14 @@ namespace EdFi.AnalyticsMiddleTier.Common
         protected int RemoveDbObjectsBySchema(Func<string, string>queryTemplate, Func<string, string, string>DropTemplate, string schema)
         {
             var objectsToDrop = Orm.Query<string>(queryTemplate(schema));
-            if ((objectsToDrop?.Count ?? 0) <= 0) return 0;
+            if ((objectsToDrop?.Count ?? 0) <= 0){ return 0;}
             var sql = String.Join(string.Empty, objectsToDrop.Select(i => (DropTemplate(schema, i))));
             return Orm.Execute(sql);
         }
         protected int RemoveDbObjectsBySchema(Func<string, string> queryTemplate, Func<string, string> DropTemplate, string schema)
         {
             var objectsToDrop = Orm.Query<string>(queryTemplate(schema));
-            if ((objectsToDrop?.Count ?? 0) <= 0) return 0;
+            if ((objectsToDrop?.Count ?? 0) <= 0){ return 0;}
             var sql = String.Join(String.Empty, objectsToDrop.Select(i => (DropTemplate(i))));
             return Orm.Execute(sql);
         }

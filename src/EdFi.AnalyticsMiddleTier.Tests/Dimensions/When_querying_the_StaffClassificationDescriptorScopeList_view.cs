@@ -9,7 +9,8 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescriptorScopeListTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescriptorScopeListTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view_ds3

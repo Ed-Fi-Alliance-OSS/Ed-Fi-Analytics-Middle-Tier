@@ -3,15 +3,15 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+using System.Diagnostics.CodeAnalysis;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTests
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_AssessmentFact_view : When_querying_a_view_ds3

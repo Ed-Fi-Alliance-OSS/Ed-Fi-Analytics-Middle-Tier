@@ -48,14 +48,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                             WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config')");
 
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))
+                {
                     connection.Execute(truncateAllTablesLine);
+                }
             }
         }
 
         public override IDbConnection OpenConnection()
         {
-            IDbConnection connection;
-            connection = new NpgsqlConnection(_connectionString);
+            IDbConnection connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             return connection;
         }

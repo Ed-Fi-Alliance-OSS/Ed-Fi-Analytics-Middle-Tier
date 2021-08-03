@@ -5,15 +5,14 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [NonParallelizable]
-    public class When_installing_Chrab_views : When_querying_a_view_postgres
+    public class When_installing_Chrab_views : TestCaseBase
     {
         public When_installing_Chrab_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 

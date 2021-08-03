@@ -4,14 +4,15 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
+using System.Diagnostics.CodeAnalysis;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
-    [NonParallelizable]
-    public class When_installing_QEWS_views : When_querying_a_view
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public class When_installing_QEWS_views : TestCaseBase
     {
         public When_installing_QEWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 

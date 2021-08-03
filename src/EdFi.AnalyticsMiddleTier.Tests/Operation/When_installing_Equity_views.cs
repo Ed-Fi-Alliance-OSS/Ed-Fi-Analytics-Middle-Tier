@@ -5,22 +5,29 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
+using CommonLib=EdFi.AnalyticsMiddleTier.Common;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [NonParallelizable]
-    public class When_installing_Equity_views : When_querying_a_view_ds3
+    public class When_installing_Equity_views : TestCaseBase
     {
         public When_installing_Equity_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Equity);
+            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+            {
+                Assert.Ignore($"The collection Equity does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+            }
+            else
+            {
+                Result = DataStandard.Install(10, Component.Equity); 
+            }
         }
 
         [OneTimeTearDown]

@@ -1,5 +1,8 @@
-﻿namespace EdFi.AnalyticsMiddleTier.Tests.Classes
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace EdFi.AnalyticsMiddleTier.Tests.Classes
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class StudentInternetAccessDim
     {
         public string StudentSchoolKey { get; set; }
