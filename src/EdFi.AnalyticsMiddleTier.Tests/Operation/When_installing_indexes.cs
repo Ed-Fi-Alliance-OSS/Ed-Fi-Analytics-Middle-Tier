@@ -21,11 +21,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         {
             Result = DataStandard.Install(10, Component.Indexes);
         }
-        //[OneTimeTearDown]
-        //public void Uninstall()
-        //{
-        //    Result = DataStandard.Uninstall();
-        //}
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
+        }
         [Test]
         public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
 

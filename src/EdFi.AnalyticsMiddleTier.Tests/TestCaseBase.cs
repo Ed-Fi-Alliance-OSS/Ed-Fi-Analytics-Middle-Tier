@@ -40,6 +40,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 currentDataStandard.PrepareDatabase();
             }
         }
+
         [TestFixtureSource(typeof(DataStandardTestFixturePostgres))]
         public abstract class TestCasePostgreSQL : TestCaseBase
         {

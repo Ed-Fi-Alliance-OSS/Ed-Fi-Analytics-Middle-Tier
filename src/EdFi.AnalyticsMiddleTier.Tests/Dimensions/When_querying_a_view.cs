@@ -16,27 +16,33 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     [Parallelizable(ParallelScope.Fixtures)]
     public abstract class When_querying_a_view : TestCaseBase
     {
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile) => PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, null);
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, null);
 
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components) => PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, components);
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, components);
 
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard) => PrepareTestData<T>(testCaseFolder, xmlLoadFile, useCurrentDataStandard, null);
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, useCurrentDataStandard, null);
 
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard, params Component[] components)
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard,
+            params Component[] components)
         {
             foreach (var dataStandard in fixtureList.GetFixturesList())
             {
                 ITestHarnessBase currentDataStandard;
                 if (dataStandard.GetType().ToString().Contains("TestHarnessSQLServer"))
                 {
-                    currentDataStandard = ((TestHarnessSQLServer)dataStandard);
+                    currentDataStandard = ((TestHarnessSQLServer) dataStandard);
                 }
                 else
                 {
-                    currentDataStandard = ((TestHarnessPostgres)dataStandard);
+                    currentDataStandard = ((TestHarnessPostgres) dataStandard);
                 }
-                string xmlLoadFilePath = $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName(useCurrentDataStandard)}.{xmlLoadFile}";
-                       
+
+                string xmlLoadFilePath =
+                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName(useCurrentDataStandard)}.{xmlLoadFile}";
+
                 currentDataStandard.PrepareDatabase();
                 Result = currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);
                 Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
@@ -46,11 +52,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 }
                 else
                 {
-                    Result = currentDataStandard.Install(10,components);
+                    Result = currentDataStandard.Install(10, components);
                 }
+
                 Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
             }
         }
-
     }
 }
+
