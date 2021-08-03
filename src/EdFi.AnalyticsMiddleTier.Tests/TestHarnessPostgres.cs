@@ -25,7 +25,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         };
 
         public override string _connectionString =>
-            $"User ID=postgres;Password=gapUser123;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;";
+            $"User ID=postgres;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;";
 
         public override void PrepareDatabase()
         {
