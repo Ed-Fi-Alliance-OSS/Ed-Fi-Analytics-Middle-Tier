@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DateDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_DateDim_view : When_querying_a_view
+    public abstract class When_querying_the_DateDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.DateDim";
         protected const string TestCasesDataFileName = "0000_DateDim_Data_Load.xml";
