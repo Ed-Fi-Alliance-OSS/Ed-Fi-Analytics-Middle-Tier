@@ -4,11 +4,12 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class When_uninstalling_the_views : TestCaseBase
@@ -16,15 +17,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public When_uninstalling_the_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-            Result = DataStandard.Install();
-        }
-
-        [SetUp]
         public void Act()
         {
+            DataStandard.Install(10, Component.Indexes);
            Result = DataStandard.Uninstall();
         }
 

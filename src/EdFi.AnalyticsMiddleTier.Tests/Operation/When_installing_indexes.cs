@@ -21,11 +21,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         {
             Result = DataStandard.Install(10, Component.Indexes);
         }
-        [OneTimeTearDown]
-        public void Uninstall()
-        {
-            Result = DataStandard.Uninstall();
-        }
+        //[OneTimeTearDown]
+        //public void Uninstall()
+        //{
+        //    Result = DataStandard.Uninstall();
+        //}
         [Test]
         public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
 
@@ -51,7 +51,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         {
             public Given_data_standard_indexes(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-            [TestCase("IX_AMT_Grade_SectionKey")]
             [TestCase("IX_AMT_AcademicSubjectType_CodeValue")]
             [TestCase("IX_AMT_StudentSectionAssociation_StudentSectionDim")]
             public void Then_should_create_index_ds2(string indexName) {
@@ -64,7 +63,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
                 }
             }
 
-            [TestCase("Grade", "IX_AMT_Grade_SectionKey")]
             [TestCase("AcademicSubjectType", "IX_AMT_AcademicSubjectType_CodeValue")]
             [TestCase("StudentSectionAssociation", "IX_AMT_StudentSectionAssociation_StudentSectionDim")]
             public void Then_should_record_index_in_journal_ds2(string tableName, string indexName)
@@ -81,28 +79,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 
             [TestCase("IX_AMT_Grade_SectionKey")]
             public void Then_should_create_index(string indexName)
-            {
-                if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    AssertIndexCreated(indexName);
-                }
-                else
-                {
-                    Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
+            { 
+                AssertIndexCreated(indexName);
             }
 
             [TestCase("Grade", "IX_AMT_Grade_SectionKey")]
             public void Then_should_record_index_in_journal(string tableName, string indexName)
             {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    AssertIndexJournalPopulated(tableName, indexName);
-                }
-                else
-                {
-                    Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
+                AssertIndexJournalPopulated(tableName, indexName);
             }
         }
     }
