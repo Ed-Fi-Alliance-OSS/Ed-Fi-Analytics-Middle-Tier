@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public TestHarnessSQLServer()
         {
-            _engine = Engine.MSSQL;
+            DataStandardEngine = Engine.MSSQL;
         }
 
         public static TestHarnessSQLServer DataStandard2 = new TestHarnessSQLServer
@@ -52,7 +52,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _dataStandardFolderName = "3_1",
             _databaseName = "AnalyticsMiddleTier_Testing_Ds32",
             _dacpacName = "EdFi_Ods_3.2.dacpac",
-            _engine = Engine.MSSQL,
+            DataStandardEngine = Engine.MSSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
             DataStandardVersion = DataStandard.Ds32
         };

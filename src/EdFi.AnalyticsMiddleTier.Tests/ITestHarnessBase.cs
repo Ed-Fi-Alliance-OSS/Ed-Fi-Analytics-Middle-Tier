@@ -6,7 +6,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public interface ITestHarnessBase
     {
-        string _connectionString { get; }
         string CurrentDataStandardFolderName { get; }
         string DataStandardFolderName { get; }
         DataStandard DataStandardVersion { get; set; }

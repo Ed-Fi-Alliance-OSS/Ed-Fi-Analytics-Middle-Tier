@@ -16,7 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public TestHarnessPostgres()
         {
-            _engine = Engine.PostgreSQL;
+            DataStandardEngine = Engine.PostgreSQL;
         }
 
         public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
@@ -25,7 +25,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _dataStandardVersionName = "3_2",
             _dataStandardFolderName = "3_2",
             _databaseName = "edfi_ods_tests",
-            _engine = Engine.PostgreSQL,
+            DataStandardEngine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
             DataStandardVersion = DataStandard.Ds32
         };

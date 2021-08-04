@@ -16,19 +16,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessBase : ITestHarnessBase
     {
+        public Engine DataStandardEngine { get; set; } = Engine.Default;
+
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
-        public string _databaseName;
+        protected string _databaseName;
 
-        public string _dataStandardFolderName;
+        protected string _dataStandardFolderName;
 
         protected InstallBase _dataStandardInstallBase;
 
-        public Type _dataStandardInstallType;
+        protected Type _dataStandardInstallType;
 
-        public string _dataStandardVersionName;
-
-        public Engine _engine = Engine.Default;
+        protected string _dataStandardVersionName;
 
         protected Func<string, int, Component[], (bool success, string errorMessage)> _installDelegate;
 
@@ -51,7 +51,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             {
                 if (_orm == null)
                 {
-                    _orm = _engine == Engine.PostgreSQL 
+                    _orm = DataStandardEngine == Engine.PostgreSQL 
                             ? new DapperWrapper(new NpgsqlConnection(_connectionString))
                             : _orm = new DapperWrapper(new SqlConnection(_connectionString));
                 }
@@ -67,7 +67,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             {
                 if (_databaseMigrationStrategy == null)
                 {
-                    if (_engine == Engine.PostgreSQL)
+                    if (DataStandardEngine == Engine.PostgreSQL)
                     {
                         _databaseMigrationStrategy = new PostgresMigrationStrategy(Orm);
                     }
@@ -88,7 +88,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             {
                 if (_uninstallStrategy == null)
                 {
-                    if (_engine == Engine.PostgreSQL)
+                    if (DataStandardEngine == Engine.PostgreSQL)
                     {
                         _uninstallStrategy = new PostgresUninstallStrategy(Orm);
                     }
@@ -116,11 +116,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
             ? ToString()
-            : $"{_engine}.v_{_dataStandardFolderName}";
+            : $"{DataStandardEngine}.v_{_dataStandardFolderName}";
 
         public string CurrentDataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
             ? ToString()
-            : $"{_engine}.v_{_dataStandardVersionName}";
+            : $"{DataStandardEngine}.v_{_dataStandardVersionName}";
 
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
@@ -209,7 +209,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public override string ToString()
         {
-            return $"{_engine}.v_{_dataStandardVersionName}";
+            return $"{DataStandardEngine}.v_{_dataStandardVersionName}";
         }
 
         public (bool success, string errorMessage) RunTestCase<T>(string testCaseFile)

@@ -49,7 +49,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         [TestCase("fn_GetStudentGradesSummary")]
         public void Then_should_create_analytics_functions(string scalarFunctionName)
         {
-            if (DataStandard._engine.Equals(Engine.MSSQL))
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
             {
                 DataStandard.ScalarFunctionExists(scalarFunctionName).ShouldBe(true);
             }

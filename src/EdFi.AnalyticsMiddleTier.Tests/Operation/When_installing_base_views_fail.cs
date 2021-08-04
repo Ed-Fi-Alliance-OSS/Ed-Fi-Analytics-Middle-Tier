@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views_fail : When_installing_a_Collection
+    public abstract class When_installing_base_views_fail : TestCaseBase
     {
         [OneTimeSetUp]
         public void PrepareDatabase()
