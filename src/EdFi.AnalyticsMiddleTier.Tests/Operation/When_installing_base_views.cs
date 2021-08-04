@@ -35,7 +35,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         [TestCase("analytics_config")]
         public void Then_create_schema(string schema) =>
             DataStandard
-                .ExecuteScalarQuery<int>($"select 1 from sys.schemas where [name] = '{schema}'")
+                .ExecuteScalarQuery<int>($"select 1 from sys.schemas where name = '{schema}'")
                 .ShouldBe(1);
 
         /*

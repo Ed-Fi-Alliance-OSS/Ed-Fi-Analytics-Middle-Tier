@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_EWS_views : TestCaseBase
+    public class When_installing_EWS_views : When_installing_a_Collection
     {
         public When_installing_EWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 

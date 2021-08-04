@@ -10,8 +10,12 @@ using NUnit.Framework;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public abstract class When_installing_a_Collection : TestCaseBase.TestCasePostgreSQL
+    {
+    }
+
     [SetUpFixture]
-    public class CollectionViews : TestCaseBase
+    public class CollectionViews : When_installing_a_Collection
     {
         [OneTimeSetUp]
         public void PrepareDatabase() => PrepareTestDatabase();

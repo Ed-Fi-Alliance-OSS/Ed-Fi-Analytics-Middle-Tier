@@ -42,7 +42,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         }
 
         [TestFixtureSource(typeof(DataStandardTestFixturePostgres))]
-        public abstract class TestCasePostgreSQL : TestCaseBase
+        public class TestCasePostgreSQL : TestCaseBase
         {
             protected TestCasePostgreSQL() => fixtureList = new DataStandardTestFixturePostgres();
         }

@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace

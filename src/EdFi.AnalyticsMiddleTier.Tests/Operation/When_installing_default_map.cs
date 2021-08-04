@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_default_map : TestCaseBase
+    public abstract class When_installing_default_map : When_installing_a_Collection
     {
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 

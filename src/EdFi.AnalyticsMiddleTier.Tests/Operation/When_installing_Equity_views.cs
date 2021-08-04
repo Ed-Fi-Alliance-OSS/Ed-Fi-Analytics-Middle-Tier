@@ -13,7 +13,7 @@ using CommonLib=EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_Equity_views : TestCaseBase
+    public class When_installing_Equity_views : When_installing_a_Collection
     {
         public When_installing_Equity_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
@@ -47,7 +47,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 
         [TestCase("fn_GetStudentEnrollmentHistory")]
         [TestCase("fn_GetStudentGradesSummary")]
-        public void Then_should_create_analytics_functions(string scalarFunctionName) => DataStandard.ScalarFunctionExists(scalarFunctionName).ShouldBe(true);
+        public void Then_should_create_analytics_functions(string scalarFunctionName)
+        {
+            if (DataStandard._engine.Equals(Engine.MSSQL))
+            {
+                DataStandard.ScalarFunctionExists(scalarFunctionName).ShouldBe(true);
+            }
+            else
+            {
+                Assert.Ignore($"The function {scalarFunctionName} is only for MSSQL databases.");
+            }
+        } 
+
 
         [TestCase]
         public void Then_should_create_analytics_view_equity_StudentDisciplineActionDim() => DataStandard.ViewExists("equity_studentdisciplineactiondim").ShouldBe(true);

@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews;
 using NUnit.Framework;
 using Shouldly;
 
@@ -11,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views_fail : TestCaseBase
+    public abstract class When_installing_base_views_fail : When_installing_a_Collection
     {
         [OneTimeSetUp]
         public void PrepareDatabase()

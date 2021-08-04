@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_Asmt_views : TestCaseBase
+    public class When_installing_Asmt_views : When_installing_a_Collection
     {
         public When_installing_Asmt_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
