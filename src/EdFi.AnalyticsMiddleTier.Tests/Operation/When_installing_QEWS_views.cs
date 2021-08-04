@@ -9,17 +9,24 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_QEWS_views : TestCaseBase
+    public class When_installing_QEWS_views : When_installing_a_Collection
     {
         public When_installing_QEWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Qews);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                Result = DataStandard.Install(10, Component.Qews);
+            }
+            else
+            {
+                Assert.Ignore("Collection QEWS does not exist.");
+            }
         }
 
         [OneTimeTearDown]

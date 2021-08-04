@@ -4,23 +4,30 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews;
+using EdFi.AnalyticsMiddleTier.Common;
+using EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView;
 using NUnit.Framework;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views_fail : TestCaseBase
+    public abstract class When_installing_base_views_fail : When_installing_a_Collection
     {
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
             DataStandard.PrepareDatabase();
-            DataStandard.ExecuteQuery("ALTER TABLE [edfi].[GradingPeriod] DROP COLUMN [TotalInstructionalDays]");
+            DataStandard.ExecuteQuery("ALTER TABLE edfi.GradingPeriod DROP COLUMN TotalInstructionalDays");
         }
 
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            DataStandard.ExecuteQuery("ALTER TABLE edfi.GradingPeriod ADD TotalInstructionalDays int NOT NULL;");
+            DataStandard.Uninstall();
+        }
         public class Given_an_expected_table_column_is_missing : When_installing_base_views_fail
         {
             public Given_an_expected_table_column_is_missing(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
@@ -30,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
             {
                 Result = DataStandard.Install();
             }
-
+            
             [Test]
             public void Then_should_not_be_successful() => Result.success.ShouldBe(false);
 
@@ -40,15 +47,32 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.BaseViews
             [Test]
             public void Then_should_not_install_any_views()
             {
-                const string sql = "SELECT count(1) FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics'";
-                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+                {
+                    DataStandard
+                        .ExecuteScalarQuery<int>($"select 1 from sys.schemas where name = 'analytics'")
+                        .ShouldBe(0);
+                }
+                else
+                {
+                    DataStandard
+                        .ExecuteScalarQuery<int>($"select 1 from pg_catalog.pg_namespace where nspname = 'analytics'")
+                        .ShouldBe(0);
+                }
             }
 
             [Test]
             public void Then_should_not_install_any_indexes()
             {
                 var sql = "select count(1) from sys.indexes where [name] LIKE 'IX_AMT_%'";
-                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+                {
+                    DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                }
+                else
+                {
+                    Assert.Ignore("Indexes are not installed (PostgreSQL).");
+                }
             }
 
             [Test]

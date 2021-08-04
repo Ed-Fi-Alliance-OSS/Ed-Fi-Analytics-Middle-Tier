@@ -4,14 +4,15 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views : TestCaseBase
+    public abstract class When_installing_base_views : When_installing_a_Collection
     {
         [OneTimeSetUp]
         public void Act()
@@ -33,10 +34,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 
         [TestCase("analytics")]
         [TestCase("analytics_config")]
-        public void Then_create_schema(string schema) =>
-            DataStandard
+        public void Then_create_schema(string schema)
+        {
+            if(DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                DataStandard
                 .ExecuteScalarQuery<int>($"select 1 from sys.schemas where name = '{schema}'")
                 .ShouldBe(1);
+            }
+            else
+            {
+                DataStandard
+                    .ExecuteScalarQuery<int>($"select 1 from pg_catalog.pg_namespace where nspname = '{schema}'")
+                    .ShouldBe(1);
+            }
+        }
 
         /*
          * TODO: removing the tests for columns. These will be tested in detail when we start doing unit testing with dapper.
@@ -65,7 +77,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         public void Then_should_create_analytics_middle_tier_role()
         {
             const string sql = "SELECT 1 FROM sys.database_principals WHERE [type] = 'R' AND [name] = 'analytics_middle_tier'";
-            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            const string postgresql = "SELECT 1 FROM pg_roles WHERE rolname = 'analytics_middle_tier'";
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            }
+            else
+            {
+                DataStandard.ExecuteScalarQuery<int>(postgresql).ShouldBe(1);
+            }
         }
 
         [TestCase("IX_AMT_Grade_SectionKey")]
@@ -74,7 +94,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
         public void Then_should_not_install_indexes(string indexName)
         {
             var sql = $"select 1 from sys.indexes where [name] = '{indexName}'";
-            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            }
+            else
+            {
+                Assert.Ignore("Indexes are not installed (PostgreSQL).");
+            }
         }
        
         public class Given_a_data_standard : When_installing_base_views

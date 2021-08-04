@@ -189,7 +189,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             using (var connection = OpenConnection())
             {
-                var sql = $"select 1 from information_schema.tables where table_schema = '{schemaName}' and table_name='{tableName}'";
+                var sql = $"select 1 from information_schema.tables where table_schema = '{schemaName.ToLower()}' and table_name='{tableName.ToLower()}'";
                 return connection.ExecuteScalar<int>(sql) == 1;
             }
         }

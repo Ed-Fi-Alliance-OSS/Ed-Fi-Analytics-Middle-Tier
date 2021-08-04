@@ -9,7 +9,7 @@ using NUnit.Framework;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class When_installing_RLS_views : When_installing_a_Collection

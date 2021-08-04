@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_installing_a_Collection : TestCaseBase.TestCasePostgreSQL

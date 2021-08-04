@@ -9,7 +9,7 @@ using NUnit.Framework;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_installing_default_map : When_installing_a_Collection
