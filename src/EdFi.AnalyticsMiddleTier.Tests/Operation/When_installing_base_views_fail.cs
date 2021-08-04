@@ -5,6 +5,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
+using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
@@ -12,12 +13,11 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views_fail : TestCaseBase
+    public abstract class When_installing_base_views_fail : When_querying_a_view_postgres
     {
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
-            DataStandard.PrepareDatabase();
             DataStandard.ExecuteQuery("ALTER TABLE edfi.GradingPeriod DROP COLUMN TotalInstructionalDays");
         }
 

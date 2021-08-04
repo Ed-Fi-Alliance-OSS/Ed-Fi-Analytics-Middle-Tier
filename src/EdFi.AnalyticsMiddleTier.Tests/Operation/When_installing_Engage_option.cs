@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
     /// </summary>
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [NonParallelizable]
-    public abstract class When_installing_Engage_option : TestCaseBase
+    public abstract class When_installing_Engage_option : When_installing_a_Collection
     {
         protected const string QUERY =
             "SELECT COUNT(1) FROM AnalyticsMiddleTierSchemaVersion WHERE ScriptName LIKE '%.Engage.%'";
@@ -30,7 +30,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Engage);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                Result = DataStandard.Install(10, Component.Engage);
+            }
+            else
+            {
+                Assert.Ignore("Collection Engage is not installed.");
+            }
         }
 
         [OneTimeTearDown]

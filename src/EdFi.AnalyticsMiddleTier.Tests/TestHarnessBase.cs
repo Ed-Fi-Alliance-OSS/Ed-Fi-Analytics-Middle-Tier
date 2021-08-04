@@ -180,7 +180,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             using (var connection = OpenConnection())
             {
                 var sql =
-                    $"select 1 from information_schema.ROUTINES where SPECIFIC_SCHEMA = '{schema}' and SPECIFIC_NAME='{scalarFunctionName}'";
+                    $"select 1 from information_schema.ROUTINES where SPECIFIC_SCHEMA = '{schema}' and (SPECIFIC_NAME='{scalarFunctionName}' OR SPECIFIC_NAME='{scalarFunctionName.ToLower()}')";
                 return connection.ExecuteScalar<int>(sql) == 1;
             }
         }
@@ -189,7 +189,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             using (var connection = OpenConnection())
             {
-                var sql = $"select 1 from information_schema.tables where table_schema = '{schemaName.ToLower()}' and table_name='{tableName.ToLower()}'";
+                var sql = $"select 1 from information_schema.tables where table_schema = '{schemaName.ToLower()}' and (table_name='{tableName.ToLower()}' OR table_name='{tableName}')";
                 return connection.ExecuteScalar<int>(sql) == 1;
             }
         }

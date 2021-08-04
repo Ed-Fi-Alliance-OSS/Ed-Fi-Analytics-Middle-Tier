@@ -44,18 +44,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                     $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName(useCurrentDataStandard)}.{xmlLoadFile}";
 
                 currentDataStandard.PrepareDatabase();
-                Result = currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
+                currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);
                 if (components == null || components.Length == 0)
                 {
-                    Result = currentDataStandard.Install(10);
+                    currentDataStandard.Install(10);
                 }
                 else
                 {
-                    Result = currentDataStandard.Install(10, components);
+                    currentDataStandard.Install(10, components);
                 }
-
-                Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
             }
         }
     }
