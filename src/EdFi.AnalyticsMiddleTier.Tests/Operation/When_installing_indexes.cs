@@ -11,7 +11,7 @@ using NUnit.Framework.Internal;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_installing_indexes : When_installing_a_Collection

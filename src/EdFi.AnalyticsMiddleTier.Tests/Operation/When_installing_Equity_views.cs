@@ -10,7 +10,7 @@ using Shouldly;
 using CommonLib=EdFi.AnalyticsMiddleTier.Common;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class When_installing_Equity_views : When_installing_a_Collection

@@ -10,7 +10,7 @@ using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView
+namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     /// <summary>
     /// The tests test are very basic, only insuring that:

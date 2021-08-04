@@ -5,7 +5,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionView;
 using NUnit.Framework;
 using Shouldly;
 
@@ -13,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views_fail : When_installing_a_Collection
+    public abstract class When_installing_base_views_fail : TestCaseBase
     {
         [OneTimeSetUp]
         public void PrepareDatabase()
