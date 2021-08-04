@@ -14,13 +14,20 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation.CollectionViews
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_indexes : TestCaseBase
+    public abstract class When_installing_indexes : When_installing_a_Collection
     {
 
         [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Indexes);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                Result = DataStandard.Install(10, Component.Indexes);
+            }
+            else
+            {
+                Assert.Ignore("Indexes are not installed (PostgreSQL).");
+            }
         }
         [OneTimeTearDown]
         public void Uninstall()
