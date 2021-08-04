@@ -9,38 +9,28 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentSchoolDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentSchoolDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentSchoolDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            // Install the default map so that we can test for school address
-            Result = DataStandard.Install(10);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
-
+        protected const string TestCasesDataFileName = "0000_StudentSchoolDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_StudentSchoolDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupStudentSchoolDimTestCase
+                : When_querying_the_StudentSchoolDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentSchoolDim>(TestCasesFolder, TestCasesDataFileName);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]

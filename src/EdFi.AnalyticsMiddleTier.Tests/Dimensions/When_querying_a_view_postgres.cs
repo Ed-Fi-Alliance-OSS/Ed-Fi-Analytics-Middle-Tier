@@ -4,17 +4,15 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Tests.Common;
 using NUnit.Framework;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProviderPostgres))]
+    [TestFixtureSource(typeof(DataStandardTestFixturePostgres))]
     public abstract class When_querying_a_view_postgres : When_querying_a_view
     {
-        protected static ITestHarnessBase[] FixtureDataProviderPostgres()
-        {
-            return new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG };
-        }
+        protected When_querying_a_view_postgres() => fixtureList = new DataStandardTestFixturePostgres();
     }
 }

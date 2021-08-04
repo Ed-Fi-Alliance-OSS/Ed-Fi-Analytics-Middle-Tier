@@ -8,29 +8,21 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_AcademicTimePeriodDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.AcademicTimePeriodDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
+        protected const string TestCasesDataFileName = "0000_AcademicTimePeriodDim_Data_Load.xml";
+                
+        [SetUpFixture]      
+        public class SetupAcademicTimePeriodDimTestCase
+            : When_querying_the_AcademicTimePeriodDim_view
         {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<GradingPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_AcademicTimePeriodDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<AcademicTimePeriodDim>(TestCasesFolder, TestCasesDataFileName);
         }
 
         public class Given_default_record_When_querying_the_AcademicTimePeriodDim_view

@@ -4,24 +4,47 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Tests.Common;
 using NUnit.Framework;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProvider))]
+    [NonParallelizable]
+    [TestFixtureSource(typeof(DataStandardTestFixture))]
     public abstract class TestCaseBase
     {
         protected TestHarnessBase DataStandard { get; set; }
+        protected IDataStandardTestFixtureBase fixtureList { get; set; }
+        protected (bool success, string errorMessage) Result { get; set; }
 
-        protected static ITestHarnessBase[] FixtureDataProvider()
+        protected TestCaseBase() => fixtureList = new DataStandardTestFixture();
+
+        protected void SetDataStandard(TestHarnessBase dataStandard) => this.DataStandard = dataStandard;
+
+        protected ITestHarnessBase[] GetFixturesList() => fixtureList.GetFixturesList();
+
+        protected void PrepareTestDatabase()
         {
-            return new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG };
+            foreach (var dataStandard in fixtureList.GetFixturesList())
+            {
+                ITestHarnessBase currentDataStandard;
+                if (dataStandard.GetType().ToString().Contains("TestHarnessSQLServer"))
+                {
+                    currentDataStandard = ((TestHarnessSQLServer)dataStandard);
+                }
+                else
+                {
+                    currentDataStandard = ((TestHarnessPostgres)dataStandard);
+                }
+                currentDataStandard.PrepareDatabase();
+            }
         }
 
-        protected TestCaseBase(TestHarnessBase dataStandard)
+        [TestFixtureSource(typeof(DataStandardTestFixturePostgres))]
+        public class TestCasePostgreSQL : TestCaseBase
         {
-            this.DataStandard = dataStandard;
+            protected TestCasePostgreSQL() => fixtureList = new DataStandardTestFixturePostgres();
         }
     }
 }

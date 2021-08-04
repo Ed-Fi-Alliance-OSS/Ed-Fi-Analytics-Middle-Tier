@@ -10,51 +10,28 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolFoodServiceProgramDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentSchoolFoodServiceProgramDim_view : When_querying_a_view
+    public abstract class When_querying_the_StudentSchoolFoodServiceProgramDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolFoodServiceProgramDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore($"The StudentSchoolFoodServiceProgramDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                DataStandard.PrepareDatabase();
-            }
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore(
-                    $"The StudentSchoolFoodServiceProgramDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                Result = DataStandard.LoadTestCaseData<UserDim>($"{TestCasesFolder}.0000_StudentSchoolFoodServiceProgramDim_Data_Load.xml");
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-                Result = DataStandard.Install(10, Component.Equity);
-                Result.success.ShouldBeTrue($"Error while installing Base and Equity: '{Result.errorMessage}'");
-            }
-        }
-
+        protected const string TestCasesDataFileName = "0000_StudentSchoolFoodServiceProgramDim_Data_Load.xml";
+    
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentSchoolFoodServiceProgramDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupStudentSchoolFoodServiceProgramDimTestCase
+                : When_querying_the_StudentSchoolFoodServiceProgramDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentSchoolFoodServiceProgramDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
         }
 
         public class Given_StudentSchoolFoodServiceProgramDim_189889_867530022_Food_Service_1_1666_867530_867530_20060814_2892

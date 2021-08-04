@@ -4,28 +4,35 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
+using System.Diagnostics.CodeAnalysis;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
-    public class When_installing_QEWS_views : When_querying_a_view
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public class When_installing_QEWS_views : When_installing_a_Collection
     {
         public When_installing_QEWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
 
         [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Qews);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                Result = DataStandard.Install(10, Component.Qews);
+            }
+            else
+            {
+                Assert.Ignore("Collection QEWS does not exist.");
+            }
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]

@@ -4,43 +4,32 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_ContactPersonDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.ContactPersonDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<ContactPersonDim>($"{TestCasesFolder}.{DataStandard}.0000_ContactPersonDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
-
+        protected const string TestCasesDataFileName = "0000_ContactPersonDim_Data_Load.xml";
+        
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_ContactPersonDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupContactPersonDim
+            : When_querying_the_ContactPersonDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<ContactPersonDim>(TestCasesFolder, TestCasesDataFileName, true);
+        }
         public class Given_contact_person_132500_189856
             : When_querying_the_ContactPersonDim_view
         {

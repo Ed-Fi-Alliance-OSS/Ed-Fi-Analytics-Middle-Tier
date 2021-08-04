@@ -5,29 +5,27 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_EWS_views : When_querying_a_view_postgres
+    public class When_installing_EWS_views : When_installing_a_Collection
     {
         public When_installing_EWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
 
         [SetUp]
         public void Act()
         {
             Result = DataStandard.Install(10, Component.Ews);
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -36,6 +34,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
+        [Test]
         public void Then_should_create_analytics_config_table() => DataStandard.TableExists("ews_lettergradetranslation").ShouldBe(true);
 
         [Test]

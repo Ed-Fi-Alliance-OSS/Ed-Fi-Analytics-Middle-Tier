@@ -9,30 +9,14 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendanceFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_ChronicAbsenteeismAttendanceFact_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.ChronicAbsenteeismAttendanceFact";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_ChronicAbsenteeismAttendanceFact_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.Chrab);
-            Result.success.ShouldBeTrue($"Error while installing Base and Chrab: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_ChronicAbsenteeismAttendanceFact_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -40,7 +24,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupChronicAbsenteeismAttendanceFactTestCase
+            : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<ChronicAbsenteeismAttendanceFact>(TestCasesFolder, TestCasesDataFileName, Component.Chrab);
+        }
         public class Given_chronic_absenteeism_attendance_fact_193964_867530011_20120502
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {

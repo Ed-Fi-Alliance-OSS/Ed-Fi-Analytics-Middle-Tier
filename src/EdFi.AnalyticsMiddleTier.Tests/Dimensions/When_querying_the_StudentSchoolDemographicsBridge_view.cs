@@ -9,33 +9,15 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBridgeTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [Ignore("Ignore a fixture")]
     public abstract class When_querying_the_StudentSchoolDemographicsBridge_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolDemographicsBridge";
-
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentSchoolDemographicsBridge>(
-                $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentSchoolDemographicsBridge_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentSchoolDemographicsBridge_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -44,6 +26,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupStudentSchoolDemographicsBridgeTestCase
+                : When_querying_the_StudentSchoolDemographicsBridge_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentSchoolDemographicsBridge>(TestCasesFolder, TestCasesDataFileName);
+        }
+        
         public class Given_student_school_demographics_bridge_cohortyear
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {

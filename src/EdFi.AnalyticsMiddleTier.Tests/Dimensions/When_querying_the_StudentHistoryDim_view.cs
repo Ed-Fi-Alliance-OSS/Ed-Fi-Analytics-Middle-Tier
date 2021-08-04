@@ -9,36 +9,28 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentHistoryDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentHistoryDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentHistoryDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentHistoryDim>($"{TestCasesFolder}.0000_StudentHistoryDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.Equity);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentHistoryDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentHistoryDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupStudentHistoryDimTestCase
+            : When_querying_the_StudentHistoryDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentHistoryDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
         }
 
         public class Given_StudentHistoryDim_197049_867530023

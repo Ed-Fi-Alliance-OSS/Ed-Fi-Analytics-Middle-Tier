@@ -10,36 +10,28 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentAssessmentFact_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentAssessmentFact";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentAssessmentFact>($"{TestCasesFolder}.0000_StudentAssessmentFact_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.Asmt);
-            Result.success.ShouldBeTrue($"Error while installing Base and Asmt: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentAssessmentFact_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentAssessmentFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
+        [SetUpFixture]
+        public class SetupStudentAssessmentFactTestCase
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentAssessmentFact>(TestCasesFolder, TestCasesDataFileName, Component.Asmt);
         }
 
         public class Given_student_assessment_fact_04556570_B715_6D8E_5E86_008A72ECE446_2009_04_01

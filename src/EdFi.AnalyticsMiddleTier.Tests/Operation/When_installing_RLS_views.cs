@@ -5,29 +5,27 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_RLS_views : When_querying_a_view_postgres
+    public class When_installing_RLS_views : When_installing_a_Collection
     {
         public When_installing_RLS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
 
         [SetUp]
         public void Act()
         {
             Result = DataStandard.Install(10, Component.RLS);
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -55,14 +53,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase]
         public void Then_should_create_stored_procedure_rls_InsertStaffClassificationDescriptorScope()
         {
-            var sql = $"SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = 'rls_insertstaffclassificationdescriptorscope'";
+            var sql = "SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = 'rls_insertstaffclassificationdescriptorscope'";
             DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
 
         [TestCase]
         public void Then_should_create_stored_procedure_rls_RemoveStaffClassificationDescriptorScope()
         {
-            var sql = $"SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = 'rls_removestaffclassificationdescriptorscope'";
+            var sql = "SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = 'rls_removestaffclassificationdescriptorscope'";
             DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
     }

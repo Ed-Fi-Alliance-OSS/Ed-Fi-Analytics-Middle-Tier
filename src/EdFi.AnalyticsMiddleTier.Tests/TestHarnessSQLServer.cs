@@ -17,10 +17,15 @@ using Microsoft.SqlServer.Dac;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessSQLServer : TestHarnessBase, ITestHarnessBase
+    public class TestHarnessSQLServer : TestHarnessBase
     {
         public override string _connectionString =>
                 $"server=localhost;database={_databaseName};integrated security=sspi";
+
+        public TestHarnessSQLServer()
+        {
+            DataStandardEngine = Engine.MSSQL;
+        }
 
         public static TestHarnessSQLServer DataStandard2 = new TestHarnessSQLServer
         {
@@ -47,7 +52,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _dataStandardFolderName = "3_1",
             _databaseName = "AnalyticsMiddleTier_Testing_Ds32",
             _dacpacName = "EdFi_Ods_3.2.dacpac",
-            _engine = Engine.MSSQL,
+            DataStandardEngine = Engine.MSSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
             DataStandardVersion = DataStandard.Ds32
         };
@@ -55,7 +60,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         private string _snapshotName => $"{_databaseName}_ss";
 
         private string _dacpacName;
-
 
         public override void PrepareDatabase()
         {
@@ -183,8 +187,7 @@ AS SNAPSHOT OF {_databaseName}
 
         public override IDbConnection OpenConnection()
         {
-            IDbConnection connection;
-            connection = new SqlConnection(_connectionString);
+            IDbConnection connection = new SqlConnection(_connectionString);
             connection.Open();
             return connection;
         }

@@ -4,36 +4,18 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_SchoolDim_view_base : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.SchoolDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<SchoolDim>($"{TestCasesFolder}.{DataStandard}.0000_SchoolDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            // Install the default map so that we can test for school address
-            Result = DataStandard.Install(10);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_SchoolDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -42,6 +24,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupSchoolDimTestCase
+            : When_querying_the_SchoolDim_view_base
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<GradingPeriodDim>(TestCasesFolder, TestCasesDataFileName, true);
+        }
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_SchoolDim_view
             : When_querying_the_SchoolDim_view_base

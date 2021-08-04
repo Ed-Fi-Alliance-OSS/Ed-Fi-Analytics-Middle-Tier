@@ -4,25 +4,19 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_default_map : TestCaseBase
+    public abstract class When_installing_default_map : When_installing_a_Collection
     {
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 
-        protected (bool success, string errorMessage) Result;
-        protected When_installing_default_map(TestHarnessBase dataStandard) : base(dataStandard) { }
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
+        protected When_installing_default_map(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [OneTimeSetUp]
         public void Act()

@@ -12,14 +12,20 @@ using Npgsql;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessPostgres : TestHarnessBase, ITestHarnessBase
+    public class TestHarnessPostgres : TestHarnessBase
     {
+        public TestHarnessPostgres()
+        {
+            DataStandardEngine = Engine.PostgreSQL;
+        }
+
         public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
         {
-            _dataStandardVersionName = "PG_3_2",
-            _dataStandardFolderName = "PG_3_2",
+
+            _dataStandardVersionName = "3_2",
+            _dataStandardFolderName = "3_2",
             _databaseName = "edfi_ods_tests",
-            _engine = Engine.PostgreSQL,
+            DataStandardEngine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
             DataStandardVersion = DataStandard.Ds32
         };
@@ -42,14 +48,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                             WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config')");
 
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))
+                {
                     connection.Execute(truncateAllTablesLine);
+                }
             }
         }
 
         public override IDbConnection OpenConnection()
         {
-            IDbConnection connection;
-            connection = new NpgsqlConnection(_connectionString);
+            IDbConnection connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             return connection;
         }

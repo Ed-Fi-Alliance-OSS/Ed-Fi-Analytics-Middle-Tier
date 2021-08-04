@@ -9,38 +9,28 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_GradingPeriodDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.GradingPeriodDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<GradingPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_GradingPeriodDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_GradingPeriodDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_GradingPeriodDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.0001_GradingPeriodDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupGradingPeriodDimTestCase
+            : When_querying_the_GradingPeriodDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<GradingPeriodDim>(TestCasesFolder, TestCasesDataFileName);
+        }
         public class Given_grading_period_54_628530001_20110822
         : When_querying_the_GradingPeriodDim_view
         {

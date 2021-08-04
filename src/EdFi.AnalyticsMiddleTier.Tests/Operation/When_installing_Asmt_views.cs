@@ -5,29 +5,35 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Dimensions;
 using NUnit.Framework;
 using Shouldly;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_installing_Asmt_views : When_querying_a_view_postgres_ds3
+    public class When_installing_Asmt_views : When_installing_a_Collection
     {
         public When_installing_Asmt_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-        protected (bool success, string errorMessage) Result;
-
         [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Asmt);
+            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+            {
+                Assert.Ignore($"The collection Equity does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+            }
+            else
+            {
+                Result = DataStandard.Install(10, Component.Asmt);
+            }
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]

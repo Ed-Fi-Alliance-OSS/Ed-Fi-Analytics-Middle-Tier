@@ -4,9 +4,11 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Classes
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class AcademicTimePeriodDim
     {
         public string AcademicTimePeriodKey { get; set; }
@@ -29,6 +31,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
 
         public string GradingPeriodName { get; set; }
 
-        public DateTime LastModifieDate { get; set; }
+        public DateTime LastModifiedDate { get; set; }
     }
 }
