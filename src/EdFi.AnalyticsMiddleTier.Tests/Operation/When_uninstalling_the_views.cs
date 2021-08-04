@@ -4,39 +4,23 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
-    [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProvider))]
-    public class When_uninstalling_the_views
+    public class When_uninstalling_the_views : TestCaseBase
     {
-        protected static TestHarness[] FixtureDataProvider() => (new[] { TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32 });
-        // There is only one uninstall procedure, so it is not necessary to run it for every data standard
-
-        protected TestHarness _dataStandard;
-        public When_uninstalling_the_views(TestHarness dataStandard)
-        {
-            _dataStandard = dataStandard;
-        }
-       
-
-        protected (bool success, string errorMessage) Result;
+        public When_uninstalling_the_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-            Result = _dataStandard.Install();
-        }
-
-        [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Uninstall();
+            DataStandard.Install(10, Component.Indexes);
+           Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -49,14 +33,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Then_should_uninstall_all_analytics_views()
         {
             const string sql = "SELECT COUNT(1) FROM INFORMATION_SCHEMA.views WHERE TABLE_SCHEMA = 'analytics'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
         }
 
         [Test]
         public void Then_should_uninstall_all_analytics_config_views()
         {
             const string sql = "SELECT COUNT(1) FROM INFORMATION_SCHEMA.views WHERE TABLE_SCHEMA = 'analytics_config'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
         }
 
         [TestCase("IX_AMT_Grade_SectionKey")]
@@ -65,26 +49,26 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Then_should_remove_index(string indexName)
         {
             var sql = $"select 1 from sys.indexes where [name] = '{indexName}'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
         }
 
         [Test]
         public void Then_should_remove_index_journal()
         {
-            _dataStandard.TableExists("IndexJournal").ShouldBe(false);
+            DataStandard.TableExists("IndexJournal").ShouldBe(false);
         }
 
         [Test]
         public void Then_should_remove_the_analytics_middle_tier_schema_version_table()
         {
-            _dataStandard.TableExists("dbo", "AnalyticsMiddleTierSchemaVersion").ShouldBe(false);
+            DataStandard.TableExists("dbo", "AnalyticsMiddleTierSchemaVersion").ShouldBe(false);
         }
 
         [Test]
         public void Then_should_remove_the_stored_procedures()
         {
             const string sql = "select count(1) from INFORMATION_SCHEMA.ROUTINES where specific_schema = 'analytics_config'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
         }
     }
 }

@@ -4,37 +4,19 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SectionDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_SectionDim_view_base : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.SectionDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<SectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_SectionDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            // Install the default map so that we can test for Section address
-            Result = DataStandard.Install(10);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_SectionDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -71,10 +53,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupAcademicTimePeriodDimTestCase
+            : When_querying_the_SectionDim_view_base
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<SectionDim>(TestCasesFolder, TestCasesDataFileName);
+        }
+
         public class When_querying_the_SectionDim_view
             : When_querying_the_SectionDim_view_base
         {
-            public When_querying_the_SectionDim_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SectionDim_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "YTAR11";
 
@@ -139,7 +129,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_SectionDim_V2_view
             : When_querying_the_SectionDim_view_base
         {
-            public When_querying_the_SectionDim_V2_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SectionDim_V2_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()
@@ -168,7 +158,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class When_querying_the_SectionDim_V3_view
             : When_querying_the_SectionDim_view_base
         {
-            public When_querying_the_SectionDim_V3_view(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_SectionDim_V3_view(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [SetUp]
             public void SetUp()

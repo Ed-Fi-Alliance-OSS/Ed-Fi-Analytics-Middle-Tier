@@ -9,43 +9,35 @@ using NUnit.Framework;
 using Shouldly;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DateDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_DateDim_view : When_querying_a_view
+    public abstract class When_querying_the_DateDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.DateDim";
+        protected const string TestCasesDataFileName = "0000_DateDim_Data_Load.xml";
 
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<DateDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_DateDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
-        
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+        
+        [SetUpFixture]
+        public class SetupDateDimTestCase
+            : When_querying_the_DateDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<DateDim>(TestCasesFolder, TestCasesDataFileName);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class Given_calendar_event_date_March_5_2019
         : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_March_5_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_March_5_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "March_5_2019";
 
             [Test]
@@ -84,7 +76,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_July_12_2019
         : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_July_12_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_July_12_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "July_12_2019";
 
             [Test]
@@ -123,7 +115,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_Jan_1_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_Jan_1_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_Jan_1_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "Jan_1_2019";
 
             [Test]
@@ -162,7 +154,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_March_31_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_March_31_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_March_31_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "March_31_2019";
 
             [Test]
@@ -201,7 +193,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_Apr_1_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_Apr_1_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_Apr_1_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "Apr_1_2019";
 
             [Test]
@@ -271,7 +263,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_Jun_30_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_Jun_30_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_Jun_30_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "Jun_30_2019";
 
             [Test]
@@ -310,7 +302,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_July_1_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_July_1_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_July_1_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "July_1_2019";
 
             [Test]
@@ -349,7 +341,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_Sept_30_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_Sept_30_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_Sept_30_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "Sept_30_2019";
             [Test]
             public void Then_should_return_one_record()
@@ -387,7 +379,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_Oct_1_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_Oct_1_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_Oct_1_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "Oct_1_2019";
             [Test]
             public void Then_should_return_one_record()
@@ -425,7 +417,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_calendar_event_date_Dec_31_2019
             : When_querying_the_DateDim_view
         {
-            public Given_calendar_event_date_Dec_31_2019(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_calendar_event_date_Dec_31_2019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "Dec_31_2019";
             [Test]
             public void Then_should_return_one_record()

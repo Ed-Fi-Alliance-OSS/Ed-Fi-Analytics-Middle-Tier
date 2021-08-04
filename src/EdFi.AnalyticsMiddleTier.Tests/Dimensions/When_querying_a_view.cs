@@ -4,22 +4,57 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Common;
+using EdFi.AnalyticsMiddleTier.Tests.Common;
 using NUnit.Framework;
+using Shouldly;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProvider))]
-    public abstract class When_querying_a_view
+    [TestFixtureSource(typeof(DataStandardTestFixture))]
+    [Parallelizable(ParallelScope.Fixtures)]
+    public abstract class When_querying_a_view : TestCaseBase
     {
-        protected TestHarness DataStandard { get; set; }
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, null);
 
-        protected static TestHarness[] FixtureDataProvider()=>(new []{ TestHarness.DataStandard2, TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, components);
 
-        protected void SetDataStandard(TestHarness dataStandard)
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, useCurrentDataStandard, null);
+
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard,
+            params Component[] components)
         {
-            this.DataStandard = dataStandard;
+            foreach (var dataStandard in fixtureList.GetFixturesList())
+            {
+                ITestHarnessBase currentDataStandard;
+                if (dataStandard.GetType().ToString().Contains("TestHarnessSQLServer"))
+                {
+                    currentDataStandard = ((TestHarnessSQLServer) dataStandard);
+                }
+                else
+                {
+                    currentDataStandard = ((TestHarnessPostgres) dataStandard);
+                }
+
+                string xmlLoadFilePath =
+                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName(useCurrentDataStandard)}.{xmlLoadFile}";
+
+                currentDataStandard.PrepareDatabase();
+                currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);
+                if (components == null || components.Length == 0)
+                {
+                    currentDataStandard.Install(10);
+                }
+                else
+                {
+                    currentDataStandard.Install(10, components);
+                }
+            }
         }
     }
-
 }
+

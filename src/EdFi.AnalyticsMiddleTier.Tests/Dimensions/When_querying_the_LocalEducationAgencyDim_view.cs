@@ -8,42 +8,32 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_LocalEducationAgencyDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.LocalEducationAgencyDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<LocalEducationAgencyDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_LocalEducationAgencyDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_LocalEducationAgencyDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_LocalEducationAgencyDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.0001_LocalEducationAgencyDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupAcademicTimePeriodDimTestCase
+            : When_querying_the_LocalEducationAgencyDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<LocalEducationAgencyDim>(TestCasesFolder, TestCasesDataFileName);
+        }
         public class Given_grading_period_528530
             : When_querying_the_LocalEducationAgencyDim_view
         {
-            public Given_grading_period_528530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_528530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "528530";
             [Test]
             public void Then_should_return_one_record()
@@ -117,7 +107,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_628530
             : When_querying_the_LocalEducationAgencyDim_view
         {
-            public Given_grading_period_628530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "628530";
             [Test]
             public void Then_should_return_one_record()
@@ -191,7 +181,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_grading_period_628531
             : When_querying_the_LocalEducationAgencyDim_view
         {
-            public Given_grading_period_628531(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_grading_period_628531(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "628531";
 
             [Test]

@@ -44,40 +44,55 @@ namespace EdFi.AnalyticsMiddleTier.Common
 
         public virtual string GetDropIndexTemplate(string index)
         {
-            return $"DROP INDEX IF EXISTS {index};";
+            return $"DROP INDEX IF EXISTS {index};DROP INDEX IF EXISTS {index.ToLower()};";
+        }
+
+        public virtual string GetDropSchemaTemplate(string schema)
+        {
+            return $"DROP SCHEMA IF EXISTS {schema} CASCADE;DROP SCHEMA IF EXISTS {schema.ToLower()} CASCADE;";
         }
 
         public virtual string GetDropStoredProceduresTemplate(string schema, string storedProcedure)
         {
-            return $"DROP PROCEDURE IF EXISTS {schema}.{storedProcedure};";
+            return $"DROP PROCEDURE IF EXISTS {schema}.{storedProcedure};DROP PROCEDURE IF EXISTS {schema.ToLower()}.{storedProcedure.ToLower()};";
         }
 
         public virtual string GetDropTableTemplate(string schema, string table)
         {
-            return $"DROP TABLE IF EXISTS {schema}.{table};";
+            return $"DROP TABLE IF EXISTS {schema}.{table};DROP TABLE IF EXISTS {schema.ToLower()}.{table.ToLower()}";
+        }
+
+        public virtual string GetDropTableCascadeTemplate(string schema, string table)
+        {
+            return $"DROP TABLE IF EXISTS {schema}.{table} Cascade;DROP TABLE IF EXISTS {schema.ToLower()}.{table.ToLower()} Cascade;";
         }
 
         public virtual string GetDropViewsTemplate(string schema, string view)
         {
-            return $"DROP VIEW IF EXISTS {schema}.{view};";
+            return $"DROP VIEW IF EXISTS {schema}.{view};DROP VIEW IF EXISTS {schema.ToLower()}.{view.ToLower()};";
         }
 
         public virtual string GetQueryIndexesTemplate(string schema)
         {
-            return $"IF (SELECT OBJECT_ID('[{schema}].[IndexJournal]')) IS NOT NULL"
+            return $"IF (SELECT OBJECT_ID('[{schema.ToLower()}].[IndexJournal]')) IS NOT NULL"
                   + " BEGIN "
-                  + $" SELECT FullyQualifiedIndexName FROM {schema}.IndexJournal"
+                  + $" SELECT FullyQualifiedIndexName FROM {schema.ToLower()}.IndexJournal"
                   + " END;";
         }
 
         public virtual string GetQueryStoredProceduresTemplate(string schema)
         {
-            return $"SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA =  '{schema}'";
+            return $"SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA =  '{schema.ToLower()}'";
         }
 
         public virtual string GetQueryViewsTemplate(string schema)
         {
-            return $"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = '{schema}'";
+            return $"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = '{schema.ToLower()}'";
+        }
+
+        public virtual string GetQueryTablesTemplate(string schema)
+        {
+            return $"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{schema.ToLower()}'";
         }
 
         /// <summary>
@@ -92,6 +107,11 @@ namespace EdFi.AnalyticsMiddleTier.Common
         /// <param name="schema">Schema to filter.</param>
         public int RemoveAllViews(string schema) => RemoveDbObjectsBySchema(GetQueryViewsTemplate, GetDropViewsTemplate, schema);
 
+        /// <summary>
+        /// Remove all tables in a schema.
+        /// </summary>
+        /// <param name="schema">Schema to filter.</param>
+        public int RemoveAllTables(string schema) => RemoveDbObjectsBySchema(GetQueryTablesTemplate, GetDropTableCascadeTemplate, schema);
 
         /// <summary>
         /// Remove all stored procedures in a schema.
@@ -102,15 +122,17 @@ namespace EdFi.AnalyticsMiddleTier.Common
 
         protected int RemoveDbObjectsBySchema(Func<string, string>queryTemplate, Func<string, string, string>DropTemplate, string schema)
         {
-            var objectsToDrop = Orm.Query<string>(queryTemplate(schema));
-            if ((objectsToDrop?.Count ?? 0) <= 0) return 0;
-            var sql = String.Join(string.Empty, objectsToDrop.Select(i => (DropTemplate(schema, i))));
+            var dbSchema = schema.ToLower();
+            var objectsToDrop = Orm.Query<string>(queryTemplate(dbSchema));
+            if ((objectsToDrop?.Count ?? 0) <= 0){ return 0;}
+            var sql = String.Join(string.Empty, objectsToDrop.Select(i => (DropTemplate(dbSchema, i))));
             return Orm.Execute(sql);
         }
         protected int RemoveDbObjectsBySchema(Func<string, string> queryTemplate, Func<string, string> DropTemplate, string schema)
         {
-            var objectsToDrop = Orm.Query<string>(queryTemplate(schema));
-            if ((objectsToDrop?.Count ?? 0) <= 0) return 0;
+            var dbSchema = schema.ToLower();
+            var objectsToDrop = Orm.Query<string>(queryTemplate(dbSchema));
+            if ((objectsToDrop?.Count ?? 0) <= 0){ return 0;}
             var sql = String.Join(String.Empty, objectsToDrop.Select(i => (DropTemplate(i))));
             return Orm.Execute(sql);
         }
@@ -124,7 +146,16 @@ namespace EdFi.AnalyticsMiddleTier.Common
         {
             return Orm.Execute(GetDropTableTemplate(schema, tableName));
         }
-       
+
+        /// <summary>
+        /// Drop an schema.
+        /// </summary>
+        /// <param name="schema">Scheme to which the table belongs</param>
+        public int DropSchema(string schema)
+        {
+            return Orm.Execute(GetDropSchemaTemplate(schema));
+        }
+
         public void Dispose()
         {
             this.Orm?.Dispose();

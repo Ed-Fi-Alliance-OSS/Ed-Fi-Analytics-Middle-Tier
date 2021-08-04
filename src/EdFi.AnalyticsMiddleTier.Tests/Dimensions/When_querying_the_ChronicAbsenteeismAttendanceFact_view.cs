@@ -9,30 +9,14 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendanceFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_ChronicAbsenteeismAttendanceFact_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.ChronicAbsenteeismAttendanceFact";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_ChronicAbsenteeismAttendanceFact_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.Chrab);
-            Result.success.ShouldBeTrue($"Error while installing Base and Chrab: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_ChronicAbsenteeismAttendanceFact_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -40,11 +24,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupChronicAbsenteeismAttendanceFactTestCase
+            : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<ChronicAbsenteeismAttendanceFact>(TestCasesFolder, TestCasesDataFileName, Component.Chrab);
+        }
         public class Given_chronic_absenteeism_attendance_fact_193964_867530011_20120502
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193964_867530011_20120502(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193964_867530011_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193964_867530011_20120502";
             [Test]
             public void Then_should_return_one_record()
@@ -124,7 +114,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_193964_867530011_20120520
          : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193964_867530011_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193964_867530011_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193964_867530011_20120520";
             [Test]
             public void Then_should_return_one_record()
@@ -204,7 +194,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_193965_867530013_20120520
          : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193965_867530013_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193965_867530013_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193965_867530013_20120520";
             [Test]
             public void Then_should_return_one_record()
@@ -251,7 +241,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_193969_867530016_20120520
          : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193969_867530016_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193969_867530016_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193969_867530016_20120520";
             [Test]
             public void Then_should_return_one_record()
@@ -305,7 +295,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_193975_867530033_20120520
          : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193975_867530033_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193975_867530033_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193975_867530033_20120520";
             [Test]
             public void Then_should_return_one_record()
@@ -354,7 +344,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_193985_867530043_20120520
          : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193985_867530043_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193985_867530043_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193985_867530043_20120520";
             [Test]
             public void Then_should_return_one_record()
@@ -388,7 +378,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_200099_867530174_20111103
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_200099_867530174_20111103(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_200099_867530174_20111103(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "200099_867530174_20111103";
             [Test]
             public void Then_should_return_one_record()
@@ -468,7 +458,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_189889_867530022_20111205
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_189889_867530022_20111205(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_189889_867530022_20111205(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "189889_867530022_20111205";
             [Test]
             public void Then_should_return_one_record()
@@ -548,7 +538,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_189855_867530012_20120502
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_189855_867530012_20120502(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_189855_867530012_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "189855_867530012_20120502";
             [Test]
             public void Then_should_return_one_record()
@@ -596,7 +586,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_189936_867530023_20120520
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_189936_867530023_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_189936_867530023_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "189936_867530023_20120520";
 
             [Test]
@@ -612,7 +602,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_189936_867530023_20120820
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_189936_867530023_20120820(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_189936_867530023_20120820(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "189936_867530023_20120520";
 
             [Test]
@@ -628,7 +618,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_600090441_628530001_20110820
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_600090441_628530001_20110820(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_600090441_628530001_20110820(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "600090441_628530001_20110820";
 
             [Test]
@@ -644,7 +634,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_193968_867530015_20120520
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_193968_867530015_20120520(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_193968_867530015_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "193968_867530015_20120520";
 
             [Test]
@@ -660,7 +650,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_chronic_absenteeism_attendance_fact_future_dates
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
-            public Given_chronic_absenteeism_attendance_fact_future_dates(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_chronic_absenteeism_attendance_fact_future_dates(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "future_dates";
 
             [Test]

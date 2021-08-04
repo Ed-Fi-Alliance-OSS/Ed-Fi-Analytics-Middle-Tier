@@ -57,4 +57,73 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestCases\AcademicTimePeriodDim\MSSQL\" />
+    <Folder Include="TestCases\AcademicTimePeriodDim\PostgreSQL\" />
+    <Folder Include="TestCases\AssessmentFact\MSSQL\" />
+    <Folder Include="TestCases\AssessmentFact\PostgreSQL\" />
+    <Folder Include="TestCases\ChronicAbsenteeismAttendanceFact\MSSQL\" />
+    <Folder Include="TestCases\ChronicAbsenteeismAttendanceFact\PostgreSQL\" />
+    <Folder Include="TestCases\ClassPeriodDim\MSSQL\" />
+    <Folder Include="TestCases\ClassPeriodDim\PostgreSQL\" />
+    <Folder Include="TestCases\ContactPersonDim\MSSQL\" />
+    <Folder Include="TestCases\ContactPersonDim\PostgreSQL\" />
+    <Folder Include="TestCases\DateDim\MSSQL\" />
+    <Folder Include="TestCases\DateDim\PostgreSQL\" />
+    <Folder Include="TestCases\DefaultMap\MSSQL\" />
+    <Folder Include="TestCases\DefaultMap\PostgreSQL\" />
+    <Folder Include="TestCases\DemographicDim\MSSQL\" />
+    <Folder Include="TestCases\DemographicDim\PostgreSQL\" />
+    <Folder Include="TestCases\FeederSchoolDim\MSSQL\" />
+    <Folder Include="TestCases\FeederSchoolDim\PostgreSQL\" />
+    <Folder Include="TestCases\GradingPeriodDim\MSSQL\" />
+    <Folder Include="TestCases\GradingPeriodDim\PostgreSQL\" />
+    <Folder Include="TestCases\LocalEducationAgencyDim\MSSQL\" />
+    <Folder Include="TestCases\LocalEducationAgencyDim\PostgreSQL\" />
+    <Folder Include="TestCases\SchoolDim\MSSQL\" />
+    <Folder Include="TestCases\SchoolDim\PostgreSQL\" />
+    <Folder Include="TestCases\SectionDim\MSSQL\" />
+    <Folder Include="TestCases\SectionDim\PostgreSQL\" />
+    <Folder Include="TestCases\StaffClassificationDescriptorScopeList\MSSQL\" />
+    <Folder Include="TestCases\StaffClassificationDescriptorScopeList\PostgreSQL\" />
+    <Folder Include="TestCases\StaffSectionDim\MSSQL\" />
+    <Folder Include="TestCases\StaffSectionDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentAssessmentFact\MSSQL\" />
+    <Folder Include="TestCases\StudentAssessmentFact\PostgreSQL\" />
+    <Folder Include="TestCases\StudentDataAuthorization\MSSQL\" />
+    <Folder Include="TestCases\StudentDataAuthorization\PostgreSQL\" />
+    <Folder Include="TestCases\StudentDisciplineActionDim\MSSQL\" />
+    <Folder Include="TestCases\StudentDisciplineActionDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentEarlyWarningFact\MSSQL\" />
+    <Folder Include="TestCases\StudentEarlyWarningFact\PostgreSQL\" />
+    <Folder Include="TestCases\StudentHistoryDim\MSSQL\" />
+    <Folder Include="TestCases\StudentHistoryDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentInternetAccessDim\MSSQL\" />
+    <Folder Include="TestCases\StudentInternetAccessDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentLocalEducationAgencyDemographicsBridge\MSSQL\" />
+    <Folder Include="TestCases\StudentLocalEducationAgencyDemographicsBridge\PostgreSQL\" />
+    <Folder Include="TestCases\StudentLocalEducationAgencyDim\MSSQL\" />
+    <Folder Include="TestCases\StudentLocalEducationAgencyDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentProgramCohortDim\MSSQL\" />
+    <Folder Include="TestCases\StudentProgramCohortDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentProgramDim\MSSQL\" />
+    <Folder Include="TestCases\StudentProgramDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentSchoolDemographicsBridge\MSSQL\" />
+    <Folder Include="TestCases\StudentSchoolDemographicsBridge\PostgreSQL\" />
+    <Folder Include="TestCases\StudentSchoolDim\MSSQL\" />
+    <Folder Include="TestCases\StudentSchoolDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\MSSQL\" />
+    <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentSectionDim\MSSQL\" />
+    <Folder Include="TestCases\StudentSectionDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentSectionGradeFact\MSSQL\" />
+    <Folder Include="TestCases\StudentSectionGradeFact\PostgreSQL\" />
+    <Folder Include="TestCases\UserAuthorization\MSSQL\" />
+    <Folder Include="TestCases\UserAuthorization\PostgreSQL\" />
+    <Folder Include="TestCases\UserDim\MSSQL\" />
+    <Folder Include="TestCases\UserDim\PostgreSQL\" />
+    <Folder Include="TestCases\UserStudentDataAuthorization\MSSQL\" />
+    <Folder Include="TestCases\UserStudentDataAuthorization\PostgreSQL\" />
+  </ItemGroup>
+
 </Project>

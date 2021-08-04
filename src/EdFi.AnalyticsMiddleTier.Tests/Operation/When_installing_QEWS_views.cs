@@ -6,25 +6,33 @@
 using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
+using System.Diagnostics.CodeAnalysis;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
-    public abstract class When_installing_QEWS_views
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    public class When_installing_QEWS_views : When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
+        public When_installing_QEWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.Qews);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                Result = DataStandard.Install(10, Component.Qews);
+            }
+            else
+            {
+                Assert.Ignore("Collection QEWS does not exist.");
+            }
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -33,33 +41,26 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestCase("qews_StudentIndicators")]
-        [TestCase("qews_StudentIndicatorsByGradingPeriod")]
-        [TestCase("qews_StudentEnrolledSectionGrade")]
-        [TestCase("qews_StudentEnrolledSectionGradeTrend")]
-        [TestCase("qews_SchoolRiskTrend")]
-        [TestCase("qews_StudentAttendanceTrend")]
-        public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
+        [Test]
+        public void Then_should_create_analytics_view_qews_StudentIndicators() => DataStandard.ViewExists("qews_studentindicators").ShouldBe(true);
 
         [Test]
-        public void Then_should_create_EWS_configuration_table() => _dataStandard.TableExists("QuickSightEWS").ShouldBe(true);
+        public void Then_should_create_analytics_view_qews_StudentIndicatorsByGradingPeriod() => DataStandard.ViewExists("qews_studentindicatorsbygradingperiod").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_EWS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
-        }
+        [Test]
+        public void Then_should_create_analytics_view_qews_StudentEnrolledSectionGrade() => DataStandard.ViewExists("qews_studentenrolledsectiongrade").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_EWS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
+        [Test]
+        public void Then_should_create_analytics_view_qews_StudentEnrolledSectionGradeTrend() => DataStandard.ViewExists("qews_studentenrolledsectiongradetrend").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_EWS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
+        [Test]
+        public void Then_should_create_analytics_view_qews_SchoolRiskTrend() => DataStandard.ViewExists("qews_schoolrisktrend").ShouldBe(true);
+
+        [Test]
+        public void Then_should_create_analytics_view_qews_StudentAttendanceTrend() => DataStandard.ViewExists("qews_studentattendancetrend").ShouldBe(true);
+
+        [Test]
+        public void Then_should_create_EWS_configuration_table() => DataStandard.TableExists("quicksightews").ShouldBe(true);
+
     }
 }

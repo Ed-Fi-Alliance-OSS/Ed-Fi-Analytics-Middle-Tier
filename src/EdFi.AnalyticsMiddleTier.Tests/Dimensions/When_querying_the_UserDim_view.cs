@@ -9,31 +9,14 @@ using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_UserDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.UserDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<UserDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_UserDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            // rls_UserDim depends on Email.Work constant; for testing we can rely on DefaultMap to populate a value.
-            Result = DataStandard.Install(10, Component.RLS);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_UserDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -42,10 +25,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupUserDimTestCase
+                : When_querying_the_UserDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<UserDim>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
+        }
+
         public class Given_user_11324
         : When_querying_the_UserDim_view
         {
-            public Given_user_11324(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_user_11324(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11324";
 
@@ -81,7 +72,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_user_11358
             : When_querying_the_UserDim_view
         {
-            public Given_user_11358(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_user_11358(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11358";
 
@@ -117,7 +108,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_user_11472
             : When_querying_the_UserDim_view
         {
-            public Given_user_11472(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_user_11472(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11472";
 

@@ -8,31 +8,14 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentSectionDim_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentSectionDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentSectionDim>(
-                $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentSectionDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install();
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentSectionDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -42,10 +25,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupStudentSectionDimTestCase
+                : When_querying_the_StudentSectionDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentSectionDim>(TestCasesFolder, TestCasesDataFileName);
+        }
+
         public class Given_student_section_without_teacher
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_without_teacher(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_without_teacher(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "without_teacher";
 
             [Test]
@@ -153,7 +144,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_without_subject
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_without_subject(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_without_subject(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "without_subject";
 
             [Test]
@@ -261,7 +252,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_multiple_teacher
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_multiple_teacher(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_multiple_teacher(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "multiple_teachers";
 
             [Test]
@@ -376,7 +367,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_student_section_academic_subject
             : When_querying_the_StudentSectionDim_view
         {
-            public Given_student_section_academic_subject(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_section_academic_subject(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "academic_subject";
 
             [Test]

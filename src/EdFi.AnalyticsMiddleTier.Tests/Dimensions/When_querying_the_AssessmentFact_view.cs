@@ -3,54 +3,21 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
+using System.Diagnostics.CodeAnalysis;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_AssessmentFact_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.AssessmentFact";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore($"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else { 
-                DataStandard.PrepareDatabase();
-            }
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore(
-                    $"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                Result = DataStandard.LoadTestCaseData<AssessmentFact>(
-                    $"{TestCasesFolder}.{DataStandard.CurrentDataStandardFolderName}.0000_AssessmentFact_Data_Load.xml");
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-                // rls_AssessmentFact depends on Email.Work constant; for testing we can rely on DefaultMap to populate a value.
-                Result = DataStandard.Install(10, Component.Asmt);
-                Result.success.ShouldBeTrue($"Error while installing Base and Asmt: '{Result.errorMessage}'");
-            }
-        }
+        protected const string TestCasesDataFileName = "0000_AssessmentFact_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -58,11 +25,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_AssessmentFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupAssessmentFactTestCase
+            : When_querying_the_AssessmentFact_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<AssessmentFact>(TestCasesFolder, TestCasesDataFileName, true, Component.Asmt);
+        }
         public class Given_assessment_2s3ch0knpb4val7uqve6mn269bavkdx2
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_2s3ch0knpb4val7uqve6mn269bavkdx2(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_2s3ch0knpb4val7uqve6mn269bavkdx2(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "2s3ch0knpb4val7uqve6mn269bavkdx2";
 
@@ -178,7 +151,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx2
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx2(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx2(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "3s4ch0knpb4va28uqve6mn269bavkdx2";
 
@@ -272,7 +245,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx3
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx3(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_3s4ch0knpb4va28uqve6mn269bavkdx3(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "3s4ch0knpb4va28uqve6mn269bavkdx3";
 
@@ -297,7 +270,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_14707154_4B38_473B_8C74_14804BA75595
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_14707154_4B38_473B_8C74_14804BA75595(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_14707154_4B38_473B_8C74_14804BA75595(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "14707154_4B38_473B_8C74_14804BA75595";
 
@@ -391,7 +364,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_405F31A9_7F57_45C5_A3FC_941041D2C1D9
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_405F31A9_7F57_45C5_A3FC_941041D2C1D9(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_405F31A9_7F57_45C5_A3FC_941041D2C1D9(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "405F31A9_7F57_45C5_A3FC_941041D2C1D9";
 
@@ -471,7 +444,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CD
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CD(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CD(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "C793689F_593D_4B92_85C9_B563A53B87CD";
 
@@ -503,7 +476,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CB
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CB(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_C793689F_593D_4B92_85C9_B563A53B87CB(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "C793689F_593D_4B92_85C9_B563A53B87CB";
 
@@ -528,7 +501,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_assessment_MP_2013_Mathematics_Seventh_grade
         : When_querying_the_AssessmentFact_view
         {
-            public Given_assessment_MP_2013_Mathematics_Seventh_grade(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_assessment_MP_2013_Mathematics_Seventh_grade(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "MP_2013_Mathematics_Seventh_grade";
 

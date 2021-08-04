@@ -4,12 +4,12 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT COLUMN_NAME AS ColumnName,
-    DATA_TYPE AS DataType
-    FROM information_schema.columns
-    WHERE table_schema = 'analytics_config'
-    AND table_name = 'DescriptorMap'
-    ORDER BY ORDINAL_POSITION ASC;
+	  SELECT COLUMN_NAME AS ColumnName,
+	  DATA_TYPE AS DataType
+	  FROM information_schema.columns
+	  WHERE table_schema = 'analytics_config'
+	  AND table_name = 'DescriptorMap'
+	  ORDER BY ORDINAL_POSITION ASC;
   </Query>
     <Result>
         <ColumnName>DescriptorConstantId</ColumnName>

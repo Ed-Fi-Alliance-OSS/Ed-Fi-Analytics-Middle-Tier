@@ -8,25 +8,24 @@ using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_EWS_views
+    public class When_installing_EWS_views : When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
+        public When_installing_EWS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.Ews);
+            Result = DataStandard.Install(10, Component.Ews);
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -35,34 +34,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestCase("ews_LetterGradeTranslation")]
-        public void Then_should_create_analytics_config_table(string tableName) =>
-            _dataStandard.TableExists(tableName).ShouldBe(true);
-
-        [TestCase("ews_StudentEarlyWarningFact")]
-        [TestCase("ews_StudentSectionGradeFact")]
-        public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
+        [Test]
+        public void Then_should_create_analytics_config_table() => DataStandard.TableExists("ews_lettergradetranslation").ShouldBe(true);
 
         [Test]
-        public void Then_should_create_ews_LetterGradeTranslation() => _dataStandard.TableExists("ews_LetterGradeTranslation").ShouldBe(true);
+        public void Then_should_create_analytics_view_ews_StudentSectionGradeFact() => DataStandard.ViewExists("ews_studentsectiongradefact").ShouldBe(true);
 
+        [Test]
+        public void Then_should_create_analytics_view_ews_StudentEarlyWarningFact() => DataStandard.ViewExists("ews_studentearlywarningfact").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_EWS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
-        }
+        [Test]
+        public void Then_should_create_ews_LetterGradeTranslation() => DataStandard.TableExists("ews_lettergradetranslation").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_EWS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_EWS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
     }
 }

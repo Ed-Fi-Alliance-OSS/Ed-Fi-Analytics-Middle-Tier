@@ -7,7 +7,9 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     /// <summary>
@@ -19,85 +21,107 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
     /// Detailed testing of the "Engage" views is handled in the LMS-Toolkit repository.
     /// </summary>
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_Engage_option
+    [NonParallelizable]
+    public abstract class When_installing_Engage_option : When_installing_a_Collection
     {
         protected const string QUERY =
             "SELECT COUNT(1) FROM AnalyticsMiddleTierSchemaVersion WHERE ScriptName LIKE '%.Engage.%'";
 
-        protected abstract TestHarness DataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
         [SetUp]
         public void Act()
         {
-            Result = DataStandard.Install(10, Component.Engage);
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                Result = DataStandard.Install(10, Component.Engage);
+            }
+            else
+            {
+                Assert.Ignore("Collection Engage is not installed.");
+            }
         }
-        
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
+        }
+
         protected int GetEngageRecordCount()
         {
             return DataStandard.Orm.ExecuteScalar<int>(QUERY);
         }
 
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_Engage_option
+        public class Given_data_a_standard : When_installing_Engage_option
         {
-            protected override TestHarness DataStandard => TestHarness.DataStandard2;
+            public Given_data_a_standard(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [TestCase()]
-            public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
+            public void Then_result_success_should_be_true()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32))
+                {
+                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
+                }
+                else
+                {
+                    Result.success.ShouldBe(true);
+                }
+            }
 
             [TestCase()]
-            public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
+            public void Then_error_message_should_be_null_or_empty()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32)) {
+                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
+                }
+                else {
+                    Result.errorMessage.ShouldBeNullOrEmpty();
+                }                
+            }
 
             [Test]
             public void Then_should_not_be_installed()
             {
-                GetEngageRecordCount().ShouldBe(0);
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32))
+                {
+                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
+                }
+                else
+                {
+                    GetEngageRecordCount().ShouldBe(0);
+                }                
             }
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_Engage_option
-        {
-            protected override TestHarness DataStandard => TestHarness.DataStandard31;
-
-            [TestCase()]
-            public void Then_result_success_should_be_true() => Result.success.ShouldBe(true);
-
-            [TestCase()]
-            public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
-
-            [Test]
-            public void Then_should_not_be_installed()
-            {
-                GetEngageRecordCount().ShouldBe(0);
-            }
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_Engage_option
-        {
-            protected override TestHarness DataStandard => TestHarness.DataStandard32;
-
             // The baseline DS32 database does not have the extension tables
             // that are required to install the "Engage" collection. Thus 
             // this install will fail. For the purpose of this test, that
             // is a *GOOD* thing, as it proves that the AMT _tried_ to install
             // the collection. Detailed testing of the collection, as noted
             // above, is in the LMS-Toolkit repository.
+            [TestCase()]
+            public void Then_result_success_should_be_false() {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32))
+                {
+                    Result.success.ShouldBe(false);
+                }
+                else
+                {
+                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail in DS 32.");
+                }                
+            }
 
             [TestCase()]
-            public void Then_result_success_should_be_false() => Result.success.ShouldBe(false);
+            public void Then_there_should_be_an_error_message() {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32))
+                {
+                    Result.errorMessage.ShouldNotBeNullOrEmpty();
+                }
+                else
+                {
+                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail in DS 32.");
+                }
+            }
 
-            [TestCase()]
-            public void Then_there_should_be_an_error_message() => Result.errorMessage.ShouldNotBeNullOrEmpty();
         }
+
     }
 }

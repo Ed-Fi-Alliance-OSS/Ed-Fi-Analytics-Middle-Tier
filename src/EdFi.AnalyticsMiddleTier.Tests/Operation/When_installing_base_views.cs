@@ -4,28 +4,26 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_base_views
+    public abstract class When_installing_base_views : When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
         [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
-
-        [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install();
+            Result = DataStandard.Install();
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -36,10 +34,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
         [TestCase("analytics")]
         [TestCase("analytics_config")]
-        public void Then_create_schema(string schema) =>
-            _dataStandard
-                .ExecuteScalarQuery<int>($"select 1 from sys.schemas where [name] = '{schema}'")
+        public void Then_create_schema(string schema)
+        {
+            if(DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                DataStandard
+                .ExecuteScalarQuery<int>($"select 1 from sys.schemas where name = '{schema}'")
                 .ShouldBe(1);
+            }
+            else
+            {
+                DataStandard
+                    .ExecuteScalarQuery<int>($"select 1 from pg_catalog.pg_namespace where nspname = '{schema}'")
+                    .ShouldBe(1);
+            }
+        }
 
         /*
          * TODO: removing the tests for columns. These will be tested in detail when we start doing unit testing with dapper.
@@ -62,13 +71,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("SectionDim")]
         [TestCase("StudentProgramDim")]
         public void Then_should_create_analytics_view(string viewName) =>
-            _dataStandard.ViewExists(viewName).ShouldBe(true);
+            DataStandard.ViewExists(viewName).ShouldBe(true);
 
         [Test]
         public void Then_should_create_analytics_middle_tier_role()
         {
             const string sql = "SELECT 1 FROM sys.database_principals WHERE [type] = 'R' AND [name] = 'analytics_middle_tier'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            const string postgresql = "SELECT 1 FROM pg_roles WHERE rolname = 'analytics_middle_tier'";
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            {
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
+            }
+            else
+            {
+                DataStandard.ExecuteScalarQuery<int>(postgresql).ShouldBe(1);
+            }
         }
 
         [TestCase("IX_AMT_Grade_SectionKey")]
@@ -77,95 +94,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Then_should_not_install_indexes(string indexName)
         {
             var sql = $"select 1 from sys.indexes where [name] = '{indexName}'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
-        }
-
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_base_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_base_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_base_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
-
-        [TestFixture]
-        public class And_data_standard_2 : Given_an_expected_table_column_is_missing
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
-        }
-
-        [TestFixture]
-        public class And_data_standard_three_one : Given_an_expected_table_column_is_missing
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
-        [TestFixture]
-        public class And_data_standard_three_two : Given_an_expected_table_column_is_missing
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
-
-        public abstract class Given_an_expected_table_column_is_missing
-        {
-            protected abstract TestHarness _dataStandard { get; }
-
-            protected (bool success, string errorMessage) Result;
-
-            [OneTimeSetUp]
-            public void PrepareDatabase()
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
             {
-                _dataStandard.PrepareDatabase();
-                _dataStandard.ExecuteQuery("ALTER TABLE [edfi].[GradingPeriod] DROP COLUMN [TotalInstructionalDays]");
+                DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
             }
-
-            [SetUp]
-            public void Act()
+            else
             {
-                Result = _dataStandard.Install();
-            }
-
-            [Test]
-            public void Then_should_not_be_successful() => Result.success.ShouldBe(false);
-
-            [Test]
-            public void Then_error_message_should_be_set() => Result.errorMessage.ShouldNotBeNullOrEmpty();
-
-            [Test]
-            public void Then_should_not_install_any_views()
-            {
-                const string sql = "SELECT count(1) FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
-            }
-
-            [Test]
-            public void Then_should_not_install_any_indexes()
-            {
-                var sql = "select count(1) from sys.indexes where [name] LIKE 'IX_AMT_%'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
-            }
-
-            [Test]
-            public void Then_should_not_install_any_tables()
-            {
-                var sql = "SELECT count(1) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'analytics_config'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
-            }
-
-            [Test]
-            public void Then_should_not_install_any_procedures()
-            {
-                var sql = "select count(1) from information_schema.routines where routine_schema = 'analytics_config'";
-                _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+                Assert.Ignore("Indexes are not installed (PostgreSQL).");
             }
         }
+       
+        public class Given_a_data_standard : When_installing_base_views
+        {
+            public Given_a_data_standard(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+        }             
     }
 }

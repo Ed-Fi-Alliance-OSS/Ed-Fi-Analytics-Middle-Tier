@@ -3,31 +3,15 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentProgramDim_view : When_querying_a_view
     {
 
         protected const string TestCasesFolder = "TestCases.StudentProgramDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentSchoolDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentProgramDim_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10);
-            Result.success.ShouldBeTrue($"Error while installing Base: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentProgramDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -38,12 +22,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
+        [SetUpFixture]
+        public class SetupStudentProgramDimTestCase
+                : When_querying_the_StudentProgramDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentProgramDim>(TestCasesFolder, TestCasesDataFileName,true);
+        }
+
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class Given_student_190009_867530020_Special_Education
             : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190009_867530020_Special_Education";
-            public Given_student_190009_867530020_Special_Education(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190009_867530020_Special_Education(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -119,7 +111,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190257_867530023_Section_504_Placement";
-            public Given_student_190257_867530023_Section_504_Placement(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190257_867530023_Section_504_Placement(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_one_record()
@@ -197,7 +189,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190020_867530023_Bilingual";
-            public Given_student_190020_867530023_Bilingual(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190020_867530023_Bilingual(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_not_return_any_records()
@@ -214,7 +206,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190009_867530020_Special_Education_1684_778530";
-            public Given_student_190009_867530020_Special_Education_1684_778530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190009_867530020_Special_Education_1684_778530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_not_return_any_records()
@@ -231,7 +223,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190257_867530023_Section_504_Placement_1637_867530";
-            public Given_student_190257_867530023_Section_504_Placement_1637_867530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190257_867530023_Section_504_Placement_1637_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_not_return_any_records()
@@ -248,7 +240,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
            : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190257_867530023_Bilingual_1682_867530";
-            public Given_student_190257_867530023_Bilingual_1682_867530(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190257_867530023_Bilingual_1682_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_not_return_any_records()
@@ -265,7 +257,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
            : When_querying_the_StudentProgramDim_view
         {
             private const string _caseIdentifier = "190009_867530020";
-            public Given_student_190009_867530020(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_student_190009_867530020(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             [Test]
             public void Then_should_return_two_records()

@@ -4,25 +4,19 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_default_map : TestCaseBase
+    public abstract class When_installing_default_map : When_installing_a_Collection
     {
         protected const string TestCasesFolder = "TestCases.DefaultMap";
 
-        protected (bool success, string errorMessage) Result;
-        protected When_installing_default_map(TestHarness dataStandard) : base(dataStandard) { }
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
+        protected When_installing_default_map(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [OneTimeSetUp]
         public void Act()
@@ -38,24 +32,24 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public class Given_descriptor_map
             : When_installing_default_map
         {
-            public Given_descriptor_map(TestHarness dataStandard) : base(dataStandard) { }
+            public Given_descriptor_map(TestHarnessBase dataStandard) : base(dataStandard) { }
             [Test]
             public void Then_view_should_match_column_dictionary()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.descriptormap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.descriptormap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_rows()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.descriptormap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.descriptormap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
         public class Given_type_map
             : When_installing_default_map
         {
-            public Given_type_map(TestHarness dataStandard) : base(dataStandard) { }
+            public Given_type_map(TestHarnessBase dataStandard) : base(dataStandard) { }
             [Test]
             public void Then_view_should_match_column_dictionary()
             {

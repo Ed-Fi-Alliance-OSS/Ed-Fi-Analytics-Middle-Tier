@@ -25,13 +25,21 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(_connectionString);
 
                 if (string.IsNullOrWhiteSpace(connectionStringBuilder.DataSource))
+                {
                     errorMessage = $"{Environment.NewLine}Please specify a data source using the Data Source or Server keyword.";
-                
-                if (!connectionStringBuilder.IntegratedSecurity && (string.IsNullOrWhiteSpace(connectionStringBuilder.UserID) || string.IsNullOrWhiteSpace(connectionStringBuilder.Password)))
+                }
+
+                if (!connectionStringBuilder.IntegratedSecurity &&
+                    (string.IsNullOrWhiteSpace(connectionStringBuilder.UserID) ||
+                     string.IsNullOrWhiteSpace(connectionStringBuilder.Password)))
+                {
                     errorMessage = $"{errorMessage}{Environment.NewLine}Please specify an authentication method using an integrated security or providing a user id and password.";
-                
+                }
+
                 if (string.IsNullOrWhiteSpace(connectionStringBuilder.InitialCatalog))
+                {
                     errorMessage = $"{errorMessage}{Environment.NewLine}Please specify a database using the Database or Initial Catalog keyword.";
+                }
 
                 return errorMessage == string.Empty;
             }

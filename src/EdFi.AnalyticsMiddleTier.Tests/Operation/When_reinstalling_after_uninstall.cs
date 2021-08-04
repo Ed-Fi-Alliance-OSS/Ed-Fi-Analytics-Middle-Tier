@@ -7,31 +7,30 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_reinstalling_after_uninstall
+    public class When_reinstalling_after_uninstall: When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-
-            Result = _dataStandard.Install();
-            Result.success.ShouldBe(true, "initial installation");
-
-            Result = _dataStandard.Uninstall();
-            Result.success.ShouldBe(true, "uninstall");
-        }
+        public When_reinstalling_after_uninstall(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install();
+            Result = DataStandard.Install();
+            Result.success.ShouldBe(true, "initial installation");
+
+            Result = DataStandard.Uninstall();
+            Result.success.ShouldBe(true, "uninstall");
+
+            Result = DataStandard.Install();
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -40,20 +39,5 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestFixture]
-        public class Given_data_standard_two : When_reinstalling_after_uninstall
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
-        }
-        [TestFixture]
-        public class Given_data_standard_three_one : When_reinstalling_after_uninstall
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
-        [TestFixture]
-        public class Given_data_standard_three_two : When_reinstalling_after_uninstall
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
     }
 }

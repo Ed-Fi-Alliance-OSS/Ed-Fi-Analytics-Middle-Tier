@@ -4,14 +4,15 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using EdFi.AnalyticsMiddleTier.Tests.Common;
 using NUnit.Framework;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(nameof(FixtureDataProviderDs3))]
+    [TestFixtureSource(typeof(DataStandardTestFixtureDs3))]
     public abstract class When_querying_a_view_ds3 : When_querying_a_view
     {
-        protected static TestHarness[] FixtureDataProviderDs3() => (new[] { TestHarness.DataStandard31, TestHarness.DataStandard32 });
+        protected When_querying_a_view_ds3() => fixtureList = new DataStandardTestFixtureDs3();
     }
 }

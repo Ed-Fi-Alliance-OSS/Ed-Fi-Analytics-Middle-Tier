@@ -8,25 +8,24 @@ using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_Chrab_views
+    public class When_installing_Chrab_views : When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
+        public When_installing_Chrab_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.Chrab);
+            Result = DataStandard.Install(10, Component.Chrab);
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -35,25 +34,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestCase("chrab_ChronicAbsenteeismAttendanceFact")]
-        public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
+        [TestCase]
+        public void Then_should_create_analytics_view_chrab_ChronicAbsenteeismAttendanceFact() => DataStandard.ViewExists("chrab_chronicabsenteeismattendancefact").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_Chrab_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_Chrab_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_Chrab_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
     }
 }

@@ -7,50 +7,17 @@ using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
-using System;
 using System.Diagnostics.CodeAnalysis;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentDisciplineActionDim_view : When_querying_a_view_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentDisciplineActionDim";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore($"The StudentDisciplineActionDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                DataStandard.PrepareDatabase();
-            }
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-            {
-                Assert.Ignore(
-                    $"The StudentDisciplineActionDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-            }
-            else
-            {
-                Result = DataStandard.LoadTestCaseData<StudentDisciplineActionDim>(
-                    $"{TestCasesFolder}.0000_StudentDisciplineActionDim_Data_Load.xml");
-                Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-                Result = DataStandard.Install(10, Component.Equity);
-                Result.success.ShouldBeTrue($"Error while installing Base and Equity: '{Result.errorMessage}'");
-            }
-        }
+        protected const string TestCasesDataFileName = "0000_StudentDisciplineActionDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -58,11 +25,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentDisciplineActionDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupStudentDisciplineActionTestCase
+            : When_querying_the_StudentDisciplineActionDim_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentDisciplineActionDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+        }
         public class Given_studentDisciplineAction_193964_628530001
         : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_193964_628530001(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_193964_628530001(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "193964_628530001";
 
@@ -143,7 +116,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_studentDisciplineAction_205270_628530001
        : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_205270_628530001(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_205270_628530001(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "205270_628530001";
 
@@ -182,7 +155,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_studentDisciplineAction_11051_20111005_100082817
        : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_11051_20111005_100082817(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_11051_20111005_100082817(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11051_20111005_100082817";
 
@@ -208,7 +181,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_studentDisciplineAction_11061_20111105_100082817
        : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_11061_20111105_100082817(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_11061_20111105_100082817(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11061_20111105_100082817";
 
@@ -234,7 +207,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_studentDisciplineAction_11061_20111005_100098415
        : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_11061_20111005_100098415(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_11061_20111005_100098415(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11061_20111005_100098415";
 
@@ -259,7 +232,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_studentDisciplineAction_11431_20111007_213503_867530193
        : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_11431_20111007_213503_867530193(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_11431_20111007_213503_867530193(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11431_20111007_213503_867530193";
 
@@ -291,7 +264,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         public class Given_studentDisciplineAction_10463_20111004_202109_867530022
        : When_querying_the_StudentDisciplineActionDim_view
         {
-            public Given_studentDisciplineAction_10463_20111004_202109_867530022(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public Given_studentDisciplineAction_10463_20111004_202109_867530022(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "10463_20111004_202109_867530022";
 

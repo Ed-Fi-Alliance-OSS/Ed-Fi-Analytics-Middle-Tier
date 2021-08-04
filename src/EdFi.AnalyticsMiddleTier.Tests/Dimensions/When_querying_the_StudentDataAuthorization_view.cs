@@ -9,30 +9,14 @@ using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
+// ReSharper disable once CheckNamespace
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDataAuthorizationTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public abstract class When_querying_the_StudentDataAuthorization_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StudentDataAuthorization";
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            DataStandard.PrepareDatabase();
-        }
-
-        [OneTimeSetUp]
-        public void Act()
-        {
-            Result = DataStandard.LoadTestCaseData<StudentDataAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0000_StudentDataAuthorization_Data_Load.xml");
-            Result.success.ShouldBeTrue($"Error while loading data: '{Result.errorMessage}'");
-
-            Result = DataStandard.Install(10, Component.RLS);
-            Result.success.ShouldBeTrue($"Error while installing Base and RLS: '{Result.errorMessage}'");
-        }
+        protected const string TestCasesDataFileName = "0000_StudentDataAuthorization_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -40,12 +24,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-
+        [SetUpFixture]
+        public class SetupStudentDataAuthorizationTestCase
+            : When_querying_the_StudentDataAuthorization_view
+        {
+            [OneTimeSetUp]
+            public void PrepareDatabase() => PrepareTestData<StudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName,Component.RLS);
+        }
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_StudentDataAuthorization_view_custom
             : When_querying_the_StudentDataAuthorization_view
         {
-            public When_querying_the_StudentDataAuthorization_view_custom(TestHarness dataStandard) => SetDataStandard(dataStandard);
+            public When_querying_the_StudentDataAuthorization_view_custom(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             [Test]
             public void Then_should_return_one_record()
             {

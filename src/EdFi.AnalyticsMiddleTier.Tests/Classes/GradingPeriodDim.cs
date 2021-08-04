@@ -20,7 +20,5 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public int SchoolKey { get; set; } //(int, not null)
         public string SchoolYear { get; set; } //(int, not null)
         public DateTime LastModifiedDate { get; set; } //(datetime, not null)
-
-       
     }
 }

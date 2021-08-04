@@ -7,26 +7,33 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_Asmt_views
+    public class When_installing_Asmt_views : When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
+        public When_installing_Asmt_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
-
-        [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.Asmt);
+            if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+            {
+                Assert.Ignore($"The collection Equity does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+            }
+            else
+            {
+                Result = DataStandard.Install(10, Component.Asmt);
+            }
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -35,20 +42,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestCase("asmt_AssessmentFact")]
-        [TestCase("asmt_StudentAssessmentFact")]
-        public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
+        [TestCase]
+        public void Then_should_create_analytics_view_asmt_AssessmentFact() => DataStandard.ViewExists("asmt_assessmentfact").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_Asmt_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
+        [TestCase]
+        public void Then_should_create_analytics_view_asmt_StudentAssessmentFact() => DataStandard.ViewExists("asmt_studentassessmentfact").ShouldBe(true);
 
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_Asmt_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
-        }
     }
 }

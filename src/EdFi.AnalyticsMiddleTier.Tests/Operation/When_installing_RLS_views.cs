@@ -8,25 +8,24 @@ using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
 
+// ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_installing_RLS_views
+    public class When_installing_RLS_views : When_installing_a_Collection
     {
-        protected abstract TestHarness _dataStandard { get; }
-
-        protected (bool success, string errorMessage) Result;
-
-        [OneTimeSetUp]
-        public void PrepareDatabase()
-        {
-            _dataStandard.PrepareDatabase();
-        }
+        public When_installing_RLS_views(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
         [SetUp]
         public void Act()
         {
-            Result = _dataStandard.Install(10, Component.RLS);
+            Result = DataStandard.Install(10, Component.RLS);
+        }
+
+        [OneTimeTearDown]
+        public void Uninstall()
+        {
+            Result = DataStandard.Uninstall();
         }
 
         [Test]
@@ -35,43 +34,34 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [Test]
         public void Then_error_message_should_be_null_or_empty() => Result.errorMessage.ShouldBeNullOrEmpty();
 
-        [TestCase("rls_StudentDataAuthorization")]
-        [TestCase("rls_UserDim")]
-        [TestCase("rls_UserAuthorization")]
-        [TestCase("rls_UserStudentDataAuthorization")]
-        public void Then_should_create_analytics_view(string viewName) => _dataStandard.ViewExists(viewName).ShouldBe(true);
+        [TestCase]
+        public void Then_should_create_analytics_view_rls_StudentDataAuthorization() => DataStandard.ViewExists("rls_studentdataauthorization").ShouldBe(true);
 
-        [TestCase("rls_StaffClassificationDescriptorScopeList")]
-        public void Then_should_create_analytics_config_view(string viewName) =>
-            _dataStandard.ViewExists(viewName, "analytics_config").ShouldBe(true);
+        [TestCase]
+        public void Then_should_create_analytics_view_rls_UserDim() => DataStandard.ViewExists("rls_userdim").ShouldBe(true);
 
-        [TestCase("rls_InsertStaffClassificationDescriptorScope")]
-        [TestCase("rls_RemoveStaffClassificationDescriptorScope")]
-        public void Then_should_create_stored_procedure(string procedureName)
+        [TestCase]
+        public void Then_should_create_analytics_view_rls_UserAuthorization() => DataStandard.ViewExists("rls_userauthorization").ShouldBe(true);
+
+        [TestCase]
+        public void Then_should_create_analytics_view_rls_UserStudentDataAuthorization() => DataStandard.ViewExists("rls_userstudentdataauthorization").ShouldBe(true);
+
+        [TestCase]
+        public void Then_should_create_analytics_config_view() =>
+            DataStandard.ViewExists("rls_staffclassificationdescriptorscopelist", "analytics_config").ShouldBe(true);
+
+        [TestCase]
+        public void Then_should_create_stored_procedure_rls_InsertStaffClassificationDescriptorScope()
         {
-            var sql = $"SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = '{procedureName}'";
-            _dataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
-        }
-       // [Test]
-       // public void Then_should_create_EWS_configuration_table() => _dataStandard.TableExists("EWS").ShouldBe(true);
-
-
-        [TestFixture]
-        public class Given_data_standard_two : When_installing_RLS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard2;
+            var sql = "SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = 'rls_insertstaffclassificationdescriptorscope'";
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
 
-        [TestFixture]
-        public class Given_data_standard_three_one : When_installing_RLS_views
+        [TestCase]
+        public void Then_should_create_stored_procedure_rls_RemoveStaffClassificationDescriptorScope()
         {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard31;
-        }
-
-        [TestFixture]
-        public class Given_data_standard_three_two : When_installing_RLS_views
-        {
-            protected override TestHarness _dataStandard => TestHarness.DataStandard32;
+            var sql = "SELECT 1 FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_SCHEMA = 'analytics_config' AND ROUTINE_NAME = 'rls_removestaffclassificationdescriptorscope'";
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(1);
         }
     }
 }
