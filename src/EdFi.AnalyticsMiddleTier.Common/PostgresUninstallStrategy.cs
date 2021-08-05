@@ -16,26 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
             this.SchemaDefault = "public";
             this.JournalingVersionsTable = $"\"{JournalingVersionsTable}\"";
         }
-        public override (bool Successful, string ErrorMessage) Uninstall()
-        {
-            try
-            {
-                RemoveAllViews(AnalyticsSchema);
-                RemoveAllViews(AnalyticsConfigSchema);
-                RemoveAllIndexes(AnalyticsConfigSchema);
-                DropTable(AnalyticsConfigSchema, IndexJournalTable);
-                DropTable(SchemaDefault, JournalingVersionsTable);
-                RemoveAllTables(AnalyticsConfigSchema);
-                RemoveAllStoredProcedures(AnalyticsConfigSchema);
-                DropSchema(AnalyticsSchema);
-                DropSchema(AnalyticsConfigSchema);
-                return (true, string.Empty);
-            }
-            catch (Exception ex)
-            {
-                return (false, ex.ConcatenateInnerMessages());
-            }
-        }
+        
         public override string GetQueryIndexesTemplate(string schema)
         {
             return $"SELECT indexname as FullyQualifiedIndexName FROM pg_indexes WHERE schemaname = '{schema.ToLower()}';";

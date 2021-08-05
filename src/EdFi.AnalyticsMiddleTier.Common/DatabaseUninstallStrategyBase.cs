@@ -26,6 +26,11 @@ namespace EdFi.AnalyticsMiddleTier.Common
 
         public virtual (bool Successful, string ErrorMessage) Uninstall()
         {
+            return Uninstall(false);
+        }
+
+        public virtual (bool Successful, string ErrorMessage) Uninstall(bool uninstallAll)
+        {
             try
             {
                 RemoveAllViews(AnalyticsSchema);
@@ -34,6 +39,12 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 DropTable(AnalyticsConfigSchema, IndexJournalTable);
                 DropTable(SchemaDefault, JournalingVersionsTable);
                 RemoveAllStoredProcedures(AnalyticsConfigSchema);
+                if (uninstallAll)
+                {
+                    DropSchema(AnalyticsSchema);
+                    DropSchema(AnalyticsConfigSchema);
+                }
+
                 return (true, string.Empty);
             }
             catch (Exception ex)

@@ -142,6 +142,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             return UninstallStrategy.Uninstall();
         }
 
+        public (bool success, string errorMessage) Uninstall(bool uninstallAll)
+        {
+            return UninstallStrategy.Uninstall(uninstallAll);
+        }
+
         public string GetTestDataFolderName(bool useCurrentDataStandard)
             => useCurrentDataStandard
                 ? $"{CurrentDataStandardFolderName}"
