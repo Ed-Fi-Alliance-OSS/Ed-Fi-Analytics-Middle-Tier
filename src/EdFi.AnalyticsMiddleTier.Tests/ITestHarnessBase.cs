@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         bool TableExists(string schemaName, string tableName);
         string ToString();
         (bool success, string errorMessage) Uninstall();
-        (bool success, string errorMessage) UninstallAllAMTObjects();
+        (bool success, string errorMessage) Uninstall(bool uninstallAll);
         bool ViewExists(string viewName);
         bool ViewExists(string viewName, string schema);
     }

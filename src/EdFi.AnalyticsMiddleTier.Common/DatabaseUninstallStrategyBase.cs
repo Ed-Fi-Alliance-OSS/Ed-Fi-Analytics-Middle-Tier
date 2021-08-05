@@ -26,23 +26,10 @@ namespace EdFi.AnalyticsMiddleTier.Common
 
         public virtual (bool Successful, string ErrorMessage) Uninstall()
         {
-            try
-            {
-                RemoveAllViews(AnalyticsSchema);
-                RemoveAllViews(AnalyticsConfigSchema);
-                RemoveAllIndexes(AnalyticsConfigSchema);
-                DropTable(AnalyticsConfigSchema, IndexJournalTable);
-                DropTable(SchemaDefault, JournalingVersionsTable);
-                RemoveAllStoredProcedures(AnalyticsConfigSchema);
-                return (true, string.Empty);
-            }
-            catch (Exception ex)
-            {
-                return (false, ex.ConcatenateInnerMessages());
-            }
+            return Uninstall(false);
         }
 
-        public virtual (bool Successful, string ErrorMessage) UninstallAllAMTObjects()
+        public virtual (bool Successful, string ErrorMessage) Uninstall(bool uninstallAll)
         {
             try
             {
@@ -52,8 +39,12 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 DropTable(AnalyticsConfigSchema, IndexJournalTable);
                 DropTable(SchemaDefault, JournalingVersionsTable);
                 RemoveAllStoredProcedures(AnalyticsConfigSchema);
-                DropSchema(AnalyticsSchema);
-                DropSchema(AnalyticsConfigSchema);
+                if (uninstallAll)
+                {
+                    DropSchema(AnalyticsSchema);
+                    DropSchema(AnalyticsConfigSchema);
+                }
+
                 return (true, string.Empty);
             }
             catch (Exception ex)
