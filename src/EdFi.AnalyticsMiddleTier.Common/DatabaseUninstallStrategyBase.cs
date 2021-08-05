@@ -42,6 +42,26 @@ namespace EdFi.AnalyticsMiddleTier.Common
             }
         }
 
+        public virtual (bool Successful, string ErrorMessage) UninstallAllAMTObjects()
+        {
+            try
+            {
+                RemoveAllViews(AnalyticsSchema);
+                RemoveAllViews(AnalyticsConfigSchema);
+                RemoveAllIndexes(AnalyticsConfigSchema);
+                DropTable(AnalyticsConfigSchema, IndexJournalTable);
+                DropTable(SchemaDefault, JournalingVersionsTable);
+                RemoveAllStoredProcedures(AnalyticsConfigSchema);
+                DropSchema(AnalyticsSchema);
+                DropSchema(AnalyticsConfigSchema);
+                return (true, string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.ConcatenateInnerMessages());
+            }
+        }
+
         public virtual string GetDropIndexTemplate(string index)
         {
             return $"DROP INDEX IF EXISTS {index};DROP INDEX IF EXISTS {index.ToLower()};";

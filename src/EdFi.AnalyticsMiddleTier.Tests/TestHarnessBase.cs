@@ -142,6 +142,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             return UninstallStrategy.Uninstall();
         }
 
+        public (bool success, string errorMessage) UninstallAllAMTObjects()
+        {
+            return UninstallStrategy.UninstallAllAMTObjects();
+        }
+
         public string GetTestDataFolderName(bool useCurrentDataStandard)
             => useCurrentDataStandard
                 ? $"{CurrentDataStandardFolderName}"

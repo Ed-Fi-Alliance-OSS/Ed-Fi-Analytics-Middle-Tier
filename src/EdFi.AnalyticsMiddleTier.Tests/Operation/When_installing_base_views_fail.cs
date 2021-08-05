@@ -18,6 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [OneTimeSetUp]
         public void PrepareDatabase()
         {
+            DataStandard.UninstallAllAMTObjects();
             DataStandard.ExecuteQuery("ALTER TABLE edfi.GradingPeriod DROP COLUMN TotalInstructionalDays");
         }
 

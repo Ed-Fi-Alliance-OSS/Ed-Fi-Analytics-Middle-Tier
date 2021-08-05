@@ -10,5 +10,6 @@ namespace EdFi.AnalyticsMiddleTier.Common
     public interface IUninstallStrategy : IDisposable
     {
         (bool Successful, string ErrorMessage) Uninstall();
+        (bool Successful, string ErrorMessage) UninstallAllAMTObjects();
     }
 }
