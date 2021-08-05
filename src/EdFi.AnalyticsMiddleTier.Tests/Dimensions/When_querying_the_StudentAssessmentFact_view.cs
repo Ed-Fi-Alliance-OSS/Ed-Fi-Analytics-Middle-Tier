@@ -629,7 +629,38 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+        }
 
+        public class Given_student_assessment_fact_04556570_B715_6D8E_5E86_008A72ECE100_2009_04_01_should_return_one_record
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_04556570_B715_6D8E_5E86_008A72ECE100_2009_04_01_should_return_one_record(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "04556570_B715_6D8E_5E86_008A72ECE100_2009_04_01";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            //[Test]
+            //public void Then_should_have_ReportingMethod_empty()
+            //{
+            //    (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportingMethod_empty.xml");
+            //    testResult.success.ShouldBe(true, testResult.errorMessage);
+            //}
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+		SELECT COUNT(1) AS CountValue
+		FROM analytics.asmt_StudentAssessmentFact
+		WHERE StudentAssessmentFactKey='04556570-B715-6D8E-5E86-008A72ECE100-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01-1120-637-Seventh grade Mathematics-48-1120-637-202042-867530069-2011-08-22';
+	</Query>
+    <Result>
+        <CountValue>1</CountValue>
+    </Result>
+</TestCase>
