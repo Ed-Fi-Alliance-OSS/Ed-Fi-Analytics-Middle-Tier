@@ -12,6 +12,10 @@
       ORDER BY ORDINAL_POSITION ASC;
   </Query>
     <Result>
+        <ColumnName>AssessmentFactKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>AssessmentKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

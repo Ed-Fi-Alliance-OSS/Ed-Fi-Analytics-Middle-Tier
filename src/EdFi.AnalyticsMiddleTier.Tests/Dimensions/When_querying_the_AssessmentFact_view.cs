@@ -57,6 +57,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
             }
 
             [Test]
+            public void Then_should_have_AssessmentFactKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentFactKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_AssessmentKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentKey.xml");
@@ -169,6 +176,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
             public void Then_should_return_one_record()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_AssessmentFactKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AssessmentFactKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
