@@ -369,7 +369,6 @@
 		INSERT INTO edfi.AssessmentPerformanceLevel ( PerformanceLevelDescriptorId,  MinimumScore,  MaximumScore,  CreateDate,  AssessmentIdentifier,  Namespace,  ResultDatatypeTypeDescriptorId,  AssessmentReportingMethodDescriptorId ) ( SELECT TOP 1  '636',  '28',  '40',  'Sep 18 2015 11:34AM',  'MP-2013-Mathematics-Seventh grade',  'uri://ed-fi.org/Assessment/Assessment.xml',  '1688',  '231' WHERE NOT EXISTS ( SELECT  1 FROM  edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '636' AND AssessmentIdentifier = 'MP-2013-Mathematics-Seventh grade' AND  Namespace='uri://ed-fi.org/Assessment/Assessment.xml' ) );
 		INSERT INTO edfi.AssessmentPerformanceLevel ( PerformanceLevelDescriptorId,  MinimumScore,  MaximumScore,  CreateDate,  AssessmentIdentifier,  Namespace,  ResultDatatypeTypeDescriptorId,  AssessmentReportingMethodDescriptorId ) ( SELECT TOP 1  '637',  '39',  '40',  'Sep 18 2015 11:34AM',  'MP-2013-Mathematics-Seventh grade',  'uri://ed-fi.org/Assessment/Assessment.xml',  '1688',  '231' WHERE NOT EXISTS ( SELECT  1 FROM  edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '637' AND AssessmentIdentifier = 'MP-2013-Mathematics-Seventh grade' AND  Namespace='uri://ed-fi.org/Assessment/Assessment.xml' ) );
 		INSERT INTO  edfi.StudentAssessmentScoreResult ( StudentUSI,  Result,  CreateDate,  AssessmentIdentifier,  StudentAssessmentIdentifier,  Namespace,  AssessmentReportingMethodDescriptorId,  ResultDatatypeTypeDescriptorId ) ( SELECT TOP 1  '392',  '29',  'Sep 18 2015 11:46AM',  'MP-2013-Mathematics-Seventh grade',  'zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q',  'uri://ed-fi.org/Assessment/Assessment.xml',  '231',  '1688' WHERE NOT EXISTS ( SELECT  1 FROM  edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' AND NAMESPACE='uri://ed-fi.org/Assessment/Assessment.xml' AND AssessmentReportingMethodDescriptorId = '231' AND StudentAssessmentIdentifier =  'zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q' AND AssessmentIdentifier = 'MP-2013-Mathematics-Seventh grade' AND StudentUSI = '392' ) );
-
 		-- ## 04556570-B715-6D8E-5E86-008A72ECE100-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01-1120-637-Seventh grade Mathematics-48-1120-637-202042-867530069-2011-08-22
 
 		INSERT INTO edfi.Assessment(AssessmentTitle,RevisionDate,MaxRawScore,Namespace,Id,LastModifiedDate,CreateDate,AssessmentIdentifier)
@@ -556,13 +555,13 @@
 		--(SELECT TOP 1'400075330','867530069','2011-08-22','37','0CB3AF96-D5DB-47E5-A57E-8B2C08927100','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
 		--	WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI = '400075330'));
 
-		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
-		(SELECT TOP 1'400075330','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE100','04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01','uri://edfi.org/Assessment','1122','1688'
-		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1122' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100' and StudentUSI = '400075330'));
+		--INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		--(SELECT TOP 1'400075330','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE100','04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01','uri://edfi.org/Assessment','1120','1688'
+		--	WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100' and StudentUSI = '400075330'));
 
-		INSERT INTO edfi.AssessmentPerformanceLevel(PerformanceLevelDescriptorId,MinimumScore,MaximumScore,CreateDate,AssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
-		(SELECT TOP 1'637','28','40','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE100','uri://edfi.org/Assessment','1688','1122'
-		WHERE NOT EXISTS(SELECT  1  FROM edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '637' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100' and ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1122'));
+		--INSERT INTO edfi.AssessmentPerformanceLevel(PerformanceLevelDescriptorId,MinimumScore,MaximumScore,CreateDate,AssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		--(SELECT TOP 1'637','28','40','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE100','uri://edfi.org/Assessment','1688','1120'
+		--	WHERE NOT EXISTS(SELECT  1  FROM edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '637' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100' and ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120'));
 
 		--INSERT INTO edfi.ObjectiveAssessment(IdentificationCode,MaxRawScore,PercentOfAssessment,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,Namespace)
 		--(SELECT TOP 1'Seventh grade Mathematics-48','1','0.0392','D8EE4912-42E5-46FB-9F9D-0C35C7117100','Aug 11 2020 12:59PM','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE100','uri://edfi.org/Assessment'
@@ -575,6 +574,216 @@
 		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
 		(SELECT TOP 1'400075330','Seventh grade Mathematics-48','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE100','04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01','uri://edfi.org/Assessment','1688','1122'
 		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075330' AND IdentificationCode = 'Seventh grade Mathematics-48' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE100_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1122'));
+
+		-- ## 04556570-B715-6D8E-5E86-008A72ECE110-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01-1120-637-Seventh grade Mathematics-58-1120-637-202252-867530069-2011-08-22
+
+		INSERT INTO edfi.Assessment(AssessmentTitle,RevisionDate,MaxRawScore,Namespace,Id,LastModifiedDate,CreateDate,AssessmentIdentifier)
+		(SELECT TOP 1'TAKS','2009-09-01','40','uri://edfi.org/Assessment','5A93ED33-D40F-4EE9-A351-0EA2EB2F3110','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE110'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Assessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND Namespace= 'uri://edfi.org/Assessment'));
+
+		SET IDENTITY_INSERT edfi.Student ON;
+		INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,BirthCity,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'400075340','Kim','X','Johnson','1999-10-09','Lubbock','202252','619785E8-B6A4-43C6-A8A3-D8DA54AD3110','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '400075340'));
+		SET IDENTITY_INSERT edfi.Student OFF;
+
+		INSERT INTO edfi.StudentAssessment(StudentUSI,AdministrationDate,WhenAssessedGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','2009-04-01 00:00:00.0000000','25','9D581629-4DDB-4B69-88C6-3A52B4C79110','Sep 18 2015 11:35AM','Sep 18 2015 11:35AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessment WHERE StudentUSI = '400075340' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110'));
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'400075340','867530069','2011-08-22','37','0CB3AF96-D5DB-47E5-A57E-8B2C08927110','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI = '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		(SELECT TOP 1'400075340','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120','1688'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and StudentUSI = '400075340'));
+
+		INSERT INTO edfi.AssessmentPerformanceLevel(PerformanceLevelDescriptorId,MinimumScore,MaximumScore,CreateDate,AssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'637','28','40','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE110','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '637' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and ResultDatatypeTypeDescriptorId = '1688'));
+
+		INSERT INTO edfi.ObjectiveAssessment(IdentificationCode,MaxRawScore,PercentOfAssessment,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,Namespace)
+		(SELECT TOP 1'Seventh grade Mathematics-58','1','0.0392','D8EE4912-42E5-46FB-9F9D-0C35C7117110','Aug 11 2020 12:59PM','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.ObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessment(StudentUSI,IdentificationCode,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment'  AND StudentAssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01'  AND StudentUSI= '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel(StudentUSI,IdentificationCode,PerformanceLevelDescriptorId,PerformanceLevelMet,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','637','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		--------
+
+		-- AssessmentIdentifier
+
+		INSERT INTO edfi.Assessment(AssessmentTitle,RevisionDate,MaxRawScore,Namespace,Id,LastModifiedDate,CreateDate,AssessmentIdentifier)
+		(SELECT TOP 1'TAKS','2009-09-01','40','uri://edfi.org/Assessment','5A93ED33-D40F-4EE9-A351-0EA2EB2F3111','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE111'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Assessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE111'  AND Namespace= 'uri://edfi.org/Assessment'));
+
+		INSERT INTO edfi.StudentAssessment(StudentUSI,AdministrationDate,WhenAssessedGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','2009-04-01 00:00:00.0000000','25','9D581629-4DDB-4B69-88C6-3A52B4C79111','Sep 18 2015 11:35AM','Sep 18 2015 11:35AM','04556570-B715-6D8E-5E86-008A72ECE111','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessment WHERE StudentUSI = '400075340' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE111'));
+
+		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		(SELECT TOP 1'400075340','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE111','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120','1688'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE111' and StudentUSI = '400075340'));
+
+		INSERT INTO edfi.ObjectiveAssessment(IdentificationCode,MaxRawScore,PercentOfAssessment,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,Namespace)
+		(SELECT TOP 1'Seventh grade Mathematics-58','1','0.0392','D8EE4912-42E5-46FB-9F9D-0C35C7117111','Aug 11 2020 12:59PM','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE111','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.ObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE111'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessment(StudentUSI,IdentificationCode,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE111','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE111'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment'  AND StudentAssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01'  AND StudentUSI= '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE111','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE111' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel(StudentUSI,IdentificationCode,PerformanceLevelDescriptorId,PerformanceLevelMet,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','637','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE111','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel WHERE StudentUSI = '400075330' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE111' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		-- IdentificationCode
+
+		INSERT INTO edfi.ObjectiveAssessment(IdentificationCode,MaxRawScore,PercentOfAssessment,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,Namespace)
+		(SELECT TOP 1'Seventh grade Mathematics-59','1','0.0392','D8EE4912-42E5-46FB-9F9D-0C35C7117112','Aug 11 2020 12:59PM','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.ObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-59'  AND Namespace= 'uri://edfi.org/Assessment'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessment(StudentUSI,IdentificationCode,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-59','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-59'  AND Namespace= 'uri://edfi.org/Assessment'  AND StudentAssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01'  AND StudentUSI= '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-59','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-59' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel(StudentUSI,IdentificationCode,PerformanceLevelDescriptorId,PerformanceLevelMet,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-59','637','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-59' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		-- Namespace
+
+		INSERT INTO edfi.Assessment(AssessmentTitle,RevisionDate,MaxRawScore,Namespace,Id,LastModifiedDate,CreateDate,AssessmentIdentifier)
+		(SELECT TOP 1'TAKS','2009-09-01','40','uri://edfi.org/Assessment_Alt','5A93ED33-D40F-4EE9-A351-0EA2EB2F3113','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE110'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Assessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND Namespace= 'uri://edfi.org/Assessment_Alt'));
+
+		INSERT INTO edfi.StudentAssessment(StudentUSI,AdministrationDate,WhenAssessedGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','2009-04-01 00:00:00.0000000','25','9D581629-4DDB-4B69-88C6-3A52B4C79113','Sep 18 2015 11:35AM','Sep 18 2015 11:35AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment_Alt'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessment WHERE StudentUSI = '400075340' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and Namespace = 'uri://edfi.org/Assessment_Alt'));
+
+		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		(SELECT TOP 1'400075340','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment_Alt','1120','1688'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and StudentUSI = '400075340' and Namespace = 'uri://edfi.org/Assessment_Alt'));
+
+		INSERT INTO edfi.AssessmentPerformanceLevel(PerformanceLevelDescriptorId,MinimumScore,MaximumScore,CreateDate,AssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'637','28','40','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE110','uri://edfi.org/Assessment_Alt','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '637' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and ResultDatatypeTypeDescriptorId = '1688' and Namespace = 'uri://edfi.org/Assessment_Alt'));
+
+		INSERT INTO edfi.ObjectiveAssessment(IdentificationCode,MaxRawScore,PercentOfAssessment,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,Namespace)
+		(SELECT TOP 1'Seventh grade Mathematics-58','1','0.0392','D8EE4912-42E5-46FB-9F9D-0C35C7117113','Aug 11 2020 12:59PM','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','uri://edfi.org/Assessment_Alt'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.ObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment_Alt'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessment(StudentUSI,IdentificationCode,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment_Alt'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment_Alt'  AND StudentAssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01'  AND StudentUSI= '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment_Alt','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment_Alt' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel(StudentUSI,IdentificationCode,PerformanceLevelDescriptorId,PerformanceLevelMet,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','637','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment_Alt','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment_Alt' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		-- StudentAssessmentIdentifier
+
+		INSERT INTO edfi.StudentAssessment(StudentUSI,AdministrationDate,WhenAssessedGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','2009-04-01 00:00:00.0000000','25','9D581629-4DDB-4B69-88C6-3A52B4C79114','Sep 18 2015 11:35AM','Sep 18 2015 11:35AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessment WHERE StudentUSI = '400075340' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110'));
+
+		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		(SELECT TOP 1'400075340','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02','uri://edfi.org/Assessment','1120','1688'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and StudentUSI = '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessment(StudentUSI,IdentificationCode,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment'  AND StudentAssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02'  AND StudentUSI= '400075340'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel(StudentUSI,IdentificationCode,PerformanceLevelDescriptorId,PerformanceLevelMet,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075340','Seventh grade Mathematics-58','637','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02','uri://edfi.org/Assessment','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel WHERE StudentUSI = '400075340' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-02' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		-- StudentUSI
+
+		SET IDENTITY_INSERT edfi.Student ON;
+		INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,BirthCity,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'400075341','Kim','X','Johnson','1999-10-09','Lubbock','202253','619785E8-B6A4-43C6-A8A3-D8DA54AD3115','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '400075341'));
+		SET IDENTITY_INSERT edfi.Student OFF;
+
+		INSERT INTO edfi.StudentAssessment(StudentUSI,AdministrationDate,WhenAssessedGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075341','2009-04-01 00:00:00.0000000','25','9D581629-4DDB-4B69-88C6-3A52B4C79115','Sep 18 2015 11:35AM','Sep 18 2015 11:35AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessment WHERE StudentUSI = '400075341' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110'));
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'400075341','867530069','2011-08-22','37','0CB3AF96-D5DB-47E5-A57E-8B2C08927115','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI = '400075341'));
+
+		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		(SELECT TOP 1'400075341','29','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120','1688'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' and StudentUSI = '400075341'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessment(StudentUSI,IdentificationCode,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075341','Seventh grade Mathematics-58','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110'  AND IdentificationCode= 'Seventh grade Mathematics-58'  AND Namespace= 'uri://edfi.org/Assessment'  AND StudentAssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01'  AND StudentUSI= '400075341'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult(StudentUSI,IdentificationCode,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075341','Seventh grade Mathematics-58','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentScoreResult WHERE StudentUSI = '400075341' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		INSERT INTO edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel(StudentUSI,IdentificationCode,PerformanceLevelDescriptorId,PerformanceLevelMet,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'400075341','Seventh grade Mathematics-58','637','1','Aug 11 2020 12:59PM','04556570-B715-6D8E-5E86-008A72ECE110','04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01','uri://edfi.org/Assessment','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentStudentObjectiveAssessmentPerformanceLevel WHERE StudentUSI = '400075341' AND IdentificationCode = 'Seventh grade Mathematics-58' AND AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110' AND StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE110_2009-04-01' AND Namespace = 'uri://edfi.org/Assessment' AND AssessmentReportingMethodDescriptorId = '1120'));
+
+		-- ## 04556570-B715-6D8E-5E86-008A72ECE120-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE120_2009-04-01-1120-637----202262-867530069-20110822
+
+		INSERT INTO edfi.Assessment(AssessmentTitle,RevisionDate,MaxRawScore,Namespace,Id,LastModifiedDate,CreateDate,AssessmentIdentifier)
+		(SELECT TOP 1'TAKS','2009-09-01','40','uri://edfi.org/Assessment','5A93ED33-D40F-4EE9-A351-0EA2EB2F3120','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Assessment WHERE   AssessmentIdentifier= '04556570-B715-6D8E-5E86-008A72ECE120'  AND Namespace= 'uri://edfi.org/Assessment'));
+
+		SET IDENTITY_INSERT edfi.Student ON;
+		INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,BirthCity,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'400075350','Jim','X','Morrison','1999-10-09','Lubbock','202262','619785E8-B6A4-43C6-A8A3-D8DA54AD3120','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '400075350'));
+		SET IDENTITY_INSERT edfi.Student OFF;
+
+		INSERT INTO edfi.StudentAssessment(StudentUSI,AdministrationDate,WhenAssessedGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace)
+		(SELECT TOP 1'400075350','2009-04-01 00:00:00.0000000','25','9D581629-4DDB-4B69-88C6-3A52B4C79120','Sep 18 2015 11:35AM','Sep 18 2015 11:35AM','04556570-B715-6D8E-5E86-008A72ECE120','04556570-B715-6D8E-5E86-008A72ECE120_2009-04-01','uri://edfi.org/Assessment'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessment WHERE StudentUSI = '400075350' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE120_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE120'));
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'400075350','867530069','2011-08-22','37','0CB3AF96-D5DB-47E5-A57E-8B2C08927120','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI = '400075350'));
+
+		INSERT INTO edfi.StudentAssessmentScoreResult(StudentUSI,Result,CreateDate,AssessmentIdentifier,StudentAssessmentIdentifier,Namespace,AssessmentReportingMethodDescriptorId,ResultDatatypeTypeDescriptorId)
+		(SELECT TOP 1'400075350','41','Sep 18 2015 11:46AM','04556570-B715-6D8E-5E86-008A72ECE120','04556570-B715-6D8E-5E86-008A72ECE120_2009-04-01','uri://edfi.org/Assessment','1120','1688'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentAssessmentScoreResult WHERE ResultDatatypeTypeDescriptorId = '1688' and AssessmentReportingMethodDescriptorId = '1120' and StudentAssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE120_2009-04-01' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE120' and StudentUSI = '400075350'));
+
+		INSERT INTO edfi.AssessmentPerformanceLevel(PerformanceLevelDescriptorId,MinimumScore,MaximumScore,CreateDate,AssessmentIdentifier,Namespace,ResultDatatypeTypeDescriptorId,AssessmentReportingMethodDescriptorId)
+		(SELECT TOP 1'637','28','40','Sep 18 2015 11:34AM','04556570-B715-6D8E-5E86-008A72ECE120','uri://edfi.org/Assessment','1688','1120'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.AssessmentPerformanceLevel WHERE PerformanceLevelDescriptorId = '637' and AssessmentIdentifier = '04556570-B715-6D8E-5E86-008A72ECE120' and ResultDatatypeTypeDescriptorId = '1688'));
 
 	</ControlDataInsertion>
 </TestCase>

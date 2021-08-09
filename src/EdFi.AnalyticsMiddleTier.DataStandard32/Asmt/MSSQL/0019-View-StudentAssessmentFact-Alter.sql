@@ -32,7 +32,7 @@ SELECT
 		'-', StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.PerformanceLevelDescriptorId,
 		'-', Student.StudentUniqueId,
 		'-', StudentSchoolAssociation.SchoolId,
-		'-', StudentSchoolAssociation.EntryDate
+		'-', CONVERT(NVARCHAR, StudentSchoolAssociation.EntryDate, 112)
 	) AS StudentAssessmentFactKey,
 	CONCAT(
 		StudentAssessment.AssessmentIdentifier, 

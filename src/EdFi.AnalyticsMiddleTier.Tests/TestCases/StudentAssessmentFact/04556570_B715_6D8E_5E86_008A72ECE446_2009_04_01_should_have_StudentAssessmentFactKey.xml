@@ -6,9 +6,9 @@
     <Query>
 		SELECT StudentAssessmentFactKey
 		FROM analytics.asmt_StudentAssessmentFact
-		WHERE StudentAssessmentFactKey = '04556570-B715-6D8E-5E86-008A72ECE446-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE446_2009-04-01-1120-637----202040-867530069-2011-08-22';
+		WHERE StudentAssessmentFactKey = '04556570-B715-6D8E-5E86-008A72ECE446-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE446_2009-04-01-1120-637----202040-867530069-20110822';
 	</Query>
     <Result>
-		<StudentAssessmentFactKey>04556570-B715-6D8E-5E86-008A72ECE446-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE446_2009-04-01-1120-637----202040-867530069-2011-08-22</StudentAssessmentFactKey>
+		<StudentAssessmentFactKey>04556570-B715-6D8E-5E86-008A72ECE446-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE446_2009-04-01-1120-637----202040-867530069-20110822</StudentAssessmentFactKey>
     </Result>
 </TestCase>

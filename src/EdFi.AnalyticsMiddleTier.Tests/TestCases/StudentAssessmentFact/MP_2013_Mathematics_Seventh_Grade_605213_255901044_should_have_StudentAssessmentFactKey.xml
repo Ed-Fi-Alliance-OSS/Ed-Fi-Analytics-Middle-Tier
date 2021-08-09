@@ -6,9 +6,9 @@
   <Query>
 	  SELECT StudentAssessmentFactKey
 	  FROM analytics.asmt_StudentAssessmentFact
-	  WHERE StudentAssessmentFactKey='MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-231-636-Seventh grade Mathematics-48---605213-255901044-2010-08-23';
+	  WHERE StudentAssessmentFactKey='MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-231-636-Seventh grade Mathematics-48---605213-255901044-20100823';
   </Query>
   <Result>
-	  <StudentAssessmentFactKey>MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-231-636-Seventh grade Mathematics-48---605213-255901044-2010-08-23</StudentAssessmentFactKey>
+	  <StudentAssessmentFactKey>MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-231-636-Seventh grade Mathematics-48---605213-255901044-20100823</StudentAssessmentFactKey>
   </Result>
 </TestCase>
