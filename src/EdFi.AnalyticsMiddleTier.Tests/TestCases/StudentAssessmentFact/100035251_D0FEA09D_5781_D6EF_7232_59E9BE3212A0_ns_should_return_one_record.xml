@@ -10,6 +10,6 @@
         AND ReportingMethod = 'Raw Score';
     </Query>
     <Result>
-        <CountValue>0</CountValue>
+        <CountValue>1</CountValue>
     </Result>
 </TestCase>
