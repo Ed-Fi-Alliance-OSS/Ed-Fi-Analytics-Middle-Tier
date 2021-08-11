@@ -11,39 +11,39 @@
         AND table_name = 'gradingperioddim'
     </Query>
     <Result>
-        <ColumnName>GradingPeriodKey</ColumnName>
+        <ColumnName>gradingperiodkey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>GradingPeriodBeginDateKey</ColumnName>
+        <ColumnName>gradingperiodbegindatekey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>GradingPeriodEndDateKey</ColumnName>
+        <ColumnName>gradingperiodenddatekey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>GradingPeriodDescription</ColumnName>
-        <DataType>text</DataType>
+        <ColumnName>gradingperioddescription</ColumnName>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
-        <ColumnName>TotalInstructionalDays</ColumnName>
+        <ColumnName>totalinstructionaldays</ColumnName>
         <DataType>int4</DataType>
     </Result>
     <Result>
-        <ColumnName>PeriodSequence</ColumnName>
+        <ColumnName>periodsequence</ColumnName>
         <DataType>int4</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolKey</ColumnName>
-        <DataType>text</DataType>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolYear</ColumnName>
-        <DataType>text</DataType>
+        <ColumnName>schoolyear</ColumnName>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
-        <ColumnName>LastModifiedDate</ColumnName>
+        <ColumnName>lastmodifieddate</ColumnName>
         <DataType>timestamp</DataType>
     </Result>
 </TestCase>
