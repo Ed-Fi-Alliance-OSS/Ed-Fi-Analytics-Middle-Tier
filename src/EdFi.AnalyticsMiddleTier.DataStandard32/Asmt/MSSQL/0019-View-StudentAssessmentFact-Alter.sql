@@ -154,8 +154,6 @@ LEFT JOIN
 		StudentAssessmentStudentObjectiveAssessment.StudentAssessmentIdentifier = StudentAssessmentStudentObjectiveAssessmentScoreResult.StudentAssessmentIdentifier
     AND
 		StudentAssessmentStudentObjectiveAssessment.StudentUSI = StudentAssessmentStudentObjectiveAssessmentScoreResult.StudentUSI
-  --  AND
-		--StudentAssessmentScoreResult.AssessmentReportingMethodDescriptorId = StudentAssessmentStudentObjectiveAssessmentScoreResult.AssessmentReportingMethodDescriptorId
 LEFT JOIN
     edfi.Descriptor AS ResultDescriptor ON
         ResultDescriptor.DescriptorId = StudentAssessmentStudentObjectiveAssessmentScoreResult.ResultDatatypeTypeDescriptorId
@@ -173,12 +171,6 @@ LEFT JOIN
         StudentAssessmentStudentObjectiveAssessment.StudentAssessmentIdentifier = StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.StudentAssessmentIdentifier
     AND
         StudentAssessmentStudentObjectiveAssessment.Namespace = StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.Namespace
- --   AND
- --       StudentAssessmentStudentObjectiveAssessmentScoreResult.AssessmentReportingMethodDescriptorId = StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.AssessmentReportingMethodDescriptorId
-	--AND
- --       StudentAssessmentScoreResult.AssessmentReportingMethodDescriptorId = StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.AssessmentReportingMethodDescriptorId
-	--AND
- --       AssessmentPerformanceLevel.PerformanceLevelDescriptorId = StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.PerformanceLevelDescriptorId
 LEFT JOIN
     edfi.Descriptor AS PerformanceLevelDescriptorObj ON
         PerformanceLevelDescriptorObj.DescriptorId = StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.PerformanceLevelDescriptorId

@@ -2,23 +2,9 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
+DROP VIEW IF EXISTS analytics.asmt_StudentAssessmentFact;
 
-IF EXISTS
-          ( SELECT 
-                   1
-            FROM 
-                 INFORMATION_SCHEMA.VIEWS
-            WHERE
-                    TABLE_SCHEMA = 'analytics'
-                    AND
-                    TABLE_NAME = 'asmt_StudentAssessmentFact'
-          ) 
-    BEGIN
-        DROP VIEW 
-             analytics.asmt_StudentAssessmentFact;
-END;
-GO
-CREATE VIEW analytics.asmt_StudentAssessmentFact
+CREATE OR REPLACE VIEW analytics.asmt_StudentAssessmentFact 
 AS
 SELECT
 	CONCAT(
@@ -32,7 +18,7 @@ SELECT
 		'-', StudentAssessmentStudentObjectiveAssessmentPerformanceLevel.PerformanceLevelDescriptorId,
 		'-', Student.StudentUniqueId,
 		'-', StudentSchoolAssociation.SchoolId,
-		'-', CONVERT(NVARCHAR, StudentSchoolAssociation.EntryDate, 112)
+		'-', TO_CHAR(StudentSchoolAssociation.EntryDate, 'yyyymmdd')
 	) AS StudentAssessmentFactKey,
 	CONCAT(
 		StudentAssessment.AssessmentIdentifier, 
@@ -67,8 +53,8 @@ SELECT
     StudentAssessment.StudentAssessmentIdentifier, 
     StudentAssessment.StudentUSI, 
     CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey, 
-    School.SchoolId AS SchoolKey, 
-    CONVERT(VARCHAR, StudentAssessment.AdministrationDate, 112) AS AdministrationDate, 
+    School.SchoolId AS SchoolKey,
+	TO_CHAR(StudentAssessment.AdministrationDate, 'yyyymmdd') AS AdministrationDate,
     COALESCE(WhenAssessedGradeLevelDescriptor.CodeValue,'') as AssessedGradeLevel,
     COALESCE(StudentAssessmentScoreResult.Result, StudentAssessmentStudentObjectiveAssessmentScoreResult.Result, '') AS StudentScore, 
     COALESCE(ResultDatatypeTypeDescriptorDist.Description, ResultDescriptor.Description, '') AS ResultDataType, 
@@ -177,4 +163,4 @@ LEFT JOIN
 WHERE(
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
 	OR
-        StudentSchoolAssociation.ExitWithdrawDate >= GETDATE());
+        StudentSchoolAssociation.ExitWithdrawDate >= NOW());
