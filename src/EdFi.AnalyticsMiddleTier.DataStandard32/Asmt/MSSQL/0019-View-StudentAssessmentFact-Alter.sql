@@ -75,7 +75,6 @@ SELECT
     COALESCE(AssessmentReportingMethodDescriptorDist.Description, ReportingMethodDescriptor.Description, '') AS ReportingMethod, 
     COALESCE(PerformanceLevelDescriptorDist.Description, PerformanceLevelDescriptorObj.Description, '') AS PerformanceResult
 FROM
-
 	edfi.StudentAssessment
 INNER JOIN
     edfi.Assessment ON
