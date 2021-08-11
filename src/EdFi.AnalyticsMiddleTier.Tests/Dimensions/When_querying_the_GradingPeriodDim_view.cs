@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_GradingPeriodDim_view : When_querying_a_view
+    public abstract class When_querying_the_GradingPeriodDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.GradingPeriodDim";
         protected const string TestCasesDataFileName = "0000_GradingPeriodDim_Data_Load.xml";
