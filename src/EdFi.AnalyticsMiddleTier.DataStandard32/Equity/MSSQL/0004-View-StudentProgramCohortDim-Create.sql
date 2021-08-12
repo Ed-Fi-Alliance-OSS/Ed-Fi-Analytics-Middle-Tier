@@ -54,6 +54,8 @@ AS
 			'-',
 			StudentSchoolAssociation.SchoolId
 		) AS StudentSchoolKey
+		,EntryGradeDescriptor.Description AS EntryGradeLevelDescriptor
+		,CohortTypeDescriptor.Description AS CohortTypeDescriptor
 		,Cohort.CohortDescription
 		,Program.ProgramName
 		,(
@@ -94,8 +96,15 @@ AS
 	INNER JOIN 
 		edfi.StudentSchoolAssociation ON 
 			Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI
+	INNER JOIN
+		edfi.Descriptor AS EntryGradeDescriptor ON
+			StudentSchoolAssociation.EntryGradeLevelDescriptorId = EntryGradeDescriptor.DescriptorId
+	INNER JOIN
+		edfi.Descriptor AS CohortTypeDescriptor ON
+			Cohort.CohortTypeDescriptorId = CohortTypeDescriptor.DescriptorId
 	WHERE (
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
 			OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE()
         );
+
 GO
