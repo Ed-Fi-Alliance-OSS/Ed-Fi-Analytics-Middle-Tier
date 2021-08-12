@@ -11,6 +11,10 @@
         AND table_name = 'asmt_StudentAssessmentFact'
         ORDER BY ORDINAL_POSITION ASC;
     </Query>
+	<Result>
+		<ColumnName>StudentAssessmentFactKey</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
     <Result>
         <ColumnName>StudentAssessmentKey</ColumnName>
         <DataType>nvarchar</DataType>

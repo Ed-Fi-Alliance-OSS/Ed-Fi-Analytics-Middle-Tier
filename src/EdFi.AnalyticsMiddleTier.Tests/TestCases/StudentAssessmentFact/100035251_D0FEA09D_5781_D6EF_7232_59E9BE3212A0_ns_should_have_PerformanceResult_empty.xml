@@ -10,6 +10,6 @@
         AND ReportingMethod = 'Raw Score';
     </Query>
     <Result>
-        <PerformanceResult></PerformanceResult>
+        <PerformanceResult>Withdrawal by a parent (or guardian)</PerformanceResult>
     </Result>
 </TestCase>

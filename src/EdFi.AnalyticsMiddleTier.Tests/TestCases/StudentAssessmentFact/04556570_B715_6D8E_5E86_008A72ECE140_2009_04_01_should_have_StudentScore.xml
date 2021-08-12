@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+		SELECT StudentScore
+		FROM analytics.asmt_StudentAssessmentFact
+		WHERE StudentAssessmentFactKey = '04556570-B715-6D8E-5E86-008A72ECE140-uri://edfi.org/Assessment-04556570-B715-6D8E-5E86-008A72ECE140_2009-04-01---Seventh grade Mathematics-58-1120--202282-867530069-20110822';
+	</Query>
+    <Result>
+        <StudentScore>1</StudentScore>
+    </Result>
+</TestCase>

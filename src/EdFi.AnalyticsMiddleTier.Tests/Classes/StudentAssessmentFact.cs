@@ -10,6 +10,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class StudentAssessmentFact
     {
+        public string StudentAssessmentFactKey { get; set; }
         public string StudentAssessmentKey { get; set; }
         public string StudentObjectiveAssessmentKey { get; set; }
         public string ObjectiveAssessmentKey { get; set; }
