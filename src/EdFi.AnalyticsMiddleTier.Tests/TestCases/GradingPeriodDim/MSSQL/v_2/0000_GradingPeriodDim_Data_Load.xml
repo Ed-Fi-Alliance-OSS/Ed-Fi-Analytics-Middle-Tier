@@ -366,5 +366,35 @@ INSERT INTO [edfi].[GradingPeriod]
               AND [BeginDate] = '2011-11-20'
     )
 );
+INSERT INTO [edfi].[GradingPeriod]
+(GradingPeriodDescriptorId, 
+ SchoolId, 
+ BeginDate, 
+ TotalInstructionalDays, 
+ EndDate, 
+ PeriodSequence, 
+ Id, 
+ LastModifiedDate, 
+ CreateDate
+)
+(
+    SELECT TOP 1 '54', 
+                 '628530001', 
+                 '2100-11-20', 
+                 '27', 
+                 '2100-12-30', 
+                 NULL, 
+                 '557EE073-9E3D-4B92-B832-FA9266CD7D27', 
+                 'Sep 18 2100 11:34AM', 
+                 'Sep 18 2100 11:34AM'
+    WHERE NOT EXISTS
+    (
+        SELECT 1
+        FROM [edfi].[GradingPeriod]
+        WHERE [GradingPeriodDescriptorId] = 54
+              AND [SchoolId] = 628530001
+              AND [BeginDate] = '2100-11-20'
+    )
+);
 	</ControlDataInsertion>
 </TestCase>
