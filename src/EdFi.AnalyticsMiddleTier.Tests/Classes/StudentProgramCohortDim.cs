@@ -14,6 +14,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string StudentProgramCohortKey { get; set; }
         public string StudentSchoolProgramKey { get; set; }
         public string StudentSchoolKey { get; set; }
+        public string EntryGradeLevelDescriptor { get; set; }
+        public string CohortTypeDescriptor { get; set; }
         public string CohortDescription { get; set; }
         public string ProgramName { get; set; }
         public DateTime LastModifiedDate { get; set; }
