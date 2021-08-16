@@ -28,7 +28,7 @@
     <DataType>nvarchar</DataType>
   </Result>
   <Result>
-    <ColumnName>EntryGradeLevelDescriptor</ColumnName>
+    <ColumnName>CohortTypeDescriptor</ColumnName>
     <DataType>nvarchar</DataType>
   </Result>
     <Result>
