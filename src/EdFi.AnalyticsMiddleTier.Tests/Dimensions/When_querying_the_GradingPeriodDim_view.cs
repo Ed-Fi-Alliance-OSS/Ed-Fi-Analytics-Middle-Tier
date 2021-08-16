@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_GradingPeriodDim_view : When_querying_a_view
+    public abstract class When_querying_the_GradingPeriodDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.GradingPeriodDim";
         protected const string TestCasesDataFileName = "0000_GradingPeriodDim_Data_Load.xml";
@@ -182,6 +182,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<GradingPeriodDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_should_total_instructional_days_gt_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_grading_period_54_628530001_21001120
+        : When_querying_the_GradingPeriodDim_view
+        {
+            public Given_grading_period_54_628530001_21001120(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "54_628530001_21001120";
+
+            [Test]
+            public void Then_should_return_zero_records()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_zero_records.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

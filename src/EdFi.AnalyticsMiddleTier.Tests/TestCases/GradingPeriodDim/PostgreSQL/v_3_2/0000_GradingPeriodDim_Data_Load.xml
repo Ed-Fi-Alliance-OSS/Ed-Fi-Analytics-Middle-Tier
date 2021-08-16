@@ -6,7 +6,7 @@
       INSERT INTO edfi.EducationOrganization
 	      (EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Discriminator,CreateDate,LastModifiedDate,Id)
       (
-          SELECT TOP 1 '628530', 
+          SELECT '628530', 
                        'Lander ISD', 
                        NULL, 
                        NULL, 
@@ -23,7 +23,7 @@
       INSERT INTO edfi.EducationOrganization
 	      (EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Discriminator,CreateDate,LastModifiedDate,Id)
       (
-          SELECT TOP 1 '628530001', 
+          SELECT '628530001', 
                        'Lander Middle', 
                        NULL, 
                        NULL, 
@@ -40,7 +40,7 @@
       INSERT INTO edfi.EducationOrganization
 	      (EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Discriminator,CreateDate,LastModifiedDate,Id)
       (
-          SELECT TOP 1 '152950', 
+          SELECT '152950', 
                        'ESC Region 17', 
                        NULL, 
                        NULL, 
@@ -57,18 +57,17 @@
       INSERT INTO edfi.EducationServiceCenter
 	      (EducationServiceCenterId,StateEducationAgencyId)
       (
-          SELECT TOP 1 '152950', 
+          SELECT '152950', 
                        NULL
           WHERE NOT EXISTS (
               SELECT 1 FROM edfi.EducationServiceCenter WHERE EducationServiceCenterId = 152950
           )
       );
 
-      SET IDENTITY_INSERT edfi.descriptor ON;
       INSERT INTO edfi.descriptor
 	      (DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 
+          SELECT 
 		        '835', 
 		        'uri://ed-fi.org/CharterStatusDescriptor', 
 		        'School Charter', 
@@ -84,21 +83,19 @@
 		      SELECT 1 FROM edfi.descriptor WHERE descriptorid = 835
 	      )
       );
-      SET IDENTITY_INSERT edfi.descriptor OFF;
 
       INSERT INTO edfi.CharterStatusDescriptor (CharterStatusDescriptorId)
       (
-          SELECT TOP 1 835
+          SELECT 835
           WHERE NOT EXISTS (
 		         SELECT 1 FROM edfi.CharterStatusDescriptor WHERE CharterStatusDescriptorId = 835
 	      )
       );
 
-      SET IDENTITY_INSERT edfi.descriptor ON;
       INSERT INTO edfi.descriptor
 	      (DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 
+          SELECT 
 		        '1086', 
 		        'uri://ed-fi.org/LocalEducationAgencyCategoryDescriptor', 
 		        'Independent', 
@@ -114,11 +111,10 @@
 		        SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1086
 	      )
       );
-      SET IDENTITY_INSERT edfi.descriptor OFF;
 
       INSERT INTO edfi.LocalEducationAgencyCategoryDescriptor (LocalEducationAgencyCategoryDescriptorId)
       (
-          SELECT TOP 1 1086
+          SELECT 1086
           WHERE NOT EXISTS (
 		        SELECT 1 FROM edfi.LocalEducationAgencyCategoryDescriptor WHERE LocalEducationAgencyCategoryDescriptorId = 1086
 	      )
@@ -127,7 +123,7 @@
       INSERT INTO edfi.LocalEducationAgency
 	      (LocalEducationAgencyId,LocalEducationAgencyCategoryDescriptorId,CharterStatusDescriptorId,ParentLocalEducationAgencyId,EducationServiceCenterId,StateEducationAgencyId)
       (
-          SELECT TOP 1 '628530', 
+          SELECT '628530', 
                        '1086', 
                        '835', 
                        NULL, 
@@ -138,11 +134,10 @@
           )
       );
 
-      SET IDENTITY_INSERT edfi.descriptor ON;
       INSERT INTO edfi.descriptor
 	      (DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 
+          SELECT 
 		        '1695', 
 		        'uri://ed-fi.org/SchoolTypeDescriptor', 
 		        'Special Education', 
@@ -158,11 +153,10 @@
 		      SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1695
 	      )
       );
-      SET IDENTITY_INSERT edfi.descriptor OFF;
 
       INSERT INTO edfi.SchoolTypeDescriptor (SchoolTypeDescriptorId)
       (
-          SELECT TOP 1 1695
+          SELECT 1695
           WHERE NOT EXISTS (
 		        SELECT 1 FROM edfi.SchoolTypeDescriptor WHERE SchoolTypeDescriptorId = 1695
 	      )
@@ -172,7 +166,7 @@
 	      (SchoolId,SchoolTypeDescriptorId,CharterStatusDescriptorId,TitleIPartASchoolDesignationDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId, 
 		      AdministrativeFundingControlDescriptorId,InternetAccessDescriptorId,LocalEducationAgencyId,CharterApprovalAgencyTypeDescriptorId,CharterApprovalSchoolYear)
       (
-          SELECT TOP 1 '628530001', 
+          SELECT '628530001', 
                        NULL, 
                        '835', 
                        NULL, 
@@ -187,11 +181,10 @@
           )
       );
 
-      SET IDENTITY_INSERT edfi.descriptor ON;
       INSERT INTO edfi.descriptor
 	      (DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 
+          SELECT 
 		        '54', 
 		        'uri://ed-fi.org/GradingPeriodDescriptor', 
 		        'First Six Weeks', 
@@ -207,11 +200,10 @@
 		        SELECT 1 FROM edfi.descriptor WHERE descriptorid = 54
 	      )
       );
-      SET IDENTITY_INSERT edfi.descriptor OFF;
 
       INSERT INTO edfi.GradingPeriodDescriptor (GradingPeriodDescriptorId)
       (
-          SELECT TOP 1 '54'
+          SELECT '54'
           WHERE NOT EXISTS (
               SELECT 1 FROM edfi.GradingPeriodDescriptor WHERE GradingPeriodDescriptorid = 54
           )
@@ -219,7 +211,7 @@
 
       INSERT INTO edfi.SchoolYearType(
           SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,LastModifiedDate,CreateDate)
-          (SELECT TOP 1
+          (SELECT 
           '2011','2010-2011','0','1926BB96-BF8C-493A-93BD-A8E60DBC83E2','Jun 19 2015 11:40AM','Jun 19 2015 11:40AM'
           WHERE NOT EXISTS(SELECT 1 FROM edfi.SchoolYearType WHERE SchoolYear= '2011'));
 
@@ -232,7 +224,7 @@
       INSERT INTO edfi.GradingPeriod
       (GradingPeriodDescriptorId,SchoolId,SchoolYear,BeginDate,TotalInstructionalDays,EndDate,PeriodSequence,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 '54', 
+          SELECT '54', 
                        '628530001', 
 				               2011,
                        '2011-08-22', 
@@ -250,7 +242,7 @@
       INSERT INTO edfi.GradingPeriod
 	      (GradingPeriodDescriptorId,SchoolId,SchoolYear,BeginDate,TotalInstructionalDays,EndDate,PeriodSequence,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 '54', 
+          SELECT '54', 
                        '628530001', 
 				                2011,
                        '2011-11-20', 
@@ -268,7 +260,7 @@
       INSERT INTO edfi.GradingPeriod
 	      (GradingPeriodDescriptorId,SchoolId,SchoolYear,BeginDate,TotalInstructionalDays,EndDate,PeriodSequence,Id,LastModifiedDate,CreateDate)
       (
-          SELECT TOP 1 '54', 
+          SELECT '54', 
                        '628530001', 
 				                2100,
                        '2100-11-20', 
@@ -282,6 +274,5 @@
               SELECT 1 FROM edfi.GradingPeriod WHERE GradingPeriodDescriptorId = 54 AND SchoolId = 628530001 AND BeginDate = '2100-11-20'
           )
       );
-
 	</ControlDataInsertion>
 </TestCase>
