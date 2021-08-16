@@ -186,5 +186,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
             }
         }
 
+        public class Given_grading_period_54_628530001_21001120
+        : When_querying_the_GradingPeriodDim_view
+        {
+            public Given_grading_period_54_628530001_21001120(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "54_628530001_21001120";
+
+            [Test]
+            public void Then_should_return_zero_records()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_zero_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
     }
 }

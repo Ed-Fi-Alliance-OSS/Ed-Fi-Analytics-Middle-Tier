@@ -215,6 +215,12 @@
           '2011','2010-2011','0','1926BB96-BF8C-493A-93BD-A8E60DBC83E2','Jun 19 2015 11:40AM','Jun 19 2015 11:40AM'
           WHERE NOT EXISTS(SELECT 1 FROM edfi.SchoolYearType WHERE SchoolYear= '2011'));
 
+      INSERT INTO edfi.SchoolYearType(
+          SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,LastModifiedDate,CreateDate)
+          (SELECT 
+          '2100','2099-2100','0','1926BB96-BF8C-493A-93BD-A8E60DBC83E3','Jun 19 2100 11:40AM','Jun 19 2100 11:40AM'
+          WHERE NOT EXISTS(SELECT 1 FROM edfi.SchoolYearType WHERE SchoolYear= '2100'));
+
       INSERT INTO edfi.GradingPeriod
       (GradingPeriodDescriptorId,SchoolId,SchoolYear,BeginDate,TotalInstructionalDays,EndDate,PeriodSequence,Id,LastModifiedDate,CreateDate)
       (
@@ -251,5 +257,22 @@
           )
       );
 
+      INSERT INTO edfi.GradingPeriod
+	      (GradingPeriodDescriptorId,SchoolId,SchoolYear,BeginDate,TotalInstructionalDays,EndDate,PeriodSequence,Id,LastModifiedDate,CreateDate)
+      (
+          SELECT '54', 
+                       '628530001', 
+				                2100,
+                       '2100-11-20', 
+                       '27', 
+                       '2100-12-30', 
+                       '2', 
+                       '557EE073-9E3D-4B92-B832-FA9266CD7D27', 
+                       'Sep 18 2100 11:34AM', 
+                       'Sep 18 2100 11:34AM'
+          WHERE NOT EXISTS (
+              SELECT 1 FROM edfi.GradingPeriod WHERE GradingPeriodDescriptorId = 54 AND SchoolId = 628530001 AND BeginDate = '2100-11-20'
+          )
+      );
 	</ControlDataInsertion>
 </TestCase>
