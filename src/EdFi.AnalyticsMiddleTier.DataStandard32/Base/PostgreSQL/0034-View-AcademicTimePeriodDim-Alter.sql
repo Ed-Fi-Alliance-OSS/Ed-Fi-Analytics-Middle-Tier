@@ -3,80 +3,76 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-DROP VIEW IF EXISTS analytics.SectionDim;
+DROP VIEW IF EXISTS analytics.AcademicTimePeriodDim;
 
-CREATE VIEW analytics.SectionDim AS
-    SELECT 
-        CAST(s.SchoolId AS VARCHAR) AS SchoolKey
-        ,FORMAT(
-            '%s-%s-%s-%s-%s',
-            CAST(s.SchoolId AS VARCHAR)
-            ,s.LocalCourseCode
-            ,CAST(s.SchoolYear AS VARCHAR)
-            ,s.SectionIdentifier
-            ,s.SessionName
-        ) AS SectionKey
-        ,FORMAT(
-            '%s-(%s)-%s-(%s)-%s',
-            Descriptor.Description
-            ,s.LocalCourseCode
-            ,Course.CourseTitle
-            ,SectionClassPeriod.ClassPeriodName
-            ,td.Description
-        ) AS Description
-        ,FORMAT(
-            '%s-%s',
-            s.LocalCourseCode
-            ,Session.SessionName
-        ) AS SectionName
-        ,Session.SessionName
-        ,COALESCE(SectionClassPeriod.LocalCourseCode,CourseOffering.LocalCourseCode) as LocalCourseCode
-        ,COALESCE(Session.SchoolYear,CourseOffering.SchoolYear) as SchoolYear
-        ,eed.Description AS EducationalEnvironmentDescriptor
-        ,sch.LocalEducationAgencyId as LocalEducationAgencyKey
-        ,s.LastModifiedDate
-        ,course.CourseTitle
-        ,FORMAT(
-            '%s-%s-%s',
-            s.SchoolId
-            ,s.SchoolYear
-            ,s.SessionName
-        ) as SessionKey
-    FROM edfi.Section s
-    INNER JOIN 
-        edfi.CourseOffering
-    ON 
-        CourseOffering.SchoolId = s.SchoolId
-    AND 
-        CourseOffering.LocalCourseCode = s.LocalCourseCode
-    AND 
-        CourseOffering.SchoolYear = s.SchoolYear
-    AND
-        CourseOffering.SessionName = s.SessionName
-    INNER JOIN 
-        edfi.Course ON 
-        Course.CourseCode = CourseOffering.CourseCode
-        AND 
-        Course.EducationOrganizationId = CourseOffering.EducationOrganizationId
-    LEFT JOIN edfi.School sch ON s.SchoolId = sch.SchoolId
-    LEFT OUTER JOIN edfi.AcademicSubjectDescriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Course.AcademicSubjectDescriptorId
-    LEFT OUTER JOIN edfi.Descriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Descriptor.DescriptorId
-    LEFT JOIN edfi.Descriptor eed ON eed.DescriptorId = s.EducationalEnvironmentDescriptorId
-    LEFT JOIN edfi.Session ON 
-        Session.SchoolId = Course.EducationOrganizationId
-        AND 
-        Session.SchoolYear = CourseOffering.SchoolYear
-        AND 
-        Session.SessionName = s.SessionName
-    LEFT OUTER JOIN edfi.TermDescriptor ON TermDescriptor.TermDescriptorId = Session.TermDescriptorId
-    LEFT OUTER JOIN edfi.Descriptor td ON TermDescriptor.TermDescriptorId = td.DescriptorId
-    LEFT OUTER JOIN edfi.SectionClassPeriod ON 
-        SectionClassPeriod.LocalCourseCode = CourseOffering.LocalCourseCode
-        AND 
-        SectionClassPeriod.SchoolId = Course.EducationOrganizationId
-        AND 
-        SectionClassPeriod.SchoolYear = CourseOffering.SchoolYear
-        AND 
-        SectionClassPeriod.SectionIdentifier=s.SectionIdentifier
-        AND 
-        SectionClassPeriod.SessionName=s.SessionName;
+CREATE VIEW analytics.AcademicTimePeriodDim
+AS
+     SELECT
+		FORMAT(
+			'%s-%s-%s-%s-%s',
+			CAST(Session.SchoolId as VARCHAR),
+			CAST(Session.SchoolYear as VARCHAR),
+			CAST(Session.TermDescriptorId as VARCHAR),
+			CAST(GradingPeriod.GradingPeriodDescriptorId as VARCHAR),
+			to_char(GradingPeriod.BeginDate, 'yyyymmdd')
+		) as AcademicTimePeriodKey,
+		CAST(SchoolYearType.SchoolYear as VARCHAR) as SchoolYear,
+		SchoolYearType.SchoolYearDescription as SchoolYearName,
+		SchoolYearType.CurrentSchoolYear as IsCurrentSchoolYear,
+		CAST(Session.SchoolId as VARCHAR) as SchoolKey,
+		FORMAT(
+			'%s-%s-%s',
+			CAST(Session.SchoolId as VARCHAR),
+			CAST(Session.SchoolYear as VARCHAR),
+			CAST(Session.TermDescriptorId as VARCHAR)
+		) as SessionKey,
+		Session.SessionName,
+		Descriptor.Description as TermName,
+		FORMAT(
+			'%s-%s-%s',
+			CAST(GradingPeriod.GradingPeriodDescriptorId as VARCHAR),
+			CAST(GradingPeriod.SchoolId as VARCHAR),
+			to_char(GradingPeriod.BeginDate, 'yyyymmdd')
+		) as GradingPeriodKey,
+		gpDescriptor.Description as GradingPeriodName,
+		(
+			SELECT MAX(MaxLastModifiedDate)
+			FROM (
+				VALUES
+					(SchoolYearType.LastModifiedDate),
+					(Session.LastModifiedDate),
+					(GradingPeriod.LastModifiedDate)
+			) as VALUE(MaxLastModifiedDate)
+		) as LastModifiedDate
+	FROM
+		edfi.SchoolYearType
+	INNER JOIN
+		edfi.Session
+	ON
+		SchoolYearType.SchoolYear = Session.SchoolYear
+	INNER JOIN
+		edfi.Descriptor
+	ON
+		Session.TermDescriptorId = Descriptor.DescriptorId
+	INNER JOIN
+		edfi.SessionGradingPeriod
+	ON
+		Session.SchoolYear = SessionGradingPeriod.SchoolYear
+	AND
+		Session.SessionName = SessionGradingPeriod.SessionName
+	AND
+		Session.SchoolId = SessionGradingPeriod.SchoolId
+	INNER JOIN
+		edfi.GradingPeriod
+	ON
+		SessionGradingPeriod.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
+	AND
+		SessionGradingPeriod.PeriodSequence = GradingPeriod.PeriodSequence
+	AND
+		SessionGradingPeriod.SchoolId = GradingPeriod.SchoolId
+	AND
+		Session.SchoolYear = GradingPeriod.SchoolYear
+	INNER JOIN
+		edfi.Descriptor as gpDescriptor
+	ON
+		GradingPeriod.GradingPeriodDescriptorId = gpDescriptor.DescriptorId;
