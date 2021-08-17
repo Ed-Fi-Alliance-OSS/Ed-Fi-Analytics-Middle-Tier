@@ -1,18 +1,9 @@
--- SPDX-License-Identifier: Apache-2.0
+﻿-- SPDX-License-Identifier: Apache-2.0
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-IF EXISTS (
-        SELECT 1
-        FROM INFORMATION_SCHEMA.VIEWS
-        WHERE TABLE_SCHEMA = 'analytics'
-            AND TABLE_NAME = 'equity_StudentProgramCohortDim'
-        )
-BEGIN
-    DROP VIEW analytics.equity_StudentProgramCohortDim
-END
-GO
+DROP VIEW IF EXISTS analytics.equity_StudentProgramCohortDim;
 
 CREATE VIEW analytics.equity_StudentProgramCohortDim
 AS
@@ -30,7 +21,7 @@ AS
 			'-',
 			StudentProgramAssociation.ProgramEducationOrganizationId,
 			'-',
-			CONVERT(varchar, StudentProgramAssociation.BeginDate, 112),
+			TO_CHAR(StudentProgramAssociation.BeginDate, 'yyyymmdd'),
 			'-',
 			Cohort.CohortIdentifier
 		) AS StudentProgramCohortKey,
@@ -47,13 +38,15 @@ AS
 			'-',
 			StudentProgramAssociation.ProgramEducationOrganizationId,
 			'-',
-			CONVERT(varchar, StudentProgramAssociation.BeginDate, 112)
+			TO_CHAR(StudentProgramAssociation.BeginDate, 'yyyymmdd')
         ) AS StudentSchoolProgramKey
 		,CONCAT(
 			Student.StudentUniqueId,
 			'-',
 			StudentSchoolAssociation.SchoolId
 		) AS StudentSchoolKey
+		,EntryGradeDescriptor.Description AS EntryGradeLevelDescriptor
+		,CohortTypeDescriptor.Description AS CohortTypeDescriptor
 		,Cohort.CohortDescription
 		,Program.ProgramName
 		,(
@@ -94,8 +87,13 @@ AS
 	INNER JOIN 
 		edfi.StudentSchoolAssociation ON 
 			Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI
+	INNER JOIN
+		edfi.Descriptor AS EntryGradeDescriptor ON
+			StudentSchoolAssociation.EntryGradeLevelDescriptorId = EntryGradeDescriptor.DescriptorId
+	INNER JOIN
+		edfi.Descriptor AS CohortTypeDescriptor ON
+			Cohort.CohortTypeDescriptorId = CohortTypeDescriptor.DescriptorId
 	WHERE (
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
-			OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE()
+			OR StudentSchoolAssociation.ExitWithdrawDate >= NOW()
         );
-GO

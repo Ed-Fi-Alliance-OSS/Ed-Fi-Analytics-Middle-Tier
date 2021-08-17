@@ -23,6 +23,14 @@
         <ColumnName>StudentSchoolKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+  <Result>
+    <ColumnName>EntryGradeLevelDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>CohortTypeDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
     <Result>
         <ColumnName>CohortDescription</ColumnName>
         <DataType>nvarchar</DataType>

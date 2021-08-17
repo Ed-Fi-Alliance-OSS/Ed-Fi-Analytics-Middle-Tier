@@ -102,6 +102,24 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramCohortDimTestG
             }
 
             [Test]
+            public void Then_should_have_CohortTypeDescriptor()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramCohortDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_CohortTypeDescriptor.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_EntryGradeLevelDescriptor()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramCohortDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_EntryGradeLevelDescriptor.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_ProgramName()
             {
                 (bool success, string errorMessage) testResult =
