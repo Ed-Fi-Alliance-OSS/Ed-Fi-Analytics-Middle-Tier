@@ -14,6 +14,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string UserScope { get; set; } //(varchar(50), null)
         public string StudentPermission { get; set; } //(varchar(3), not null)
         public string SectionPermission { get; set; } //(varchar(50), null)
+        public string SectionKeyPermission { get; set; }
         public string SchoolPermission { get; set; } //(varchar(30), null)
         public int? DistrictId { get; set; } //(int, null)
     }
