@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentSchoolDim_view : When_querying_a_view
+    public abstract class When_querying_the_StudentSchoolDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolDim";
         protected const string TestCasesDataFileName = "0000_StudentSchoolDim_Data_Load.xml";
@@ -287,7 +287,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSchoolDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsHispanic.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_IsHispanic.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
