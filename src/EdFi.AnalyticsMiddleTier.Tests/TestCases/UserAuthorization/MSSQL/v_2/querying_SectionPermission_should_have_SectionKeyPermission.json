@@ -1,0 +1,11 @@
+{
+    "DBMS": "Any",
+    "ControlDataInsertion": "",
+    "DropControlData": "",
+    "Query": "select SectionKeyPermission from analytics.rls_UserAuthorization where UserKey = 11331",
+    "Result": [
+        {
+            "SectionKeyPermission": "867530020-A02-108-NCMR11-530-2012-7352-1"
+        }
+    ]
+}
