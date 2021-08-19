@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_LocalEducationAgencyDim_view : When_querying_a_view
+    public abstract class When_querying_the_LocalEducationAgencyDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.LocalEducationAgencyDim";
         protected const string TestCasesDataFileName = "0000_LocalEducationAgencyDim_Data_Load.xml";
