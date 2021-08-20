@@ -287,7 +287,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSchoolDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_IsHispanic.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsHispanic.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -606,6 +606,40 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<CountResult>(
                         $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_any_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_190032
+            : When_querying_the_StudentSchoolDim_view
+        {
+
+            private const string _caseIdentifier = "190032";
+            public Given_student_190032(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_190034
+            : When_querying_the_StudentSchoolDim_view
+        {
+
+            private const string _caseIdentifier = "190034";
+            public Given_student_190034(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

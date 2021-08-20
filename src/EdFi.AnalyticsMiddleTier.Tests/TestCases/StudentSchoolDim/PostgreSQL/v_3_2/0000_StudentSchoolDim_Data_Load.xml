@@ -362,5 +362,53 @@
 		(SELECT '100033704','867530020',NULL,'2011-08-22','38',NULL,NULL,NULL,'2011-10-26','729',NULL,NULL,NULL,NULL,NULL,'635','2013','7057A759-F9F1-416D-8248-BD83D00CD055','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM',NULL,NULL,NULL
 		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI=100033704 AND SchoolId=867530020));
 
+		---
+
+		INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate,Discriminator)
+		(SELECT '867530021','Beverly Hills High School 21','56888B72-8AF0-4741-B6BC-90950E29A277','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','edfi.School'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530021'));
+
+		INSERT INTO edfi.School(SchoolId,LocalEducationAgencyId)
+		(SELECT '867530021','867530'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.School WHERE   SchoolId= '867530021'));
+
+		INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT '100033705','Dave','J','Thompson','1992-08-28','190032','C748DA78-8B06-424A-AEFF-56AAED241100','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100033705'));
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate)
+		(SELECT '100033705','867530021','2011-08-22','38','7057A759-F9F1-416D-8248-BD83D00CD100','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI=100033704 AND SchoolId=867530021));
+
+		INSERT INTO edfi.StudentEducationOrganizationAssociation(StudentUSI,EducationOrganizationId,Id,LastModifiedDate,CreateDate,SexDescriptorId)
+		(SELECT '100033705','867530021','81D10830-D623-4E67-A0B5-7411A3A47100','Dec 13 2014  2:34PM','Dec 13 2018  2:34PM','1396'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociation WHERE   EducationOrganizationId= '867530021'  AND StudentUSI= '100033705'));
+
+		INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT '100033706','David','J2','Thompson','1992-08-28','190033','C748DA78-8B06-424A-AEFF-56AAED241101','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100033706'));
+
+		INSERT INTO edfi.StudentEducationOrganizationAssociation(StudentUSI,EducationOrganizationId,Id,LastModifiedDate,CreateDate,SexDescriptorId)
+		(SELECT '100033706','867530021','81D10830-D623-4E67-A0B5-7411A3A47101','Dec 13 2014  2:34PM','Dec 13 2018  2:34PM','1396'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociation WHERE   EducationOrganizationId= '867530021'  AND StudentUSI= '100033706'));
+
+		---
+
+		INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate,Discriminator)
+		(SELECT '867530022','Beverly Hills High School 22','56888B72-8AF0-4741-B6BC-90950E29A100','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','edfi.School'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530022'));
+
+		INSERT INTO edfi.School(SchoolId,LocalEducationAgencyId)
+		(SELECT '867530022','867530'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.School WHERE   SchoolId= '867530022'));
+
+		INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+		(SELECT '100033707','John','J','Thompson','1992-08-28','190034','C748DA78-8B06-424A-AEFF-56AAED241102','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100033707'));
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,ExitWithdrawDate)
+		(SELECT '100033707','867530022','2011-08-22','38','7057A759-F9F1-416D-8248-BD83D00CD101','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','2111-10-26'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI=100033707 AND SchoolId=867530022));
+
 	</ControlDataInsertion>
 </TestCase>

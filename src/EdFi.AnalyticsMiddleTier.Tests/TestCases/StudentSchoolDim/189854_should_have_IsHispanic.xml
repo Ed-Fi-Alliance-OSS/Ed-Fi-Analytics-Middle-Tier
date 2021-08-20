@@ -4,7 +4,7 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-	  SELECT CAST(ishispanic as integer) as IsHispanic
+	  SELECT IsHispanic
 	  FROM analytics.StudentSchoolDim
 	  WHERE StudentKey = '189854';
   </Query>
