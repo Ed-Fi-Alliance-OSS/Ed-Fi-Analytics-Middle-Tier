@@ -642,7 +642,31 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
                         $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-        }
 
+            [Test]
+            public void Then_should_have_IsHispanic_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentSchoolDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsHispanic_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_Sex_empty()
+            {
+                if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentSchoolDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_sex_empty.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+                else
+                {
+                    Assert.Ignore("Data Standard 2 has a required SetType field.");
+                }
+            }
+        }
     }
 }
