@@ -5,7 +5,7 @@
 
 MERGE INTO analytics_config.DescriptorConstant AS Target
 USING (VALUES
-	('SubmissionStatus.UpcomingSubmission')
+	('SubmissionStatus.Upcoming')
 ) AS Source(ConstantName)
 ON TARGET.ConstantName = Source.ConstantName
     WHEN NOT MATCHED BY TARGET

@@ -18,9 +18,9 @@ WITH UpcomingSubmission as (
 			lmsx.AssignmentCategoryDescriptor ON
 				Descriptor.DescriptorId = AssignmentCategoryDescriptor.AssignmentCategoryDescriptorId
 		WHERE
-			Descriptor.CodeValue = 'UpcomingSubmission'
+			Descriptor.CodeValue in ('Upcoming', 'CREATED', 'NEW', 'RECLAIMED_BY_STUDENT')
 	) as d
-	WHERE DescriptorConstant.ConstantName = 'SubmissionStatus.UpcomingSubmission'
+	WHERE DescriptorConstant.ConstantName = 'SubmissionStatus.Upcoming'
 )
 MERGE INTO analytics_config.DescriptorMap AS Target
 USING (
