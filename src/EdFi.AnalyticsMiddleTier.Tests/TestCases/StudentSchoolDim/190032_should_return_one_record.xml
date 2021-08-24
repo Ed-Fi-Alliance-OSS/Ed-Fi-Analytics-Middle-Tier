@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-	  SELECT IsHispanic
+	  SELECT COUNT(1) AS CountValue
 	  FROM analytics.StudentSchoolDim
-	  WHERE StudentKey = '189854';
+	  WHERE StudentKey = '190032';
   </Query>
   <Result>
-    <IsHispanic>1</IsHispanic>
+    <CountValue>1</CountValue>
   </Result>
 </TestCase>

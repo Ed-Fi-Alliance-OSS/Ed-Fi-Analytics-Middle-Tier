@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentSchoolDim_view : When_querying_a_view
+    public abstract class When_querying_the_StudentSchoolDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolDim";
         protected const string TestCasesDataFileName = "0000_StudentSchoolDim_Data_Load.xml";
@@ -610,5 +610,63 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
             }
         }
 
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_190032
+            : When_querying_the_StudentSchoolDim_view
+        {
+
+            private const string _caseIdentifier = "190032";
+            public Given_student_190032(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_student_190034
+            : When_querying_the_StudentSchoolDim_view
+        {
+
+            private const string _caseIdentifier = "190034";
+            public Given_student_190034(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_IsHispanic_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentSchoolDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsHispanic_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_Sex_empty()
+            {
+                if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentSchoolDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_sex_empty.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+                else
+                {
+                    Assert.Ignore("Data Standard 2 has a required SetType field.");
+                }
+            }
+        }
     }
 }

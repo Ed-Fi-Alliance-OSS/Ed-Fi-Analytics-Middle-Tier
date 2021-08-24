@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-	  SELECT IsHispanic
+	  SELECT Sex
 	  FROM analytics.StudentSchoolDim
-	  WHERE StudentKey = '189854';
+	  WHERE StudentKey = '190034';
   </Query>
   <Result>
-    <IsHispanic>1</IsHispanic>
+	  <Sex></Sex>
   </Result>
 </TestCase>

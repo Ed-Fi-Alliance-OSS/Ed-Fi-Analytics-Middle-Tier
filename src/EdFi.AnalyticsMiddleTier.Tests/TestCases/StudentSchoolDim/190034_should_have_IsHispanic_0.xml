@@ -6,9 +6,9 @@
   <Query>
 	  SELECT IsHispanic
 	  FROM analytics.StudentSchoolDim
-	  WHERE StudentKey = '189854';
+	  WHERE StudentKey = '190034';
   </Query>
   <Result>
-    <IsHispanic>1</IsHispanic>
+    <IsHispanic>0</IsHispanic>
   </Result>
 </TestCase>
