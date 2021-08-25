@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_ContactPersonDim_view : When_querying_a_view
+    public abstract class When_querying_the_ContactPersonDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.ContactPersonDim";
         protected const string TestCasesDataFileName = "0000_ContactPersonDim_Data_Load.xml";
@@ -718,5 +718,114 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             }
         }
 
+        public class Given_contact_person_163235_189865
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_163235_189865(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "163235_189865";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+        public class Given_contact_person_132579_232151
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_132579_232151(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "132579_232151";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+        public class Given_contact_person_133100_195827
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_133100_195827(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "133100_195827";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+
+        public class Given_contact_person_132584_195828
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_132584_195828(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "132584_195828";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+
+        public class Given_contact_person_134484_195830
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_134484_195830(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "134484_195830";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+
+        public class Given_contact_person_142822_190237
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_142822_190237(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "142822_190237";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+
+        public class Given_contact_person_162262_190191
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_162262_190191(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "162262_190191";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
+
+        public class Given_contact_person_145198_237148
+            : When_querying_the_ContactPersonDim_view
+        {
+            public Given_contact_person_145198_237148(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "145198_237148";
+
+            [Test]
+            public void Then_should_have_LastModifiedDate()
+            {
+                Result = DataStandard.RunTestCase<ContactPersonDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+        }
     }
 }

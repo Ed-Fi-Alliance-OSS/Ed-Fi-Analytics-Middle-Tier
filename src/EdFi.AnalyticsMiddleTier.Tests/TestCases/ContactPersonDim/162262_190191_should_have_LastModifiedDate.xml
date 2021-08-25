@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT LastModifiedDate
-    FROM analytics.ContactPersonDim
-    WHERE UniqueKey = '132500-189856';
+      SELECT LastModifiedDate
+      FROM analytics.ContactPersonDim
+      WHERE UniqueKey  = '162262-190191';
   </Query>
   <Result>
-    <LastModifiedDate>2021-08-24T11:47:00</LastModifiedDate>
+      <LastModifiedDate>2021-08-24T11:47:00</LastModifiedDate>
   </Result>
 </TestCase>

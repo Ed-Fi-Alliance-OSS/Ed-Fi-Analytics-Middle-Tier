@@ -67,7 +67,6 @@
     <Folder Include="TestCases\ClassPeriodDim\MSSQL\" />
     <Folder Include="TestCases\ClassPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\ContactPersonDim\MSSQL\" />
-    <Folder Include="TestCases\ContactPersonDim\PostgreSQL\" />
     <Folder Include="TestCases\DateDim\MSSQL\" />
     <Folder Include="TestCases\DateDim\PostgreSQL\" />
     <Folder Include="TestCases\DefaultMap\MSSQL\" />
