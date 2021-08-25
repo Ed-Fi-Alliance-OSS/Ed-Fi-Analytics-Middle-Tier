@@ -99,8 +99,8 @@ SELECT CONCAT (
     ,(
         SELECT MAX(MaxLastModifiedDate)
         FROM (
-            VALUES /*(StudentParentAssociation.LastModifiedDate)
-                --,*/(Parent.LastModifiedDate)
+            VALUES (StudentParentAssociation.LastModifiedDate)
+                ,(Parent.LastModifiedDate)
                 ,(HomeAddress.LastModifiedDate)
                 ,(PhysicalAddress.LastModifiedDate)
                 ,(MailingAddress.LastModifiedDate)
