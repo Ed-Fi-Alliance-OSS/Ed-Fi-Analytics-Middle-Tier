@@ -4,9 +4,9 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-	  SELECT IsHispanic
-	  FROM analytics.StudentSchoolDim
-	  WHERE StudentKey = '189854';
+      SELECT cast(IsHispanic as bit) as IsHispanic
+      FROM analytics.StudentSchoolDim
+      WHERE StudentKey = '189854';
   </Query>
   <Result>
     <IsHispanic>1</IsHispanic>

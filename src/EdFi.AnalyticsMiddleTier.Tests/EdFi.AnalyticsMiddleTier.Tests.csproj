@@ -108,8 +108,6 @@
     <Folder Include="TestCases\StudentProgramDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentSchoolDemographicsBridge\MSSQL\" />
     <Folder Include="TestCases\StudentSchoolDemographicsBridge\PostgreSQL\" />
-    <Folder Include="TestCases\StudentSchoolDim\MSSQL\" />
-    <Folder Include="TestCases\StudentSchoolDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\MSSQL\" />
     <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentSectionDim\MSSQL\" />
