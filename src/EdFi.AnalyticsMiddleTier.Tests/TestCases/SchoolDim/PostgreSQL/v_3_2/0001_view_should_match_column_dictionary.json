@@ -1,62 +1,62 @@
 {
   "DBMS": "Any",
-  "Query": "SELECT COLUMN_NAME AS ColumnName, DATA_TYPE AS DataType FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name = 'SchoolDim' ORDER BY ORDINAL_POSITION ASC;",
+  "Query": "SELECT COLUMN_NAME AS ColumnName, DATA_TYPE AS DataType FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name = 'schooldim' ORDER BY ORDINAL_POSITION ASC;",
   "Result": [
     {
-      "ColumnName": "SchoolKey",
-      "DataType": "varchar"
+      "ColumnName": "schoolkey",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "SchoolName",
-      "DataType": "nvarchar"
+      "ColumnName": "schoolname",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "SchoolType",
-      "DataType": "nvarchar"
+      "ColumnName": "schooltype",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "SchoolAddress",
-      "DataType": "nvarchar"
+      "ColumnName": "schooladdress",
+      "DataType": "text"
     },
     {
-      "ColumnName": "SchoolCity",
-      "DataType": "nvarchar"
+      "ColumnName": "schoolcity",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "SchoolCounty",
-      "DataType": "nvarchar"
+      "ColumnName": "schoolcounty",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "SchoolState",
-      "DataType": "nvarchar"
+      "ColumnName": "schoolstate",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "LocalEducationAgencyName",
-      "DataType": "nvarchar"
+      "ColumnName": "localeducationagencyname",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "LocalEducationAgencyKey",
-      "DataType": "int"
+      "ColumnName": "localeducationagencykey",
+      "DataType": "integer"
     },
     {
-      "ColumnName": "StateEducationAgencyName",
-      "DataType": "nvarchar"
+      "ColumnName": "stateeducationagencyname",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "StateEducationAgencyKey",
-      "DataType": "int"
+      "ColumnName": "stateeducationagencykey",
+      "DataType": "integer"
     },
     {
-      "ColumnName": "EducationServiceCenterName",
-      "DataType": "nvarchar"
+      "ColumnName": "educationservicecentername",
+      "DataType": "character varying"
     },
     {
-      "ColumnName": "EducationServiceCenterKey",
-      "DataType": "int"
+      "ColumnName": "educationservicecenterkey",
+      "DataType": "integer"
     },
     {
-      "ColumnName": "LastModifiedDate",
-      "DataType": "datetime2"
+      "ColumnName": "lastmodifieddate",
+      "DataType": "timestamp without time zone"
     }
   ]
 }

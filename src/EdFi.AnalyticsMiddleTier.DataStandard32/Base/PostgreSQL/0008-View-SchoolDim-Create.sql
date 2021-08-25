@@ -80,7 +80,7 @@ AS
 		WHERE 
 			School.SchoolId = EducationOrganizationAddress.EducationOrganizationId
 			AND EducationOrganizationAddressPeriod.EndDate IS NULL
-			AND DescriptorConstant.ConstantName = 'AddressType.Physical'
+			AND DescriptorConstant.ConstantName = 'Address.Physical'
 		LIMIT 1
 	) as SchoolAddress ON TRUE
 
