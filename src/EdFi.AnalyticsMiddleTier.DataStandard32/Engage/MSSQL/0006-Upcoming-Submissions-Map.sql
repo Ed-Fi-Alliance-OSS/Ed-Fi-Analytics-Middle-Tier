@@ -16,7 +16,7 @@ WITH UpcomingSubmission as (
 			edfi.Descriptor
 		INNER JOIN
 			lmsx.SubmissionStatusDescriptor ON
-				Descriptor.DescriptorId = AssignmentCategoryDescriptor.AssignmentCategoryDescriptorId
+				Descriptor.DescriptorId = SubmissionStatusDescriptor.SubmissionStatusDescriptorId
 		WHERE
 			Descriptor.CodeValue in ('Upcoming', 'CREATED', 'NEW', 'RECLAIMED_BY_STUDENT')
 	) as d
