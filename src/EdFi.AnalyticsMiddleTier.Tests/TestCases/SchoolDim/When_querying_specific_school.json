@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "SELECT count(1) as CountValue \nFROM analytics.SchoolDim \nWHERE SchoolKey = 867530010;",
+  "Query": "SELECT count(1) as CountValue \nFROM analytics.SchoolDim \nWHERE SchoolKey = '867530010';",
   "Result": [
     {
       "CountValue": "1"

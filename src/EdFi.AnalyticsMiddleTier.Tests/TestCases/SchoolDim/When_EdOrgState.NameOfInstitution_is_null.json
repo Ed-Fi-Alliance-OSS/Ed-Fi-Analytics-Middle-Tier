@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "select StateEducationAgencyName from analytics.SchoolDim where SchoolKey = 867530010",
+  "Query": "select StateEducationAgencyName from analytics.SchoolDim where SchoolKey = '867530010'",
   "Result": [
     {
       "StateEducationAgencyName": ""

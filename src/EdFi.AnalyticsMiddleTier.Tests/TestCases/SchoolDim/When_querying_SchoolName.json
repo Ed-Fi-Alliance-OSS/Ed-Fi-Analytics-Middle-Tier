@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "select SchoolName from analytics.SchoolDim where SchoolKey = 867530020",
+  "Query": "select SchoolName from analytics.SchoolDim where SchoolKey = '867530020'",
   "Result": [
     {
       "SchoolName": "Beverly Hills High School"

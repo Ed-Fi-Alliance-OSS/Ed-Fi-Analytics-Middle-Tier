@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         };
 
         public override string _connectionString =>
-            $"User ID=postgres;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;";
+            $"User ID=postgres;Password=admin;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;";
 
         public override void PrepareDatabase()
         {
