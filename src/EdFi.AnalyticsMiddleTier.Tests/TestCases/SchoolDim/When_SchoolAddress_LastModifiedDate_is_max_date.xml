@@ -4,7 +4,7 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT LastModifiedDate FROM analytics.SchoolDim WHERE SchoolKey = 867530009
+    SELECT LastModifiedDate FROM analytics.SchoolDim WHERE SchoolKey = '867530009'
   </Query>
   <Result>
     <LastModifiedDate>2017-09-21T00:00:00</LastModifiedDate>

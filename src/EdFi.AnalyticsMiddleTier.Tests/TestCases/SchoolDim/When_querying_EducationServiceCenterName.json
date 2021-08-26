@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "select EducationServiceCenterName from analytics.SchoolDim where SchoolKey = 867530020",
+  "Query": "select EducationServiceCenterName from analytics.SchoolDim where SchoolKey = '867530020'",
   "Result": [
     {
       "EducationServiceCenterName": "ESC Region 17"
