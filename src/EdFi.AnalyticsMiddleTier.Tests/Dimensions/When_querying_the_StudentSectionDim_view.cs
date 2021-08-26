@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -53,7 +53,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_studentsectionkey_should_be_set_correctly.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_studentsectionkey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -62,7 +62,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_course_title_not_null.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_course_title_not_null.xml");
                 testResult.success.ShouldBe(false, testResult.errorMessage);
             }
 
@@ -71,7 +71,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_sectionkey_should_be_set_correctly.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_sectionkey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -80,7 +80,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -88,7 +88,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_local_course()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_local_course.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_local_course.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -96,7 +96,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_schoolkey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_schoolkey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_schoolkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -104,7 +104,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentkey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentkey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -112,7 +112,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentsectionenddatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentsectionenddatekey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentsectionenddatekey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -120,7 +120,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentsectionstartdatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentsectionstartdatekey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentsectionstartdatekey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -128,7 +128,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_subject()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_subject.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_subject.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -136,7 +136,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_teacher_empty()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_teacher_empty.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_teacher_empty.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
         }
@@ -152,7 +152,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -161,7 +161,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_studentsectionkey_should_be_set_correctly.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_studentsectionkey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -170,7 +170,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_sectionkey_should_be_set_correctly.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_sectionkey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -179,7 +179,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_course_title_not_null.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_course_title_not_null.xml");
                 testResult.success.ShouldBe(false, testResult.errorMessage);
             }
 
@@ -188,7 +188,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -196,7 +196,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_local_course()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_local_course.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_local_course.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -204,7 +204,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_schoolkey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_schoolkey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_schoolkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -212,7 +212,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentkey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentkey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -220,7 +220,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentsectionenddatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentsectionenddatekey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentsectionenddatekey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -228,7 +228,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentsectionstartdatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentsectionstartdatekey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentsectionstartdatekey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -236,7 +236,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_subject_empty()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_subject_empty.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_subject_empty.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -244,7 +244,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_teacher_empty()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_teacher_empty.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_teacher_empty.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
         }
@@ -260,7 +260,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_return_one_record.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -269,7 +269,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_studentsectionkey_should_be_set_correctly.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_studentsectionkey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -278,7 +278,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_sectionkey_should_be_set_correctly.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_sectionkey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -287,7 +287,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_course_title_not_null.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_course_title_not_null.xml");
                 testResult.success.ShouldBe(false, testResult.errorMessage);
             }
 
@@ -296,7 +296,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -304,7 +304,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_local_course()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_local_course.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_local_course.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -312,7 +312,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_schoolkey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_schoolkey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_schoolkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -320,7 +320,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentkey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentkey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -328,7 +328,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentsectionenddatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentsectionenddatekey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentsectionenddatekey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -336,7 +336,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_studentsectionstartdatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_studentsectionstartdatekey.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_studentsectionstartdatekey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -344,7 +344,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_subject()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_subject.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_subject.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
@@ -352,14 +352,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             public void Then_should_have_multiple_teacher()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_multiple_teacher.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_multiple_teacher.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
             [Test]
             public void Then_should_have_school_year()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_school_year.xml");
+                    $"{TestCasesFolder}.{_caseIdentifier}_should_have_school_year.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
         }
@@ -375,7 +375,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_lastmodifieddate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
