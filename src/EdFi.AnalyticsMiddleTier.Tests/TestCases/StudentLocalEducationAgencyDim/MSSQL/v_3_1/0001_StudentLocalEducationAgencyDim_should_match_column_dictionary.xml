@@ -48,6 +48,26 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+        <ColumnName>InternetAccessInResidence</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>InternetAccessTypeInResidence</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>InternetPerformance</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>DigitalDevice</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>DeviceAccess</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>LastModifiedDate</ColumnName>
         <DataType>datetime2</DataType>
     </Result>

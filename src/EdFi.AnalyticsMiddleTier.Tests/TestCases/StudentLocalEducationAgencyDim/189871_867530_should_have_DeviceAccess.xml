@@ -5,8 +5,8 @@
     </ControlDataInsertion>
     <Query>
         SELECT COUNT(1) as CountValue
-        FROM analytics.StudentInternetAccessDim
-        WHERE StudentKey = 'this is unique'
+        FROM analytics.StudentLocalEducationAgencyDim
+        WHERE StudentLocalEducationAgencyKey = '189871-867530'
         AND DeviceAccess = 'School Provided - Dedicated';
     </Query>
     <Result>

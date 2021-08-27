@@ -53,7 +53,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_FirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_IsHispanic()
             {
@@ -94,7 +94,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_MiddleName_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_sex_male()
             {
@@ -125,6 +125,62 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentLocalEducationAgencyDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+        public class Given_student_local_education_agency_189871_867530_digital_access
+         : When_querying_the_StudentLocalEducationAgencyDim_view
+        {
+            public Given_student_local_education_agency_189871_867530_digital_access(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "189871_867530";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentLocalEducationAgencyDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_have_DeviceAccess()
+            {
+
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DeviceAccess.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_DigitalDevice()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DigitalDevice.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_InternetAccessInResidence()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessInResidence.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_InternetAccessTypeInResidence()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessTypeInResidence.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_InternetPerformance()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetPerformance.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

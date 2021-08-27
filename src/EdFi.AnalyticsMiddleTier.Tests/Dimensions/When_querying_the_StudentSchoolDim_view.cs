@@ -320,6 +320,66 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDimTestGroup
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
+
+        public class Given_student_189854_digital_access
+           : When_querying_the_StudentSchoolDim_view
+        {
+
+            private const string _caseIdentifier = "189854";
+            public Given_student_189854_digital_access(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_have_DeviceAccess()
+            {
+
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DeviceAccess.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_DigitalDevice()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_DigitalDevice.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_InternetAccessInResidence()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessInResidence.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_InternetAccessTypeInResidence()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessTypeInResidence.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_InternetPerformance()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetPerformance.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class Given_student_189863
            : When_querying_the_StudentSchoolDim_view
         {
