@@ -114,6 +114,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             set => _dataStandardInstallBase = value;
         }
 
+        public string DataStandardVersionName => $"v_{_dataStandardVersionName}";
+
         public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
             ? ToString()
             : $"{DataStandardEngine}.v_{_dataStandardFolderName}";
