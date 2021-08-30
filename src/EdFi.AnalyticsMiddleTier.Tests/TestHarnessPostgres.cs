@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
         {
-
+            _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
             _dataStandardFolderName = "3_2",
             _databaseName = "edfi_ods_tests",
