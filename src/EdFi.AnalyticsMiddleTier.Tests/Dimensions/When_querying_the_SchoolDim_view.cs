@@ -232,6 +232,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_querying_SchoolAddress_with_not_physical_address.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_the_last_modified_date_should_not_be_from_school_address()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_querying_SchoolAddress_with_end_date.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }
