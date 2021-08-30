@@ -229,7 +229,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
             [Test]
             public void Then_the_SchoolAddress_returned_is_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_querying_SchoolAddress_with_not_physical_address.json");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_querying_SchoolAddress_with_no_physical_address.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
