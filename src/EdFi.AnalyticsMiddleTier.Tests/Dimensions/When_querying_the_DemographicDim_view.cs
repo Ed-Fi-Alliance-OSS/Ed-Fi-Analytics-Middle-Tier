@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_DemographicDim_view : When_querying_a_view
+    public abstract class When_querying_the_DemographicDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.DemographicDim";
         protected const string TestCasesDataFileName = "0000_DemographicDim_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_DemographicDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_DemographicDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 

@@ -71,8 +71,6 @@
     <Folder Include="TestCases\DateDim\PostgreSQL\" />
     <Folder Include="TestCases\DefaultMap\MSSQL\" />
     <Folder Include="TestCases\DefaultMap\PostgreSQL\" />
-    <Folder Include="TestCases\DemographicDim\MSSQL\" />
-    <Folder Include="TestCases\DemographicDim\PostgreSQL\" />
     <Folder Include="TestCases\FeederSchoolDim\MSSQL\" />
     <Folder Include="TestCases\FeederSchoolDim\PostgreSQL\" />
     <Folder Include="TestCases\GradingPeriodDim\MSSQL\" />
