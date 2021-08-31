@@ -14,7 +14,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [Ignore("Ignore a fixture")]
-    public abstract class When_querying_the_StudentSchoolDemographicsBridge_view : When_querying_a_view
+    public abstract class When_querying_the_StudentSchoolDemographicsBridge_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolDemographicsBridge";
         protected const string TestCasesDataFileName = "0000_StudentSchoolDemographicsBridge_Data_Load.xml";
@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentSchoolDemographicsBridge_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentSchoolDemographicsBridge_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 

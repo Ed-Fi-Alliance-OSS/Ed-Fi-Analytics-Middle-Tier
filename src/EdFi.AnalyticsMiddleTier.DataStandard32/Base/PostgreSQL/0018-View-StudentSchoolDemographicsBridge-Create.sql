@@ -2,7 +2,7 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
-
+DROP VIEW IF EXISTS analytics.StudentSchoolDemographicsBridge;
 CREATE OR REPLACE VIEW analytics.StudentSchoolDemographicsBridge AS
 WITH StudentSchoolDemographics AS (
 	SELECT
@@ -225,7 +225,7 @@ WITH StudentSchoolDemographics AS (
     WHERE  studenteducationorganizationassociationstudentcharacteri_a18fcf.EndDate IS NULL OR studenteducationorganizationassociationstudentcharacteri_a18fcf.EndDate > NOW()
     )
 	SELECT  
-		​StudentSchoolDemographicBridgeKey,
+		​StudentSchoolDemographicBridgeKey as StudentSchoolDemographicBridgeKey,
 		StudentSchoolKey,
 		DemographicKey
 	FROM StudentSchoolDemographics
