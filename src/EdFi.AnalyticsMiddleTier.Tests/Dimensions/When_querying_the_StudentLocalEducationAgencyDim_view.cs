@@ -14,7 +14,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [Ignore("Ignore a fixture")]
-    public abstract class When_querying_the_StudentLocalEducationAgencyDim_view : When_querying_a_view
+    public abstract class When_querying_the_StudentLocalEducationAgencyDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentLocalEducationAgencyDim";
         protected const string TestCasesDataFileName = "0000_StudentLocalEducationAgencyDim_Data_Load.xml";
@@ -334,6 +334,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             }
         }
 
-       
+        public class Given_student_local_education_agency_193910_628530
+        : When_querying_the_StudentLocalEducationAgencyDim_view
+        {
+            public Given_student_local_education_agency_193910_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "193910_628530";
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
