@@ -8,55 +8,55 @@
         DATA_TYPE AS DataType
         FROM information_schema.columns
         WHERE table_schema = 'analytics'
-        AND table_name = 'StudentSectionDim'
+        AND table_name = 'studentsectiondim'
         ORDER BY ORDINAL_POSITION ASC;
     </Query>
     <Result>
-        <ColumnName>StudentSectionKey</ColumnName>
+        <ColumnName>studentsectionkey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>StudentKey</ColumnName>
+        <ColumnName>studentkey</ColumnName>
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>SectionKey</ColumnName>
+        <ColumnName>sectionkey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>LocalCourseCode</ColumnName>
+        <ColumnName>localcoursecode</ColumnName>
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>Subject</ColumnName>
+        <ColumnName>subject</ColumnName>
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>CourseTitle</ColumnName>
+        <ColumnName>coursetitle</ColumnName>
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>TeacherName</ColumnName>
+        <ColumnName>teachername</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>StudentSectionStartDateKey</ColumnName>
+        <ColumnName>studentsectionstartdatekey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>StudentSectionEndDateKey</ColumnName>
+        <ColumnName>studentsectionenddatekey</ColumnName>
         <DataType>text</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolKey</ColumnName>
+        <ColumnName>schoolkey</ColumnName>
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolYear</ColumnName>
+        <ColumnName>schoolyear</ColumnName>
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>LastModifiedDate</ColumnName>
+        <ColumnName>lastmodifieddate</ColumnName>
         <DataType>timestamp without time zone</DataType>
     </Result>
 </TestCase>
