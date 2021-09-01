@@ -114,7 +114,6 @@
     <Folder Include="TestCases\UserDim\MSSQL\" />
     <Folder Include="TestCases\UserDim\PostgreSQL\" />
     <Folder Include="TestCases\UserStudentDataAuthorization\MSSQL\" />
-    <Folder Include="TestCases\UserStudentDataAuthorization\PostgreSQL\" />
   </ItemGroup>
 
 </Project>
