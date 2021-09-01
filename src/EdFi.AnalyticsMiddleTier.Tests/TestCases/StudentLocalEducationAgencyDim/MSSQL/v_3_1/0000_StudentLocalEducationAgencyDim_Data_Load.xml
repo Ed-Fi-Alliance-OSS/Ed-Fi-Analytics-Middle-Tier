@@ -182,7 +182,7 @@
         (@schoolId1,@studentUsi1,'DeviceAccess','School Provided - Dedicated__'),
 
         -- This record is for a different student
-        (@districtId,@studentUsi2,'DeviceAccess','School Provided - DedicatedX')
+        (@districtId,@studentUsi2,'DeviceAccess','School Provided - DedicatedX');
 
         -- @studentUsi3 is in @districtId but has no indicator records
     </ControlDataInsertion>

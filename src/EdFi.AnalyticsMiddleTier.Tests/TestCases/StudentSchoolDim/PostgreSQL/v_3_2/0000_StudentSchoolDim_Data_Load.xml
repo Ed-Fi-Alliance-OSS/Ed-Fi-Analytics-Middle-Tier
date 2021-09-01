@@ -189,6 +189,7 @@
 		(SELECT '35'
 		WHERE NOT EXISTS(SELECT  1  FROM edfi.GradeLevelDescriptor WHERE   GradeLevelDescriptorId= '35'));
 
+
 		INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)
 		(SELECT '867530011','Cooper',NULL,NULL,'A56A986C-976E-45A7-83B1-0F8D63FFECD9','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.School'
 		WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530011'));
@@ -409,6 +410,35 @@
 		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate,ExitWithdrawDate)
 		(SELECT '100033707','867530022','2011-08-22','38','7057A759-F9F1-416D-8248-BD83D00CD101','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','2111-10-26'
 		WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI=100033707 AND SchoolId=867530022));
+
+	        -- Data for Digital Access testing
+
+	        -- Add SEOA entry for '867530011','10100494' matching StudentSchoolAssociation
+	        INSERT INTO edfi.StudentEducationOrganizationAssociation(StudentUSI,EducationOrganizationId,Id,LastModifiedDate,CreateDate,ProfileThumbnail,HispanicLatinoEthnicity,LimitedEnglishProficiencyDescriptorId,LoginId,SexDescriptorId,OldEthnicityDescriptorId,Discriminator)(SELECT '10100494','867530011','F4BE601E-CAA5-4355-AF68-B04EEFB648E1','Nov 19 2015  4:14PM','Nov 9 2015  4:14PM',NULL,'1',NULL,NULL,'1396','1166',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociation WHERE EducationOrganizationId='867530011' AND studentUSI='10100494'));
+
+	        -- Add SEOA entry for '867530011','10133197' matching StudentSchoolAssociation
+	        INSERT INTO edfi.StudentEducationOrganizationAssociation(StudentUSI,EducationOrganizationId,Id,LastModifiedDate,CreateDate,ProfileThumbnail,HispanicLatinoEthnicity,LimitedEnglishProficiencyDescriptorId,LoginId,SexDescriptorId,OldEthnicityDescriptorId,Discriminator)(SELECT '10133197','867530011','F4BE601E-CAA5-4355-AFF8-B04EEFB648E1','Dec 13 2014  2:34PM','Dec 13 2018  2:34PM',NULL,'0',NULL,NULL,'1395','1165',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociation WHERE EducationOrganizationId='867530011' AND studentUSI='10133197'));
+
+	        INSERT INTO edfi.StudentEducationOrganizationAssociationStudentIndicator
+	        (EducationOrganizationId,StudentUSI,IndicatorName,Indicator)
+	        VALUES
+	        -- '10100494' happy path
+	        ('867530011','10100494','InternetAccessInResidence','Yes'),
+	        ('867530011','10100494','InternetAccessTypeInResidence','ResidentialBroadband'),
+	        ('867530011','10100494','InternetPerformance','Yes - No issues'),
+	        ('867530011','10100494','DigitalDevice','Chromebook'),
+	        ('867530011','10100494','DeviceAccess','School Provided - Dedicated'),
+
+	        -- These extra records should be ignored by the view because
+	        -- they are associated with the District, not the School
+	        ('867530','10100494','InternetAccessInResidence','Yes__'),
+	        ('867530','10100494','InternetAccessTypeInResidence','ResidentialBroadband__'),
+	        ('867530','10100494','InternetPerformance','Yes - No issues__'),
+	        ('867530','10100494','DigitalDevice','Chromebook__'),
+	        ('867530','10100494','DeviceAccess','School Provided - Dedicated__'),
+
+	        -- This record is for a different student
+	        ('867530011','10133197','DeviceAccess','School Provided - DedicatedX')
 
 	</ControlDataInsertion>
 </TestCase>

@@ -60,6 +60,26 @@
         <DataType>character varying</DataType>
     </Result>
     <Result>
+        <ColumnName>internetaccessinresidence</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>internetaccesstypeinresidence</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>internetperformance</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>digitaldevice</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>deviceaccess</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
         <ColumnName>lastmodifieddate</ColumnName>
         <DataType>timestamp without time zone</DataType>
     </Result>
