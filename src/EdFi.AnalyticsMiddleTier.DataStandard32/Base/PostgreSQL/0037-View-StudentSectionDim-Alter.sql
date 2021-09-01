@@ -17,7 +17,7 @@ AS
       -- Unfortunately this means that the Staff and StaffSectionAssociation
       -- LastModifiedDate values can't be used to calculate this record's LastModifiedDate
       COALESCE((SELECT
-          STRING_AGG(COALESCE(Staff.FirstName, '') || ' ' || COALESCE(Staff.LastSurname, ''), ',')
+          STRING_AGG(COALESCE(Staff.FirstName, '') || ' ' || COALESCE(Staff.LastSurname, ''), ', ')
         FROM edfi.StaffSectionAssociation
           LEFT OUTER JOIN edfi.Staff
             ON StaffSectionAssociation.StaffUSI = Staff.StaffUSI
