@@ -29,6 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public static TestHarnessSQLServer DataStandard2 = new TestHarnessSQLServer
         {
+            _dataStandardBaseVersion = "v_2",
             _dataStandardVersionName = "2",
             _databaseName = "AnalyticsMiddleTier_Testing_Ds2",
             _dacpacName = "EdFi_Ods_2.0.dacpac",
@@ -38,6 +39,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public static TestHarnessSQLServer DataStandard31 = new TestHarnessSQLServer
         {
+            _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_1",
             _dataStandardFolderName = "3_1",
             _databaseName = "AnalyticsMiddleTier_Testing_Ds31",
@@ -48,6 +50,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public static TestHarnessSQLServer DataStandard32 = new TestHarnessSQLServer
         {
+            _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
             _dataStandardFolderName = "3_1",
             _databaseName = "AnalyticsMiddleTier_Testing_Ds32",

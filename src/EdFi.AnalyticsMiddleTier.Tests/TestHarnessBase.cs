@@ -22,6 +22,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected string _databaseName;
 
+        protected string _dataStandardBaseVersion;
+
         protected string _dataStandardFolderName;
 
         protected InstallBase _dataStandardInstallBase;
@@ -113,6 +115,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
             set => _dataStandardInstallBase = value;
         }
+
+        public string DataStandardVersionName => $"v_{_dataStandardVersionName}";
+
+        public string DataStandardBaseVersion => _dataStandardBaseVersion;
 
         public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
             ? ToString()
