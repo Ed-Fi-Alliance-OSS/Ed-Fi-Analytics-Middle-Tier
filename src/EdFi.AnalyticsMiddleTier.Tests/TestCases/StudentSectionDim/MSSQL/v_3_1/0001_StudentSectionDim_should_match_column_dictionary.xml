@@ -16,6 +16,10 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
+      <ColumnName>StudentSchoolKey</ColumnName>
+      <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
         <ColumnName>StudentKey</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>

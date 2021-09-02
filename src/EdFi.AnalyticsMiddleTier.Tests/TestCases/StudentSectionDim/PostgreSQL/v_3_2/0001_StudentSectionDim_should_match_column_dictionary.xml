@@ -16,6 +16,10 @@
         <DataType>text</DataType>
     </Result>
     <Result>
+      <ColumnName>studentschoolkey</ColumnName>
+      <DataType>text</DataType>
+    </Result>
+    <Result>
         <ColumnName>studentkey</ColumnName>
         <DataType>character varying</DataType>
     </Result>
