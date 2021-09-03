@@ -238,6 +238,16 @@
 
 		INSERT INTO edfi.StudentCharacteristicDescriptor(StudentCharacteristicDescriptorId)(SELECT '664'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentCharacteristicDescriptor WHERE   StudentCharacteristicDescriptorId= '664'));
 
+		--
+		INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT '662','uri://ed-fi.org/StudentCharacteristicDescriptor','Homeless','Homeless','Homeless',NULL,NULL,NULL,'8BE79A08-F0EC-4B49-BD6E-738D84D1CD89','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '662'));
+
+		INSERT INTO edfi.StudentCharacteristicDescriptor(StudentCharacteristicDescriptorId)(SELECT '662'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentCharacteristicDescriptor WHERE   StudentCharacteristicDescriptorId= '662'));
+		--
+		INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT '669','uri://ed-fi.org/StudentCharacteristicDescriptor','Refugee','Refugee','Refugee',NULL,NULL,NULL,'8BE79A08-F0EC-4B49-BD6E-738D84D1CD90','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '669'));
+
+		INSERT INTO edfi.StudentCharacteristicDescriptor(StudentCharacteristicDescriptorId)(SELECT '669'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentCharacteristicDescriptor WHERE   StudentCharacteristicDescriptorId= '669'));
+		--
+
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '628530','664','100055074','','Mar 11 2020  6:50AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE EducationOrganizationId='628530' AND studentUSI='100055074' AND StudentCharacteristicDescriptorId=664));
 
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '867530','660','100005230',NULL,'Mar  5 2020  4:25PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '867530'  AND StudentCharacteristicDescriptorId= '660'  AND StudentUSI= '100005230'));
@@ -250,6 +260,12 @@
 
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '867530','660','100055074',NULL,'Mar  5 2020  4:26PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '867530'  AND StudentCharacteristicDescriptorId= '660'  AND StudentUSI= '100055074'));
 
+		--
+		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '867530','662','100055074',NULL,'Mar  5 2020  4:26PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '867530'  AND StudentCharacteristicDescriptorId= '662'  AND StudentUSI= '100055074'));
+		--
+		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '867530','669','100055074',NULL,'Mar  5 2020  4:26PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '867530'  AND StudentCharacteristicDescriptorId= '669'  AND StudentUSI= '100055074'));
+		--
+
 		INSERT INTO edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf(BeginDate,EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,EndDate,CreateDate)(SELECT '2019-07-01','867530','660','100055074',NULL,'Mar 11 2020  7:04AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf WHERE EducationOrganizationId='867530' AND studentUSI='100055074' AND StudentCharacteristicDescriptorId=660));
 
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '628530','660','100055074',NULL,'Mar  5 2020  4:26PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '628530'  AND StudentCharacteristicDescriptorId= '660'  AND StudentUSI= '100055074'));
@@ -259,6 +275,12 @@
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '867530','664','100055074','','Mar 11 2020  6:49AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '867530'  AND StudentCharacteristicDescriptorId= '664'  AND StudentUSI= '100055074'));
 
 		INSERT INTO edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf(BeginDate,EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,EndDate,CreateDate)(SELECT '2019-07-01','867530','664','100055074','2019-12-20','Mar 11 2020  7:04AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf WHERE EducationOrganizationId='867530' AND studentUSI='100055074' AND StudentCharacteristicDescriptorId=664));
+
+		--
+		INSERT INTO edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf(BeginDate,EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,EndDate,CreateDate)(SELECT '2019-07-01','867530','662','100055074',null,'Mar 11 2020  7:04AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf WHERE EducationOrganizationId='867530' AND studentUSI='100055074' AND StudentCharacteristicDescriptorId=662));
+		--
+		INSERT INTO edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf(BeginDate,EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,EndDate,CreateDate)(SELECT '2019-07-01','867530','669','100055074','2110-12-12','Mar 11 2020  7:04AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf WHERE EducationOrganizationId='867530' AND studentUSI='100055074' AND StudentCharacteristicDescriptorId=669));
+		--
 
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '628530','664','100055074','','Mar 11 2020  6:50AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE   EducationOrganizationId= '628530'  AND StudentCharacteristicDescriptorId= '664'  AND StudentUSI= '100055074'));
 
@@ -349,6 +371,6 @@
 		INSERT INTO edfi.StudentEducationOrganizationAssociationStudentCharacteristic(EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,DesignatedBy,CreateDate)(SELECT '867530','660','100005230',NULL,'Mar  5 2020  4:26PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentEducationOrganizationAssociationStudentCharacteristic WHERE EducationOrganizationId='867530' AND studentUSI='100005230' AND StudentCharacteristicDescriptorId=660));
 
 		INSERT INTO edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf(BeginDate,EducationOrganizationId,StudentCharacteristicDescriptorId,StudentUSI,EndDate,CreateDate)(SELECT '2019-07-01','867530','660','100005230',NULL,'Mar 11 2020  7:04AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.studenteducationorganizationassociationstudentcharacteri_a18fcf WHERE EducationOrganizationId='867530' AND studentUSI='100005230' AND StudentCharacteristicDescriptorId=660));
-		
+
 	</ControlDataInsertion>
 </TestCase>

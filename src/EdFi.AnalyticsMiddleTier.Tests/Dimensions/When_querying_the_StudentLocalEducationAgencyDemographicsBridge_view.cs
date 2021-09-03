@@ -368,6 +368,34 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
 
         }
 
+        public class Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Homeless
+            : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
+        {
+            public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Homeless(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "studentcharacteristic_homeless";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Refugee
+            : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
+        {
+            public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Refugee(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "studentcharacteristic_refugee";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_StudentLocalEducationAgencyDemographicsBridge_student_characteristic_economic_disadvantaged
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
