@@ -83,34 +83,34 @@ SELECT
             AND
             studentEdOrg.EducationOrganizationId = InternetAccessInResidence.EducationOrganizationId
             AND
-            (InternetAccessInResidence.StudentUSI IS NULL OR InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence')
+            InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessTypeInResidence ON
             studentEdOrg.StudentUSI = InternetAccessTypeInResidence.StudentUSI
             AND
             studentEdOrg.EducationOrganizationId = InternetAccessTypeInResidence.EducationOrganizationId
             AND
-            (InternetAccessTypeInResidence.StudentUSI IS NULL OR InternetAccessTypeInResidence.IndicatorName = 'InternetAccessTypeInResidence')
+            InternetAccessTypeInResidence.IndicatorName = 'InternetAccessTypeInResidence'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetPerformance ON
             studentEdOrg.StudentUSI = InternetPerformance.StudentUSI
             AND
             studentEdOrg.EducationOrganizationId = InternetPerformance.EducationOrganizationId
             AND
-            (InternetPerformance.StudentUSI IS NULL OR InternetPerformance.IndicatorName = 'InternetPerformance')
+            InternetPerformance.IndicatorName = 'InternetPerformance'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS DigitalDevice ON
             studentEdOrg.StudentUSI = DigitalDevice.StudentUSI
             AND
             studentEdOrg.EducationOrganizationId = DigitalDevice.EducationOrganizationId
             AND
-            (DigitalDevice.StudentUSI IS NULL OR DigitalDevice.IndicatorName = 'DigitalDevice')
+            DigitalDevice.IndicatorName = 'DigitalDevice'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccess ON
             studentEdOrg.StudentUSI = DeviceAccess.StudentUSI
             AND
             studentEdOrg.EducationOrganizationId = DeviceAccess.EducationOrganizationId
             AND
-            (DeviceAccess.StudentUSI IS NULL OR DeviceAccess.IndicatorName = 'DeviceAccess')
+            DeviceAccess.IndicatorName = 'DeviceAccess'
     WHERE(
         StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate >= now());

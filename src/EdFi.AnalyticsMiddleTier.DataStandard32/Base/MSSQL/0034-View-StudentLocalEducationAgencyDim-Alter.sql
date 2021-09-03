@@ -54,34 +54,34 @@ AS
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = InternetAccessInResidence.EducationOrganizationId
             AND
-            (InternetAccessInResidence.StudentUSI IS NULL or InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence')
+            InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessTypeInResidence ON
             StudentEducationOrganizationAssociation.StudentUSI = InternetAccessTypeInResidence.StudentUSI
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = InternetAccessTypeInResidence.EducationOrganizationId
             AND
-            (InternetAccessTypeInResidence.StudentUSI IS NULL or InternetAccessTypeInResidence.IndicatorName = 'InternetAccessTypeInResidence')
+            InternetAccessTypeInResidence.IndicatorName = 'InternetAccessTypeInResidence'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetPerformance ON
             StudentEducationOrganizationAssociation.StudentUSI = InternetPerformance.StudentUSI
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = InternetPerformance.EducationOrganizationId
             AND
-            (InternetPerformance.StudentUSI IS NULL or InternetPerformance.IndicatorName = 'InternetPerformance')
+            InternetPerformance.IndicatorName = 'InternetPerformance'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS DigitalDevice ON
             StudentEducationOrganizationAssociation.StudentUSI = DigitalDevice.StudentUSI
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = DigitalDevice.EducationOrganizationId
             AND
-            (DigitalDevice.StudentUSI IS NULL or DigitalDevice.IndicatorName = 'DigitalDevice')
+           DigitalDevice.IndicatorName = 'DigitalDevice'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccess ON
             StudentEducationOrganizationAssociation.StudentUSI = DeviceAccess.StudentUSI
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = DeviceAccess.EducationOrganizationId
             AND
-            (DeviceAccess.StudentUSI IS NULL or DeviceAccess.IndicatorName = 'DeviceAccess')
+            DeviceAccess.IndicatorName = 'DeviceAccess'
     WHERE
         StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate > GETDATE();    
