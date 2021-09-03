@@ -5,9 +5,9 @@
     </ControlDataInsertion>
     <Query>
         SELECT COUNT(1) as CountValue
-        FROM analytics.StudentInternetAccessDim
-        WHERE StudentSchoolKey = 'this is unique-867530010'
-        AND InternetPerformance = 'Yes - No issues';
+        FROM analytics.StudentLocalEducationAgencyDim
+        WHERE StudentLocalEducationAgencyKey = '189871-867530'
+        AND InternetAccessInResidence = 'Yes';
     </Query>
     <Result>
         <CountValue>1</CountValue>

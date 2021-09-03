@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COUNT(1) as CountValue
+        FROM analytics.StudentSchoolDim
+        WHERE StudentSchoolKey = '189854-867530011'
+        AND InternetPerformance = 'Yes - No issues';
+    </Query>
+    <Result>
+        <CountValue>1</CountValue>
+    </Result>
+</TestCase>

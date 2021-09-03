@@ -25,5 +25,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public bool IsHispanic { get; set; } //(bit, not null)
         public string Sex { get; set; } //(nvarchar(50), not null)
         public DateTime LastModifiedDate { get; set; } //(datetime, null)
+        public string InternetAccessInResidence { get; set; } //(nvarchar(60), not null)
+        public string InternetAccessTypeInResidence { get; set; } //(nvarchar(60), not null)
+        public string InternetPerformance { get; set; } //(nvarchar(60), not null)
+        public string DigitalDevice { get; set; } //(nvarchar(60), not null)
+        public string DeviceAccess { get; set; } //(nvarchar(60), not null)
     }
 }
