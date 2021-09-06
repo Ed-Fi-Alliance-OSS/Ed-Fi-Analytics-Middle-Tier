@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_UserAuthorization_view : When_querying_a_view_postgres
+    public abstract class When_querying_the_UserAuthorization_view : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.UserAuthorization";
         protected const string TestCasesDataFileName = "0000_UserAuthorization_Data_Load.xml";
