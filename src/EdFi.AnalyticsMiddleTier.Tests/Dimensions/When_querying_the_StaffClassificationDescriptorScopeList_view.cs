@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescriptorScopeListTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view
+    public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StaffClassificationDescriptorScopeList";
         protected const string TestCasesDataFileName = "0000_StaffClassificationDescriptorScopeList_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescripto
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 

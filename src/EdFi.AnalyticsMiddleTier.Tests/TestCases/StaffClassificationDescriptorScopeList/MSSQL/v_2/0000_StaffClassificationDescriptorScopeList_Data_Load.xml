@@ -23,12 +23,5 @@
         SET IDENTITY_INSERT edfi.Descriptor ON;
         INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'544','http://www.ed-fi.org/Descriptor/AttendanceEventCategoryDescriptor.xml','Unexcused Absence','Unexcused Absence','Unexcused Absence',NULL,NULL,NULL,'711C0C86-268F-4C42-BC44-B6FBEBF35DAB','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '544'));
         SET IDENTITY_INSERT edfi.Descriptor OFF;
-
-/*        SET IDENTITY_INSERT analytics_config.DescriptorConstant ON;
-        INSERT INTO analytics_config.DescriptorConstant(DescriptorConstantId,ConstantName,CreateDate)(SELECT TOP 1'13','AttendanceEvent.UnexcusedAbsence','Mar 20 2020  2:09PM'  WHERE NOT EXISTS(SELECT  1  FROM analytics_config.DescriptorConstant WHERE   DescriptorConstantId= '13'));
-        SET IDENTITY_INSERT analytics_config.DescriptorConstant OFF;
-
-        INSERT INTO analytics_config.DescriptorMap(DescriptorConstantId,DescriptorId,CreateDate)(SELECT TOP 1'13','544','Mar 20 2020  2:09PM'  WHERE NOT EXISTS(SELECT  1  FROM analytics_config.DescriptorMap WHERE DescriptorConstantId=13 AND DescriptorId=544));
-*/
     </ControlDataInsertion>
 </TestCase>
