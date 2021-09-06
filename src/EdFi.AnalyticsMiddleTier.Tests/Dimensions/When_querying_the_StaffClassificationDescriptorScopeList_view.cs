@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescriptorScopeListTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view_ds3
+    public abstract class When_querying_the_StaffClassificationDescriptorScopeList : When_querying_a_view
     {
         protected const string TestCasesFolder = "TestCases.StaffClassificationDescriptorScopeList";
         protected const string TestCasesDataFileName = "0000_StaffClassificationDescriptorScopeList_Data_Load.xml";

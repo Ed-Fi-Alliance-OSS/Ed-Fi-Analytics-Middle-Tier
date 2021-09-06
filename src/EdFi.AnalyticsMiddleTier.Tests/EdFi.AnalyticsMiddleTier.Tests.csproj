@@ -79,7 +79,6 @@
     <Folder Include="TestCases\SchoolDim\MSSQL\" />
     <Folder Include="TestCases\SectionDim\MSSQL\" />
     <Folder Include="TestCases\SectionDim\PostgreSQL\" />
-    <Folder Include="TestCases\StaffClassificationDescriptorScopeList\MSSQL\" />
     <Folder Include="TestCases\StaffClassificationDescriptorScopeList\PostgreSQL\" />
     <Folder Include="TestCases\StaffSectionDim\MSSQL\" />
     <Folder Include="TestCases\StaffSectionDim\PostgreSQL\" />
