@@ -12,6 +12,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class StudentSectionDim
     {
         public string StudentSectionKey { get; set; } //(nvarchar(544), null)
+        public string StudentSchoolKey { get; set; } //(nvarchar(61), null)
         public int StudentKey { get; set; } //(int, not null)
         public string SectionKey { get; set; } //(nvarchar(482), null)
         public string LocalCourseCode { get; set; } //(nvarchar(60), not null)

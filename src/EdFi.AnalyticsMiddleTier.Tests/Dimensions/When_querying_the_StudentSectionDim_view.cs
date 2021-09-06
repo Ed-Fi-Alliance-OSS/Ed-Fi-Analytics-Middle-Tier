@@ -109,6 +109,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             }
 
             [Test]
+            public void Then_should_have_studentschoolkey()
+            {
+                Result = DataStandard.RunTestCase<StudentSectionDim>(
+                    $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_studentschoolkey.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_studentsectionenddatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
@@ -217,6 +225,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             }
 
             [Test]
+            public void Then_should_have_studentschoolkey()
+            {
+                Result = DataStandard.RunTestCase<StudentSectionDim>(
+                    $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_studentschoolkey.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_studentsectionenddatekey()
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
@@ -321,6 +337,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionDimTestGroup
             {
                 Result = DataStandard.RunTestCase<StudentSectionDim>(
                     $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_studentkey.xml");
+                Result.success.ShouldBe(true, Result.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_studentschoolkey()
+            {
+                Result = DataStandard.RunTestCase<StudentSectionDim>(
+                    $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_studentschoolkey.xml");
                 Result.success.ShouldBe(true, Result.errorMessage);
             }
 
