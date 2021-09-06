@@ -13,7 +13,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyDemographicsBridgeTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view : When_querying_a_view
+    public abstract class When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentLocalEducationAgencyDemographicsBridge";
         protected const string TestCasesDataFileName = "0000_StudentLocalEducationAgencyDemographicsBridge_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentLocalEducationAgencyDemographicsBridge_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.0001_StudentLocalEducationAgencyDemographicsBridge_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -366,6 +366,34 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
+        }
+
+        public class Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Homeless
+            : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
+        {
+            public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Homeless(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "studentcharacteristic_homeless";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Refugee
+            : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
+        {
+            public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Refugee(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "studentcharacteristic_refugee";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_StudentLocalEducationAgencyDemographicsBridge_student_characteristic_economic_disadvantaged
