@@ -1,0 +1,26 @@
+{
+  "DBMS": "Any",
+  "Query": "SELECT COLUMN_NAME AS ColumnName, DATA_TYPE AS DataType FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name = 'rls_studentdataauthorization' ORDER BY ORDINAL_POSITION ASC;",
+  "Result": [
+    {
+      "ColumnName": "studentkey",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "schoolkey",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "sectionid",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "begindate",
+      "DataType": "timestamp without time zone"
+    },
+    {
+      "ColumnName": "enddate",
+      "DataType": "timestamp without time zone"
+    }
+  ]
+}
