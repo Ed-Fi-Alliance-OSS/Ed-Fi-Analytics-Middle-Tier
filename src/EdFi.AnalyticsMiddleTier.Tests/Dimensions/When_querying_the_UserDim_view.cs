@@ -13,7 +13,7 @@ using EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_UserDim_view : When_querying_a_view
+    public abstract class When_querying_the_UserDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.UserDim";
         protected const string TestCasesDataFileName = "0000_UserDim_Data_Load.xml";
