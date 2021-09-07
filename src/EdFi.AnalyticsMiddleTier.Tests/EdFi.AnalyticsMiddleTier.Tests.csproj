@@ -104,7 +104,6 @@
     <Folder Include="TestCases\StudentSectionGradeFact\PostgreSQL\" />
     <Folder Include="TestCases\UserAuthorization\PostgreSQL\" />
     <Folder Include="TestCases\UserDim\MSSQL\" />
-    <Folder Include="TestCases\UserDim\PostgreSQL\" />
     <Folder Include="TestCases\UserStudentDataAuthorization\MSSQL\" />
   </ItemGroup>
 
