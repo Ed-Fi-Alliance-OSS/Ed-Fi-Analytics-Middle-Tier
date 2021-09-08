@@ -12,7 +12,7 @@
 		},
 		{
 			"ColumnName": "studentpermission",
-			"DataType": "character varying"
+			"DataType": "text"
 		},
 		{
 			"ColumnName": "sectionpermission",
@@ -20,7 +20,7 @@
 		},
 		{
 			"ColumnName": "sectionkeypermission",
-			"DataType": "character varying"
+			"DataType": "text"
 		},
 		{
 			"ColumnName": "schoolpermission",
