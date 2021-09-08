@@ -2,7 +2,7 @@
     "DBMS": "Any",
     "ControlDataInsertion": "",
     "DropControlData": "",
-    "Query": "select SectionKeyPermission from analytics.rls_UserAuthorization where UserKey = 11331",
+    "Query": "select SectionKeyPermission from analytics.rls_UserAuthorization where UserKey = '11331'",
     "Result": [
         {
             "SectionKeyPermission": "867530020-NCMR11-2012-7352-Traditional"
