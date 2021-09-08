@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDataAuthorizationTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentDataAuthorization_view : When_querying_a_view
+    public abstract class When_querying_the_StudentDataAuthorization_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentDataAuthorization";
         protected const string TestCasesDataFileName = "0000_StudentDataAuthorization_Data_Load.xml";
@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDataAuthorizationTest
             [Test]
             public void Then_SectionId_is_not_null()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDataAuthorization>($"{TestCasesFolder}.When_querying_sectionId.json");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDataAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.When_querying_sectionId.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
