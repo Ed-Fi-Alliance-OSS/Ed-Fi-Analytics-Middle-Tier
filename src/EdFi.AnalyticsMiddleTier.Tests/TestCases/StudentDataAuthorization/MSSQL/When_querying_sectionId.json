@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "SELECT SectionId FROM analytics.rls_studentdataauthorization WHERE StudentKey='198070' AND SchoolKey='867530007' AND SectionId='a460d6ff-ce92-4699-89cb-fbb4c0f1fb90';",
+  "Result": [
+    {
+      "SectionId": "A460D6FF-CE92-4699-89CB-FBB4C0F1FB90"
+    }
+  ]
+}
