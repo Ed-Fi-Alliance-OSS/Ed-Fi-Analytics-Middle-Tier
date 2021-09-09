@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_UserAuthorization_view : When_querying_a_view
+    public abstract class When_querying_the_UserAuthorization_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.UserAuthorization";
         protected const string TestCasesDataFileName = "0000_UserAuthorization_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -145,7 +145,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
             [Test]
             public void Then_SectionPermission_with_UserScope_equal_to_SectionKey_is_returned_properly()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.querying_SectionPermission_should_have_SectionKeyPermission.json");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.querying_SectionPermission_should_have_SectionKeyPermission.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         } 

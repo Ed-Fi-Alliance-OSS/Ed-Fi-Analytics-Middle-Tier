@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "select count(1) as CountValue from analytics.rls_UserAuthorization where UserKey = 11330",
+  "Query": "select count(1) as CountValue from analytics.rls_UserAuthorization where UserKey = '11330'",
   "Result": [
     {
       "CountValue": 0

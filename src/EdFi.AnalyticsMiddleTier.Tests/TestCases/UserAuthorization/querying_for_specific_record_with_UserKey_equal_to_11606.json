@@ -2,7 +2,7 @@
   "DBMS": "Any",
   "ControlDataInsertion": "",
   "DropControlData": "",
-  "Query": "select SectionPermission from analytics.rls_UserAuthorization where UserKey = 11606",
+  "Query": "select UPPER(SectionPermission) as SectionPermission from analytics.rls_UserAuthorization where UserKey = '11606'",
   "Result": [
     {
       "SectionPermission": "1A8D5CD2-0E93-40F8-B324-000683193BDC"
