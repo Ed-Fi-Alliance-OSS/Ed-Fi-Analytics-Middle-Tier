@@ -88,7 +88,6 @@
     <Folder Include="TestCases\StudentDisciplineActionDim\MSSQL\" />
     <Folder Include="TestCases\StudentDisciplineActionDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentEarlyWarningFact\MSSQL\" />
-    <Folder Include="TestCases\StudentEarlyWarningFact\PostgreSQL\" />
     <Folder Include="TestCases\StudentHistoryDim\MSSQL\" />
     <Folder Include="TestCases\StudentHistoryDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentProgramCohortDim\MSSQL\" />

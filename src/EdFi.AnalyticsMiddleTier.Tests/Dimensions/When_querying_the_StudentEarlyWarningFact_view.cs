@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view
+    public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentEarlyWarningFact";
         protected const string TestCasesDataFileName = "0000_StudentEarlyWarningFact_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]

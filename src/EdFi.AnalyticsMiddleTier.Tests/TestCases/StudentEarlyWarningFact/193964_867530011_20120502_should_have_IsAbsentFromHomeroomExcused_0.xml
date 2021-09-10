@@ -6,7 +6,7 @@
   <Query>
     SELECT IsAbsentFromHomeroomExcused
     FROM analytics.ews_StudentEarlyWarningFact
-    WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey=20120502;
+    WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey='20120502';
   </Query>
   <Result>
     <IsAbsentFromHomeroomExcused>0</IsAbsentFromHomeroomExcused>

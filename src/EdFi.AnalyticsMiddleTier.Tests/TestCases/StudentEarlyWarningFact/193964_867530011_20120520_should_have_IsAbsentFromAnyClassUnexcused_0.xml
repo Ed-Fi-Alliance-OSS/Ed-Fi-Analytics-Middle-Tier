@@ -6,7 +6,7 @@
   <Query>
     SELECT IsAbsentFromAnyClassUnexcused
     FROM analytics.ews_StudentEarlyWarningFact
-    WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey=20120520;
+    WHERE StudentKey = '193964' AND SchoolKey='867530011' AND DateKey='20120520';
   </Query>
   <Result>
     <IsAbsentFromAnyClassUnexcused>0</IsAbsentFromAnyClassUnexcused>
