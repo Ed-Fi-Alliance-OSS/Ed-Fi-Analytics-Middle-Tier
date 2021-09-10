@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT IsAbsentFromSchoolUnexcused
+      FROM analytics.ews_StudentEarlyWarningFact
+      WHERE studentkey='189854'
+      AND schoolkey='867530011'
+      AND datekey='20120520';
+  </Query>
+  <Result>
+    <IsAbsentFromSchoolUnexcused>0</IsAbsentFromSchoolUnexcused>
+  </Result>
+</TestCase>
