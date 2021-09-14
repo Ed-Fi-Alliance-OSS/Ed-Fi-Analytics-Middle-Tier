@@ -6,6 +6,7 @@ The Analytics Middle Tier is a set of denormalized analytics views over the Ed-F
 For more information, see:
 
 * For a detailed description of the views, the deployment process, and how to get involved, see [Analytics Middle Tier](https://techdocs.ed-fi.org/display/EDFITOOLS/Analytics+Middle+Tier) in Tech Docs
+* For more information about how testing is done in this solution, see the [test project README](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier/blob/main/src/EdFi.AnalyticsMiddleTier.Tests/readme.md) in this repo
 * [How to Submit an Issue](https://techdocs.ed-fi.org/display/ETKB/How+To%3A+Submit+an+Issue)
 * [How Submit a Feature Request](https://techdocs.ed-fi.org/display/ETKB/How+To%3A+Submit+a+Feature+Request)
 * Review on-going development work at [Link to appropriate Tracker project]
