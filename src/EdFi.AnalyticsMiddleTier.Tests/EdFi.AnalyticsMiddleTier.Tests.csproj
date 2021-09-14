@@ -62,8 +62,6 @@
     <Folder Include="TestCases\AcademicTimePeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\AssessmentFact\MSSQL\" />
     <Folder Include="TestCases\AssessmentFact\PostgreSQL\" />
-    <Folder Include="TestCases\ChronicAbsenteeismAttendanceFact\MSSQL\" />
-    <Folder Include="TestCases\ChronicAbsenteeismAttendanceFact\PostgreSQL\" />
     <Folder Include="TestCases\ClassPeriodDim\MSSQL\" />
     <Folder Include="TestCases\ClassPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\ContactPersonDim\MSSQL\" />

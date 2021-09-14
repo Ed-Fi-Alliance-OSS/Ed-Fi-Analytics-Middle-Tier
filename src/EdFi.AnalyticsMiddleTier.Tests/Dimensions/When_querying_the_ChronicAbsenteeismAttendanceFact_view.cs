@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendanceFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_ChronicAbsenteeismAttendanceFact_view : When_querying_a_view
+    public abstract class When_querying_the_ChronicAbsenteeismAttendanceFact_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.ChronicAbsenteeismAttendanceFact";
         protected const string TestCasesDataFileName = "0000_ChronicAbsenteeismAttendanceFact_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]

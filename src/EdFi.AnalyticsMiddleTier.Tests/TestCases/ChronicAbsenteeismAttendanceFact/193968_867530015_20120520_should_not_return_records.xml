@@ -6,7 +6,7 @@
     <Query>
         SELECT COUNT(1) AS CountValue
         FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
-        WHERE StudentKey = '193968' AND SchoolKey='867530015' AND DateKey=20120520;
+        WHERE StudentKey = '193968' AND SchoolKey='867530015' AND DateKey='20120520';
     </Query>
     <Result>
         <CountValue>0</CountValue>
