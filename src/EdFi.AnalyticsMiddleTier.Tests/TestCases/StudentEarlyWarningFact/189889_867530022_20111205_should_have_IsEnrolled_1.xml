@@ -6,7 +6,7 @@
   <Query>
     SELECT IsEnrolled
     FROM analytics.ews_StudentEarlyWarningFact
-    WHERE StudentKey = '189889' AND SchoolKey='867530022' AND DateKey=20111205;
+    WHERE StudentKey = '189889' AND SchoolKey='867530022' AND DateKey='20111205';
   </Query>
   <Result>
     <IsEnrolled>1</IsEnrolled>

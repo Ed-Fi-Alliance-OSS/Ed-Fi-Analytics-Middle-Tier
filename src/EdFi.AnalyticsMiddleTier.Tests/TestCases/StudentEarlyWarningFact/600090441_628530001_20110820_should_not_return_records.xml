@@ -6,7 +6,7 @@
   <Query>
     SELECT COUNT(1) AS CountValue
     FROM analytics.ews_StudentEarlyWarningFact
-    WHERE StudentKey = '600090441' AND SchoolKey='628530001' AND DateKey=20110820;
+    WHERE StudentKey = '600090441' AND SchoolKey='628530001' AND DateKey='20110820';
   </Query>
   <Result>
     <CountValue>0</CountValue>

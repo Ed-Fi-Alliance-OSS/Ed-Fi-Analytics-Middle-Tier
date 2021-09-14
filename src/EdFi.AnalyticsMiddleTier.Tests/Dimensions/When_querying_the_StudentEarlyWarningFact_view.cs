@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view
+    public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentEarlyWarningFact";
         protected const string TestCasesDataFileName = "0000_StudentEarlyWarningFact_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -635,6 +635,119 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<StudentEarlyWarningFact>(
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAnyPresent_Homeroom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_204030_867530011_20120520
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_204030_867530011_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "204030_867530011_20120520";
+
+            [Test]
+            public void Then_should_have_IsAbsentFromSchoolExcused_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAbsentFromSchoolExcused_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_IsPresentHomeroom_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsPresentHomeroom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_IsTardyToHomeroom_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsTardyToHomeroom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_190237_867530022_20120502
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_190237_867530022_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "190237_867530022_20120502";
+
+            [Test]
+            public void Then_should_have_IsPresentHomeroom_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsPresentHomeroom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_190421_867530022_20111205
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_190421_867530022_20111205(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "190421_867530022_20111205";
+
+            [Test]
+            public void Then_should_have_IsTardyToHomeroom_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsTardyToHomeroom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_204030_867530011_20110822
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_204030_867530011_20110822(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "204030_867530011_20110822";
+
+            [Test]
+            public void Then_should_not_return_records()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_189854_867530011_20120520
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_189854_867530011_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189854_867530011_20120520";
+
+            [Test]
+            public void Then_should_have_IsAbsentFromSchoolUnexcused_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAbsentFromSchoolUnexcused_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_189889_867530022_20120502
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_189889_867530022_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189889_867530022_20120502";
+
+            [Test]
+            public void Then_should_have_CountByDayOfConductOffenses_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_CountByDayOfConductOffenses_0.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

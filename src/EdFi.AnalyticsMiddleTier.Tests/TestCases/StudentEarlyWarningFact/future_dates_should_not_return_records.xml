@@ -6,7 +6,7 @@
   <Query>
       SELECT COUNT(1) AS CountValue
       FROM analytics.ews_StudentEarlyWarningFact
-      WHERE DateKey=CONVERT(VARCHAR(10),DATEADD(DAY, 10, GETDATE()),112);
+      WHERE DateKey='21210101';
   </Query>
   <Result>
     <CountValue>0</CountValue>

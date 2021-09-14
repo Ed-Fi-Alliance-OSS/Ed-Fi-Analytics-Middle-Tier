@@ -6,7 +6,7 @@
   <Query>
     SELECT IsPresentSchool
     FROM analytics.ews_StudentEarlyWarningFact
-    WHERE StudentKey = '200099' AND SchoolKey='867530174' AND DateKey=20111103;
+    WHERE StudentKey = '200099' AND SchoolKey='867530174' AND DateKey='20111103';
   </Query>
   <Result>
     <IsPresentSchool>1</IsPresentSchool>
