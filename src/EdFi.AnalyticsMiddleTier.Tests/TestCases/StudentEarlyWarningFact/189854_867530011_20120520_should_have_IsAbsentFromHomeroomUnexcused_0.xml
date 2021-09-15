@@ -4,13 +4,13 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT IsPresentHomeroom
+      SELECT IsAbsentFromHomeroomUnexcused
       FROM analytics.ews_StudentEarlyWarningFact
-      WHERE studentkey='190237'
-      AND schoolkey='867530022'
-      AND datekey='20120502';
+      WHERE studentkey='189854'
+      AND schoolkey='867530011'
+      AND datekey='20120520';
   </Query>
   <Result>
-      <IsPresentHomeroom>0</IsPresentHomeroom>
+      <IsAbsentFromHomeroomUnexcused>0</IsAbsentFromHomeroomUnexcused>
   </Result>
 </TestCase>

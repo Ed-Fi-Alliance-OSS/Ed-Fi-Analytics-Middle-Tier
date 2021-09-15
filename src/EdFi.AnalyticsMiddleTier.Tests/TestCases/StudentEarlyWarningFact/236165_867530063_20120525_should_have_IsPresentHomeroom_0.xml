@@ -6,9 +6,7 @@
   <Query>
       SELECT IsPresentHomeroom
       FROM analytics.ews_StudentEarlyWarningFact
-      WHERE studentkey='190237'
-      AND schoolkey='867530022'
-      AND datekey='20120502';
+      WHERE StudentKey = '236165' AND SchoolKey='867530063' AND DateKey='20120525';
   </Query>
   <Result>
       <IsPresentHomeroom>0</IsPresentHomeroom>
