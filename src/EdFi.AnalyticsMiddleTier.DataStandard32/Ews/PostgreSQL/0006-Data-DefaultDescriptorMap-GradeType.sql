@@ -42,7 +42,7 @@ WITH gradingTypeSemester as (
             Descriptor.CodeValue = 'Final'
             AND Namespace LIKE '%/GradeTypeDescriptor'
 	) as d
-	WHERE DescriptorConstant.ConstantName = 'GradeType.GradingPeriod'
+	WHERE DescriptorConstant.ConstantName = 'GradeType.Final'
 )
 INSERT INTO
     analytics_config.descriptormap
