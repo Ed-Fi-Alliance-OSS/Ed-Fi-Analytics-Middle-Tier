@@ -1286,5 +1286,22 @@
       (SELECT '545','2012-05-19','YPNR11','867530016','2012','9561','Traditional','100055079','Excused Absence','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','428E8DD5-127F-476C-8DF8-91A3F72AE9B8'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAttendanceEvent WHERE id='428E8DD5-127F-476C-8DF8-91A3F72AE9B8'));
       
+-- New Data
+
+      INSERT INTO edfi.CalendarDate(SchoolId,Date,Id,LastModifiedDate,CreateDate,CalendarCode,SchoolYear)
+      (SELECT '867530016','2012-07-20','CC92A7E5-DDAC-47D8-8C46-AD148A91F580','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','867530016_2012','2012'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDate WHERE   CalendarCode= '867530016_2012'  AND Date= '2012-07-20'  AND SchoolId= '867530016'  AND SchoolYear= '2012'));
+	  
+      INSERT INTO edfi.CalendarEventDescriptor(CalendarEventDescriptorId)
+	    (SELECT '547'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarEventDescriptor WHERE   CalendarEventDescriptorId= '547'));
+
+      INSERT INTO edfi.CalendarDateCalendarEvent(SchoolId,Date,CalendarEventDescriptorId,CreateDate,CalendarCode,SchoolYear)
+      (SELECT '867530016','2012-07-20','547','Sep 18 2015 11:34AM','867530016_2012','2012'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDateCalendarEvent WHERE SchoolId = 867530016 AND '2012-07-20' = CalendarDateCalendarEvent.Date));
+	  
+      INSERT INTO edfi.StudentSchoolAttendanceEvent(StudentUSI,SchoolId,SchoolYear,EventDate,AttendanceEventCategoryDescriptorId,AttendanceEventReason,Id,LastModifiedDate,CreateDate,SessionName)
+      (SELECT '100055074','867530016','2012','2012-07-20','547','Abs','246CD054-7DE4-4F38-AB4B-844B2DB53027','Sep 18 2015 11:53AM','Sep 18 2015 11:53AM','Traditional'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAttendanceEvent WHERE id='246CD054-7DE4-4F38-AB4B-844B2DB53027'));
+
     </ControlDataInsertion>
 </TestCase>
