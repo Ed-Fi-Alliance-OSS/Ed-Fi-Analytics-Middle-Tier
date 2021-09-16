@@ -14,7 +14,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view//When_querying_a_view_postgres
+    public abstract class When_querying_the_StudentEarlyWarningFact_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.StudentEarlyWarningFact";
         protected const string TestCasesDataFileName = "0000_StudentEarlyWarningFact_Data_Load.xml";
