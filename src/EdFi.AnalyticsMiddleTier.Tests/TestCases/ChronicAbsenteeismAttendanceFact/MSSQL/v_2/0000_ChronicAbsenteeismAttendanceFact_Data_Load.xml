@@ -1419,7 +1419,7 @@
       INSERT INTO edfi.StudentSectionAttendanceEvent(StudentUSI,ClassroomIdentificationCode,SchoolId,ClassPeriodName,LocalCourseCode,SchoolYear,TermDescriptorId,UniqueSectionCode,SequenceOfCourse,EventDate,AttendanceEventCategoryDescriptorId,AttendanceEventReason,EducationalEnvironmentTypeId,Id,LastModifiedDate,CreateDate)
       (SELECT TOP 1'100055079','113','867530016','T08','YPNR11','2012','535','19524','1','2012-05-19','545','Excused Absence',NULL,'5797D8D7-E2F6-40AB-8EA5-AD10A94AD41A','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAttendanceEvent WHERE StudentUSI=100055079 AND SchoolId=867530014  AND EventDate='2012-05-20' AND ClassPeriodName='T08'));
-      
+
       -- New Data
 
       INSERT INTO edfi.CalendarDate(SchoolId,Date,Id,LastModifiedDate,CreateDate)
@@ -1441,6 +1441,38 @@
       (SELECT TOP 1'100055074','867530016','2012','2012-07-20','547','530','A-Absent excused',NULL,'54D85A58-E0EC-41E5-AD99-028C6FBCC17A','Sep 18 2015 11:53AM','Sep 18 2015 11:53AM'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAttendanceEvent WHERE StudentUSI=100055074 AND SchoolId=867530016 AND EventDate='2012-07-20' AND AttendanceEventCategoryDescriptorId=547));
 
+      --- 200099	867530174	20111103
+      -- StudentUSI: 100070882
+
+      INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'2014','2013-2014','0','1926BB96-BF8C-493A-93BD-A8E60DBC84E1','Jun 19 2015 11:40AM','Jun 19 2015 11:40AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2014'));
+
+      INSERT INTO edfi.CalendarDate(SchoolId,Date,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'867530174','2014-05-02','8D4193FE-07C8-4CD3-8A7D-B306A53F8B03','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDate WHERE   Date= '2014-05-02'  AND SchoolId= '867530174'));
+
+      INSERT INTO edfi.CalendarDateCalendarEvent(SchoolId,Date,CalendarEventDescriptorId,EventDuration,CreateDate)
+      (SELECT TOP 1'867530174','2014-05-02','686','1.00','Sep 18 2015 11:34AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDateCalendarEvent WHERE SchoolId = 867530174 AND '2014-05-02' = CalendarDateCalendarEvent.Date));
+
+      INSERT INTO edfi.Session(SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'867530174','2014','530','Traditional','2011-08-22','2014-12-20','82','E0DFF2A5-0791-4176-B13D-D10894810B54','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530174'  AND SchoolYear= '2014'  AND TermDescriptorId= '530'));
+
+      SET IDENTITY_INSERT edfi.Student ON;
+      INSERT INTO edfi.Student(StudentUSI,FirstName,LastSurname,SexTypeId,BirthDate,HispanicLatinoEthnicity,OldEthnicityTypeId,EconomicDisadvantaged,SchoolFoodServicesEligibilityDescriptorId,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'100070885','davie','Barnes','2','1999-08-07','1','5','1','778','200011','75E7B8A6-0ABA-48C9-9F6A-1EB80A8A08BA','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100070885'));
+      SET IDENTITY_INSERT edfi.Student OFF;
+
+      INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,SchoolYear,EntryDate,EntryGradeLevelDescriptorId,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'100070885','867530174',2014,'2013-08-22','19','D4C9405E-7C08-43FE-BDE9-1102EA64FE0E','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE StudentUSI=100070885 AND SchoolId=867530174));
+
+      INSERT INTO edfi.StudentSchoolAttendanceEvent(StudentUSI,SchoolId,SchoolYear,EventDate,AttendanceEventCategoryDescriptorId,TermDescriptorId,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'100070885','867530174','2014','2014-05-02','545','530','2735F816-C327-47FA-AFC2-A03218661A68','Sep 18 2015 11:53AM','Sep 18 2015 11:53AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAttendanceEvent WHERE StudentUSI=100070882 AND SchoolId=867530174 AND EventDate='2014-05-02' AND AttendanceEventCategoryDescriptorId=545));
 
     </ControlDataInsertion>
 </TestCase>

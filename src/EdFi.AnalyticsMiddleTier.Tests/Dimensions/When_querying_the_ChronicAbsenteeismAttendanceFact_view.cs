@@ -660,6 +660,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             }
         }
 
+        public class Given_chronic_absenteeism_attendance_fact_200011_867530174_20140502
+            : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_200011_867530174_20140502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "200011_867530174_20140502";
+
+            [Test]
+            public void Then_should_have_ReportedAsAbsentFromSchool_1()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromSchool_1.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_chronic_absenteeism_attendance_fact_193968_867530015_20120520
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
