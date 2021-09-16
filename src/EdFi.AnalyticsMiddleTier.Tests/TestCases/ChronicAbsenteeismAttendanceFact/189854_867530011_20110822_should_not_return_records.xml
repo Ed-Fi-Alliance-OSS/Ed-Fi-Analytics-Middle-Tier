@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+      WHERE StudentKey = '189854' AND SchoolKey='867530011' AND DateKey='20110822';
+    </Query>
+    <Result>
+        <CountValue>0</CountValue>
+    </Result>
+</TestCase>
