@@ -1338,5 +1338,15 @@
       (SELECT '100070885','867530174','2014','2014-05-02','545','2735F816-C327-47FA-AFC2-A03218661668','Sep 18 2015 11:53AM','Sep 18 2015 11:53AM','Traditional'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAttendanceEvent WHERE StudentUSI=100070885 AND SchoolId=867530174 AND EventDate='2014-05-02' AND AttendanceEventCategoryDescriptorId=545 and SchoolYear = 2014));
 
+      --
+      INSERT INTO edfi.Section(SchoolId,LocalCourseCode,SchoolYear,SequenceOfCourse,AvailableCredits,Id,LastModifiedDate,CreateDate,SessionName,SectionIdentifier,LocationSchoolId,LocationClassroomIdentificationCode,PopulationServedDescriptorId,EducationalEnvironmentDescriptorId)
+      (SELECT '867530013','QENR11','2012','1','1.000','5CA25F52-D7D4-478D-B7F8-9DC9E3E9DE85','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','Traditional','9571','867530011','105','1232','950'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Section WHERE   LocalCourseCode= 'QENR11'  AND SchoolId= '867530013'  AND SchoolYear= '2012'  AND SectionIdentifier= '9571'  AND SessionName= 'Traditional'));
+
+      INSERT INTO edfi.StudentSectionAssociation(StudentUSI,SchoolId,LocalCourseCode,SchoolYear,BeginDate,EndDate,HomeroomIndicator,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName)
+      (SELECT '100055075','867530013','QENR11','2012','2011-09-15','2011-09-15','1','1265CDAF-E98F-4B27-A276-96DF8A838F87','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','9571','Traditional'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAssociation WHERE id='1265CDAF-E98F-4B27-A276-96DF8A838F87'));
+      --
+
     </ControlDataInsertion>
 </TestCase>
