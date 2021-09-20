@@ -90,7 +90,6 @@
     <Folder Include="TestCases\StudentHistoryDim\MSSQL\" />
     <Folder Include="TestCases\StudentHistoryDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentProgramCohortDim\MSSQL\" />
-    <Folder Include="TestCases\StudentProgramCohortDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentProgramDim\MSSQL\" />
     <Folder Include="TestCases\StudentProgramDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentSchoolDemographicsBridge\MSSQL\" />
