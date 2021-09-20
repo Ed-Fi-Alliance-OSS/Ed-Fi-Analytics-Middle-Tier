@@ -4,6 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
@@ -734,6 +735,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAbsentFromSchoolUnexcused_0.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+            [Test]
+            public void Then_should_have_IsAbsentFromHomeroomUnexcused_0()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"This testcase validates a filter from Data Standard 3x.");
+                }
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAbsentFromHomeroomUnexcused_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            //
+        }
+
+        public class Given_student_early_warning_fact_189936_867530023_20110820
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_fact_189936_867530023_20110820(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189936_867530023_20110820";
+
+            [Test]
+            public void Then_should_not_return_records()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_student_early_warning_189889_867530022_20120502
@@ -741,6 +772,72 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
         {
             public Given_student_early_warning_189889_867530022_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private const string _caseIdentifier = "189889_867530022_20120502";
+
+            [Test]
+            public void Then_should_have_CountByDayOfConductOffenses_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_CountByDayOfConductOffenses_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_CountByDayOfStateOffenses_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_CountByDayOfStateOffenses_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_fact_236165_867530063_20120525
+         : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_fact_236165_867530063_20120525(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "236165_867530063_20120525";
+
+            [Test]
+            public void Then_should_have_IsAbsentFromHomeroomExcused_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAbsentFromHomeroomExcused_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_IsAbsentFromHomeroomUnexcused_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsAbsentFromHomeroomUnexcused_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_IsPresentHomeroom_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsPresentHomeroom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_CountByDayOfConductOffenses_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentEarlyWarningFact>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_CountByDayOfConductOffenses_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_student_early_warning_fact_189871_867530011_20120502
+          : When_querying_the_StudentEarlyWarningFact_view
+        {
+            public Given_student_early_warning_fact_189871_867530011_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189871_867530011_20120502";
 
             [Test]
             public void Then_should_have_CountByDayOfConductOffenses_0()
