@@ -14,7 +14,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentDisciplineActionDim_view : When_querying_a_view_ds3
+    public abstract class When_querying_the_StudentDisciplineActionDim_view : When_querying_a_view_postgres_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentDisciplineActionDim";
         protected const string TestCasesDataFileName = "0000_StudentDisciplineActionDim_Data_Load.xml";
@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTe
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentDisciplineActionDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentDisciplineActionDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
