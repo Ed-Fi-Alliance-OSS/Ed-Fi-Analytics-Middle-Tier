@@ -9,6 +9,6 @@
       WHERE StudentObjectiveAssessmentKey='392-Seventh grade Mathematics-48-MP-2013-Mathematics-Seventh grade-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <ReportingMethod>RIT scale score</ReportingMethod>
+      <ReportingMethod>Achievement/proficiency level</ReportingMethod>
   </Result>
 </TestCase>
