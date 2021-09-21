@@ -14,7 +14,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolFoodServiceProgramDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentSchoolFoodServiceProgramDim_view : When_querying_a_view_postgres
+    public abstract class When_querying_the_StudentSchoolFoodServiceProgramDim_view : When_querying_a_view_postgres_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolFoodServiceProgramDim";
         protected const string TestCasesDataFileName = "0000_StudentSchoolFoodServiceProgramDim_Data_Load.xml";
