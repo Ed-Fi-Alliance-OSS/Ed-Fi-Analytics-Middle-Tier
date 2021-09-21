@@ -6,7 +6,7 @@
     <Query>
         SELECT ReportedAsIsPresentInAllSections
         FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
-        WHERE StudentKey = '189889' AND SchoolKey='867530022' AND DateKey=20111205;
+        WHERE StudentKey = '189889' AND SchoolKey='867530022' AND DateKey='20111205';
     </Query>
     <Result>
         <ReportedAsIsPresentInAllSections>0</ReportedAsIsPresentInAllSections>

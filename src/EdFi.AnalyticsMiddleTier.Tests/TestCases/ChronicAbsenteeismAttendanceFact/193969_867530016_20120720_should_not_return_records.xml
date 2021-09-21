@@ -4,9 +4,9 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT COUNT(1) AS CountValue
-        FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
-        WHERE StudentKey = '193968' AND SchoolKey='867530015' AND DateKey='20120520';
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+      WHERE StudentKey = '193969' AND SchoolKey='867530016' AND DateKey='20120720';
     </Query>
     <Result>
         <CountValue>0</CountValue>

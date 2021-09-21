@@ -6,7 +6,7 @@
     <Query>
         SELECT SchoolKey
         FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
-        WHERE StudentKey = '193965' AND SchoolKey='867530013' AND DateKey=20120520;
+        WHERE StudentKey = '193965' AND SchoolKey='867530013' AND DateKey='20120520';
     </Query>
     <Result>
         <SchoolKey>867530013</SchoolKey>

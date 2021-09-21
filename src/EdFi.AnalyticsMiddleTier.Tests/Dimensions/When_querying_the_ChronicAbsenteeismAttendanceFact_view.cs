@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendanceFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_ChronicAbsenteeismAttendanceFact_view : When_querying_a_view
+    public abstract class When_querying_the_ChronicAbsenteeismAttendanceFact_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.ChronicAbsenteeismAttendanceFact";
         protected const string TestCasesDataFileName = "0000_ChronicAbsenteeismAttendanceFact_Data_Load.xml";
@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -288,6 +288,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             public void Then_should_have_StudentSchoolKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_chronic_absenteeism_attendance_fact_193969_867530016_20120720
+         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_193969_867530016_20120720(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "193969_867530016_20120720";
+            [Test]
+            public void Then_should_not_return_records()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_not_return_records.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -627,6 +640,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<CountResult>(
                         $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_chronic_absenteeism_attendance_fact_189854_867530011_20110822
+            : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_189854_867530011_20110822(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189854_867530011_20110822";
+
+            [Test]
+            public void Then_should_not_return_records()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_not_return_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_chronic_absenteeism_attendance_fact_200011_867530174_20140502
+            : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_200011_867530174_20140502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "200011_867530174_20140502";
+
+            [Test]
+            public void Then_should_have_ReportedAsAbsentFromSchool_1()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromSchool_1.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

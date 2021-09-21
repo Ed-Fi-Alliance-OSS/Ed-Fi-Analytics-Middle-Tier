@@ -4,9 +4,9 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT ReportedAsAbsentFromSchool
-        FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
-        WHERE StudentKey = '200099' AND SchoolKey='867530174' AND DateKey='20111103';
+      SELECT ReportedAsAbsentFromSchool
+      FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+      WHERE StudentKey = '200011' AND SchoolKey='867530174' AND DateKey='20140502';
     </Query>
     <Result>
         <ReportedAsAbsentFromSchool>1</ReportedAsAbsentFromSchool>
