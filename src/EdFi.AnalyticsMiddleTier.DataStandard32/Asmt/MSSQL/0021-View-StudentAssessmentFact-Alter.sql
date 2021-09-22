@@ -70,17 +70,9 @@ SELECT
     School.SchoolId AS SchoolKey, 
     CONVERT(VARCHAR, StudentAssessment.AdministrationDate, 112) AS AdministrationDate, 
     COALESCE(WhenAssessedGradeLevelDescriptor.CodeValue,'') as AssessedGradeLevel,
-    
-	--COALESCE(StudentAssessmentScoreResult.Result, StudentAssessmentStudentObjectiveAssessmentScoreResult.Result, '') AS StudentScore, 
 	COALESCE(StudentAssessmentStudentObjectiveAssessmentScoreResult.Result, StudentAssessmentScoreResult.Result, '') AS StudentScore, 
-    
-	--COALESCE(ResultDatatypeTypeDescriptorDist.Description, ResultDescriptor.Description, '') AS ResultDataType, 
 	COALESCE(ResultDescriptor.Description, ResultDatatypeTypeDescriptorDist.Description, '') AS ResultDataType, 
-    
-	--COALESCE(AssessmentReportingMethodDescriptorDist.Description, ReportingMethodDescriptor.Description, '') AS ReportingMethod, 
 	COALESCE(ReportingMethodDescriptor.Description, AssessmentReportingMethodDescriptorDist.Description, '') AS ReportingMethod, 
-    
-	--COALESCE(PerformanceLevelDescriptorDist.Description, PerformanceLevelDescriptorObj.Description, '') AS PerformanceResult
 	COALESCE(PerformanceLevelDescriptorObj.Description, PerformanceLevelDescriptorDist.Description, '') AS PerformanceResult
 FROM
 	edfi.StudentAssessment
