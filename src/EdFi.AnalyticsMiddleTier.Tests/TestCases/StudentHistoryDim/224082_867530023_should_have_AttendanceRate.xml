@@ -9,6 +9,6 @@
       WHERE StudentSchoolKey = '224082-867530023';
   </Query>
   <Result>
-      <AttendanceRate>66.6666666666666667</AttendanceRate>
+      <AttendanceRate>66.67</AttendanceRate>
   </Result>
 </TestCase>
