@@ -20,23 +20,23 @@ CREATE FUNCTION analytics.fn_GetStudentGradesSummary (
 RETURNS VARCHAR(8000)
 AS
 BEGIN
- DECLARE @val VARCHAR(8000)
+    DECLARE @val VARCHAR(8000)
 
- SELECT  @val = COALESCE(@VAL, '') + (
+    SELECT @val = COALESCE(@VAL, '') + (
             CAST(CONCAT (
                     ', '
-					,CHAR(10)
+                    ,CHAR(10)
                     ,course.CourseTitle
                     ,': '
                     ,gradeFact.NumericGradeEarned
                     ) AS VARCHAR(8000))
             )
     FROM edfi.Student
-	INNER JOIN  edfi.Grade gradeFact
+    INNER JOIN edfi.Grade gradeFact
         ON gradeFact.StudentUSI = Student.StudentUSI
     INNER JOIN edfi.CourseOffering
-        ON /*CourseOffering.SchoolId = gradeFact.SchoolId
-         --   AND*/ CourseOffering.LocalCourseCode = gradeFact.LocalCourseCode
+        ON CourseOffering.SchoolId = gradeFact.SchoolId
+            AND CourseOffering.LocalCourseCode = gradeFact.LocalCourseCode
             AND CourseOffering.SchoolYear = gradeFact.SchoolYear
             AND CourseOffering.SessionName = gradeFact.SessionName
     INNER JOIN edfi.Course
@@ -44,10 +44,17 @@ BEGIN
             AND Course.EducationOrganizationId = CourseOffering.EducationOrganizationId
     INNER JOIN edfi.Descriptor
         ON GradeTypeDescriptorId = Descriptor.DescriptorId
+    INNER JOIN edfi.GradingPeriod
+        ON gradeFact.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
+            AND gradeFact.GradingPeriodSequence = GradingPeriod.PeriodSequence
+            AND gradeFact.SchoolId = GradingPeriod.SchoolId
+            AND gradeFact.GradingPeriodSchoolYear = GradingPeriod.SchoolYear
     WHERE Descriptor.CodeValue IN ('Semester')
         AND Student.StudentUniqueId = @StudentKey
         AND gradeFact.SchoolId = @SchoolKey
-    ORDER BY gradeFact.SchoolYear DESC, course.CourseTitle DESC,gradeFact.NumericGradeEarned DESC;
+    ORDER BY gradeFact.GradingPeriodDescriptorId DESC
+        ,gradeFact.SchoolId DESC
+        ,GradingPeriod.BeginDate DESC;
 
-    RETURN STUFF(COALESCE(@val,''),1,3,'');
+    RETURN COALESCE(STUFF(COALESCE(@val, ''), 1, 3, ''),'');
 END

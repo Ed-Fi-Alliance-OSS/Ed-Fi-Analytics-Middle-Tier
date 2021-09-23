@@ -23,7 +23,7 @@ CREATE
                             ,': '
                             ,gradeFact.NumericGradeEarned
                             ) AS VARCHAR(8000)), CONCAT(', ','') 
-                      ORDER BY studentSectionDim.SchoolYear DESC, studentSectionDim.CourseTitle DESC,gradeFact.NumericGradeEarned DESC) AS GradeSummary
+                      ORDER BY gradeFact.GradingPeriodKey DESC) AS GradeSummary
             FROM analytics.ews_StudentSectionGradeFact gradeFact
             INNER JOIN analytics.StudentSectionDim studentSectionDim
                 ON gradeFact.StudentSectionKey = studentSectionDim.StudentSectionKey
