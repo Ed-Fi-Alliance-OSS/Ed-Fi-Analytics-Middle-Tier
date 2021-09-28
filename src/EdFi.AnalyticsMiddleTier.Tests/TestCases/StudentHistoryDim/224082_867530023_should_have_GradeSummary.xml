@@ -9,8 +9,7 @@
       WHERE StudentSchoolKey = '224082-867530023';
   </Query>
   <Result>
-      <GradeSummary>
-          Lang O/T Eng Lvl Iii (1 Unit) - Spanish: 82.00, Lang O/T Eng Lvl Iii (1 Unit) - Spanish: 82.00, Lang O/T Eng Lvl Iii (1 Unit) - Spanish: 76.00
+      <GradeSummary>Lang O/T Eng Lvl Iii (1 Unit) - Spanish: 76.00, Lang O/T Eng Lvl Iii (1 Unit) - Spanish: 82.00, Lang O/T Eng Lvl Iii (1 Unit) - Spanish: 82.00
       </GradeSummary>
   </Result>
 </TestCase>
