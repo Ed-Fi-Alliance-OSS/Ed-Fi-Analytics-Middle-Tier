@@ -18,5 +18,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             return _variables[key];
         }
+
+        public bool HasValue(string key)
+        {
+            return _variables.ContainsKey(key);
+        }
     }
 }

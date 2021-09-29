@@ -4,7 +4,10 @@
     {
         public override string ToString()
         {
-            return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
+            if (UseDefaultConnString)
+                return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi";
+            else
+                return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
         }
     }
 
@@ -12,7 +15,10 @@
     {
         public override string ToString()
         {
-            return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
+            if (UseDefaultConnString)
+                return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds31;integrated security=sspi";
+            else
+                return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
         }
     }
 
@@ -20,24 +26,37 @@
     {
         public override string ToString()
         {
-            return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";
+            if (UseDefaultConnString)
+                return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds32;integrated security=sspi";
+            else
+                return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";
         }
     }
 
     public abstract class SQLServerConnectionString
     {
-        protected string Server => new DotEnvHelper().Value("SQLSERVER_SERVER");
+        protected DotEnvHelper dotEnvHelper;
 
-        public string Database_ds2 => new DotEnvHelper().Value("SQLSERVER_DATABASE_DS2");
+        public SQLServerConnectionString()
+        {
+            dotEnvHelper = new DotEnvHelper();
+        }
 
-        public string Database_ds31 => new DotEnvHelper().Value("SQLSERVER_DATABASE_DS31");
+        protected bool UseDefaultConnString => !dotEnvHelper.HasValue("USE_MSSQL_DEFAULT_CONN_STRING")
+                    || dotEnvHelper.Value("USE_MSSQL_DEFAULT_CONN_STRING").ToLower() == "true";
 
-        public string Database_ds32 => new DotEnvHelper().Value("SQLSERVER_DATABASE_DS32");
+        protected string Server => dotEnvHelper.Value("SQLSERVER_SERVER");
 
-        protected string Integrated_security => new DotEnvHelper().Value("SQLSERVER_INTEGRATED_SECURITY");
+        public string Database_ds2 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS2");
 
-        protected string User => new DotEnvHelper().Value("SQLSERVER_USER");
+        public string Database_ds31 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS31");
 
-        protected string Pass => new DotEnvHelper().Value("SQLSERVER_PASS");
+        public string Database_ds32 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS32");
+
+        protected string Integrated_security => dotEnvHelper.Value("SQLSERVER_INTEGRATED_SECURITY");
+
+        protected string User => dotEnvHelper.Value("SQLSERVER_USER");
+
+        protected string Pass => dotEnvHelper.Value("SQLSERVER_PASS");
     }
 }
