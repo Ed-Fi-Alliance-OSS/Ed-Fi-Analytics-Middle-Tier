@@ -21,5 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public int LocalEducationAgencyKey { get; set; } //(int, null)
         public string Description { get; set; } //(nvarchar(75), null)
         public DateTime LastModifiedDate { get; set; } //(datetime, null)
+
+        public string SessionKey { get; set; }
     }
 }

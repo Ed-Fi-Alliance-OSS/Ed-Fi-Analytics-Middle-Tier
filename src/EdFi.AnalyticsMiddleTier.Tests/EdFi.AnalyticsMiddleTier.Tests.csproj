@@ -73,7 +73,6 @@
     <Folder Include="TestCases\GradingPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\LocalEducationAgencyDim\MSSQL\" />
     <Folder Include="TestCases\SchoolDim\MSSQL\" />
-    <Folder Include="TestCases\SectionDim\MSSQL\" />
     <Folder Include="TestCases\SectionDim\PostgreSQL\" />
     <Folder Include="TestCases\StaffSectionDim\MSSQL\" />
     <Folder Include="TestCases\StaffSectionDim\PostgreSQL\" />
