@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
         protected string _databaseName;
-
+        
         protected string _dataStandardBaseVersion;
 
         protected string _dataStandardFolderName;
@@ -41,7 +41,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        public virtual string _connectionString => string.Empty;
+        public string _connectionString;
 
         protected IOrm _orm { get; set; }
 
@@ -54,8 +54,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 if (_orm == null)
                 {
                     _orm = DataStandardEngine == Engine.PostgreSQL 
-                            ? new DapperWrapper(new NpgsqlConnection(_connectionString))
-                            : _orm = new DapperWrapper(new SqlConnection(_connectionString));
+                            ? new DapperWrapper(new NpgsqlConnection(_connectionString.ToString()))
+                            : _orm = new DapperWrapper(new SqlConnection(_connectionString.ToString()));
                 }
 
                 return _orm;
@@ -140,7 +140,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public (bool success, string errorMessage) Install(int timeoutSeconds = 30, params Component[] components)
         {
-            return InstallDelegate(_connectionString, timeoutSeconds, components);
+            return InstallDelegate(_connectionString.ToString(), timeoutSeconds, components);
         }
 
         public (bool success, string errorMessage) Uninstall()
