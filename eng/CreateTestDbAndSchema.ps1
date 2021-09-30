@@ -28,14 +28,41 @@
         Specifies the script path for creating the database objects.
 
         .INPUTS
-        None. You cannot pipe objects to Add-Extension.
+        None. You cannot pipe objects to CreateTestDbAndSchema.ps1.
 
+        .OUTPUTS
+        None. CreateTestDbAndSchema.ps1 does not generate any output.
+        
         .EXAMPLE
         PS> .\CreateTestDbAndSchema.ps1 -d edfi_ods_tests -s "EdFi.Ods.Minimal.Template.sql"
-
+        dropping db if it exists
+        creating db
+        Running migration on db
+        ...
         .EXAMPLE
         PS> PS> .\CreateTestDbAndSchema.ps1 -pghost localhost -d edfi_ods_tests -s "EdFi.Ods.Minimal.Template.sql"
-
+        dropping db if it exists
+        creating db
+        Running migration on db
+        ...
+        .EXAMPLE
+        PS> PS> .\CreateTestDbAndSchema.ps1 -pghost localhost -port 5432 -d edfi_ods_tests -s "EdFi.Ods.Minimal.Template.sql"
+        dropping db if it exists
+        creating db
+        Running migration on db
+        ...
+        .EXAMPLE
+        PS> PS> .\CreateTestDbAndSchema.ps1 -pghost localhost -user dbUser -d edfi_ods_tests -s "EdFi.Ods.Minimal.Template.sql"
+        dropping db if it exists
+        creating db
+        Running migration on db
+        ...
+        .EXAMPLE
+        PS> PS> .\CreateTestDbAndSchema.ps1 -pghost localhost -port 5432 -d edfi_ods_tests -s "EdFi.Ods.Minimal.Template.sql"
+        dropping db if it exists
+        creating db
+        Running migration on db
+        ...
     #>
 param ( [string][Alias('h')]$pghost="localhost",
 		[string][Alias('u')]$user="postgres",
