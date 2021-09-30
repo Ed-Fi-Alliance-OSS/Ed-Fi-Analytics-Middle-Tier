@@ -120,7 +120,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SectionDimTestGroup
             [Test]
             public void Then_should_have_SessionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_SessionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.{_caseIdentifier}_should_have_SessionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
