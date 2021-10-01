@@ -14,7 +14,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_AssessmentFact_view : When_querying_a_view_ds3
+    public abstract class When_querying_the_AssessmentFact_view : When_querying_a_view_postgres_ds3 // When_querying_a_view_postgres //
     {
         protected const string TestCasesFolder = "TestCases.AssessmentFact";
         protected const string TestCasesDataFileName = "0000_AssessmentFact_Data_Load.xml";
@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_AssessmentFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_AssessmentFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -38,16 +38,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
             public Given_assessment_2s3ch0knpb4val7uqve6mn269bavkdx2(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "2s3ch0knpb4val7uqve6mn269bavkdx2";
-
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
 
             [Test]
             public void Then_should_return_one_record()
@@ -162,16 +152,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 
             private const string _caseIdentifier = "3s4ch0knpb4va28uqve6mn269bavkdx2";
 
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
-
             [Test]
             public void Then_should_return_one_record()
             {
@@ -263,16 +243,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 
             private const string _caseIdentifier = "3s4ch0knpb4va28uqve6mn269bavkdx3";
 
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The AssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
-
             [Test]
             public void Then_should_return_one_record()
             {
@@ -287,16 +257,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
             public Given_assessment_14707154_4B38_473B_8C74_14804BA75595(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "14707154_4B38_473B_8C74_14804BA75595";
-
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
 
             [Test]
             public void Then_should_return_one_record()
@@ -382,16 +342,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 
             private const string _caseIdentifier = "405F31A9_7F57_45C5_A3FC_941041D2C1D9";
 
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
-
             [Test]
             public void Then_should_return_one_record()
             {
@@ -462,16 +412,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 
             private const string _caseIdentifier = "C793689F_593D_4B92_85C9_B563A53B87CD";
 
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
-
             [Test]
             public void Then_should_have_MaxScore()
             {
@@ -494,16 +434,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
 
             private const string _caseIdentifier = "C793689F_593D_4B92_85C9_B563A53B87CB";
 
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
-
             [Test]
             public void Then_should_return_one_record()
             {
@@ -518,16 +448,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
             public Given_assessment_MP_2013_Mathematics_Seventh_grade(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "MP_2013_Mathematics_Seventh_grade";
-
-            [SetUp]
-            public void IgnoreTestCase()
-            {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
-                {
-                    Assert.Ignore(
-                        $"The ObjectiveAssessmentDim view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
-                }
-            }
 
             [Test]
             public void Then_should_return_one_record()
