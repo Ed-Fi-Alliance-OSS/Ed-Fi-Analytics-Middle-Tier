@@ -76,8 +76,6 @@
     <Folder Include="TestCases\SectionDim\PostgreSQL\" />
     <Folder Include="TestCases\StaffSectionDim\MSSQL\" />
     <Folder Include="TestCases\StaffSectionDim\PostgreSQL\" />
-    <Folder Include="TestCases\StudentAssessmentFact\MSSQL\" />
-    <Folder Include="TestCases\StudentAssessmentFact\PostgreSQL\" />
     <Folder Include="TestCases\StudentDataAuthorization\MSSQL\" />
     <Folder Include="TestCases\StudentDataAuthorization\PostgreSQL\" />
     <Folder Include="TestCases\StudentDisciplineActionDim\MSSQL\" />
