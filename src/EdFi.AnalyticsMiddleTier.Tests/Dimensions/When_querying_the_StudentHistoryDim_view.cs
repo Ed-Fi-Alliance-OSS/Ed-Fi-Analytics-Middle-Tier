@@ -176,6 +176,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentHistoryDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AttendanceRate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+            [Test]
+            public void Then_should_have_GradeSummary()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentHistoryDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_GradeSummary.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_StudentHistoryDim_197174_867530023
