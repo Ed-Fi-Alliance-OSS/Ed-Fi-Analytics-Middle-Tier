@@ -300,4 +300,11 @@ from
 commit
 
 
-select * from edfi.StudentSectionAssociation where studentusi = 10809
+-- Update various dates so that they fit inside of actual grading periods.
+begin tran;
+update lmsx.Assignment set DueDateTime = dateadd(year, -4, DueDateTime)
+update lmsx.Assignment set DueDateTime = '2017-09-08' where DueDateTime between '2017-10-01 00:00:00.0000000' and '2019-01-08 00:00:00.0000000'
+update lmsx.Assignment set DueDateTime = '2018-01-03' where DueDateTime < '2018-01-02' and SessionName = '2017 - 2018 Spring Semester'
+
+--rollback
+commit
