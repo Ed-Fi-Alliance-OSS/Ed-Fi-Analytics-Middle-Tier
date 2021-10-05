@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT PercentOfAssessment
-      FROM analytics.asmt_AssessmentFact
-      WHERE ObjectiveAssessmentKey = 'MP-2013-Mathematics-Seventh grade-Seventh grade Mathematics-38-uri://ed-fi.org/Assessment/Assessment.xml';
+    SELECT FLOOR(PercentOfAssessment) AS PercentOfAssessment
+    FROM analytics.asmt_AssessmentFact
+    WHERE ObjectiveAssessmentKey = 'MP-2013-Mathematics-Seventh grade-Seventh grade Mathematics-38-uri://ed-fi.org/Assessment/Assessment.xml';
   </Query>
   <Result>
-      <PercentOfAssessment>0.0000</PercentOfAssessment>
+      <PercentOfAssessment>0</PercentOfAssessment>
   </Result>
 </TestCase>
