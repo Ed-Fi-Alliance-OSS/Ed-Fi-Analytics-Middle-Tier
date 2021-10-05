@@ -190,7 +190,7 @@ AS SNAPSHOT OF {_databaseName}
 
         public override IDbConnection OpenConnection()
         {
-            IDbConnection connection = new SqlConnection(_connectionString.ToString());
+            IDbConnection connection = new SqlConnection(_connectionString);
             connection.Open();
             return connection;
         }
