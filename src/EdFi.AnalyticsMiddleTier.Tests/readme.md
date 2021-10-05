@@ -47,12 +47,12 @@ The database must exist before the tests can be executed. The tests framework do
 This is a very important setting. Internally the project has a hardcoded connection string. If you don’t change this value, then the rest of the settings will be ignored. This is the connection string used internally hardcoded: 
 `User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false;`
 
-`POSTGRES_HOST` = The host to connect to.
-`POSTGRES_DATABASE` = The PostgreSQL database to connect to. Remember, all data here will be deleted.
-`POSTGRES_PORT` = Port used to get connected to Postgres.
-`POSTGRES_USER` = The username to connect with.
-`POSTGRES_PASS` = The password to connect with.
-`POSTGRES_POOLING` = Whether connection pooling should be used.
+`POSTGRES_HOST` = The host to connect to.  
+`POSTGRES_DATABASE` = The PostgreSQL database to connect to. Remember, all data here will be deleted.  
+`POSTGRES_PORT` = Port used to get connected to Postgres.  
+`POSTGRES_USER` = The username to connect with.  
+`POSTGRES_PASS` = The password to connect with.  
+`POSTGRES_POOLING` = Whether connection pooling should be used.  
 
 ### MS SQL
 
@@ -69,10 +69,10 @@ This is a very important setting. Internally the project has a hardcoded connect
 
 `server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi`
 
-`SQLSERVER_SERVER` = The host to connect to.
-`SQLSERVER_DATABASE_DS2` = The database with Data Standard 2 to connect to.
-`SQLSERVER_DATABASE_DS31` = The database with Data Standard 3.1 to connect to.
-`SQLSERVER_DATABASE_DS32` = The database with Data Standard 3.2 to connect to.
-`SQLSERVER_INTEGRATED_SECURITY` = The type of user authentication. True corresponds to “Windows Authentication”, and False corresponds to “SQL Server Authentication”;
-`SQLSERVER_USER` = The username to connect with.
-`SQLSERVER_PASS` = The password to connect with.
+`SQLSERVER_SERVER` = The host to connect to.  
+`SQLSERVER_DATABASE_DS2` = The database with Data Standard 2 to connect to.  
+`SQLSERVER_DATABASE_DS31` = The database with Data Standard 3.1 to connect to.  
+`SQLSERVER_DATABASE_DS32` = The database with Data Standard 3.2 to connect to.  
+`SQLSERVER_INTEGRATED_SECURITY` = The type of user authentication. True corresponds to “Windows Authentication”, and False corresponds to “SQL Server Authentication”;  
+`SQLSERVER_USER` = The username to connect with.  
+`SQLSERVER_PASS` = The password to connect with.  
