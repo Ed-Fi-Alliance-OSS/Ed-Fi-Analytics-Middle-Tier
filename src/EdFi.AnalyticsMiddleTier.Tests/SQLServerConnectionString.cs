@@ -9,6 +9,17 @@
             else
                 return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
         }
+
+        public string Database
+        {
+            get
+            {
+                if (UseDefaultConnString)
+                    return "AnalyticsMiddleTier_Testing_Ds2";
+                else
+                    return Database_ds2;
+            }
+        }
     }
 
     public class SQLServerConnectionStringDS31 : SQLServerConnectionString
@@ -20,6 +31,17 @@
             else
                 return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
         }
+
+        public string Database
+        {
+            get
+            {
+                if (UseDefaultConnString)
+                    return "AnalyticsMiddleTier_Testing_Ds31";
+                else
+                    return Database_ds31;
+            }
+        }
     }
 
     public class SQLServerConnectionStringDS32 : SQLServerConnectionString
@@ -30,6 +52,17 @@
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds32;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";
+        }
+
+        public string Database
+        {
+            get
+            {
+                if (UseDefaultConnString)
+                    return "AnalyticsMiddleTier_Testing_Ds32";
+                else
+                    return Database_ds32;
+            }
         }
     }
 

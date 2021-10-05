@@ -16,7 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public string Value(string key)
         {
-            return _variables[key];
+            return _variables.ContainsKey(key) ? _variables[key] : null;
         }
 
         public bool HasValue(string key)
