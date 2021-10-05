@@ -48,7 +48,7 @@
 
   <ItemGroup>
     <None Update=".env.example">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="EdFi_Ods_2.0.dacpac">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -100,5 +100,9 @@
     <Folder Include="TestCases\UserDim\MSSQL\" />
     <Folder Include="TestCases\UserStudentDataAuthorization\MSSQL\" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="IF EXIST .env del $(OutputPath)\.env&#xD;&#xA;IF EXIST .env xcopy .env $(OutputPath)\ /Y" />
+  </Target>
 
 </Project>
