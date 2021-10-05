@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
         protected string _databaseName;
-
+        
         protected string _dataStandardBaseVersion;
 
         protected string _dataStandardFolderName;
@@ -41,7 +41,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        public virtual string _connectionString => string.Empty;
+        public string _connectionString;
 
         protected IOrm _orm { get; set; }
 

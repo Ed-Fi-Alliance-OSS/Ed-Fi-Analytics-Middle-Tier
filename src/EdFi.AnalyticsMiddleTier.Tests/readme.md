@@ -28,3 +28,51 @@ done once, following steps defined [here in
 TechDocs](https://techdocs.ed-fi.org/pages/viewpage.action?pageId=98570706). The
 remaining steps are the same for running the migration utility and running the
 tests.
+
+# Alternate Connection Information: 
+By way of an env file, the project offers the possibility of setup up alternate connection string information, such as host, database, username, password, etc.
+There are a few considerations to make, when using these settings.
+
+### Postgres
+
+Every time a new scenario is executed, the database is reset. Particularly for Postgres this means the project executes a Truncate statement on all the tables in the databases that belong to the schemas `edfi` and `analytics_config`. It’s very important to know this, because whatever data in this database exists, is going to be deleted. 
+
+At this point Postgres has been implemented for Data Standard 3.2 only. Therefore, just one database can be configured. This means you must make sure the database configured contains this data standard. 
+
+The database must exist before the tests can be executed. The tests framework doesn’t create the database for Postgres.
+
+##### The settings
+
+`USE_POSTGRES_DEFAULT_CONN_STRING` = Whether we want to use the default connection string. By default it’s set to `TRUE`. 
+This is a very important setting. Internally the project has a hardcoded connection string. If you don’t change this value, then the rest of the settings will be ignored. This is the connection string used internally hardcoded: 
+`User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false;`
+
+`POSTGRES_HOST` = The host to connect to.  
+`POSTGRES_DATABASE` = The PostgreSQL database to connect to. Remember, all data here will be deleted.  
+`POSTGRES_PORT` = Port used to get connected to Postgres.  
+`POSTGRES_USER` = The username to connect with.  
+`POSTGRES_PASS` = The password to connect with.  
+`POSTGRES_POOLING` = Whether connection pooling should be used.  
+
+### MS SQL
+
+The database reset process works very different for SQL Server. 
+
+When the database configured doesn’t exist, the framework creates it.
+
+To create the databases a dacpac file is used. These files are part of the project. 
+Specifically, to reset the database, for SQL Server we use snapshots of the database, instead of executing a truncate on all tables, which is what we do for Postgres. 
+
+##### The settings
+`USE_MSSQL_DEFAULT_CONN_STRING` = Whether we want to use the default connection string. By default it’s set to `TRUE`. 
+This is a very important setting. Internally the project has a hardcoded connection string. If you don’t change this value, then the rest of the settings will be ignored. This is the connection string used internally hardcoded: 
+
+`server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi`
+
+`SQLSERVER_SERVER` = The host to connect to.  
+`SQLSERVER_DATABASE_DS2` = The database with Data Standard 2 to connect to.  
+`SQLSERVER_DATABASE_DS31` = The database with Data Standard 3.1 to connect to.  
+`SQLSERVER_DATABASE_DS32` = The database with Data Standard 3.2 to connect to.  
+`SQLSERVER_INTEGRATED_SECURITY` = The type of user authentication. True corresponds to “Windows Authentication”, and False corresponds to “SQL Server Authentication”;  
+`SQLSERVER_USER` = The username to connect with.  
+`SQLSERVER_PASS` = The password to connect with.  

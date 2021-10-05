@@ -19,9 +19,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessSQLServer : TestHarnessBase
     {
-        public override string _connectionString =>
-                $"server=localhost;database={_databaseName};integrated security=sspi";
-
         public TestHarnessSQLServer()
         {
             DataStandardEngine = Engine.MSSQL;
@@ -31,21 +28,23 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             _dataStandardBaseVersion = "v_2",
             _dataStandardVersionName = "2",
-            _databaseName = "AnalyticsMiddleTier_Testing_Ds2",
+            _databaseName = new SQLServerConnectionStringDS2().Database,
             _dacpacName = "EdFi_Ods_2.0.dacpac",
             _dataStandardInstallType = typeof(Install),
-            DataStandardVersion = DataStandard.Ds2
-        };
+            DataStandardVersion = DataStandard.Ds2,
+            _connectionString = new SQLServerConnectionStringDS2().ToString()
+    };
 
         public static TestHarnessSQLServer DataStandard31 = new TestHarnessSQLServer
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_1",
             _dataStandardFolderName = "3_1",
-            _databaseName = "AnalyticsMiddleTier_Testing_Ds31",
+            _databaseName = new SQLServerConnectionStringDS31().Database,
             _dacpacName = "EdFi_Ods_3.1.dacpac",
             _dataStandardInstallType = typeof(DataStandard31.Install),
-            DataStandardVersion = DataStandard.Ds31
+            DataStandardVersion = DataStandard.Ds31,
+            _connectionString = new SQLServerConnectionStringDS31().ToString()
         };
 
         public static TestHarnessSQLServer DataStandard32 = new TestHarnessSQLServer
@@ -53,11 +52,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
             _dataStandardFolderName = "3_1",
-            _databaseName = "AnalyticsMiddleTier_Testing_Ds32",
+            _databaseName = new SQLServerConnectionStringDS32().Database,
             _dacpacName = "EdFi_Ods_3.2.dacpac",
             DataStandardEngine = Engine.MSSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
-            DataStandardVersion = DataStandard.Ds32
+            DataStandardVersion = DataStandard.Ds32,
+            _connectionString = new SQLServerConnectionStringDS32().ToString()
         };
 
         private string _snapshotName => $"{_databaseName}_ss";

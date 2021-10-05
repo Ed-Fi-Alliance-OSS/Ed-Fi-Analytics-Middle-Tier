@@ -24,14 +24,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
             _dataStandardFolderName = "3_2",
-            _databaseName = "edfi_ods_tests",
             DataStandardEngine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
-            DataStandardVersion = DataStandard.Ds32
+            DataStandardVersion = DataStandard.Ds32,
+            _connectionString = new PostsgreConnectionStringDS32().ToString()
         };
-
-        public override string _connectionString =>
-            $"User ID=postgres;Host=localhost;Port=5432;Database={_databaseName};Pooling=false;";
 
         public override void PrepareDatabase()
         {
