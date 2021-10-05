@@ -53,7 +53,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public override IDbConnection OpenConnection()
         {
-            IDbConnection connection = new NpgsqlConnection(_connectionString.ToString());
+            IDbConnection connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             return connection;
         }

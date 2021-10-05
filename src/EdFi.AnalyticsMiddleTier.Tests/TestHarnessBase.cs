@@ -54,8 +54,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 if (_orm == null)
                 {
                     _orm = DataStandardEngine == Engine.PostgreSQL 
-                            ? new DapperWrapper(new NpgsqlConnection(_connectionString.ToString()))
-                            : _orm = new DapperWrapper(new SqlConnection(_connectionString.ToString()));
+                            ? new DapperWrapper(new NpgsqlConnection(_connectionString))
+                            : _orm = new DapperWrapper(new SqlConnection(_connectionString));
                 }
 
                 return _orm;
@@ -140,7 +140,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public (bool success, string errorMessage) Install(int timeoutSeconds = 30, params Component[] components)
         {
-            return InstallDelegate(_connectionString.ToString(), timeoutSeconds, components);
+            return InstallDelegate(_connectionString, timeoutSeconds, components);
         }
 
         public (bool success, string errorMessage) Uninstall()

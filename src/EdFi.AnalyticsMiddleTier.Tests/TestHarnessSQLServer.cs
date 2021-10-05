@@ -128,7 +128,7 @@ END
 
                 void LoadDacpac()
                 {
-                    var dacService = new DacServices(_connectionString.ToString());
+                    var dacService = new DacServices(_connectionString);
                     using (var dacpac = DacPackage.Load(GetDacFilePath()))
                     {
                         dacService.Deploy(dacpac, _databaseName, true, CreateDeployOptions());
