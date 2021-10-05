@@ -15,7 +15,7 @@
     {
         protected  DotEnvHelper dotEnvHelper;
 
-        public PostgresConnectionString()
+        protected PostgresConnectionString()
         {
             dotEnvHelper = new DotEnvHelper();
         }

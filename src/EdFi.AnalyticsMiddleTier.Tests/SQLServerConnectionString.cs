@@ -70,7 +70,7 @@
     {
         protected DotEnvHelper dotEnvHelper;
 
-        public SQLServerConnectionString()
+        protected SQLServerConnectionString()
         {
             dotEnvHelper = new DotEnvHelper();
         }
