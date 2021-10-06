@@ -64,8 +64,6 @@
   <ItemGroup>
     <Folder Include="TestCases\AcademicTimePeriodDim\MSSQL\" />
     <Folder Include="TestCases\AcademicTimePeriodDim\PostgreSQL\" />
-    <Folder Include="TestCases\ClassPeriodDim\MSSQL\" />
-    <Folder Include="TestCases\ClassPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\ContactPersonDim\MSSQL\" />
     <Folder Include="TestCases\DateDim\MSSQL\" />
     <Folder Include="TestCases\DateDim\PostgreSQL\" />
