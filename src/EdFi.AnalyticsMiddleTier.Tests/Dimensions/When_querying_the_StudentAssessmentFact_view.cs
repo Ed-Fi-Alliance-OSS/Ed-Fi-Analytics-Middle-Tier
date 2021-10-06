@@ -14,7 +14,7 @@ using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_StudentAssessmentFact_view : When_querying_a_view_ds3
+    public abstract class When_querying_the_StudentAssessmentFact_view : When_querying_a_view_postgres_ds3
     {
         protected const string TestCasesFolder = "TestCases.StudentAssessmentFact";
         protected const string TestCasesDataFileName = "0000_StudentAssessmentFact_Data_Load.xml";
@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.0001_StudentAssessmentFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentAssessmentFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
