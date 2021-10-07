@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT COLUMN_NAME AS ColumnName,
+      DATA_TYPE AS DataType
+      FROM information_schema.columns
+      WHERE table_schema = 'analytics'
+      AND table_name = 'classperioddim'
+      ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>classperiodkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sectionkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>classperiodname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>localcoursecode</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolid</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolyear</ColumnName>
+        <DataType>smallint</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sectionidentifier</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sessionname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+</TestCase>
