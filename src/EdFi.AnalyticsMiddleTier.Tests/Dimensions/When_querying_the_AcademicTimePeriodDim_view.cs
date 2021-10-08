@@ -12,7 +12,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_AcademicTimePeriodDim_view : When_querying_a_view
+    public abstract class When_querying_the_AcademicTimePeriodDim_view : When_querying_a_view_postgres
     {
         protected const string TestCasesFolder = "TestCases.AcademicTimePeriodDim";
         protected const string TestCasesDataFileName = "0000_AcademicTimePeriodDim_Data_Load.xml";
@@ -48,7 +48,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             public void Then_should_have_AcademicTimePeriodKey()
             {
                 
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AcademicTimePeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_AcademicTimePeriodKey.xml");
+               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AcademicTimePeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_AcademicTimePeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -56,7 +56,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             public void Then_should_have_GradingPeriodKey()
             {
                 (bool success, string errorMessage) testResult = DataStandard
-                    .RunTestCase<AcademicTimePeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_GradingPeriodKey.xml");
+                    .RunTestCase<AcademicTimePeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_GradingPeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -65,7 +65,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_IsCurrentSchoolYear.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_IsCurrentSchoolYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -74,7 +74,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate_based_on_GradingPeriod.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_LastModifiedDate_based_on_GradingPeriod.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -83,7 +83,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate_based_on_Session.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_LastModifiedDate_based_on_Session.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -92,7 +92,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_LastModifiedDate_based_on_SchoolYear.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_LastModifiedDate_based_on_SchoolYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -101,7 +101,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -110,7 +110,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolYear.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_SchoolYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -119,7 +119,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SchoolYearName.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_SchoolYearName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -128,7 +128,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SessionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_SessionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -137,7 +137,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_TermName.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.should_have_TermName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -146,7 +146,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.additional_join_condition_test.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.additional_join_condition_test.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
