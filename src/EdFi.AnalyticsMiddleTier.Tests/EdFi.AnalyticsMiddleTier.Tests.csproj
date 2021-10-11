@@ -64,8 +64,6 @@
   <ItemGroup>
     <Folder Include="TestCases\AcademicTimePeriodDim\MSSQL\" />
     <Folder Include="TestCases\AcademicTimePeriodDim\PostgreSQL\" />
-    <Folder Include="TestCases\ClassPeriodDim\MSSQL\" />
-    <Folder Include="TestCases\ClassPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\ContactPersonDim\MSSQL\" />
     <Folder Include="TestCases\DateDim\MSSQL\" />
     <Folder Include="TestCases\DateDim\PostgreSQL\" />
@@ -75,6 +73,7 @@
     <Folder Include="TestCases\GradingPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\LocalEducationAgencyDim\MSSQL\" />
     <Folder Include="TestCases\SchoolDim\MSSQL\" />
+    <Folder Include="TestCases\SectionDim\PostgreSQL\" />
     <Folder Include="TestCases\SectionDim\v_3\" />
     <Folder Include="TestCases\SectionDim\v_2\" />
     <Folder Include="TestCases\StaffSectionDim\MSSQL\" />

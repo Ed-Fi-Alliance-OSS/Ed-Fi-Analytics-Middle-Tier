@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT COLUMN_NAME AS ColumnName,
+      DATA_TYPE AS DataType
+      FROM information_schema.columns
+      WHERE table_schema = 'analytics'
+      AND table_name = 'staffsectiondim'
+      ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>staffsectionkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>userkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sectionkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>personaltitleprefix</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>stafffirstname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>staffmiddlename</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>stafflastname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>electronicmailaddress</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sex</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>birthdate</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>race</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>hispaniclatinoethnicity</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>highestcompletedlevelofeducation</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>yearsofpriorprofessionalexperience</ColumnName>
+        <DataType>numeric</DataType>
+    </Result>
+    <Result>
+        <ColumnName>yearsofpriorteachingexperience</ColumnName>
+        <DataType>numeric</DataType>
+    </Result>
+    <Result>
+        <ColumnName>highlyqualifiedteacher</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>loginid</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>lastmodifieddate</ColumnName>
+        <DataType>timestamp without time zone</DataType>
+    </Result>
+</TestCase>
