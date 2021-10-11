@@ -7,7 +7,7 @@
         SELECT COUNT(1) as CountValue
         FROM analytics.AcademicTimePeriodDim
         WHERE SessionName = 'SchoolYear is the last modified'
-        AND SchoolKey = 34;
+        AND SchoolKey = '34';
     </Query>
     <Result>
         <!-- if you comment out the SchoolId or PeriodSequence condition in the joins then an extra row will show up-->
