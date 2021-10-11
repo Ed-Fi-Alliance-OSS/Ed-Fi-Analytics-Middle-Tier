@@ -17,6 +17,7 @@ Toolkit](https://github.com/Ed-Fi-Alliance-OSS/LMS-Toolkit/tree/main/utils/amt-i
     file for simple before/after comparison.
   * [create-data-load](scripts/create-data-load): these scripts aided in creating the
     initial data sets for many of the unit test XML files.
+  * [perf-testing-script.ps1](scripts/perf-testing-script.ps1) : can query a list of views in SQL Server and Postgres a user specified number of times (5 by default) and then store average statistics about the number of columns and rows returned along with the execution time it takes to complete each of the queries into a CSV file.
   * [LMS-413-sample-data-for-ENGAGE-collection-on-Northridge.sql](scripts/LMS-413-sample-data-for-ENGAGE-collection-on-Northridge.sql):
     loads additional sample data into a Northridge  database to support
     performance testing of the `ENGAGE` collection (and possibly other).
