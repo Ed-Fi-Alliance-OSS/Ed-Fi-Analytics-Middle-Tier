@@ -6,11 +6,10 @@
     <Query>
         SELECT COUNT(1) as CountValue
         FROM analytics.AcademicTimePeriodDim
-        WHERE SessionName = 'SchoolYear is the last modified'
-        AND SchoolKey = 34;
+        WHERE SessionName = 'Grading period is the last modified'
+        AND SchoolYear = '2012'
     </Query>
     <Result>
-        <!-- if you comment out the SchoolId or PeriodSequence condition in the joins then an extra row will show up-->
         <CountValue>
             1
         </CountValue>
