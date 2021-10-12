@@ -53,8 +53,8 @@ namespace EdFi.AnalyticsMiddleTier.Console
                 string errorMessage;
                 IConnectionStringValidator connectionStringValidator;
                 if (options.DatabaseEngine == Engine.Default
-                        || options.DatabaseEngine == Engine.MSSQL 
-                        || options.DatabaseEngine == Engine.Sql 
+                        || options.DatabaseEngine == Engine.MSSQL
+                        || options.DatabaseEngine == Engine.Sql
                         || options.DatabaseEngine == Engine.Sqlserver)
                     connectionStringValidator = new SQLServerConnectionStringValidator(options.ConnectionString);
                 else
@@ -110,7 +110,7 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                 migrationStrategy = new PostgresMigrationStrategy(pgsqlOrm);
                                 break;
                         }
-                        
+
                         dataStandardVersion = migrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
                         switch (dataStandardVersion)
                         {
@@ -131,7 +131,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
                         message += NotSupportedOnDs2(dataStandardVersion, options, Component.Asmt);
                         message += NotSupportedOnDs2(dataStandardVersion, options, Component.Equity);
                         message += NotSupportedOnDs2(dataStandardVersion, options, Component.Engage);
-
+                        message += NotSupportedOnDs31(dataStandardVersion, options, Component.Engage);
+                        message += NotSupportedOnPostgres(options, Component.Engage);
+                        
                         if (string.IsNullOrEmpty(message))
                         {
                             try
@@ -179,6 +181,27 @@ namespace EdFi.AnalyticsMiddleTier.Console
                 if (dataStandardVersion == DataStandard.Ds2 && options.Components.Contains(collection))
                 {
                     return $"The {collection} collection is not supported on Data Standard 2. Please remove this option and try again.";
+                }
+
+                return null;
+            }
+
+            static string NotSupportedOnDs31(DataStandard dataStandardVersion, Options options, Component collection)
+            {
+                if (dataStandardVersion == DataStandard.Ds31 && options.Components.Contains(collection))
+                {
+                    return $"The {collection} collection is not supported on Data Standard 3.1. Please remove this option and try again.";
+                }
+
+                return null;
+            }
+
+            static string NotSupportedOnPostgres(Options options, Component collection)
+            {
+                if ((options.DatabaseEngine == Engine.Postgres || options.DatabaseEngine == Engine.Postgresql || options.DatabaseEngine == Engine.PostgreSQL)
+                    && options.Components.Contains(collection))
+                {
+                    return $"The {collection} collection is not supported on Postgres. Please remove this option and try again.";
                 }
 
                 return null;
