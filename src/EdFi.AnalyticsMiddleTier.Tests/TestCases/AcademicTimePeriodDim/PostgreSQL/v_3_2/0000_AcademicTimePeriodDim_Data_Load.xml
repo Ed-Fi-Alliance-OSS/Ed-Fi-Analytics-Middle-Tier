@@ -38,7 +38,7 @@
 
     INSERT INTO edfi.SessionGradingPeriod (SchoolYear,PeriodSequence,SchoolId,GradingPeriodDescriptorId,SessionName)
     VALUES (2012,42,867530010,v_gradingDescriptorId,'Grading period is the last modified');
-    
+
     INSERT INTO edfi.Descriptor (CodeValue,Description,ShortDescription,Namespace)
     VALUES ('SpringSemester2','Spring Semester2','Spring-Semester2','uri://ed-fi.org/TermDescriptorId2')
     RETURNING descriptorid INTO v_termDescriptorId;
@@ -80,10 +80,10 @@
     VALUES (34,2012,'SchoolYear is the last modified','1999-12-31','2012-12-31',v_termDescriptorId,2);
 
     INSERT INTO edfi.GradingPeriod (GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,PeriodSequence,SchoolYear,LastModifiedDate)
-    VALUES (v_gradingDescriptorId,34,'1999-12-31',1,'2000-01-01',42,2012,'2003-03-03');
+    VALUES (v_gradingDescriptorId,34,'1999-12-31',1,'2000-01-01',4,2012,'2003-03-03');
 
     INSERT INTO edfi.SessionGradingPeriod (GradingPeriodDescriptorId,PeriodSequence,SchoolId,SchoolYear,SessionName)
-    VALUES (v_gradingDescriptorId,42,34,2012,'SchoolYear is the last modified');
+    VALUES (v_gradingDescriptorId,4,34,2012,'SchoolYear is the last modified');
 
     INSERT INTO edfi.Descriptor (CodeValue,Description,ShortDescription,Namespace)
     VALUES ('Second six weeks','Second six weeks','Second six weeks','uri://ed-fi.org/GradingPeriodDescriptor')
