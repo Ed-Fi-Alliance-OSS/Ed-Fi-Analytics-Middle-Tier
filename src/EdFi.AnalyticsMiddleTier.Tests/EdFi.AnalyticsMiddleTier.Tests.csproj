@@ -74,6 +74,10 @@
     <Folder Include="TestCases\LocalEducationAgencyDim\MSSQL\" />
     <Folder Include="TestCases\SchoolDim\MSSQL\" />
     <Folder Include="TestCases\SectionDim\PostgreSQL\" />
+    <Folder Include="TestCases\SectionDim\v_3\" />
+    <Folder Include="TestCases\SectionDim\v_2\" />
+    <Folder Include="TestCases\StaffSectionDim\MSSQL\" />
+    <Folder Include="TestCases\StaffSectionDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentDataAuthorization\MSSQL\" />
     <Folder Include="TestCases\StudentDataAuthorization\PostgreSQL\" />
     <Folder Include="TestCases\StudentDisciplineActionDim\MSSQL\" />

@@ -6,7 +6,7 @@
   <Query>
     SELECT COUNT(1) AS CountValue
     FROM analytics.SectionDim
-    WHERE SchoolKey = 867530010;
+    WHERE Description = 'Social Studies-(QAGR40)-United States Government (1/2 Unit)-(CL1)-Spring Semester';
   </Query>
   <Result>
     <CountValue>1</CountValue>
