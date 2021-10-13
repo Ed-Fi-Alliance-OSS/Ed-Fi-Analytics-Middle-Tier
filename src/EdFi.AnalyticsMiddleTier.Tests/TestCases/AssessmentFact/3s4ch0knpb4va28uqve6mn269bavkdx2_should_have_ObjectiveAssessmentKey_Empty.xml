@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ObjectiveAssessmentKey
+    FROM analytics.asmt_AssessmentFact
+    WHERE AssessmentFactKey = '3s4ch0knpb4va28uqve6mn269bavkdx2-uri://ed-fi.org/Assessment/AssessmentTestCase.xml--1122-6----';
+  </Query>
+  <Result>
+    <ObjectiveAssessmentKey></ObjectiveAssessmentKey>
+  </Result>
+</TestCase>
