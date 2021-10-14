@@ -36,6 +36,10 @@ $global:pathToStorePerfResults = ".\server-metrics_$currentDateTime.csv"
 # how many times will we run the query and then average the results afterwards?
 $numberOfTimesToRepeatQuery = 5
 
+# Database command execution timeout (seconds)
+$MSSQLTimeout = 150
+$PostgresODBCTimeout = 150
+
 # populate this with the list of views,
 # it is not case sensitive since we ToLower before querying it for Postgres
 $viewList = @(
@@ -86,25 +90,26 @@ function Measure-SqlCmd{
         $summedSQLBuffersReceived = 0;
 
         for (($i = 1); $i -le $numberOfTimesToRepeatQuery; $i++){
-            $sqlout = Invoke-Sqlcmd -ServerInstance $instancename -Database $databasename -StatisticsVariable stats -Query $query -ErrorVariable errval
-            $summedSQLExecutionTime += $stats.ExecutionTime
-            $summedSQLBuffersReceived += $stats.BuffersReceived
-        }
-        
-        if(!$sqlOut) {
-            $output | Add-Member -Type NoteProperty -Name RowCount -Value "0"
-            $output | Add-Member -Type NoteProperty -Name ColumnCount -Value "0"
-
-        } else {
-            #Invoke-SqlCmd returns as DataRow when one row, then as DataTable when multipe rows
-            if($sqlOut.GetType().ToString() -eq "System.Data.DataRow"){
-                $output | Add-Member -Type NoteProperty -Name RowCount -Value "1"
-            } else {
-                $output | Add-Member -Type NoteProperty -Name RowCount -Value $sqlout.Length
-            }
+            $SqlConnectionString = 'Data Source={0};Initial Catalog={1};Integrated Security=SSPI' -f $instancename, $databasename;
+            $SqlConnection = New-Object -TypeName System.Data.SqlClient.SqlConnection -ArgumentList $SqlConnectionString;
+            $SqlCommand = $SqlConnection.CreateCommand();
+            $SqlCommand.CommandText = $query;
+            $SqlCommand.CommandTimeout = $MSSQLTimeout;
+            $SqlConnection.StatisticsEnabled = $true
             
-            $output | Add-Member -Type NoteProperty -Name ColumnCount -Value $sqlout[0].ItemArray.Count
+			$SqlConnection.Open();
+            $SqlDataReader = $SqlCommand.ExecuteReader();
+            $columnCount = $SqlDataReader.FieldCount
+            $SqlConnection.Close();
+
+            $stats = $SqlConnection.RetrieveStatistics()
+            $summedSQLExecutionTime += $stats["ExecutionTime"]
+            $summedSQLBuffersReceived += $stats["BuffersReceived"]
+            $rowCount = $stats["SelectRows"]
+            $SqlConnection.Dispose();
         }
+        $output | Add-Member -Type NoteProperty -Name RowCount -Value $rowCount
+        $output | Add-Member -Type NoteProperty -Name ColumnCount -Value $columnCount
         
         $output | Add-Member -Type NoteProperty -Name BuffersReceived -Value ($summedSQLBuffersReceived / $numberOfTimesToRepeatQuery)
         $output | Add-Member -Type NoteProperty -Name ExecutionTime -Value ($summedSQLExecutionTime / $numberOfTimesToRepeatQuery)
@@ -118,6 +123,7 @@ function Measure-SqlCmd{
         for (($i = 1); $i -le $numberOfTimesToRepeatQuery; $i++){
             $startTime = Get-Date
             $cmd = New-object System.Data.Odbc.OdbcCommand($query,$conn)
+            $cmd.CommandTimeout = $PostgresODBCTimeout
             $ds = New-Object system.Data.DataSet
             (New-Object system.Data.odbc.odbcDataAdapter($cmd)).fill($ds) | out-null
             $endTime = Get-Date
