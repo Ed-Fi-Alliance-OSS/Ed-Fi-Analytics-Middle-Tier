@@ -279,6 +279,42 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_have_InternetAccessInResidence_NA()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentLocalEducationAgencyDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessInResidence_NA.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_InternetAccessTypeInResidence_NA()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentLocalEducationAgencyDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessTypeInResidence_NA.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_InternetPerformance_NA()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentLocalEducationAgencyDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetPerformance_NA.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_DigitalDevice_NA()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentLocalEducationAgencyDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_DigitalDevice_NA.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         public class Given_student_local_education_agency_193964_867530
@@ -373,6 +409,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentLocalEducationAgencyDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_DeviceAccess_NA()
+            {
+                (bool success, string errorMessage) testResult = DataStandard
+                    .RunTestCase<StudentLocalEducationAgencyDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_DeviceAccess_NA.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
