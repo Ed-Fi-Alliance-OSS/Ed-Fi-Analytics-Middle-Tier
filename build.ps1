@@ -40,7 +40,7 @@ param(
     # .NET project build configuration, defaults to "Debug". Options are: Debug, Release.
     [string]
     [ValidateSet("Debug", "Release")]
-    $Configuration = "Debug",
+    $Configuration = "Debug"
 
 )
 
@@ -49,6 +49,9 @@ $Env:MSBUILDDISABLENODEREUSE = "1"
 #$solution = "Application\Ed-Fi-ODS-Tools.sln"
 $solutionRoot = "$PSScriptRoot/src"
 $maintainers = "Ed-Fi Alliance, LLC and contributors"
+	Import-Module -Name "$PSScriptRoot/eng/build-helpers.psm1" -Force
+	Import-Module -Name "$PSScriptRoot/eng/package-manager.psm1" -Force
+
 
 function Clean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
@@ -78,10 +81,11 @@ function AssemblyInfo {
 function Compile {
     Invoke-Execute {
         dotnet --info
-        dotnet build $solutionRoot -c $Configuration --nologo --no-restore
+        dotnet build $solutionRoot -c $Configuration --nologo
 
-        $outputPath = "$solutionRoot/EdFi.Ods.AdminApp.Web/publish"
-        $project = "$solutionRoot/EdFi.Ods.AdminApp.Web/"
+        $outputPath = "$solutionRoot/Ed-Fi-Analytics-Middle-Tier/publish"
+        $project = "$solutionRoot/EdFi.AnalyticsMiddleTier.Console"
+		
         dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --no-build --nologo
     }
 }
