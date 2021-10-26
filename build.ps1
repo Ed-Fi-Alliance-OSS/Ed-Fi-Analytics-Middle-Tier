@@ -30,7 +30,7 @@ param(
     # This depends on what version of ODS/API is installed.
     # See AMT delpoyment guide to match versions.
     [string]
-    $Version = "3.2",
+    $Version = "2.6.1",
 
     # Build counter from the automation tool.
     [string]
