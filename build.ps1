@@ -26,9 +26,7 @@ param(
     [ValidateSet("Build")]
     $Command = "Build",
 
-    # Assembly and package version number, defaults 3.2.0-c
-    # This depends on what version of ODS/API is installed.
-    # See AMT delpoyment guide to match versions.
+    # Assembly and package version number, defaults 2.6.1
     [string]
     $Version = "2.6.1",
 
