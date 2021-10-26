@@ -19,11 +19,15 @@
 
         Overrides the default build configuration (Debug) to build in release
         mode with assembly version 2.0.0.45.
+			
+	 .EXAMPLE
+        .\build.ps1 unittest
+        Output: test results displayed in the console and saved to XML files.
 #>
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Build")]
+    [ValidateSet("Clean", "Build", "UnitTest")]
     $Command = "Build",
 
     # Assembly and package version number, defaults 2.6.1
@@ -86,6 +90,31 @@ function Compile {
     }
 }
 
+function RunTests {
+    param (
+        # File search filter
+        [string]
+        $Filter,
+		[string]
+        $Category
+    )
+
+    $testAssemblyPath = "$solutionRoot/$Filter/bin/$Configuration/"
+    $testAssemblies = Get-ChildItem -Path $testAssemblyPath -Filter "$Filter.dll" -Recurse
+
+    if ($testAssemblies.Length -eq 0) {
+        Write-Host "no test assemblies found in $testAssemblyPath"
+    }
+
+    $testAssemblies | ForEach-Object {
+        Write-Host "Executing: dotnet test $($_)"
+        Invoke-Execute { dotnet test --filter Category=$Category $_ }
+    }
+}
+
+function UnitTests {
+    Invoke-Execute { RunTests -Filter "EdFi.AnalyticsMiddleTier.Tests" -Category UnitTest}
+}
 
 function Invoke-Build {
     Write-Host "Building Version $Version" -ForegroundColor Cyan
@@ -98,11 +127,15 @@ function Invoke-Clean {
     Invoke-Step { Clean }
 }
 
+function Invoke-UnitTests {
+    Invoke-Step { UnitTests }
+}
 
 Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
+        UnitTest { Invoke-UnitTests }
         default { throw "Command '$Command' is not recognized" }
     }
 }

@@ -15,6 +15,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Category("UnitTest")]
     public abstract class When_uninstalling_postgresql
     {
         protected IOrm Orm { get; set; }

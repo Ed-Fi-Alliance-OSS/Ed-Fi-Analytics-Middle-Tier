@@ -16,6 +16,7 @@ using System.Reflection;
 namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Category("UnitTest")]
     abstract class When_running_installation
     {
         protected bool Successful;
