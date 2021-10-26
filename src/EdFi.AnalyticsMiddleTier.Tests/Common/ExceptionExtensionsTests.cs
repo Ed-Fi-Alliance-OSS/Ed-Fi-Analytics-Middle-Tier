@@ -11,6 +11,7 @@ using System;
 namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [TestFixture]
+    [Category("UnitTest")]
     class ExceptionExtensionsTests
     {
         private string exceptionMessage = "Exception message";

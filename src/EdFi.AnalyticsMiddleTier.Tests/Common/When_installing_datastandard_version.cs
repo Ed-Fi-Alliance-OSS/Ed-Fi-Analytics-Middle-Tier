@@ -13,6 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
+    [Category("UnitTest")]
     public abstract class When_installing_datastandard_version
     {
         protected IOrm Orm { get; set; }

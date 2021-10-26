@@ -12,6 +12,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [NonParallelizable]
     [TestFixtureSource(typeof(DataStandardTestFixture))]
+    [Category("IntegrationTest")]
     public abstract class TestCaseBase
     {
         protected TestHarnessBase DataStandard { get; set; }
