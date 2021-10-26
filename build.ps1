@@ -30,8 +30,8 @@ param(
     # This depends on what version of ODS/API is installed.
     # See AMT delpoyment guide to match versions.
     [string]
-    [ValidateSet("2.2","3.1","3.2a","3.2b","3.2.0-c")]
-    $Version = "3.2.0-c",
+    [ValidateSet("2.2","3.1","3.2")]
+    $Version = "3.2",
 
     # Build counter from the automation tool.
     [string]
@@ -50,7 +50,6 @@ $Env:MSBUILDDISABLENODEREUSE = "1"
 $solutionRoot = "$PSScriptRoot/src"
 $maintainers = "Ed-Fi Alliance, LLC and contributors"
 	Import-Module -Name "$PSScriptRoot/eng/build-helpers.psm1" -Force
-	Import-Module -Name "$PSScriptRoot/eng/package-manager.psm1" -Force
 
 
 function Clean {
@@ -91,20 +90,8 @@ function Compile {
 }
 
 
-function NewDevCertificate {
-    Invoke-Command { dotnet dev-certs https -c }
-    if ($lastexitcode) {
-        Write-Host "Generating a new Dev Certificate" -ForegroundColor Magenta
-        Invoke-Execute { dotnet dev-certs https --clean }
-        Invoke-Execute { dotnet dev-certs https -t }
-    } else {
-        Write-Host "Dev Certificate already exists" -ForegroundColor Magenta
-    }
-}
-
 function Invoke-Build {
     Write-Host "Building Version $Version" -ForegroundColor Cyan
-    Invoke-Step { NewDevCertificate }
     Invoke-Step { Clean }
     Invoke-Step { AssemblyInfo }
     Invoke-Step { Compile }
