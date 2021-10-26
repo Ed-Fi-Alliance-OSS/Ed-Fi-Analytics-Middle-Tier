@@ -30,7 +30,6 @@ param(
     # This depends on what version of ODS/API is installed.
     # See AMT delpoyment guide to match versions.
     [string]
-    [ValidateSet("2.2","3.1","3.2")]
     $Version = "3.2",
 
     # Build counter from the automation tool.
