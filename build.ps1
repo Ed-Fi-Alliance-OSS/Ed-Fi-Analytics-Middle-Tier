@@ -23,11 +23,15 @@
 	 .EXAMPLE
         .\build.ps1 unittest
         Output: test results displayed in the console and saved to XML files.
+		
+	 .EXAMPLE
+        .\build.ps1 integrationtest
+        Output: test results displayed in the console and saved to XML files.
 #>
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "UnitTest")]
+    [ValidateSet("Clean", "Build", "UnitTest", "IntegrationTest")]
     $Command = "Build",
 
     # Assembly and package version number, defaults 2.6.1
@@ -116,6 +120,10 @@ function UnitTests {
     Invoke-Execute { RunTests -Filter "EdFi.AnalyticsMiddleTier.Tests" -Category UnitTest}
 }
 
+function IntegrationTests {
+    Invoke-Execute { RunTests -Filter "EdFi.AnalyticsMiddleTier.Tests" -Category IntegrationTest}
+}
+
 function Invoke-Build {
     Write-Host "Building Version $Version" -ForegroundColor Cyan
     Invoke-Step { Clean }
@@ -131,11 +139,16 @@ function Invoke-UnitTests {
     Invoke-Step { UnitTests }
 }
 
+function Invoke-IntegrationTests {
+    Invoke-Step { IntegrationTests }
+}
+
 Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
         UnitTest { Invoke-UnitTests }
+		IntegrationTest { Invoke-IntegrationTests }
         default { throw "Command '$Command' is not recognized" }
     }
 }
