@@ -31,7 +31,7 @@
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "UnitTest", "IntegrationTest")]
+    [ValidateSet("Clean", "Build", "BuildSelfContained", "UnitTest", "IntegrationTest")]
     $Command = "Build",
 
     # Assembly and package version number, defaults 2.6.1
@@ -46,7 +46,6 @@ param(
     [string]
     [ValidateSet("Debug", "Release")]
     $Configuration = "Debug"
-
 )
 
 $Env:MSBUILDDISABLENODEREUSE = "1"
@@ -83,6 +82,11 @@ function AssemblyInfo {
 }
 
 function Compile {
+    param (
+        [bool]
+        $SelfContained = $false
+    )
+
     Invoke-Execute {
         dotnet --info
         dotnet build $solutionRoot -c $Configuration --nologo
@@ -90,7 +94,14 @@ function Compile {
         $outputPath = "$solutionRoot/Ed-Fi-Analytics-Middle-Tier/publish"
         $project = "$solutionRoot/EdFi.AnalyticsMiddleTier.Console"
 		
-        dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --no-build --nologo
+        if ($SelfContained -eq $True) {
+            Write-Host "self contained." -ForegroundColor Cyan
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --self-contained -r win10-x64 --no-build --nologo
+        }
+        else {
+            Write-Host "not self contained." -ForegroundColor Cyan
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --no-self-contained --no-build --nologo
+        }
     }
 }
 
@@ -128,7 +139,14 @@ function Invoke-Build {
     Write-Host "Building Version $Version" -ForegroundColor Cyan
     Invoke-Step { Clean }
     Invoke-Step { AssemblyInfo }
-    Invoke-Step { Compile }
+    Invoke-Step { Compile -SelfContained $false }
+}
+
+function Invoke-BuildSelfContained {
+    Write-Host "Building Self Contained Version $Version" -ForegroundColor Cyan
+    Invoke-Step { Clean }
+    Invoke-Step { AssemblyInfo }
+    Invoke-Step { Compile -SelfContained $true }
 }
 
 function Invoke-Clean {
@@ -147,6 +165,7 @@ Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
+        BuildSelfContained { Invoke-BuildSelfContained }
         UnitTest { Invoke-UnitTests }
 		IntegrationTest { Invoke-IntegrationTests }
         default { throw "Command '$Command' is not recognized" }
