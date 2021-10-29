@@ -2,7 +2,6 @@
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
-
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
@@ -85,6 +84,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SectionPermission_with_UserScope_equal_to_District.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_SectionKeyPermission_with_UserScope_equal_to_District_is_returned_properly()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SectionKeyPermission_with_UserScope_equal_to_District.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+         
         }
 
 
@@ -111,6 +118,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
             public void Then_SectionPermission_with_UserScope_equal_to_School_is_returned_properly()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SectionPermission_with_UserScope_equal_to_School.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_SectionKeyPermission_with_UserScope_equal_to_School_is_returned_properly()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SectionKeyPermission_with_UserScope_equal_to_School.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
