@@ -56,7 +56,7 @@ $Env:MSBUILDDISABLENODEREUSE = "1"
 $solutionRoot = "$PSScriptRoot/src"
 $maintainers = "Ed-Fi Alliance, LLC and contributors"
 	Import-Module -Name "$PSScriptRoot/eng/build-helpers.psm1" -Force
-$publishOutputPath = "$solutionRoot/Ed-Fi-Analytics-Middle-Tier/publish/"
+$publishOutputPath = "$solutionRoot/../publish/"
 
 function Clean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
