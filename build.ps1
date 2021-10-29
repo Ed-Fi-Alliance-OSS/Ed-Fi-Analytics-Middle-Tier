@@ -31,8 +31,10 @@
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "BuildSelfContained", "UnitTest", "IntegrationTest")]
+    [ValidateSet("Clean", "Build", "Publish", "UnitTest", "IntegrationTest")]
     $Command = "Build",
+
+    [switch] $SelfContained,
 
     # Assembly and package version number, defaults 2.6.1
     [string]
@@ -54,10 +56,13 @@ $Env:MSBUILDDISABLENODEREUSE = "1"
 $solutionRoot = "$PSScriptRoot/src"
 $maintainers = "Ed-Fi Alliance, LLC and contributors"
 	Import-Module -Name "$PSScriptRoot/eng/build-helpers.psm1" -Force
-
+$publishOutputPath = "$solutionRoot/Ed-Fi-Analytics-Middle-Tier/publish/"
 
 function Clean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
+    if (Test-Path -Path $publishOutputPath) {
+        Invoke-Execute { Remove-Item $publishOutputPath*.* }
+    }
 }
 
 function AssemblyInfo {
@@ -82,25 +87,23 @@ function AssemblyInfo {
 }
 
 function Compile {
-    param (
-        [bool]
-        $SelfContained = $false
-    )
-
     Invoke-Execute {
         dotnet --info
         dotnet build $solutionRoot -c $Configuration --nologo
+    }
+}
 
-        $outputPath = "$solutionRoot/Ed-Fi-Analytics-Middle-Tier/publish"
+function Publish {
+    Invoke-Execute {
         $project = "$solutionRoot/EdFi.AnalyticsMiddleTier.Console"
 		
-        if ($SelfContained -eq $True) {
-            Write-Host "self contained." -ForegroundColor Cyan
-            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --self-contained -r win10-x64 --no-build --nologo
+        if ($SelfContained) {
+            Write-Host "Self contained." -ForegroundColor Cyan
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $publishOutputPath --self-contained -r win10-x64 --no-build --nologo
         }
         else {
-            Write-Host "not self contained." -ForegroundColor Cyan
-            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --no-self-contained --no-build --nologo
+            Write-Host "Not self contained." -ForegroundColor Cyan
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $publishOutputPath --no-self-contained --no-build --nologo
         }
     }
 }
@@ -139,14 +142,12 @@ function Invoke-Build {
     Write-Host "Building Version $Version" -ForegroundColor Cyan
     Invoke-Step { Clean }
     Invoke-Step { AssemblyInfo }
-    Invoke-Step { Compile -SelfContained $false }
+    Invoke-Step { Compile }
 }
 
-function Invoke-BuildSelfContained {
-    Write-Host "Building Self Contained Version $Version" -ForegroundColor Cyan
-    Invoke-Step { Clean }
-    Invoke-Step { AssemblyInfo }
-    Invoke-Step { Compile -SelfContained $true }
+function Invoke-Publish {
+    Invoke-Build
+    Invoke-Step { Publish }
 }
 
 function Invoke-Clean {
@@ -165,7 +166,7 @@ Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
-        BuildSelfContained { Invoke-BuildSelfContained }
+        Publish { Invoke-Publish }
         UnitTest { Invoke-UnitTests }
 		IntegrationTest { Invoke-IntegrationTests }
         default { throw "Command '$Command' is not recognized" }
