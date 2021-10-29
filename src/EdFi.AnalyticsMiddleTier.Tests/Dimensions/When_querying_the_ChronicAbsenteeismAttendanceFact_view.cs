@@ -238,6 +238,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             }
         }
 
+        public class Given_chronic_absenteeism_attendance_fact_193965_867530014_20120520
+         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_193965_867530014_20120520(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "193965_867530014_20120520";
+
+            [Test]
+            public void Then_should_have_ReportedAsPresentAtHomeRoom_0()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsPresentAtHomeRoom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_chronic_absenteeism_attendance_fact_193969_867530016_20120520
          : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
@@ -468,6 +482,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             }
         }
 
+        public class Given_chronic_absenteeism_attendance_fact_200099_867530174_20111104
+        : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_200099_867530174_20111104(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "200099_867530174_20111104";
+
+            [Test]
+            public void Then_should_have_ReportedAsAbsentFromSchool_0()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromSchool_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+        }
+
         public class Given_chronic_absenteeism_attendance_fact_189889_867530022_20111205
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
@@ -594,8 +623,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentSchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_have_ReportedAsAbsentFromHomeRoom_0()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromHomeRoom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_ReportedAsAbsentFromAnySection_0()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromAnySection_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
-        
+
+        public class Given_chronic_absenteeism_attendance_fact_189855_867530013_20120503
+        : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+            public Given_chronic_absenteeism_attendance_fact_189855_867530013_20120503(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189855_867530013_20120503";
+
+            [Test]
+            public void Then_should_have_ReportedAsPresentAtHomeRoom_0()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsPresentAtHomeRoom_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_chronic_absenteeism_attendance_fact_189936_867530023_20120520
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
@@ -660,6 +717,24 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             }
         }
 
+        public class Given_chronic_absenteeism_attendance_fact_189854_867530011_20120502
+           : When_querying_the_ChronicAbsenteeismAttendanceFact_view
+        {
+
+            public Given_chronic_absenteeism_attendance_fact_189854_867530011_20120502(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private const string _caseIdentifier = "189854_867530011_20120502";
+
+            [Test]
+            public void Then_should_have_ReportedAsIsPresentInAllSections_0()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<CountResult>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsIsPresentInAllSections_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+        }
+
         public class Given_chronic_absenteeism_attendance_fact_200011_867530174_20140502
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
@@ -672,6 +747,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromSchool_1.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_have_ReportedAsPresentAtSchool_0()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsPresentAtSchool_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
         }
 
         public class Given_chronic_absenteeism_attendance_fact_193968_867530015_20120520
