@@ -31,7 +31,7 @@
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "Publish", "UnitTest", "IntegrationTest")]
+    [ValidateSet("Clean", "Build", "Publish", "Pack", "UnitTest", "IntegrationTest")]
     $Command = "Build",
 
     [switch] $SelfContained,
@@ -53,15 +53,21 @@ param(
 $Env:MSBUILDDISABLENODEREUSE = "1"
 
 #$solution = "Application\Ed-Fi-ODS-Tools.sln"
-$solutionRoot = "$PSScriptRoot/src"
+$solutionRoot = JOIN-PATH $PSScriptRoot "src"
 $maintainers = "Ed-Fi Alliance, LLC and contributors"
-	Import-Module -Name "$PSScriptRoot/eng/build-helpers.psm1" -Force
-$publishOutputPath = "$solutionRoot/../publish/"
+Import-Module -Name (JOIN-PATH $PSScriptRoot "eng" "build-helpers.psm1") -Force
+$publishOutputPath = JOIN-PATH $solutionRoot ".." "publish"
+$publishFddDirectoryName = "EdFi.AnalyticsMiddleTier"
+$publishScdDirectoryName = "EdFi.AnalyticsMiddleTier-win10.x64"
+$publishFddOutputDirectory = JOIN-PATH $publishOutputPath $publishFddDirectoryName
+$publishScdOutputDirectory = JOIN-PATH $publishOutputPath $publishScdDirectoryName
+$publishFddZipFile = "$publishFddDirectoryName.zip"
+$publishScdZipFile = "$publishScdDirectoryName.zip"
 
 function Clean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
     if (Test-Path -Path $publishOutputPath) {
-        Invoke-Execute { Remove-Item $publishOutputPath*.* }
+        Invoke-Execute { Remove-Item -Recurse $publishOutputPath*.* }
     }
 }
 
@@ -95,15 +101,34 @@ function Compile {
 
 function Publish {
     Invoke-Execute {
-        $project = "$solutionRoot/EdFi.AnalyticsMiddleTier.Console"
-		
-        if ($SelfContained) {
+        $project = JOIN-PATH $solutionRoot "EdFi.AnalyticsMiddleTier.Console"
+		if ($SelfContained) {
             Write-Host "Self contained." -ForegroundColor Cyan
-            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $publishOutputPath --self-contained -r win10-x64 --no-build --nologo
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o "$publishScdOutputDirectory" --self-contained -r win10-x64 --no-build --nologo
         }
-        else {
+        else 
+        {
             Write-Host "Not self contained." -ForegroundColor Cyan
-            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $publishOutputPath --no-self-contained --no-build --nologo
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o "$publishFddOutputDirectory" --no-self-contained --no-build --nologo
+        }
+    }
+}
+
+function Pack {
+    Invoke-Execute {
+        $fddPackDestination = (JOIN-PATH $publishFddOutputDirectory $publishFddZipFile)
+        $scdPackDestination = (JOIN-PATH $publishScdOutputDirectory $publishScdZipFile)
+        if(Test-Path $publishFddOutputDirectory){
+            if (Test-Path $fddPackDestination) {
+                Remove-Item $fddPackDestination
+            }
+            Compress-Archive -Path $publishFddOutputDirectory -DestinationPath $fddPackDestination
+        }
+        if(Test-Path $publishFddOutputDirectory){
+            if (Test-Path $scdPackDestination) {
+                Remove-Item $scdPackDestination
+            }
+            Compress-Archive -Path $publishScdOutputDirectory -DestinationPath $scdPackDestination
         }
     }
 }
@@ -117,7 +142,7 @@ function RunTests {
         $Category
     )
 
-    $testAssemblyPath = "$solutionRoot/$Filter/bin/$Configuration/"
+    $testAssemblyPath = JOIN-PATH $solutionRoot $Filter "bin" $Configuration
     $testAssemblies = Get-ChildItem -Path $testAssemblyPath -Filter "$Filter.dll" -Recurse
 
     if ($testAssemblies.Length -eq 0) {
@@ -162,13 +187,18 @@ function Invoke-IntegrationTests {
     Invoke-Step { IntegrationTests }
 }
 
+function Invoke-Pack {
+    Invoke-Step { Pack }
+}
+
 Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
-        Publish { Invoke-Publish }
         UnitTest { Invoke-UnitTests }
 		IntegrationTest { Invoke-IntegrationTests }
+        Publish { Invoke-Publish }
+        Pack { Invoke-Pack }
         default { throw "Command '$Command' is not recognized" }
     }
 }
