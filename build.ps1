@@ -31,8 +31,10 @@
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "UnitTest", "IntegrationTest")]
+    [ValidateSet("Clean", "Build", "Publish", "UnitTest", "IntegrationTest")]
     $Command = "Build",
+
+    [switch] $SelfContained,
 
     # Assembly and package version number, defaults 2.6.1
     [string]
@@ -46,7 +48,6 @@ param(
     [string]
     [ValidateSet("Debug", "Release")]
     $Configuration = "Debug"
-
 )
 
 $Env:MSBUILDDISABLENODEREUSE = "1"
@@ -55,10 +56,13 @@ $Env:MSBUILDDISABLENODEREUSE = "1"
 $solutionRoot = "$PSScriptRoot/src"
 $maintainers = "Ed-Fi Alliance, LLC and contributors"
 	Import-Module -Name "$PSScriptRoot/eng/build-helpers.psm1" -Force
-
+$publishOutputPath = "$solutionRoot/../publish/"
 
 function Clean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
+    if (Test-Path -Path $publishOutputPath) {
+        Invoke-Execute { Remove-Item $publishOutputPath*.* }
+    }
 }
 
 function AssemblyInfo {
@@ -86,11 +90,21 @@ function Compile {
     Invoke-Execute {
         dotnet --info
         dotnet build $solutionRoot -c $Configuration --nologo
+    }
+}
 
-        $outputPath = "$solutionRoot/Ed-Fi-Analytics-Middle-Tier/publish"
+function Publish {
+    Invoke-Execute {
         $project = "$solutionRoot/EdFi.AnalyticsMiddleTier.Console"
 		
-        dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $outputPath --no-build --nologo
+        if ($SelfContained) {
+            Write-Host "Self contained." -ForegroundColor Cyan
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $publishOutputPath --self-contained -r win10-x64 --no-build --nologo
+        }
+        else {
+            Write-Host "Not self contained." -ForegroundColor Cyan
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o $publishOutputPath --no-self-contained --no-build --nologo
+        }
     }
 }
 
@@ -131,6 +145,11 @@ function Invoke-Build {
     Invoke-Step { Compile }
 }
 
+function Invoke-Publish {
+    Invoke-Build
+    Invoke-Step { Publish }
+}
+
 function Invoke-Clean {
     Invoke-Step { Clean }
 }
@@ -147,6 +166,7 @@ Invoke-Main {
     switch ($Command) {
         Clean { Invoke-Clean }
         Build { Invoke-Build }
+        Publish { Invoke-Publish }
         UnitTest { Invoke-UnitTests }
 		IntegrationTest { Invoke-IntegrationTests }
         default { throw "Command '$Command' is not recognized" }
