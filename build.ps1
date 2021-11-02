@@ -13,6 +13,14 @@
         * Build: runs `dotnet build` with several implicit steps
           (clean, restore, inject version information).
 
+        * Publish: creates the publish files.
+
+        * CreateZip: adds published files to a Zip file.
+        
+        * UnitTest: runs the unit tests.
+
+        * IntegrationTest: runs the Integration tests.
+
     .EXAMPLE
         .\build.ps1 build -Configuration Release -Version "2.0.0" -BuildCounter 45
 
