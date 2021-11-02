@@ -3,7 +3,6 @@
 # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 # See the LICENSE and NOTICES files in the project root for more information.
 
-[CmdLetBinding()]
 <#
     .SYNOPSIS
         Automation script for running build operations from the command line.
@@ -19,7 +18,11 @@
 
         Overrides the default build configuration (Debug) to build in release
         mode with assembly version 2.0.0.45.
-			
+	
+    .EXAMPLE
+        .\build.ps1 CreateZip
+        The files published in zip archives.
+        
 	 .EXAMPLE
         .\build.ps1 unittest
         Output: test results displayed in the console and saved to XML files.
@@ -28,10 +31,12 @@
         .\build.ps1 integrationtest
         Output: test results displayed in the console and saved to XML files.
 #>
+[CmdLetBinding()]
+
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "Publish", "Pack", "UnitTest", "IntegrationTest")]
+    [ValidateSet("Clean", "Build", "Publish", "CreateZip", "UnitTest", "IntegrationTest")]
     $Command = "Build",
 
     [switch] $SelfContained,
@@ -114,17 +119,17 @@ function Publish {
     }
 }
 
-function Pack {
+function CreateZip {
     Invoke-Execute {
-        $fddPackDestination = (JOIN-PATH $publishFddOutputDirectory $publishFddZipFile)
-        $scdPackDestination = (JOIN-PATH $publishScdOutputDirectory $publishScdZipFile)
+        $fddPackDestination = (JOIN-PATH $publishOutputPath $publishFddZipFile)
+        $scdPackDestination = (JOIN-PATH $publishOutputPath $publishScdZipFile)
         if(Test-Path $publishFddOutputDirectory){
             if (Test-Path $fddPackDestination) {
                 Remove-Item $fddPackDestination
             }
             Compress-Archive -Path $publishFddOutputDirectory -DestinationPath $fddPackDestination
         }
-        if(Test-Path $publishFddOutputDirectory){
+        if(Test-Path $publishScdOutputDirectory){
             if (Test-Path $scdPackDestination) {
                 Remove-Item $scdPackDestination
             }
@@ -187,8 +192,8 @@ function Invoke-IntegrationTests {
     Invoke-Step { IntegrationTests }
 }
 
-function Invoke-Pack {
-    Invoke-Step { Pack }
+function Invoke-CreateZip {
+    Invoke-Step { CreateZip }
 }
 
 Invoke-Main {
@@ -198,7 +203,7 @@ Invoke-Main {
         UnitTest { Invoke-UnitTests }
 		IntegrationTest { Invoke-IntegrationTests }
         Publish { Invoke-Publish }
-        Pack { Invoke-Pack }
+        CreateZip { Invoke-CreateZip }
         default { throw "Command '$Command' is not recognized" }
     }
 }
