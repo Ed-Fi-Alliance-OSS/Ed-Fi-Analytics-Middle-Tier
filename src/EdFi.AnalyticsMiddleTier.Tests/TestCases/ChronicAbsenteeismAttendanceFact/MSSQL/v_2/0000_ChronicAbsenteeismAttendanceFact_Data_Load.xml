@@ -1485,6 +1485,18 @@
 
 
 		INSERT INTO edfi.CalendarDate(SchoolId,Date,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'867530174','2011-11-04','CD1275BE-4758-48B7-90C4-55D2A50FB0C8','Oct 27 2021 11:34AM','Oct 27 2021 11:34AM' WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDate WHERE  Date= '2011-11-04'  AND SchoolId= '867530174'));
+
+		INSERT INTO edfi.CalendarDateCalendarEvent(SchoolId,Date,CalendarEventDescriptorId,EventDuration,CreateDate)
+		(SELECT TOP 1'867530174','2011-11-04','686','1','Oct 27 2021 11:34AM' WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDateCalendarEvent WHERE SchoolId = 867530174 AND '2011-11-04' = CalendarDateCalendarEvent.Date));
+
+		INSERT INTO edfi.StudentSchoolAttendanceEvent
+		(StudentUSI,SchoolId,SchoolYear,EventDate,AttendanceEventCategoryDescriptorId,TermDescriptorId,AttendanceEventReason,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'100070882','867530174','2012','2011-11-04','546','530',NULL,'2735F816-C327-47FA-AFC2-A03218661969','Oct 27 2021 11:53AM','Oct 27 2021 11:53AM' WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAttendanceEvent WHERE StudentUSI=100070882 AND SchoolId=867530174 AND EventDate='2011-11-04' AND AttendanceEventCategoryDescriptorId=546));
+		
+
+
+		INSERT INTO edfi.CalendarDate(SchoolId,Date,Id,LastModifiedDate,CreateDate)
 		(SELECT TOP 1'867530013','2012-05-03','CD1275BE-4758-48B7-90C4-55D2A50FB0C9','Oct 27 2021 11:34AM','Oct 27 2021 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDate WHERE  Date= '2012-05-03'  AND SchoolId= '867530013'));
 
 
