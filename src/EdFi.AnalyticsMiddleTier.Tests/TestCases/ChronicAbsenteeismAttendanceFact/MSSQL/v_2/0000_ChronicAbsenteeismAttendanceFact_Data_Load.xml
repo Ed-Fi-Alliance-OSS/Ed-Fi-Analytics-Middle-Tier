@@ -1483,5 +1483,25 @@
 		INSERT INTO edfi.StudentSectionAttendanceEvent(AttendanceEventCategoryDescriptorId,EventDate,LocalCourseCode,SchoolId,ClassPeriodName,SchoolYear,TermDescriptorId,StudentUSI,UniqueSectionCode,SequenceOfCourse,ClassroomIdentificationCode,AttendanceEventReason,CreateDate,LastModifiedDate,Id)
 		(SELECT TOP 1'544',CAST('2110-12-12' as DATE),'LENR31','867530011','T04','2012','535','100071861','4508','1','206','A-Absent','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','D7D517D3-546E-494E-B170-E11EBE67C9D7'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAttendanceEvent WHERE id='D7D517D3-546E-494E-B170-E11EBE67C9D7'));
 
+
+		INSERT INTO edfi.CalendarDate(SchoolId,Date,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'867530013','2012-05-03','CD1275BE-4758-48B7-90C4-55D2A50FB0C9','Oct 27 2021 11:34AM','Oct 27 2021 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDate WHERE  Date= '2012-05-03'  AND SchoolId= '867530013'));
+
+
+		INSERT INTO edfi.CalendarDateCalendarEvent(SchoolId,Date,CalendarEventDescriptorId,EventDuration,CreateDate)
+		(SELECT TOP 1'867530013','2012-05-03','686','1','Oct 27 2021 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CalendarDateCalendarEvent WHERE SchoolId = '867530013' AND '2012-05-03' = CalendarDateCalendarEvent.Date));
+
+
+		INSERT INTO edfi.StudentSectionAssociation(StudentUSI,SchoolId,ClassPeriodName,ClassroomIdentificationCode,LocalCourseCode,UniqueSectionCode,SequenceOfCourse,SchoolYear,TermDescriptorId,BeginDate,EndDate,HomeroomIndicator,TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'10100495','867530013','T08','113','QENR11','19524','1','2012','530','2012-01-04','2012-05-25','0',NULL,'7C5EBDDB-5E95-4131-A40A-7DB837230734','Oct 27 2021 11:47AM','Oct 27 2021 11:47AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAssociation WHERE id='7C5EBDDB-5E95-4131-A40A-7DB837230734'));
+
+
+		INSERT INTO edfi.StudentSectionAttendanceEvent(ClassroomIdentificationCode,ClassPeriodName,AttendanceEventCategoryDescriptorId,EventDate,LocalCourseCode,SchoolId,SchoolYear,TermDescriptorId,UniqueSectionCode,SequenceOfCourse,StudentUSI,AttendanceEventReason,CreateDate,LastModifiedDate,Id)
+		(SELECT TOP 1'113','T08','546','2012-05-03','QENR11','867530013','2012','530','19524','1','10100495','Tardy','Oct 27 2021 11:47AM','Oct 27 2021 11:47AM','02F5A602-4A65-4C4F-A8B9-137A6E8A79B0'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAttendanceEvent WHERE id='02F5A602-4A65-4C4F-A8B9-137A6E8A79B0'));
+
+
+		INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,SchoolYear,EntryDate,EntryGradeLevelDescriptorId,EntryTypeDescriptorId,RepeatGradeIndicator,SchoolChoiceTransfer,ExitWithdrawDate,ExitWithdrawTypeDescriptorId,ResidencyStatusDescriptorId,PrimarySchool,EmployedWhileEnrolled,ClassOfSchoolYear,EducationOrganizationId,GraduationPlanTypeDescriptorId,GraduationSchoolYear,Id,LastModifiedDate,CreateDate)
+		(SELECT TOP 1'10100495','867530013','2012','2012-05-01','38',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'631','2013','AEA4CD3C-ECD8-428B-AE72-F48F60E3977D','Oct 27 2021 11:47AM','Oct 27 2021 11:47AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE id='AEA4CD3C-ECD8-428B-AE72-F48F60E3977D'));
+
 	</ControlDataInsertion>
 </TestCase>
