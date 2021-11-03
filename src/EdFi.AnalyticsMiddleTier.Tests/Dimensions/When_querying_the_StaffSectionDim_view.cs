@@ -473,7 +473,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             [Test]
             public void Then_should_have_HispanicLatinoEthnicity_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity_Zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
