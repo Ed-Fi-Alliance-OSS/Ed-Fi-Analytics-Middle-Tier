@@ -462,5 +462,22 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_StaffSection_142990_NCMR11
+       : When_querying_the_StaffSectionDim_view
+        {
+            public Given_StaffSection_142990_NCMR11(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "142990_NCMR11";
+
+            [Test]
+            public void Then_should_have_HispanicLatinoEthnicity_Zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity_Zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+        }
+
     }
 }

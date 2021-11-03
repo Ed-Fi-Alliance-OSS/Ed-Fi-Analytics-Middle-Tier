@@ -78,5 +78,20 @@
       INSERT INTO edfi.Staff(StaffUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,HispanicLatinoEthnicity,HighestCompletedLevelOfEducationDescriptorId,YearsOfPriorProfessionalExperience,YearsOfPriorTeachingExperience,HighlyQualifiedTeacher,LoginId,StaffUniqueId,Id,LastModifiedDate,CreateDate,CitizenshipStatusDescriptorId,SexDescriptorId,OldEthnicityDescriptorId,Discriminator)(SELECT '1009',NULL,'Teresa','A','Hood',NULL,NULL,'1950-09-09','1','105','39.00',NULL,NULL,NULL,'11324','C5C450D5-AE21-4836-B523-7B2822E65421','Aug 10 2014 12:00AM','Sep 18 2015 11:34AM',NULL,'1395','1166',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1009'));
       INSERT INTO edfi.StaffSectionAssociation(StaffUSI,SchoolId,LocalCourseCode,SchoolYear,ClassroomPositionDescriptorId,BeginDate,EndDate,HighlyQualifiedTeacher,TeacherStudentDataLinkExclusion,PercentageContribution,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,Discriminator)(SELECT '1009','867530010','XLTV31','2012','127','2012-05-10',NULL,NULL,NULL,NULL,'FA20D582-5898-4A8C-B05F-546532C0BEE3','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM','14139','SHORT',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffSectionAssociation WHERE SchoolId='867530010'     AND LocalCourseCode='XLTV31'     AND SchoolYear='2012'     AND SectionIdentifier='14139'     AND SessionName='SHORT'     AND StaffUSI='1009'));
       INSERT INTO edfi.StaffRace(StaffUSI,CreateDate,RaceDescriptorId)(SELECT '1009','Sep 18 2015 11:34AM','1286'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffRace WHERE StaffUSI='1009' AND RaceDescriptorId='1286'));
+
+
+
+      INSERT INTO edfi.Staff(StaffUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,HispanicLatinoEthnicity,HighestCompletedLevelOfEducationDescriptorId,YearsOfPriorProfessionalExperience,YearsOfPriorTeachingExperience,HighlyQualifiedTeacher,LoginId,StaffUniqueId,Id,LastModifiedDate,CreateDate,CitizenshipStatusDescriptorId,SexDescriptorId,OldEthnicityDescriptorId,Discriminator)
+      (SELECT '142990',NULL,'John',NULL,'Miller',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'142990','B7343A54-7EA4-49EE-BAB0-1F5FB6FFF296','Nov 19 2015  4:09PM','Sep 18 2015 11:34AM',NULL,NULL,'1167',NULL
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE StaffUSI=142990));
+
+      INSERT INTO edfi.StaffElectronicMail(StaffUSI,ElectronicMailAddress,PrimaryEmailAddressIndicator,CreateDate,DoNotPublishIndicator,ElectronicMailTypeDescriptorId)
+      (SELECT  		'142990','john.miller@edfi.org',NULL,'Nov 1 2021 11:34AM',NULL,'1589'
+      WHERE NOT EXISTS( SELECT 1 FROM edfi.StaffElectronicMail WHERE StaffUSI = 142990));
+
+      INSERT INTO edfi.StaffSectionAssociation(StaffUSI,SchoolId,LocalCourseCode,SchoolYear,ClassroomPositionDescriptorId,BeginDate,EndDate,HighlyQualifiedTeacher,TeacherStudentDataLinkExclusion,PercentageContribution,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,Discriminator)
+      (SELECT   '142990','867530020','NCMR11','2012','127','2011-08-22',NULL,NULL,NULL,NULL,'12011F16-FD7D-4C6B-ACD9-B1320E7AF26B','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','17362','Traditional',NULL
+      WHERE NOT EXISTS(SELECT 1 FROM edfi.StaffSectionAssociation WHERE SchoolId = '867530020' AND LocalCourseCode = 'NCMR11' AND SchoolYear = '2012' AND SectionIdentifier = '17362' AND SessionName = 'Traditional' AND StaffUSI = 142990));
+
     </ControlDataInsertion>
 </TestCase>
