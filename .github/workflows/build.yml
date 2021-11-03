@@ -15,9 +15,9 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./src/EdFi.AnalyticsMiddleTier.Console/EdFi.AnalyticsMiddleTier.Console.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./src/EdFi.AnalyticsMiddleTier.Console/EdFi.AnalyticsMiddleTier.Console.csproj --configuration Release --no-restore
     #- name: Test
     #  run: dotnet test --no-build --verbosity normal
     #  run: .\build.ps1 build -Configuration release -Version "1" -BuildCounter 1
