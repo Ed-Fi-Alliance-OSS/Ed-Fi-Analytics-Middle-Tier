@@ -1,9 +1,10 @@
 name: .NET Build
 
 on:
-  push: 
-    branches:
-      - main
+  push
+
+env:
+  BUILD_VERSION: "2.6.1"
 
 jobs:
   build:
@@ -21,4 +22,4 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-nuget-
     - name: build
-      run: .\build.ps1 build -Configuration release -Version "1" -BuildCounter 1
+      run: .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter 1
