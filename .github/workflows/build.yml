@@ -1,0 +1,28 @@
+name: AMT Build
+
+on:
+  push: 
+    branches:
+      - main
+
+env:
+  BUILD_VERSION: "2.6.1"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Chaching packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+    
+      - name: Building AMT
+        run: .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
