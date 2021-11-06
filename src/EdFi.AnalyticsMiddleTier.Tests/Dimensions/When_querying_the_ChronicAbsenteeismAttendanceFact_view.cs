@@ -247,7 +247,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             [Test]
             public void Then_should_have_ReportedAsPresentAtHomeRoom_0()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsPresentAtHomeRoom_0.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsPresentAtHomeRoom_0.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -634,7 +634,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             [Test]
             public void Then_should_have_ReportedAsAbsentFromAnySection_0()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromAnySection_0.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsAbsentFromAnySection_0.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_return_ReportedAsPresentAtHomeRoom_1()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_return_ReportedAsPresentAtHomeRoom_1.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -727,12 +734,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             [Test]
             public void Then_should_have_ReportedAsIsPresentInAllSections_0()
             {
-                (bool success, string errorMessage) testResult =
-                    DataStandard.RunTestCase<CountResult>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsIsPresentInAllSections_0.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ChronicAbsenteeismAttendanceFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_ReportedAsIsPresentInAllSections_0.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-
         }
 
         public class Given_chronic_absenteeism_attendance_fact_200011_867530174_20140502
