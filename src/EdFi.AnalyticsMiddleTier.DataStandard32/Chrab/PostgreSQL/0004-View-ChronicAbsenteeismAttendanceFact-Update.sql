@@ -49,7 +49,7 @@ AS
             AND
                 sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present'
             AND
-                StudentSectionAssociation.HomeroomIndicator = FALSE/*TRUE*/ THEN 1
+                StudentSectionAssociation.HomeroomIndicator = TRUE THEN 1
             ELSE 0
         END) AS ReportedAsPresentAtHomeRoom,
         MAX(CASE
