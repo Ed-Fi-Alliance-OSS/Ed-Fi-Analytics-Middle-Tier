@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+		SELECT ReportedAsPresentAtHomeRoom
+		FROM analytics.chrab_ChronicAbsenteeismAttendanceFact
+		WHERE StudentKey = '189855' AND SchoolKey='867530013' AND DateKey='20120503';
+	</Query>
+	<Result>
+		<ReportedAsPresentAtHomeRoom>0</ReportedAsPresentAtHomeRoom>
+	</Result>
+</TestCase>

@@ -47,7 +47,7 @@ AS
             WHEN
                 StudentSectionAttendanceEvent.Id IS NOT NULL
             AND
-                sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present' 
+                sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present'
             AND
                 StudentSectionAssociation.HomeroomIndicator = TRUE THEN 1
             ELSE 0
@@ -75,7 +75,7 @@ AS
                 (MAX(CASE
                     WHEN
                         StudentSectionAttendanceEvent.Id IS NOT NULL
-                    AND
+                   AND
                         sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present' THEN 1
                     ELSE 0
                 END) > 0)

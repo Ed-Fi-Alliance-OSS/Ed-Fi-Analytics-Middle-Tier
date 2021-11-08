@@ -5,7 +5,7 @@
         public override string ToString()
         {
             if (UseDefaultConnString)
-                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false;";
+                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false";
             else
                 return $"User ID={User};Host={Host};Port={Port};Database={Database_ds32};Pooling={Pooling};password={Pass}";
         }

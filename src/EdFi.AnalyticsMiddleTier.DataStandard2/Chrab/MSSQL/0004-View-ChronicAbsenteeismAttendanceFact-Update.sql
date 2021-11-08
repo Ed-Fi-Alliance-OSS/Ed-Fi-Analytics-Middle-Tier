@@ -51,7 +51,7 @@ AS
             WHEN
                 StudentSectionAttendanceEvent.Id IS NOT NULL
             AND
-                sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present' 
+                sectionAttendanceDescriptorMap.ConstantName = 'AttendanceEvent.Present'
             AND
                 StudentSectionAssociation.HomeroomIndicator = 1 THEN 1
             ELSE 0
