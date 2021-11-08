@@ -22,7 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Chaching packages
+      - name: Caching packages
         uses: actions/cache@v2
         with:
           path: ~/.nuget/packages
