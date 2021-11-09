@@ -1,10 +1,16 @@
-﻿namespace EdFi.AnalyticsMiddleTier.Tests
+﻿using System;
+
+namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public class SQLServerConnectionStringDS2 : SQLServerConnectionString
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
+            {
+                return Environment.GetEnvironmentVariable("GA_MSSQL_DS2_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
+            }
+            else if (UseDefaultConnString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -26,7 +32,11 @@
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
+            {
+                return Environment.GetEnvironmentVariable("GA_MSSQL_DS31_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
+            }
+            else if (UseDefaultConnString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds31;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -48,7 +58,11 @@
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
+            {
+                return Environment.GetEnvironmentVariable("GA_MSSQL_DS32_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
+            }
+            else if (UseDefaultConnString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds32;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";

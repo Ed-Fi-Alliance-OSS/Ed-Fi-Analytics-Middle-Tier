@@ -1,10 +1,16 @@
-﻿namespace EdFi.AnalyticsMiddleTier.Tests
+﻿using System;
+
+namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public class PostsgreConnectionStringDS32 : PostgresConnectionString
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
+            {
+                return Environment.GetEnvironmentVariable("GA_POSTGRES_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
+            }
+            else if (UseDefaultConnString)
                 return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false";
             else
                 return $"User ID={User};Host={Host};Port={Port};Database={Database_ds32};Pooling={Pooling};password={Pass}";
