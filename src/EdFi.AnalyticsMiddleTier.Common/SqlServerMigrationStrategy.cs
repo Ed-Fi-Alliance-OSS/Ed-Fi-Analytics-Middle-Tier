@@ -23,6 +23,10 @@ namespace EdFi.AnalyticsMiddleTier.Common
              BEGIN
             	SELECT 'Ds31' AS version
              END
+			 ELSE IF (SELECT OBJECT_ID('util.GetEdFiOdsVersion')) IS NOT NULL
+             BEGIN
+            	SELECT util.GetEdFiOdsVersion () AS version
+             END
              ELSE IF (SELECT OBJECT_ID('dbo.DeployJournal'))  IS NOT NULL
              BEGIN
             	SELECT 'Ds32' AS version

@@ -123,6 +123,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
                             case DataStandard.Ds32:
                                 install = new Ds32.Install(migrationStrategy);
                                 break;
+                            case DataStandard.Ds53:
+                                install = new Ds32.Install(migrationStrategy);
+                                break;
                             default:
                                 message = _odsVersionNotSupportedMessage;
                                 break;
