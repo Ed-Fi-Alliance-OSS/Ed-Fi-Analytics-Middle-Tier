@@ -3,7 +3,9 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-CREATE OR REPLACE VIEW analytics.equity_StudentProgramCohortDim
+DROP VIEW IF EXISTS analytics.equity_StudentProgramCohortDim;
+
+CREATE VIEW analytics.equity_StudentProgramCohortDim
 AS
 	SELECT
 		CONCAT(
@@ -43,6 +45,8 @@ AS
 			'-',
 			StudentSchoolAssociation.SchoolId
 		) AS StudentSchoolKey
+		,EntryGradeDescriptor.Description AS EntryGradeLevelDescriptor
+		,CohortTypeDescriptor.Description AS CohortTypeDescriptor
 		,Cohort.CohortDescription
 		,Program.ProgramName
 		,(
@@ -83,6 +87,12 @@ AS
 	INNER JOIN 
 		edfi.StudentSchoolAssociation ON 
 			Student.StudentUSI = edfi.StudentSchoolAssociation.StudentUSI
+	INNER JOIN
+		edfi.Descriptor AS EntryGradeDescriptor ON
+			StudentSchoolAssociation.EntryGradeLevelDescriptorId = EntryGradeDescriptor.DescriptorId
+	INNER JOIN
+		edfi.Descriptor AS CohortTypeDescriptor ON
+			Cohort.CohortTypeDescriptorId = CohortTypeDescriptor.DescriptorId
 	WHERE (
         StudentSchoolAssociation.ExitWithdrawDate IS NULL
 			OR StudentSchoolAssociation.ExitWithdrawDate >= NOW()
