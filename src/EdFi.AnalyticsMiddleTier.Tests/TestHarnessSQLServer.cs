@@ -64,9 +64,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         private string _dacpacName;
 
+        private string GetMasterConnectionString() {
+            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
+            {
+                string saPassword = Environment.GetEnvironmentVariable("GA_SA_DB_PWD", EnvironmentVariableTarget.Process);
+                return $"server=localhost;database=master;integrated security=false;User=sa;Password={saPassword}";
+            }
+            else {
+                return "server=localhost;database=master;integrated security=sspi";
+            }
+        }
+
         public override void PrepareDatabase()
         {
-            using (var connection = new SqlConnection("server=localhost;database=master;integrated security=sspi"))
+            using (var connection = new SqlConnection(GetMasterConnectionString()))
             {
                 if (NotUsingSnapshots())
                 {
@@ -89,6 +100,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
                 bool NotUsingSnapshots()
                 {
+                    //return true;
                     const string analyticsMiddleTierNoSnapshots = "ANALYTICSMIDDLETIER_NO_SNAPSHOTS";
 
                     var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) ??
@@ -118,11 +130,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 {
                     connection.Execute($"ALTER DATABASE[{_databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
                     connection.Execute($@"
-IF EXISTS(SELECT 1 FROM sys.databases WHERE [name] = '{_snapshotName}')
-BEGIN
-    RESTORE DATABASE {_databaseName} FROM DATABASE_SNAPSHOT = '{_snapshotName}'
-END
-");
+                        IF EXISTS(SELECT 1 FROM sys.databases WHERE [name] = '{_snapshotName}')
+                        BEGIN
+                            RESTORE DATABASE {_databaseName} FROM DATABASE_SNAPSHOT = '{_snapshotName}'
+                        END
+                        ");
                     connection.Execute($"ALTER DATABASE [{_databaseName}] SET MULTI_USER");
                 }
 
@@ -152,21 +164,21 @@ END
                 void CreateSnapshot()
                 {
                     var defaultFilePathForSqlDbFiles = $@"
-WITH pathname as (
-    SELECT [physical_name]
-    FROM [{_databaseName}].[sys].[database_files]
-    WHERE [type_desc] = 'ROWS'
-)
-SELECT REPLACE([physical_name], '{_databaseName}_Primary.mdf', '') as FilePath
-FROM pathname
-";
+                        WITH pathname as (
+                            SELECT [physical_name]
+                            FROM [{_databaseName}].[sys].[database_files]
+                            WHERE [type_desc] = 'ROWS'
+                        )
+                        SELECT REPLACE(REPLACE([physical_name], '{_databaseName}_Primary.mdf', ''),'{_databaseName}.mdf','') as FilePath
+                        FROM pathname
+                        ";
                     var filePath = connection.ExecuteScalar<string>(defaultFilePathForSqlDbFiles);
 
                     var createOrReplaceSnapshotTemplate = $@"
-CREATE DATABASE {_snapshotName} ON
-  (Name = {_databaseName}, FileName = '{filePath}\{_snapshotName}.ss')
-AS SNAPSHOT OF {_databaseName}
-";
+                        CREATE DATABASE {_snapshotName} ON
+                          (Name = {_databaseName}, FileName = '{filePath}{_snapshotName}.ss')
+                        AS SNAPSHOT OF {_databaseName}
+                        ";
                     connection.Execute(createOrReplaceSnapshotTemplate);
                 }
 
