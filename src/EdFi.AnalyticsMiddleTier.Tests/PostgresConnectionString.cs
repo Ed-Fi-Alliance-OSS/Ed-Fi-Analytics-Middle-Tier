@@ -6,7 +6,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false";
             else
                 return $"User ID={User};Host={Host};Port={Port};Database={Database_ds32};Pooling={Pooling};password={Pass}";
@@ -17,7 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         protected PostgresConnectionString() : base() {}
 
-        protected bool UseDefaultConnString => UseDefaultConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
+        public bool UseDefaultConnectionString => UseEnvironmentConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
 
         protected string Host => GetEnvironmentVariable("POSTGRES_HOST");
 

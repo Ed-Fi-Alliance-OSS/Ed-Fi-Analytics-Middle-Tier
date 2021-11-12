@@ -43,6 +43,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public string _connectionString;
 
+        public string _mainDatabaseConnectionString;
+
         protected IOrm _orm { get; set; }
 
         public DataStandard DataStandardVersion { get; set; }

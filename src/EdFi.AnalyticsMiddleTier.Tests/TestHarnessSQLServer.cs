@@ -19,9 +19,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessSQLServer : TestHarnessBase
     {
-        public TestHarnessSQLServer()
+        public TestHarnessSQLServer() : base()
         {
             DataStandardEngine = Engine.MSSQL;
+            _mainDatabaseConnectionString = new SQLServerConnectionStringDS32().GetMainDatabaseConnectionString;
         }
 
         public static TestHarnessSQLServer DataStandard2 = new TestHarnessSQLServer
@@ -64,20 +65,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         private string _dacpacName;
 
-        private string GetMasterConnectionString() {
-            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
-            {
-                string saPassword = Environment.GetEnvironmentVariable("GA_SA_DB_PWD", EnvironmentVariableTarget.Process);
-                return $"server=localhost;database=master;integrated security=false;User=sa;Password={saPassword}";
-            }
-            else {
-                return "server=localhost;database=master;integrated security=sspi";
-            }
-        }
-
         public override void PrepareDatabase()
         {
-            using (var connection = new SqlConnection(GetMasterConnectionString()))
+            using (var connection = new SqlConnection(_mainDatabaseConnectionString))
             {
                 if (NotUsingSnapshots())
                 {
