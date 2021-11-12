@@ -6,7 +6,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -16,7 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             get
             {
-                if (UseDefaultConnString)
+                if (UseDefaultConnectionString)
                     return "AnalyticsMiddleTier_Testing_Ds2";
                 else
                     return Database_ds2;
@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds31;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             get
             {
-                if (UseDefaultConnString)
+                if (UseDefaultConnectionString)
                     return "AnalyticsMiddleTier_Testing_Ds31";
                 else
                     return Database_ds31;
@@ -50,7 +50,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds32;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             get
             {
-                if (UseDefaultConnString)
+                if (UseDefaultConnectionString)
                     return "AnalyticsMiddleTier_Testing_Ds32";
                 else
                     return Database_ds32;
@@ -73,7 +73,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         protected SQLServerConnectionString() : base() { 
         }
                 
-        protected bool UseDefaultConnString => UseDefaultConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
+        public bool UseDefaultConnectionString => UseEnvironmentConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
 
         protected string Server => GetEnvironmentVariable("SQLSERVER_SERVER");
 
@@ -88,5 +88,23 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         protected string User => GetEnvironmentVariable("SQLSERVER_USER");
 
         protected string Pass => GetEnvironmentVariable("SQLSERVER_PASS");
+
+        protected string SQL_SA_Pass => GetEnvironmentVariable("SQLSERVER_SA_PASS");
+
+        public override string GetMainDatabaseConnectionString
+        {
+            get 
+            {
+                if (UseDefaultConnectionString)
+                {
+                    string saPassword = SQL_SA_Pass;
+                    return $"server=localhost;database=master;integrated security=false;User=sa;Password={SQL_SA_Pass}";
+                }
+                else
+                {
+                    return "server=localhost;database=master;integrated security=sspi";
+                }
+            }
+        }
     }
 }

@@ -18,10 +18,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 ? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Process) ?? string.Empty
                 : dotEnvHelper.Value(key) ?? string.Empty;
 
-        protected bool UseDefaultConnectionString(string key)
+        protected bool UseEnvironmentConnectionString(string key)
         {
             string useDefaultConnectionString = GetEnvironmentVariable(key).ToLower();
             return String.IsNullOrWhiteSpace(useDefaultConnectionString) || useDefaultConnectionString == "true";
+        }
+
+        public virtual string GetMainDatabaseConnectionString{
+            get;
         }
     }
 }
