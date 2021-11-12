@@ -16,17 +16,15 @@ namespace EdFi.AnalyticsMiddleTier.Common
         public const string JournalingVersionsTable = "AnalyticsMiddleTierSchemaVersion";
         public const string DataStandardVersionTemplate =
             @"SELECT CASE 
-                WHEN EXISTS (
-	                SELECT 1
-	                FROM pg_proc p
-	                    LEFT JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
-	                WHERE proname = 'getedfiodsversion' and nspname = 'util'
+	            WHEN EXISTS (
+		            SELECT FROM information_schema.tables 
+   			        WHERE  table_schema = 'edfi' AND table_name = 'survey'
                 )
-			THEN 
-				util.getedfiodsversion()
-			ELSE
-				'NA'
-			END AS DS";
+			    THEN 
+				    'Ds53'
+			    ELSE
+				    'Ds32'
+			    END AS DS";
 
         protected IOrm _orm { get; set; }
         public PostgresMigrationStrategy(IOrm orm)
@@ -51,10 +49,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
         {
             var sql = DataStandardVersionTemplate;
             var result = _orm.ExecuteScalar<String>(sql);
-            if (result.Equals("5.3"))
-                return DataStandard.Ds53;
-            else
-                return DataStandard.Ds32;
+            DataStandard dataStandardVersion = (DataStandard)Enum.Parse(typeof(DataStandard), result, true);
+            return dataStandardVersion;
         }
     }
 }

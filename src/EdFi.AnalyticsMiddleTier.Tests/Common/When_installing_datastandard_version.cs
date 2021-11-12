@@ -37,7 +37,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         static object[] FixtureArgs = {
         new object[] { DataStandard.Ds2 },
         new object[] { DataStandard.Ds31 },
-        new object[] { DataStandard.Ds32 }
+        new object[] { DataStandard.Ds32 },
+        new object[] { DataStandard.Ds53 }
         };
         public Given_SqlServer_database_with_a_valid_datastandard_version(DataStandard dataStandard) {
             _dataStandard = dataStandard;
@@ -128,7 +129,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     {
         protected PostgresMigrationStrategy postgresqlServerMigrationStrategy{ get; set; }
         static object[] FixtureArgs = {
-            new object[] { DataStandard.Ds32 }
+            new object[] { DataStandard.Ds32 },
+            new object[] { DataStandard.Ds53 }
         };
         readonly DataStandard _dataStandard;
         DataStandard _result;
@@ -141,7 +143,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         public void Act()
         {
             postgresqlServerMigrationStrategy = new PostgresMigrationStrategy(Orm);
-            _result = postgresqlServerMigrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
+            //
+            string statement = PostgresMigrationStrategy.DataStandardVersionTemplate;
+            A.CallTo(() => Orm.ExecuteScalar<string>(statement)).Returns(_dataStandard.ToString());
+            //
+            //_result = postgresqlServerMigrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
+            _result = postgresqlServerMigrationStrategy.GetDataStandardVersion();
         }
         [Test]
         public void strategy_should_have_orm()
@@ -157,7 +164,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         [Test]
         public void Get_datastandardversion_should_not_invoke_execute()
         {
-            A.CallTo(() => Orm.ExecuteScalar<string>(A<string>._)).MustNotHaveHappened();
+            A.CallTo(() => Orm.ExecuteScalar<string>(A<string>._)).MustHaveHappened();
         }
         [Test]
         public void Get_datastandardversion_should_be_valid()

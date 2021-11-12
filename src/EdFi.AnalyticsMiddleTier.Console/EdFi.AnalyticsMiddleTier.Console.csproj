@@ -27,6 +27,7 @@
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard2\EdFi.AnalyticsMiddleTier.DataStandard2.csproj" />
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard31\EdFi.AnalyticsMiddleTier.DataStandard31.csproj" />
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard32\EdFi.AnalyticsMiddleTier.DataStandard32.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard53\EdFi.AnalyticsMiddleTier.DataStandard53.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,6 +15,7 @@ using System.Linq;
 using Ds2 = EdFi.AnalyticsMiddleTier.DataStandard2;
 using Ds31 = EdFi.AnalyticsMiddleTier.DataStandard31;
 using Ds32 = EdFi.AnalyticsMiddleTier.DataStandard32;
+using Ds53 = EdFi.AnalyticsMiddleTier.DataStandard53;
 
 namespace EdFi.AnalyticsMiddleTier.Console
 {
@@ -124,7 +125,7 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                 install = new Ds32.Install(migrationStrategy);
                                 break;
                             case DataStandard.Ds53:
-                                install = new Ds32.Install(migrationStrategy);
+                                install = new Ds53.Install(migrationStrategy);
                                 break;
                             default:
                                 message = _odsVersionNotSupportedMessage;
