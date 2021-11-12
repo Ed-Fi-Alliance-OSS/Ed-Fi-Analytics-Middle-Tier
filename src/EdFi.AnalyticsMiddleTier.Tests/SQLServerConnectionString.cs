@@ -1,10 +1,12 @@
-﻿namespace EdFi.AnalyticsMiddleTier.Tests
+﻿using System;
+
+namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public class SQLServerConnectionStringDS2 : SQLServerConnectionString
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -14,7 +16,7 @@
         {
             get
             {
-                if (UseDefaultConnString)
+                if (UseDefaultConnectionString)
                     return "AnalyticsMiddleTier_Testing_Ds2";
                 else
                     return Database_ds2;
@@ -26,7 +28,7 @@
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds31;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -36,7 +38,7 @@
         {
             get
             {
-                if (UseDefaultConnString)
+                if (UseDefaultConnectionString)
                     return "AnalyticsMiddleTier_Testing_Ds31";
                 else
                     return Database_ds31;
@@ -48,7 +50,7 @@
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
+            if (UseDefaultConnectionString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds32;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -58,7 +60,7 @@
         {
             get
             {
-                if (UseDefaultConnString)
+                if (UseDefaultConnectionString)
                     return "AnalyticsMiddleTier_Testing_Ds32";
                 else
                     return Database_ds32;
@@ -66,30 +68,43 @@
         }
     }
 
-    public abstract class SQLServerConnectionString
+    public abstract class SQLServerConnectionString : DatabaseConnectionString
     {
-        protected DotEnvHelper dotEnvHelper;
-
-        protected SQLServerConnectionString()
-        {
-            dotEnvHelper = new DotEnvHelper();
+        protected SQLServerConnectionString() : base() { 
         }
+                
+        public bool UseDefaultConnectionString => UseEnvironmentConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
 
-        protected bool UseDefaultConnString => !dotEnvHelper.HasValue("USE_MSSQL_DEFAULT_CONN_STRING")
-                    || dotEnvHelper.Value("USE_MSSQL_DEFAULT_CONN_STRING").ToLower() == "true";
+        protected string Server => GetEnvironmentVariable("SQLSERVER_SERVER");
 
-        protected string Server => dotEnvHelper.Value("SQLSERVER_SERVER");
+        public string Database_ds2 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS2");
 
-        public string Database_ds2 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS2");
+        public string Database_ds31 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS31");
 
-        public string Database_ds31 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS31");
+        public string Database_ds32 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS32");
 
-        public string Database_ds32 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS32");
+        protected string Integrated_security => GetEnvironmentVariable("SQLSERVER_INTEGRATED_SECURITY");
 
-        protected string Integrated_security => dotEnvHelper.Value("SQLSERVER_INTEGRATED_SECURITY");
+        protected string User => GetEnvironmentVariable("SQLSERVER_USER");
 
-        protected string User => dotEnvHelper.Value("SQLSERVER_USER");
+        protected string Pass => GetEnvironmentVariable("SQLSERVER_PASS");
 
-        protected string Pass => dotEnvHelper.Value("SQLSERVER_PASS");
+        protected string SQL_SA_Pass => GetEnvironmentVariable("SQLSERVER_SA_PASS");
+
+        public override string GetMainDatabaseConnectionString
+        {
+            get 
+            {
+                if (!UseDefaultConnectionString)
+                {
+                    string saPassword = SQL_SA_Pass;
+                    return $"server=localhost;database=master;integrated security=false;User=sa;Password={SQL_SA_Pass}";
+                }
+                else
+                {
+                    return "server=localhost;database=master;integrated security=sspi";
+                }
+            }
+        }
     }
 }
