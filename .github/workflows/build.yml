@@ -39,9 +39,9 @@ jobs:
 
     steps:
       - name: Start windows container for SQLServer 2017 Express
-        run: |          
-          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d microsoft/mssql-server-windows-express
-          
+        run: |
+         docker run -m 3gb -p 1433:1433 -e 'sa_password=${{ env.SQLSERVER_SA_PASS }}' -e 'ACCEPT_EULA=Y' --name mssqlwin -d microsoft/mssql-server-windows-express:2017-latest          
+         
 
 #docker run -d -p 1433:1433 -v C:/temp/:C:/temp/ -e sa_password=${{ env.SQLSERVER_SA_PASS }} -e ACCEPT_EULA=Y microsoft/mssql-server-windows-express
 #docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest 
