@@ -6,11 +6,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
-            {
-                return Environment.GetEnvironmentVariable("GA_MSSQL_DS2_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
-            }
-            else if (UseDefaultConnString)
+            if (UseDefaultConnString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds2;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds2};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -32,11 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
-            {
-                return Environment.GetEnvironmentVariable("GA_MSSQL_DS31_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
-            }
-            else if (UseDefaultConnString)
+            if (UseDefaultConnString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds31;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds31};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -58,11 +50,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public override string ToString()
         {
-            if ((Environment.GetEnvironmentVariable("GA_USE_GITHUB_ENV", EnvironmentVariableTarget.Process) ?? "false").ToLower().Equals("true"))
-            {
-                return Environment.GetEnvironmentVariable("GA_MSSQL_DS32_CONNECTIONSTRING", EnvironmentVariableTarget.Process);
-            }
-            else if (UseDefaultConnString)
+            if (UseDefaultConnString)
                 return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds32;integrated security=sspi";
             else
                 return $"server={Server};database={Database_ds32};integrated security={Integrated_security};User={User};Password={Pass}";
@@ -80,30 +68,25 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         }
     }
 
-    public abstract class SQLServerConnectionString
+    public abstract class SQLServerConnectionString : DatabaseConnectionString
     {
-        protected DotEnvHelper dotEnvHelper;
-
-        protected SQLServerConnectionString()
-        {
-            dotEnvHelper = new DotEnvHelper();
+        protected SQLServerConnectionString() : base() { 
         }
+                
+        protected bool UseDefaultConnString => UseDefaultConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
 
-        protected bool UseDefaultConnString => !dotEnvHelper.HasValue("USE_MSSQL_DEFAULT_CONN_STRING")
-                    || dotEnvHelper.Value("USE_MSSQL_DEFAULT_CONN_STRING").ToLower() == "true";
+        protected string Server => GetEnvironmentVariable("SQLSERVER_SERVER");
 
-        protected string Server => dotEnvHelper.Value("SQLSERVER_SERVER");
+        public string Database_ds2 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS2");
 
-        public string Database_ds2 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS2");
+        public string Database_ds31 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS31");
 
-        public string Database_ds31 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS31");
+        public string Database_ds32 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS32");
 
-        public string Database_ds32 => dotEnvHelper.Value("SQLSERVER_DATABASE_DS32");
+        protected string Integrated_security => GetEnvironmentVariable("SQLSERVER_INTEGRATED_SECURITY");
 
-        protected string Integrated_security => dotEnvHelper.Value("SQLSERVER_INTEGRATED_SECURITY");
+        protected string User => GetEnvironmentVariable("SQLSERVER_USER");
 
-        protected string User => dotEnvHelper.Value("SQLSERVER_USER");
-
-        protected string Pass => dotEnvHelper.Value("SQLSERVER_PASS");
+        protected string Pass => GetEnvironmentVariable("SQLSERVER_PASS");
     }
 }

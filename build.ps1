@@ -181,7 +181,7 @@ function RunTests {
 
     $testAssemblies | ForEach-Object {
         Write-Host "Executing: dotnet test $($_)"
-        Invoke-Execute { dotnet test -c $Configuration --filter Category=$Category $_ }
+        Invoke-Execute { dotnet test --filter Category=$Category $_ }
     }
 }
 
