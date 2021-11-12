@@ -95,7 +95,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             get 
             {
-                if (UseDefaultConnectionString)
+                if (!UseDefaultConnectionString)
                 {
                     string saPassword = SQL_SA_Pass;
                     return $"server=localhost;database=master;integrated security=false;User=sa;Password={SQL_SA_Pass}";
