@@ -34,7 +34,7 @@ env:
 
 jobs:
   build:
-    runs-on: Ubuntu-latest
+    runs-on: Windows-latest
 
     steps:
       - name: Start windows container for SQLServer 2017 Express
