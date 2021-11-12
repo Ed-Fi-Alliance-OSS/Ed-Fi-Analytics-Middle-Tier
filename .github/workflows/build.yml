@@ -34,12 +34,13 @@ env:
 
 jobs:
   build:
-    runs-on: Windows-latest
+    #runs-on: Windows-latest
+    runs-on: Ubuntu-latest
 
     steps:
       - name: Start windows container for SQLServer 2017 Express
         run: |
-          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d microsoft/mssql-server-windows-express
+          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest 
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -53,11 +54,11 @@ jobs:
             ${{ runner.os }}-nuget-
     
       - name: Building AMT
-        run: .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+        run: build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
 
       - name: Unit Tests
-        run: .\build.ps1 unittest -Configuration release
+        run: build.ps1 unittest -Configuration release
       
       - name: Integration Tests
-        run: .\build.ps1 unittest -Configuration release
+        run: build.ps1 unittest -Configuration release
         
