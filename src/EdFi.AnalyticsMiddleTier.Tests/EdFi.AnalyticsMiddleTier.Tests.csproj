@@ -97,8 +97,4 @@
     <Folder Include="TestCases\UserStudentDataAuthorization\MSSQL\" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="IF EXIST .env del $(OutputPath)\.env&#xD;&#xA;IF EXIST .env xcopy .env $(OutputPath)\ /Y" />
-  </Target>
-
 </Project>
