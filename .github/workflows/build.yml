@@ -63,10 +63,10 @@ jobs:
           .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
         shell: pwsh
 
-      - name: Unit Tests
-        run: |
-          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
-        shell: pwsh
+    #  - name: Unit Tests
+    #    run: |
+    #      .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+    #    shell: pwsh
       
       - name: Integration Tests
         run: |
