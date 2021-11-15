@@ -35,7 +35,7 @@ env:
 jobs:
   build:
     #runs-on: Windows-latest
-    runs-on: Windows-latest
+    runs-on: Ubuntu-latest
 
     steps:
       - name: Start windows container for SQLServer 2017 Express
@@ -58,7 +58,9 @@ jobs:
             ${{ runner.os }}-nuget-
     
       - name: Building AMT
-        run: .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+        run: |
+        .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+        shell: pwsh
 
       - name: Unit Tests
         run: .\build.ps1 unittest -Configuration release
