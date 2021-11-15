@@ -59,12 +59,16 @@ jobs:
     
       - name: Building AMT
         run: |
-        .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+          .\build.ps1 build -Configuration release -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
         shell: pwsh
 
       - name: Unit Tests
-        run: .\build.ps1 unittest -Configuration release
+        run: |
+          .\build.ps1 unittest -Configuration release
+        shell: pwsh
       
       - name: Integration Tests
-        run: .\build.ps1 unittest -Configuration release
+        run: |
+          .\build.ps1 unittest -Configuration release
+        shell: pwsh
         
