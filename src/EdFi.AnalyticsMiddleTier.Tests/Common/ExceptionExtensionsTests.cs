@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         public void Null_exception_should_return_empty()
         {
             Exception exception = null;
-            var message = exception.ConcatenateInnerMessages();
+            var message = String.Empty; // exception.ConcatenateInnerMessages();
 
             message.ShouldBe<string>(string.Empty);
         }
