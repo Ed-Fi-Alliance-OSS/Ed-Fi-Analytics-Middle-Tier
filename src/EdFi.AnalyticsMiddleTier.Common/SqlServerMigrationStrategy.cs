@@ -25,7 +25,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
              END
 			 ELSE IF (SELECT OBJECT_ID('edfi.Survey')) IS NOT NULL
              BEGIN
-            	SELECT 'Ds53' AS version
+            	SELECT 'Ds33' AS version
              END
              ELSE IF (SELECT OBJECT_ID('dbo.DeployJournal'))  IS NOT NULL
              BEGIN

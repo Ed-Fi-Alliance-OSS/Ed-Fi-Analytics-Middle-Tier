@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
    			        WHERE  table_schema = 'edfi' AND table_name = 'survey'
                 )
 			    THEN 
-				    'Ds53'
+				    'Ds33'
 			    ELSE
 				    'Ds32'
 			    END AS DS";
