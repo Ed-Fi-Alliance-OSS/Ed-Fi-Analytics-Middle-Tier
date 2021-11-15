@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         new object[] { DataStandard.Ds2 },
         new object[] { DataStandard.Ds31 },
         new object[] { DataStandard.Ds32 },
-        new object[] { DataStandard.Ds53 }
+        new object[] { DataStandard.Ds33 }
         };
         public Given_SqlServer_database_with_a_valid_datastandard_version(DataStandard dataStandard) {
             _dataStandard = dataStandard;
@@ -130,7 +130,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         protected PostgresMigrationStrategy postgresqlServerMigrationStrategy{ get; set; }
         static object[] FixtureArgs = {
             new object[] { DataStandard.Ds32 },
-            new object[] { DataStandard.Ds53 }
+            new object[] { DataStandard.Ds33 }
         };
         readonly DataStandard _dataStandard;
         DataStandard _result;
