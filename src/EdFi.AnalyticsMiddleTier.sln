@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Project Information", "_Pr
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.DataStandard53", "EdFi.AnalyticsMiddleTier.DataStandard53\EdFi.AnalyticsMiddleTier.DataStandard53.csproj", "{8C536B55-FBE8-4E07-BE89-AADFB4818D06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.DataStandard33", "EdFi.AnalyticsMiddleTier.DataStandard33\EdFi.AnalyticsMiddleTier.DataStandard33.csproj", "{8C536B55-FBE8-4E07-BE89-AADFB4818D06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
