@@ -38,7 +38,7 @@ jobs:
     runs-on: Ubuntu-latest
 
     steps:
-      - name: Start windows container for SQLServer 2017 Express
+      - name: Start Ubuntu container for SQLServer 2017 Express
         run: |
          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
 
