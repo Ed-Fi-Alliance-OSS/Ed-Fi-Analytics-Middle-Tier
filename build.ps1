@@ -76,6 +76,7 @@ $publishFddOutputDirectory = "$publishOutputPath/$publishFddDirectoryName"
 $publishScdOutputDirectory = "$publishOutputPath/$publishScdDirectoryName"
 $publishFddZipFile = "$publishFddDirectoryName.zip"
 $publishScdZipFile = "$publishScdDirectoryName.zip"
+$testProjectName = "EdFi.AnalyticsMiddleTier.Tests"
 
 function Clean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
@@ -123,7 +124,7 @@ function AssemblyInfo {
 function Compile {
     Invoke-Execute {
         dotnet --info
-        dotnet build $solutionRoot -c $Configuration --nologo 
+        dotnet build $solutionRoot -c $Configuration --nologo
     }
 }
 
@@ -186,11 +187,11 @@ function RunTests {
 }
 
 function UnitTests {
-    Invoke-Execute { RunTests -Filter "EdFi.AnalyticsMiddleTier.Tests" -Category UnitTest}
+    Invoke-Execute { RunTests -Filter $testProjectName -Category UnitTest}
 }
 
 function IntegrationTests {
-    Invoke-Execute { RunTests -Filter "EdFi.AnalyticsMiddleTier.Tests" -Category IntegrationTest}
+    Invoke-Execute { RunTests -Filter $testProjectName -Category IntegrationTest}
 }
 
 function Invoke-Build {
