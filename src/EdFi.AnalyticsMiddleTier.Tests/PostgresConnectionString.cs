@@ -1,38 +1,34 @@
-﻿namespace EdFi.AnalyticsMiddleTier.Tests
+﻿using System;
+
+namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public class PostsgreConnectionStringDS32 : PostgresConnectionString
     {
         public override string ToString()
         {
-            if (UseDefaultConnString)
-                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false;";
+            if (UseDefaultConnectionString)
+                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false";
             else
                 return $"User ID={User};Host={Host};Port={Port};Database={Database_ds32};Pooling={Pooling};password={Pass}";
         }
     }
 
-    public abstract class PostgresConnectionString
+    public abstract class PostgresConnectionString : DatabaseConnectionString
     {
-        protected  DotEnvHelper dotEnvHelper;
+        protected PostgresConnectionString() : base() {}
 
-        protected PostgresConnectionString()
-        {
-            dotEnvHelper = new DotEnvHelper();
-        }
+        public bool UseDefaultConnectionString => UseEnvironmentConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
 
-        protected bool UseDefaultConnString => !dotEnvHelper.HasValue("USE_POSTGRES_DEFAULT_CONN_STRING")
-                    || dotEnvHelper.Value("USE_POSTGRES_DEFAULT_CONN_STRING").ToLower() == "true";
+        protected string Host => GetEnvironmentVariable("POSTGRES_HOST");
 
-        protected string Host => dotEnvHelper.Value("POSTGRES_HOST");
+        protected string Database_ds32 => GetEnvironmentVariable("POSTGRES_DATABASE");
 
-        protected string Database_ds32 => dotEnvHelper.Value("POSTGRES_DATABASE");
+        protected string Port => GetEnvironmentVariable("POSTGRES_PORT");
 
-        protected string Port => dotEnvHelper.Value("POSTGRES_PORT");
+        protected string Pooling => GetEnvironmentVariable("POSTGRES_POOLING");
 
-        protected string Pooling => dotEnvHelper.Value("POSTGRES_POOLING");
+        protected string User => GetEnvironmentVariable("POSTGRES_USER");
 
-        protected string User => dotEnvHelper.Value("POSTGRES_USER");
-
-        protected string Pass => dotEnvHelper.Value("POSTGRES_PASS");
+        protected string Pass => GetEnvironmentVariable("POSTGRES_PASS");
     }
 }
