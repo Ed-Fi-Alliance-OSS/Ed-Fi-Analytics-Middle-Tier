@@ -25,14 +25,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
             message.ShouldBe<string>($"{exceptionMessage}\r\nInner exception: {innerExceptionMessage}");
         }
-        /*
-        [Test]
-        public void Null_exception_should_return_empty()
-        {
-            Exception exception = null;
-            var message = String.Empty; // exception.ConcatenateInnerMessages();
-
-            message.ShouldBe<string>(string.Empty);
-        }*/
+     
     }
 }
