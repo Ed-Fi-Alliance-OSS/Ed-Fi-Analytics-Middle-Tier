@@ -70,6 +70,6 @@ jobs:
       
       - name: Integration Tests
         run: |
-          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+          .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
         shell: pwsh
         
