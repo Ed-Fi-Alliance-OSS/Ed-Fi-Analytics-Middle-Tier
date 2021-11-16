@@ -46,12 +46,14 @@ jobs:
     #      .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
     #    shell: pwsh
       
-      - name: Create Postgres DB
-        run: |
-          .\eng\CreateTestDbAndSchema.ps1 -d postgres
-        shell: pwsh
+      # - name: Create Postgres DB
+      #   run: |
+      #     .\eng\CreateTestDbAndSchema.ps1 -d postgres
+      #   shell: pwsh
 
-
+      run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
+      env:
+        PGPASSWORD: postgres
 
       # - name: Integration Tests
       #   run: |
