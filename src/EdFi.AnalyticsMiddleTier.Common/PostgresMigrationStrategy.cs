@@ -14,10 +14,22 @@ namespace EdFi.AnalyticsMiddleTier.Common
     {
         public const string JournalingSchema = "";
         public const string JournalingVersionsTable = "AnalyticsMiddleTierSchemaVersion";
-        protected IOrm Orm { get; set; }
+        public const string DataStandardVersionTemplate =
+            @"SELECT CASE 
+	            WHEN EXISTS (
+		            SELECT FROM information_schema.tables 
+   			        WHERE  table_schema = 'edfi' AND table_name = 'survey'
+                )
+			    THEN 
+				    'Ds33'
+			    ELSE
+				    'Ds32'
+			    END AS DS";
+
+        protected IOrm _orm { get; set; }
         public PostgresMigrationStrategy(IOrm orm)
         {
-            Orm = orm ?? throw new ArgumentNullException(nameof(orm), "ORM cannot be null");
+            _orm = orm ?? throw new ArgumentNullException(nameof(orm), "ORM cannot be null");
         }
         public DatabaseUpgradeResult Migrate(Assembly assembly, string directoryName, string connectionString,
             int timeoutSeconds)
@@ -33,6 +45,12 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 .PerformUpgrade();
         }
 
-        public DataStandard GetDataStandardVersion() => DataStandard.Ds32;
+        public DataStandard GetDataStandardVersion()
+        {
+            var sql = DataStandardVersionTemplate;
+            var result = _orm.ExecuteScalar<String>(sql);
+            DataStandard dataStandardVersion = (DataStandard)Enum.Parse(typeof(DataStandard), result, true);
+            return dataStandardVersion;
+        }
     }
 }

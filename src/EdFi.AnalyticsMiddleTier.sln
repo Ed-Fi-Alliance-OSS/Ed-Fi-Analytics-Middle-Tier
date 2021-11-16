@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Project Information", "_Pr
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.DataStandard33", "EdFi.AnalyticsMiddleTier.DataStandard33\EdFi.AnalyticsMiddleTier.DataStandard33.csproj", "{8C536B55-FBE8-4E07-BE89-AADFB4818D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{283AC53E-C4A5-41AB-90CB-7D0EF9EFF5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{283AC53E-C4A5-41AB-90CB-7D0EF9EFF5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{283AC53E-C4A5-41AB-90CB-7D0EF9EFF5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C536B55-FBE8-4E07-BE89-AADFB4818D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C536B55-FBE8-4E07-BE89-AADFB4818D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C536B55-FBE8-4E07-BE89-AADFB4818D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C536B55-FBE8-4E07-BE89-AADFB4818D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

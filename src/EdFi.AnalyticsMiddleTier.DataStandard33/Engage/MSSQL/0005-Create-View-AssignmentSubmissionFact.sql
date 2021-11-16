@@ -25,14 +25,18 @@ AS
 			,Assignment.SessionName
 			) AS SectionKey,
 		Assignment.AssignmentIdentifier as AssignmentKey,
-		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue' THEN ''
+		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue'
+		        OR DescriptorConstant.ConstantName = 'SubmissionStatus.Upcoming' THEN ''
 			ELSE CONVERT(VARCHAR, AssignmentSubmission.SubmissionDateTime, 112)
 			END as SubmissionDateKey,
-		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue' THEN ''
-			ELSE CAST(AssignmentSubmission.EarnedPoints as VARCHAR)
+		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue' THEN 0
+			ELSE AssignmentSubmission.EarnedPoints
 			END as EarnedPoints,
-		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue' THEN ''
-			ELSE CAST(CAST(ROUND(CAST(AssignmentSubmission.EarnedPoints as DECIMAL) / CAST(Assignment.MaxPoints as DECIMAL), 2)*100 as SMALLINT) as VARCHAR)
+		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue' THEN 0
+			ELSE CAST(
+					(CAST(AssignmentSubmission.EarnedPoints as decimal) / CAST(Assignment.MaxPoints as decimal))
+					* 100 
+					as DECIMAL(9,2))
 			END as NumericGrade,
 		CASE WHEN DescriptorConstant.ConstantName = 'SubmissionStatus.IsPastDue' THEN ''
 			ELSE AssignmentSubmission.Grade
@@ -63,11 +67,4 @@ AS
 	ON
 		AssignmentSubmission.AssignmentIdentifier = Assignment.AssignmentIdentifier
 	AND
-		AssignmentSubmission.[Namespace] = Assignment.[Namespace]
-
-	WHERE
-		DescriptorConstant.ConstantName IN (
-			'SubmissionStatus.IsPastDue',
-			'SubmissionStatus.SubmittedLate',
-			'SubmissionStatus.SubmittedOnTime'
-		);
+		AssignmentSubmission.[Namespace] = Assignment.[Namespace];
