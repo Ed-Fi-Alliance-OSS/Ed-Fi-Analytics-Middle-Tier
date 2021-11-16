@@ -30,6 +30,8 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                                                                                                                                          + "* Data Standard 3.1 (auto-detect presence of VersionLevel table and no AddressType)" +
                                                                                                                                                          System.Environment.NewLine
                                                                                                                                                          + "* Data Standard 3.2 (auto-detect presence of DeployJournal table)" +
+                                                                                                                                                         System.Environment.NewLine
+                                                                                                                                                         + "* Data Standard 3.3 (auto-detect presence of Survey table)" +
                                                                                                                                                          System.Environment.NewLine;
 
         internal static void Main(string[] args)
