@@ -46,22 +46,22 @@ jobs:
       #      .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
       #    shell: pwsh
       
-      # - name: Create Postgres DB
-      #   run: |
-      #     .\eng\CreateTestDbAndSchema.ps1 -d postgres
-      #   shell: pwsh
+      - name: Create Postgres DB
+        run: |
+          .\eng\CreateTestDbAndSchema.ps1 -d postgres
+        shell: pwsh
+        env:
+          PGPASSWORD: postgres
+
+      # - name: create db
+      #   run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
       #   env:
       #     PGPASSWORD: postgres
-
-      - name: create db
-        run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
-        env:
-          PGPASSWORD: postgres
                 
-      - name: create ODS
-        run: psql -d edfi_ods_tests -h localhost -U postgres -f "home\runner\work\Ed-Fi-Analytics-Middle-Tier\Ed-Fi-Analytics-Middle-Tier\src\EdFi.AnalyticsMiddleTier.Tests\EdFi.Ods.Minimal.Template.sql"
-        env:
-          PGPASSWORD: postgres
+      # - name: create ODS
+      #   run: psql -d edfi_ods_tests -h localhost -U postgres -f ".\src\EdFi.AnalyticsMiddleTier.Tests\EdFi.Ods.Minimal.Template.sql"
+      #   env:
+      #     PGPASSWORD: postgres
 
 
           # - name: Integration Tests
