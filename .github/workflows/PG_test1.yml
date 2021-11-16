@@ -1,6 +1,27 @@
 name: PostgreSQL Service Example
 on: push
 
+env:
+  BUILD_VERSION: "2.6.1"
+  CONFIGURATION: "Release"
+  GA_USE_GITHUB_ENV: "true"
+  USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
+  USE_POSTGRES_DEFAULT_CONN_STRING: "FALSE"
+  SQLSERVER_SERVER: "localhost"
+  SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
+  SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
+  SQLSERVER_DATABASE_DS31: "AnalyticsMiddleTier_Testing_Ds31"
+  SQLSERVER_DATABASE_DS32: "AnalyticsMiddleTier_Testing_Ds32"
+  SQLSERVER_INTEGRATED_SECURITY: "false"
+  SQLSERVER_USER: ${{ secrets.MSSQL_USER }}
+  SQLSERVER_PASS: ${{ secrets.MSSQL_PWD }}
+  POSTGRES_HOST: "localhost"
+  POSTGRES_DATABASE: "edfi_ods_tests"
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: ${{ secrets.POSTGRESQL_USER }}
+  POSTGRES_PASS: ${{ secrets.POSTGRESQL_PWD }}
+  POSTGRES_POOLING: "false"
+
 jobs:
   # Label of the runner job
   runner-job:
@@ -36,10 +57,10 @@ jobs:
       # - name: Install dependencies
       #   run: npm ci
 
-      # - name: Building AMT
-      #   run: |
-      #     .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
-      #   shell: pwsh
+      - name: Building AMT
+        run: |
+          .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+        shell: pwsh
 
       #  - name: Unit Tests
       #    run: |
@@ -63,11 +84,10 @@ jobs:
       #   env:
       #     PGPASSWORD: postgres
 
-
-          # - name: Integration Tests
-      #   run: |
-      #     .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
-      #   shell: pwsh
+      - name: Integration Tests
+        run: |
+          .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
         
       # - name: Connect to PostgreSQL
       #   # Runs a script that creates a PostgreSQL table, populates
