@@ -57,7 +57,7 @@ jobs:
         run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
         env:
           PGPASSWORD: postgres
-                /home/runner/work/Ed-Fi-Analytics-Middle-Tier/Ed-Fi-Analytics-Middle-Tier
+                
       - name: create ODS
         run: psql -d edfi_ods_tests -h localhost -U postgres -f "home\runner\work\Ed-Fi-Analytics-Middle-Tier\Ed-Fi-Analytics-Middle-Tier\src\EdFi.AnalyticsMiddleTier.Tests\EdFi.Ods.Minimal.Template.sql"
         env:
