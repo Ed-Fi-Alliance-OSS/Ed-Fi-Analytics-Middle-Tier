@@ -66,6 +66,7 @@
     #>
 param ( [string][Alias('h')]$pghost="localhost",
 		[string][Alias('u')]$user="postgres",
+        [string][Alias('p')]$password="postgres",
 		[string][Alias('p')]$port="5432",
 		[string][Alias('d')]$database="edfi_ods_tests",
 		[string][Alias('s')]$script=".\src\EdFi.AnalyticsMiddleTier.Tests\EdFi.Ods.Minimal.Template.sql")
@@ -73,8 +74,8 @@ $dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"
 $createDatabase = "CREATE DATABASE" +" " + $database +";"
 
 Write-Host "dropping db if it exists"
-psql -h $pghost -p $port -U $user -c $dropDatabase
+PGPASSWORD=$password psql -h $pghost -p $port -U $user -c $dropDatabase
 Write-Host "creating db"
-psql -h $pghost -p $port -U $user -c $createDatabase
+PGPASSWORD=$password psql -h $pghost -p $port -U $user -c $createDatabase
 Write-Host "Running migration on db"
-psql -d $database -h $pghost -p $port  -U $user -f $script
+PGPASSWORD=$password psql -d $database -h $pghost -p $port  -U $user -f $script
