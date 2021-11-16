@@ -69,7 +69,7 @@ jobs:
       
       - name: Create Postgres DB
         run: |
-          .\eng\CreateTestDbAndSchema.ps1 -d postgres
+          .\eng\CreateTestDbAndSchema.ps1
         shell: pwsh
         env:
           PGPASSWORD: postgres
