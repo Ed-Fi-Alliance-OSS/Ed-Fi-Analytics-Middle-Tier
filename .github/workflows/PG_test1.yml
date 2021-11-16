@@ -48,15 +48,22 @@ jobs:
           - 5432:5432
 
     steps:
-      # Downloads a copy of the code in your repository before running CI tests
+      - name: Start windows container for SQLServer 2017 Express
+        run: |
+         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
+         
+      
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      # Performs a clean installation of all dependencies in the `package.json` file
-      # For more information, see https://docs.npmjs.com/cli/ci.html
-      # - name: Install dependencies
-      #   run: npm ci
-
+      - name: Caching packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+    
       - name: Building AMT
         run: |
           .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
@@ -74,29 +81,7 @@ jobs:
         env:
           PGPASSWORD: postgres
 
-      # - name: create db
-      #   run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
-      #   env:
-      #     PGPASSWORD: postgres
-                
-      # - name: create ODS
-      #   run: psql -d edfi_ods_tests -h localhost -U postgres -f ".\src\EdFi.AnalyticsMiddleTier.Tests\EdFi.Ods.Minimal.Template.sql"
-      #   env:
-      #     PGPASSWORD: postgres
-
       - name: Integration Tests
         run: |
           .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
         shell: pwsh
-        
-      # - name: Connect to PostgreSQL
-      #   # Runs a script that creates a PostgreSQL table, populates
-      #   # the table with data, and then retrieves the data
-      #   run: node client.js
-      #   # Environment variables used by the `client.js` script to create
-      #   # a new PostgreSQL table.
-      #   env:
-      #     # The hostname used to communicate with the PostgreSQL service container
-      #     POSTGRES_HOST: localhost
-      #     # The default PostgreSQL port
-      #     POSTGRES_PORT: 5432
