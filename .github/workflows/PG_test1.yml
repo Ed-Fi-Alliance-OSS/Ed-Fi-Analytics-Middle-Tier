@@ -50,10 +50,10 @@ jobs:
       #   run: |
       #     .\eng\CreateTestDbAndSchema.ps1 -d postgres
       #   shell: pwsh
-
-      run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
-      env:
-        PGPASSWORD: postgres
+      - name: create db
+        run: psql -h localhost -U postgres -c 'CREATE DATABASE "edfi_ods_tests";'
+        env:
+          PGPASSWORD: postgres
 
       # - name: Integration Tests
       #   run: |
