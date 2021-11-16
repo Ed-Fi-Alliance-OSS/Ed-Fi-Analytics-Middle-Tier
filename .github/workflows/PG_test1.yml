@@ -55,7 +55,13 @@ jobs:
         env:
           PGPASSWORD: postgres
 
-      # - name: Integration Tests
+      - name: create ODS
+        run: psql -d edfi_ods_tests -h localhost -U postgres -f ".\src\EdFi.AnalyticsMiddleTier.Tests\EdFi.Ods.Minimal.Template.sql"
+        env:
+          PGPASSWORD: postgres
+
+
+          # - name: Integration Tests
       #   run: |
       #     .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
       #   shell: pwsh
