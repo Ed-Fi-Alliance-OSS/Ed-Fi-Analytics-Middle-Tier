@@ -59,6 +59,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _connectionString = new SQLServerConnectionStringDS32().ToString()
         };
 
+        public static TestHarnessSQLServer DataStandard33 = new TestHarnessSQLServer
+        {
+            _dataStandardBaseVersion = "v_3",
+            _dataStandardVersionName = "3_3",
+            _dataStandardFolderName = "3_1",
+            _databaseName = new SQLServerConnectionStringDS33().Database,
+            _dacpacName = "EdFi_Ods_3.3.dacpac",
+            DataStandardEngine = Engine.MSSQL,
+            _dataStandardInstallType = typeof(DataStandard33.Install),
+            DataStandardVersion = DataStandard.Ds33,
+            _connectionString = new SQLServerConnectionStringDS33().ToString()
+        };
+
         private string _snapshotName => $"{_databaseName}_ss";
 
         private string _dacpacName;

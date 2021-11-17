@@ -29,6 +29,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _connectionString = new PostsgreConnectionStringDS32().ToString()
         };
 
+        public static TestHarnessPostgres DataStandard33PG = new TestHarnessPostgres
+        {
+            _dataStandardBaseVersion = "v_3",
+            _dataStandardVersionName = "3_3",
+            _dataStandardFolderName = "3_3",
+            DataStandardEngine = Engine.PostgreSQL,
+            _dataStandardInstallType = typeof(DataStandard33.Install),
+            DataStandardVersion = DataStandard.Ds33,
+            _connectionString = new PostsgreConnectionStringDS33().ToString()
+        };
+
         public override void PrepareDatabase()
         {
             Uninstall();

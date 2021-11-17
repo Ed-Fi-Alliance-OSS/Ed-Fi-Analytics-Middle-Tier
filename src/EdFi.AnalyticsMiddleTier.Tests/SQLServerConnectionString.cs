@@ -68,6 +68,28 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         }
     }
 
+    public class SQLServerConnectionStringDS33 : SQLServerConnectionString
+    {
+        public override string ToString()
+        {
+            if (UseDefaultConnectionString)
+                return "server=localhost;database=AnalyticsMiddleTier_Testing_Ds33;integrated security=sspi";
+            else
+                return $"server={Server};database={Database_ds33};integrated security={Integrated_security};User={User};Password={Pass}";
+        }
+
+        public string Database
+        {
+            get
+            {
+                if (UseDefaultConnectionString)
+                    return "AnalyticsMiddleTier_Testing_Ds32";
+                else
+                    return Database_ds33;
+            }
+        }
+    }
+
     public abstract class SQLServerConnectionString : DatabaseConnectionString
     {
         protected SQLServerConnectionString() : base() { 
@@ -82,6 +104,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         public string Database_ds31 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS31");
 
         public string Database_ds32 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS32");
+
+        public string Database_ds33 => GetEnvironmentVariable("SQLSERVER_DATABASE_DS33");
 
         protected string Integrated_security => GetEnvironmentVariable("SQLSERVER_INTEGRATED_SECURITY");
 
