@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
             : When_querying_the_StudentEarlyWarningFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentEarlyWarningFact>(TestCasesFolder, TestCasesDataFileName, Component.Ews);
+            public void PrepareDatabase() => PrepareTestData<StudentEarlyWarningFact>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Ews);
         }
         public class Given_student_early_warning_fact_193964_867530011_20120502
         : When_querying_the_StudentEarlyWarningFact_view

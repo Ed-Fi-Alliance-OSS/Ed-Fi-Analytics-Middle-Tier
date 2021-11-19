@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_StudentLocalEducationAgencyDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_StudentLocalEducationAgencyDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentLocalEducationAgencyDim>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<StudentLocalEducationAgencyDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
         public class Given_student_local_education_agency_189871_867530
         : When_querying_the_StudentLocalEducationAgencyDim_view

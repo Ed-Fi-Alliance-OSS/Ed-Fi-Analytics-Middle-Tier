@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffClassificationDescripto
             : When_querying_the_StaffClassificationDescriptorScopeList
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StaffClassificationDescriptorScopeList>(TestCasesFolder, TestCasesDataFileName, Component.Qews);
+            public void PrepareDatabase() => PrepareTestData<StaffClassificationDescriptorScopeList>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Qews);
         }
 
         public class Given_an_StaffClassificationDescriptorScopeList_District

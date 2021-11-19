@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FeederSchoolDimTestGroup
             : When_querying_the_FeederSchoolDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<FeederSchoolDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+            public void PrepareDatabase() => PrepareTestData<FeederSchoolDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Equity);
         }
 
         public class Given_feederSchoolDim_850786060_628530

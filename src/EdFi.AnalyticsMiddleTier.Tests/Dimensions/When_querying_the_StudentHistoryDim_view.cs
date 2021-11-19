@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentHistoryDimTestGroup
             : When_querying_the_StudentHistoryDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentHistoryDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+            public void PrepareDatabase() => PrepareTestData<StudentHistoryDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Equity);
         }
 
         public class Given_StudentHistoryDim_197049_867530023

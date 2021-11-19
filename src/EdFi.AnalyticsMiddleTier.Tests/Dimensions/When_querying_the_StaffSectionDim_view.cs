@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             : When_querying_the_StaffSectionDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StaffSectionDim>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<StaffSectionDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
         public class Given_StaffSection_11324_XLTV31
         : When_querying_the_StaffSectionDim_view

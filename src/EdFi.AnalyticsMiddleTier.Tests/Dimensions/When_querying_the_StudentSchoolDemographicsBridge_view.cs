@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
                 : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentSchoolDemographicsBridge>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<StudentSchoolDemographicsBridge>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
         
         public class Given_student_school_demographics_bridge_cohortyear

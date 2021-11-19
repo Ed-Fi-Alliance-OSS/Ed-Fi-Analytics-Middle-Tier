@@ -24,8 +24,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         
         protected string _dataStandardBaseVersion;
 
-        protected string _dataStandardFolderName;
-
         protected InstallBase _dataStandardInstallBase;
 
         protected Type _dataStandardInstallType;
@@ -122,13 +120,33 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public string DataStandardBaseVersion => _dataStandardBaseVersion;
 
-        public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
-            ? ToString()
-            : $"{DataStandardEngine}.v_{_dataStandardFolderName}";
+        /// ToDo BIA-910: We know this solution is terrible. 
+        /// We created a ticket so we can redesign this and consider maintainability, scalability, readability etc. 
+        public string DataStandardFolder(bool useCurrentDataStandard, DataStandard useCompatibleDSVersion = DataStandard.InvalidDs)
+        {
+            Func<DataStandard, string> selector = ds => {
+                switch (ds)
+                {
+                    case DataStandard.Ds31:
+                        return "3_1";
+                    case DataStandard.Ds32:
+                        return "3_2";
+                    case DataStandard.Ds33:
+                        return "3_3";
+                    default:
+                        return string.Empty;
+                }
+            };
 
-        public string CurrentDataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
-            ? ToString()
-            : $"{DataStandardEngine}.v_{_dataStandardVersionName}";
+            if (_dataStandardVersionName == "2")
+                return $"{DataStandardEngine}.v_{_dataStandardVersionName}";
+            else if (DataStandardEngine == Engine.PostgreSQL)
+                return $"{DataStandardEngine}.v_{_dataStandardVersionName}";
+            else
+                return (useCurrentDataStandard)
+                    ? $"{DataStandardEngine}.v_{_dataStandardVersionName}"
+                    : $"{DataStandardEngine}.v_{selector(useCompatibleDSVersion)}";
+        }
 
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
@@ -155,12 +173,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             return UninstallStrategy.Uninstall(uninstallAll);
         }
 
-        public string GetTestDataFolderName(bool useCurrentDataStandard)
-            => useCurrentDataStandard
-                ? $"{CurrentDataStandardFolderName}"
-                : $"{DataStandardFolderName}" ;
+        public string GetTestDataFolderName(bool useCurrentDataStandard, DataStandard useCompatibleVersion)
+            => DataStandardFolder(useCurrentDataStandard, useCompatibleVersion);
 
-  
+
         public T ExecuteScalarQuery<T>(string sqlCommand)
         {
             using (var connection = OpenConnection())

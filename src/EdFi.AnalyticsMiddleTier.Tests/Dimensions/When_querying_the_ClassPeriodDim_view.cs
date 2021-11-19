@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ClassPeriodDimTestGroup
             : When_querying_the_ClassPeriodDim_view_base
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<ClassPeriodDim>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<ClassPeriodDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_ClassPeriodDim_view

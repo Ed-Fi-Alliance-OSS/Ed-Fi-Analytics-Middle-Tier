@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
                 : When_querying_the_StudentSectionGradeFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentSectionGradeFact>(TestCasesFolder, TestCasesDataFileName, Component.Ews);
+            public void PrepareDatabase() => PrepareTestData<StudentSectionGradeFact>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Ews);
         }
 
         public class Given_sudent_section_grade_fact_189889

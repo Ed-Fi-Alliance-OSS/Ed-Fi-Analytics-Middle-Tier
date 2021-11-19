@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
             : When_querying_the_StudentAssessmentFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentAssessmentFact>(TestCasesFolder, TestCasesDataFileName, Component.Asmt);
+            public void PrepareDatabase() => PrepareTestData<StudentAssessmentFact>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Asmt);
         }
 
         public class Given_student_assessment_fact_04556570_B715_6D8E_5E86_008A72ECE446_2009_04_01

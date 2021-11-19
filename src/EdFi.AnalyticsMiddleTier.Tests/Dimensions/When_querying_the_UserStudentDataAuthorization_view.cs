@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
                 : When_querying_the_UserStudentDataAuthorization_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<UserStudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
+            public void PrepareDatabase() => PrepareTestData<UserStudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.RLS);
         }
 
         public class Given_UserStudentDataAuthorization_11324_190019

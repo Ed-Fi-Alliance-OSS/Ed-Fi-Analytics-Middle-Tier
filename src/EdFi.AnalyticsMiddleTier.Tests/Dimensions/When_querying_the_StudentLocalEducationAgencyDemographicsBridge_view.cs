@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false)}.0001_StudentLocalEducationAgencyDemographicsBridge_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_StudentLocalEducationAgencyDemographicsBridge_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentLocalEducationAgencyDemographicsBridge>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<StudentLocalEducationAgencyDemographicsBridge>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
         public class Given_StudentLocalEducationAgencyDemographicsBridge_2011_Eighth_grade_193964_867530
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view

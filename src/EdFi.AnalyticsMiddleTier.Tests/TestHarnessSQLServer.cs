@@ -40,7 +40,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_1",
-            _dataStandardFolderName = "3_1",
             _databaseName = new SQLServerConnectionStringDS31().Database,
             _dacpacName = "EdFi_Ods_3.1.dacpac",
             _dataStandardInstallType = typeof(DataStandard31.Install),
@@ -52,7 +51,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
-            _dataStandardFolderName = "3_1",
             _databaseName = new SQLServerConnectionStringDS32().Database,
             _dacpacName = "EdFi_Ods_3.2.dacpac",
             DataStandardEngine = Engine.MSSQL,

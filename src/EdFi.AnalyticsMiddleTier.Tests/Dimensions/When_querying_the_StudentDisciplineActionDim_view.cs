@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDisciplineActionDimTe
             : When_querying_the_StudentDisciplineActionDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentDisciplineActionDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+            public void PrepareDatabase() => PrepareTestData<StudentDisciplineActionDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Equity);
         }
         public class Given_studentDisciplineAction_193964_628530001
         : When_querying_the_StudentDisciplineActionDim_view

@@ -23,7 +23,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
-            _dataStandardFolderName = "3_2",
             DataStandardEngine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
             DataStandardVersion = DataStandard.Ds32,

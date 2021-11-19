@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 : When_querying_the_UserAuthorization_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<UserAuthorization>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
+            public void PrepareDatabase() => PrepareTestData<UserAuthorization>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.RLS);
         }
 
         public class Given_an_StaffEducationOrganizationAssignmentAssociation_that_has_already_ended

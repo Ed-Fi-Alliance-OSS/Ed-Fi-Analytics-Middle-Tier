@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTestGroup
         {
             (bool success, string errorMessage) testResult =
                 DataStandard.RunTestCase<TableColumns>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_StudentProgramDim_should_match_column_dictionary.xml");
+                    $"{TestCasesFolder}.{DataStandard.DataStandardFolder(true)}.0001_StudentProgramDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -27,7 +27,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTestGroup
                 : When_querying_the_StudentProgramDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentProgramDim>(TestCasesFolder, TestCasesDataFileName,true);
+            public void PrepareDatabase() => PrepareTestData<StudentProgramDim>(TestCasesFolder, TestCasesDataFileName, true, AnalyticsMiddleTier.Common.DataStandard.InvalidDs);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]

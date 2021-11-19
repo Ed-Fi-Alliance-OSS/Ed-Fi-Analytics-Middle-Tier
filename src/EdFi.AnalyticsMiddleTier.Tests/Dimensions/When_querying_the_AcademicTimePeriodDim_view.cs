@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             : When_querying_the_AcademicTimePeriodDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<AcademicTimePeriodDim>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<AcademicTimePeriodDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
 
         public class Given_default_record_When_querying_the_AcademicTimePeriodDim_view
@@ -33,7 +33,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             [Test]
             public void Then_view_should_match_column_dictionary()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -128,7 +128,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<AcademicTimePeriodDim>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.should_have_SessionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.should_have_SessionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

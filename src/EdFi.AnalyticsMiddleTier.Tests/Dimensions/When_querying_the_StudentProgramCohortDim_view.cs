@@ -34,7 +34,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramCohortDimTestG
         {
             [OneTimeSetUp]
             public void PrepareDatabase() =>
-                PrepareTestData<StudentProgramCohortDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
+                PrepareTestData<StudentProgramCohortDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Equity);
         }
 
         public class Given_StudentProgramCohortDim_189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000

@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
             : When_querying_the_DemographicDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<DemographicDim>(TestCasesFolder, TestCasesDataFileName);
+            public void PrepareDatabase() => PrepareTestData<DemographicDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
