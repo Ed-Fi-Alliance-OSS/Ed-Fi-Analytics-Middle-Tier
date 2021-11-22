@@ -83,7 +83,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             get
             {
                 if (UseDefaultConnectionString)
-                    return "AnalyticsMiddleTier_Testing_Ds32";
+                    return "AnalyticsMiddleTier_Testing_Ds33";
                 else
                     return Database_ds33;
             }

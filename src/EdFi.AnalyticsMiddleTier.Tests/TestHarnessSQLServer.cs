@@ -63,7 +63,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_3",
-            _dataStandardFolderName = "3_1",
             _databaseName = new SQLServerConnectionStringDS33().Database,
             _dacpacName = "EdFi_Ods_3.3.dacpac",
             DataStandardEngine = Engine.MSSQL,
