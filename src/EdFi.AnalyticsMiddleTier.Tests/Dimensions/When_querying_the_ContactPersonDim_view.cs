@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_ContactPersonDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_ContactPersonDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<ContactPersonDim>(TestCasesFolder, TestCasesDataFileName, true);
+            public void PrepareDatabase() => PrepareTestData<ContactPersonDim>(TestCasesFolder, TestCasesDataFileName, null);
         }
         public class Given_contact_person_132500_189856
             : When_querying_the_ContactPersonDim_view

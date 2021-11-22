@@ -17,16 +17,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     public abstract class When_querying_a_view : TestCaseBase
     {
         protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, null);
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, null);
 
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, components);
-
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile, useCurrentDataStandard, null);
-
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard,
-            params Component[] components)
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components)
         {
             foreach (var dataStandard in fixtureList.GetFixturesList())
             {
@@ -41,7 +34,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 }
 
                 string xmlLoadFilePath =
-                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName(useCurrentDataStandard)}.{xmlLoadFile}";
+                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName}.{xmlLoadFile}";
 
                 currentDataStandard.PrepareDatabase();
                 currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);

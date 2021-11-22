@@ -24,8 +24,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         
         protected string _dataStandardBaseVersion;
 
-        protected string _dataStandardFolderName;
-
         protected InstallBase _dataStandardInstallBase;
 
         protected Type _dataStandardInstallType;
@@ -119,16 +117,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         }
 
         public string DataStandardVersionName => $"v_{_dataStandardVersionName}";
+        public string GetTestDataFolderName => $"{DataStandardEngine}.v_{_dataStandardVersionName}";
 
         public string DataStandardBaseVersion => _dataStandardBaseVersion;
-
-        public string DataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
-            ? ToString()
-            : $"{DataStandardEngine}.v_{_dataStandardFolderName}";
-
-        public string CurrentDataStandardFolderName => string.IsNullOrWhiteSpace(_dataStandardFolderName)
-            ? ToString()
-            : $"{DataStandardEngine}.v_{_dataStandardVersionName}";
 
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
@@ -155,12 +146,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             return UninstallStrategy.Uninstall(uninstallAll);
         }
 
-        public string GetTestDataFolderName(bool useCurrentDataStandard)
-            => useCurrentDataStandard
-                ? $"{CurrentDataStandardFolderName}"
-                : $"{DataStandardFolderName}" ;
 
-  
         public T ExecuteScalarQuery<T>(string sqlCommand)
         {
             using (var connection = OpenConnection())

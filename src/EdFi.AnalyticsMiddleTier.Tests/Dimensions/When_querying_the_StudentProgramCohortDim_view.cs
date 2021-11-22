@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramCohortDimTestG
         {
             (bool success, string errorMessage) testResult =
                 DataStandard.RunTestCase<TableColumns>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentProgramCohortDim_should_match_column_dictionary.xml");
+                    $"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentProgramCohortDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
