@@ -16,17 +16,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     [Parallelizable(ParallelScope.Fixtures)]
     public abstract class When_querying_a_view : TestCaseBase
     {
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, DataStandard useCompatibleVersion) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, useCompatibleVersion, null);
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile) =>
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile);
 
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, DataStandard useCompatibleVersion, params Component[] components) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile, false, useCompatibleVersion, components);
-
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard, DataStandard useCompatibleVersion) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile, useCurrentDataStandard, useCompatibleVersion, null);
-
-        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, bool useCurrentDataStandard, DataStandard useCompatibleVersion,
-            params Component[] components)
+        protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components)
         {
             foreach (var dataStandard in fixtureList.GetFixturesList())
             {
@@ -41,7 +34,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
                 }
 
                 string xmlLoadFilePath =
-                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName(useCurrentDataStandard, useCompatibleVersion)}.{xmlLoadFile}";
+                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName}.{xmlLoadFile}";
 
                 currentDataStandard.PrepareDatabase();
                 currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);

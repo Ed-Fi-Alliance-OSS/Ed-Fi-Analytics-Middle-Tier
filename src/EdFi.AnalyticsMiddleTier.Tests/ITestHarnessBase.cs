@@ -19,7 +19,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         T ExecuteScalarQuery<T>(string sqlCommand);
         (bool success, string errorMessage) Install(int timeoutSeconds = 30, params Component[] components);
         (bool success, string errorMessage) LoadTestCaseData<T>(string testCaseFile);
-        string GetTestDataFolderName(bool useCurrentDataStandard, DataStandard useCompatibleVersion);
+        string GetTestDataFolderName { get; }
         IDbConnection OpenConnection();
         void PrepareDatabase();
         (bool success, string errorMessage) RunTestCase<T>(string testCaseFile);

@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
             : When_querying_the_SchoolDim_view_base
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<GradingPeriodDim>(TestCasesFolder, TestCasesDataFileName, true, AnalyticsMiddleTier.Common.DataStandard.InvalidDs, null);
+            public void PrepareDatabase() => PrepareTestData<GradingPeriodDim>(TestCasesFolder, TestCasesDataFileName, null);
         }
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_SchoolDim_view

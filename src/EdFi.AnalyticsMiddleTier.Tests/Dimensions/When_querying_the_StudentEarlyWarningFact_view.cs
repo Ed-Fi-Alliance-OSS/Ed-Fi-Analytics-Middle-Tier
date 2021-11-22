@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentEarlyWarningFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
             : When_querying_the_StudentEarlyWarningFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentEarlyWarningFact>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Ews);
+            public void PrepareDatabase() => PrepareTestData<StudentEarlyWarningFact>(TestCasesFolder, TestCasesDataFileName, Component.Ews);
         }
         public class Given_student_early_warning_fact_193964_867530011_20120502
         : When_querying_the_StudentEarlyWarningFact_view

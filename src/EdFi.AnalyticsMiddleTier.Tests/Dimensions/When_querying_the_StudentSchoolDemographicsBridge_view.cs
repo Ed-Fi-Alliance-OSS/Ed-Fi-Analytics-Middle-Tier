@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentSchoolDemographicsBridge_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentSchoolDemographicsBridge_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -31,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
                 : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentSchoolDemographicsBridge>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
+            public void PrepareDatabase() => PrepareTestData<StudentSchoolDemographicsBridge>(TestCasesFolder, TestCasesDataFileName);
         }
         
         public class Given_student_school_demographics_bridge_cohortyear

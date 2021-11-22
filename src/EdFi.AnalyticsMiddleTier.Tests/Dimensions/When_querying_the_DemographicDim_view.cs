@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_DemographicDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_DemographicDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
             : When_querying_the_DemographicDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<DemographicDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
+            public void PrepareDatabase() => PrepareTestData<DemographicDim>(TestCasesFolder, TestCasesDataFileName);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]

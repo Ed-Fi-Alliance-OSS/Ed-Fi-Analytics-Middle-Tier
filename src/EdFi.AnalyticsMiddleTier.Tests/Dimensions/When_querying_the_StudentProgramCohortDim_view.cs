@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramCohortDimTestG
         {
             (bool success, string errorMessage) testResult =
                 DataStandard.RunTestCase<TableColumns>(
-                    $"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentProgramCohortDim_should_match_column_dictionary.xml");
+                    $"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentProgramCohortDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -34,7 +34,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramCohortDimTestG
         {
             [OneTimeSetUp]
             public void PrepareDatabase() =>
-                PrepareTestData<StudentProgramCohortDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Equity);
+                PrepareTestData<StudentProgramCohortDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
         }
 
         public class Given_StudentProgramCohortDim_189889_867530022_Cohort_Program_1_1666_867530_867530_20060814_CI_1000

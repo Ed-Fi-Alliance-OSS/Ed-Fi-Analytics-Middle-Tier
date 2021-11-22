@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentSectionGradeFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentSectionGradeFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
                 : When_querying_the_StudentSectionGradeFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentSectionGradeFact>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Ews);
+            public void PrepareDatabase() => PrepareTestData<StudentSectionGradeFact>(TestCasesFolder, TestCasesDataFileName, Component.Ews);
         }
 
         public class Given_sudent_section_grade_fact_189889

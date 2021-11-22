@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_UserDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_UserDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserDimTestGroup
                 : When_querying_the_UserDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<UserDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.RLS);
+            public void PrepareDatabase() => PrepareTestData<UserDim>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
         }
 
         public class Given_user_11324

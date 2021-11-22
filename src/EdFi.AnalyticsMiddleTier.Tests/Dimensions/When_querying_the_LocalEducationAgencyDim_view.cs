@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_LocalEducationAgencyDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_LocalEducationAgencyDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
             : When_querying_the_LocalEducationAgencyDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<LocalEducationAgencyDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
+            public void PrepareDatabase() => PrepareTestData<LocalEducationAgencyDim>(TestCasesFolder, TestCasesDataFileName);
         }
         public class Given_grading_period_528530
             : When_querying_the_LocalEducationAgencyDim_view

@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_ChronicAbsenteeismAttendanceFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ChronicAbsenteeismAttendance
             : When_querying_the_ChronicAbsenteeismAttendanceFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<ChronicAbsenteeismAttendanceFact>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Chrab);
+            public void PrepareDatabase() => PrepareTestData<ChronicAbsenteeismAttendanceFact>(TestCasesFolder, TestCasesDataFileName, Component.Chrab);
         }
         public class Given_chronic_absenteeism_attendance_fact_193964_867530011_20120502
         : When_querying_the_ChronicAbsenteeismAttendanceFact_view

@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_UserStudentDataAuthorization_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_UserStudentDataAuthorization_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
                 : When_querying_the_UserStudentDataAuthorization_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<UserStudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.RLS);
+            public void PrepareDatabase() => PrepareTestData<UserStudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
         }
 
         public class Given_UserStudentDataAuthorization_11324_190019

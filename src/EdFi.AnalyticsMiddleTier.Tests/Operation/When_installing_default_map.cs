@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Act()
         {
             Result = DataStandard.LoadTestCaseData<LocalEducationAgencyDim>(
-                $"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0000_descriptormap_case_Data_Load.xml");
+                $"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0000_descriptormap_case_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading descriptor data: '{Result.errorMessage}'");
             
             Result = DataStandard.Install(10);
@@ -36,13 +36,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             [Test]
             public void Then_view_should_match_column_dictionary()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.descriptormap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.descriptormap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_rows()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.descriptormap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.descriptormap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -53,13 +53,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             [Test]
             public void Then_view_should_match_column_dictionary()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.typemap_should_match_column_dictionary.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.typemap_should_match_column_dictionary.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_rows()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardFolder(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.typemap_should_return_have_records.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.typemap_should_return_have_records.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

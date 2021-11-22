@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentHistoryDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_StudentHistoryDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentHistoryDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentHistoryDimTestGroup
             : When_querying_the_StudentHistoryDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentHistoryDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31, Component.Equity);
+            public void PrepareDatabase() => PrepareTestData<StudentHistoryDim>(TestCasesFolder, TestCasesDataFileName, Component.Equity);
         }
 
         public class Given_StudentHistoryDim_197049_867530023

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+		SELECT COLUMN_NAME AS ColumnName,
+		DATA_TYPE AS DataType
+		FROM information_schema.columns
+		WHERE table_schema = 'analytics'
+		AND table_name = 'equity_StudentSchoolFoodServiceProgramDim'
+		ORDER BY ORDINAL_POSITION ASC;
+	</Query>
+    <Result>
+        <ColumnName>StudentSchoolFoodServiceProgramKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentSchoolProgramKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentSchoolKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ProgramName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolFoodServiceProgramServiceDescriptor</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+	<Result>
+		<ColumnName>LastModifiedDate</ColumnName>
+		<DataType>datetime2</DataType>
+	</Result>
+</TestCase>

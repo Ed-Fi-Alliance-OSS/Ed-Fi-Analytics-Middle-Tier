@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SectionDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName(false, AnalyticsMiddleTier.Common.DataStandard.Ds31)}.0001_SectionDim_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_SectionDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
        
@@ -58,7 +58,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SectionDimTestGroup
             : When_querying_the_SectionDim_view_base
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<SectionDim>(TestCasesFolder, TestCasesDataFileName, AnalyticsMiddleTier.Common.DataStandard.Ds31);
+            public void PrepareDatabase() => PrepareTestData<SectionDim>(TestCasesFolder, TestCasesDataFileName);
         }
 
         public class When_querying_the_SectionDim_view

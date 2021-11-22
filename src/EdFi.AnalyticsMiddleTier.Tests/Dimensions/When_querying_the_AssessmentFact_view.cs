@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.0001_AssessmentFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_AssessmentFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -30,7 +30,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
             : When_querying_the_AssessmentFact_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<AssessmentFact>(TestCasesFolder, TestCasesDataFileName, true, AnalyticsMiddleTier.Common.DataStandard.InvalidDs, Component.Asmt);
+            public void PrepareDatabase() => PrepareTestData<AssessmentFact>(TestCasesFolder, TestCasesDataFileName, Component.Asmt);
         }
         public class Given_assessment_2s3ch0knpb4val7uqve6mn269bavkdx2
         : When_querying_the_AssessmentFact_view
