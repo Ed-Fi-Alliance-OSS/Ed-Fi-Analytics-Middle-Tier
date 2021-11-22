@@ -60,6 +60,9 @@
     <None Update="EdFi_Ods_3.2.dacpac">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="EdFi_Ods_3.3.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
