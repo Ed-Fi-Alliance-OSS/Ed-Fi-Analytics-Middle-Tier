@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]

@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDataAuthorizationTest
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.DataStandardFolderName}.0001_view_should_match_column_dictionary.json");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_view_should_match_column_dictionary.json");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDataAuthorizationTest
             : When_querying_the_StudentDataAuthorization_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<StudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName,Component.RLS);
+            public void PrepareDatabase() => PrepareTestData<StudentDataAuthorization>(TestCasesFolder, TestCasesDataFileName, Component.RLS);
         }
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_StudentDataAuthorization_view_custom
