@@ -1,0 +1,34 @@
+{
+  "DBMS": "Any",
+  "Query": "SELECT COLUMN_NAME AS ColumnName, DATA_TYPE AS DataType FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name = 'rls_UserAuthorization' ORDER BY ORDINAL_POSITION ASC;",
+    "Result": [
+        {
+            "ColumnName": "UserKey",
+            "DataType": "nvarchar"
+        },
+        {
+            "ColumnName": "UserScope",
+            "DataType": "varchar"
+        },
+        {
+            "ColumnName": "StudentPermission",
+            "DataType": "varchar"
+        },
+        {
+            "ColumnName": "SectionPermission",
+            "DataType": "varchar"
+        },
+        {
+            "ColumnName": "SectionKeyPermission",
+            "DataType": "nvarchar"
+        },
+        {
+            "ColumnName": "SchoolPermission",
+            "DataType": "varchar"
+        },
+        {
+            "ColumnName": "DistrictId",
+            "DataType": "int"
+        }
+    ]
+}
