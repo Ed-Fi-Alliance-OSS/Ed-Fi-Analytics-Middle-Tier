@@ -1,0 +1,42 @@
+{
+  "DBMS": "Any",
+  "Query": "SELECT COLUMN_NAME AS ColumnName, DATA_TYPE AS DataType FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name = 'DateDim' ORDER BY ORDINAL_POSITION ASC;",
+  "Result": [
+    {
+      "ColumnName": "DateKey",
+      "DataType": "varchar"
+    },
+    {
+      "ColumnName": "Date",
+      "DataType": "datetime"
+    },
+    {
+      "ColumnName": "Day",
+      "DataType": "int"
+    },
+    {
+      "ColumnName": "Month",
+      "DataType": "int"
+    },
+    {
+      "ColumnName": "MonthName",
+      "DataType": "nvarchar"
+    },
+    {
+      "ColumnName": "CalendarQuarter",
+      "DataType": "int"
+    },
+    {
+      "ColumnName": "CalendarQuarterName",
+      "DataType": "varchar"
+    },
+    {
+        "ColumnName": "CalendarYear",
+        "DataType": "int"
+    },
+    {
+        "ColumnName": "SchoolYear",
+        "DataType": "varchar"
+    }
+  ]
+}
