@@ -63,7 +63,6 @@
 
   <ItemGroup>
     <Folder Include="TestCases\DateDim\PostgreSQL\" />
-    <Folder Include="TestCases\DefaultMap\MSSQL\" />
     <Folder Include="TestCases\DefaultMap\PostgreSQL\" />
     <Folder Include="TestCases\GradingPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\SectionDim\PostgreSQL\" />
