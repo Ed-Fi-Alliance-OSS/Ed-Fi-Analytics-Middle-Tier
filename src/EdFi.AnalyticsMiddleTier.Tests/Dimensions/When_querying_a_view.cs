@@ -17,7 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
     public abstract class When_querying_a_view : TestCaseBase
     {
         protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile) =>
-            PrepareTestData<T>(testCaseFolder, xmlLoadFile);
+            PrepareTestData<T>(testCaseFolder, xmlLoadFile, null);
 
         protected void PrepareTestData<T>(string testCaseFolder, string xmlLoadFile, params Component[] components)
         {
