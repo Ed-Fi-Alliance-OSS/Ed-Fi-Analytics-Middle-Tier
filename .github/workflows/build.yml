@@ -17,7 +17,7 @@ env:
   CONFIGURATION: "Release"
   GA_USE_GITHUB_ENV: "true"
   USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
-  USE_POSTGRES_DEFAULT_CONN_STRING: "TRUE"
+  USE_POSTGRES_DEFAULT_CONN_STRING: "FALSE"
   SQLSERVER_SERVER: "localhost"
   SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
@@ -27,20 +27,39 @@ env:
   SQLSERVER_USER: ${{ secrets.MSSQL_USER }}
   SQLSERVER_PASS: ${{ secrets.MSSQL_PWD }}
   POSTGRES_HOST: "localhost"
-  POSTGRES_DATABASE: "edfi_ods_tests"
+  POSTGRES_DATABASE: "edfi_ods_tests_ds32"
+  POSTGRES_DATABASE_DS33: "edfi_ods_tests_ds33"
   POSTGRES_PORT: "5432"
   POSTGRES_USER: ${{ secrets.POSTGRESQL_USER }}
   POSTGRES_PASS: ${{ secrets.POSTGRESQL_PWD }}
   POSTGRES_POOLING: "false"
 
 jobs:
-  build:
+  AMT-runner-job:
     runs-on: Ubuntu-latest
+    # Service containers to run with `AMT-runner-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:11
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASS }}
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          -  5432:5432
 
     steps:
-      #- name: Start Ubuntu container for SQLServer 2017 Express
-      #  run: |
-      #   docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
+      - name: Start Ubuntu container for SQLServer 2017 Express
+        run: |
+         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -58,13 +77,28 @@ jobs:
           .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
         shell: pwsh
 
+      - name: Create Postgres DB DS v3.2
+        run: |
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }}
+        shell: pwsh
+        env:
+          PGPASSWORD:  ${{ env.POSTGRES_PASS }}
+
+      # TODO: Pass as parameter the path of the postgres version 3.3 script.
+      #- name: Create Postgres DB DS v3.3
+      #  run: |
+      #    .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS33 }}
+      #  shell: pwsh
+      #  env:
+      #    PGPASSWORD: {{ env.POSTGRESQL_PWD }}
+
     #  - name: Unit Tests
     #    run: |
     #      .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
     #    shell: pwsh
       
-    #  - name: Integration Tests
-    #    run: |
-    #      .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
-    #    shell: pwsh
+    # - name: Integration Tests
+    #   run: |
+    #     .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
+    #   shell: pwsh
         
