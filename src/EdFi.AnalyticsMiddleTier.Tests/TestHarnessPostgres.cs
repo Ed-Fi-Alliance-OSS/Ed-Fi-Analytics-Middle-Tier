@@ -29,6 +29,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _connectionString = new PostsgreConnectionStringDS32().ToString()
         };
 
+        public static TestHarnessPostgres DataStandard33PG = new TestHarnessPostgres
+        {
+            _dataStandardBaseVersion = "v_3",
+            _dataStandardVersionName = "3_3",
+            DataStandardEngine = Engine.PostgreSQL,
+            _dataStandardInstallType = typeof(DataStandard33.Install),
+            DataStandardVersion = DataStandard.Ds33,
+            _connectionString = new PostsgreConnectionStringDS33().ToString()
+        };
+
         public override void PrepareDatabase()
         {
             Uninstall();
@@ -41,7 +51,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 	                            || string_agg(format('%I.%I', schemaname, tablename), ', ')
 	                            || ' CASCADE'
                             FROM pg_tables
-                            WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config')");
+                            WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config' OR schemaname = 'auth' OR schemaname = 'util')");
 
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))
                 {
