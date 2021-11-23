@@ -7,9 +7,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         public override string ToString()
         {
             if (UseDefaultConnectionString)
-                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests;Pooling=false";
+                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds32;Pooling=false";
             else
                 return $"User ID={User};Host={Host};Port={Port};Database={Database_ds32};Pooling={Pooling};password={Pass}";
+        }
+    }
+
+    public class PostsgreConnectionStringDS33 : PostgresConnectionString
+    {
+        public override string ToString()
+        {
+            if (UseDefaultConnectionString)
+                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds33;Pooling=false";
+            else
+                return $"User ID={User};Host={Host};Port={Port};Database={Database_ds33};Pooling={Pooling};password={Pass}";
         }
     }
 
@@ -21,7 +32,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected string Host => GetEnvironmentVariable("POSTGRES_HOST");
 
-        protected string Database_ds32 => GetEnvironmentVariable("POSTGRES_DATABASE");
+        protected string Database_ds32 => GetEnvironmentVariable("POSTGRES_DATABASE_DS32");
+
+        protected string Database_ds33 => GetEnvironmentVariable("POSTGRES_DATABASE_DS33");
 
         protected string Port => GetEnvironmentVariable("POSTGRES_PORT");
 
