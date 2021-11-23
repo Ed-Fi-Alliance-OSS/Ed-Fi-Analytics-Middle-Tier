@@ -1,0 +1,42 @@
+{
+    "DBMS": "Any",
+    "Query": "SELECT column_name AS columnname, udt_name AS datatype FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name   = 'datedim';",
+    "Result": [
+        {
+            "ColumnName": "datekey",
+            "DataType": "text"
+        },
+        {
+            "ColumnName": "date",
+            "DataType": "date"
+        },
+        {
+            "ColumnName": "day",
+            "DataType": "float8"
+        },
+        {
+            "ColumnName": "month",
+            "DataType": "float8"
+        },
+        {
+            "ColumnName": "monthname",
+            "DataType": "text"
+        },
+        {
+            "ColumnName": "calendarquarter",
+            "DataType": "int4"
+        },
+        {
+            "ColumnName": "calendarquartername",
+            "DataType": "text"
+        },
+        {
+            "ColumnName": "calendaryear",
+            "DataType": "float8"
+        },
+        {
+            "ColumnName": "schoolyear",
+            "DataType": "varchar"
+        }
+    ]
+}
