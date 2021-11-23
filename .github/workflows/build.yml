@@ -92,13 +92,13 @@ jobs:
       #  env:
       #    PGPASSWORD: {{ env.POSTGRESQL_PWD }}
 
-    #  - name: Unit Tests
-    #    run: |
-    #      .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
-    #    shell: pwsh
+      - name: Unit Tests
+        run: |
+          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
       
-    # - name: Integration Tests
-    #   run: |
-    #     .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
-    #   shell: pwsh
+      - name: Integration Tests
+        run: |
+          .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
         
