@@ -44,6 +44,7 @@
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard2\EdFi.AnalyticsMiddleTier.DataStandard2.csproj" />
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard31\EdFi.AnalyticsMiddleTier.DataStandard31.csproj" />
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard32\EdFi.AnalyticsMiddleTier.DataStandard32.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard33\EdFi.AnalyticsMiddleTier.DataStandard33.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,11 +60,13 @@
     <None Update="EdFi_Ods_3.2.dacpac">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="EdFi_Ods_3.3.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="TestCases\DateDim\PostgreSQL\" />
-    <Folder Include="TestCases\DefaultMap\PostgreSQL\" />
     <Folder Include="TestCases\GradingPeriodDim\PostgreSQL\" />
     <Folder Include="TestCases\SectionDim\PostgreSQL\" />
     <Folder Include="TestCases\SectionDim\v_3\" />
