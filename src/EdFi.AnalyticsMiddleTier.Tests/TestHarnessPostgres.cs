@@ -51,7 +51,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 	                            || string_agg(format('%I.%I', schemaname, tablename), ', ')
 	                            || ' CASCADE'
                             FROM pg_tables
-                            WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config')");
+                            WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config' OR schemaname = 'auth' OR schemaname = 'util')");
 
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))
                 {
