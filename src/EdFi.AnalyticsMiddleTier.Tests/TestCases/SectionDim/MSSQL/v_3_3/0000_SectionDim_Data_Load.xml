@@ -592,24 +592,29 @@
 
       UPDATE edfi.Descriptor SET LastModifiedDate='2019-11-18 11:47 AM' WHERE ID='2E655CCA-FF7D-4A97-86B8-ED13CF8BF38E';
 
-      INSERT INTO edfi.ClassPeriod VALUES ('CL1',628530001,1,'1','2021-01-01','2021-01-01',NEWID());
+      INSERT INTO edfi.ClassPeriod  (ClassPeriodName,SchoolId,OfficialAttendancePeriod,Discriminator,CreateDate,LastModifiedDate,Id)
+      VALUES ('CL1',628530001,1,'1','2021-01-01','2021-01-01',NEWID());
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','QAGR40',628530001,2012,'18940','Traditional-Spring Semester','2021-01-01');
 
-      INSERT INTO edfi.ClassPeriod VALUES ('CL1',867530011,1,'1','2021-01-01','2021-01-01',NEWID());
+      INSERT INTO edfi.ClassPeriod (ClassPeriodName,SchoolId,OfficialAttendancePeriod,Discriminator,CreateDate,LastModifiedDate,Id)
+      VALUES ('CL1',867530011,1,'1','2021-01-01','2021-01-01',NEWID());
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','QAGR40',867530011,2012,'9092','Traditional','2021-01-01');
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','QAGR40',867530011,2011,'18940','Traditional','2021-01-01');
 
-      INSERT INTO edfi.ClassPeriod VALUES ('CL1',867530022,1,'1','2021-01-01','2021-01-01',NEWID());
+      INSERT INTO edfi.ClassPeriod  (ClassPeriodName,SchoolId,OfficialAttendancePeriod,Discriminator,CreateDate,LastModifiedDate,Id)
+      VALUES ('CL1',867530022,1,'1','2021-01-01','2021-01-01',NEWID());
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','BPPR10',867530022,2012,'1961-2','Traditional','2021-01-01');
 
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','APAR31',867530011,2012,'18940','Traditional-Spring Semester','2021-01-01');
 
-      INSERT INTO edfi.CourseOffering VALUES ('APAR31',867530011,2011,'Traditional-Spring Semester','Business Information Management',NULL,'APAR31',867530011, NULL,'2021-01-01','2021-01-01',NEWID());
+      INSERT INTO edfi.CourseOffering (LocalCourseCode,SchoolId,SchoolYear,SessionName,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,Discriminator,CreateDate,LastModifiedDate,Id)
+      VALUES ('APAR31',867530011,2011,'Traditional-Spring Semester','Business Information Management',NULL,'APAR31',867530011, NULL,'2021-01-01','2021-01-01',NEWID());
       INSERT INTO edfi.Section(LocalCourseCode,SchoolId,SchoolYear,SectionIdentifier,SessionName,SequenceOfCourse,EducationalEnvironmentDescriptorId,MediumOfInstructionDescriptorId,PopulationServedDescriptorId,AvailableCredits,AvailableCreditTypeDescriptorId,AvailableCreditConversion,InstructionLanguageDescriptorId,LocationSchoolId,LocationClassroomIdentificationCode,Discriminator,CreateDate,LastModifiedDate,Id) VALUES ('APAR31',	867530011,	2011	,'18940',	'Traditional-Spring Semester'	,1	,950,	NULL,	1232,	1.000,	NULL,	NULL,	NULL,	867530011,	115,	NULL,	'2015-09-18 11:34:00.0000000',	'2015-09-18 11:34:00.0000000', NEWID());
 
       INSERT INTO edfi.SectionClassPeriod VALUES ('Cl1','APAR31',867530011,2011,'18940','Traditional-Spring Semester','2021-01-01');
 
-      INSERT INTO edfi.Session VALUES (867530010,2011,'Traditional','2011-08-22','2011-12-20',535,82,NULL,'2015-09-18','2015-09-18',NEWID())
-      
+      INSERT INTO edfi.Session (SchoolId,SchoolYear,SessionName,BeginDate,EndDate,TermDescriptorId,TotalInstructionalDays,Discriminator,CreateDate,LastModifiedDate,Id)
+      VALUES (867530010,2011,'Traditional','2011-08-22','2011-12-20',535,82,NULL,'2015-09-18','2015-09-18',NEWID())
+
     </ControlDataInsertion>
 </TestCase>

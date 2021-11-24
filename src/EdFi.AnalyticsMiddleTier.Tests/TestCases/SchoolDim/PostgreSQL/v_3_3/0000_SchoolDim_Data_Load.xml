@@ -2,6 +2,9 @@
 <TestCase>
     <DBMS>Any</DBMS>
     <ControlDataInsertion>
+        ALTER TABLE edfi.school DISABLE TRIGGER ALL;
+    </ControlDataInsertion>
+    <ControlDataInsertion>
       
         INSERT INTO edfi.EducationOrganization(	EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Discriminator,Id,LastModifiedDate,CreateDate) 	(SELECT '867530010',	'Fremont',	NULL,	NULL,	NULL,	'edfi.School',	'E066C946-432B-46A8-A233-F2D38A026609',	'Sep 18 2015 11:34AM',	'Sep 18 2015 11:34AM'   	WHERE NOT EXISTS(	SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530010'));
         INSERT INTO edfi.EducationOrganization(	EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Discriminator,Id,LastModifiedDate,CreateDate) 	(SELECT '867530',	'Glendale ISD',	NULL,	NULL,	NULL,	'edfi.School',	'9CC29A49-637C-4882-A7DB-99AD87690CFB',	'Sep 18 2015 11:34AM',	'Sep 18 2015 11:34AM'  	WHERE NOT EXISTS(	SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530'));
@@ -88,4 +91,5 @@
         INSERT INTO edfi.EducationOrganizationAddressPeriod (AddressTypeDescriptorId ,BeginDate ,City ,EducationOrganizationId ,PostalCode ,StateAbbreviationDescriptorId ,StreetNumberName ,EndDate ,CreateDate) (SELECT 1505 ,'Sep 22 2017 00:00AM' ,'Grand Bend' ,867530012 ,'9377' ,'1451' ,'P.O. Box 9377' ,'Jun 19 2015 11:41AM' ,'Jun 20 2015 11:41AM' WHERE NOT EXISTS ( SELECT  1 FROM  edfi.EducationOrganizationAddressPeriod WHERE AddressTypeDescriptorId=1505 AND educationorganizationid = 867530012 AND postalcode = '9377' ));
 
     </ControlDataInsertion>
+
 </TestCase>
