@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TestCase>
 	<DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        ALTER TABLE edfi.school DISABLE TRIGGER ALL;
+    </ControlDataInsertion>
 	<ControlDataInsertion>
     INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT '867530','Glendale ISD',NULL,NULL,'9CC29A49-637C-4882-A7DB-99AD87690CFB','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.LocalEducationAgency'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530'));
     INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT '152950','ESC Region 17',NULL,NULL,'03DE6F94-316A-4B06-8C67-2C8748DCA1A9','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.EducationServiceCenter'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '152950'));
@@ -21,5 +24,8 @@
     INSERT INTO edfi.School(SchoolId,LocalEducationAgencyId,AdministrativeFundingControlDescriptorId,CharterApprovalSchoolYear,CharterApprovalAgencyTypeDescriptorId,CharterStatusDescriptorId,InternetAccessDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,SchoolTypeDescriptorId,TitleIPartASchoolDesignationDescriptorId)(SELECT '850786060','528530',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.School WHERE   SchoolId= '850786060'));
     INSERT INTO edfi.FeederSchoolAssociation(FeederSchoolId,SchoolId,BeginDate,EndDate,FeederRelationshipDescription,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT '850786060','867530','2010-05-07',NULL,NULL,'CEEE6123-2FDC-4D54-9C2B-CDF3840EAAD8','May  7 2010 12:00AM','May  7 2010 12:00AM',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.FeederSchoolAssociation WHERE id='ceee6123-2fdc-4d54-9c2b-cdf3840eaad8'));
     INSERT INTO edfi.FeederSchoolAssociation(FeederSchoolId,SchoolId,BeginDate,EndDate,FeederRelationshipDescription,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT '628530','850786060','2010-08-08','2050-01-01','Feeder Relationship','464E1917-D11A-42F9-968B-D95F2F59E912','Aug  8 2020 12:00AM','Aug  8 2010 12:00AM','Discriminator'  WHERE NOT EXISTS(SELECT  1  FROM edfi.FeederSchoolAssociation WHERE id='464e1917-d11a-42f9-968b-d95f2f59e912'));
+  </ControlDataInsertion>
+  <ControlDataInsertion>
+      ALTER TABLE edfi.school ENABLE TRIGGER ALL;
   </ControlDataInsertion>
 </TestCase>

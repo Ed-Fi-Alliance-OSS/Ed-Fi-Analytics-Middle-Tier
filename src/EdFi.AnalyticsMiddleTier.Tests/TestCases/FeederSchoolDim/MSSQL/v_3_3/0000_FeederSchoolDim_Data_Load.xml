@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TestCase>
 	<DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        DISABLE TRIGGER ALL ON edfi.school;
+    </ControlDataInsertion>
 	<ControlDataInsertion>
         INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT TOP 1'867530','Glendale ISD',NULL,NULL,'9CC29A49-637C-4882-A7DB-99AD87690CFB','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.LocalEducationAgency'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530'));
         INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT TOP 1'152950','ESC Region 17',NULL,NULL,'03DE6F94-316A-4B06-8C67-2C8748DCA1A9','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.EducationServiceCenter'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '152950'));
