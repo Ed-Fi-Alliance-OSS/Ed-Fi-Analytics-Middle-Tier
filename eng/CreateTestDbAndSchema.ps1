@@ -72,7 +72,7 @@ param ( [string][Alias('h')]$pghost="localhost",
 		[string][Alias('p')]$port="5432",
         [string][Alias('ds')]
         [ValidateSet("3.2", "3.3")]
-        $datastandard="3.2",
+        $datastandard,
 		[string][Alias('d')]$database="edfi_ods_tests_ds32",
         [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql")
 $dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"
