@@ -17,7 +17,7 @@ env:
   CONFIGURATION: "Release"
   GA_USE_GITHUB_ENV: "true"
   USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
-  USE_POSTGRES_DEFAULT_CONN_STRING: "FALSE"
+  USE_POSTGRES_DEFAULT_CONN_STRING: "TRUE"
   SQLSERVER_SERVER: "localhost"
   SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
@@ -79,7 +79,7 @@ jobs:
 
       - name: Create Postgres DB DS v3.2
         run: |
-          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }}
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }} -ds 3.2
         shell: pwsh
         env:
           PGPASSWORD:  ${{ env.POSTGRES_PASS }}
@@ -92,10 +92,10 @@ jobs:
       #  env:
       #    PGPASSWORD: {{ env.POSTGRESQL_PWD }}
 
-      - name: Unit Tests
-        run: |
-          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
-        shell: pwsh
+      #- name: Unit Tests
+      #  run: |
+      #    .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+      #  shell: pwsh
       
       - name: Integration Tests
         run: |
