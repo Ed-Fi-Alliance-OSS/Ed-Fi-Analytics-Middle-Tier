@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'528530',
+		'Kingston ISD',
+		'8F269870-093C-4C8F-A9E9-3CBBBF851743',
+		'Sep 18 2015 11:34AM',
+		'Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE EducationOrganizationId=528530));
+
+		INSERT INTO edfi.Descriptor(
+		DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'1086',
+		'uri://ed-fi.org/LocalEducationAgencyCategoryDescriptor',
+		'Independent',
+		'Independent',
+		'Independent',
+		'0A65B4F5-49CC-4ABD-9A3F-41FFA09EF2B3',
+		'Jun 19 2015 12:17PM',
+		'Jun 19 2015 12:17PM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1086'));
+
+		INSERT INTO edfi.LocalEducationAgencyCategoryDescriptor (
+		LocalEducationAgencyCategoryDescriptorId)
+		(SELECT
+		1086
+		WHERE NOT EXISTS (
+		SELECT 1 FROM edfi.LocalEducationAgencyCategoryDescriptor WHERE LocalEducationAgencyCategoryDescriptorId = 1086));
+
+		--==
+
+		INSERT INTO edfi.LocalEducationAgency(
+		LocalEducationAgencyId,LocalEducationAgencyCategoryDescriptorId)
+		(SELECT
+		'528530',
+		'1086'
+		WHERE NOT EXISTS(SELECT  1  FROM edfi.LocalEducationAgency WHERE LocalEducationAgencyId=528530));
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'152950',
+		'ESC Region 17',
+		'03DE6F94-316A-4B06-8C67-2C8748DCA1A9',
+		'Sep  2 2015 12:00AM',
+		'Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE id='03DE6F94-316A-4B06-8C67-2C8748DCA1A9'));
+
+		INSERT INTO edfi.Descriptor(
+		DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'834',
+		'uri://ed-fi.org/CharterStatusDescriptor',
+		'Open Enrollment',
+		'Open Enrollment',
+		'Open Enrollment',
+		'ADEDEF81-765F-4885-A82A-7B69D0B3803C',
+		'Jun 19 2015 12:17PM',
+		'Jun 19 2015 12:17PM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '834'));
+
+		INSERT INTO edfi.CharterStatusDescriptor (
+		CharterStatusDescriptorId)
+		(SELECT
+		834
+		WHERE NOT EXISTS (
+		SELECT 1 FROM edfi.CharterStatusDescriptor WHERE CharterStatusDescriptorId = 834));
+
+		--==
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'628530',
+		'Lander ISD',
+		'13CC7674-8E27-443F-88B8-F8FDDD4601F1',
+		'Sep  1 2015 00:00AM',
+		'Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '628530'));
+
+		INSERT INTO edfi.EducationServiceCenter(
+		EducationServiceCenterId,StateEducationAgencyId)
+		(SELECT
+		'152950',
+		NULL
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationServiceCenter WHERE   EducationServiceCenterId= '152950'));
+
+		INSERT INTO edfi.Descriptor(
+		DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'1085',
+		'uri://ed-fi.org/LocalEducationAgencyCategoryDescriptor',
+		'Charter',
+		'Charter',
+		'Charter',
+		'C3D5B48C-9D94-4DE9-96DB-3DEC96C53586',
+		'Jun 19 2015 12:17PM',
+		'Jun 19 2015 12:17PM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1085'));
+
+		INSERT INTO edfi.LocalEducationAgencyCategoryDescriptor (
+		LocalEducationAgencyCategoryDescriptorId)
+		(SELECT
+		1085
+		WHERE NOT EXISTS (
+		SELECT 1 FROM edfi.LocalEducationAgencyCategoryDescriptor WHERE LocalEducationAgencyCategoryDescriptorId = 1085));
+
+		--==
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'778530',
+		'Mesa ISD',
+		'F1137D82-3490-4FC9-BD4D-F06F5C9E66C0',
+		'Sep  1 2015 00:00AM',
+		'Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '778530'));
+
+		INSERT INTO edfi.StateEducationAgency(
+		StateEducationAgencyId)
+		(SELECT
+		'778530'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.StateEducationAgency WHERE   StateEducationAgencyId= '778530'));
+
+		INSERT INTO edfi.LocalEducationAgency(
+		LocalEducationAgencyId,LocalEducationAgencyCategoryDescriptorId,CharterStatusDescriptorId,EducationServiceCenterId,StateEducationAgencyId)
+		(SELECT
+		'628530',
+		'1085',
+		'834',
+		'152950',
+		'778530'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.LocalEducationAgency WHERE LocalEducationAgencyId=628530));
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'628531',
+		'Springfield',
+		'13CC7674-8E27-443F-88B8-F8FDDD4601F2',
+		'Sep 10 2015 11:00AM',
+		'Sep  9 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '628531'));
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'778531',
+		'Mesa ISD2',
+		'F1137D82-3490-4FC9-BD4D-F06F5C9E66C1',
+		'Sep 17 2015 00:00AM',
+		'Sep 16 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '778531'));
+
+		INSERT INTO edfi.StateEducationAgency(
+		StateEducationAgencyId)
+		(SELECT
+		'778531'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.StateEducationAgency WHERE   StateEducationAgencyId= '778531'));
+
+		INSERT INTO edfi.EducationOrganization(
+		EducationOrganizationId,NameOfInstitution,Id,LastModifiedDate,CreateDate)
+		(SELECT
+		'152951',
+		'ESC Region 18',
+		'03DE6F94-316A-4B06-8C67-2C8748DCA1A7',
+		'Sep  2 2015 12:00AM',
+		'Sep 18 2015 11:34AM'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationOrganization WHERE id='03DE6F94-316A-4B06-8C67-2C8748DCA1A7'));
+
+		INSERT INTO edfi.EducationServiceCenter(
+		EducationServiceCenterId,StateEducationAgencyId)
+		(SELECT
+		'152951',
+		NULL
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.EducationServiceCenter WHERE   EducationServiceCenterId= '152951'));
+
+		INSERT INTO edfi.LocalEducationAgency(
+		LocalEducationAgencyId,LocalEducationAgencyCategoryDescriptorId,CharterStatusDescriptorId,EducationServiceCenterId,StateEducationAgencyId)
+		(SELECT
+		'628531',
+		'1085',
+		'834',
+		'152951',
+		'778531'
+		WHERE NOT EXISTS(
+		SELECT  1  FROM edfi.LocalEducationAgency WHERE LocalEducationAgencyId=628531));
+
+	</ControlDataInsertion>
+</TestCase>
