@@ -79,7 +79,7 @@ jobs:
 
       - name: Create Postgres DB DS v3.2
         run: |
-          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }}
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }} -ds 3.2
         shell: pwsh
         env:
           PGPASSWORD:  ${{ env.POSTGRES_PASS }}
