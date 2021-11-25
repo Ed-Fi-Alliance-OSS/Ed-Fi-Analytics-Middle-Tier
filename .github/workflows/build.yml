@@ -17,7 +17,7 @@ env:
   CONFIGURATION: "Release"
   GA_USE_GITHUB_ENV: "true"
   USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
-  USE_POSTGRES_DEFAULT_CONN_STRING: "FALSE"
+  USE_POSTGRES_DEFAULT_CONN_STRING: "TRUE"
   SQLSERVER_SERVER: "localhost"
   SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
@@ -92,10 +92,10 @@ jobs:
       #  env:
       #    PGPASSWORD: {{ env.POSTGRESQL_PWD }}
 
-      - name: Unit Tests
-        run: |
-          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
-        shell: pwsh
+      #- name: Unit Tests
+      #  run: |
+      #    .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+      #  shell: pwsh
       
       - name: Integration Tests
         run: |
