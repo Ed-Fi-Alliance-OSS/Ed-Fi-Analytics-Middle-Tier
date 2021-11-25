@@ -27,12 +27,14 @@ env:
   SQLSERVER_USER: ${{ secrets.MSSQL_USER }}
   SQLSERVER_PASS: ${{ secrets.MSSQL_PWD }}
   POSTGRES_HOST: "localhost"
-  POSTGRES_DATABASE: "edfi_ods_tests_ds32"
+  POSTGRES_DATABASE_DS32: "edfi_ods_tests_ds32"
   POSTGRES_DATABASE_DS33: "edfi_ods_tests_ds33"
   POSTGRES_PORT: "5432"
   POSTGRES_USER: ${{ secrets.POSTGRESQL_USER }}
   POSTGRES_PASS: ${{ secrets.POSTGRESQL_PWD }}
   POSTGRES_POOLING: "false"
+  POSTGRES_DATABASE_DS32_SCRIPT: "$PSScriptRoot/../src/EdFi.Ods32.Minimal.Template.Template.sql"
+  POSTGRES_DATABASE_DS32_SCRIPT: "$PSScriptRoot/../src/EdFi.Ods33.Minimal.Template.Template.sql"
 
 jobs:
   AMT-runner-job:
@@ -79,7 +81,7 @@ jobs:
 
       - name: Create Postgres DB DS v3.2
         run: |
-          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }}
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS32 }} -s ${{ POSTGRES_DATABASE_DS32_SCRIPT }}
         shell: pwsh
         env:
           PGPASSWORD:  ${{ env.POSTGRES_PASS }}
