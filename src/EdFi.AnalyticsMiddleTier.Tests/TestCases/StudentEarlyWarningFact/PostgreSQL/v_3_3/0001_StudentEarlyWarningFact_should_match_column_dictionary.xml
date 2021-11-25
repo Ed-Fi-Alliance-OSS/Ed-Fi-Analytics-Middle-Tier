@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'ews_studentearlywarningfact'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+  <Result>
+    <ColumnName>studentkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>schoolkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>datekey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isinstructionalday</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isenrolled</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>ispresentschool</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isabsentfromschoolexcused</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isabsentfromschoolunexcused</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>istardytoschool</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>ispresenthomeroom</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isabsentfromhomeroomexcused</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isabsentfromhomeroomunexcused</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>istardytohomeroom</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>ispresentanyclass</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isabsentfromanyclassexcused</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>isabsentfromanyclassunexcused</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>istardytoanyclass</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>countbydayofstateoffenses</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>countbydayofconductoffenses</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+</TestCase>
