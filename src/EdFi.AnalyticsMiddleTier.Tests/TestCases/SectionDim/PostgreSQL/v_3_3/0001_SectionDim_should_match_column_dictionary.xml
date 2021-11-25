@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COLUMN_NAME AS ColumnName,
+        DATA_TYPE AS DataType
+        FROM information_schema.columns
+        WHERE table_schema = 'analytics'
+        AND table_name = 'sectiondim'
+        ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sectionkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>description</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sectionname</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sessionname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>localcoursecode</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolyear</ColumnName>
+        <DataType>smallint</DataType>
+    </Result>
+    <Result>
+        <ColumnName>educationalenvironmentdescriptor</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>localeducationagencykey</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>lastmodifieddate</ColumnName>
+        <DataType>timestamp without time zone</DataType>
+    </Result>
+    <Result>
+        <ColumnName>coursetitle</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sessionkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+</TestCase>

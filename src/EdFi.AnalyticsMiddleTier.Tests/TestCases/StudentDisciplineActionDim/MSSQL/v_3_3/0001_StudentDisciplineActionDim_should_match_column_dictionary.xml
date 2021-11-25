@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT COLUMN_NAME AS ColumnName,
+      DATA_TYPE AS DataType
+      FROM information_schema.columns
+      WHERE table_schema = 'analytics'
+      AND table_name = 'equity_StudentDisciplineActionDim'
+      ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+    <Result>
+        <ColumnName>StudentDisciplineActionKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>DisciplineDateKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentSchoolKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolKey</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>DisciplineActionDescription</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>UserKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
+    </Result>
+</TestCase>
