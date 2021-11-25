@@ -75,7 +75,6 @@
     <Folder Include="TestCases\StudentDataAuthorization\PostgreSQL\" />
     <Folder Include="TestCases\StudentProgramDim\MSSQL\" />
     <Folder Include="TestCases\StudentProgramDim\PostgreSQL\" />
-    <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentSectionDim\PostgreSQL\" />
     <Folder Include="TestCases\UserAuthorization\PostgreSQL\" />
   </ItemGroup>
