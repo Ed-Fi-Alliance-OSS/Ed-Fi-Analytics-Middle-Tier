@@ -66,16 +66,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestCases\DateDim\PostgreSQL\" />
-    <Folder Include="TestCases\GradingPeriodDim\PostgreSQL\" />
-    <Folder Include="TestCases\SectionDim\PostgreSQL\" />
     <Folder Include="TestCases\SectionDim\v_3\" />
     <Folder Include="TestCases\SectionDim\v_2\" />
-    <Folder Include="TestCases\StaffSectionDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentDataAuthorization\PostgreSQL\" />
     <Folder Include="TestCases\StudentProgramDim\MSSQL\" />
     <Folder Include="TestCases\StudentProgramDim\PostgreSQL\" />
     <Folder Include="TestCases\StudentSectionDim\PostgreSQL\" />
+    <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\PostgreSQL\" />
     <Folder Include="TestCases\UserAuthorization\PostgreSQL\" />
   </ItemGroup>
 
