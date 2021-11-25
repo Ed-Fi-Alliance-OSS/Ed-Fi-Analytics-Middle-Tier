@@ -33,8 +33,8 @@ env:
   POSTGRES_USER: ${{ secrets.POSTGRESQL_USER }}
   POSTGRES_PASS: ${{ secrets.POSTGRESQL_PWD }}
   POSTGRES_POOLING: "false"
-  POSTGRES_DATABASE_DS32_SCRIPT: "$PSScriptRoot/../src/EdFi.Ods32.Minimal.Template.Template.sql"
-  POSTGRES_DATABASE_DS33_SCRIPT: "$PSScriptRoot/../src/EdFi.Ods33.Minimal.Template.Template.sql"
+  POSTGRES_DATABASE_DS32_SCRIPT: "/../../src/EdFi.Ods32.Minimal.Template.Template.sql"
+  POSTGRES_DATABASE_DS33_SCRIPT: "/../../src/EdFi.Ods33.Minimal.Template.Template.sql"
 
 jobs:
   AMT-runner-job:
