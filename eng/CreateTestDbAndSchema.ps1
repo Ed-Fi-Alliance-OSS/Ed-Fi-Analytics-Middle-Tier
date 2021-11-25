@@ -68,7 +68,7 @@ param ( [string][Alias('h')]$pghost="localhost",
 		[string][Alias('u')]$user="postgres",
 		[string][Alias('p')]$port="5432",
 		[string][Alias('d')]$database="edfi_ods_tests_ds32",
-                [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods.Minimal.Template.sql")
+                [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql")
 $dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"
 $createDatabase = "CREATE DATABASE" +" " + $database +";"
 
