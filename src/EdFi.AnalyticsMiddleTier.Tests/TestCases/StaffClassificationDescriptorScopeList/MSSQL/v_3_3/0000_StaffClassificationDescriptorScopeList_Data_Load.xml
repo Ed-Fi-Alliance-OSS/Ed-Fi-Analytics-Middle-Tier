@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        SET IDENTITY_INSERT edfi.Descriptor ON;
+        INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'160','http://www.ed-fi.org/Descriptor/StaffClassificationDescriptor.xml','Superintendent','Superintendent','Superintendent',NULL,NULL,NULL,'5051BECA-3A27-4EC3-99A7-6637B5958DF5','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '160'));
+        SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+        INSERT INTO EDFI.StaffClassificationDescriptor(StaffClassificationDescriptorId)(SELECT TOP 1'160'  WHERE NOT EXISTS(SELECT  1  FROM EDFI.StaffClassificationDescriptor WHERE StaffClassificationDescriptorId=160));
+
+        SET IDENTITY_INSERT edfi.Descriptor ON;
+        INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'156','http://www.ed-fi.org/Descriptor/StaffClassificationDescriptor.xml','Principal','Principal','Principal',NULL,NULL,NULL,'CC705A05-24BE-4E75-8BC2-EFF0E8864BB8','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '156'));
+        SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+        INSERT INTO EDFI.StaffClassificationDescriptor(StaffClassificationDescriptorId)(SELECT TOP 1'156'  WHERE NOT EXISTS(SELECT  1  FROM EDFI.StaffClassificationDescriptor WHERE StaffClassificationDescriptorId=156));
+
+        SET IDENTITY_INSERT edfi.Descriptor ON;
+        INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'157','http://www.ed-fi.org/Descriptor/StaffClassificationDescriptor.xml','Teacher','Teacher','Teacher',NULL,NULL,NULL,'943DD864-2F66-42F4-85A4-82E9BB59711E','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '157'));
+        SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+        INSERT INTO EDFI.StaffClassificationDescriptor(StaffClassificationDescriptorId)(SELECT TOP 1'157'  WHERE NOT EXISTS(SELECT  1  FROM EDFI.StaffClassificationDescriptor WHERE StaffClassificationDescriptorId=157));
+
+        SET IDENTITY_INSERT edfi.Descriptor ON;
+        INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'544','http://www.ed-fi.org/Descriptor/AttendanceEventCategoryDescriptor.xml','Unexcused Absence','Unexcused Absence','Unexcused Absence',NULL,NULL,NULL,'711C0C86-268F-4C42-BC44-B6FBEBF35DAB','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '544'));
+        SET IDENTITY_INSERT edfi.Descriptor OFF;
+    </ControlDataInsertion>
+</TestCase>
