@@ -64,18 +64,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestCases\SectionDim\v_3\" />
-    <Folder Include="TestCases\SectionDim\v_2\" />
-    <Folder Include="TestCases\StudentDataAuthorization\PostgreSQL\" />
-    <Folder Include="TestCases\StudentProgramDim\MSSQL\" />
-    <Folder Include="TestCases\StudentProgramDim\PostgreSQL\" />
-    <Folder Include="TestCases\StudentSectionDim\PostgreSQL\" />
-    <Folder Include="TestCases\StudentSchoolFoodServiceProgramDim\PostgreSQL\" />
-    <Folder Include="TestCases\UserAuthorization\PostgreSQL\" />
-  </ItemGroup>
-
   <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(BuildingInsideVisualStudio)' == 'true'">
     <Exec Command="IF EXIST .env del $(OutputPath)\.env&#xD;&#xA;IF EXIST .env xcopy .env $(OutputPath)\ /Y" />
   </Target>
