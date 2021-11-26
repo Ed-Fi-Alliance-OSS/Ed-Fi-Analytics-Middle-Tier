@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     {
         public DataStandardTestFixturePostgres()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard32PG, TestHarnessPostgres.DataStandard33PG};
+            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard32PG/*, TestHarnessPostgres.DataStandard33PG*/};
         }
     }
 
@@ -52,7 +52,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     {
         public DataStandardTestFixturePostgresDs3()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard32PG, TestHarnessPostgres.DataStandard33PG };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard32PG/*, TestHarnessPostgres.DataStandard33PG */};
         }
     }
 }
