@@ -17,7 +17,7 @@ env:
   CONFIGURATION: "Release"
   GA_USE_GITHUB_ENV: "true"
   USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
-  USE_POSTGRES_DEFAULT_CONN_STRING: "TRUE"
+  USE_POSTGRES_DEFAULT_CONN_STRING: "FALSE"
   SQLSERVER_SERVER: "localhost"
   SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
@@ -27,7 +27,7 @@ env:
   SQLSERVER_USER: ${{ secrets.MSSQL_USER }}
   SQLSERVER_PASS: ${{ secrets.MSSQL_PWD }}
   POSTGRES_HOST: "localhost"
-  POSTGRES_DATABASE: "edfi_ods_tests_ds32"
+  POSTGRES_DATABASE_DS32: "edfi_ods_tests_ds32"
   POSTGRES_DATABASE_DS33: "edfi_ods_tests_ds33"
   POSTGRES_PORT: "5432"
   POSTGRES_USER: ${{ secrets.POSTGRESQL_USER }}
@@ -79,26 +79,25 @@ jobs:
 
       - name: Create Postgres DB DS v3.2
         run: |
-          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE }} -ds 3.2
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS32 }} -ds 3.2
         shell: pwsh
         env:
           PGPASSWORD:  ${{ env.POSTGRES_PASS }}
 
-      # TODO: Pass as parameter the path of the postgres version 3.3 script.
-      #- name: Create Postgres DB DS v3.3
-      #  run: |
-      #    .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS33 }}
-      #  shell: pwsh
-      #  env:
-      #    PGPASSWORD: {{ env.POSTGRESQL_PWD }}
+      - name: Create Postgres DB DS v3.3
+        run: |
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS33 }} -ds 3.3
+        shell: pwsh
+        env:
+          PGPASSWORD: {{ env.POSTGRES_PASS }}
 
-      #- name: Unit Tests
-      #  run: |
-      #    .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
-      #  shell: pwsh
+      - name: Unit Tests
+        run: |
+          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
       
-      #- name: Integration Tests
-      #  run: |
-      #    .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
-      #  shell: pwsh
+      - name: Integration Tests
+        run: |
+          .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
         
