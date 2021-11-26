@@ -27,6 +27,9 @@
         .PARAMETER script
         Specifies the script path for creating the database objects.
 
+        .PARAMETER datastandard
+        Specifies the datastandard version for the database.
+
         .INPUTS
         None. You cannot pipe objects to CreateTestDbAndSchema.ps1.
 
@@ -67,10 +70,22 @@
 param ( [string][Alias('h')]$pghost="localhost",
 		[string][Alias('u')]$user="postgres",
 		[string][Alias('p')]$port="5432",
+        [string][Alias('ds')]
+        [ValidateSet("3.2", "3.3")]
+        $datastandard,
 		[string][Alias('d')]$database="edfi_ods_tests_ds32",
-                [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql")
+        [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql")
 $dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"
 $createDatabase = "CREATE DATABASE" +" " + $database +";"
+
+if($datastandard -eq "3.2"){
+    $script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql"
+    $database="edfi_ods_tests_ds32"
+}
+elseif($datastandard -eq "3.3"){
+    $script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods33.Minimal.Template.sql"
+    $database="edfi_ods_tests_ds33"
+}
 
 Write-Host "dropping db if it exists"
 psql -h $pghost -p $port -U $user -c $dropDatabase
