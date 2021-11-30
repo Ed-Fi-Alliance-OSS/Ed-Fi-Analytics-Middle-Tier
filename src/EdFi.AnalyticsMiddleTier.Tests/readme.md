@@ -39,15 +39,17 @@ Every time a new scenario is executed, the database is reset. Particularly for P
 
 At this point Postgres has been implemented for Data Standard 3.2 and Data Standard 3.3. This means you must make sure these databases configured contain these data standards.
 
-The databases must exist before the tests can be executed. The tests framework doesn’t create the database for Postgres.
+The databases must exist before the tests can be executed. The tests framework doesn’t create the databases for Postgres.
 
 ##### The settings
 
 `USE_POSTGRES_DEFAULT_CONN_STRING` = Whether we want to use the default connection string. By default it’s set to `TRUE`. 
-This is a very important setting. Internally the project has a hardcoded connection string. If you don’t change this value, then the rest of the settings will be ignored. This is the connection string used internally hardcoded for data standard 3.2: 
+This is a very important setting. Internally the project has a hardcoded connection string. If you don’t change this value, then the rest of the settings will be ignored. This is the connection string used internally hardcoded for data standard 3.2:  
+
 `User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds32;Pooling=false;`
 
-And this is the one for data standard 3.3:
+And this is the one for data standard 3.3:  
+
 `User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds33;Pooling=false;`
 
 `POSTGRES_HOST` = The host to connect to.  
