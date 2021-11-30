@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT COLUMN_NAME AS ColumnName,
+      DATA_TYPE AS DataType
+      FROM information_schema.columns
+      WHERE table_schema = 'analytics'
+      AND table_name = 'chrab_chronicabsenteeismattendancefact'
+      ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>studentschoolkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>datekey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportedaspresentatschool</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportedasabsentfromschool</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportedaspresentathomeroom</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportedasabsentfromhomeroom</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportedasispresentinallsections</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportedasabsentfromanysection</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+</TestCase>

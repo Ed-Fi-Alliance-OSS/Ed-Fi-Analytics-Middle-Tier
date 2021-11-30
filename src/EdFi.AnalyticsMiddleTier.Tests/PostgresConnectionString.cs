@@ -7,7 +7,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         public override string ToString()
         {
             if (UseDefaultConnectionString)
-                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds32;Pooling=false";
+                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds32;Pooling=false";     
             else
                 return $"User ID={User};Host={Host};Port={Port};Database={Database_ds32};Pooling={Pooling};password={Pass}";
         }
@@ -18,9 +18,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         public override string ToString()
         {
             if (UseDefaultConnectionString)
-                return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds33;Pooling=false";
+               return "User ID=postgres;Host=localhost;Port=5432;Database=edfi_ods_tests_ds33;Pooling=false";
             else
-                return $"User ID={User};Host={Host};Port={Port};Database={Database_ds33};Pooling={Pooling};password={Pass}";
+               return $"User ID={User};Host={Host};Port={Port};Database={Database_ds33};Pooling={Pooling};password={Pass}";
         }
     }
 
