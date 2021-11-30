@@ -75,8 +75,6 @@ param ( [string][Alias('h')]$pghost="localhost",
         $datastandard,
 		[string][Alias('d')]$database="edfi_ods_tests_ds32",
         [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql")
-$dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"
-$createDatabase = "CREATE DATABASE" +" " + $database +";"
 
 if($datastandard -eq "3.2"){
     $script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql"
@@ -86,6 +84,9 @@ elseif($datastandard -eq "3.3"){
     $script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods33.Minimal.Template.sql"
     $database="edfi_ods_tests_ds33"
 }
+
+$dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"
+$createDatabase = "CREATE DATABASE" +" " + $database +";"
 
 Write-Host "dropping db if it exists"
 psql -h $pghost -p $port -U $user -c $dropDatabase
