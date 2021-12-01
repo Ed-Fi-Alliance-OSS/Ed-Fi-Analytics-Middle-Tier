@@ -64,7 +64,7 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-          RELEASE_TAG:  ${{ contains( github.event.inputs.createRelease, 'true') && env.BUILD_VERSION ||  format('{0}-pr-{1}', env.BUILD_VERSION, github.run_id)  }}
+          RELEASE_TAG:  ${{ contains( github.event.inputs.createRelease, 'true') && env.BUILD_VERSION ||  format('{0}-pre-{1}', env.BUILD_VERSION, github.run_id)  }}
         with:
           tag_name: ${{ env.RELEASE_TAG }}
           release_name: ${{ env.BUILD_VERSION }}  ${{ github.event.inputs.releaseName }}
