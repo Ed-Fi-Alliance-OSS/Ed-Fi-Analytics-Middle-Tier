@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     {
         public DataStandardTestFixturePostgres()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessPostgres.DataStandard32PG};
         }
     }
 

@@ -23,7 +23,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
             var exception = new Exception(exceptionMessage, new Exception(innerExceptionMessage));
             var message = exception.ConcatenateInnerMessages();
 
-            message.ShouldBe<string>($"{exceptionMessage}\r\nInner exception: {innerExceptionMessage}");
+            message.ShouldBe<string>($"{exceptionMessage}{Environment.NewLine}Inner exception: {innerExceptionMessage}");
         }
 
         [Test]
