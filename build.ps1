@@ -51,7 +51,7 @@ param(
 
     # Assembly and package version number, defaults 2.6.1
     [string]
-    $Version = "2.6.1",
+    $Version = "2.7.1",
 
     # Build counter from the automation tool.
     [string]
@@ -74,8 +74,8 @@ $publishFddDirectoryName = "EdFi.AnalyticsMiddleTier"
 $publishScdDirectoryName = "EdFi.AnalyticsMiddleTier-win10.x64"
 $publishFddOutputDirectory = "$publishOutputPath/$publishFddDirectoryName"
 $publishScdOutputDirectory = "$publishOutputPath/$publishScdDirectoryName"
-$publishFddZipFile = "$publishFddDirectoryName.zip"
-$publishScdZipFile = "$publishScdDirectoryName.zip"
+$publishFddZipFile = "$publishFddDirectoryName-$Version.zip"
+$publishScdZipFile = "$publishScdDirectoryName-$Version.zip"
 $testProjectName = "EdFi.AnalyticsMiddleTier.Tests"
 
 function Clean {
@@ -166,13 +166,13 @@ function CreateZip {
             if (Test-Path $fddPackDestination) {
                 Remove-Item $fddPackDestination
             }
-            Compress-Archive -Path $publishFddOutputDirectory -DestinationPath $fddPackDestination
+            Compress-Archive -Path $publishFddOutputDirectory/* -DestinationPath $fddPackDestination
         }
         if(Test-Path $publishScdOutputDirectory){
             if (Test-Path $scdPackDestination) {
                 Remove-Item $scdPackDestination
             }
-            Compress-Archive -Path $publishScdOutputDirectory -DestinationPath $scdPackDestination
+            Compress-Archive -Path $publishScdOutputDirectory/* -DestinationPath $scdPackDestination
         }
     }
 }

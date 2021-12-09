@@ -25,8 +25,8 @@ env:
   BUILD_VERSION:  ${{ secrets.SEMANTIC_VERSION }}
   CONFIGURATION: "Release"
   PUBLISH_FOLDER: "./publish/"
-  PUBLISH_FDD_ZIP: "EdFi.AnalyticsMiddleTier.zip"
-  PUBLISH_SCD_ZIP: "EdFi.AnalyticsMiddleTier-win10.x64.zip"
+  PUBLISH_FDD_ZIP: "EdFi.AnalyticsMiddleTier-${{ secrets.SEMANTIC_VERSION }}.zip"
+  PUBLISH_SCD_ZIP: "EdFi.AnalyticsMiddleTier-win10.x64-${{ secrets.SEMANTIC_VERSION }}.zip"
 
 jobs:
   AMT-Create-Release:
