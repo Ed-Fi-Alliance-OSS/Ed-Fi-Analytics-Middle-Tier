@@ -125,19 +125,6 @@ function Compile {
     Invoke-Execute {
         dotnet --info
         dotnet build $solutionRoot -c $Configuration --nologo
-
-        # Copy .env file if it exists
-        #if (Test-Path -Path $solutionRoot/$testProjectName/.env -PathType leaf) {
-        #    $doc = New-Object System.Xml.XmlDocument
-        #    $projectFile = Get-Item $solutionRoot/$testProjectName/$testProjectName'.csproj'
-        #    $doc.Load($projectFile)
-        #    $TargetFrameworkNode = $doc.SelectSingleNode("Project//PropertyGroup//TargetFramework")
-
-        #    if ($TargetFrameworkNode) {
-        #        $TargetFramework = $TargetFrameworkNode.InnerText
-        #        Copy-Item $solutionRoot/$testProjectName/.env -Destination $solutionRoot/$testProjectName/bin/$Configuration/$TargetFramework/ -Force
-        #    }
-        #}
     }
 }
 
