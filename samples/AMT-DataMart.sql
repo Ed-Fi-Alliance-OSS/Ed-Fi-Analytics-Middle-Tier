@@ -14,7 +14,7 @@ periodically to refresh the data.
 
 
 :setvar DataMartDB EdFi_AMT_DataMart
-:setvar OdsDb EdFi_Glendale
+:setvar OdsDb EdFi_Ods_Glendale_v510
 
 
 USE [$(DataMartDB)]
@@ -31,6 +31,14 @@ END
 PRINT 'Creating staging tables...'
 
 SELECT * 
+INTO [$(DataMartDB)].[analytics].[stg_AcademicTimePeriodDim]
+FROM [$(OdsDb)].[analytics].[AcademicTimePeriodDim]
+
+SELECT * 
+INTO [$(DataMartDB)].[analytics].[stg_ClassPeriodDim]
+FROM [$(OdsDb)].[analytics].[ClassPeriodDim]
+
+SELECT * 
 INTO [$(DataMartDB)].[analytics].[stg_ContactPersonDim]
 FROM [$(OdsDb)].[analytics].[ContactPersonDim]
 
@@ -39,8 +47,16 @@ INTO [$(DataMartDB)].[analytics].[stg_DateDim]
 FROM [$(OdsDb)].[analytics].[DateDim]
 
 SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_DemographicDim]
+FROM [$(OdsDb)].[analytics].[DemographicDim]
+
+SELECT *
 INTO [$(DataMartDB)].[analytics].[stg_GradingPeriodDim]
 FROM [$(OdsDb)].[analytics].[GradingPeriodDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_LocalEducationAgencyDim]
+FROM [$(OdsDb)].[analytics].[LocalEducationAgencyDim]
 
 SELECT *
 INTO [$(DataMartDB)].[analytics].[stg_MostRecentGradingPeriod]
@@ -51,28 +67,52 @@ INTO [$(DataMartDB)].[analytics].[stg_SchoolDim]
 FROM [$(OdsDb)].[analytics].[SchoolDim]
 
 SELECT *
-INTO [$(DataMartDB)].[analytics].[stg_SchoolNetworkAssociationDim]
-FROM [$(OdsDb)].[analytics].[SchoolNetworkAssociationDim]
+INTO [$(DataMartDB)].[analytics].[stg_SectionDim]
+FROM [$(OdsDb)].[analytics].[SectionDim]
 
 SELECT *
-INTO [$(DataMartDB)].[analytics].[stg_rls_StudentDataAuthorization]
-FROM [$(OdsDb)].[analytics].[rls_StudentDataAuthorization]
+INTO [$(DataMartDB)].[analytics].[stg_StaffSectionDim]
+FROM [$(OdsDb)].[analytics].[StaffSectionDim]
 
 SELECT *
-INTO [$(DataMartDB)].[analytics].[stg_StudentDim]
-FROM [$(OdsDb)].[analytics].[StudentDim]
+INTO [$(DataMartDB)].[analytics].[stg_StudentLocalEducationAgencyDemographicsBridge]
+FROM [$(OdsDb)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
 
 SELECT *
-INTO [$(DataMartDB)].[analytics].[stg_ews_StudentEarlyWarningFact]
-FROM [$(OdsDb)].[analytics].[ews_StudentEarlyWarningFact]
+INTO [$(DataMartDB)].[analytics].[stg_StudentLocalEducationAgencyDim]
+FROM [$(OdsDb)].[analytics].[StudentLocalEducationAgencyDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_StudentProgramDim]
+FROM [$(OdsDb)].[analytics].[StudentProgramDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_StudentSchoolDemographicsBridge]
+FROM [$(OdsDb)].[analytics].[StudentSchoolDemographicsBridge]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_StudentSchoolDim]
+FROM [$(OdsDb)].[analytics].[StudentSchoolDim]
 
 SELECT *
 INTO [$(DataMartDB)].[analytics].[stg_StudentSectionDim]
 FROM [$(OdsDb)].[analytics].[StudentSectionDim]
 
+-- ASMT Collection. 
+
 SELECT *
-INTO [$(DataMartDB)].[analytics].[stg_ews_StudentSectionGradeFact]
-FROM [$(OdsDb)].[analytics].[ews_StudentSectionGradeFact]
+INTO [$(DataMartDB)].[analytics].[stg_asmt_AssessmentFact]
+FROM [$(OdsDb)].[analytics].[asmt_AssessmentFact]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_asmt_StudentAssessmentFact]
+FROM [$(OdsDb)].[analytics].[asmt_StudentAssessmentFact]
+
+-- RLS Collection.
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_rls_StudentDataAuthorization]
+FROM [$(OdsDb)].[analytics].[rls_StudentDataAuthorization]
 
 SELECT *
 INTO [$(DataMartDB)].[analytics].[stg_rls_UserAuthorization]
@@ -86,27 +126,81 @@ SELECT *
 INTO [$(DataMartDB)].[analytics].[stg_rls_UserStudentDataAuthorization]
 FROM [$(OdsDb)].[analytics].[rls_UserStudentDataAuthorization]
 
+-- EWS Collection.
+
 SELECT *
-INTO [$(DataMartDB)].[analytics].[stg_LocalEducationAgencyDim]
-FROM [$(OdsDb)].[analytics].[LocalEducationAgencyDim]
+INTO [$(DataMartDB)].[analytics].[stg_ews_StudentEarlyWarningFact]
+FROM [$(OdsDb)].[analytics].[ews_StudentEarlyWarningFact]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_ews_StudentSectionGradeFact]
+FROM [$(OdsDb)].[analytics].[ews_StudentSectionGradeFact]
+
+-- Equity Collection.
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_equity_StudentSchoolFoodServiceProgramDim]
+FROM [$(OdsDb)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_equity_FeederSchoolDim]
+FROM [$(OdsDb)].[analytics].[equity_FeederSchoolDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_equity_StudentDisciplineActionDim]
+FROM [$(OdsDb)].[analytics].[equity_StudentDisciplineActionDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_equity_StudentProgramCohortDim]
+FROM [$(OdsDb)].[analytics].[equity_StudentProgramCohortDim]
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_equity_StudentHistoryDim]
+FROM [$(OdsDb)].[analytics].[equity_StudentHistoryDim]
 GO
+
+-- CHRAB Collection
+
+SELECT *
+INTO [$(DataMartDB)].[analytics].[stg_chrab_ChronicAbsenteeismAttendanceFact]
+FROM [$(OdsDb)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+GO
+
 
 ----------------------------
 -- Add Indexes to Staging Tables
 ----------------------------
 PRINT 'Adding indexes to staging tables...'
 
+CREATE UNIQUE CLUSTERED INDEX [UCX_AcademicTimePeriodDim] 
+ON [analytics].[stg_AcademicTimePeriodDim] (
+	[AcademicTimePeriodKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_ClassPeriodDim] 
+ON [analytics].[stg_ClassPeriodDim] (
+	[ClassPeriodKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_ContactPersonDim] 
+ON [analytics].[stg_ContactPersonDim] (
+	[UniqueKey]
+) ON [Primary]
+
 CREATE NONCLUSTERED INDEX [IX_ContactPersonDim_StudentKey] 
 ON [analytics].[stg_ContactPersonDim] (
 	[StudentKey]
 ) ON [Primary]
-
 
 CREATE UNIQUE CLUSTERED INDEX [UCX_DateDim]
 ON [analytics].[stg_DateDim] (
 	[DateKey]
 ) ON [Primary]
 
+CREATE UNIQUE CLUSTERED INDEX [UCX_DemographicDim] 
+ON [analytics].[stg_DemographicDim] (
+	[DemographicKey]
+) ON [Primary]
 
 CREATE UNIQUE CLUSTERED INDEX [UCX_GradingPeriodDim]
 ON [analytics].[stg_GradingPeriodDim] (
@@ -118,36 +212,121 @@ ON [analytics].[stg_GradingPeriodDim] (
 	[SchoolKey]
 ) ON [Primary]
 
-CREATE UNIQUE CLUSTERED INDEX [UCX_MostRecentGradingPeriod]
-ON [analytics].[stg_MostRecentGradingPeriod] (
-	[SchoolKey]
+CREATE UNIQUE CLUSTERED INDEX [UCX_LocalEducationAgencyDim]
+ON [analytics].[stg_LocalEducationAgencyDim] (
+	[LocalEducationAgencyKey]
 ) ON [Primary]
-
 
 CREATE UNIQUE CLUSTERED INDEX [UCX_SchoolDim]
 ON [analytics].[stg_SchoolDim] (
 	[SchoolKey]
 ) ON [Primary]
 
-CREATE NONCLUSTERED INDEX [IX_SchoolNetworkAssociationDim_SchoolKey]
-ON [analytics].[stg_SchoolNetworkAssociationDim] (
+CREATE UNIQUE CLUSTERED INDEX [UCX_SectionDim]
+ON [analytics].[stg_SectionDim] (
+	[SectionKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_StaffSectionDim]
+ON [analytics].[stg_StaffSectionDim] (
+	[StaffSectionKey]
+) ON [Primary]
+
+CREATE NONCLUSTERED INDEX [IX_StudentLocalEducationAgencyDemographicsBridge_StudentSchoolDemographicBridgeKey]
+ON [analytics].[stg_StudentLocalEducationAgencyDemographicsBridge] (
+	[StudentSchoolDemographicBridgeKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_StudentLocalEducationAgencyDim]
+ON [analytics].[stg_StudentLocalEducationAgencyDim] (
+	[StudentLocalEducationAgencyKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_StudentProgramDim]
+ON [analytics].[stg_StudentProgramDim] (
+	[StudentSchoolProgramKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_StudentSchoolDemographicsBridge]
+ON [analytics].[stg_StudentSchoolDemographicsBridge] (
+	[StudentSchoolDemographicBridgeKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_StudentSchoolDim]
+ON [analytics].[stg_StudentSchoolDim] (
+	[StudentSchoolKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_StudentSectionDim]
+ON [analytics].[stg_StudentSectionDim] (
+	[StudentSectionKey]
+) ON [Primary]
+
+CREATE NONCLUSTERED INDEX [IX_StudentSectionDim_SchoolKey]
+ON [analytics].[stg_StudentSectionDim] (
 	[SchoolKey]
 ) ON [Primary]
+
+--
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_MostRecentGradingPeriod]
+ON [analytics].[stg_MostRecentGradingPeriod] (
+	[SchoolKey]
+) ON [Primary]
+
+-- ASMT Collection
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_asmt_AssessmentFact]
+ON [analytics].[stg_asmt_AssessmentFact] (
+	[AssessmentFactKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_asmt_StudentAssessmentFact]
+ON [analytics].[stg_asmt_StudentAssessmentFact] (
+	[StudentAssessmentFactKey]
+) ON [Primary]
+
+
+-- CHRAB Collection
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_chrab_ChronicAbsenteeismAttendanceFact]
+ON [analytics].[stg_chrab_ChronicAbsenteeismAttendanceFact] (
+	[StudentSchoolKey],
+	[DateKey]
+) ON [Primary]
+
+-- RLS Collection
 
 CREATE UNIQUE CLUSTERED INDEX [UCX_rls_StudentDataAuthorization]
 ON [analytics].[stg_rls_StudentDataAuthorization] (
 	[StudentKey],
 	[SchoolKey],
 	[BeginDate],
-	[EndDate]
+	[EndDate],
+	[SectionId]
 ) ON [Primary]
 
-CREATE UNIQUE CLUSTERED INDEX [UCX_StudentDim]
-ON [analytics].[stg_StudentDim] (
-	[StudentKey],
-	[SchoolKey]
+CREATE UNIQUE CLUSTERED INDEX [UCX_rls_UserAuthorization]
+ON [analytics].[stg_rls_UserAuthorization] (
+	[UserKey],
+	[UserScope],
+	[StudentPermission],
+	[SectionPermission],
+	[SchoolPermission]
 ) ON [Primary]
 
+CREATE UNIQUE CLUSTERED INDEX [UCX_rls_UserDim]
+ON [analytics].[stg_rls_UserDim] (
+	[UserKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_rls_UserStudentDataAuthorization]
+ON [analytics].[stg_rls_UserStudentDataAuthorization] (
+	[UserKey],
+	[StudentKey]
+) ON [Primary]
+
+-- EWS Collection
 
 CREATE UNIQUE CLUSTERED INDEX [UCX_ews_StudentEarlyWarningFact]
 ON [analytics].[stg_ews_StudentEarlyWarningFact] (
@@ -155,13 +334,6 @@ ON [analytics].[stg_ews_StudentEarlyWarningFact] (
 	[SchoolKey],
 	[DateKey]
 ) ON [Primary]
-
-
-CREATE UNIQUE CLUSTERED INDEX [UCX_StudentSectionDim]
-ON [analytics].[stg_StudentSectionDim] (
-	[StudentSectionKey]
-) ON [Primary]
-
 
 CREATE INDEX [IX_StudentSectionDim_StudentSectionKey] ON
 	[analytics].[stg_StudentSectionDim]
@@ -173,20 +345,16 @@ CREATE INDEX [IX_StudentSectionDim_StudentSectionKey] ON
 ) ON [Primary]
 
 
-CREATE NONCLUSTERED INDEX [IX_StudentSectionDim_SchoolKey]
-ON [analytics].[stg_StudentSectionDim] (
-	[SchoolKey]
-) ON [Primary]
-
-CREATE NONCLUSTERED INDEX [IX_StudentSectionDim_SectionKey]
-ON [analytics].[stg_StudentSectionDim] (
-	[SectionKey]
-) ON [Primary]
+--CREATE NONCLUSTERED INDEX [IX_StudentSectionDim_SectionKey]
+--ON [analytics].[stg_StudentSectionDim] (
+--	[SectionKey]
+--) ON [Primary]
 
 CREATE UNIQUE CLUSTERED INDEX [UCX_ews_StudentSectionGradeFact]
 ON [analytics].[stg_ews_StudentSectionGradeFact] (
 	[StudentSectionKey],
-	[GradingPeriodKey]
+	[GradingPeriodKey],
+	[GradeType]
 ) ON [Primary]
 
 CREATE NONCLUSTERED INDEX [IX_ews_StudentSectionGradeFact_StudentKey]
@@ -204,26 +372,31 @@ ON [analytics].[stg_ews_StudentSectionGradeFact] (
 	[SectionKey]
 ) ON [Primary]
 
+-- Equity Collection
 
-CREATE UNIQUE CLUSTERED INDEX [UCX_rls_UserAuthorization]
-ON [analytics].[stg_rls_UserAuthorization] (
-	[UserKey],
-	[UserScope],
-	[StudentPermission],
-	[SectionPermission],
-	[SchoolPermission]
+CREATE UNIQUE CLUSTERED INDEX [UCX_equity_StudentSchoolFoodServiceProgramDim]
+ON [analytics].[stg_equity_StudentSchoolFoodServiceProgramDim] (
+	[StudentSchoolFoodServiceProgramKey]
 ) ON [Primary]
 
-CREATE UNIQUE CLUSTERED INDEX [UCX_rls_UserDim]
-ON [analytics].[stg_rls_UserDim] (
-	[UserKey]
+CREATE UNIQUE CLUSTERED INDEX [UCX_equity_FeederSchoolDim]
+ON [analytics].[stg_equity_FeederSchoolDim] (
+	[FeederSchoolUniqueKey]
 ) ON [Primary]
 
+CREATE UNIQUE CLUSTERED INDEX [UCX_equity_StudentDisciplineActionDim]
+ON [analytics].[stg_equity_StudentDisciplineActionDim] (
+	[StudentDisciplineActionKey]
+) ON [Primary]
 
-CREATE UNIQUE CLUSTERED INDEX [UCX_rls_UserStudentDataAuthorization]
-ON [analytics].[stg_rls_UserStudentDataAuthorization] (
-	[UserKey],
-	[StudentKey]
+CREATE UNIQUE CLUSTERED INDEX [UCX_equity_StudentProgramCohortDim]
+ON [analytics].[stg_equity_StudentProgramCohortDim] (
+	[StudentProgramCohortKey]
+) ON [Primary]
+
+CREATE UNIQUE CLUSTERED INDEX [UCX_equity_StudentHistoryDim]
+ON [analytics].[stg_equity_StudentHistoryDim] (
+	[StudentSchoolKey]
 ) ON [Primary]
 
 ----------------------------
@@ -341,4 +514,4 @@ END
 
 
 PRINT 'All operations complete. Run the Analytics Middle Tier installer to install EWS views.'
-GO
+GO 
