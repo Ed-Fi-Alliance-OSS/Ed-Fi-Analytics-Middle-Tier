@@ -83,7 +83,7 @@ SELECT
             AND
             studentEdOrg.EducationOrganizationId = InternetAccessInResidence.EducationOrganizationId
             AND
-            InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence'
+            InternetAccessInResidence.IndicatorName = 'Internet Access In Residence'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessTypeInResidence ON
             studentEdOrg.StudentUSI = InternetAccessTypeInResidence.StudentUSI
