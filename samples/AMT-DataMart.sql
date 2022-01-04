@@ -653,7 +653,6 @@ END
 -- Uncomment it when you need to combine the data from 2 different Ods sources. 
 -- Additionally you have to set the SecondOdsDb variable below 
 
-/*
 :setvar SecondOdsDb EdFi_Ods_Northridge_v510
 
 -- Second ODS
@@ -664,110 +663,110 @@ GO
 -- Populate Tables from Second Ods
 ----------------------------
 
-SELECT INTO [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
+INSERT INTO [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[AcademicTimePeriodDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[ClassPeriodDim]
+INSERT INTO [$(DataMartDB)].[analytics].[ClassPeriodDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[ClassPeriodDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[ContactPersonDim]
+INSERT INTO [$(DataMartDB)].[analytics].[ContactPersonDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[ContactPersonDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[DateDim]
+INSERT INTO [$(DataMartDB)].[analytics].[DateDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[DateDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[DemographicDim]
+INSERT INTO [$(DataMartDB)].[analytics].[DemographicDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[DemographicDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[GradingPeriodDim]
+INSERT INTO [$(DataMartDB)].[analytics].[GradingPeriodDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[GradingPeriodDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
+INSERT INTO [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[LocalEducationAgencyDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
+INSERT INTO [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[MostRecentGradingPeriod]
 
-SELECT INTO [$(DataMartDB)].[analytics].[SchoolDim]
+INSERT INTO [$(DataMartDB)].[analytics].[SchoolDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[SchoolDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[SectionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[SectionDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[SectionDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StaffSectionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StaffSectionDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StaffSectionDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentLocalEducationAgencyDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StudentProgramDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentProgramDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentProgramDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentSchoolDemographicsBridge]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StudentSchoolDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentSchoolDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentSchoolDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[StudentSectionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentSectionDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentSectionDim]
 
 -- ASMT Collection. 
 
-SELECT INTO [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
+INSERT INTO [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[asmt_AssessmentFact]
 
-SELECT INTO [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
+INSERT INTO [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[asmt_StudentAssessmentFact]
 
 -- RLS Collection.
 
-SELECT INTO [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_StudentDataAuthorization]
 
-SELECT INTO [$(DataMartDB)].[analytics].[rls_UserAuthorization]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_UserAuthorization]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_UserAuthorization]
 
-SELECT INTO [$(DataMartDB)].[analytics].[rls_UserDim]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_UserDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_UserDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_UserStudentDataAuthorization]
 
 -- EWS Collection.
 
-SELECT INTO [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
+INSERT INTO [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[ews_StudentEarlyWarningFact]
 
-SELECT INTO [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
+INSERT INTO [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[ews_StudentSectionGradeFact]
 
 -- Equity Collection.
 
-SELECT INTO [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_FeederSchoolDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentDisciplineActionDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentProgramCohortDim]
 
-SELECT INTO [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentHistoryDim]
 
 -- CHRAB Collection
 
-SELECT INTO [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+INSERT INTO [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
 GO
-*/
+
 -----------------------------------------------------------------------------------------
 
 PRINT 'All operations complete. Run the Analytics Middle Tier installer to install EWS views.'
