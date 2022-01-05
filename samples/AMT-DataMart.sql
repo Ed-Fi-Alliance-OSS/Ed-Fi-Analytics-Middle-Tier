@@ -652,7 +652,7 @@ END
 -- This script contains a final section that is commented out. 
 -- Uncomment it when you need to combine the data from 2 different Ods sources. 
 -- Additionally you have to set the SecondOdsDb variable below 
-
+/*
 :setvar SecondOdsDb EdFi_Ods_Northridge_v510
 
 -- Second ODS
@@ -766,7 +766,7 @@ SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentHistoryDim]
 INSERT INTO [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
 SELECT * FROM [$(SecondOdsDb)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
 GO
-
+*/
 -----------------------------------------------------------------------------------------
 
 PRINT 'All operations complete. Run the Analytics Middle Tier installer to install EWS views.'
