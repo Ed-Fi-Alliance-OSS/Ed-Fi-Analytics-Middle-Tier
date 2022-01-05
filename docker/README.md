@@ -4,7 +4,8 @@ This docker container satisfies the user story:
 > As an AMT developer, I want to run integration tests using PostgreSQL and SQL
 > Server in Docker containers on my localhost.
 
-To start the containers run in terminal with administrative priviledges:
+- Rename .env.example file to .env to be considered by docker compose
+- To start the containers run in terminal with administrative priviledges:
 ```bash
  docker compose up
  ```

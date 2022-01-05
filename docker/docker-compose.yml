@@ -6,9 +6,7 @@
 
 
 version: "3"
-
 services:
-
   mssql-service:
     container_name: amt-mssql
     image: mcr.microsoft.com/mssql/server:2017-GA-ubuntu
@@ -16,10 +14,9 @@ services:
     ports:
       - 1433:1433
     environment:
-      ACCEPT_EULA = "Y"
-      MSSQL_PID = "${MSSQL_PID}"
-      SA_PASSWORD = "${SA_PASSWORD}"
-
+      ACCEPT_EULA: "${POSTGRES_USER}"
+      MSSQL_PID: "${POSTGRES_PASSWORD}"
+      SA_PASSWORD: "${POSTGRES_DB}"
   pg-service:
     container_name: amt-pg
     image: postgres:11-alpine
