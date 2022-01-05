@@ -2,11 +2,25 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
-DROP VIEW analytics.StudentSchoolDim;
 
-CREATE OR REPLACE VIEW analytics.StudentSchoolDim
+IF EXISTS
+(
+    SELECT 1
+    FROM
+        INFORMATION_SCHEMA.VIEWS
+    WHERE
+        TABLE_SCHEMA = 'analytics'
+    AND
+        TABLE_NAME = 'StudentSchoolDim'
+)
+BEGIN
+    DROP VIEW analytics.StudentSchoolDim;
+END;
+GO
+
+CREATE VIEW analytics.StudentSchoolDim
 AS
-SELECT
+    SELECT
         CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey,
         Student.StudentUniqueId AS StudentKey,
         CAST(StudentSchoolAssociation.SchoolId AS VARCHAR) AS SchoolKey,
@@ -14,7 +28,8 @@ SELECT
         Student.FirstName AS StudentFirstName,
         COALESCE(Student.MiddleName, '') AS StudentMiddleName,
         COALESCE(Student.LastSurname, '') AS StudentLastName,
-        CAST(StudentSchoolAssociation.EntryDate AS VARCHAR) AS EnrollmentDateKey,
+        Student.BirthDate,
+        CAST(StudentSchoolAssociation.EntryDate AS NVARCHAR) AS EnrollmentDateKey,
         Descriptor.CodeValue AS GradeLevel,
         COALESCE(CASE
                     WHEN studentEdOrg.StudentUSI IS NOT NULL
@@ -25,7 +40,7 @@ SELECT
                     WHEN studentEdOrg.StudentUSI IS NOT NULL
                     THEN studentEdOrg.HispanicLatinoEthnicity
                     ELSE districtEdOrg.HispanicLatinoEthnicity
-                END, FALSE) AS IsHispanic,
+                END, CAST(0 as BIT)) AS IsHispanic,
         COALESCE(CASE
                     WHEN studentEdOrg.StudentUSI IS NOT NULL
                     THEN SexTypeSchool.CodeValue
@@ -44,8 +59,7 @@ SELECT
                 ,(studentEdOrg.LastModifiedDate)
                 ,(districtEdOrg.LastModifiedDate)
             ) AS VALUE(MaxLastModifiedDate)
-        ) AS LastModifiedDate,
-        Student.BirthDate
+        ) AS LastModifiedDate
     FROM
         edfi.Student
     INNER JOIN
@@ -112,5 +126,7 @@ SELECT
             studentEdOrg.EducationOrganizationId = DeviceAccess.EducationOrganizationId
             AND
             DeviceAccess.IndicatorName = 'Device Access'
-    WHERE(
-        StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate >= now());
+    WHERE
+        (StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate >= GETDATE());  
+
+GO
