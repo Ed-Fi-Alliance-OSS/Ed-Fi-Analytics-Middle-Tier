@@ -14,9 +14,9 @@ services:
     ports:
       - 1433:1433
     environment:
-      ACCEPT_EULA: "${POSTGRES_USER}"
-      MSSQL_PID: "${POSTGRES_PASSWORD}"
-      SA_PASSWORD: "${POSTGRES_DB}"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "${MSSQL_PID}"
+      SA_PASSWORD: "${SA_PASSWORD}"
   pg-service:
     container_name: amt-pg
     image: postgres:11-alpine
