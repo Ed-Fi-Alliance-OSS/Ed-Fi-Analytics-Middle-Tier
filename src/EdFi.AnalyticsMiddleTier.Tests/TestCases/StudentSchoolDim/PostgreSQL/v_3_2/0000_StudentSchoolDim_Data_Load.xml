@@ -423,22 +423,22 @@
 	        (EducationOrganizationId,StudentUSI,IndicatorName,Indicator)
 	        VALUES
 	        -- '10100494' happy path
-	        ('867530011','10100494','InternetAccessInResidence','Yes'),
-	        ('867530011','10100494','InternetAccessTypeInResidence','ResidentialBroadband'),
-	        ('867530011','10100494','InternetPerformance','Yes - No issues'),
-	        ('867530011','10100494','DigitalDevice','Chromebook'),
-	        ('867530011','10100494','DeviceAccess','School Provided - Dedicated'),
+	        ('867530011','10100494','Internet Access In Residence','Yes'),
+	        ('867530011','10100494','Internet Access Type In Residence','ResidentialBroadband'),
+	        ('867530011','10100494','Internet Performance In Residence','Yes - No issues'),
+	        ('867530011','10100494','Digital Device','Chromebook'),
+	        ('867530011','10100494','Device Access','School Provided - Dedicated'),
 
 	        -- These extra records should be ignored by the view because
 	        -- they are associated with the District, not the School
-	        ('867530','10100494','InternetAccessInResidence','Yes__'),
-	        ('867530','10100494','InternetAccessTypeInResidence','ResidentialBroadband__'),
-	        ('867530','10100494','InternetPerformance','Yes - No issues__'),
-	        ('867530','10100494','DigitalDevice','Chromebook__'),
-	        ('867530','10100494','DeviceAccess','School Provided - Dedicated__'),
+	        ('867530','10100494','Internet Access In Residence','Yes__'),
+	        ('867530','10100494','Internet Access Type In Residence','ResidentialBroadband__'),
+	        ('867530','10100494','Internet Performance In Residence','Yes - No issues__'),
+	        ('867530','10100494','Digital Device','Chromebook__'),
+	        ('867530','10100494','Device Access','School Provided - Dedicated__'),
 
 	        -- This record is for a different student
-	        ('867530011','10133197','DeviceAccess','School Provided - DedicatedX')
+	        ('867530011','10133197','Device Access','School Provided - DedicatedX')
 
 	</ControlDataInsertion>
 </TestCase>
