@@ -31,11 +31,11 @@ SELECT
                     THEN SexTypeSchool.CodeValue
                     ELSE SexTypeDist.CodeValue
                 END, '') AS Sex,
-        CASE WHEN InternetAccessInResidence.Indicator IS NOT NULL THEN 'Internet Access In Residence' ELSE 'n/a' END as InternetAccessInResidence,
-        CASE WHEN InternetAccessTypeInResidence.Indicator IS NOT NULL THEN 'Internet Access Type In Residence' ELSE 'n/a' END as InternetAccessTypeInResidence,
-        CASE WHEN InternetPerformance.Indicator IS NOT NULL THEN 'Internet Performance In Residence' ELSE 'n/a' END as InternetPerformance,
-        CASE WHEN DigitalDevice.Indicator IS NOT NULL THEN 'Digital Device' ELSE 'n/a' END as DigitalDevice,
-        CASE WHEN DeviceAccess.Indicator IS NOT NULL THEN 'Device Access' ELSE 'n/a' END as DeviceAccess,
+        COALESCE(InternetAccessInResidence.Indicator,'n/a') as InternetAccessInResidence,
+        COALESCE(InternetAccessTypeInResidence.Indicator,'n/a') as InternetAccessTypeInResidence,
+        COALESCE(InternetPerformance.Indicator,'n/a') as InternetPerformance,
+        COALESCE(DigitalDevice.Indicator,'n/a') as DigitalDevice,
+        COALESCE(DeviceAccess.Indicator,'n/a') as DeviceAccess,
         (
             SELECT
                 MAX(MaxLastModifiedDate)

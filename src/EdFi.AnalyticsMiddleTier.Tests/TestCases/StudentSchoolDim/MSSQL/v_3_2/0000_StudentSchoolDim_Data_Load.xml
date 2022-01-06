@@ -480,22 +480,22 @@
         (EducationOrganizationId,StudentUSI,IndicatorName,Indicator)
         VALUES
         -- @studentUsi1 happy path
-        (@schoolId1,@studentUsi1,'Internet Access In Residence','Yes'),
-        (@schoolId1,@studentUsi1,'Internet Access Type In Residence','ResidentialBroadband'),
-        (@schoolId1,@studentUsi1,'Internet Performance In Residence','Yes - No issues'),
-        (@schoolId1,@studentUsi1,'Digital Device','Chromebook'),
-        (@schoolId1,@studentUsi1,'Device Access','School Provided - Dedicated'),
+        (@schoolId1,@studentUsi1,'InternetAccessInResidence','Yes'),
+        (@schoolId1,@studentUsi1,'InternetAccessTypeInResidence','ResidentialBroadband'),
+        (@schoolId1,@studentUsi1,'InternetPerformance','Yes - No issues'),
+        (@schoolId1,@studentUsi1,'DigitalDevice','Chromebook'),
+        (@schoolId1,@studentUsi1,'DeviceAccess','School Provided - Dedicated'),
 
         -- These extra records should be ignored by the view because
         -- they are associated with the District, not the School
-        (@districtId,@studentUsi1,'Internet Access In Residence','Yes__'),
-        (@districtId,@studentUsi1,'Internet Access Type In Residence','ResidentialBroadband__'),
-        (@districtId,@studentUsi1,'Internet Performance In Residence','Yes - No issues__'),
-        (@districtId,@studentUsi1,'Digital Device','Chromebook__'),
-        (@districtId,@studentUsi1,'Device Access','School Provided - Dedicated__'),
+        (@districtId,@studentUsi1,'InternetAccessInResidence','Yes__'),
+        (@districtId,@studentUsi1,'InternetAccessTypeInResidence','ResidentialBroadband__'),
+        (@districtId,@studentUsi1,'InternetPerformance','Yes - No issues__'),
+        (@districtId,@studentUsi1,'DigitalDevice','Chromebook__'),
+        (@districtId,@studentUsi1,'DeviceAccess','School Provided - Dedicated__'),
 
         -- This record is for a different student
-        (@schoolId1,@studentUsi2,'Device Access','School Provided - DedicatedX')
+        (@schoolId1,@studentUsi2,'DeviceAccess','School Provided - DedicatedX')
 
         -- @studentUsi3 is in @schoolId1 but has no indicator records
     </ControlDataInsertion>
