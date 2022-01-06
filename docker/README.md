@@ -4,12 +4,12 @@ This docker container satisfies the user story:
 > As an AMT developer, I want to run integration tests using PostgreSQL and SQL
 > Server in Docker containers on my localhost.
 
-- Rename .env.example file to .env to be considered by docker compose
+- Copy .env.example file and rename as .env to be considered by docker compose
 - If you need to configure specific databases configuration, you can go to .env
   file to change SQL engines variables.
 - To start the containers run in terminal with administrative priviledges:
 ```bash
- docker compose up
+ docker compose up -d
  ```
 Docker Compose will start the container service in your computer.
 Go to EdFi\eng and run in terminal
@@ -25,7 +25,7 @@ and execute manually EdFi.Ods32.Minimal.Template.sql and EdFi.Ods33.Minimal.Temp
 using PGAdmin.
 
 - Go to EdFi\Ed-Fi-Analytics-Middle-Tier\src\EdFi.AnalyticsMiddleTier.Tests
-- Rename .env.example.docker to .env to be considered by the test project
+- Copy .env.example.docker file and rename as .env to be considered by the test project
 - You can change the connection parameters in this file, ensure they match the 
   docker container's connection configuration
 - Run test project
@@ -33,7 +33,7 @@ using PGAdmin.
 
 ## Legal Information
 
-Copyright (c) 2020 Ed-Fi Alliance, LLC and contributors.
+Copyright (c) 2022 Ed-Fi Alliance, LLC and contributors.
 
 Licensed under the [Apache License, Version 2.0](LICENSE) (the "License").
 
