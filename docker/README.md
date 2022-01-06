@@ -18,6 +18,7 @@ Go to EdFi\eng and run in terminal
 ```
 This will create the databases and schemas used by postgres to perform the test
 cases running.
+Be sure you run this script twice, one for Ods3.2 and one for Ods3.3 DB and schemas.
 
 You can go to \EdFi\Ed-Fi-Analytics-Middle-Tier\src\EdFi.AnalyticsMiddleTier.Tests
 and execute manually EdFi.Ods32.Minimal.Template.sql and EdFi.Ods33.Minimal.Template.sql
