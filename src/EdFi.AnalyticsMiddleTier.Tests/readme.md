@@ -83,3 +83,5 @@ This is a very important setting. Internally the project has a hardcoded connect
 `SQLSERVER_INTEGRATED_SECURITY` = The type of user authentication. True corresponds to “Windows Authentication”, and False corresponds to “SQL Server Authentication”;  
 `SQLSERVER_USER` = The username to connect with.  
 `SQLSERVER_PASS` = The password to connect with.  
+`SQLSERVER_ADMIN_USER` = The MSSQL admin username to connect with (e.g. sa).  
+`SQLSERVER_ADMIN_PASS` = The MSSQL admin password to connect with.  
