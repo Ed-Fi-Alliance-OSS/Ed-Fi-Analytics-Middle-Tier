@@ -1,0 +1,29 @@
+
+ # SPDX-License-Identifier: Apache-2.0
+ # Licensed to the Ed-Fi Alliance under one or more agreements.
+ # The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+ # See the LICENSE and NOTICES files in the project root for more information.
+
+
+version: "3"
+services:
+  mssql-service:
+    container_name: amt-mssql
+    image: mcr.microsoft.com/mssql/server:2017-GA-ubuntu
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "${MSSQL_PID}"
+      SA_PASSWORD: "${SA_PASSWORD}"
+  pg-service:
+    container_name: amt-pg
+    image: postgres:11-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "${POSTGRES_DB}"
+      PG_PORT: 5432
