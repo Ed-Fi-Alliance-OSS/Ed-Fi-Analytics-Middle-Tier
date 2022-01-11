@@ -19,6 +19,8 @@ env:
   USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
   USE_POSTGRES_DEFAULT_CONN_STRING: "FALSE"
   SQLSERVER_SERVER: "localhost"
+  SQLSERVER_ADMIN_USER: "sa"
+  SQLSERVER_ADMIN_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
   SQLSERVER_DATABASE_DS31: "AnalyticsMiddleTier_Testing_Ds31"
@@ -60,7 +62,7 @@ jobs:
     steps:
       - name: Start Ubuntu container for SQLServer 2017 Express
         run: |
-         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_SA_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
+         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
 
       - name: Checkout code
         uses: actions/checkout@v2

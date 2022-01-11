@@ -5,12 +5,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public class DotEnvHelper
     {
-        private IDictionary<string, string> _variables;
+        private readonly IDictionary<string, string> _variables;
         
         public DotEnvHelper()
         {
             if (_variables != null)
+            {
                 return;
+            }
+
             _variables = DotEnv.Read();
         }
 

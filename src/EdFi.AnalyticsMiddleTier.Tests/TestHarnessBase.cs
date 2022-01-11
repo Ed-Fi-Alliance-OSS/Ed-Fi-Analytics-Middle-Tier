@@ -16,12 +16,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessBase : ITestHarnessBase
     {
-        public Engine DataStandardEngine { get; set; } = Engine.Default;
+        public Engine DataStandardEngine => _databaseConnectionString.DatabaseEngine;
 
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
-        protected string _databaseName;
-        
+        protected IDatabaseConnectionString _databaseConnectionString;
+
+        protected string _databaseName => _databaseConnectionString.DatabaseName;
+
         protected string _dataStandardBaseVersion;
 
         protected InstallBase _dataStandardInstallBase;
@@ -39,27 +41,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        public string _connectionString;
+        public string _connectionString => _databaseConnectionString.GetDatabaseConnectionString();
 
-        public string _mainDatabaseConnectionString;
+        public string _mainDatabaseConnectionString => _databaseConnectionString.GetMainDatabaseConnectionString();
 
         protected IOrm _orm { get; set; }
 
-        public DataStandard DataStandardVersion { get; set; }
+        public DataStandard DataStandardVersion => _databaseConnectionString.DatabaseDataStandard;
 
         public IOrm Orm
         {
-            get
-            {
-                if (_orm == null)
-                {
-                    _orm = DataStandardEngine == Engine.PostgreSQL 
-                            ? new DapperWrapper(new NpgsqlConnection(_connectionString))
-                            : _orm = new DapperWrapper(new SqlConnection(_connectionString));
-                }
-
-                return _orm;
-            }
+            get =>
+                _orm ??= DataStandardEngine == Engine.PostgreSQL
+                    ? new DapperWrapper(new NpgsqlConnection(_connectionString))
+                    : _orm = new DapperWrapper(new SqlConnection(_connectionString));
             set => _orm = value;
         }
 

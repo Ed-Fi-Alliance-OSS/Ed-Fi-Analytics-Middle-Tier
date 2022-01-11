@@ -14,29 +14,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessPostgres : TestHarnessBase
     {
-        public TestHarnessPostgres()
-        {
-            DataStandardEngine = Engine.PostgreSQL;
-        }
-
         public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_2",
-            DataStandardEngine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard32.Install),
-            DataStandardVersion = DataStandard.Ds32,
-            _connectionString = new PostsgreConnectionStringDS32().ToString()
+            _databaseConnectionString = new PostgresConnectionString(DataStandard.Ds32)
         };
 
         public static TestHarnessPostgres DataStandard33PG = new TestHarnessPostgres
         {
             _dataStandardBaseVersion = "v_3",
             _dataStandardVersionName = "3_3",
-            DataStandardEngine = Engine.PostgreSQL,
             _dataStandardInstallType = typeof(DataStandard33.Install),
-            DataStandardVersion = DataStandard.Ds33,
-            _connectionString = new PostsgreConnectionStringDS33().ToString()
+            _databaseConnectionString = new PostgresConnectionString(DataStandard.Ds33)
         };
 
         public override void PrepareDatabase()

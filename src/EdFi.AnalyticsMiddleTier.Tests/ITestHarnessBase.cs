@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 {
     public interface ITestHarnessBase
     {
-        DataStandard DataStandardVersion { get; set; }
+        DataStandard DataStandardVersion { get; }
         Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate { get; set; }
         IOrm Orm { get; set; }
 
