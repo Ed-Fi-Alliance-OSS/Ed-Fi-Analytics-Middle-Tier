@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using Dapper;
 using EdFi.AnalyticsMiddleTier.Common;
+using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 using Npgsql;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
@@ -16,18 +17,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
         {
-            _dataStandardBaseVersion = "v_3",
-            _dataStandardVersionName = "3_2",
-            _dataStandardInstallType = typeof(DataStandard32.Install),
-            _databaseConnectionString = new PostgresConnectionString(DataStandard.Ds32)
+            _dataStandardSettings = new PostgresDataStandardSettings(DataStandard.Ds32)
         };
 
         public static TestHarnessPostgres DataStandard33PG = new TestHarnessPostgres
         {
-            _dataStandardBaseVersion = "v_3",
-            _dataStandardVersionName = "3_3",
-            _dataStandardInstallType = typeof(DataStandard33.Install),
-            _databaseConnectionString = new PostgresConnectionString(DataStandard.Ds33)
+            _dataStandardSettings = new PostgresDataStandardSettings(DataStandard.Ds33)
         };
 
         public override void PrepareDatabase()
@@ -38,11 +33,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             using (var connection = OpenConnection())
             {
                 var truncateAllTablesLine = connection.ExecuteScalar<string>(
-                        @"SELECT 'TRUNCATE TABLE '
-	                            || string_agg(format('%I.%I', schemaname, tablename), ', ')
-	                            || ' CASCADE'
+                        @"SELECT 'TRUNCATE TABLE ' || string_agg(format('%I.%I', schemaname, tablename), ', ') || ' CASCADE'
                             FROM pg_tables
-                            WHERE tableowner = 'postgres' AND (schemaname = 'edfi' OR schemaname = 'analytics_config' OR schemaname = 'auth' OR schemaname = 'util')");
+                            WHERE tableowner = 'postgres'
+	                            AND (
+		                            schemaname = 'edfi'
+		                            OR schemaname = 'analytics_config'
+		                            OR schemaname = 'auth'
+		                            OR schemaname = 'util'
+		                            )");
 
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))
                 {

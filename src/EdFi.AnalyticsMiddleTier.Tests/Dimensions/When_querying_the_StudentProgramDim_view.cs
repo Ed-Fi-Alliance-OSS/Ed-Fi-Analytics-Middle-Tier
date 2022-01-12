@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTestGroup
         {
             (bool success, string errorMessage) testResult =
                 DataStandard.RunTestCase<TableColumns>(
-                    $"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentProgramDim_should_match_column_dictionary.xml");
+                    $"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_StudentProgramDim_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 

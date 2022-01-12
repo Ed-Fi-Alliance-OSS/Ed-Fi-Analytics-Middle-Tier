@@ -3,21 +3,28 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 using System;
-using System.Collections.Generic;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests
+namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public abstract class DatabaseConnectionString : IDatabaseConnectionString
     {
+        public abstract IOrm Orm { get; }
+
+        public abstract IDatabaseMigrationStrategy DatabaseMigrationStrategy { get; }
+
+        public abstract IUninstallStrategy UninstallStrategy { get; }
+
         public string DatabaseName =>
             UseDefaultConnectionString
-                ? DefaultDataBaseName[DatabaseDataStandard]
-                : GetEnvironmentVariable(ParameterDataBaseName[DatabaseDataStandard]);
+                ? DefaultDataBaseName
+                : GetEnvironmentVariable(ParameterDataBaseName);
 
-        public Engine DatabaseEngine { get; set; }
+        public DataStandard DatabaseDataStandard { get; protected set;}
 
-        public DataStandard DatabaseDataStandard { get; set; }
+        public abstract string MainDatabaseConnectionString { get; }
+
+        public abstract string ConnectionString { get; }
 
         protected bool UseDefaultConnectionString { get; set; }
 
@@ -37,16 +44,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected string Pooling { get; set; }
                 
-        protected Dictionary<DataStandard,string> DefaultDataBaseName { get; set; }
+        protected string DefaultDataBaseName { get; set; }
 
-        protected Dictionary<DataStandard, string> ParameterDataBaseName { get; set; }
+        protected string ParameterDataBaseName { get; set; }
 
         private readonly DotEnvHelper _dotEnvHelper;
-
-        public virtual string GetMainDatabaseConnectionString() => String.Empty;
-
-        public virtual string GetDatabaseConnectionString() => String.Empty;
-
+        
         protected DatabaseConnectionString()
         {
             _dotEnvHelper = new DotEnvHelper();

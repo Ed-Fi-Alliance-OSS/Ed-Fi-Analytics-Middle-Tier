@@ -11,7 +11,7 @@ using System.IO;
 using System.Reflection;
 using Dapper;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.DataStandard2;
+using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 using Microsoft.SqlServer.Dac;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
@@ -21,44 +21,24 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         public static TestHarnessSQLServer DataStandard2 = new TestHarnessSQLServer
         {
-            _dataStandardBaseVersion = "v_2",
-            _dataStandardVersionName = "2",
-            _dacpacName = "EdFi_Ods_2.0.dacpac",
-            _dataStandardInstallType = typeof(Install),
-            _databaseConnectionString = new SqlServerConnectionString(DataStandard.Ds2)
-    };
+            _dataStandardSettings = new SqlDataStandardSettings(DataStandard.Ds2)
+        };
 
         public static TestHarnessSQLServer DataStandard31 = new TestHarnessSQLServer
         {
-            _dataStandardBaseVersion = "v_3",
-            _dataStandardVersionName = "3_1",
-            _dacpacName = "EdFi_Ods_3.1.dacpac",
-            _dataStandardInstallType = typeof(DataStandard31.Install),
-            _databaseConnectionString = new SqlServerConnectionString(DataStandard.Ds31)
-};
+            _dataStandardSettings = new SqlDataStandardSettings(DataStandard.Ds31)
+        };
 
         public static TestHarnessSQLServer DataStandard32 = new TestHarnessSQLServer
         {
-            _dataStandardBaseVersion = "v_3",
-            _dataStandardVersionName = "3_2",
-            _dacpacName = "EdFi_Ods_3.2.dacpac",
-            _dataStandardInstallType = typeof(DataStandard32.Install),
-            _databaseConnectionString = new SqlServerConnectionString(DataStandard.Ds32)
+            _dataStandardSettings = new SqlDataStandardSettings(DataStandard.Ds32)
         };
 
         public static TestHarnessSQLServer DataStandard33 = new TestHarnessSQLServer
         {
-            _dataStandardBaseVersion = "v_3",
-            _dataStandardVersionName = "3_3",
-            _dacpacName = "EdFi_Ods_3.3.dacpac",
-            _dataStandardInstallType = typeof(DataStandard33.Install),
-            _databaseConnectionString = new SqlServerConnectionString(DataStandard.Ds33)
+            _dataStandardSettings = new SqlDataStandardSettings(DataStandard.Ds33)
         };
-
-        private string _snapshotName => $"{_databaseName}_ss";
-
-        private string _dacpacName;
-
+        
         public override void PrepareDatabase()
         {
             using (var connection = new SqlConnection(_mainDatabaseConnectionString))
@@ -87,8 +67,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                     //return true;
                     const string analyticsMiddleTierNoSnapshots = "ANALYTICSMIDDLETIER_NO_SNAPSHOTS";
 
-                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) ??
-                                            "false";
+                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) 
+                                                ?? "false";
 
                     if (bool.TryParse(noSnapshotsEnvVar, out bool avoidSnapshot))
                     {
@@ -142,7 +122,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 string GetDacFilePath()
                 {
                     // ReSharper disable once AssignNullToNotNullAttribute
-                    return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), _dacpacName);
+                    return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), _databaseBackupFile);
                 }
 
                 void CreateSnapshot()

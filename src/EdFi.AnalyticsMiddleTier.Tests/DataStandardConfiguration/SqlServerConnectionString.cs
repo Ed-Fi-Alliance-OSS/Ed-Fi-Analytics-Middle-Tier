@@ -4,36 +4,23 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using EdFi.AnalyticsMiddleTier.Common;
+// ReSharper disable StringLiteralTypo
 
-namespace EdFi.AnalyticsMiddleTier.Tests
+namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class SqlServerConnectionString : DatabaseConnectionString
     {
-        public SqlServerConnectionString(DataStandard dataStandard)
+        public SqlServerConnectionString(string defaultDataBaseName, string parameterDataBaseName)
         {
-            DatabaseDataStandard = dataStandard;
-            DefaultDataBaseName = new Dictionary<DataStandard, string>()
-            {
-                { DataStandard.Ds2, "AnalyticsMiddleTier_Testing_Ds2" },
-                { DataStandard.Ds31, "AnalyticsMiddleTier_Testing_Ds31" },
-                { DataStandard.Ds32, "AnalyticsMiddleTier_Testing_Ds32" },
-                { DataStandard.Ds33, "AnalyticsMiddleTier_Testing_Ds33" }
-            };
-            ParameterDataBaseName = new Dictionary<DataStandard, string>()
-            {
-                { DataStandard.Ds2, "SQLSERVER_DATABASE_DS2" },
-                { DataStandard.Ds31, "SQLSERVER_DATABASE_DS31" },
-                { DataStandard.Ds32, "SQLSERVER_DATABASE_DS32" },
-                { DataStandard.Ds33, "SQLSERVER_DATABASE_DS33" }
-            };
+            DefaultDataBaseName = defaultDataBaseName;
+            ParameterDataBaseName = parameterDataBaseName;
             Initialize();
         }
         private void Initialize()
         {
-            DatabaseEngine = Engine.MSSQL;
-
             UseDefaultConnectionString = UseEnvironmentConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
 
             Server = GetEnvironmentVariable("SQLSERVER_SERVER");
@@ -49,11 +36,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             AdminUserPass = GetEnvironmentVariable("SQLSERVER_ADMIN_PASS");
         }
 
-        public override string GetMainDatabaseConnectionString()
+        public override string MainDatabaseConnectionString
             => String.Format(GetConnectionStringFormat(), Server, "master", IntegratedSecurity, AdminUser, AdminUserPass);
 
-        public override string GetDatabaseConnectionString()
+        public override string ConnectionString
             => String.Format(GetConnectionStringFormat(), Server, DatabaseName, IntegratedSecurity, User, Pass);
+
+        public override IOrm Orm => new DapperWrapper(new SqlConnection(ConnectionString));
+
+        public override IDatabaseMigrationStrategy DatabaseMigrationStrategy => new SqlServerMigrationStrategy(Orm);
+
+        public override IUninstallStrategy UninstallStrategy => new SqlServerUninstallStrategy(Orm);
 
         private string GetConnectionStringFormat()
         {

@@ -5,19 +5,23 @@
 
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.Tests
+namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
 
     public interface IDatabaseConnectionString
     {
+        IOrm Orm { get; }
+
+        IDatabaseMigrationStrategy DatabaseMigrationStrategy { get; }
+        
+        IUninstallStrategy UninstallStrategy { get; }
+
         string DatabaseName { get; }
 
-        Engine DatabaseEngine { get; set; }
+        DataStandard DatabaseDataStandard { get; }
 
-        DataStandard DatabaseDataStandard { get; set; }
+        string MainDatabaseConnectionString { get; }
 
-        string GetMainDatabaseConnectionString();
-        
-        string GetDatabaseConnectionString();
+        string ConnectionString { get; }
     }
 }

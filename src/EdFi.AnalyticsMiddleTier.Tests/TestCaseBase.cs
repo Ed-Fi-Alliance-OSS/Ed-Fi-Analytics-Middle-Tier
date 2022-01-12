@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Tests.Common;
+using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 using NUnit.Framework;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
@@ -23,22 +23,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected void SetDataStandard(TestHarnessBase dataStandard) => this.DataStandard = dataStandard;
 
-        protected ITestHarnessBase[] GetFixturesList() => fixtureList.GetFixturesList();
-
         protected void PrepareTestDatabase()
         {
             foreach (var dataStandard in fixtureList.GetFixturesList())
             {
-                ITestHarnessBase currentDataStandard;
-                if (dataStandard.GetType().ToString().Contains("TestHarnessSQLServer"))
-                {
-                    currentDataStandard = ((TestHarnessSQLServer)dataStandard);
-                }
-                else
-                {
-                    currentDataStandard = ((TestHarnessPostgres)dataStandard);
-                }
-                currentDataStandard.PrepareDatabase();
+                dataStandard.PrepareDatabase();
             }
         }
 

@@ -5,7 +5,7 @@
 
 using System.Collections;
 
-namespace EdFi.AnalyticsMiddleTier.Tests.Common
+namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public interface IDataStandardTestFixtureBase : IEnumerable
     {
