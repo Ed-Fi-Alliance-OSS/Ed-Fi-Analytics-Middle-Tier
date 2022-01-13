@@ -9,6 +9,11 @@ using Npgsql;
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class PostgresConnection : DatabaseConnection {
+        public override string ConnectionString
+            => UseDefaultConnectionString
+                ? $"User ID=postgres;Host=localhost;Port=5432;Database={DatabaseName};Pooling=false"
+                : $"User ID={User};Host={Server};Port={Port};Database={DatabaseName};Pooling={Pooling};password={Pass}";
+
         protected override string DefaultDatabaseNamePrefix => "edfi_ods_tests_ds";
 
         protected override string EnvParameterDataBaseNamePrefix => "POSTGRES_DATABASE_DS";
@@ -17,6 +22,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         {
             Initialize();
         }
+        
+        public override string MainDatabaseConnectionString => string.Empty;
+
+        public override IOrm Orm => new DapperWrapper(new NpgsqlConnection(ConnectionString));
+
+        public override IDatabaseMigrationStrategy DatabaseMigrationStrategy => new PostgresMigrationStrategy(Orm);
+
+        public override IUninstallStrategy UninstallStrategy => new PostgresUninstallStrategy(Orm);
+
         protected void Initialize()
         {
             UseDefaultConnectionString = UseEnvironmentConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
@@ -30,19 +44,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
             User = GetEnvironmentVariable("POSTGRES_USER");
 
             Pass = GetEnvironmentVariable("POSTGRES_PASS");
-        }            
-    
-        public override string ConnectionString
-            => UseDefaultConnectionString
-            ? $"User ID=postgres;Host=localhost;Port=5432;Database={DatabaseName};Pooling=false"
-            : $"User ID={User};Host={Server};Port={Port};Database={DatabaseName};Pooling={Pooling};password={Pass}";
-
-        public override string MainDatabaseConnectionString => string.Empty;
-
-        public override IOrm Orm => new DapperWrapper(new NpgsqlConnection(ConnectionString));
-
-        public override IDatabaseMigrationStrategy DatabaseMigrationStrategy => new PostgresMigrationStrategy(Orm);
-
-        public override IUninstallStrategy UninstallStrategy => new PostgresUninstallStrategy(Orm);
+        }
     }
 }

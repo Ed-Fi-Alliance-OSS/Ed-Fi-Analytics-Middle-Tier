@@ -13,6 +13,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class SqlServerConnection : DatabaseConnection
     {
+        public override string MainDatabaseConnectionString
+            => String.Format(GetConnectionStringFormat(), Server, "master", IntegratedSecurity, AdminUser, AdminUserPass);
+
+        public override string ConnectionString
+            => String.Format(GetConnectionStringFormat(), Server, DatabaseName, IntegratedSecurity, User, Pass);
+
         protected override string DefaultDatabaseNamePrefix => "AnalyticsMiddleTier_Testing_Ds";
 
         protected override string EnvParameterDataBaseNamePrefix => "SQLSERVER_DATABASE_DS";
@@ -21,6 +27,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         {
             Initialize();
         }
+        
+        public override IOrm Orm => new DapperWrapper(new SqlConnection(ConnectionString));
+
+        public override IDatabaseMigrationStrategy DatabaseMigrationStrategy => new SqlServerMigrationStrategy(Orm);
+
+        public override IUninstallStrategy UninstallStrategy => new SqlServerUninstallStrategy(Orm);
+
         private void Initialize()
         {
             UseDefaultConnectionString = UseEnvironmentConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
@@ -37,18 +50,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
             AdminUserPass = GetEnvironmentVariable("SQLSERVER_ADMIN_PASS");
         }
-
-        public override string MainDatabaseConnectionString
-            => String.Format(GetConnectionStringFormat(), Server, "master", IntegratedSecurity, AdminUser, AdminUserPass);
-
-        public override string ConnectionString
-            => String.Format(GetConnectionStringFormat(), Server, DatabaseName, IntegratedSecurity, User, Pass);
-
-        public override IOrm Orm => new DapperWrapper(new SqlConnection(ConnectionString));
-
-        public override IDatabaseMigrationStrategy DatabaseMigrationStrategy => new SqlServerMigrationStrategy(Orm);
-
-        public override IUninstallStrategy UninstallStrategy => new SqlServerUninstallStrategy(Orm);
 
         private string GetConnectionStringFormat()
         {
