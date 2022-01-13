@@ -11,13 +11,13 @@ using EdFi.AnalyticsMiddleTier.Common;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
-    public class SqlServerConnectionString : DatabaseConnectionString
+    public class SqlServerConnection : DatabaseConnection
     {
         protected override string DefaultDatabaseNamePrefix => "AnalyticsMiddleTier_Testing_Ds";
 
         protected override string EnvParameterDataBaseNamePrefix => "SQLSERVER_DATABASE_DS";
 
-        public SqlServerConnectionString(string versionFileSuffix) : base(versionFileSuffix)
+        public SqlServerConnection(string versionFileSuffix) : base(versionFileSuffix)
         {
             Initialize();
         }

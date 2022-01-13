@@ -19,17 +19,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessSQLServer : TestHarnessBase
     {
+        private string _snapshotName => $"{_databaseName}_ss";
+
         public static TestHarnessSQLServer DataStandard2 
-            = new TestHarnessSQLServer(new SqlDataStandardSettings(DataStandard.Ds2));
+            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds2));
 
         public static TestHarnessSQLServer DataStandard31
-            = new TestHarnessSQLServer(new SqlDataStandardSettings(DataStandard.Ds31));
+            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds31));
 
         public static TestHarnessSQLServer DataStandard32 
-            = new TestHarnessSQLServer(new SqlDataStandardSettings(DataStandard.Ds32));
+            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds32));
 
         public static TestHarnessSQLServer DataStandard33 
-            = new TestHarnessSQLServer(new SqlDataStandardSettings(DataStandard.Ds33));
+            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds33));
 
         protected TestHarnessSQLServer(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)
         {

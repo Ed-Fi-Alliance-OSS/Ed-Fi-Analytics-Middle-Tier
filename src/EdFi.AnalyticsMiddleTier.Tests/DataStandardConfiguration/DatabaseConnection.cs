@@ -7,7 +7,7 @@ using EdFi.AnalyticsMiddleTier.Common;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
-    public abstract class DatabaseConnectionString : IDatabaseConnectionString
+    public abstract class DatabaseConnection : IDatabaseConnection
     {
         public abstract IOrm Orm { get; }
 
@@ -54,7 +54,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
         private readonly DotEnvHelper _dotEnvHelper;
 
-        protected DatabaseConnectionString(string versionFileSuffix)
+        protected DatabaseConnection(string versionFileSuffix)
         {
             _dotEnvHelper = new DotEnvHelper();
             DatabaseVersionSuffix = versionFileSuffix;

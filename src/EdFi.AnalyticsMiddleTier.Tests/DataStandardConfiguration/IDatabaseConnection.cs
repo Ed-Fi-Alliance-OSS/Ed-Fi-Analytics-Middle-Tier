@@ -8,7 +8,7 @@ using EdFi.AnalyticsMiddleTier.Common;
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
 
-    public interface IDatabaseConnectionString
+    public interface IDatabaseConnection
     {
         IOrm Orm { get; }
 

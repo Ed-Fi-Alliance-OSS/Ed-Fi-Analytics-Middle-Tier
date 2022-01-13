@@ -29,14 +29,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
-        protected IDatabaseConnectionString _databaseConnectionString 
-                            => _dataStandardSettings.DatabaseConnectionString;
+        protected IDatabaseConnection _databaseConnection 
+                            => _dataStandardSettings.DatabaseConnection;
 
-        protected string _databaseName => _databaseConnectionString.DatabaseName;
+        protected string _databaseName => _databaseConnection.DatabaseName;
 
         protected string _databaseBackupFile => _dataStandardSettings.DatabaseBackupFile;
-
-        protected string _snapshotName => $"{_databaseName}_ss";
 
         protected InstallBase _dataStandardInstallBase;
 
@@ -57,21 +55,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             _dataStandardSettings = dataStandardSettings;
         }
 
-        protected string _connectionString => _databaseConnectionString.ConnectionString;
+        protected string _connectionString => _databaseConnection.ConnectionString;
 
-        protected string _mainDatabaseConnectionString => _databaseConnectionString.MainDatabaseConnectionString;
+        protected string _mainDatabaseConnectionString => _databaseConnection.MainDatabaseConnectionString;
 
         protected IOrm _orm { get; set; }
         
-        public IOrm Orm => _orm ??= _dataStandardSettings.DatabaseConnectionString.Orm;
+        public IOrm Orm => _orm ??= _dataStandardSettings.DatabaseConnection.Orm;
 
         protected IDatabaseMigrationStrategy DatabaseMigrationStrategy =>
             _databaseMigrationStrategy 
-                ??= _dataStandardSettings.DatabaseConnectionString.DatabaseMigrationStrategy;
+                ??= _dataStandardSettings.DatabaseConnection.DatabaseMigrationStrategy;
 
         protected IUninstallStrategy UninstallStrategy =>
             _uninstallStrategy
-                ??= _dataStandardSettings.DatabaseConnectionString.UninstallStrategy;
+                ??= _dataStandardSettings.DatabaseConnection.UninstallStrategy;
 
         protected InstallBase DataStandardInstallBase
         {

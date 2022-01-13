@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         public string BaseVersionFolderName => $"v{FileNameSeparator}{BaseVersion.Replace(DefaultVersionSeparator, FileNameSeparator)}";
         public string TestDataFolderName => $"{DatabaseEngine}.{VersionFolderName}";
         public string DatabaseBackupFile => String.Format(DatabaseBackupFileFormat, (Version.Equals("2") ? "2.0" : Version));
-        public IDatabaseConnectionString DatabaseConnectionString { get;protected set; }
+        public IDatabaseConnection DatabaseConnection { get;protected set; }
         public Type DataStandardInstallType { get; protected set; }
 
         protected string BaseVersion => Version.Split(DefaultVersionSeparator)[0];

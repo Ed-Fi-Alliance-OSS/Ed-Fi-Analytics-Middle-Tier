@@ -16,8 +16,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         public PostgresDataStandardSettings(DataStandard dataStandard)
         {
             InitializeSettings(dataStandard);
-            DatabaseConnectionString
-                = new PostgresConnectionString(DatabaseVersionSuffix);
+            DatabaseConnection
+                = new PostgresConnection(DatabaseVersionSuffix);
         }
     }
 }

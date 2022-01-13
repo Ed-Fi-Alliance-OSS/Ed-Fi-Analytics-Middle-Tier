@@ -7,17 +7,17 @@ using EdFi.AnalyticsMiddleTier.Common;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
-    public class SqlDataStandardSettings : DataStandardSettings
+    public class SqlServerDataStandardSettings : DataStandardSettings
     {
         public override Engine DatabaseEngine => Engine.MSSQL;
         
         protected override string DatabaseBackupFileFormat => "EdFi_Ods_{0}.dacpac";
 
-        public SqlDataStandardSettings(DataStandard dataStandard)
+        public SqlServerDataStandardSettings(DataStandard dataStandard)
         {
             InitializeSettings(dataStandard);
-            DatabaseConnectionString
-                = new SqlServerConnectionString(DatabaseVersionSuffix);
+            DatabaseConnection
+                = new SqlServerConnection(DatabaseVersionSuffix);
 
         }
     }
