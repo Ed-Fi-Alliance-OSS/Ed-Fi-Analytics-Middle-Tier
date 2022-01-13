@@ -53,6 +53,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
+        protected TestHarnessBase(IDataStandardSettings dataStandardSettings)
+        {
+            // private so that this class cannot be instantiated elsewhere
+            _dataStandardSettings = dataStandardSettings;
+        }
+
         protected string _connectionString => _databaseConnectionString.ConnectionString;
 
         protected string _mainDatabaseConnectionString => _databaseConnectionString.MainDatabaseConnectionString;

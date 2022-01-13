@@ -15,15 +15,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class TestHarnessPostgres : TestHarnessBase
     {
-        public static TestHarnessPostgres DataStandard32PG = new TestHarnessPostgres
-        {
-            _dataStandardSettings = new PostgresDataStandardSettings(DataStandard.Ds32)
-        };
+        public static TestHarnessPostgres DataStandard32PG
+                = new TestHarnessPostgres(new PostgresDataStandardSettings(DataStandard.Ds32));
 
-        public static TestHarnessPostgres DataStandard33PG = new TestHarnessPostgres
+        public static TestHarnessPostgres DataStandard33PG 
+                = new TestHarnessPostgres(new PostgresDataStandardSettings(DataStandard.Ds33));
+
+        protected TestHarnessPostgres(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)
         {
-            _dataStandardSettings = new PostgresDataStandardSettings(DataStandard.Ds33)
-        };
+        }
 
         public override void PrepareDatabase()
         {

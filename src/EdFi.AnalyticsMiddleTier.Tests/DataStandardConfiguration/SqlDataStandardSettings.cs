@@ -9,17 +9,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class SqlDataStandardSettings : DataStandardSettings
     {
-        private readonly string DATABASE_BACKUP_FILENAME_FORMAT = "EdFi_Ods_{0}.dacpac";
+        public override Engine DatabaseEngine => Engine.MSSQL;
+        
+        protected override string DatabaseBackupFileFormat => "EdFi_Ods_{0}.dacpac";
 
         public SqlDataStandardSettings(DataStandard dataStandard)
         {
-            DatabaseEngine = Engine.MSSQL;
-            InitializeSettings(dataStandard,
-                "AnalyticsMiddleTier_Testing_Ds",
-                "SQLSERVER_DATABASE_DS",
-                DATABASE_BACKUP_FILENAME_FORMAT);
+            InitializeSettings(dataStandard);
             DatabaseConnectionString
-                = new SqlServerConnectionString(DefaultDatabaseName, EnvDatabaseParameterName);
+                = new SqlServerConnectionString(DatabaseVersionSuffix);
 
         }
     }

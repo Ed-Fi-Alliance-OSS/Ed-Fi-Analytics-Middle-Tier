@@ -9,14 +9,15 @@ using Npgsql;
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class PostgresConnectionString : DatabaseConnectionString {
-        
-        public PostgresConnectionString(string defaultDataBaseName, string parameterDataBaseName)
+        protected override string DefaultDatabaseNamePrefix => "edfi_ods_tests_ds";
+
+        protected override string EnvParameterDataBaseNamePrefix => "POSTGRES_DATABASE_DS";
+
+        public PostgresConnectionString(string versionFileSuffix) : base(versionFileSuffix)
         {
-            DefaultDataBaseName = defaultDataBaseName;
-            ParameterDataBaseName = parameterDataBaseName;
             Initialize();
         }
-        private void Initialize()
+        protected void Initialize()
         {
             UseDefaultConnectionString = UseEnvironmentConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
 

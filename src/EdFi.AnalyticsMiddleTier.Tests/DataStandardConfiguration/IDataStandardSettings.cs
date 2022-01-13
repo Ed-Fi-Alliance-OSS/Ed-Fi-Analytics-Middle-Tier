@@ -17,6 +17,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         string TestDataFolderName { get; }
         IDatabaseConnectionString DatabaseConnectionString { get; }
         string DatabaseBackupFile { get; }
-        Type DataStandardInstallType { get; set; }
+        Type DataStandardInstallType { get; }
     }
 }

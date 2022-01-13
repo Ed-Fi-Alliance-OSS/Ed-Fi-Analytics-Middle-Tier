@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         public string DatabaseName =>
             UseDefaultConnectionString
                 ? DefaultDataBaseName
-                : GetEnvironmentVariable(ParameterDataBaseName);
+                : GetEnvironmentVariable(EnvParameterDataBaseName);
 
         public DataStandard DatabaseDataStandard { get; protected set;}
 
@@ -43,16 +43,23 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         protected string Port { get; set; }
 
         protected string Pooling { get; set; }
-                
-        protected string DefaultDataBaseName { get; set; }
 
-        protected string ParameterDataBaseName { get; set; }
+        protected string DatabaseVersionSuffix { get; set; }
+
+        protected abstract string DefaultDatabaseNamePrefix { get; }
+
+        protected abstract string EnvParameterDataBaseNamePrefix { get; }
+
+        protected string DefaultDataBaseName => $"{DefaultDatabaseNamePrefix}{DatabaseVersionSuffix}";
+
+        protected string EnvParameterDataBaseName => $"{EnvParameterDataBaseNamePrefix}{DatabaseVersionSuffix.ToUpper()}";
 
         private readonly DotEnvHelper _dotEnvHelper;
-        
-        protected DatabaseConnectionString()
+
+        protected DatabaseConnectionString(string versionFileSuffix)
         {
             _dotEnvHelper = new DotEnvHelper();
+            DatabaseVersionSuffix = versionFileSuffix;
         }
 
         protected string GetEnvironmentVariable(string key)

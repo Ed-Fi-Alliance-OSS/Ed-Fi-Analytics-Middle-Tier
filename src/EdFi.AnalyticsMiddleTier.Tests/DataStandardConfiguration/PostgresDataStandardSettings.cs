@@ -9,17 +9,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class PostgresDataStandardSettings : DataStandardSettings
     {
-        private readonly string _databaseBackupFilenameFormat = "EdFi.Ods{0}.Minimal.Template.sql";
+        public override Engine DatabaseEngine => Engine.PostgreSQL;
 
+        protected override string DatabaseBackupFileFormat => "EdFi.Ods{0}.Minimal.Template.sql";
+        
         public PostgresDataStandardSettings(DataStandard dataStandard)
         {
-            DatabaseEngine = Engine.PostgreSQL;
-            InitializeSettings(dataStandard,
-                "edfi_ods_tests_ds",
-                "POSTGRES_DATABASE_DS",
-                _databaseBackupFilenameFormat);
+            InitializeSettings(dataStandard);
             DatabaseConnectionString
-                = new PostgresConnectionString(DefaultDatabaseName, EnvDatabaseParameterName);
+                = new PostgresConnectionString(DatabaseVersionSuffix);
         }
     }
 }
