@@ -13,13 +13,13 @@ using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessBase : ITestHarnessBase
+    public abstract class TestHarnessBase : ITestHarnessBase
     {
         public Engine DataStandardEngine => _dataStandardSettings.DatabaseEngine;
 
         public DataStandard DataStandardVersion => _dataStandardSettings.CurrentDataStandard;
 
-        public string DataStandardVersionFolderName => _dataStandardSettings.VersionFolderName;
+        protected string DataStandardVersionFolderName => _dataStandardSettings.VersionFolderName;
 
         public string DataStandardBaseVersionFolderName => _dataStandardSettings.BaseVersionFolderName;
 
@@ -42,8 +42,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected Type _dataStandardInstallType => _dataStandardSettings.DataStandardInstallType;
 
-        protected string _dataStandardVersionName => _dataStandardSettings.Version;
-
         protected Func<string, int, Component[], (bool success, string errorMessage)> _installDelegate;
 
         protected IUninstallStrategy _uninstallStrategy;
@@ -65,23 +63,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected IOrm _orm { get; set; }
         
-        public IOrm Orm
-        {
-            get =>
-                _orm ??= _dataStandardSettings.DatabaseConnectionString.Orm;
-        }
+        public IOrm Orm => _orm ??= _dataStandardSettings.DatabaseConnectionString.Orm;
 
-        protected IDatabaseMigrationStrategy DatabaseMigrationStrategy
-        {
-            get => _databaseMigrationStrategy 
+        protected IDatabaseMigrationStrategy DatabaseMigrationStrategy =>
+            _databaseMigrationStrategy 
                 ??= _dataStandardSettings.DatabaseConnectionString.DatabaseMigrationStrategy;
-        }
 
-        protected IUninstallStrategy UninstallStrategy
-        {
-            get => _uninstallStrategy
+        protected IUninstallStrategy UninstallStrategy =>
+            _uninstallStrategy
                 ??= _dataStandardSettings.DatabaseConnectionString.UninstallStrategy;
-        }
 
         protected InstallBase DataStandardInstallBase
         {

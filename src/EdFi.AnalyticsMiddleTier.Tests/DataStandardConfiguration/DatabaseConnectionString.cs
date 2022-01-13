@@ -20,8 +20,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
                 ? DefaultDataBaseName
                 : GetEnvironmentVariable(EnvParameterDataBaseName);
 
-        public DataStandard DatabaseDataStandard { get; protected set;}
-
         public abstract string MainDatabaseConnectionString { get; }
 
         public abstract string ConnectionString { get; }

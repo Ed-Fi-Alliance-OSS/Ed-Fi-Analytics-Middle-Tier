@@ -15,13 +15,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     [Category("IntegrationTest")]
     public abstract class TestCaseBase
     {
-        protected TestHarnessBase DataStandard { get; set; }
+        protected ITestHarnessBase DataStandard { get; set; }
         protected IDataStandardTestFixtureBase fixtureList { get; set; }
         protected (bool success, string errorMessage) Result { get; set; }
 
         protected TestCaseBase() => fixtureList = new DataStandardTestFixture();
 
-        protected void SetDataStandard(TestHarnessBase dataStandard) => this.DataStandard = dataStandard;
+        protected void SetDataStandard(ITestHarnessBase dataStandard) => this.DataStandard = dataStandard;
 
         protected void PrepareTestDatabase()
         {

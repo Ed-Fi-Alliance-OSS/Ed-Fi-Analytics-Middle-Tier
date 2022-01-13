@@ -17,9 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         IUninstallStrategy UninstallStrategy { get; }
 
         string DatabaseName { get; }
-
-        DataStandard DatabaseDataStandard { get; }
-
+        
         string MainDatabaseConnectionString { get; }
 
         string ConnectionString { get; }
