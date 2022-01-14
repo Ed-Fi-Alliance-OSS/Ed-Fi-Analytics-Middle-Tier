@@ -9,55 +9,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public abstract class DatabaseConnection : IDatabaseConnection
     {
+        private DbConnectionStringParameters _dbConnectionStringParam;
+
         public abstract IOrm Orm { get; }
 
         public abstract IDatabaseMigrationStrategy DatabaseMigrationStrategy { get; }
 
         public abstract IUninstallStrategy UninstallStrategy { get; }
 
+        protected abstract string DefaultDatabaseNamePrefix { get; }
+
+        protected abstract string EnvParameterDataBaseNamePrefix { get; }
+
         public string DatabaseName =>
-            UseDefaultConnectionString
-                ? DefaultDataBaseName
-                : GetEnvironmentVariable(EnvParameterDataBaseName);
+            DbConnectionStringParameter.UseDefaultConnectionString
+                ? DbConnectionStringParameter.DefaultDataBaseName
+                : GetEnvironmentVariable(DbConnectionStringParameter.EnvParameterDataBaseName);
 
         public abstract string MainDatabaseConnectionString { get; }
 
         public abstract string ConnectionString { get; }
 
-        protected bool UseDefaultConnectionString { get; set; }
-
-        protected string Server { get; set; }
-                
-        protected string IntegratedSecurity { get; set; }
-
-        protected string User { get; set; }
-
-        protected string Pass { get; set; }
-
-        protected string AdminUser { get; set; }
-
-        protected string AdminUserPass { get; set; }
-
-        protected string Port { get; set; }
-
-        protected string Pooling { get; set; }
-
-        protected string DatabaseVersionSuffix { get; set; }
-
-        protected abstract string DefaultDatabaseNamePrefix { get; }
-
-        protected abstract string EnvParameterDataBaseNamePrefix { get; }
-
-        protected string DefaultDataBaseName => $"{DefaultDatabaseNamePrefix}{DatabaseVersionSuffix}";
-
-        protected string EnvParameterDataBaseName => $"{EnvParameterDataBaseNamePrefix}{DatabaseVersionSuffix.ToUpper()}";
-
+        protected DbConnectionStringParameters DbConnectionStringParameter
+            => _dbConnectionStringParam ??= new DbConnectionStringParameters(DefaultDatabaseNamePrefix, EnvParameterDataBaseNamePrefix);
+        
         private readonly DotEnvHelper _dotEnvHelper;
 
         protected DatabaseConnection(string versionFileSuffix)
         {
             _dotEnvHelper = new DotEnvHelper();
-            DatabaseVersionSuffix = versionFileSuffix;
+            DbConnectionStringParameter.DatabaseVersionSuffix = versionFileSuffix;
         }
 
         protected string GetEnvironmentVariable(string key)
@@ -69,6 +50,43 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         {
             string useDefaultConnectionString = GetEnvironmentVariable(key).ToLower();
             return String.IsNullOrWhiteSpace(useDefaultConnectionString) || useDefaultConnectionString == "true";
+        }
+
+        protected class DbConnectionStringParameters
+        {
+            public bool UseDefaultConnectionString { get; set; }
+
+            public string Server { get; set; }
+
+            public string IntegratedSecurity { get; set; }
+
+            public string User { get; set; }
+
+            public string Pass { get; set; }
+
+            public string AdminUser { get; set; }
+
+            public string AdminUserPass { get; set; }
+
+            public string Port { get; set; }
+
+            public string Pooling { get; set; }
+
+            public string DatabaseVersionSuffix { get; set; }
+
+            public string DefaultDatabaseNamePrefix { get; }
+
+            public string EnvParameterDataBaseNamePrefix { get; }
+
+            public string DefaultDataBaseName => $"{DefaultDatabaseNamePrefix}{DatabaseVersionSuffix}";
+
+            public string EnvParameterDataBaseName => $"{EnvParameterDataBaseNamePrefix}{DatabaseVersionSuffix.ToUpper()}";
+
+            public DbConnectionStringParameters(string defaultDatabaseNamePrefix, string envParameterDataBaseNamePrefix)
+            {
+                DefaultDatabaseNamePrefix = defaultDatabaseNamePrefix;
+                EnvParameterDataBaseNamePrefix = envParameterDataBaseNamePrefix;
+            }
         }
     }
 }

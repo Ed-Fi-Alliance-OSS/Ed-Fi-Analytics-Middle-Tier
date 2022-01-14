@@ -14,10 +14,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     public class SqlServerConnection : DatabaseConnection
     {
         public override string MainDatabaseConnectionString
-            => String.Format(GetConnectionStringFormat(), Server, "master", IntegratedSecurity, AdminUser, AdminUserPass);
+            => String.Format(GetConnectionStringFormat(),
+                DbConnectionStringParameter.Server, 
+                "master",
+                DbConnectionStringParameter.IntegratedSecurity,
+                DbConnectionStringParameter.AdminUser,
+                DbConnectionStringParameter.AdminUserPass);
 
         public override string ConnectionString
-            => String.Format(GetConnectionStringFormat(), Server, DatabaseName, IntegratedSecurity, User, Pass);
+            => String.Format(GetConnectionStringFormat(),
+                DbConnectionStringParameter.Server, 
+                DatabaseName,
+                DbConnectionStringParameter.IntegratedSecurity,
+                DbConnectionStringParameter.User,
+                DbConnectionStringParameter.Pass);
 
         protected override string DefaultDatabaseNamePrefix => "AnalyticsMiddleTier_Testing_Ds";
 
@@ -36,28 +46,28 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
         private void Initialize()
         {
-            UseDefaultConnectionString = UseEnvironmentConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
+            DbConnectionStringParameter.UseDefaultConnectionString = UseEnvironmentConnectionString("USE_MSSQL_DEFAULT_CONN_STRING");
 
-            Server = GetEnvironmentVariable("SQLSERVER_SERVER");
+            DbConnectionStringParameter.Server = GetEnvironmentVariable("SQLSERVER_SERVER");
 
-            IntegratedSecurity = GetEnvironmentVariable("SQLSERVER_INTEGRATED_SECURITY");
+            DbConnectionStringParameter.IntegratedSecurity = GetEnvironmentVariable("SQLSERVER_INTEGRATED_SECURITY");
 
-            User = GetEnvironmentVariable("SQLSERVER_USER");
+            DbConnectionStringParameter.User = GetEnvironmentVariable("SQLSERVER_USER");
 
-            Pass = GetEnvironmentVariable("SQLSERVER_PASS");
+            DbConnectionStringParameter.Pass = GetEnvironmentVariable("SQLSERVER_PASS");
 
-            AdminUser = GetEnvironmentVariable("SQLSERVER_ADMIN_USER") ?? "sa";
+            DbConnectionStringParameter.AdminUser = GetEnvironmentVariable("SQLSERVER_ADMIN_USER") ?? "sa";
 
-            AdminUserPass = GetEnvironmentVariable("SQLSERVER_ADMIN_PASS");
+            DbConnectionStringParameter.AdminUserPass = GetEnvironmentVariable("SQLSERVER_ADMIN_PASS");
         }
 
         private string GetConnectionStringFormat()
         {
             var integratedSecurityList = new List<string> { "true", "sspi" };
             bool useIntegratedSecurity = integratedSecurityList
-                .Any(s => IntegratedSecurity.ToLower().Contains(s));
+                .Any(s => DbConnectionStringParameter.IntegratedSecurity.ToLower().Contains(s));
 
-            if (UseDefaultConnectionString)
+            if (DbConnectionStringParameter.UseDefaultConnectionString)
             {
                 return "server=localhost;database={1};integrated security=sspi";
             }

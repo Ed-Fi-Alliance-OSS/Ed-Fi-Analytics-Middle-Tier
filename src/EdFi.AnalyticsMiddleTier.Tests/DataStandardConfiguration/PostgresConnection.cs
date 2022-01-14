@@ -10,9 +10,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
     public class PostgresConnection : DatabaseConnection {
         public override string ConnectionString
-            => UseDefaultConnectionString
-                ? $"User ID=postgres;Host=localhost;Port=5432;Database={DatabaseName};Pooling=false"
-                : $"User ID={User};Host={Server};Port={Port};Database={DatabaseName};Pooling={Pooling};password={Pass}";
+            => DbConnectionStringParameter.UseDefaultConnectionString
+                ? "User ID=postgres;" +
+                  "Host=localhost;Port=5432;" +
+                  $"Database={DatabaseName};" +
+                  "Pooling=false"
+                : $"User ID={DbConnectionStringParameter.User};" +
+                  $"Host={DbConnectionStringParameter.Server};" +
+                  $"Port={DbConnectionStringParameter.Port};" +
+                  $"Database={DatabaseName};" +
+                  $"Pooling={DbConnectionStringParameter.Pooling};" +
+                  $"password={DbConnectionStringParameter.Pass}";
 
         protected override string DefaultDatabaseNamePrefix => "edfi_ods_tests_ds";
 
@@ -33,17 +41,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
         protected void Initialize()
         {
-            UseDefaultConnectionString = UseEnvironmentConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
+            DbConnectionStringParameter.UseDefaultConnectionString = UseEnvironmentConnectionString("USE_POSTGRES_DEFAULT_CONN_STRING");
 
-            Server = GetEnvironmentVariable("POSTGRES_HOST");
+            DbConnectionStringParameter.Server = GetEnvironmentVariable("POSTGRES_HOST");
 
-            Port = GetEnvironmentVariable("POSTGRES_PORT");
+            DbConnectionStringParameter.Port = GetEnvironmentVariable("POSTGRES_PORT");
 
-            Pooling = GetEnvironmentVariable("POSTGRES_POOLING");
+            DbConnectionStringParameter.Pooling = GetEnvironmentVariable("POSTGRES_POOLING");
 
-            User = GetEnvironmentVariable("POSTGRES_USER");
+            DbConnectionStringParameter.User = GetEnvironmentVariable("POSTGRES_USER");
 
-            Pass = GetEnvironmentVariable("POSTGRES_PASS");
+            DbConnectionStringParameter.Pass = GetEnvironmentVariable("POSTGRES_PASS");
         }
     }
 }
