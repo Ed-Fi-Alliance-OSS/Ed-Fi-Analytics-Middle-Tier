@@ -34,10 +34,10 @@ jobs:
    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
       
       - name: Caching packages
-        uses: actions/cache@v2
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
