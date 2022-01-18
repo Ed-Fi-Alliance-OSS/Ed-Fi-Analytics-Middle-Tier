@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System.Diagnostics.CodeAnalysis;
-using EdFi.AnalyticsMiddleTier.Tests.Common;
+using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 using NUnit.Framework;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions

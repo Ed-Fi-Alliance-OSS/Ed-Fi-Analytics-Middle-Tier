@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
         [SetUpFixture]
@@ -40,125 +40,125 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_BirthDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_BirthDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_BirthDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ElectronicMailAddress_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_ElectronicMailAddress_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_ElectronicMailAddress_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_LastModifiedDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StaffFirstName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffFirstName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffFirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HighestCompletedLevelOfEducation()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HighestCompletedLevelOfEducation.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HighestCompletedLevelOfEducation.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HighlyQualifiedTeacher()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HispanicLatinoEthnicity()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffLastName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffLastName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffLastName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_LoginId()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LoginId.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LoginId.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffMiddleName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffMiddleName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffMiddleName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_PersonalTitlePrefix_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_PersonalTitlePrefix_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_PersonalTitlePrefix_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_Race()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_Race.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_Race.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_Sex()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_Sex.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_Sex.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffSectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_UserKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_UserKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_UserKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_YearsOfPriorProfessionalExperience()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_YearsOfPriorTeachingExperience()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -173,125 +173,125 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_BirthDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_BirthDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_BirthDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ElectronicMailAddress()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_ElectronicMailAddress.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_ElectronicMailAddress.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_LastModifiedDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StaffFirstName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffFirstName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffFirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HighestCompletedLevelOfEducation()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HighestCompletedLevelOfEducation.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HighestCompletedLevelOfEducation.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HighlyQualifiedTeacher()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HispanicLatinoEthnicity()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffLastName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffLastName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffLastName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_LoginId()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LoginId.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LoginId.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffMiddleName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffMiddleName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffMiddleName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_PersonalTitlePrefix()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_PersonalTitlePrefix.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_PersonalTitlePrefix.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_Race()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_Race.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_Race.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_Sex()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_Sex.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_Sex.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffSectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_UserKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_UserKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_UserKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_YearsOfPriorProfessionalExperience()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_YearsOfPriorTeachingExperience()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -306,26 +306,26 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
            
             [Test]
             public void Then_should_have_SchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffSectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -340,125 +340,125 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_BirthDate_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_BirthDate_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_BirthDate_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_ElectronicMailAddress_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_ElectronicMailAddress_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_ElectronicMailAddress_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_LastModifiedDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_StaffFirstName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffFirstName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffFirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HighestCompletedLevelOfEducation_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HighestCompletedLevelOfEducation_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HighestCompletedLevelOfEducation_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HighlyQualifiedTeacher_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher_Zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HighlyQualifiedTeacher_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_HispanicLatinoEthnicity()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffLastName()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffLastName.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffLastName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_LoginId_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LoginId_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LoginId_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffMiddleName_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffMiddleName_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffMiddleName_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_PersonalTitlePrefix_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_PersonalTitlePrefix_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_PersonalTitlePrefix_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_Race()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_Race.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_Race.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SchoolKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_SectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_Sex_Empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_Sex_Empty.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_Sex_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_StaffSectionKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StaffSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_UserKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_UserKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_UserKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_YearsOfPriorProfessionalExperience_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience_Zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_YearsOfPriorProfessionalExperience_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_YearsOfPriorTeachingExperience_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience_Zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_YearsOfPriorTeachingExperience_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -473,7 +473,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StaffSectionDimTestGroup
             [Test]
             public void Then_should_have_HispanicLatinoEthnicity_Zero()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity_Zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StaffSectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_HispanicLatinoEthnicity_Zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

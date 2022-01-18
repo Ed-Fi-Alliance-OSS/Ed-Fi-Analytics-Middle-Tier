@@ -5,32 +5,40 @@
 
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using Dapper;
 using EdFi.AnalyticsMiddleTier.Common;
-using Npgsql;
+using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessBase : ITestHarnessBase
+    public abstract class TestHarnessBase : ITestHarnessBase
     {
-        public Engine DataStandardEngine => _databaseConnectionString.DatabaseEngine;
+        public Engine DataStandardEngine => _dataStandardSettings.DatabaseEngine;
+
+        public DataStandard DataStandardVersion => _dataStandardSettings.CurrentDataStandard;
+
+        protected string DataStandardVersionFolderName => _dataStandardSettings.VersionFolderName;
+
+        public string DataStandardBaseVersionFolderName => _dataStandardSettings.BaseVersionFolderName;
+
+        public string TestDataFolderName => _dataStandardSettings.TestDataFolderName;
+
+        protected IDataStandardSettings _dataStandardSettings { get; set; }
 
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
-        protected IDatabaseConnectionString _databaseConnectionString;
+        protected IDatabaseConnection _databaseConnection 
+                            => _dataStandardSettings.DatabaseConnection;
 
-        protected string _databaseName => _databaseConnectionString.DatabaseName;
+        protected string _databaseName => _databaseConnection.DatabaseName;
 
-        protected string _dataStandardBaseVersion;
+        protected string _databaseBackupFile => _dataStandardSettings.DatabaseBackupFile;
 
         protected InstallBase _dataStandardInstallBase;
 
-        protected Type _dataStandardInstallType;
-
-        protected string _dataStandardVersionName;
+        protected Type _dataStandardInstallType => _dataStandardSettings.DataStandardInstallType;
 
         protected Func<string, int, Component[], (bool success, string errorMessage)> _installDelegate;
 
@@ -41,64 +49,27 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             // private so that this class cannot be instantiated elsewhere
         }
 
-        public string _connectionString => _databaseConnectionString.GetDatabaseConnectionString();
+        protected TestHarnessBase(IDataStandardSettings dataStandardSettings)
+        {
+            // private so that this class cannot be instantiated elsewhere
+            _dataStandardSettings = dataStandardSettings;
+        }
 
-        public string _mainDatabaseConnectionString => _databaseConnectionString.GetMainDatabaseConnectionString();
+        protected string _connectionString => _databaseConnection.ConnectionString;
+
+        protected string _mainDatabaseConnectionString => _databaseConnection.MainDatabaseConnectionString;
 
         protected IOrm _orm { get; set; }
+        
+        public IOrm Orm => _orm ??= _dataStandardSettings.DatabaseConnection.Orm;
 
-        public DataStandard DataStandardVersion => _databaseConnectionString.DatabaseDataStandard;
+        protected IDatabaseMigrationStrategy DatabaseMigrationStrategy =>
+            _databaseMigrationStrategy 
+                ??= _dataStandardSettings.DatabaseConnection.DatabaseMigrationStrategy;
 
-        public IOrm Orm
-        {
-            get =>
-                _orm ??= DataStandardEngine == Engine.PostgreSQL
-                    ? new DapperWrapper(new NpgsqlConnection(_connectionString))
-                    : _orm = new DapperWrapper(new SqlConnection(_connectionString));
-            set => _orm = value;
-        }
-
-        protected IDatabaseMigrationStrategy DatabaseMigrationStrategy
-        {
-            get
-            {
-                if (_databaseMigrationStrategy == null)
-                {
-                    if (DataStandardEngine == Engine.PostgreSQL)
-                    {
-                        _databaseMigrationStrategy = new PostgresMigrationStrategy(Orm);
-                    }
-                    else
-                    {
-                        _databaseMigrationStrategy = new SqlServerMigrationStrategy(Orm);
-                    }
-                }
-
-                return _databaseMigrationStrategy;
-            }
-            set => _databaseMigrationStrategy = value;
-        }
-
-        protected IUninstallStrategy UninstallStrategy
-        {
-            get
-            {
-                if (_uninstallStrategy == null)
-                {
-                    if (DataStandardEngine == Engine.PostgreSQL)
-                    {
-                        _uninstallStrategy = new PostgresUninstallStrategy(Orm);
-                    }
-                    else
-                    {
-                        _uninstallStrategy = new SqlServerUninstallStrategy(Orm);
-                    }
-                }
-
-                return _uninstallStrategy;
-            }
-            set => _uninstallStrategy = value;
-        }
+        protected IUninstallStrategy UninstallStrategy =>
+            _uninstallStrategy
+                ??= _dataStandardSettings.DatabaseConnection.UninstallStrategy;
 
         protected InstallBase DataStandardInstallBase
         {
@@ -110,12 +81,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
             set => _dataStandardInstallBase = value;
         }
-
-        public string DataStandardVersionName => $"v_{_dataStandardVersionName}";
-        public string GetTestDataFolderName => $"{DataStandardEngine}.v_{_dataStandardVersionName}";
-
-        public string DataStandardBaseVersion => _dataStandardBaseVersion;
-
+        
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
             get
@@ -140,7 +106,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             return UninstallStrategy.Uninstall(uninstallAll);
         }
-
 
         public T ExecuteScalarQuery<T>(string sqlCommand)
         {
@@ -203,7 +168,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public override string ToString()
         {
-            return $"{DataStandardEngine}.v_{_dataStandardVersionName}";
+            return $"{DataStandardEngine}.{DataStandardVersionFolderName}";
         }
 
         public (bool success, string errorMessage) RunTestCase<T>(string testCaseFile)

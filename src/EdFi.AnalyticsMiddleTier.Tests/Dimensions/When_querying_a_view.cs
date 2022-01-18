@@ -5,9 +5,8 @@
 
 using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
-using EdFi.AnalyticsMiddleTier.Tests.Common;
+using EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration;
 using NUnit.Framework;
-using Shouldly;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
@@ -23,28 +22,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
         {
             foreach (var dataStandard in fixtureList.GetFixturesList())
             {
-                ITestHarnessBase currentDataStandard;
-                if (dataStandard.GetType().ToString().Contains("TestHarnessSQLServer"))
-                {
-                    currentDataStandard = ((TestHarnessSQLServer) dataStandard);
-                }
-                else
-                {
-                    currentDataStandard = ((TestHarnessPostgres) dataStandard);
-                }
-
                 string xmlLoadFilePath =
-                    $"{testCaseFolder}.{currentDataStandard.GetTestDataFolderName}.{xmlLoadFile}";
+                    $"{testCaseFolder}.{dataStandard}.{xmlLoadFile}";
 
-                currentDataStandard.PrepareDatabase();
-                currentDataStandard.LoadTestCaseData<T>(xmlLoadFilePath);
+                dataStandard.PrepareDatabase();
+                dataStandard.LoadTestCaseData<T>(xmlLoadFilePath);
                 if (components == null || components.Length == 0)
                 {
-                    currentDataStandard.Install(10);
+                    dataStandard.Install(10);
                 }
                 else
                 {
-                    currentDataStandard.Install(10, components);
+                    dataStandard.Install(10, components);
                 }
             }
         }

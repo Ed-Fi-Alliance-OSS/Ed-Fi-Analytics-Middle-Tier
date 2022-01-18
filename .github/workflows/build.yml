@@ -21,7 +21,6 @@ env:
   SQLSERVER_SERVER: "localhost"
   SQLSERVER_ADMIN_USER: "sa"
   SQLSERVER_ADMIN_PASS: ${{ secrets.MSSQL_SA_PWD }}
-  SQLSERVER_SA_PASS: ${{ secrets.MSSQL_SA_PWD }}
   SQLSERVER_DATABASE_DS2: "AnalyticsMiddleTier_Testing_Ds2"
   SQLSERVER_DATABASE_DS31: "AnalyticsMiddleTier_Testing_Ds31"
   SQLSERVER_DATABASE_DS32: "AnalyticsMiddleTier_Testing_Ds32"

@@ -21,7 +21,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
-            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.GetTestDataFolderName}.0001_StudentSectionGradeFact_should_match_column_dictionary.xml");
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_StudentSectionGradeFact_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
 
@@ -41,7 +41,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -50,7 +50,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -58,7 +58,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -66,7 +66,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -74,7 +74,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -82,7 +82,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -90,7 +90,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_NumericGradeEarned.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_NumericGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -98,7 +98,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -107,7 +107,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradeType.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -120,7 +120,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -129,7 +129,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -137,7 +137,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -145,7 +145,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -153,7 +153,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -161,7 +161,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -169,7 +169,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_NumericGradeEarned.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_NumericGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -177,7 +177,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LetterGradeEarned_null.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned_null.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -185,7 +185,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradeType.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -198,7 +198,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -207,7 +207,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -215,7 +215,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -223,7 +223,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -231,7 +231,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -239,7 +239,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -247,7 +247,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_NumericGradeEarned_null.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_NumericGradeEarned_null.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -255,7 +255,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -263,7 +263,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradeType.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -276,7 +276,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -285,7 +285,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -293,7 +293,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -301,7 +301,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradingPeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -309,7 +309,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_StudentSectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -317,7 +317,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_SectionKey.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SectionKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -325,7 +325,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_NumericGradeEarned.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_NumericGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -333,7 +333,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -341,7 +341,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradeType.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -353,7 +353,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -362,7 +362,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradeType.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -374,7 +374,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -383,7 +383,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersion}.{_caseIdentifier}_should_have_GradeType.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_GradeType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
