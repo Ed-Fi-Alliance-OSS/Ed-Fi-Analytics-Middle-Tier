@@ -647,6 +647,105 @@ BEGIN
 
 END
 
+
+----------------------------
+-- Add school year column to each table.
+----------------------------
+
+ALTER TABLE [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ClassPeriodDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ContactPersonDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[DateDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[DemographicDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[GradingPeriodDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[SchoolDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[SectionDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StaffSectionDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentProgramDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentSchoolDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentSectionDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_UserAuthorization]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_UserDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
+ADD SchoolYearSource DATETIME2
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
+ADD SchoolYearSource DATETIME2
+
+
 -----------------------------------------------------------------------------------------
 
 -- This script contains a final section that is commented out. 
