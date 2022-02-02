@@ -850,7 +850,7 @@ SET SchoolYearSource = @SchoolYear;
 -- This script contains a final section that is commented out. 
 -- Uncomment it when you need to combine the data from 2 different Ods sources. 
 -- Additionally you have to set the SecondOdsDb variable below 
-
+/*
 :setvar SecondOdsDb EdFi_Ods_Northridge_v510
 
 -- Second ODS
@@ -1064,7 +1064,7 @@ SET SchoolYearSource = @SchoolYear;
 
 UPDATE [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
 SET SchoolYearSource = @SchoolYear;
-
+*/
 -----------------------------------------------------------------------------------------
 
 
