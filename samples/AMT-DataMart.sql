@@ -647,6 +647,204 @@ BEGIN
 
 END
 
+
+----------------------------
+-- Add school year column to each table.
+----------------------------
+
+ALTER TABLE [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ClassPeriodDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ContactPersonDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[DateDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[DemographicDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[GradingPeriodDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[SchoolDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[SectionDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StaffSectionDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentProgramDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentSchoolDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[StudentSectionDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_UserAuthorization]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_UserDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
+ADD SchoolYearSource SMALLINT
+
+ALTER TABLE [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
+ADD SchoolYearSource SMALLINT
+
+----------------------------
+-- Set school year value.
+----------------------------
+DECLARE @SchoolYear SMALLINT;
+SET @SchoolYear = (select SchoolYear from [$(OdsDb)].[edfi].[SchoolYearType] where CurrentSchoolYear = 1);
+
+UPDATE [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ClassPeriodDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ContactPersonDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[DateDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[DemographicDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[GradingPeriodDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[SchoolDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[SectionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StaffSectionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentProgramDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentSchoolDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentSectionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_UserAuthorization]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_UserDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
+SET SchoolYearSource = @SchoolYear;
+
+
 -----------------------------------------------------------------------------------------
 
 -- This script contains a final section that is commented out. 
@@ -663,111 +861,212 @@ GO
 -- Populate Tables from Second Ods
 ----------------------------
 
-INSERT INTO [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[AcademicTimePeriodDim]
+INSERT INTO [$(DataMartDB)].[analytics].[AcademicTimePeriodDim] ([AcademicTimePeriodKey],[SchoolYear],[SchoolYearName],[IsCurrentSchoolYear],[SchoolKey],[SessionKey],[SessionName],[TermName],[GradingPeriodKey],[GradingPeriodName],[LastModifiedDate])
+SELECT [AcademicTimePeriodKey],[SchoolYear],[SchoolYearName],[IsCurrentSchoolYear],[SchoolKey],[SessionKey],[SessionName],[TermName],[GradingPeriodKey],[GradingPeriodName],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[AcademicTimePeriodDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[ClassPeriodDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[ClassPeriodDim]
+INSERT INTO [$(DataMartDB)].[analytics].[ClassPeriodDim] ([ClassPeriodKey],[SectionKey],[ClassPeriodName],[LocalCourseCode],[SchoolId],[SchoolYear],[SectionIdentifier],[SessionName])
+SELECT [ClassPeriodKey],[SectionKey],[ClassPeriodName],[LocalCourseCode],[SchoolId],[SchoolYear],[SectionIdentifier],[SessionName] FROM [$(SecondOdsDb)].[analytics].[ClassPeriodDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[ContactPersonDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[ContactPersonDim]
+INSERT INTO [$(DataMartDB)].[analytics].[ContactPersonDim] ([UniqueKey],[ContactPersonKey],[StudentKey],[ContactFirstName],[ContactLastName],[RelationshipToStudent],[ContactHomeAddress],[ContactPhysicalAddress],[ContactMailingAddress],[ContactWorkAddress],[ContactTemporaryAddress],[HomePhoneNumber],[MobilePhoneNumber],[WorkPhoneNumber],[PrimaryEmailAddress],[PersonalEmailAddress],[WorkEmailAddress],[IsPrimaryContact],[StudentLivesWith],[IsEmergencyContact],[ContactPriority],[ContactRestrictions],[LastModifiedDate],[PostalCode])
+SELECT [UniqueKey],[ContactPersonKey],[StudentKey],[ContactFirstName],[ContactLastName],[RelationshipToStudent],[ContactHomeAddress],[ContactPhysicalAddress],[ContactMailingAddress],[ContactWorkAddress],[ContactTemporaryAddress],[HomePhoneNumber],[MobilePhoneNumber],[WorkPhoneNumber],[PrimaryEmailAddress],[PersonalEmailAddress],[WorkEmailAddress],[IsPrimaryContact],[StudentLivesWith],[IsEmergencyContact],[ContactPriority],[ContactRestrictions],[LastModifiedDate],[PostalCode] FROM [$(SecondOdsDb)].[analytics].[ContactPersonDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[DateDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[DateDim]
+INSERT INTO [$(DataMartDB)].[analytics].[DateDim] ([DateKey],[Date],[Day],[Month],[MonthName],[CalendarQuarter],[CalendarQuarterName],[CalendarYear],[SchoolYear])
+SELECT [DateKey],[Date],[Day],[Month],[MonthName],[CalendarQuarter],[CalendarQuarterName],[CalendarYear],[SchoolYear] FROM [$(SecondOdsDb)].[analytics].[DateDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[DemographicDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[DemographicDim]
+INSERT INTO [$(DataMartDB)].[analytics].[DemographicDim] ([DemographicKey],[DemographicParentKey],[DemographicLabel])
+SELECT [DemographicKey],[DemographicParentKey],[DemographicLabel] FROM [$(SecondOdsDb)].[analytics].[DemographicDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[GradingPeriodDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[GradingPeriodDim]
+INSERT INTO [$(DataMartDB)].[analytics].[GradingPeriodDim] ([GradingPeriodKey],[GradingPeriodBeginDateKey],[GradingPeriodEndDateKey],[GradingPeriodDescription],[TotalInstructionalDays],[PeriodSequence],[SchoolKey],[SchoolYear],[LastModifiedDate])
+SELECT [GradingPeriodKey],[GradingPeriodBeginDateKey],[GradingPeriodEndDateKey],[GradingPeriodDescription],[TotalInstructionalDays],[PeriodSequence],[SchoolKey],[SchoolYear],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[GradingPeriodDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[LocalEducationAgencyDim]
+INSERT INTO [$(DataMartDB)].[analytics].[LocalEducationAgencyDim] ([LocalEducationAgencyKey],[LocalEducationAgencyName],[LocalEducationAgencyType],[LocalEducationAgencyParentLocalEducationAgencyKey],[LocalEducationAgencyStateEducationAgencyName],[LocalEducationAgencyStateEducationAgencyKey],[LocalEducationAgencyServiceCenterName],[LocalEducationAgencyServiceCenterKey],[LocalEducationAgencyCharterStatus],[LastModifiedDate])
+SELECT [LocalEducationAgencyKey],[LocalEducationAgencyName],[LocalEducationAgencyType],[LocalEducationAgencyParentLocalEducationAgencyKey],[LocalEducationAgencyStateEducationAgencyName],[LocalEducationAgencyStateEducationAgencyKey],[LocalEducationAgencyServiceCenterName],[LocalEducationAgencyServiceCenterKey],[LocalEducationAgencyCharterStatus],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[LocalEducationAgencyDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[MostRecentGradingPeriod]
+INSERT INTO [$(DataMartDB)].[analytics].[MostRecentGradingPeriod] ([SchoolKey],[GradingPeriodBeginDateKey])
+SELECT [SchoolKey],[GradingPeriodBeginDateKey] FROM [$(SecondOdsDb)].[analytics].[MostRecentGradingPeriod]
 
-INSERT INTO [$(DataMartDB)].[analytics].[SchoolDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[SchoolDim]
+INSERT INTO [$(DataMartDB)].[analytics].[SchoolDim] ([SchoolKey],[SchoolName],[SchoolType],[SchoolAddress],[SchoolCity],[SchoolCounty],[SchoolState],[LocalEducationAgencyName],[LocalEducationAgencyKey],[StateEducationAgencyName],[StateEducationAgencyKey],[EducationServiceCenterName],[EducationServiceCenterKey],[LastModifiedDate])
+SELECT [SchoolKey],[SchoolName],[SchoolType],[SchoolAddress],[SchoolCity],[SchoolCounty],[SchoolState],[LocalEducationAgencyName],[LocalEducationAgencyKey],[StateEducationAgencyName],[StateEducationAgencyKey],[EducationServiceCenterName],[EducationServiceCenterKey],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[SchoolDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[SectionDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[SectionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[SectionDim] ([SchoolKey],[SectionKey],[Description],[SectionName],[SessionName],[LocalCourseCode],[SchoolYear],[EducationalEnvironmentDescriptor],[LocalEducationAgencyKey],[LastModifiedDate],[CourseTitle],[SessionKey])
+SELECT [SchoolKey],[SectionKey],[Description],[SectionName],[SessionName],[LocalCourseCode],[SchoolYear],[EducationalEnvironmentDescriptor],[LocalEducationAgencyKey],[LastModifiedDate],[CourseTitle],[SessionKey] FROM [$(SecondOdsDb)].[analytics].[SectionDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StaffSectionDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StaffSectionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StaffSectionDim] ([StaffSectionKey],[UserKey],[SchoolKey],[SectionKey],[PersonalTitlePrefix],[StaffFirstName],[StaffMiddleName],[StaffLastName],[ElectronicMailAddress],[Sex],[BirthDate],[Race],[HispanicLatinoEthnicity],[HighestCompletedLevelOfEducation],[YearsOfPriorProfessionalExperience],[YearsOfPriorTeachingExperience],[HighlyQualifiedTeacher],[LoginId],[LastModifiedDate])
+SELECT [StaffSectionKey],[UserKey],[SchoolKey],[SectionKey],[PersonalTitlePrefix],[StaffFirstName],[StaffMiddleName],[StaffLastName],[ElectronicMailAddress],[Sex],[BirthDate],[Race],[HispanicLatinoEthnicity],[HighestCompletedLevelOfEducation],[YearsOfPriorProfessionalExperience],[YearsOfPriorTeachingExperience],[HighlyQualifiedTeacher],[LoginId],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[StaffSectionDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge] ([StudentSchoolDemographicBridgeKey],[StudentLocalEducationAgencyKey],[DemographicKey])
+SELECT [StudentSchoolDemographicBridgeKey],[StudentLocalEducationAgencyKey],[DemographicKey] FROM [$(SecondOdsDb)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentLocalEducationAgencyDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim] ([StudentLocalEducationAgencyKey],[StudentKey],[LocalEducationAgencyKey],[StudentFirstName],[StudentMiddleName],[StudentLastName],[LimitedEnglishProficiency],[IsHispanic],[Sex],[InternetAccessInResidence],[InternetAccessTypeInResidence],[InternetPerformance],[DigitalDevice],[DeviceAccess],[LastModifiedDate])
+SELECT [StudentLocalEducationAgencyKey],[StudentKey],[LocalEducationAgencyKey],[StudentFirstName],[StudentMiddleName],[StudentLastName],[LimitedEnglishProficiency],[IsHispanic],[Sex],[InternetAccessInResidence],[InternetAccessTypeInResidence],[InternetPerformance],[DigitalDevice],[DeviceAccess],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[StudentLocalEducationAgencyDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StudentProgramDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentProgramDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentProgramDim] ([StudentSchoolProgramKey],[BeginDateKey],[EducationOrganizationId],[ProgramName],[StudentKey],[SchoolKey],[StudentSchoolKey],[LastModifiedDate])
+SELECT [StudentSchoolProgramKey],[BeginDateKey],[EducationOrganizationId],[ProgramName],[StudentKey],[SchoolKey],[StudentSchoolKey],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[StudentProgramDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentSchoolDemographicsBridge]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge] ([StudentSchoolDemographicBridgeKey],[StudentSchoolKey],[DemographicKey])
+SELECT [StudentSchoolDemographicBridgeKey],[StudentSchoolKey],[DemographicKey] FROM [$(SecondOdsDb)].[analytics].[StudentSchoolDemographicsBridge]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StudentSchoolDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentSchoolDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentSchoolDim] ([StudentSchoolKey],[StudentKey],[SchoolKey],[SchoolYear],[StudentFirstName],[StudentMiddleName],[StudentLastName],[BirthDate],[EnrollmentDateKey],[GradeLevel],[LimitedEnglishProficiency],[IsHispanic],[Sex],[InternetAccessInResidence],[InternetAccessTypeInResidence],[InternetPerformance],[DigitalDevice],[DeviceAccess],[LastModifiedDate])
+SELECT [StudentSchoolKey],[StudentKey],[SchoolKey],[SchoolYear],[StudentFirstName],[StudentMiddleName],[StudentLastName],[BirthDate],[EnrollmentDateKey],[GradeLevel],[LimitedEnglishProficiency],[IsHispanic],[Sex],[InternetAccessInResidence],[InternetAccessTypeInResidence],[InternetPerformance],[DigitalDevice],[DeviceAccess],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[StudentSchoolDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[StudentSectionDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[StudentSectionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[StudentSectionDim] ([StudentSectionKey],[StudentSchoolKey],[StudentKey],[SectionKey],[LocalCourseCode],[Subject],[CourseTitle],[TeacherName],[StudentSectionStartDateKey],[StudentSectionEndDateKey],[SchoolKey],[SchoolYear],[LastModifiedDate])
+SELECT [StudentSectionKey],[StudentSchoolKey],[StudentKey],[SectionKey],[LocalCourseCode],[Subject],[CourseTitle],[TeacherName],[StudentSectionStartDateKey],[StudentSectionEndDateKey],[SchoolKey],[SchoolYear],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[StudentSectionDim]
 
 -- ASMT Collection. 
 
-INSERT INTO [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[asmt_AssessmentFact]
+INSERT INTO [$(DataMartDB)].[analytics].[asmt_AssessmentFact] ([AssessmentFactKey],[AssessmentKey],[AssessmentIdentifier],[Namespace],[Title],[Version],[Category],[AssessedGradeLevel],[AcademicSubject],[ResultDataType],[ReportingMethod],[ObjectiveAssessmentKey],[IdentificationCode],[ParentObjectiveAssessmentKey],[ObjectiveAssessmentDescription],[PercentOfAssessment],[MinScore],[MaxScore],[LearningStandard])
+SELECT [AssessmentFactKey],[AssessmentKey],[AssessmentIdentifier],[Namespace],[Title],[Version],[Category],[AssessedGradeLevel],[AcademicSubject],[ResultDataType],[ReportingMethod],[ObjectiveAssessmentKey],[IdentificationCode],[ParentObjectiveAssessmentKey],[ObjectiveAssessmentDescription],[PercentOfAssessment],[MinScore],[MaxScore],[LearningStandard] FROM [$(SecondOdsDb)].[analytics].[asmt_AssessmentFact]
 
-INSERT INTO [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[asmt_StudentAssessmentFact]
+INSERT INTO [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact] ([StudentAssessmentFactKey],[StudentAssessmentKey],[StudentObjectiveAssessmentKey],[ObjectiveAssessmentKey],[AssessmentKey],[AssessmentIdentifier],[Namespace],[StudentAssessmentIdentifier],[StudentUSI],[StudentSchoolKey],[SchoolKey],[AdministrationDate],[AssessedGradeLevel],[StudentScore],[ResultDataType],[ReportingMethod],[PerformanceResult])
+SELECT [StudentAssessmentFactKey],[StudentAssessmentKey],[StudentObjectiveAssessmentKey],[ObjectiveAssessmentKey],[AssessmentKey],[AssessmentIdentifier],[Namespace],[StudentAssessmentIdentifier],[StudentUSI],[StudentSchoolKey],[SchoolKey],[AdministrationDate],[AssessedGradeLevel],[StudentScore],[ResultDataType],[ReportingMethod],[PerformanceResult] FROM [$(SecondOdsDb)].[analytics].[asmt_StudentAssessmentFact]
 
 -- RLS Collection.
 
-INSERT INTO [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_StudentDataAuthorization]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization] ([StudentKey],[SchoolKey],[SectionId],[BeginDate],[EndDate])
+SELECT [StudentKey],[SchoolKey],[SectionId],[BeginDate],[EndDate] FROM [$(SecondOdsDb)].[analytics].[rls_StudentDataAuthorization]
 
-INSERT INTO [$(DataMartDB)].[analytics].[rls_UserAuthorization]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_UserAuthorization]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_UserAuthorization] ([UserKey],[UserScope],[StudentPermission],[SectionPermission],[SectionKeyPermission],[SchoolPermission],[DistrictId])
+SELECT [UserKey],[UserScope],[StudentPermission],[SectionPermission],[SectionKeyPermission],[SchoolPermission],[DistrictId] FROM [$(SecondOdsDb)].[analytics].[rls_UserAuthorization]
 
-INSERT INTO [$(DataMartDB)].[analytics].[rls_UserDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_UserDim]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_UserDim] ([UserKey],[UserEmail],[LastModifiedDate])
+SELECT [UserKey],[UserEmail],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[rls_UserDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[rls_UserStudentDataAuthorization]
+INSERT INTO [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization] ([UserKey],[StudentKey])
+SELECT [UserKey],[StudentKey] FROM [$(SecondOdsDb)].[analytics].[rls_UserStudentDataAuthorization]
 
 -- EWS Collection.
 
-INSERT INTO [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[ews_StudentEarlyWarningFact]
+INSERT INTO [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact] ([StudentKey],[SchoolKey],[DateKey],[IsInstructionalDay],[IsEnrolled],[IsPresentSchool],[IsAbsentFromSchoolExcused],[IsAbsentFromSchoolUnexcused],[IsTardyToSchool],[IsPresentHomeroom],[IsAbsentFromHomeroomExcused],[IsAbsentFromHomeroomUnexcused],[IsTardyToHomeroom],[IsPresentAnyClass],[IsAbsentFromAnyClassExcused],[IsAbsentFromAnyClassUnexcused],[IsTardyToAnyClass],[CountByDayOfStateOffenses],[CountByDayOfConductOffenses])
+SELECT [StudentKey],[SchoolKey],[DateKey],[IsInstructionalDay],[IsEnrolled],[IsPresentSchool],[IsAbsentFromSchoolExcused],[IsAbsentFromSchoolUnexcused],[IsTardyToSchool],[IsPresentHomeroom],[IsAbsentFromHomeroomExcused],[IsAbsentFromHomeroomUnexcused],[IsTardyToHomeroom],[IsPresentAnyClass],[IsAbsentFromAnyClassExcused],[IsAbsentFromAnyClassUnexcused],[IsTardyToAnyClass],[CountByDayOfStateOffenses],[CountByDayOfConductOffenses] FROM [$(SecondOdsDb)].[analytics].[ews_StudentEarlyWarningFact]
 
-INSERT INTO [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[ews_StudentSectionGradeFact]
+INSERT INTO [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact] ([StudentKey],[SchoolKey],[GradingPeriodKey],[StudentSectionKey],[SectionKey],[NumericGradeEarned],[LetterGradeEarned],[GradeType])
+SELECT [StudentKey],[SchoolKey],[GradingPeriodKey],[StudentSectionKey],[SectionKey],[NumericGradeEarned],[LetterGradeEarned],[GradeType] FROM [$(SecondOdsDb)].[analytics].[ews_StudentSectionGradeFact]
 
 -- Equity Collection.
 
-INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim] ([StudentSchoolFoodServiceProgramKey],[StudentSchoolProgramKey],[StudentSchoolKey],[ProgramName],[SchoolFoodServiceProgramServiceDescriptor],[LastModifiedDate])
+SELECT [StudentSchoolFoodServiceProgramKey],[StudentSchoolProgramKey],[StudentSchoolKey],[ProgramName],[SchoolFoodServiceProgramServiceDescriptor],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_FeederSchoolDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_FeederSchoolDim] ([FeederSchoolUniqueKey],[SchoolKey],[FeederSchoolKey],[FeederSchoolName],[LastModifiedDate])
+SELECT [FeederSchoolUniqueKey],[SchoolKey],[FeederSchoolKey],[FeederSchoolName],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[equity_FeederSchoolDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentDisciplineActionDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim] ([StudentDisciplineActionKey],[StudentSchoolKey],[DisciplineDateKey],[StudentKey],[SchoolKey],[DisciplineActionDescription],[UserKey],[LastModifiedDate])
+SELECT [StudentDisciplineActionKey],[StudentSchoolKey],[DisciplineDateKey],[StudentKey],[SchoolKey],[DisciplineActionDescription],[UserKey],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[equity_StudentDisciplineActionDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentProgramCohortDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim] ([StudentProgramCohortKey],[StudentSchoolProgramKey],[StudentSchoolKey],[EntryGradeLevelDescriptor],[CohortTypeDescriptor],[CohortDescription],[ProgramName],[LastModifiedDate])
+SELECT [StudentProgramCohortKey],[StudentSchoolProgramKey],[StudentSchoolKey],[EntryGradeLevelDescriptor],[CohortTypeDescriptor],[CohortDescription],[ProgramName],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[equity_StudentProgramCohortDim]
 
-INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[equity_StudentHistoryDim]
+INSERT INTO [$(DataMartDB)].[analytics].[equity_StudentHistoryDim] ([StudentKey],[StudentSchoolKey],[GradeSummary],[CurrentSchoolKey],[AttendanceRate],[ReferralsAndSuspensions],[EnrollmentHistory],[LastModifiedDate])
+SELECT [StudentKey],[StudentSchoolKey],[GradeSummary],[CurrentSchoolKey],[AttendanceRate],[ReferralsAndSuspensions],[EnrollmentHistory],[LastModifiedDate] FROM [$(SecondOdsDb)].[analytics].[equity_StudentHistoryDim]
 
 -- CHRAB Collection
 
-INSERT INTO [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
-SELECT * FROM [$(SecondOdsDb)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+INSERT INTO [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact] ([StudentSchoolKey],[StudentKey],[SchoolKey],[DateKey],[ReportedAsPresentAtSchool],[ReportedAsAbsentFromSchool],[ReportedAsPresentAtHomeRoom],[ReportedAsAbsentFromHomeRoom],[ReportedAsIsPresentInAllSections],[ReportedAsAbsentFromAnySection])
+SELECT [StudentSchoolKey],[StudentKey],[SchoolKey],[DateKey],[ReportedAsPresentAtSchool],[ReportedAsAbsentFromSchool],[ReportedAsPresentAtHomeRoom],[ReportedAsAbsentFromHomeRoom],[ReportedAsIsPresentInAllSections],[ReportedAsAbsentFromAnySection] FROM [$(SecondOdsDb)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
 GO
+
+----------------------------
+-- Set school year value.
+----------------------------
+
+DECLARE @SchoolYear SMALLINT;
+SET @SchoolYear = (select SchoolYear from [$(SecondOdsDb)].[edfi].[SchoolYearType] where CurrentSchoolYear = 1);
+
+UPDATE [$(DataMartDB)].[analytics].[AcademicTimePeriodDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ClassPeriodDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ContactPersonDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[DateDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[DemographicDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[GradingPeriodDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[LocalEducationAgencyDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[MostRecentGradingPeriod]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[SchoolDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[SectionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StaffSectionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDemographicsBridge]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentLocalEducationAgencyDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentProgramDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentSchoolDemographicsBridge]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentSchoolDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[StudentSectionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[asmt_AssessmentFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[asmt_StudentAssessmentFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[chrab_ChronicAbsenteeismAttendanceFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_StudentDataAuthorization]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_UserAuthorization]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_UserDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[rls_UserStudentDataAuthorization]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ews_StudentEarlyWarningFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[ews_StudentSectionGradeFact]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentSchoolFoodServiceProgramDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_FeederSchoolDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentDisciplineActionDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentProgramCohortDim]
+SET SchoolYearSource = @SchoolYear;
+
+UPDATE [$(DataMartDB)].[analytics].[equity_StudentHistoryDim]
+SET SchoolYearSource = @SchoolYear;
 */
 -----------------------------------------------------------------------------------------
+
 
 PRINT 'All operations complete. Run the Analytics Middle Tier installer to install EWS views.'
 GO 
