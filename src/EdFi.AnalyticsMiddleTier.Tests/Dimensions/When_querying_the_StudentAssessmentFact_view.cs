@@ -778,4 +778,3 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
         }
     }
 }
-
