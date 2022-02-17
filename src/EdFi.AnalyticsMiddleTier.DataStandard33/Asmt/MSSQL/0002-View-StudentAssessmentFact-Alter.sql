@@ -112,9 +112,9 @@ LEFT JOIN
 	AND
         StudentAssessmentScoreResult.AssessmentReportingMethodDescriptorId = AssessmentPerformanceLevel.AssessmentReportingMethodDescriptorId
     AND
-        RIGHT(CONCAT(REPLICATE(' ',35),AssessmentPerformanceLevel.MaximumScore),35)  >= RIGHT(CONCAT(REPLICATE(' ',35),StudentAssessmentScoreResult.Result),35)
+        RIGHT(CONCAT(REPLICATE('0',35),AssessmentPerformanceLevel.MaximumScore),35)  >= RIGHT(CONCAT(REPLICATE('0',35),StudentAssessmentScoreResult.Result),35)
 	AND
-        RIGHT(CONCAT(REPLICATE(' ',35),AssessmentPerformanceLevel.MinimumScore),35) <= RIGHT(CONCAT(REPLICATE(' ',35),StudentAssessmentScoreResult.Result),35)
+        RIGHT(CONCAT(REPLICATE('0',35),AssessmentPerformanceLevel.MinimumScore),35) <= RIGHT(CONCAT(REPLICATE('0',35),StudentAssessmentScoreResult.Result),35)
 LEFT JOIN
     edfi.ResultDatatypeTypeDescriptor ON
         StudentAssessmentScoreResult.ResultDatatypeTypeDescriptorId = ResultDatatypeTypeDescriptor.ResultDatatypeTypeDescriptorId
