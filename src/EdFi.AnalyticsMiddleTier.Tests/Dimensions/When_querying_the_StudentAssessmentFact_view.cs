@@ -751,6 +751,30 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_student_assessment_fact_01774fa3_06f1_47fe_8801_c8b1e65057f2
+            : When_querying_the_StudentAssessmentFact_view
+        {
+            public Given_student_assessment_fact_01774fa3_06f1_47fe_8801_c8b1e65057f2(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "01774fa3_06f1_47fe_8801_c8b1e65057f2";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentAssessmentFact view does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_have_PerformanceResult_Advanced()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Advanced.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
-
