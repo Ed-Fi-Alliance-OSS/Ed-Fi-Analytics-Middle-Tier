@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT SexDescriptorId
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT IssuanceDate
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <SexDescriptorId>2144</SexDescriptorId>
+    <IssuanceDate>1997-03-17</IssuanceDate>
   </Result>
 </TestCase>

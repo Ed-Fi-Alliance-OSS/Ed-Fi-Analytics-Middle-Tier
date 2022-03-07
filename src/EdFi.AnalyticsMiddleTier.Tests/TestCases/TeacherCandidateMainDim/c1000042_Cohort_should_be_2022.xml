@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT FirstName
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT Cohort
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <FirstName>Bryce</FirstName>
+    <Cohort>2022</Cohort>
   </Result>
 </TestCase>

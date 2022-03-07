@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT IssuanceDate
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT FirstName
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <IssuanceDate>1997-03-17</IssuanceDate>
+    <FirstName>Bryce</FirstName>
   </Result>
 </TestCase>

@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT ProgramName
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT EducationOrganizationId
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <ProgramName>Science Education Secondary</ProgramName>
+    <EducationOrganizationId>7</EducationOrganizationId>
   </Result>
 </TestCase>

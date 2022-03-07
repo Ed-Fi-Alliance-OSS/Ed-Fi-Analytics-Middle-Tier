@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT ProgramComplete
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT SexDescriptorId
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <ProgramComplete>0</ProgramComplete>
+    <SexDescriptorId>2144</SexDescriptorId>
   </Result>
 </TestCase>

@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT RaceDescriptorId
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT COUNT(1) AS CountValue
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <RaceDescriptorId>1938</RaceDescriptorId>
+    <CountValue>1</CountValue>
   </Result>
 </TestCase>

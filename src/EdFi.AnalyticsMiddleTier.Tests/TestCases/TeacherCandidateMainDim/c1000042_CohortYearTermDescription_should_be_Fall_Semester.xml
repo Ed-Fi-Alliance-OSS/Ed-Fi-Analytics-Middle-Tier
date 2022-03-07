@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT Cohort
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT CohortYearTermDescription
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <Cohort>2022</Cohort>
+    <CohortYearTermDescription>Fall Semester</CohortYearTermDescription>
   </Result>
 </TestCase>

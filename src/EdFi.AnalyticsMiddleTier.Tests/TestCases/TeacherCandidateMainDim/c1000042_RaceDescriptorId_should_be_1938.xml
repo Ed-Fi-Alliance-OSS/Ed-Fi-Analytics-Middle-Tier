@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT EconomicDisadvantaged
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT RaceDescriptorId
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <EconomicDisadvantaged>1</EconomicDisadvantaged>
+    <RaceDescriptorId>1938</RaceDescriptorId>
   </Result>
 </TestCase>

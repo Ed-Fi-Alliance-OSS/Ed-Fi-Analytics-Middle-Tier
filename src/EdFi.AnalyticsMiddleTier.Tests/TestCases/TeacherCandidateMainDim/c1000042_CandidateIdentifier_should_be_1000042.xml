@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT StudentUSI
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT CandidateIdentifier
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <StudentUSI>971</StudentUSI>
+    <CandidateIdentifier>1000042</CandidateIdentifier>
   </Result>
 </TestCase>

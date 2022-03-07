@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT BeginDate
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT HispanicLatinoEthnicity
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <BeginDate>2011-04-03</BeginDate>
+    <HispanicLatinoEthnicity>1</HispanicLatinoEthnicity>
   </Result>
 </TestCase>

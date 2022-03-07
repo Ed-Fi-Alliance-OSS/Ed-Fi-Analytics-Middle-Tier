@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT HispanicLatinoEthnicity
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT EconomicDisadvantaged
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <HispanicLatinoEthnicity>1</HispanicLatinoEthnicity>
+    <EconomicDisadvantaged>1</EconomicDisadvantaged>
   </Result>
 </TestCase>

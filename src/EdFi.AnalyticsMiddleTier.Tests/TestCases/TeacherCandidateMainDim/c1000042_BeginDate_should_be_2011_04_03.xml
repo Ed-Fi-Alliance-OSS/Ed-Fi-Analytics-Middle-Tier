@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT EducationOrganizationId
-    FROM [analytics].[tpdm_TeacherCandidateMain]
+    SELECT BeginDate
+    FROM analytics.tpdm_TeacherCandidateMain
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
-    <EducationOrganizationId>7</EducationOrganizationId>
+    <BeginDate>2011-04-03</BeginDate>
   </Result>
 </TestCase>
