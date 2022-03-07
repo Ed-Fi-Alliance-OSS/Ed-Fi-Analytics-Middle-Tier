@@ -33,15 +33,15 @@
   </Result>
   <Result>
     <ColumnName>HispanicLatinoEthnicity</ColumnName>
-    <DataType>bit</DataType>
+    <DataType>int</DataType>
   </Result>
   <Result>
     <ColumnName>EconomicDisadvantaged</ColumnName>
-    <DataType>bit</DataType>
+    <DataType>int</DataType>
   </Result>
   <Result>
     <ColumnName>Cohort</ColumnName>
-    <DataType>smallint</DataType>
+    <DataType>int</DataType>
   </Result>
   <Result>
     <ColumnName>ProgramComplete</ColumnName>

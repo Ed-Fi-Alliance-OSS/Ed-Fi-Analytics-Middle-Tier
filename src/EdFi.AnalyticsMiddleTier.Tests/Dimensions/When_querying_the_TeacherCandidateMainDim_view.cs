@@ -152,5 +152,99 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.TeacherCandidateMainDimTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_candidateidentifier_1000043
+        : When_querying_the_TeacherCandidateMainDim_View
+        {
+            public Given_candidateidentifier_1000043(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "c1000043";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_ProgramComplete_should_be_1()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_ProgramComplete_should_be_1.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_RaceDescriptorId_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_RaceDescriptorId_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_EconomicDisadvantaged_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_EconomicDisadvantaged_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_HispanicLatinoEthnicity_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_HispanicLatinoEthnicity_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_PersonId_should_be_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_PersonId_should_be_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_candidateidentifier_1000044
+        : When_querying_the_TeacherCandidateMainDim_View
+        {
+            public Given_candidateidentifier_1000044(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "c1000044";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_Cohort_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_candidateidentifier_1000045
+        : When_querying_the_TeacherCandidateMainDim_View
+        {
+            public Given_candidateidentifier_1000045(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "c1000045";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_Cohort_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }

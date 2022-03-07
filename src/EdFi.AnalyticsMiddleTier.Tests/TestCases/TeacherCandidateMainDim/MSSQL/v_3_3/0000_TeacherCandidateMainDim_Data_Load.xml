@@ -3,6 +3,8 @@
     <DBMS>Any</DBMS>
     <ControlDataInsertion>
 
+      --- Candidateidentifier = '1000042':
+
       SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
       (SELECT TOP 1'2144','uri://ed-fi.org/SexDescriptor','Not Selected','Not Selected','Not Selected','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FC','2203'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2144'));SET IDENTITY_INSERT edfi.Descriptor OFF;
@@ -77,7 +79,9 @@
       INSERT INTO edfi.TermDescriptor(TermDescriptorId)
       (SELECT TOP 1'2404'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TermDescriptor WHERE   TermDescriptorId= '2404'));
 
-      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociationCohortYear(BeginDate,CandidateIdentifier,CohortYearTypeDescriptorId,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,SchoolYear,TermDescriptorId,CreateDate)(SELECT TOP 1'2011-04-03','1000042','350','7','Science Education Secondary','1859','2022','2404','2021-11-10 17:59:04.1763335'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociationCohortYear WHERE CandidateIdentifier = '1000042' and ProgramName = 'Science Education Secondary'));
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociationCohortYear(BeginDate,CandidateIdentifier,CohortYearTypeDescriptorId,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,SchoolYear,TermDescriptorId,CreateDate)
+      (SELECT TOP 1'2011-04-03','1000042','350','7','Science Education Secondary','1859','2022','2404','2021-11-10 17:59:04.1763335'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociationCohortYear WHERE CandidateIdentifier = '1000042' and ProgramName = 'Science Education Secondary'));
 
       SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT TOP 1'668','uri://ed-fi.org/CredentialFieldDescriptor','Mathematics','Mathematics','Mathematics',NULL,NULL,NULL,'2021-11-05 19:01:06.8548896','2021-11-05 19:01:06.8536600','A3995BA2-9623-4667-BAB2-C41623C79A6A','727'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '668'));SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -118,6 +122,62 @@
       INSERT INTO tpdm.CredentialExtension(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,PersonId,CreateDate)
       (SELECT TOP 1'28B472462B774F4893D19FE9028444B9','2293','0063560B5AC641DBBCCE4B121C5CA37B','2021-11-10 18:03:04.3507504'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CredentialExtension WHERE PersonId = '0063560B5AC641DBBCCE4B121C5CA37B'));
+
+      ---------------------------------------------
+      --- candidateidentifier = '1000043'
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2145','uri://tpdm.ed-fi.org/ReasonExitedDescriptor','Received certificate of completion or equivalent','Received certificate of completion or equivalent','Received certificate of completion or equivalent','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FD','2204'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2145'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.ReasonExitedDescriptor(ReasonExitedDescriptorId)
+      (SELECT TOP 1'2145'  WHERE NOT EXISTS(SELECT  1  FROM edfi.ReasonExitedDescriptor WHERE   ReasonExitedDescriptorId= '2145'));
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000043','David','Smith','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D365','186703'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000043'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(ReasonExitedDescriptorId,BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2145','2011-04-04','1000043','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3301','152034'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000043'));
+
+      ---------------------------------------------
+      --- candidateidentifier = '1000044'
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000044','Jose','Johnson','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D366','186704'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000044'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2011-04-04','1000044','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3302','152035'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000044'));
+
+      ---------------------------------------------
+      --- candidateidentifier = '1000045'
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000045','Bryan','Ruiz','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D367','186705'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000045'));
+
+      INSERT INTO tpdm.EducatorPreparationProgram(EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,ProgramId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'7','English Education Secondary','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45.9629815','3A875F5E-4851-4FEC-8162-588A4B2E1B44','104954'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EducatorPreparationProgram WHERE   EducationOrganizationId= '7'  AND ProgramName= 'English Education Secondary'  AND ProgramTypeDescriptorId= '1859'));
+
+      INSERT INTO tpdm.EducatorPreparationProgram(EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,ProgramId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'7','English Education Secondary Alternate','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45.9629815','3A875F5E-4851-4FEC-8162-588A4B2E1B45','104954'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EducatorPreparationProgram WHERE   EducationOrganizationId= '7'  AND ProgramName= 'English Education Secondary Alternate'  AND ProgramTypeDescriptorId= '1859'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2011-04-04','1000045','7','English Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3303','152036'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2011-04-04','1000045','7','English Education Secondary Alternate','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3304','152036'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary Alternate'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociationCohortYear(BeginDate,CandidateIdentifier,CohortYearTypeDescriptorId,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,SchoolYear,TermDescriptorId,CreateDate)
+      (SELECT TOP 1'2011-04-04','1000045','350','7','English Education Secondary Alternate','1859','2022','2404','2021-11-10 17:59:04.1763335'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociationCohortYear WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary Alternate'));
 
     </ControlDataInsertion>
 </TestCase>

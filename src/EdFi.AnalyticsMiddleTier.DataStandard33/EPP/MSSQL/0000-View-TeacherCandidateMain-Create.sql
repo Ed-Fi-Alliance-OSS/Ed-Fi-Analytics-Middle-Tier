@@ -17,22 +17,22 @@ GO
 
 CREATE VIEW [analytics].[tpdm_TeacherCandidateMain] AS
 
-SELECT c.CandidateIdentifier 
-		,c.FirstName 
-		,c.LastSurname 
-		,c.SexDescriptorId 
-		,rd.RaceDescriptorId 
-		,c.HispanicLatinoEthnicity 
-		,c.EconomicDisadvantaged 
-		,ccy.SchoolYear as Cohort 
+SELECT c.CandidateIdentifier
+		,c.FirstName
+		,c.LastSurname
+		,c.SexDescriptorId
+		,COALESCE(rd.RaceDescriptorId, 0) AS RaceDescriptorId
+		,COALESCE(c.HispanicLatinoEthnicity, 0) AS HispanicLatinoEthnicity
+		,COALESCE(c.EconomicDisadvantaged, 0) AS EconomicDisadvantaged
+		,COALESCE(ccy.SchoolYear, 0) AS Cohort
 		,CAST(CASE WHEN red.CodeValue = 'Received certificate of completion or equivalent' THEN 1 ELSE 0 END AS BIT) ProgramComplete
-		,s.StudentUSI 
-		,epp.ProgramName 
-		,epp.BeginDate 
-		,epp.EducationOrganizationId 
-		,c.PersonId 
-		,CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN MIN(cred.IssuanceDate) END IssuanceDate
-        ,termdesc.CodeValue CohortYearTermDescription
+		,COALESCE(s.StudentUSI, 0) AS StudentUSI
+		,epp.ProgramName
+		,epp.BeginDate
+		,epp.EducationOrganizationId
+		,COALESCE(c.PersonId, '') AS PersonId
+		,COALESCE(CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN MIN(cred.IssuanceDate) END, '') IssuanceDate
+        ,COALESCE(termdesc.CodeValue, '') AS CohortYearTermDescription
 	FROM tpdm.Candidate c 
 	JOIN tpdm.CandidateEducatorPreparationProgramAssociation epp on epp.CandidateIdentifier = c.CandidateIdentifier 
 	LEFT JOIN tpdm.CandidateRace rd on rd.CandidateIdentifier = c.CandidateIdentifier 
