@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixtureDs3_3()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard33 };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard33PG };
         }
     }
 

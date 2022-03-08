@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'tpdm_teachercandidatemain'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+  <Result>
+    <ColumnName>candidateidentifier</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>firstname</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>lastsurname</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>sexdescriptorid</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>racedescriptorid</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>hispaniclatinoethnicity</ColumnName>
+    <DataType>boolean</DataType>
+  </Result>
+  <Result>
+    <ColumnName>economicdisadvantaged</ColumnName>
+    <DataType>boolean</DataType>
+  </Result>
+  <Result>
+    <ColumnName>cohort</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>programcomplete</ColumnName>
+    <DataType>bit</DataType>
+  </Result>
+  <Result>
+    <ColumnName>studentusi</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>programname</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>begindate</ColumnName>
+    <DataType>date</DataType>
+  </Result>
+  <Result>
+    <ColumnName>educationorganizationid</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>personid</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>issuancedate</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>cohortyeartermdescription</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+</TestCase>
