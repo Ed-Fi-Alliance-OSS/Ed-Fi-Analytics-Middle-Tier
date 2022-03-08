@@ -37,7 +37,7 @@
 
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
       (SELECT '1938','uri://ed-fi.org/RaceDescriptor','Black - African American','Black - African American','Black - African American','2021-11-05 19:01:18.2948513','2021-11-05 19:01:18.2934804','8D579727-F2F3-4401-944B-FE12FCC1D8AD','1997'
-      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1938'));;
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1938'));
 
       INSERT INTO edfi.RaceDescriptor(RaceDescriptorId)
       (SELECT '1938'  WHERE NOT EXISTS(SELECT  1  FROM edfi.RaceDescriptor WHERE   RaceDescriptorId= '1938'));
@@ -59,18 +59,24 @@
       INSERT INTO edfi.StateAbbreviationDescriptor(StateAbbreviationDescriptorId)
       (SELECT '2292'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StateAbbreviationDescriptor WHERE   StateAbbreviationDescriptorId= '2292'));
 
-      INSERT INTO edfi.Student(StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,BirthCity,BirthStateAbbreviationDescriptorId,BirthInternationalProvince,BirthCountryDescriptorId,DateEnteredUS,MultipleBirthStatus,BirthSexDescriptorId,CitizenshipStatusDescriptorId,PersonId,SourceSystemDescriptorId,StudentUniqueId,Discriminator,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT '971',NULL,'Adriel',NULL,'Gurrola',NULL,NULL,'1957-10-21','Madison','2292',NULL,'581',NULL,NULL,'2144',NULL,'0063560B5AC641DBBCCE4B121C5CA37B',NULL,'1000052','NULL','2021-11-10 17:53:32.1728575','2021-11-10 17:53:32.1728150','231492E9-1C48-4A37-B5FA-AE9B87F5AB1C','186701'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUSI = '971'));
+      INSERT INTO edfi.Student(StudentUSI,FirstName,LastSurname,BirthDate,PersonId,StudentUniqueId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '971','Adriel','Gurrola','1957-10-21','0063560B5AC641DBBCCE4B121C5CA37B','1000052','2021-11-10 17:53:32.1728575','2021-11-10 17:53:32.1728150','231492E9-1C48-4A37-B5FA-AE9B87F5AB1C','186701'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUSI = '971'));
 
-      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT '350','uri://ed-fi.org/CohortYearTypeDescriptor','Twelfth grade','Twelfth grade','Twelfth grade',NULL,NULL,NULL,'2021-11-05 19:01:04.9889941','2021-11-05 19:01:04.9889545','1C307AC9-71AB-4148-953C-1417623545D6','409'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '350'));
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '350','uri://ed-fi.org/CohortYearTypeDescriptor','Twelfth grade','Twelfth grade','Twelfth grade','2021-11-05 19:01:04.9889941','2021-11-05 19:01:04.9889545','1C307AC9-71AB-4148-953C-1417623545D6','409'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '350'));
 
       INSERT INTO edfi.CohortYearTypeDescriptor(CohortYearTypeDescriptorId)
       (SELECT '350'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CohortYearTypeDescriptor WHERE   CohortYearTypeDescriptorId= '350'));
 
       INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT '2022','2021-2022','1','2021-11-05 14:00:39.2866667','2021-11-05 14:00:39.2866667','F4773008-A568-4F19-8836-73319F1445DE','29'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2022'));
+      (SELECT '2022','2021-2022','1','2021-11-05 14:00:39.2866667','2021-11-05 14:00:39.2866667','F4773008-A568-4F19-8836-73319F1445DE','29'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2022'));
 
-      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT '2404','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester',NULL,NULL,NULL,'2021-11-05 19:01:23.5423186','2021-11-05 19:01:23.5410451','05A133C3-4CA4-4C4A-B041-4E8677D1B39F','2463'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2404'));
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '2404','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester','2021-11-05 19:01:23.5423186','2021-11-05 19:01:23.5410451','05A133C3-4CA4-4C4A-B041-4E8677D1B39F','2463'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2404'));
 
       INSERT INTO edfi.TermDescriptor(TermDescriptorId)
       (SELECT '2404'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TermDescriptor WHERE   TermDescriptorId= '2404'));
@@ -79,22 +85,30 @@
       (SELECT '2011-04-03','1000042','350','7','Science Education Secondary','1859','2022','2404','2021-11-10 17:59:04.1763335'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociationCohortYear WHERE CandidateIdentifier = '1000042' and ProgramName = 'Science Education Secondary'));
 
-      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT '668','uri://ed-fi.org/CredentialFieldDescriptor','Mathematics','Mathematics','Mathematics',NULL,NULL,NULL,'2021-11-05 19:01:06.8548896','2021-11-05 19:01:06.8536600','A3995BA2-9623-4667-BAB2-C41623C79A6A','727'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '668'));
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '668','uri://ed-fi.org/CredentialFieldDescriptor','Mathematics','Mathematics','Mathematics','2021-11-05 19:01:06.8548896','2021-11-05 19:01:06.8536600','A3995BA2-9623-4667-BAB2-C41623C79A6A','727'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '668'));
 
       INSERT INTO edfi.CredentialFieldDescriptor(CredentialFieldDescriptorId)
       (SELECT '668'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CredentialFieldDescriptor WHERE   CredentialFieldDescriptorId= '668'));
 
-      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT '683','uri://ed-fi.org/CredentialTypeDescriptor','Certification','Certification','Certification',NULL,NULL,NULL,'2021-11-05 19:01:06.9803343','2021-11-05 19:01:06.9782991','D6F45C01-CFCE-48B8-972D-4D0B1D7212C4','742'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '683'));
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '683','uri://ed-fi.org/CredentialTypeDescriptor','Certification','Certification','Certification','2021-11-05 19:01:06.9803343','2021-11-05 19:01:06.9782991','D6F45C01-CFCE-48B8-972D-4D0B1D7212C4','742'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '683'));
 
       INSERT INTO edfi.CredentialTypeDescriptor(CredentialTypeDescriptorId)
       (SELECT '683'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CredentialTypeDescriptor WHERE   CredentialTypeDescriptorId= '683'));
 
-      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT '2293','uri://ed-fi.org/StateAbbreviationDescriptor','TX','TX','TX',NULL,NULL,NULL,'2021-11-05 19:01:21.9775511','2021-11-05 19:01:21.9775286','15066216-3FD4-4249-92EB-6B50AE4F2CA7','2352'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2293'));
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '2293','uri://ed-fi.org/StateAbbreviationDescriptor','TX','TX','TX','2021-11-05 19:01:21.9775511','2021-11-05 19:01:21.9775286','15066216-3FD4-4249-92EB-6B50AE4F2CA7','2352'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2293'));
 
       INSERT INTO edfi.StateAbbreviationDescriptor(StateAbbreviationDescriptorId)
       (SELECT '2293'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StateAbbreviationDescriptor WHERE   StateAbbreviationDescriptorId= '2293'));
 
-      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT '2389','uri://ed-fi.org/TeachingCredentialDescriptor','Temporary','Temporary','Temporary',NULL,NULL,NULL,'2021-11-05 19:01:23.3108530','2021-11-05 19:01:23.3108288','AAC18554-0DF2-430D-A815-A49493BC6515','2448'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2389'));
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '2389','uri://ed-fi.org/TeachingCredentialDescriptor','Temporary','Temporary','Temporary','2021-11-05 19:01:23.3108530','2021-11-05 19:01:23.3108288','AAC18554-0DF2-430D-A815-A49493BC6515','2448'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2389'));
 
       INSERT INTO edfi.TeachingCredentialDescriptor(TeachingCredentialDescriptorId)
       (SELECT '2389'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TeachingCredentialDescriptor WHERE   TeachingCredentialDescriptorId= '2389'));
