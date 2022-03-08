@@ -196,9 +196,30 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.TeacherCandidateMainDimTestG
             }
 
             [Test]
+            public void Then_StudentUSI_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_StudentUSI_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_PersonId_should_be_empty()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_PersonId_should_be_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_IssuanceDate_should_be_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_IssuanceDate_should_be_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_CohortYearTermDescription_should_be_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TeacherCandidateMainDim>($"{TestCasesFolder}.{_caseIdentifier}_CohortYearTermDescription_should_be_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

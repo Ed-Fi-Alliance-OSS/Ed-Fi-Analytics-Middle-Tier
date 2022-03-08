@@ -31,7 +31,7 @@ SELECT c.CandidateIdentifier
 		,epp.BeginDate
 		,epp.EducationOrganizationId
 		,COALESCE(c.PersonId, '') AS PersonId
-		,COALESCE(CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN MIN(cred.IssuanceDate) END, '') IssuanceDate
+		,COALESCE(CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN CAST(MIN(cred.IssuanceDate) as NVARCHAR) END, '') IssuanceDate
         ,COALESCE(termdesc.CodeValue, '') AS CohortYearTermDescription
 	FROM tpdm.Candidate c 
 	JOIN tpdm.CandidateEducatorPreparationProgramAssociation epp on epp.CandidateIdentifier = c.CandidateIdentifier 

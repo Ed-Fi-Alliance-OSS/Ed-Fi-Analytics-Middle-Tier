@@ -20,12 +20,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public bool? EconomicDisadvantaged { get; set; }
         public int Cohort { get; set; }
         public bool ProgramComplete { get; set; }
-        public int StudentUSI { get; set; }
+        public int? StudentUSI { get; set; }
         public string ProgramName { get; set; }
         public DateTime BeginDate { get; set; }
         public int EducationOrganizationId { get; set; }
         public string PersonId { get; set; }
-        public DateTime IssuanceDate { get; set; }
+        public string? IssuanceDate { get; set; }
         public string CohortYearTermDescription { get; set; }
     }
 }

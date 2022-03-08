@@ -69,7 +69,7 @@
   </Result>
   <Result>
     <ColumnName>IssuanceDate</ColumnName>
-    <DataType>date</DataType>
+    <DataType>nvarchar</DataType>
   </Result>
   <Result>
     <ColumnName>CohortYearTermDescription</ColumnName>
