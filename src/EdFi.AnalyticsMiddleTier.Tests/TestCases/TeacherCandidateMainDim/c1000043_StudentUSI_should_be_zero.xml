@@ -5,7 +5,7 @@
   </ControlDataInsertion>
   <Query>
     SELECT StudentUSI
-    FROM analytics.tpdm_TeacherCandidateMain
+    FROM analytics.tpdm_TeacherCandidateMainDim
     WHERE candidateidentifier = '1000043'
   </Query>
   <Result>
