@@ -22,15 +22,15 @@ CREATE VIEW analytics.tpdm_TeacherCandidateMain AS
 		,COALESCE(CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN CAST(MIN(cred.IssuanceDate) as VARCHAR) END, '') IssuanceDate
         ,COALESCE(termdesc.CodeValue, '') AS CohortYearTermDescription
 	FROM tpdm.Candidate c 
-	JOIN tpdm.CandidateEducatorPreparationProgramAssociation epp on epp.CandidateIdentifier = c.CandidateIdentifier 
-	LEFT JOIN tpdm.CandidateRace rd on rd.CandidateIdentifier = c.CandidateIdentifier 
-	LEFT JOIN edfi.Descriptor d on d.DescriptorId = rd.RaceDescriptorId 
-	LEFT JOIN edfi.Student s on s.PersonId = c.PersonId 
-	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ccy on ccy.CandidateIdentifier = c.CandidateIdentifier
+	JOIN tpdm.CandidateEducatorPreparationProgramAssociation epp ON epp.CandidateIdentifier = c.CandidateIdentifier 
+	LEFT JOIN tpdm.CandidateRace rd ON rd.CandidateIdentifier = c.CandidateIdentifier 
+	LEFT JOIN edfi.Descriptor d ON d.DescriptorId = rd.RaceDescriptorId 
+	LEFT JOIN edfi.Student s ON s.PersonId = c.PersonId 
+	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ccy ON ccy.CandidateIdentifier = c.CandidateIdentifier
         and ccy.ProgramName = epp.ProgramName
-    LEFT JOIN edfi.Descriptor termdesc on ccy.TermDescriptorId = termdesc.DescriptorId
-	LEFT JOIN tpdm.CredentialExtension ce on ce.PersonId = c.PersonId 
-	LEFT JOIN edfi.Credential cred on cred.CredentialIdentifier = ce.CredentialIdentifier
+    LEFT JOIN edfi.Descriptor termdesc ON ccy.TermDescriptorId = termdesc.DescriptorId
+	LEFT JOIN tpdm.CredentialExtension ce ON ce.PersonId = c.PersonId 
+	LEFT JOIN edfi.Credential cred ON cred.CredentialIdentifier = ce.CredentialIdentifier
 	LEFT JOIN edfi.Descriptor red ON epp.ReasonExitedDescriptorId = red.DescriptorId
     
 	GROUP BY c.CandidateIdentifier 
