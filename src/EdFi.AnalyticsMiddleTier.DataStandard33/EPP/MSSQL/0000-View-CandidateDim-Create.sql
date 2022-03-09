@@ -9,13 +9,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF OBJECT_ID('analytics.tpdm_CandidateDim') IS NOT NULL 
-	DROP VIEW analytics.tpdm_CandidateDim
+IF OBJECT_ID('analytics.EPP_CandidateDim') IS NOT NULL 
+	DROP VIEW analytics.EPP_CandidateDim
 
 GO
 
 
-CREATE VIEW analytics.tpdm_CandidateDim AS
+CREATE VIEW analytics.EPP_CandidateDim AS
 
 SELECT Candidate.CandidateIdentifier
 		,Candidate.FirstName

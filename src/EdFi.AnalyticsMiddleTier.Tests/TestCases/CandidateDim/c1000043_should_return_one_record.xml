@@ -5,7 +5,7 @@
   </ControlDataInsertion>
   <Query>
     SELECT COUNT(1) AS CountValue
-    FROM analytics.tpdm_CandidateDim
+    FROM analytics.EPP_CandidateDim
     WHERE candidateidentifier = '1000043'
   </Query>
   <Result>

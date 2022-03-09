@@ -5,7 +5,7 @@
   </ControlDataInsertion>
   <Query>
     SELECT CohortYearTermDescription
-    FROM analytics.tpdm_CandidateDim
+    FROM analytics.EPP_CandidateDim
     WHERE candidateidentifier = '1000042'
   </Query>
   <Result>
