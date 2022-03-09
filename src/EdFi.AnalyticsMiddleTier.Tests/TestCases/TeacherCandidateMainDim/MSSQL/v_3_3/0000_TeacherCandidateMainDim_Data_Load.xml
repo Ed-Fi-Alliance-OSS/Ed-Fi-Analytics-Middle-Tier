@@ -163,7 +163,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2145','uri://tpdm.ed-fi.org/ReasonExitedDescriptor','Received certificate of completion or equivalent','Received certificate of completion or equivalent','Received certificate of completion or equivalent','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FD','2204'
+      (SELECT TOP 1'2145','uri://tpdm.ed-fi.org/ReasonExitedDescriptor','Completed','Completed','Completed','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FD','2204'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2145'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
