@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT Rating
+    FROM analytics.EPP_EvaluationElementRatingDim
+    WHERE candidateidentifier = '1000048'
+  </Query>
+  <Result>
+    <Rating>61.000</Rating>
+  </Result>
+</TestCase>
