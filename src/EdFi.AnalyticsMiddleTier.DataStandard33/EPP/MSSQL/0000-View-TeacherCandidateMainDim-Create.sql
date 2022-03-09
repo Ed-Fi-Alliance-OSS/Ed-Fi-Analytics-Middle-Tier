@@ -17,47 +17,47 @@ GO
 
 CREATE VIEW analytics.tpdm_TeacherCandidateMainDim AS
 
-SELECT c.CandidateIdentifier
-		,c.FirstName
-		,c.LastSurname
-		,c.SexDescriptorId
-		,COALESCE(rd.RaceDescriptorId, 0) AS RaceDescriptorId
-		,COALESCE(c.HispanicLatinoEthnicity, 0) AS HispanicLatinoEthnicity
-		,COALESCE(c.EconomicDisadvantaged, 0) AS EconomicDisadvantaged
-		,COALESCE(ccy.SchoolYear, 0) AS Cohort
-		,CAST(CASE WHEN red.CodeValue = 'Received certificate of completion or equivalent' THEN 1 ELSE 0 END AS BIT) ProgramComplete
-		,COALESCE(s.StudentUSI, 0) AS StudentUSI
-		,epp.ProgramName
-		,epp.BeginDate
-		,epp.EducationOrganizationId
-		,COALESCE(c.PersonId, '') AS PersonId
+SELECT Candidate.CandidateIdentifier
+		,Candidate.FirstName
+		,Candidate.LastSurname
+		,Candidate.SexDescriptorId
+		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorId
+		,COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS HispanicLatinoEthnicity
+		,COALESCE(Candidate.EconomicDisadvantaged, 0) AS EconomicDisadvantaged
+		,COALESCE(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear, 0) AS Cohort
+		,CAST(CASE WHEN ReasonExitedDescriptor.CodeValue = 'Received certificate of completion or equivalent' THEN 1 ELSE 0 END AS BIT) ProgramComplete
+		,COALESCE(Student.StudentUSI, 0) AS StudentUSI
+		,CandidateEducatorPreparationProgramAssociation.ProgramName
+		,CandidateEducatorPreparationProgramAssociation.BeginDate
+		,CandidateEducatorPreparationProgramAssociation.EducationOrganizationId
+		,COALESCE(Candidate.PersonId, '') AS PersonId
 		,COALESCE(CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN CAST(MIN(cred.IssuanceDate) as NVARCHAR) END, '') IssuanceDate
-        ,COALESCE(termdesc.CodeValue, '') AS CohortYearTermDescription
-	FROM tpdm.Candidate c 
-	JOIN tpdm.CandidateEducatorPreparationProgramAssociation epp ON epp.CandidateIdentifier = c.CandidateIdentifier 
-	LEFT JOIN tpdm.CandidateRace rd ON rd.CandidateIdentifier = c.CandidateIdentifier 
-	LEFT JOIN edfi.Descriptor d ON d.DescriptorId = rd.RaceDescriptorId 
-	LEFT JOIN edfi.Student s ON s.PersonId = c.PersonId 
-	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ccy ON ccy.CandidateIdentifier = c.CandidateIdentifier
-        and ccy.ProgramName = epp.ProgramName
-    LEFT JOIN edfi.Descriptor termdesc ON ccy.TermDescriptorId = termdesc.DescriptorId
-	LEFT JOIN tpdm.CredentialExtension ce ON ce.PersonId = c.PersonId 
-	LEFT JOIN edfi.Credential cred ON cred.CredentialIdentifier = ce.CredentialIdentifier
-	LEFT JOIN edfi.Descriptor red ON epp.ReasonExitedDescriptorId = red.DescriptorId
+        ,COALESCE(TermDescriptor.CodeValue, '') AS CohortYearTermDescription
+	FROM tpdm.Candidate
+	JOIN tpdm.CandidateEducatorPreparationProgramAssociation ON CandidateEducatorPreparationProgramAssociation.CandidateIdentifier = Candidate.CandidateIdentifier 
+	LEFT JOIN tpdm.CandidateRace ON CandidateRace.CandidateIdentifier = Candidate.CandidateIdentifier 
+	LEFT JOIN edfi.Descriptor ON Descriptor.DescriptorId = CandidateRace.RaceDescriptorId 
+	LEFT JOIN edfi.Student ON Student.PersonId = Candidate.PersonId
+	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ON CandidateEducatorPreparationProgramAssociationCohortYear.CandidateIdentifier = Candidate.CandidateIdentifier
+        and CandidateEducatorPreparationProgramAssociationCohortYear.ProgramName = CandidateEducatorPreparationProgramAssociation.ProgramName
+    LEFT JOIN edfi.Descriptor TermDescriptor ON CandidateEducatorPreparationProgramAssociationCohortYear.TermDescriptorId = TermDescriptor.DescriptorId
+	LEFT JOIN tpdm.CredentialExtension ON CredentialExtension.PersonId = Candidate.PersonId
+	LEFT JOIN edfi.Credential cred ON cred.CredentialIdentifier = CredentialExtension.CredentialIdentifier
+	LEFT JOIN edfi.Descriptor ReasonExitedDescriptor ON CandidateEducatorPreparationProgramAssociation.ReasonExitedDescriptorId = ReasonExitedDescriptor.DescriptorId
     
-	GROUP BY c.CandidateIdentifier 
-		,c.FirstName 
-		,c.LastSurname 
-		,c.SexDescriptorId 
-		,rd.RaceDescriptorId 
-		,c.HispanicLatinoEthnicity 
-		,c.EconomicDisadvantaged 
-		,ccy.SchoolYear
-		,red.CodeValue 
-		,s.StudentUSI 
-		,epp.ProgramName 
-		,epp.BeginDate 
-		,epp.EducationOrganizationId 
-		,c.PersonId
-        ,termdesc.CodeValue
+	GROUP BY Candidate.CandidateIdentifier 
+		,Candidate.FirstName 
+		,Candidate.LastSurname 
+		,Candidate.SexDescriptorId 
+		,CandidateRace.RaceDescriptorId 
+		,Candidate.HispanicLatinoEthnicity 
+		,Candidate.EconomicDisadvantaged 
+		,CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear
+		,ReasonExitedDescriptor.CodeValue 
+		,Student.StudentUSI 
+		,CandidateEducatorPreparationProgramAssociation.ProgramName 
+		,CandidateEducatorPreparationProgramAssociation.BeginDate 
+		,CandidateEducatorPreparationProgramAssociation.EducationOrganizationId 
+		,Candidate.PersonId
+        ,TermDescriptor.CodeValue
 GO
