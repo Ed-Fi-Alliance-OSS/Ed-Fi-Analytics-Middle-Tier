@@ -3,9 +3,9 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-DROP VIEW IF EXISTS analytics.EPP_CandidateDim;
+DROP VIEW IF EXISTS analytics.epp_EvaluationElementRatingDim;
 
-CREATE VIEW analytics.EPP_EvaluationElementRatingDim AS
+CREATE VIEW analytics.epp_EvaluationElementRatingDim AS
 ---Evaluation Rating: perfomance evaluation >> Objective >> Element
 SELECT 
 	DISTINCT Candidate.CandidateIdentifier
