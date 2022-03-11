@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+
+INSERT INTO tpdm.Candidate
+   (CandidateIdentifier,PersonalTitlePrefix,FirstName,LastSurname,SexDescriptorId,BirthDate,HispanicLatinoEthnicity,EconomicDisadvantaged,LoginId,TuitionCost,FirstGenerationStudent,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+   (SELECT TOP 1'1000045','Mrs','Valentina','Avelar','2146','1962-10-30','1','0','Valentina.Avelar','15238.5051','0','01780C3604A5469FB4EB8C05DFFE81ED','2021-11-10 17:58:27.7502734','2021-11-10 17:58:27.7496119','6113EEA6-4643-4814-8AD1-41687BFEC936','186706'
+    WHERE NOT EXISTS(SELECT 1 FROM tpdm.Candidate WHERE   CandidateIdentifier='1000045'));
+	
+
+SET IDENTITY_INSERT edfi.Student ON;
+INSERT INTO edfi.Student
+           (StudentUSI,FirstName,LastSurname,BirthDate,BirthCity,BirthStateAbbreviationDescriptorId,BirthCountryDescriptorId
+           ,BirthSexDescriptorId,PersonId,StudentUniqueId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+ (SELECT TOP 1'969','Gary','Lawrence','1967-01-14','Albuquerque','2301','617','2144','01780C3604A5469FB4EB8C05DFFE81ED','1000050','2021-11-10 17:53:32.1543187','2021-11-10 17:53:32.1542749','F4B553E9-9564-4B42-942C-DDFA16EF9217','186705'
+  WHERE NOT EXISTS(SELECT 1 FROM edfi.Student WHERE   StudentUSI='969'));
+ SET IDENTITY_INSERT edfi.Student OFF;
+ 
+INSERT INTO tpdm.FinancialAid
+           (AidTypeDescriptorId,BeginDate,StudentUSI,AidAmount,PellGrantRecipient,CreateDate,LastModifiedDate,Id,ChangeVersion)
+           (SELECT TOP 1'3060','2011-01-24','969','3675.2100','1','2021-11-10 18:00:16.9430777','2021-11-10 18:00:16.9420091','D5D4A3BE-A397-4011-9600-77D41732C91F','160402'
+		    WHERE NOT EXISTS(SELECT 1 FROM tpdm.FinancialAid WHERE AidTypeDescriptorId='3060' and BeginDate='2011-01-24' and StudentUSI=969));
+
+SET IDENTITY_INSERT edfi.Descriptor ON;
+INSERT INTO edfi.Descriptor
+           (DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+(SELECT Top 1'3060','uri://tpdm.ed-fi.org/AidTypeDescriptor','Pell Grants','Pell Grants','Pell Grants','2021-11-10 17:52:37.5282680','2021-11-10 17:52:37.5304744','4FA2913A-9AC1-402E-A938-D847DFEFEDF0','104050'
+WHERE NOT EXISTS(SELECT 1 FROM edfi.Descriptor WHERE DescriptorId='3060'));
+SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+--
+INSERT INTO tpdm.Candidate
+   (CandidateIdentifier,PersonalTitlePrefix,FirstName,LastSurname,SexDescriptorId,BirthDate,HispanicLatinoEthnicity,EconomicDisadvantaged,LoginId,TuitionCost,FirstGenerationStudent,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+   (SELECT TOP 1'1000049','M','Rayan','Cha','2146','1990-12-30','0','0','Rayan.Cha','21794.4918','0','037873D819B04F93B5E4BA87AC286FB8','2021-11-10 17:58:27.8214024','2021-11-10 17:58:27.8208264','12D7FD3A-9D20-4303-88F1-B5F2C62990FA','186714'
+    WHERE NOT EXISTS(SELECT 1 FROM tpdm.Candidate WHERE   CandidateIdentifier='1000049'));
+	
+ 
+SET IDENTITY_INSERT edfi.Student ON;
+INSERT INTO edfi.Student
+           (StudentUSI,FirstName,LastSurname,BirthDate,BirthCity,BirthStateAbbreviationDescriptorId,BirthCountryDescriptorId
+           ,BirthSexDescriptorId,PersonId,StudentUniqueId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+ (SELECT TOP 1'970','Payton','Mercer','1956-10-09','Tulsa','2259','448','2145','037873D819B04F93B5E4BA87AC286FB8','1000051','2021-11-10 17:53:32.1634751','2021-11-10 17:53:32.1634318','67CFE62C-7931-4B3F-B2C9-5E9BE642DDF2','186713'
+  WHERE NOT EXISTS(SELECT 1 FROM edfi.Student WHERE   StudentUSI='970'));
+ SET IDENTITY_INSERT edfi.Student OFF;
+ 
+INSERT INTO tpdm.FinancialAid
+           (AidTypeDescriptorId,BeginDate,EndDate,StudentUSI,CreateDate,LastModifiedDate,Id,ChangeVersion)
+           (SELECT TOP 1'3065','2010-08-23','2011-01-06','970','2021-11-10 18:00:16.9548342','2021-11-10 18:00:16.9547641','304E9850-E840-4C0A-9914-2E32D182E502','160403'
+		    WHERE NOT EXISTS(SELECT 1 FROM tpdm.FinancialAid WHERE AidTypeDescriptorId='3065' and BeginDate='2010-08-23' and StudentUSI=970));
+
+SET IDENTITY_INSERT edfi.Descriptor ON;
+INSERT INTO edfi.Descriptor
+           (DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+(SELECT Top 1'3065','uri://tpdm.ed-fi.org/AidTypeDescriptor','State and Local Scholarships','State and Local Scholarships','State and Local Scholarships','2021-11-10 17:52:37.5900434','2021-11-10 17:52:37.5909588','242374B8-CC97-4BBC-8F9A-EA48138FFBE9','104060'
+WHERE NOT EXISTS(SELECT 1 FROM edfi.Descriptor WHERE DescriptorId='3065'));
+SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+</ControlDataInsertion>
+</TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+		SELECT EndDate
+		FROM analytics.tpdm_FinancialAid
+		WHERE CandidateIdentifier=1000049
+	</Query>
+	<Result>
+		<EndDate>2011-01-06</EndDate>
+	</Result>
+</TestCase>
