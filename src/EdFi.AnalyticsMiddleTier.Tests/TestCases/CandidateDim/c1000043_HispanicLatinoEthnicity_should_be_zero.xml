@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT HispanicLatinoEthnicity
+    FROM analytics.EPP_CandidateDim
+    WHERE candidateidentifier = '1000043'
+  </Query>
+  <Result>
+    <HispanicLatinoEthnicity>0</HispanicLatinoEthnicity>
+  </Result>
+</TestCase>

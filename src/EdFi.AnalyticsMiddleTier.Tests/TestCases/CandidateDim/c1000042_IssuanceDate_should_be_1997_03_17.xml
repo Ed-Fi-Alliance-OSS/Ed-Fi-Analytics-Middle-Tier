@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT IssuanceDate
+    FROM analytics.EPP_CandidateDim
+    WHERE candidateidentifier = '1000042'
+  </Query>
+  <Result>
+    <IssuanceDate>1997-03-17</IssuanceDate>
+  </Result>
+</TestCase>
