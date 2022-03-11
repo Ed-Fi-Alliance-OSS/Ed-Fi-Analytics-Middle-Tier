@@ -5,7 +5,7 @@
 DROP VIEW IF EXISTS analytics.EPP_CandidateDim;
 
 CREATE VIEW analytics.EPP_CandidateDim AS
-	SELECT Candidate.CandidateIdentifier
+	SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,Candidate.FirstName
 		,Candidate.LastSurname
 		,Candidate.SexDescriptorId

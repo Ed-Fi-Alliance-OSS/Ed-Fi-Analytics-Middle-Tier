@@ -34,10 +34,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_candidateidentifier_1000042
+        public class Given_candidateKey_1000042
         : When_querying_the_CandidateDim_View
         {
-            public Given_candidateidentifier_1000042(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            public Given_candidateKey_1000042(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "c1000042";
 
             [Test]
@@ -48,9 +48,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
-            public void Then_CandidateIdentifier_should_be_1000042()
+            public void Then_CandidateKey_should_be_1000042()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_CandidateIdentifier_should_be_1000042.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_CandidateKey_should_be_1000042.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -154,10 +154,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_candidateidentifier_1000043
+        public class Given_candidateKey_1000043
         : When_querying_the_CandidateDim_View
         {
-            public Given_candidateidentifier_1000043(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            public Given_candidateKey_1000043(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "c1000043";
 
             [Test]
@@ -225,10 +225,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_candidateidentifier_1000044
+        public class Given_candidateKey_1000044
         : When_querying_the_CandidateDim_View
         {
-            public Given_candidateidentifier_1000044(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            public Given_candidateKey_1000044(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "c1000044";
 
             [Test]
@@ -247,10 +247,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_candidateidentifier_1000045
+        public class Given_candidateKey_1000045
         : When_querying_the_CandidateDim_View
         {
-            public Given_candidateidentifier_1000045(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            public Given_candidateKey_1000045(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "c1000045";
 
             [Test]

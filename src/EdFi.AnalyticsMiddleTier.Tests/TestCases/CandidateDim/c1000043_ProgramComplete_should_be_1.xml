@@ -6,7 +6,7 @@
   <Query>
     SELECT ProgramComplete
     FROM analytics.EPP_CandidateDim
-    WHERE candidateidentifier = '1000043'
+    WHERE CandidateKey = '1000043'
   </Query>
   <Result>
     <ProgramComplete>1</ProgramComplete>
