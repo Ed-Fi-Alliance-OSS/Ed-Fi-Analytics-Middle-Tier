@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT CandidateKey
+      FROM analytics.EPP_CandidateSurveyDim
+      WHERE CandidateKey = '1000006906'
+      AND QuestionCode = 'TBMS4_1'
+  </Query>
+  <Result>
+      <CandidateKey>1000006906</CandidateKey>
+  </Result>
+</TestCase>
