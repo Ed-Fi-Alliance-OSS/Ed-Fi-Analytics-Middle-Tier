@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class CandidateDim
     {
-        public string CandidateIdentifier { get; set; }
+        public string CandidateKey { get; set; }
         public string FirstName { get; set; }
         public string LastSurname { get; set; }
         public int SexDescriptorId { get; set; }

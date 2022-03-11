@@ -6,7 +6,7 @@
   <Query>
     SELECT Cohort
     FROM analytics.EPP_CandidateDim
-    WHERE candidateidentifier = '1000045' and ProgramName = 'English Education Secondary'
+    WHERE CandidateKey = '1000045' and ProgramName = 'English Education Secondary'
   </Query>
   <Result>
     <Cohort>0</Cohort>

@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT CandidateIdentifier
+    SELECT CandidateKey
     FROM analytics.EPP_CandidateDim
-    WHERE candidateidentifier = '1000042'
+    WHERE CandidateKey = '1000042'
   </Query>
   <Result>
-    <CandidateIdentifier>1000042</CandidateIdentifier>
+    <CandidateKey>1000042</CandidateKey>
   </Result>
 </TestCase>
