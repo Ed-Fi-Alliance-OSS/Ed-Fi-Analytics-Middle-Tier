@@ -9,22 +9,22 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF OBJECT_ID('[analytics].[tpdm_FinancialAid]') IS NOT NULL
-	DROP VIEW [analytics].[tpdm_FinancialAid]
+IF OBJECT_ID('[analytics].[EPP_FinancialAidFact]') IS NOT NULL
+	DROP VIEW [analytics].[EPP_FinancialAidFact]
 
 GO
 
-CREATE VIEW [analytics].[tpdm_FinancialAid] AS
+CREATE VIEW [analytics].[EPP_FinancialAidFact] AS
 
 ---Financial Aid
-SELECT a.CandidateIdentifier
-		,f.BeginDate
-		,f.EndDate
-		,f.AidConditionDescription
-		,d.CodeValue as AidType
-		,f.AidAmount
-		,f.PellGrantRecipient
-  FROM tpdm.Candidate a
-  INNER JOIN edfi.Student s ON a.PersonId = s.PersonId
-  LEFT OUTER JOIN tpdm.FinancialAid f ON s.StudentUSI = f.StudentUSI
-  LEFT OUTER JOIN edfi.Descriptor d on f.AidTypeDescriptorId = d.DescriptorId
+SELECT   tpdm.Candidate.CandidateIdentifier
+		,tpdm.FinancialAid.BeginDate
+		,tpdm.FinancialAid.EndDate
+		,COALESCE(tpdm.FinancialAid.AidConditionDescription,'') as AidConditionDescription
+		,AidDescriptor.CodeValue as AidType
+		,COALESCE(tpdm.FinancialAid.AidAmount,0) as AidAmount
+		,COALESCE(tpdm.FinancialAid.PellGrantRecipient,0) as PellGrantRecipient
+		FROM tpdm.Candidate
+  INNER JOIN edfi.Student ON tpdm.Candidate.PersonId = edfi.Student.PersonId
+  LEFT OUTER JOIN tpdm.FinancialAid  ON edfi.Student.StudentUSI = tpdm.FinancialAid.StudentUSI
+  LEFT OUTER JOIN edfi.Descriptor AidDescriptor on tpdm.FinancialAid.AidTypeDescriptorId = AidDescriptor.DescriptorId
