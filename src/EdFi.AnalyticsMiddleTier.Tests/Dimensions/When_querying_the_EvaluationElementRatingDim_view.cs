@@ -34,10 +34,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public class Given_candidateidentifier_1000048
+        public class Given_candidatekey_1000048
         : When_querying_the_EvaluationElementRatingDim_View
         {
-            public Given_candidateidentifier_1000048(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            public Given_candidatekey_1000048(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "c1000048";
 
             [Test]
@@ -48,9 +48,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
             }
 
             [Test]
-            public void Then_CandidateIdentifier_should_be_1000048()
+            public void Then_CandidateKey_should_be_1000048()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_CandidateIdentifier_should_be_1000048.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_CandidateKey_should_be_1000048.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

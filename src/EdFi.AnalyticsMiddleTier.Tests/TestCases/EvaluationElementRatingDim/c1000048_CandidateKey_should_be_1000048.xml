@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT CandidateIdentifier
+    SELECT CandidateKey
     FROM analytics.EPP_EvaluationElementRatingDim
-    WHERE candidateidentifier = '1000048'
+    WHERE candidatekey = '1000048'
   </Query>
   <Result>
-    <CandidateIdentifier>1000048</CandidateIdentifier>
+    <CandidateKey>1000048</CandidateKey>
   </Result>
 </TestCase>
