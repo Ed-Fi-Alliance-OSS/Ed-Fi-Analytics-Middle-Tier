@@ -14,28 +14,28 @@ IF OBJECT_ID('analytics.EPP_CandidateSurveyDim') IS NOT NULL
 GO
 
 CREATE VIEW analytics.EPP_CandidateSurveyDim AS
-    SELECT CONCAT(s.SurveyIdentifier
-			,'-',q.QuestionCode
-			,'-',sr.SurveyResponseIdentifier
-			,'-',sa.PersonId) as CandidateSurveyKey
-		,tc.CandidateIdentifier AS CandidateKey
-		,s.SurveyTitle
-		,q.SurveySectionTitle
-		,CONVERT(varchar, sr.ResponseDate, 112) as ResponseDateKey
-		,q.QuestionCode
-		,q.QuestionText
-		,COALESCE(mq.NumericResponse,0) as NumericResponse
-		,COALESCE(mq.TextResponse,'') as TextResponse
-	FROM tpdm.SurveyResponsePersonTargetAssociation sa
-	JOIN tpdm.Candidate tc 
-		ON sa.PersonId = tc.PersonId
-	JOIN edfi.Survey s 
-		ON sa.SurveyIdentifier = s.SurveyIdentifier
-	JOIN edfi.SurveyResponse sr 
-		ON sa.SurveyResponseIdentifier = sr.SurveyResponseIdentifier
-	JOIN edfi.SurveyQuestion q 
-		ON sa.SurveyIdentifier = q.SurveyIdentifier
-	JOIN edfi.SurveyQuestionResponseSurveyQuestionMatrixElementResponse mq 
-		ON sa.SurveyResponseIdentifier = mq.SurveyResponseIdentifier
-			AND q.QuestionCode = mq.QuestionCode;
+    SELECT CONCAT(Survey.SurveyIdentifier
+			,'-',SurveyQuestion.QuestionCode
+			,'-',SurveyResponse.SurveyResponseIdentifier
+			,'-',SurveyResponsePersonTargetAssociation.PersonId) as CandidateSurveyKey
+		,Candidate.CandidateIdentifier AS CandidateKey
+		,Survey.SurveyTitle
+		,SurveyQuestion.SurveySectionTitle
+		,CONVERT(varchar, SurveyResponse.ResponseDate, 112) as ResponseDateKey
+		,SurveyQuestion.QuestionCode
+		,SurveyQuestion.QuestionText
+		,COALESCE(SurveyQuestionResponseSurveyQuestionMatrixElementResponse.NumericResponse,0) as NumericResponse
+		,COALESCE(SurveyQuestionResponseSurveyQuestionMatrixElementResponse.TextResponse,'') as TextResponse
+	FROM tpdm.SurveyResponsePersonTargetAssociation
+	JOIN tpdm.Candidate 
+		ON SurveyResponsePersonTargetAssociation.PersonId = Candidate.PersonId
+	JOIN edfi.Survey
+		ON SurveyResponsePersonTargetAssociation.SurveyIdentifier = Survey.SurveyIdentifier
+	JOIN edfi.SurveyResponse
+		ON SurveyResponsePersonTargetAssociation.SurveyResponseIdentifier = SurveyResponse.SurveyResponseIdentifier
+	JOIN edfi.SurveyQuestion
+		ON SurveyResponsePersonTargetAssociation.SurveyIdentifier = SurveyQuestion.SurveyIdentifier
+	JOIN edfi.SurveyQuestionResponseSurveyQuestionMatrixElementResponse
+		ON SurveyResponsePersonTargetAssociation.SurveyResponseIdentifier = SurveyQuestionResponseSurveyQuestionMatrixElementResponse.SurveyResponseIdentifier
+			AND SurveyQuestion.QuestionCode = SurveyQuestionResponseSurveyQuestionMatrixElementResponse.QuestionCode;
 
