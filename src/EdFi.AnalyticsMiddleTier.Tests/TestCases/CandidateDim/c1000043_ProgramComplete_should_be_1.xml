@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ProgramComplete
+    FROM analytics.EPP_CandidateDim
+    WHERE candidateidentifier = '1000043'
+  </Query>
+  <Result>
+    <ProgramComplete>1</ProgramComplete>
+  </Result>
+</TestCase>
