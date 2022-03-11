@@ -6,7 +6,7 @@
   <Query>
     SELECT EvaluationObjectiveTitle
     FROM analytics.EPP_EvaluationElementRatingDim
-    WHERE candidateidentifier = '1000048'
+    WHERE CandidateKey = '1000048'
   </Query>
   <Result>
     <EvaluationObjectiveTitle>ADDRESS MISCONCEPTIONS</EvaluationObjectiveTitle>

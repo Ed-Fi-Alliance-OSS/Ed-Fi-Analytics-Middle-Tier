@@ -18,7 +18,7 @@ CREATE VIEW analytics.EPP_EvaluationElementRatingDim AS
 
 ---Evaluation Rating: perfomance evaluation >> Objective >> Element
 SELECT 
-	DISTINCT Candidate.CandidateIdentifier
+	DISTINCT Candidate.CandidateIdentifier AS CandidateKey
 		,EvaluationElementRatingResult.EvaluationDate
 		,EvaluationElementRatingResult.PerformanceEvaluationTitle
 		,EvaluationObjective.EvaluationObjectiveTitle

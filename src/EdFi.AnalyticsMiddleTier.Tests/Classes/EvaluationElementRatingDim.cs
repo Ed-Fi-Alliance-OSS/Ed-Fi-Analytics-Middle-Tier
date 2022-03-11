@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class EvaluationElementRatingDim
     {
-        public string CandidateIdentifier { get; set; }
+        public string CandidateKey { get; set; }
         public DateTime EvaluationDate { get; set; }
         public string PerformanceEvaluationTitle { get; set; }
         public string EvaluationObjectiveTitle { get; set; }
