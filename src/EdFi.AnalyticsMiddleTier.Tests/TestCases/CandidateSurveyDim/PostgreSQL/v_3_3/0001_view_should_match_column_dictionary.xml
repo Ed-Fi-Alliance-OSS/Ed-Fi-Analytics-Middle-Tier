@@ -47,4 +47,8 @@
         <ColumnName>textresponse</ColumnName>
         <DataType>character varying</DataType>
     </Result>
+    <Result>
+        <ColumnName>lastmodifieddate</ColumnName>
+        <DataType>timestamp without time zone</DataType>
+    </Result>
 </TestCase>

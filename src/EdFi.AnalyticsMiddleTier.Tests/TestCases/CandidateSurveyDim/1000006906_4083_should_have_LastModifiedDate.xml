@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT LastModifiedDate
+      FROM analytics.EPP_CandidateSurveyDim
+      WHERE CandidateKey = '1000006906'
+      AND QuestionCode = '4083'
+  </Query>
+  <Result>
+      <LastModifiedDate>2022-02-02T09:37:11</LastModifiedDate>
+  </Result>
+</TestCase>

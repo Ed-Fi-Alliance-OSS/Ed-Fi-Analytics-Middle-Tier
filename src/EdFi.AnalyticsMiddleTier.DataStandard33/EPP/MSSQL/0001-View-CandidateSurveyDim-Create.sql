@@ -26,6 +26,17 @@ CREATE VIEW analytics.EPP_CandidateSurveyDim AS
 		,SurveyQuestion.QuestionText
 		,COALESCE(SurveyQuestionResponseSurveyQuestionMatrixElementResponse.NumericResponse,0) as NumericResponse
 		,COALESCE(SurveyQuestionResponseSurveyQuestionMatrixElementResponse.TextResponse,'') as TextResponse
+		,(
+            SELECT
+                MAX(MaxLastModifiedDate)
+            FROM
+                (VALUES(Candidate.LastModifiedDate)
+                    , (SurveyResponsePersonTargetAssociation.LastModifiedDate)
+                    , (Survey.LastModifiedDate)
+                    , (SurveyResponse.LastModifiedDate)
+                  , (SurveyQuestion.LastModifiedDate)
+                ) AS VALUE(MaxLastModifiedDate)
+        ) AS LastModifiedDate
 	FROM tpdm.SurveyResponsePersonTargetAssociation
 	JOIN tpdm.Candidate 
 		ON SurveyResponsePersonTargetAssociation.PersonId = Candidate.PersonId

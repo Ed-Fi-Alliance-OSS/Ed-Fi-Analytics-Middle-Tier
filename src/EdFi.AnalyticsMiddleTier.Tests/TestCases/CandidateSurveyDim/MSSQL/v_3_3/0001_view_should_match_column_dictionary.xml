@@ -47,4 +47,8 @@
         <ColumnName>TextResponse</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
+    </Result>
 </TestCase>

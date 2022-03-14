@@ -20,6 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string QuestionText { get; set; }
         public int? NumericResponse { get; set; }
         public string TextResponse { get; set; }
+        public DateTime LastModifiedDate { get; set; }
 
     }
 }
