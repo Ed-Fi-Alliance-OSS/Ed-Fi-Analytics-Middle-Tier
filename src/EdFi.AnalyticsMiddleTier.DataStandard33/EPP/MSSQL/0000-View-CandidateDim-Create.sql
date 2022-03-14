@@ -31,8 +31,17 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,CandidateEducatorPreparationProgramAssociation.BeginDate
 		,CandidateEducatorPreparationProgramAssociation.EducationOrganizationId
 		,COALESCE(Candidate.PersonId, '') AS PersonId
-		,COALESCE(CASE WHEN SUM(CASE WHEN cred.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN CAST(MIN(cred.IssuanceDate) as NVARCHAR) END, '') IssuanceDate
-        ,COALESCE(TermDescriptor.CodeValue, '') AS CohortYearTermDescription
+		,COALESCE(CASE WHEN SUM(CASE WHEN Credential.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN CAST(MIN(Credential.IssuanceDate) as NVARCHAR) END, '') IssuanceDate
+        ,COALESCE(TermDescriptor.CodeValue, '') AS CohortYearTermDescription,
+		(SELECT 
+			MAX(MaxLastModifiedDate)
+		FROM (VALUES (MAX(Candidate.LastModifiedDate))
+					,(MAX(CandidateEducatorPreparationProgramAssociation.LastModifiedDate))
+					,(MAX(Student.LastModifiedDate))
+					,(MAX(Credential.LastModifiedDate))
+				) AS VALUE (MaxLastModifiedDate)
+			) AS LastModifiedDate
+
 	FROM tpdm.Candidate
 	JOIN tpdm.CandidateEducatorPreparationProgramAssociation ON CandidateEducatorPreparationProgramAssociation.CandidateIdentifier = Candidate.CandidateIdentifier 
 	LEFT JOIN tpdm.CandidateRace ON CandidateRace.CandidateIdentifier = Candidate.CandidateIdentifier 
@@ -42,7 +51,7 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
         and CandidateEducatorPreparationProgramAssociationCohortYear.ProgramName = CandidateEducatorPreparationProgramAssociation.ProgramName
     LEFT JOIN edfi.Descriptor TermDescriptor ON CandidateEducatorPreparationProgramAssociationCohortYear.TermDescriptorId = TermDescriptor.DescriptorId
 	LEFT JOIN tpdm.CredentialExtension ON CredentialExtension.PersonId = Candidate.PersonId
-	LEFT JOIN edfi.Credential cred ON cred.CredentialIdentifier = CredentialExtension.CredentialIdentifier
+	LEFT JOIN edfi.Credential ON Credential.CredentialIdentifier = CredentialExtension.CredentialIdentifier
 	LEFT JOIN edfi.Descriptor ReasonExitedDescriptor ON CandidateEducatorPreparationProgramAssociation.ReasonExitedDescriptorId = ReasonExitedDescriptor.DescriptorId
     
 	GROUP BY Candidate.CandidateIdentifier 
