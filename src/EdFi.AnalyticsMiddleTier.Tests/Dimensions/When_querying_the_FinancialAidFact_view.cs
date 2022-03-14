@@ -14,7 +14,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_FinancialAidFact_view : When_querying_a_view_postgres_ds3
+    public abstract class When_querying_the_FinancialAidFact_view : When_querying_a_view_ds3_3
     {
         protected const string TestCasesFolder = "TestCases.FinancialAidFact";
         protected const string TestCasesDataFileName = "0000_FinancialAidFact_Data_Load.xml";
@@ -37,49 +37,42 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
             [Test]
             public void Then_should_have_AidAmount()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidAmount.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidAmount.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_AidConditionDescription()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidConditionDescription.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidConditionDescription.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_AidType()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidType.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidType.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_BeginDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_BeginDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_CandidateIdentifier()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CandidateIdentifier.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_have_EndDate()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_EndDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CandidateIdentifier.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_PellGrantRecipient()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PellGrantRecipient.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PellGrantRecipient.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -97,7 +90,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
             [Test]
             public void Then_should_have_EndDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_have_EndDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_EndDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
