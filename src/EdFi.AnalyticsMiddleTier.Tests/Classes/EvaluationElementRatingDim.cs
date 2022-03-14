@@ -18,5 +18,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string EvaluationElementTitle { get; set; }
         public string RatingResultTitle { get; set; }
         public decimal Rating { get; set; }
+        public DateTime LastModifiedDate { get; set; }
     }
 }

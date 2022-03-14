@@ -39,4 +39,8 @@
     <ColumnName>Rating</ColumnName>
     <DataType>decimal</DataType>
   </Result>
+  <Result>
+    <ColumnName>LastModifiedDate</ColumnName>
+    <DataType>datetime2</DataType>
+  </Result>
 </TestCase>

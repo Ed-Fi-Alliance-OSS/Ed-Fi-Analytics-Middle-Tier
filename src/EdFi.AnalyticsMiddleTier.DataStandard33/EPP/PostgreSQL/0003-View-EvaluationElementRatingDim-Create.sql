@@ -14,7 +14,13 @@ SELECT
 		,EvaluationObjective.EvaluationObjectiveTitle
 		,EvaluationElementRatingResult.EvaluationElementTitle
 		,EvaluationElementRatingResult.RatingResultTitle
-		,EvaluationElementRatingResult.Rating
+		,EvaluationElementRatingResult.Rating,
+		(	SELECT 
+				MAX(MaxLastModifiedDate)
+			FROM (VALUES (Candidate.LastModifiedDate)
+						,(EvaluationObjective.LastModifiedDate)
+				 ) AS VALUE (MaxLastModifiedDate)
+		) AS LastModifiedDate
 FROM
 	tpdm.EvaluationElementRatingResult
 	JOIN tpdm.Candidate

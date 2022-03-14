@@ -39,4 +39,8 @@
     <ColumnName>rating</ColumnName>
     <DataType>numeric</DataType>
   </Result>
+  <Result>
+    <ColumnName>lastmodifieddate</ColumnName>
+    <DataType>timestamp without time zone</DataType>
+  </Result>
 </TestCase>
