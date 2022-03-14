@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'epp_evaluationelementratingdim'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+  <Result>
+    <ColumnName>candidatekey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>evaluationdate</ColumnName>
+    <DataType>timestamp without time zone</DataType>
+  </Result>
+  <Result>
+    <ColumnName>performanceevaluationtitle</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>evaluationobjectivetitle</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>evaluationelementtitle</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>ratingresulttitle</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>rating</ColumnName>
+    <DataType>numeric</DataType>
+  </Result>
+  <Result>
+    <ColumnName>lastmodifieddate</ColumnName>
+    <DataType>timestamp without time zone</DataType>
+  </Result>
+</TestCase>

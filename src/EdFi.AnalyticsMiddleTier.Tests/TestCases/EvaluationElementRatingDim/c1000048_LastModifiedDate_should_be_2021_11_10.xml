@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT LastModifiedDate
+    FROM analytics.EPP_EvaluationElementRatingDim
+    WHERE candidatekey = '1000048'
+  </Query>
+  <Result>
+    <LastModifiedDate>2021-12-10T11:58:00</LastModifiedDate>
+  </Result>
+</TestCase>
