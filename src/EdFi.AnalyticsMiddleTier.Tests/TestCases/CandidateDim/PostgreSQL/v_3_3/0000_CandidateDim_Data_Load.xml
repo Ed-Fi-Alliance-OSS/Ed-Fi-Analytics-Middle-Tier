@@ -188,5 +188,20 @@
       (SELECT '2011-04-04','1000045','350','7','English Education Secondary Alternate','1859','2022','2404','2021-11-10 17:59:04.1763335'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociationCohortYear WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary Alternate'));
 
+      ---------------------------------------------
+      --- candidateidentifier = '1000046'
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '1000046','Charles','Smith','2144','2005-10-03','0063560B5AC641DBBCCE4B121C5CA37D','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D368','186704'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000046'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '2011-04-04','1000046','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 11:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3306','152035'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000046'));
+
+      INSERT INTO edfi.Student(StudentUSI,FirstName,LastSurname,BirthDate,PersonId,StudentUniqueId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '972','Adriel','Gurrola','1957-10-21','0063560B5AC641DBBCCE4B121C5CA37D','1000054','2021-11-10 17:53:32.1728575','2021-11-11 11:53:32','231492E9-1C48-4A37-B5FA-AE9B87F5AB1E','186701'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUSI = '972'));
+
     </ControlDataInsertion>
 </TestCase>
