@@ -5,8 +5,8 @@
   </ControlDataInsertion>
   <Query>
     SELECT CandidateIdentifier
-    FROM analytics.tpdm_FinancialAid
-    WHERE CandidateIdentifier=1000045
+    FROM analytics.EPP_FinancialAidFact
+    WHERE CandidateIdentifier='1000045'
   </Query>
   <Result>
     <CandidateIdentifier>1000045</CandidateIdentifier>

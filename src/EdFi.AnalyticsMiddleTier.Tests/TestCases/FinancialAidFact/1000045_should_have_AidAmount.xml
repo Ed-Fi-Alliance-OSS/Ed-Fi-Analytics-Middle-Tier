@@ -4,11 +4,11 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT AidType
-		FROM analytics.tpdm_FinancialAid
-		WHERE CandidateIdentifier=1000045
+		SELECT AidAmount
+		FROM analytics.EPP_FinancialAidFact
+		WHERE CandidateIdentifier='1000045'
 	</Query>
 	<Result>
-		<AidType>Pell Grants</AidType>
+		<AidAmount>3675.21</AidAmount>
 	</Result>
 </TestCase>

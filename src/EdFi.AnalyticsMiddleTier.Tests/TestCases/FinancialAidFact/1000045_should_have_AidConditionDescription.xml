@@ -4,11 +4,11 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT BeginDate
-		FROM analytics.tpdm_FinancialAid
-		WHERE CandidateIdentifier=1000045
+		SELECT AidConditionDescription
+		FROM analytics.EPP_FinancialAidFact
+		WHERE CandidateIdentifier='1000045'
 	</Query>
 	<Result>
-		<BeginDate>2011-01-24</BeginDate>
+		<AidConditionDescription></AidConditionDescription>
 	</Result>
 </TestCase>
