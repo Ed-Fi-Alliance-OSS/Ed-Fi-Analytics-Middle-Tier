@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT CandidateKey
+    FROM analytics.EPP_EvaluationElementRatingDim
+    WHERE candidatekey = '1000049'
+  </Query>
+  <Result>
+    <CandidateKey>1000049</CandidateKey>
+  </Result>
+</TestCase>

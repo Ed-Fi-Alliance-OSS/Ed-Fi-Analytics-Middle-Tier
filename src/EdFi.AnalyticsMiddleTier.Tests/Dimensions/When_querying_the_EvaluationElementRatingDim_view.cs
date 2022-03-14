@@ -103,5 +103,34 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_candidatekey_1000049
+        : When_querying_the_EvaluationElementRatingDim_View
+        {
+            public Given_candidatekey_1000049(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "c1000049";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_CandidateKey_should_be_1000049()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_CandidateKey_should_be_1000049.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_LastModifiedDate_should_be_2022_10_10()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2022_10_10.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
