@@ -8,12 +8,12 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF OBJECT_ID('analytics.EPP_CandidateSurveyDim') IS NOT NULL 
-	DROP VIEW analytics.EPP_CandidateSurveyDim
+IF OBJECT_ID('analytics.epp_CandidateSurveyDim') IS NOT NULL 
+	DROP VIEW analytics.epp_CandidateSurveyDim
 
 GO
 
-CREATE VIEW analytics.EPP_CandidateSurveyDim AS
+CREATE VIEW analytics.epp_CandidateSurveyDim AS
     SELECT CONCAT(Survey.SurveyIdentifier
 			,'-',SurveyQuestion.QuestionCode
 			,'-',SurveyResponse.SurveyResponseIdentifier
