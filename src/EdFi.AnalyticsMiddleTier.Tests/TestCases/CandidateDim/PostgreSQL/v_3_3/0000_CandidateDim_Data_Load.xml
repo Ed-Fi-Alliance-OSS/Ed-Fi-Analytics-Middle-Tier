@@ -203,5 +203,24 @@
       (SELECT '972','Adriel','Gurrola','1957-10-21','0063560B5AC641DBBCCE4B121C5CA37D','1000054','2021-11-10 17:53:32.1728575','2021-11-11 11:53:32','231492E9-1C48-4A37-B5FA-AE9B87F5AB1E','186701'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUSI = '972'));
 
+      ---------------------------------------------
+      --- candidateidentifier = '1000047'
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '1000047','Charles','Smith','2144','2005-10-03','0063560B5AC641DBBCCE4B121C5CA372','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D369','186704'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000047'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '2011-04-04','1000047','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 11:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3307','152035'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000047'));
+
+      INSERT INTO edfi.Credential(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,IssuanceDate,CredentialTypeDescriptorId,Namespace,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '28B472462B774F4893D19FE9028444B7','2293','1997-03-17','683','uri://ed-fi.org','2021-11-10 18:03:04.3500631','2021-11-11 18:03:04','01C1C798-2B80-4662-8048-4AF05EA793D5','175570'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Credential WHERE   CredentialIdentifier= '28B472462B774F4893D19FE9028444B7'  AND StateOfIssueStateAbbreviationDescriptorId= '2293'));
+
+      INSERT INTO tpdm.CredentialExtension(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,PersonId,CreateDate)
+      (SELECT '28B472462B774F4893D19FE9028444B7','2293','0063560B5AC641DBBCCE4B121C5CA372','2021-11-10 18:03:04.3507504'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CredentialExtension WHERE PersonId = '0063560B5AC641DBBCCE4B121C5CA372'));
+
     </ControlDataInsertion>
 </TestCase>
