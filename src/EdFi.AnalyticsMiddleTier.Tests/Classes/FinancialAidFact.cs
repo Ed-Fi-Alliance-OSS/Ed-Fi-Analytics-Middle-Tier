@@ -13,5 +13,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string AidType { get; set; }
         public decimal AidAmount { get; set; }
         public Boolean PellGrantRecipient { get; set; }
+        public DateTime LastModifiedDate { get; set; }
     }
 }
