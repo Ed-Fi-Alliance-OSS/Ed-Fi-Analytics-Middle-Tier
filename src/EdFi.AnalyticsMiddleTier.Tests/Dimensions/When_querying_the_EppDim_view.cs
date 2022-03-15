@@ -60,6 +60,28 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EppDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EppDim>($"{TestCasesFolder}.{_caseIdentifier}_NameOfInstitution_should_be_UT_Austin_College.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_LastModifiedDate_should_be_2021_11_05()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EppDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2021_11_05.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_educationOrganizationKey_6
+        : When_querying_the_EppDim_View
+        {
+            public Given_educationOrganizationKey_6(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "eo6";
+
+            [Test]
+            public void Then_should_return_no_records()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_no_records.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }
