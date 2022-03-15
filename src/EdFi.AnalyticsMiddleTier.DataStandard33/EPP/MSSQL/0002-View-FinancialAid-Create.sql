@@ -24,6 +24,10 @@ SELECT   tpdm.Candidate.CandidateIdentifier
 		,AidDescriptor.CodeValue as AidType
 		,COALESCE(tpdm.FinancialAid.AidAmount,0) as AidAmount
 		,COALESCE(tpdm.FinancialAid.PellGrantRecipient,0) as PellGrantRecipient
+		,(SELECT MAX(MaxLastModifiedDate)  FROM
+                (VALUES(Candidate.LastModifiedDate), (FinancialAid.LastModifiedDate)
+                ) AS VALUE(MaxLastModifiedDate)
+		 ) As LastModifiedDate
 		FROM tpdm.Candidate
   INNER JOIN edfi.Student ON tpdm.Candidate.PersonId = edfi.Student.PersonId
   LEFT OUTER JOIN tpdm.FinancialAid  ON edfi.Student.StudentUSI = tpdm.FinancialAid.StudentUSI
