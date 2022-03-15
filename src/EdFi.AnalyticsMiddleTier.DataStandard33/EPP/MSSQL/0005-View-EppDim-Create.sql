@@ -17,12 +17,17 @@ GO
 CREATE VIEW analytics.EPP_EppDim AS
 
 ---EPP
-SELECT EducationOrganization.EducationOrganizationId AS EducationOrganizationKey
-		,NameOfInstitution
-		,EducationOrganization.LastModifiedDate
-FROM edfi.EducationOrganization
-JOIN edfi.EducationOrganizationCategory
-	ON EducationOrganization.EducationOrganizationId = EducationOrganizationCategory.EducationOrganizationId
-JOIN edfi.Descriptor
-	ON EducationOrganizationCategory.EducationOrganizationCategoryDescriptorId = Descriptor.DescriptorId
-WHERE Descriptor.CodeValue like '%Preparation Provider%';
+SELECT 
+	EducationOrganization.EducationOrganizationId AS EducationOrganizationKey
+	,NameOfInstitution
+	,EducationOrganization.LastModifiedDate
+FROM
+	edfi.EducationOrganization
+JOIN
+	edfi.EducationOrganizationCategory
+		ON EducationOrganization.EducationOrganizationId = EducationOrganizationCategory.EducationOrganizationId
+JOIN
+	edfi.Descriptor
+		ON EducationOrganizationCategory.EducationOrganizationCategoryDescriptorId = Descriptor.DescriptorId
+WHERE
+	Descriptor.CodeValue like '%Preparation Provider%';
