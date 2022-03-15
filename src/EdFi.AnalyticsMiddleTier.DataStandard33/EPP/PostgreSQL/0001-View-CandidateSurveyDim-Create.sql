@@ -2,9 +2,9 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
-DROP VIEW IF EXISTS analytics.EPP_CandidateSurveyDim ;
+DROP VIEW IF EXISTS analytics.epp_CandidateSurveyDim ;
 
-CREATE VIEW analytics.EPP_CandidateSurveyDim AS
+CREATE VIEW analytics.epp_CandidateSurveyDim AS
 	SELECT CONCAT(Survey.SurveyIdentifier
 			,'-',SurveyQuestion.QuestionCode
 			,'-',SurveyResponse.SurveyResponseIdentifier

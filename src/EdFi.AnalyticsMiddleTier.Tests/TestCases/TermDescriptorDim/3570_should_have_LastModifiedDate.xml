@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT LastModifiedDate
+      FROM analytics.epp_TermDescriptorDim
+      WHERE TermDescriptorKey = 3570
+  </Query>
+  <Result>
+      <LastModifiedDate>2020-01-23T11:36:26</LastModifiedDate>
+  </Result>
+</TestCase>

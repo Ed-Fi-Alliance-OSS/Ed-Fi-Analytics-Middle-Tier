@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT TOP 1'3570','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester',NULL,NULL,NULL,'2020-01-23 11:36:26.1100000','2020-01-23 11:36:26','9FAD961A-BA5D-4F5F-A3C1-2831F09245C8','216649'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3570'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+        INSERT INTO edfi.TermDescriptor(TermDescriptorId)(SELECT TOP 1'3570'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TermDescriptor WHERE TermDescriptorId='3570'));
+    </ControlDataInsertion>
+</TestCase>

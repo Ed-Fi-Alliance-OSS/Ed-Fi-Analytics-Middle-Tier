@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COLUMN_NAME AS ColumnName,
+        DATA_TYPE AS DataType
+        FROM information_schema.columns
+        WHERE table_schema = 'analytics'
+        AND table_name = 'epp_TermDescriptorDim'
+        ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>TermDescriptorKey</ColumnName>
+        <DataType>int</DataType>
+    </Result>
+    <Result>
+        <ColumnName>CodeValue</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
+    </Result>
+</TestCase>

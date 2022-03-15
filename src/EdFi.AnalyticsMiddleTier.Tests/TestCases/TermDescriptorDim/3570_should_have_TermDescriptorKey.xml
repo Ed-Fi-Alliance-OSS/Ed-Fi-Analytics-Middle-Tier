@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT TermDescriptorKey
+      FROM analytics.epp_TermDescriptorDim
+      WHERE TermDescriptorKey = 3570
+  </Query>
+  <Result>
+      <TermDescriptorKey>3570</TermDescriptorKey>
+  </Result>
+</TestCase>
