@@ -27,5 +27,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string PersonId { get; set; }
         public string? IssuanceDate { get; set; }
         public string CohortYearTermDescription { get; set; }
+        public DateTime LastModifiedDate { get; set; }
     }
 }

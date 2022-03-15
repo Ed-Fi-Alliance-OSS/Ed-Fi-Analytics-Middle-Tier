@@ -151,6 +151,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_SexDescriptorId_should_be_2144.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_LastModifiedDate_should_be_2021_11_11()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2021_11_11.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -222,6 +229,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_CohortYearTermDescription_should_be_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_LastModifiedDate_should_be_2021_11_11()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2021_11_11.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -264,6 +278,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             public void Then_Cohort_should_be_zero()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_candidateKey_1000046
+        : When_querying_the_CandidateDim_View
+        {
+            public Given_candidateKey_1000046(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "c1000046";
+
+            [Test]
+            public void Then_LastModifiedDate_should_be_2021_11_11()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2021_11_11.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        public class Given_candidateKey_1000047
+        : When_querying_the_CandidateDim_View
+        {
+            public Given_candidateKey_1000047(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "c1000047";
+
+            [Test]
+            public void Then_LastModifiedDate_should_be_2021_11_11()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2021_11_11.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

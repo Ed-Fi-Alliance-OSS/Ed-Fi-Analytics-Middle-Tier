@@ -20,7 +20,16 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 		,CandidateEducatorPreparationProgramAssociation.EducationOrganizationId
 		,COALESCE(Candidate.PersonId, '') AS PersonId
 		,COALESCE(CASE WHEN SUM(CASE WHEN Credential.CredentialIdentifier IS NOT NULL THEN 1 ELSE 0 END) > 0 THEN CAST(MIN(Credential.IssuanceDate) as VARCHAR) END, '') IssuanceDate
-        ,COALESCE(TermDescriptor.CodeValue, '') AS CohortYearTermDescription
+        ,COALESCE(TermDescriptor.CodeValue, '') AS CohortYearTermDescription,
+		(SELECT 
+			MAX(MaxLastModifiedDate)
+		FROM (VALUES (MAX(Candidate.LastModifiedDate))
+					,(MAX(CandidateEducatorPreparationProgramAssociation.LastModifiedDate))
+					,(MAX(Student.LastModifiedDate))
+					,(MAX(Credential.LastModifiedDate))
+				) AS VALUE (MaxLastModifiedDate)
+			) AS LastModifiedDate
+
 	FROM tpdm.Candidate
 	JOIN tpdm.CandidateEducatorPreparationProgramAssociation ON CandidateEducatorPreparationProgramAssociation.CandidateIdentifier = Candidate.CandidateIdentifier 
 	LEFT JOIN tpdm.CandidateRace ON CandidateRace.CandidateIdentifier = Candidate.CandidateIdentifier 

@@ -7,7 +7,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2144','uri://ed-fi.org/SexDescriptor','Not Selected','Not Selected','Not Selected','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FC','2203'
+      (SELECT TOP 1'2144','uri://ed-fi.org/SexDescriptor','Not Selected','Not Selected','Not Selected','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FC','2203'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2144'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -15,16 +15,16 @@
       (SELECT TOP 1'2144'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SexDescriptor WHERE   SexDescriptorId= '2144'));
 
       INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,HispanicLatinoEthnicity,EconomicDisadvantaged,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'1000042','Bryce','Beatty','2144','2005-10-03','0063560B5AC641DBBCCE4B121C5CA37B','1','1','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D364','186702'
+      (SELECT TOP 1'1000042','Bryce','Beatty','2144','2005-10-03','0063560B5AC641DBBCCE4B121C5CA37B','1','1','2021-11-10 17:58:26.7113713','2021-11-11 17:58:26','078F558F-4D54-4878-90BA-A10AF162D364','186702'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000042'));
 
       INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'7','NMU College of Education','2021-11-10 17:52:45.6874276','2021-11-10 17:52:45.6869758','7C0F6373-B905-4C8F-A165-DF10ECC60F43','104940'
+      (SELECT TOP 1'7','NMU College of Education','2021-11-10 17:52:45.6874276','2021-11-10 17:52:45','7C0F6373-B905-4C8F-A165-DF10ECC60F43','104940'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '7'));
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'1859','uri://ed-fi.org/ProgramTypeDescriptor','Kindergarten - Extended Day','Kindergarten - Extended Day','Kindergarten - Extended Day','2021-11-05 19:01:17.5786970','2021-11-05 19:01:17.5786805','5F0C000B-2587-4500-B23C-738259B8A4AA','1918'
+      (SELECT TOP 1'1859','uri://ed-fi.org/ProgramTypeDescriptor','Kindergarten - Extended Day','Kindergarten - Extended Day','Kindergarten - Extended Day','2021-11-05 19:01:17.5786970','2021-11-05 19:01:17','5F0C000B-2587-4500-B23C-738259B8A4AA','1918'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1859'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -32,16 +32,16 @@
       (SELECT TOP 1'1859'  WHERE NOT EXISTS(SELECT  1  FROM edfi.ProgramTypeDescriptor WHERE   ProgramTypeDescriptorId= '1859'));
 
       INSERT INTO tpdm.EducatorPreparationProgram(EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,ProgramId,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'7','Science Education Secondary','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45.9629815','3A875F5E-4851-4FEC-8162-588A4B2E1B42','104953'
+      (SELECT TOP 1'7','Science Education Secondary','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45','3A875F5E-4851-4FEC-8162-588A4B2E1B42','104953'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.EducatorPreparationProgram WHERE   EducationOrganizationId= '7'  AND ProgramName= 'Science Education Secondary'  AND ProgramTypeDescriptorId= '1859'));
 
       INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2011-04-03','1000042','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3300','152033'
+      (SELECT TOP 1'2011-04-03','1000042','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3300','152033'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000042'));
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'1938','uri://ed-fi.org/RaceDescriptor','Black - African American','Black - African American','Black - African American','2021-11-05 19:01:18.2948513','2021-11-05 19:01:18.2934804','8D579727-F2F3-4401-944B-FE12FCC1D8AD','1997'
+      (SELECT TOP 1'1938','uri://ed-fi.org/RaceDescriptor','Black - African American','Black - African American','Black - African American','2021-11-05 19:01:18.2948513','2021-11-05 19:01:18','8D579727-F2F3-4401-944B-FE12FCC1D8AD','1997'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1938'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -53,7 +53,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'581','uri://ed-fi.org/CountryDescriptor','SY','Syrian Arab Republic','Syrian Arab Republic','2021-11-05 19:01:06.2065853','2021-11-05 19:01:06.2065516','11ADF710-75D8-4B21-8BD5-7BB3004E600B','640'
+      (SELECT TOP 1'581','uri://ed-fi.org/CountryDescriptor','SY','Syrian Arab Republic','Syrian Arab Republic','2021-11-05 19:01:06.2065853','2021-11-05 19:01:06','11ADF710-75D8-4B21-8BD5-7BB3004E600B','640'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '581'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -62,7 +62,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2292','uri://ed-fi.org/StateAbbreviationDescriptor','TN','TN','TN','2021-11-05 19:01:21.9748489','2021-11-05 19:01:21.9748169','4929249E-FE89-4FC0-AED5-643AF7626E34','2351'
+      (SELECT TOP 1'2292','uri://ed-fi.org/StateAbbreviationDescriptor','TN','TN','TN','2021-11-05 19:01:21.9748489','2021-11-05 19:01:21','4929249E-FE89-4FC0-AED5-643AF7626E34','2351'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2292'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -71,13 +71,13 @@
 
       SET IDENTITY_INSERT edfi.Student ON;
       INSERT INTO edfi.Student(StudentUSI,FirstName,LastSurname,BirthDate,PersonId,StudentUniqueId,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'971','Adriel','Gurrola','1957-10-21','0063560B5AC641DBBCCE4B121C5CA37B','1000052','2021-11-10 17:53:32.1728575','2021-11-10 17:53:32.1728150','231492E9-1C48-4A37-B5FA-AE9B87F5AB1C','186701'
+      (SELECT TOP 1'971','Adriel','Gurrola','1957-10-21','0063560B5AC641DBBCCE4B121C5CA37B','1000052','2021-11-10 17:53:32.1728575','2021-11-10 17:53:32','231492E9-1C48-4A37-B5FA-AE9B87F5AB1C','186701'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUSI = '971'));
       SET IDENTITY_INSERT edfi.Student OFF;
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'350','uri://ed-fi.org/CohortYearTypeDescriptor','Twelfth grade','Twelfth grade','Twelfth grade','2021-11-05 19:01:04.9889941','2021-11-05 19:01:04.9889545','1C307AC9-71AB-4148-953C-1417623545D6','409'
+      (SELECT TOP 1'350','uri://ed-fi.org/CohortYearTypeDescriptor','Twelfth grade','Twelfth grade','Twelfth grade','2021-11-05 19:01:04','2021-11-05 19:01:04.9889545','1C307AC9-71AB-4148-953C-1417623545D6','409'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '350'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -85,12 +85,12 @@
       (SELECT TOP 1'350'  WHERE NOT EXISTS(SELECT  1  FROM edfi.CohortYearTypeDescriptor WHERE   CohortYearTypeDescriptorId= '350'));
 
       INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2022','2021-2022','1','2021-11-05 14:00:39.2866667','2021-11-05 14:00:39.2866667','F4773008-A568-4F19-8836-73319F1445DE','29'
+      (SELECT TOP 1'2022','2021-2022','1','2021-11-05 14:00:39.2866667','2021-11-05 14:00:39','F4773008-A568-4F19-8836-73319F1445DE','29'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2022'));
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2404','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester','2021-11-05 19:01:23.5423186','2021-11-05 19:01:23.5410451','05A133C3-4CA4-4C4A-B041-4E8677D1B39F','2463'
+      (SELECT TOP 1'2404','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester','2021-11-05 19:01:23.5423186','2021-11-05 19:01:23','05A133C3-4CA4-4C4A-B041-4E8677D1B39F','2463'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2404'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -103,7 +103,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'668','uri://ed-fi.org/CredentialFieldDescriptor','Mathematics','Mathematics','Mathematics','2021-11-05 19:01:06.8548896','2021-11-05 19:01:06.8536600','A3995BA2-9623-4667-BAB2-C41623C79A6A','727'
+      (SELECT TOP 1'668','uri://ed-fi.org/CredentialFieldDescriptor','Mathematics','Mathematics','Mathematics','2021-11-05 19:01:06.8548896','2021-11-05 19:01:06','A3995BA2-9623-4667-BAB2-C41623C79A6A','727'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '668'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -112,7 +112,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'683','uri://ed-fi.org/CredentialTypeDescriptor','Certification','Certification','Certification','2021-11-05 19:01:06.9803343','2021-11-05 19:01:06.9782991','D6F45C01-CFCE-48B8-972D-4D0B1D7212C4','742'
+      (SELECT TOP 1'683','uri://ed-fi.org/CredentialTypeDescriptor','Certification','Certification','Certification','2021-11-05 19:01:06.9803343','2021-11-05 19:01:06','D6F45C01-CFCE-48B8-972D-4D0B1D7212C4','742'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '683'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -121,7 +121,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2293','uri://ed-fi.org/StateAbbreviationDescriptor','TX','TX','TX','2021-11-05 19:01:21.9775511','2021-11-05 19:01:21.9775286','15066216-3FD4-4249-92EB-6B50AE4F2CA7','2352'
+      (SELECT TOP 1'2293','uri://ed-fi.org/StateAbbreviationDescriptor','TX','TX','TX','2021-11-05 19:01:21.9775511','2021-11-05 19:01:21','15066216-3FD4-4249-92EB-6B50AE4F2CA7','2352'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2293'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -130,7 +130,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2389','uri://ed-fi.org/TeachingCredentialDescriptor','Temporary','Temporary','Temporary','2021-11-05 19:01:23.3108530','2021-11-05 19:01:23.3108288','AAC18554-0DF2-430D-A815-A49493BC6515','2448'
+      (SELECT TOP 1'2389','uri://ed-fi.org/TeachingCredentialDescriptor','Temporary','Temporary','Temporary','2021-11-05 19:01:23.3108530','2021-11-05 19:01:23','AAC18554-0DF2-430D-A815-A49493BC6515','2448'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2389'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -138,12 +138,12 @@
       (SELECT TOP 1'2389'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TeachingCredentialDescriptor WHERE   TeachingCredentialDescriptorId= '2389'));
 
       INSERT INTO edfi.Credential(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,IssuanceDate,CredentialTypeDescriptorId,Namespace,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'28B472462B774F4893D19FE9028444B9','2293','1997-03-17','683','uri://ed-fi.org','2021-11-10 18:03:04.3500631','2021-11-10 18:03:04.3498803','01C1C798-2B80-4662-8048-4AF05EA793D3','175570'
+      (SELECT TOP 1'28B472462B774F4893D19FE9028444B9','2293','1997-03-17','683','uri://ed-fi.org','2021-11-10 18:03:04.3500631','2021-11-10 18:03:04','01C1C798-2B80-4662-8048-4AF05EA793D3','175570'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Credential WHERE   CredentialIdentifier= '28B472462B774F4893D19FE9028444B9'  AND StateOfIssueStateAbbreviationDescriptorId= '2293'));
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2150','uri://ed-fi.org/SourceSystemDescriptor','State','State','State','2021-11-05 19:01:20.8834843','2021-11-05 19:01:20.8822467','84818490-13BD-4ED4-8F0D-29C065082833','2209'
+      (SELECT TOP 1'2150','uri://ed-fi.org/SourceSystemDescriptor','State','State','State','2021-11-05 19:01:20.8834843','2021-11-05 19:01:20','84818490-13BD-4ED4-8F0D-29C065082833','2209'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2150'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -151,7 +151,7 @@
       (SELECT TOP 1'2150'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SourceSystemDescriptor WHERE   SourceSystemDescriptorId= '2150'));
 
       INSERT INTO edfi.Person(PersonId,SourceSystemDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'0063560B5AC641DBBCCE4B121C5CA37B','2150','2021-11-10 17:53:04.7940993','2021-11-10 17:53:04.7940441','8F688627-EEF6-43A3-AC1B-5FF797974567','105693'
+      (SELECT TOP 1'0063560B5AC641DBBCCE4B121C5CA37B','2150','2021-11-10 17:53:04.7940993','2021-11-10 17:53:04','8F688627-EEF6-43A3-AC1B-5FF797974567','105693'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Person WHERE   PersonId= '0063560B5AC641DBBCCE4B121C5CA37B'  AND SourceSystemDescriptorId= '2150'));
 
       INSERT INTO tpdm.CredentialExtension(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,PersonId,CreateDate)
@@ -163,7 +163,7 @@
 
       SET IDENTITY_INSERT edfi.Descriptor ON;
       INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2145','uri://tpdm.ed-fi.org/ReasonExitedDescriptor','Completed','Completed','Completed','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FD','2204'
+      (SELECT TOP 1'2145','uri://tpdm.ed-fi.org/ReasonExitedDescriptor','Completed','Completed','Completed','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FD','2204'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2145'));
       SET IDENTITY_INSERT edfi.Descriptor OFF;
 
@@ -171,50 +171,86 @@
       (SELECT TOP 1'2145'  WHERE NOT EXISTS(SELECT  1  FROM edfi.ReasonExitedDescriptor WHERE   ReasonExitedDescriptorId= '2145'));
 
       INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'1000043','David','Smith','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D365','186703'
+      (SELECT TOP 1'1000043','David','Smith','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D365','186703'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000043'));
 
       INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(ReasonExitedDescriptorId,BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2145','2011-04-04','1000043','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3301','152034'
+      (SELECT TOP 1'2145','2011-04-04','1000043','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-11 11:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3301','152034'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000043'));
 
       ---------------------------------------------
       --- candidateidentifier = '1000044'
 
       INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'1000044','Jose','Johnson','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D366','186704'
+      (SELECT TOP 1'1000044','Jose','Johnson','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D366','186704'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000044'));
 
       INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2011-04-04','1000044','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3302','152035'
+      (SELECT TOP 1'2011-04-04','1000044','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 11:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3302','152035'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000044'));
 
       ---------------------------------------------
       --- candidateidentifier = '1000045'
 
       INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'1000045','Bryan','Ruiz','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26.7007274','078F558F-4D54-4878-90BA-A10AF162D367','186705'
+      (SELECT TOP 1'1000045','Bryan','Ruiz','2144','2005-10-03','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D367','186705'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000045'));
 
       INSERT INTO tpdm.EducatorPreparationProgram(EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,ProgramId,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'7','English Education Secondary','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45.9629815','3A875F5E-4851-4FEC-8162-588A4B2E1B44','104954'
+      (SELECT TOP 1'7','English Education Secondary','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45','3A875F5E-4851-4FEC-8162-588A4B2E1B44','104954'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.EducatorPreparationProgram WHERE   EducationOrganizationId= '7'  AND ProgramName= 'English Education Secondary'  AND ProgramTypeDescriptorId= '1859'));
 
       INSERT INTO tpdm.EducatorPreparationProgram(EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,ProgramId,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'7','English Education Secondary Alternate','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45.9629815','3A875F5E-4851-4FEC-8162-588A4B2E1B45','104954'
+      (SELECT TOP 1'7','English Education Secondary Alternate','1859','22987','2021-11-10 17:52:45.9631042','2021-11-10 17:52:45','3A875F5E-4851-4FEC-8162-588A4B2E1B45','104954'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.EducatorPreparationProgram WHERE   EducationOrganizationId= '7'  AND ProgramName= 'English Education Secondary Alternate'  AND ProgramTypeDescriptorId= '1859'));
 
       INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2011-04-04','1000045','7','English Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3303','152036'
+      (SELECT TOP 1'2011-04-04','1000045','7','English Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3303','152036'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary'));
 
       INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
-      (SELECT TOP 1'2011-04-04','1000045','7','English Education Secondary Alternate','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04.1755431','A8B93EF0-E680-458E-B43B-7093A3CB3304','152036'
+      (SELECT TOP 1'2011-04-04','1000045','7','English Education Secondary Alternate','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 17:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3304','152036'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary Alternate'));
 
       INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociationCohortYear(BeginDate,CandidateIdentifier,CohortYearTypeDescriptorId,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,SchoolYear,TermDescriptorId,CreateDate)
       (SELECT TOP 1'2011-04-04','1000045','350','7','English Education Secondary Alternate','1859','2022','2404','2021-11-10 17:59:04.1763335'
       WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociationCohortYear WHERE CandidateIdentifier = '1000045' and ProgramName = 'English Education Secondary Alternate'));
+
+      ---------------------------------------------
+      --- candidateidentifier = '1000046'
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000046','Charles','Smith','2144','2005-10-03','0063560B5AC641DBBCCE4B121C5CA37D','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D368','186704'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000046'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2011-04-04','1000046','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 11:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3306','152035'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000046'));
+
+      SET IDENTITY_INSERT edfi.Student ON;
+      INSERT INTO edfi.Student(StudentUSI,FirstName,LastSurname,BirthDate,PersonId,StudentUniqueId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'972','Adriel','Gurrola','1957-10-21','0063560B5AC641DBBCCE4B121C5CA37D','1000054','2021-11-10 17:53:32.1728575','2021-11-11 11:53:32','231492E9-1C48-4A37-B5FA-AE9B87F5AB1E','186701'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUSI = '972'));
+      SET IDENTITY_INSERT edfi.Student OFF;
+
+      ---------------------------------------------
+      --- candidateidentifier = '1000047'
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000047','Charles','Smith','2144','2005-10-03','0063560B5AC641DBBCCE4B121C5CA372','2021-11-10 17:58:26.7113713','2021-11-10 17:58:26','078F558F-4D54-4878-90BA-A10AF162D369','186704'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000047'));
+
+      INSERT INTO tpdm.CandidateEducatorPreparationProgramAssociation(BeginDate,CandidateIdentifier,EducationOrganizationId,ProgramName,ProgramTypeDescriptorId,EndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2011-04-04','1000047','7','Science Education Secondary','1859','2015-04-16','2021-11-10 17:59:04.1756677','2021-11-10 11:59:04','A8B93EF0-E680-458E-B43B-7093A3CB3307','152035'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CandidateEducatorPreparationProgramAssociation WHERE CandidateIdentifier = '1000047'));
+
+      INSERT INTO edfi.Credential(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,IssuanceDate,CredentialTypeDescriptorId,Namespace,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'28B472462B774F4893D19FE9028444B7','2293','1997-03-17','683','uri://ed-fi.org','2021-11-10 18:03:04.3500631','2021-11-11 18:03:04','01C1C798-2B80-4662-8048-4AF05EA793D5','175570'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Credential WHERE   CredentialIdentifier= '28B472462B774F4893D19FE9028444B7'  AND StateOfIssueStateAbbreviationDescriptorId= '2293'));
+
+      INSERT INTO tpdm.CredentialExtension(CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,PersonId,CreateDate)
+      (SELECT TOP 1'28B472462B774F4893D19FE9028444B7','2293','0063560B5AC641DBBCCE4B121C5CA372','2021-11-10 18:03:04.3507504'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.CredentialExtension WHERE PersonId = '0063560B5AC641DBBCCE4B121C5CA372'));
 
     </ControlDataInsertion>
 </TestCase>
