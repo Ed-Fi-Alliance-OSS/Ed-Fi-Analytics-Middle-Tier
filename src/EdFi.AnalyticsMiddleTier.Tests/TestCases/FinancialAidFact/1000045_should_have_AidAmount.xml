@@ -9,6 +9,6 @@
 		WHERE CandidateIdentifier='1000045'
 	</Query>
 	<Result>
-		<AidAmount>3675.21</AidAmount>
+		<AidAmount>3675.2100</AidAmount>
 	</Result>
 </TestCase>

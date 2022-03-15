@@ -7,11 +7,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class FinancialAidFact
     {
         public string CandidateIdentifier { get; set; }
-        public string BeginDate { get; set; }
-        public string EndDate { get; set; }
-        public int AidConditionDescription { get; set; }
-        public int AidType { get; set; }
-        public bool AidAmount { get; set; }
-        public int PellGrantRecipient { get; set; }
+        public DateTime BeginDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string AidConditionDescription { get; set; }
+        public string AidType { get; set; }
+        public decimal AidAmount { get; set; }
+        public Boolean PellGrantRecipient { get; set; }
     }
 }

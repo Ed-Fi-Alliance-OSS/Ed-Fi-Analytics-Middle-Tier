@@ -20,8 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
                   $"Port={DbConnectionStringParameter.Port};" +
                   $"Database={DatabaseName};" +
                   $"Pooling={DbConnectionStringParameter.Pooling};" +
-                  $"password={DbConnectionStringParameter.Pass}" + //DVR;
-                    ";CommandTimeout=300";
+                  $"password={DbConnectionStringParameter.Pass}";
 
         protected override string DefaultDatabaseNamePrefix => "edfi_ods_tests_ds";
 
