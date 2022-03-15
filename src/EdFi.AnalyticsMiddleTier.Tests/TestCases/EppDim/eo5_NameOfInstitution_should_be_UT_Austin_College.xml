@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT NameOfInstitution
+    FROM analytics.EPP_EppDim
+    WHERE EducationOrganizationKey = 5
+  </Query>
+  <Result>
+    <NameOfInstitution>UT Austin College of Education Graduate</NameOfInstitution>
+  </Result>
+</TestCase>
