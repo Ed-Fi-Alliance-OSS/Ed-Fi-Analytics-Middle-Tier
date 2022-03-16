@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+		SELECT LastModifiedDate
+		FROM analytics.EPP_FinancialAidFact
+		WHERE CandidateIdentifier='1000049'
+	</Query>
+	<Result>
+		<EndDate>2021-11-12T17:58:27</EndDate>
+	</Result>
+</TestCase>

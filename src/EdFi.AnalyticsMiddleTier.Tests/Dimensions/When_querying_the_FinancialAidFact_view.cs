@@ -19,7 +19,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
         protected const string TestCasesFolder = "TestCases.FinancialAidFact";
         protected const string TestCasesDataFileName = "0000_FinancialAidFact_Data_Load.xml";
 
-        
+        [Test]
+        public void Then_view_should_match_column_dictionary()
+        {
+            (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_view_should_match_column_dictionary.xml");
+            testResult.success.ShouldBe(true, testResult.errorMessage);
+        }
+
         [SetUpFixture]
         public class SetupFinancialAidFactTestCase
             : When_querying_the_FinancialAidFact_view
@@ -91,6 +97,41 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
             public void Then_should_have_EndDate()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_EndDate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_AidAmount_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_AidAmount_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_AidConditionDescription_should_be_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_AidConditionDescription_should_be_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_PellGrantRecipient_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.{_caseIdentifier}_PellGrantRecipient_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_LastModifiedDate_Candidate()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_Candidate.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_LastModifiedDate_FinancialAid()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_FinancialAid.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
