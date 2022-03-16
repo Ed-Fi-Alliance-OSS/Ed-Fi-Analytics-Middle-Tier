@@ -127,7 +127,7 @@
 
 		INSERT INTO tpdm.Candidate
 		(CandidateIdentifier,PersonalTitlePrefix,FirstName,LastSurname,SexDescriptorId,BirthDate,HispanicLatinoEthnicity,EconomicDisadvantaged,LoginId,TuitionCost,FirstGenerationStudent,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
-		(SELECT TOP 1'1000049','M','Rayan','Cha','2146','1990-12-30','0','0','Rayan.Cha','21794.4918','0','037873D819B04F93B5E4BA87AC286FB8','2021-11-10 17:58:27.8214024','2021-11-10 17:58:27.8208264','12D7FD3A-9D20-4303-88F1-B5F2C62990FA','186714'
+		(SELECT TOP 1'1000049','M','Rayan','Cha','2146','1990-12-30','0','0','Rayan.Cha','21794.4918','0','037873D819B04F93B5E4BA87AC286FB8','2021-11-10 17:58:27.8214024','2021-11-12 17:58:27','12D7FD3A-9D20-4303-88F1-B5F2C62990FA','186714'
 		WHERE NOT EXISTS(SELECT 1 FROM tpdm.Candidate WHERE   CandidateIdentifier='1000049'));
 
 
