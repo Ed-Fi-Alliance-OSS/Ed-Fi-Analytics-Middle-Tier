@@ -26,7 +26,6 @@ SELECT   tpdm.Candidate.CandidateIdentifier
 		,COALESCE(tpdm.FinancialAid.PellGrantRecipient,0) as PellGrantRecipient
 		,(SELECT MAX(MaxLastModifiedDate)  FROM
                 (VALUES(Candidate.LastModifiedDate), (FinancialAid.LastModifiedDate)
-				--(VALUES(Candidate.LastModifiedDate)
                 ) AS VALUE(MaxLastModifiedDate)
 		 ) As LastModifiedDate
 		FROM tpdm.Candidate

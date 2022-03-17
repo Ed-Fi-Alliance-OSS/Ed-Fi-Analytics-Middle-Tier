@@ -41,6 +41,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 		                            OR schemaname = 'analytics_config'
 		                            OR schemaname = 'auth'
 		                            OR schemaname = 'util'
+                                    OR schemaname = 'tpdm'
 		                            )");
 
                 if (!string.IsNullOrEmpty(truncateAllTablesLine))

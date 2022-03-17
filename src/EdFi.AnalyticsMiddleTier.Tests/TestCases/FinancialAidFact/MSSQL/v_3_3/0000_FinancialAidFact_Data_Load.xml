@@ -138,7 +138,7 @@
 
 		INSERT INTO tpdm.FinancialAid
 		(AidTypeDescriptorId,BeginDate,StudentUSI,AidAmount,PellGrantRecipient,CreateDate,LastModifiedDate,Id,ChangeVersion)
-		(SELECT TOP 1'3060','2011-01-24','969','3675.2100','1','2021-11-10 18:00:16.9430777','2021-11-10 18:00:16.9420091','D5D4A3BE-A397-4011-9600-77D41732C91F','160402'
+		(SELECT TOP 1'3060','2011-01-24','969','3675.2100','1','2021-11-10 18:00:16.9430777','2021-11-12 18:00:16','D5D4A3BE-A397-4011-9600-77D41732C91F','160402'
 		WHERE NOT EXISTS(SELECT 1 FROM tpdm.FinancialAid WHERE AidTypeDescriptorId='3060' and BeginDate='2011-01-24' and StudentUSI=969));
 
 	</ControlDataInsertion>

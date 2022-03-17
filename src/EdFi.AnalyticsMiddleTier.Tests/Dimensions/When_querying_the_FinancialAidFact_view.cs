@@ -82,6 +82,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
+            [Test]
+            public void Then_LastModifiedDate_FinancialAid()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_FinancialAid.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
 
         }
 
@@ -125,13 +131,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
             public void Then_LastModifiedDate_Candidate()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_Candidate.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_LastModifiedDate_FinancialAid()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_FinancialAid.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

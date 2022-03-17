@@ -6,9 +6,9 @@
 	<Query>
 		SELECT LastModifiedDate
 		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000049'
+		WHERE CandidateIdentifier='1000045'
 	</Query>
 	<Result>
-		<EndDate>2021-11-10T18:00:16</EndDate>
+		<LastModifiedDate>2021-11-12T18:00:16</LastModifiedDate>
 	</Result>
 </TestCase>

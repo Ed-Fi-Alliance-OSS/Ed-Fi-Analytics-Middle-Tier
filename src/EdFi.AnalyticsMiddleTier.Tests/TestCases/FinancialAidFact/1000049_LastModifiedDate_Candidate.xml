@@ -9,6 +9,6 @@
 		WHERE CandidateIdentifier='1000049'
 	</Query>
 	<Result>
-		<EndDate>2021-11-12T17:58:27</EndDate>
+		<LastModifiedDate>2021-11-12T17:58:27</LastModifiedDate>
 	</Result>
 </TestCase>
