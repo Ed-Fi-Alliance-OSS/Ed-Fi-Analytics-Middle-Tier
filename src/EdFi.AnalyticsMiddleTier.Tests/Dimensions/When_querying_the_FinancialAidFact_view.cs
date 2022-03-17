@@ -41,6 +41,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
             private const string _caseIdentifier = "1000045";
 
             [Test]
+            public void Then_should_have_CandidateAidKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CandidateAidKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_AidAmount()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_AidAmount.xml");

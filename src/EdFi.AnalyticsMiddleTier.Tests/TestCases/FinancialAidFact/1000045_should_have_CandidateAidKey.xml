@@ -4,11 +4,11 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT floor(coalesce(AidAmount,-1)) as AidAmount
+		SELECT CandidateAidKey
 		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000049'
+		WHERE CandidateIdentifier='1000045' and AidType='Pell Grants' and BeginDate='2011-01-24'
 	</Query>
 	<Result>
-		<AidAmount>0</AidAmount>
+		<CandidateAidKey>1000045-3060-20110124</CandidateAidKey>
 	</Result>
 </TestCase>

@@ -17,7 +17,8 @@ GO
 CREATE VIEW [analytics].[EPP_FinancialAidFact] AS
 
 ---Financial Aid
-SELECT  CONCAT(tpdm.Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',CONVERT(VARCHAR,tpdm.FinancialAid.BeginDate,112)) As CandidateAidKey
+SELECT  --CONCAT(tpdm.Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',CONVERT(VARCHAR,tpdm.FinancialAid.BeginDate,112)) As CandidateAidKey
+		CONCAT(AidDescriptor.DescriptorId,'-',CONVERT(VARCHAR,tpdm.FinancialAid.BeginDate,112)) As CandidateAidKey
 		,tpdm.Candidate.CandidateIdentifier
 		,tpdm.FinancialAid.BeginDate
 		,tpdm.FinancialAid.EndDate
