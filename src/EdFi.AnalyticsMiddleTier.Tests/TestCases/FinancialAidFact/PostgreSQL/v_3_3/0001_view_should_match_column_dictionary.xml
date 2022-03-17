@@ -12,6 +12,10 @@
 		ORDER BY ORDINAL_POSITION ASC;
 	</Query>
 	<Result>
+		<ColumnName>candidateaidkey</ColumnName>
+		<DataType>text</DataType>
+	</Result>
+	<Result>
 		<ColumnName>candidateidentifier</ColumnName>
 		<DataType>character varying</DataType>
 	</Result>

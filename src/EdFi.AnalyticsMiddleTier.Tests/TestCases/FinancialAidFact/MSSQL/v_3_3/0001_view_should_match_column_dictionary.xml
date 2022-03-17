@@ -12,6 +12,10 @@
 		ORDER BY ORDINAL_POSITION ASC;
 	</Query>
 	<Result>
+		<ColumnName>CandidateAidKey</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
+	<Result>
 		<ColumnName>CandidateIdentifier</ColumnName>
 		<DataType>nvarchar</DataType>
 	</Result>

@@ -3,9 +3,9 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-DROP VIEW IF EXISTS analytics.chrab_ChronicAbsenteeismAttendanceFact;
+--DROP VIEW IF EXISTS analytics.chrab_ChronicAbsenteeismAttendanceFact;
 
-CREATE OR REPLACE VIEW analytics.chrab_ChronicAbsenteeismAttendanceFact
+CREATE OR ALTER VIEW analytics.chrab_ChronicAbsenteeismAttendanceFact
 AS
 	WITH descriptorMap AS (
 		SELECT

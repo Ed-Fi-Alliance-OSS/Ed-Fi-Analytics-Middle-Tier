@@ -5,10 +5,11 @@
 
 DROP VIEW IF EXISTS analytics.EPP_FinancialAidFact;
 
-CREATE VIEW analytics.EPP_FinancialAidFact AS
+CREATE OR REPLACE VIEW analytics.EPP_FinancialAidFact AS
 
 ---Financial Aid
-SELECT   tpdm.Candidate.CandidateIdentifier
+SELECT  CONCAT(tpdm.Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',to_char(tpdm.FinancialAid.BeginDate,'yyyymmdd')) As CandidateAidKey 
+		,tpdm.Candidate.CandidateIdentifier
 		,tpdm.FinancialAid.BeginDate
 		,tpdm.FinancialAid.EndDate
 		,COALESCE(tpdm.FinancialAid.AidConditionDescription,'') as AidConditionDescription
