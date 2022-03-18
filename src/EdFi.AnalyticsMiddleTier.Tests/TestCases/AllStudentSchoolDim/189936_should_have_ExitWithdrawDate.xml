@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT ExitWithdrawDate
+      FROM analytics.AllStudentSchoolDim
+      WHERE AllStudentSchoolKey = '189936-867530023-20110822';
+  </Query>
+  <Result>
+      <ExitWithdrawDate>2011-09-21</ExitWithdrawDate>
+  </Result>
+</TestCase>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COUNT(1) as CountValue
+        FROM analytics.AllStudentSchoolDim
+        WHERE StudentSchoolKey = '189854-867530011'
+        AND DigitalDevice = 'Chromebook'
+        AND ExitWithdrawDate='';
+    </Query>
+    <Result>
+        <CountValue>1</CountValue>
+    </Result>
+</TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT BirthDate
+      FROM analytics.AllStudentSchoolDim
+      WHERE AllStudentSchoolKey = '189854-867530011-20110920';
+  </Query>
+  <Result>
+	  <BirthDate>1978-09-04</BirthDate>
+  </Result>
+</TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT EnrollmentDateKey
+      FROM analytics.AllStudentSchoolDim
+      WHERE AllStudentSchoolKey = '192452-867530011-20120123';
+  </Query>
+  <Result>
+    <EnrollmentDateKey>2012-01-23</EnrollmentDateKey>
+  </Result>
+</TestCase>
