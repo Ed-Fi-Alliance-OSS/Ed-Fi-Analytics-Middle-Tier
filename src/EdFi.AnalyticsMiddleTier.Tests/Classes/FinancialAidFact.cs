@@ -6,6 +6,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class FinancialAidFact
     {
+        public string CandidateAidKey { get; set; }
         public string CandidateIdentifier { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }

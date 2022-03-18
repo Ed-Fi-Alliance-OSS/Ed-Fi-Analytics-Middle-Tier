@@ -13,7 +13,7 @@
 	</Query>
 	<Result>
 		<ColumnName>CandidateAidKey</ColumnName>
-		<DataType>varchar</DataType>
+		<DataType>nvarchar</DataType>
 	</Result>
 	<Result>
 		<ColumnName>CandidateIdentifier</ColumnName>

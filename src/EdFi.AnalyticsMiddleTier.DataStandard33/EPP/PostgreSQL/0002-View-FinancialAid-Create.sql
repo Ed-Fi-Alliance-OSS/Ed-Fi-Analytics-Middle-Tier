@@ -8,8 +8,7 @@ DROP VIEW IF EXISTS analytics.EPP_FinancialAidFact;
 CREATE VIEW analytics.EPP_FinancialAidFact AS
 
 ---Financial Aid
-SELECT  --CONCAT(tpdm.Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',to_char(tpdm.FinancialAid.BeginDate,'yyyymmdd')) As CandidateAidKey 
-		CONCAT(AidDescriptor.DescriptorId,'-',to_char(tpdm.FinancialAid.BeginDate,'yyyymmdd')) As CandidateAidKey 
+SELECT  CONCAT(tpdm.Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',to_char(tpdm.FinancialAid.BeginDate,'yyyymmdd')) As CandidateAidKey
 		,tpdm.Candidate.CandidateIdentifier
 		,tpdm.FinancialAid.BeginDate
 		,tpdm.FinancialAid.EndDate
