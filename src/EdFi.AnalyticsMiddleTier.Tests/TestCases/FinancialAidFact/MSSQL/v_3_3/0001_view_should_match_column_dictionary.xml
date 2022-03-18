@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+		SELECT COLUMN_NAME AS ColumnName,
+		DATA_TYPE AS DataType
+		FROM information_schema.columns
+		WHERE table_schema = 'analytics'
+		AND table_name = 'EPP_FinancialAidFact'
+		ORDER BY ORDINAL_POSITION ASC;
+	</Query>
+	<Result>
+		<ColumnName>CandidateAidKey</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
+	<Result>
+		<ColumnName>CandidateIdentifier</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
+	<Result>
+		<ColumnName>BeginDate</ColumnName>
+		<DataType>date</DataType>
+	</Result>
+	<Result>
+		<ColumnName>EndDate</ColumnName>
+		<DataType>date</DataType>
+	</Result>
+	<Result>
+		<ColumnName>AidConditionDescription</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
+	<Result>
+		<ColumnName>AidType</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
+	<Result>
+		<ColumnName>AidAmount</ColumnName>
+		<DataType>decimal</DataType>
+	</Result>
+	<Result>
+		<ColumnName>PellGrantRecipient</ColumnName>
+		<DataType>int</DataType>
+	</Result>
+	<Result>
+		<ColumnName>LastModifiedDate</ColumnName>
+		<DataType>datetime2</DataType>
+	</Result>
+</TestCase>

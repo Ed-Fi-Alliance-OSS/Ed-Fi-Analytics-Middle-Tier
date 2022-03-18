@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+		SELECT AidConditionDescription
+		FROM analytics.EPP_FinancialAidFact
+		WHERE CandidateIdentifier='1000045'
+	</Query>
+	<Result>
+		<AidConditionDescription></AidConditionDescription>
+	</Result>
+</TestCase>
