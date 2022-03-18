@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT cast(IsHispanic as bit) as IsHispanic
+      FROM analytics.AllStudentSchoolDim
+      WHERE StudentKey = '189854';
+  </Query>
+  <Result>
+    <IsHispanic>1</IsHispanic>
+  </Result>
+</TestCase>
