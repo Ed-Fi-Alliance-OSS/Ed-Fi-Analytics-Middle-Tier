@@ -137,7 +137,10 @@ namespace EdFi.AnalyticsMiddleTier.Console
                         message += NotSupportedOnDs2(dataStandardVersion, options, Component.Asmt);
                         message += NotSupportedOnDs2(dataStandardVersion, options, Component.Equity);
                         message += NotSupportedOnDs2(dataStandardVersion, options, Component.Engage);
+                        message += NotSupportedOnDs2(dataStandardVersion, options, Component.EPP);
                         message += NotSupportedOnDs31(dataStandardVersion, options, Component.Engage);
+                        message += NotSupportedOnDs31(dataStandardVersion, options, Component.EPP);
+                        message += NotSupportedOnDs32(dataStandardVersion, options, Component.EPP);
                         message += NotSupportedOnPostgres(options, Component.Engage);
                         
                         if (string.IsNullOrEmpty(message))
@@ -197,6 +200,16 @@ namespace EdFi.AnalyticsMiddleTier.Console
                 if (dataStandardVersion == DataStandard.Ds31 && options.Components.Contains(collection))
                 {
                     return $"The {collection} collection is not supported on Data Standard 3.1. Please remove this option and try again.";
+                }
+
+                return null;
+            }
+
+            static string NotSupportedOnDs32(DataStandard dataStandardVersion, Options options, Component collection)
+            {
+                if (dataStandardVersion == DataStandard.Ds32 && options.Components.Contains(collection))
+                {
+                    return $"The {collection} collection is not supported on Data Standard 3.2. Please remove this option and try again.";
                 }
 
                 return null;
