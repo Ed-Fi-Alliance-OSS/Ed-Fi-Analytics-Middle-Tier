@@ -8,14 +8,14 @@ DROP VIEW IF EXISTS analytics.EPP_FinancialAidFact;
 CREATE VIEW analytics.EPP_FinancialAidFact AS
 
 ---Financial Aid
-SELECT  CONCAT(tpdm.Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',to_char(tpdm.FinancialAid.BeginDate,'yyyymmdd')) As CandidateAidKey
-		,tpdm.Candidate.CandidateIdentifier
-		,tpdm.FinancialAid.BeginDate
-		,tpdm.FinancialAid.EndDate
-		,COALESCE(tpdm.FinancialAid.AidConditionDescription,'') as AidConditionDescription
+SELECT  CONCAT(Candidate.CandidateIdentifier,'-',AidDescriptor.DescriptorId,'-',to_char(tpdm.FinancialAid.BeginDate,'yyyymmdd')) As CandidateAidKey
+		,Candidate.CandidateIdentifier as CandidateKey
+		,FinancialAid.BeginDate
+		,FinancialAid.EndDate
+		,COALESCE(FinancialAid.AidConditionDescription,'') as AidConditionDescription
 		,AidDescriptor.CodeValue as AidType
-		,COALESCE(tpdm.FinancialAid.AidAmount,0) as AidAmount
-		,COALESCE(tpdm.FinancialAid.PellGrantRecipient,false) as PellGrantRecipient
+		,COALESCE(FinancialAid.AidAmount,0) as AidAmount
+		,COALESCE(FinancialAid.PellGrantRecipient,false) as PellGrantRecipient
 		,(SELECT MAX(MaxLastModifiedDate)  FROM
                 (VALUES(Candidate.LastModifiedDate), (FinancialAid.LastModifiedDate)
                 ) AS VALUE(MaxLastModifiedDate)

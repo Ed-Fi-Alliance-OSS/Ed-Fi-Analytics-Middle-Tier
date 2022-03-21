@@ -16,7 +16,7 @@
 		<DataType>nvarchar</DataType>
 	</Result>
 	<Result>
-		<ColumnName>CandidateIdentifier</ColumnName>
+		<ColumnName>CandidateKey</ColumnName>
 		<DataType>nvarchar</DataType>
 	</Result>
 	<Result>

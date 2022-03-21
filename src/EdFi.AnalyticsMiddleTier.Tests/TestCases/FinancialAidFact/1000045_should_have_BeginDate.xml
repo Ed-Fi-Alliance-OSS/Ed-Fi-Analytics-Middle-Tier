@@ -4,10 +4,10 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT BeginDate
-		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000045'
-	</Query>
+        SELECT BeginDate
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000045'
+    </Query>
 	<Result>
 		<BeginDate>2011-01-24</BeginDate>
 	</Result>

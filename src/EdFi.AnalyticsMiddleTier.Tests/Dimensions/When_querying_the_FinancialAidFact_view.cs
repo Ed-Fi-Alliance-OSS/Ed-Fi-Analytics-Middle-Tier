@@ -76,9 +76,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
             }
 
             [Test]
-            public void Then_should_have_CandidateIdentifier()
+            public void Then_should_have_CandidateKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CandidateIdentifier.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<FinancialAidFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CandidateKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

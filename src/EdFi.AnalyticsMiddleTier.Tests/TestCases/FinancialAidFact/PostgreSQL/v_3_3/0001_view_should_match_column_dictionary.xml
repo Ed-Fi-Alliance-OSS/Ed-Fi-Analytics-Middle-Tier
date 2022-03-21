@@ -16,7 +16,7 @@
 		<DataType>text</DataType>
 	</Result>
 	<Result>
-		<ColumnName>candidateidentifier</ColumnName>
+		<ColumnName>candidatekey</ColumnName>
 		<DataType>character varying</DataType>
 	</Result>
 	<Result>

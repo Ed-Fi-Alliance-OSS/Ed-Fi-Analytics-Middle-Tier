@@ -4,10 +4,10 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT COALESCE(PellGrantRecipient,true) As PellGrantRecipient
-		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000049'
-	</Query>
+        SELECT COALESCE(PellGrantRecipient,true) As PellGrantRecipient
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000049'
+    </Query>
 	<Result>
 		<PellGrantRecipient>false</PellGrantRecipient>
 	</Result>
