@@ -26,9 +26,9 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,COALESCE(RaceDescriptor.CodeValue, '') AS RaceDescriptor
 		,CAST(COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS BIT) AS HispanicLatinoEthnicity
 		,CAST(COALESCE(Candidate.EconomicDisadvantaged, 0) AS BIT) AS EconomicDisadvantaged
-		,COALESCE(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear, 0) AS Cohort
+		,COALESCE(CAST(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear AS VARCHAR), '') AS Cohort
 		,CAST(CASE WHEN ReasonExitedDescriptor.CodeValue = 'Completed' THEN 1 ELSE 0 END AS BIT) ProgramComplete
-		,COALESCE(Student.StudentUSI, 0) AS StudentUSI
+		,COALESCE(CAST(Student.StudentUSI AS VARCHAR), '') AS StudentUSI
 		,CandidateEducatorPreparationProgramAssociation.ProgramName
 		,CandidateEducatorPreparationProgramAssociation.BeginDate
 		,CandidateEducatorPreparationProgramAssociation.EducationOrganizationId

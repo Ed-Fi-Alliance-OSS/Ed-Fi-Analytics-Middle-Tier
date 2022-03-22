@@ -14,9 +14,9 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 		,COALESCE(RaceDescriptor.CodeValue, '') AS RaceDescriptor
 		,COALESCE(Candidate.HispanicLatinoEthnicity, false) AS HispanicLatinoEthnicity
 		,COALESCE(Candidate.EconomicDisadvantaged, false) AS EconomicDisadvantaged
-		,COALESCE(ccy.SchoolYear, 0) AS Cohort
+		,COALESCE(CAST(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear AS VARCHAR), '') AS Cohort
 		,CAST(CASE WHEN ReasonExitedDescriptor.CodeValue = 'Completed' THEN 1 ELSE 0 END AS BIT) ProgramComplete
-		,COALESCE(Student.StudentUSI, 0) AS StudentUSI
+		,COALESCE(CAST(Student.StudentUSI AS VARCHAR), '') AS StudentUSI
 		,CandidateEducatorPreparationProgramAssociation.ProgramName
 		,CandidateEducatorPreparationProgramAssociation.BeginDate
 		,CandidateEducatorPreparationProgramAssociation.EducationOrganizationId
@@ -38,9 +38,9 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 	LEFT JOIN tpdm.CandidateRace ON CandidateRace.CandidateIdentifier = Candidate.CandidateIdentifier 
 	LEFT JOIN edfi.Descriptor RaceDescriptor ON RaceDescriptor.DescriptorId = CandidateRace.RaceDescriptorId 
 	LEFT JOIN edfi.Student ON Student.PersonId = Candidate.PersonId 
-	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ccy ON ccy.CandidateIdentifier = Candidate.CandidateIdentifier
-        and ccy.ProgramName = CandidateEducatorPreparationProgramAssociation.ProgramName
-    LEFT JOIN edfi.Descriptor TermDescriptor ON ccy.TermDescriptorId = TermDescriptor.DescriptorId
+	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ON CandidateEducatorPreparationProgramAssociationCohortYear.CandidateIdentifier = Candidate.CandidateIdentifier
+        and CandidateEducatorPreparationProgramAssociationCohortYear.ProgramName = CandidateEducatorPreparationProgramAssociation.ProgramName
+    LEFT JOIN edfi.Descriptor TermDescriptor ON CandidateEducatorPreparationProgramAssociationCohortYear.TermDescriptorId = TermDescriptor.DescriptorId
 	LEFT JOIN tpdm.CredentialExtension ON CredentialExtension.PersonId = Candidate.PersonId 
 	LEFT JOIN edfi.Credential ON Credential.CredentialIdentifier = CredentialExtension.CredentialIdentifier
 	LEFT JOIN edfi.Descriptor ReasonExitedDescriptor ON CandidateEducatorPreparationProgramAssociation.ReasonExitedDescriptorId = ReasonExitedDescriptor.DescriptorId
@@ -54,7 +54,7 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 		,RaceDescriptor.CodeValue
 		,Candidate.HispanicLatinoEthnicity 
 		,Candidate.EconomicDisadvantaged 
-		,ccy.SchoolYear
+		,CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear
 		,ReasonExitedDescriptor.CodeValue 
 		,Student.StudentUSI 
 		,CandidateEducatorPreparationProgramAssociation.ProgramName 

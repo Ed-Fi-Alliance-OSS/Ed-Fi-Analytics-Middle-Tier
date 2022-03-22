@@ -49,7 +49,7 @@
   </Result>
   <Result>
     <ColumnName>Cohort</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>ProgramComplete</ColumnName>
@@ -57,7 +57,7 @@
   </Result>
   <Result>
     <ColumnName>StudentUSI</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>ProgramName</ColumnName>

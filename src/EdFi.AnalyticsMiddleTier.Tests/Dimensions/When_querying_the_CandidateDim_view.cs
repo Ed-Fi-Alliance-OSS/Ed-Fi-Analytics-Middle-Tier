@@ -224,9 +224,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
-            public void Then_StudentUSI_should_be_zero()
+            public void Then_StudentUSI_should_be_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_StudentUSI_should_be_zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_StudentUSI_should_be_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -274,9 +274,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
-            public void Then_Cohort_should_be_zero()
+            public void Then_Cohort_should_be_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -296,9 +296,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
-            public void Then_Cohort_should_be_zero()
+            public void Then_Cohort_should_be_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

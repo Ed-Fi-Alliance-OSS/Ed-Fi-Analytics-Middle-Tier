@@ -20,9 +20,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string RaceDescriptor { get; set; }
         public bool? HispanicLatinoEthnicity { get; set; }
         public bool? EconomicDisadvantaged { get; set; }
-        public int Cohort { get; set; }
+        public string Cohort { get; set; }
         public bool ProgramComplete { get; set; }
-        public int? StudentUSI { get; set; }
+        public string StudentUSI { get; set; }
         public string ProgramName { get; set; }
         public DateTime BeginDate { get; set; }
         public int EducationOrganizationId { get; set; }
