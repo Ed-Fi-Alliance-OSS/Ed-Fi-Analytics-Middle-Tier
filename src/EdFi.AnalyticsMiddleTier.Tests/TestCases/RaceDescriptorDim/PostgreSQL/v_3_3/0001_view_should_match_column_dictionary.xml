@@ -13,7 +13,7 @@
     </Query>
     <Result>
         <ColumnName>racedescriptorkey</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>codevalue</ColumnName>

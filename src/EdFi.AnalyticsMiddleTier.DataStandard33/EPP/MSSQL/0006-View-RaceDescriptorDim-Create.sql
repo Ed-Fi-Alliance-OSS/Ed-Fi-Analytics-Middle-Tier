@@ -16,7 +16,7 @@ GO
 CREATE VIEW analytics.epp_RaceDescriptorDim AS
 
 SELECT
-	RaceDescriptor.RaceDescriptorId as RaceDescriptorKey
+	CAST(RaceDescriptor.RaceDescriptorId AS VARCHAR) RaceDescriptorKey
 	,Descriptor.CodeValue
 	,Descriptor.LastModifiedDate
 FROM

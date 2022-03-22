@@ -6,7 +6,7 @@
   <Query>
     SELECT CodeValue
     FROM analytics.epp_RaceDescriptorDim
-    WHERE RaceDescriptorKey = 1941
+    WHERE RaceDescriptorKey = '1941'
   </Query>
   <Result>
       <CodeValue>White</CodeValue>

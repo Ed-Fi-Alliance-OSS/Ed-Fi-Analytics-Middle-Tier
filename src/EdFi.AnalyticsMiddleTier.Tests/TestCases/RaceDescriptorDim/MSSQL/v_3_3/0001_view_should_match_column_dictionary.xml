@@ -13,7 +13,7 @@
     </Query>
     <Result>
         <ColumnName>RaceDescriptorKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>CodeValue</ColumnName>
