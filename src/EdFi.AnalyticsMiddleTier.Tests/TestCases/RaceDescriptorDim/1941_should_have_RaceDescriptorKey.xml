@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT RaceDescriptorKey
+    FROM analytics.epp_RaceDescriptorDim
+    WHERE RaceDescriptorKey = '1941'
+  </Query>
+  <Result>
+    <RaceDescriptorKey>1941</RaceDescriptorKey>
+  </Result>
+</TestCase>

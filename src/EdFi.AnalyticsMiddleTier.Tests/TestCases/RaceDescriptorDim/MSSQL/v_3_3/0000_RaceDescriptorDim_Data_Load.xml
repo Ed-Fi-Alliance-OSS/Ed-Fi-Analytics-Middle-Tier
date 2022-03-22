@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1941','uri://ed-fi.org/RaceDescriptor','White','White','White','2020-01-23 11:36:26','2020-01-23 11:36:26','9FAD961A-BA5D-4F5F-A3C1-2831F09245C8','216649'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1941'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.RaceDescriptor(RaceDescriptorId)
+      (SELECT TOP 1'1941'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.RaceDescriptor WHERE RaceDescriptorId='1941'));
+    </ControlDataInsertion>
+</TestCase>
