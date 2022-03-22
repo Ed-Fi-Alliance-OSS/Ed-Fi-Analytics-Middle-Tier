@@ -24,8 +24,8 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,SexDescriptor.CodeValue AS SexDescriptor
 		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorKey
 		,COALESCE(RaceDescriptor.CodeValue, '') AS RaceDescriptor
-		,COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS HispanicLatinoEthnicity
-		,COALESCE(Candidate.EconomicDisadvantaged, 0) AS EconomicDisadvantaged
+		,CAST(COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS BIT) AS HispanicLatinoEthnicity
+		,CAST(COALESCE(Candidate.EconomicDisadvantaged, 0) AS BIT) AS EconomicDisadvantaged
 		,COALESCE(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear, 0) AS Cohort
 		,CAST(CASE WHEN ReasonExitedDescriptor.CodeValue = 'Completed' THEN 1 ELSE 0 END AS BIT) ProgramComplete
 		,COALESCE(Student.StudentUSI, 0) AS StudentUSI

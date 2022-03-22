@@ -41,11 +41,11 @@
   </Result>
   <Result>
     <ColumnName>HispanicLatinoEthnicity</ColumnName>
-    <DataType>int</DataType>
+    <DataType>bit</DataType>
   </Result>
   <Result>
     <ColumnName>EconomicDisadvantaged</ColumnName>
-    <DataType>int</DataType>
+    <DataType>bit</DataType>
   </Result>
   <Result>
     <ColumnName>Cohort</ColumnName>
