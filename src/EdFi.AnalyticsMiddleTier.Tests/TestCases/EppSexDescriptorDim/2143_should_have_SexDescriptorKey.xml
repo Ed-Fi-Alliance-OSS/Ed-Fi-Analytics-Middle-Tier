@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT SexDescriptorKey
+      FROM analytics.epp_SexDescriptorDim
+      WHERE SexDescriptorKey = '2143'
+  </Query>
+  <Result>
+      <SexDescriptorKey>2143</SexDescriptorKey>
+  </Result>
+</TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT LastModifiedDate
+      FROM analytics.epp_SexDescriptorDim
+      WHERE SexDescriptorKey = '2143'
+  </Query>
+  <Result>
+      <LastModifiedDate>2021-11-03T14:22:08</LastModifiedDate>
+  </Result>
+</TestCase>

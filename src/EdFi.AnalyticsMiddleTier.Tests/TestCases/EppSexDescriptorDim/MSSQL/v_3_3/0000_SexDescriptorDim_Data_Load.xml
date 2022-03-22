@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+        SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,CreateDate,LastModifiedDate,Id,ChangeVersion)(SELECT TOP 1'2143','uri://ed-fi.org/SexDescriptor','Female','Female','Female',NULL,NULL,NULL,'2021-11-03 14:22:08.1804992','2021-11-03 14:22:08','CE232EDC-188D-441C-AD76-ED1FCE80B633','2203'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2143'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+        INSERT INTO edfi.SexDescriptor(SexDescriptorId)(SELECT TOP 1'2143'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SexDescriptor WHERE SexdescriptorId = 2143));
+    </ControlDataInsertion>
+</TestCase>
