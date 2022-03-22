@@ -20,9 +20,9 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,Candidate.FirstName
 		,Candidate.LastSurname
-		,Candidate.SexDescriptorId AS SexDescriptorKey
+		,CAST(Candidate.SexDescriptorId AS VARCHAR) AS SexDescriptorKey
 		,SexDescriptor.CodeValue AS SexDescriptor
-		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorKey
+		,COALESCE(CAST(CandidateRace.RaceDescriptorId AS VARCHAR), '') AS RaceDescriptorKey
 		,COALESCE(RaceDescriptor.CodeValue, '') AS RaceDescriptor
 		,CAST(COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS BIT) AS HispanicLatinoEthnicity
 		,CAST(COALESCE(Candidate.EconomicDisadvantaged, 0) AS BIT) AS EconomicDisadvantaged

@@ -9,6 +9,6 @@
     WHERE CandidateKey = '1000043'
   </Query>
   <Result>
-    <RaceDescriptorKey>0</RaceDescriptorKey>
+    <RaceDescriptorKey></RaceDescriptorKey>
   </Result>
 </TestCase>

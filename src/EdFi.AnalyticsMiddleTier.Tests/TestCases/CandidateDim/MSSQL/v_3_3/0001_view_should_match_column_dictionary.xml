@@ -25,7 +25,7 @@
   </Result>
   <Result>
     <ColumnName>SexDescriptorKey</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>SexDescriptor</ColumnName>
@@ -33,7 +33,7 @@
   </Result>
   <Result>
     <ColumnName>RaceDescriptorKey</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>RaceDescriptor</ColumnName>

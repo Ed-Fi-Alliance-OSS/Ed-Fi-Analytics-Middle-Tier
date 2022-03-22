@@ -196,9 +196,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
-            public void Then_RaceDescriptorKey_should_be_zero()
+            public void Then_RaceDescriptorKey_should_be_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_RaceDescriptorKey_should_be_zero.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_RaceDescriptorKey_should_be_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

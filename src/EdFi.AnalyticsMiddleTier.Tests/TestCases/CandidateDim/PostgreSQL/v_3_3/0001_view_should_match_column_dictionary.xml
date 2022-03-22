@@ -25,7 +25,7 @@
   </Result>
   <Result>
     <ColumnName>sexdescriptorkey</ColumnName>
-    <DataType>integer</DataType>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>sexdescriptor</ColumnName>
@@ -33,7 +33,7 @@
   </Result>
   <Result>
     <ColumnName>racedescriptorkey</ColumnName>
-    <DataType>integer</DataType>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>racedescriptor</ColumnName>
