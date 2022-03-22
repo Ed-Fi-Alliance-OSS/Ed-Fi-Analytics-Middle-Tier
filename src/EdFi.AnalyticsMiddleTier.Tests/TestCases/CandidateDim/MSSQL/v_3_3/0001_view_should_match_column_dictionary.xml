@@ -24,11 +24,11 @@
     <DataType>nvarchar</DataType>
   </Result>
   <Result>
-    <ColumnName>SexDescriptorId</ColumnName>
+    <ColumnName>SexDescriptorKey</ColumnName>
     <DataType>int</DataType>
   </Result>
   <Result>
-    <ColumnName>RaceDescriptorId</ColumnName>
+    <ColumnName>RaceDescriptorKey</ColumnName>
     <DataType>int</DataType>
   </Result>
   <Result>

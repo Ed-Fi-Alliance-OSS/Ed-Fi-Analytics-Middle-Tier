@@ -20,8 +20,8 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,Candidate.FirstName
 		,Candidate.LastSurname
-		,Candidate.SexDescriptorId
-		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorId
+		,Candidate.SexDescriptorId AS SexDescriptorKey
+		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorKey
 		,COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS HispanicLatinoEthnicity
 		,COALESCE(Candidate.EconomicDisadvantaged, 0) AS EconomicDisadvantaged
 		,COALESCE(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear, 0) AS Cohort

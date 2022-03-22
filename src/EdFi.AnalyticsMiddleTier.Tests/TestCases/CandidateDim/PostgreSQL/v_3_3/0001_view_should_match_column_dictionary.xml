@@ -24,11 +24,11 @@
     <DataType>character varying</DataType>
   </Result>
   <Result>
-    <ColumnName>sexdescriptorid</ColumnName>
+    <ColumnName>sexdescriptorkey</ColumnName>
     <DataType>integer</DataType>
   </Result>
   <Result>
-    <ColumnName>racedescriptorid</ColumnName>
+    <ColumnName>racedescriptorkey</ColumnName>
     <DataType>integer</DataType>
   </Result>
   <Result>

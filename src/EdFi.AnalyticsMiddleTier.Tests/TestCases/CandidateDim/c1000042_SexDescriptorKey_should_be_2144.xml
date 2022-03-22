@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT SexDescriptorId
+    SELECT SexDescriptorKey
     FROM analytics.EPP_CandidateDim
     WHERE CandidateKey = '1000042'
   </Query>
   <Result>
-    <SexDescriptorId>2144</SexDescriptorId>
+    <SexDescriptorKey>2144</SexDescriptorKey>
   </Result>
 </TestCase>
