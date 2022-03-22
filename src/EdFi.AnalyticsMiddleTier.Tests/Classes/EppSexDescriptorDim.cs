@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class EppSexDescriptorDim
     {
-        public int SexDescriptorId { get; set; }
+        public string SexDescriptorKey { get; set; }
         public string CodeValue { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }
