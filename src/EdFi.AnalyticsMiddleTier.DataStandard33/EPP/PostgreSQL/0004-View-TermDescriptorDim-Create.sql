@@ -7,9 +7,11 @@ DROP VIEW IF EXISTS analytics.epp_TermDescriptorDim;
 
 CREATE VIEW analytics.epp_TermDescriptorDim AS
 
-SELECT TermDescriptor.TermDescriptorId as TermDescriptorKey
+SELECT
+	CAST(TermDescriptor.TermDescriptorId AS VARCHAR) AS TermDescriptorKey
 	,Descriptor.CodeValue
 	,Descriptor.LastModifiedDate
-FROM edfi.TermDescriptor
+FROM
+	edfi.TermDescriptor
 	INNER JOIN edfi.Descriptor
-	ON TermDescriptor.TermDescriptorId = Descriptor.DescriptorId;
+		ON TermDescriptor.TermDescriptorId = Descriptor.DescriptorId;
