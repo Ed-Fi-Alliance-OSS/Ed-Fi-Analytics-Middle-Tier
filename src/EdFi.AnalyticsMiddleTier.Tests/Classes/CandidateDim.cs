@@ -15,7 +15,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string FirstName { get; set; }
         public string LastSurname { get; set; }
         public int SexDescriptorKey { get; set; }
+        public string SexDescriptor { get; set; }
         public int? RaceDescriptorKey { get; set; }
+        public string RaceDescriptor { get; set; }
         public bool? HispanicLatinoEthnicity { get; set; }
         public bool? EconomicDisadvantaged { get; set; }
         public int Cohort { get; set; }

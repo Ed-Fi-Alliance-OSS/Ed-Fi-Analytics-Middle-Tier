@@ -146,9 +146,23 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
+            public void Then_RaceDescriptor_should_be_1938()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_RaceDescriptor_should_be_1938.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_SexDescriptorKey_should_be_2144()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_SexDescriptorKey_should_be_2144.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_SexDescriptor_should_be_2144()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_SexDescriptor_should_be_2144.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -185,6 +199,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             public void Then_RaceDescriptorKey_should_be_zero()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_RaceDescriptorKey_should_be_zero.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_RaceDescriptor_should_be_zero()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_RaceDescriptor_should_be_zero.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

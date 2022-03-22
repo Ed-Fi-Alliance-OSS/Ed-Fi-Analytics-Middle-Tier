@@ -9,7 +9,9 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 		,Candidate.FirstName
 		,Candidate.LastSurname
 		,Candidate.SexDescriptorId AS SexDescriptorKey
+		,SexDescriptor.CodeValue AS SexDescriptor
 		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorKey
+		,COALESCE(RaceDescriptor.CodeValue, '') AS RaceDescriptor
 		,COALESCE(Candidate.HispanicLatinoEthnicity, false) AS HispanicLatinoEthnicity
 		,COALESCE(Candidate.EconomicDisadvantaged, false) AS EconomicDisadvantaged
 		,COALESCE(ccy.SchoolYear, 0) AS Cohort
@@ -32,8 +34,9 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 
 	FROM tpdm.Candidate
 	JOIN tpdm.CandidateEducatorPreparationProgramAssociation ON CandidateEducatorPreparationProgramAssociation.CandidateIdentifier = Candidate.CandidateIdentifier 
+	JOIN edfi.Descriptor SexDescriptor ON Candidate.SexDescriptorId = SexDescriptor.DescriptorId
 	LEFT JOIN tpdm.CandidateRace ON CandidateRace.CandidateIdentifier = Candidate.CandidateIdentifier 
-	LEFT JOIN edfi.Descriptor ON Descriptor.DescriptorId = CandidateRace.RaceDescriptorId 
+	LEFT JOIN edfi.Descriptor RaceDescriptor ON RaceDescriptor.DescriptorId = CandidateRace.RaceDescriptorId 
 	LEFT JOIN edfi.Student ON Student.PersonId = Candidate.PersonId 
 	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ccy ON ccy.CandidateIdentifier = Candidate.CandidateIdentifier
         and ccy.ProgramName = CandidateEducatorPreparationProgramAssociation.ProgramName
@@ -45,8 +48,10 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 	GROUP BY Candidate.CandidateIdentifier 
 		,Candidate.FirstName 
 		,Candidate.LastSurname 
-		,Candidate.SexDescriptorId 
-		,CandidateRace.RaceDescriptorId 
+		,Candidate.SexDescriptorId
+		,SexDescriptor.CodeValue
+		,CandidateRace.RaceDescriptorId
+		,RaceDescriptor.CodeValue
 		,Candidate.HispanicLatinoEthnicity 
 		,Candidate.EconomicDisadvantaged 
 		,ccy.SchoolYear

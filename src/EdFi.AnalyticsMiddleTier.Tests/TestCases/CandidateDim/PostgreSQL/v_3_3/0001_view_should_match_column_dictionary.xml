@@ -28,8 +28,16 @@
     <DataType>integer</DataType>
   </Result>
   <Result>
+    <ColumnName>sexdescriptor</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
     <ColumnName>racedescriptorkey</ColumnName>
     <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>racedescriptor</ColumnName>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>hispaniclatinoethnicity</ColumnName>

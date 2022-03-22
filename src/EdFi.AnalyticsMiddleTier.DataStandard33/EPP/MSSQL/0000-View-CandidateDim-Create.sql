@@ -21,7 +21,9 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
 		,Candidate.FirstName
 		,Candidate.LastSurname
 		,Candidate.SexDescriptorId AS SexDescriptorKey
+		,SexDescriptor.CodeValue AS SexDescriptor
 		,COALESCE(CandidateRace.RaceDescriptorId, 0) AS RaceDescriptorKey
+		,COALESCE(RaceDescriptor.CodeValue, '') AS RaceDescriptor
 		,COALESCE(Candidate.HispanicLatinoEthnicity, 0) AS HispanicLatinoEthnicity
 		,COALESCE(Candidate.EconomicDisadvantaged, 0) AS EconomicDisadvantaged
 		,COALESCE(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear, 0) AS Cohort
@@ -44,8 +46,9 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
 
 	FROM tpdm.Candidate
 	JOIN tpdm.CandidateEducatorPreparationProgramAssociation ON CandidateEducatorPreparationProgramAssociation.CandidateIdentifier = Candidate.CandidateIdentifier 
+	JOIN edfi.Descriptor SexDescriptor ON Candidate.SexDescriptorId = SexDescriptor.DescriptorId
 	LEFT JOIN tpdm.CandidateRace ON CandidateRace.CandidateIdentifier = Candidate.CandidateIdentifier 
-	LEFT JOIN edfi.Descriptor ON Descriptor.DescriptorId = CandidateRace.RaceDescriptorId 
+	LEFT JOIN edfi.Descriptor RaceDescriptor ON RaceDescriptor.DescriptorId = CandidateRace.RaceDescriptorId 
 	LEFT JOIN edfi.Student ON Student.PersonId = Candidate.PersonId
 	LEFT JOIN tpdm.CandidateEducatorPreparationProgramAssociationCohortYear ON CandidateEducatorPreparationProgramAssociationCohortYear.CandidateIdentifier = Candidate.CandidateIdentifier
         and CandidateEducatorPreparationProgramAssociationCohortYear.ProgramName = CandidateEducatorPreparationProgramAssociation.ProgramName
@@ -57,8 +60,10 @@ SELECT Candidate.CandidateIdentifier AS CandidateKey
 	GROUP BY Candidate.CandidateIdentifier 
 		,Candidate.FirstName 
 		,Candidate.LastSurname 
-		,Candidate.SexDescriptorId 
-		,CandidateRace.RaceDescriptorId 
+		,Candidate.SexDescriptorId
+		,SexDescriptor.CodeValue
+		,CandidateRace.RaceDescriptorId
+		,RaceDescriptor.CodeValue
 		,Candidate.HispanicLatinoEthnicity 
 		,Candidate.EconomicDisadvantaged 
 		,CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear

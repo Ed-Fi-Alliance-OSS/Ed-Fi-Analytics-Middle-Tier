@@ -28,8 +28,16 @@
     <DataType>int</DataType>
   </Result>
   <Result>
+    <ColumnName>SexDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
     <ColumnName>RaceDescriptorKey</ColumnName>
     <DataType>int</DataType>
+  </Result>
+  <Result>
+    <ColumnName>RaceDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
   </Result>
   <Result>
     <ColumnName>HispanicLatinoEthnicity</ColumnName>

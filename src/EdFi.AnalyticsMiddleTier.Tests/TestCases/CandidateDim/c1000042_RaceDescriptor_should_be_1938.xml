@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT RaceDescriptor
+    FROM analytics.EPP_CandidateDim
+    WHERE CandidateKey = '1000042'
+  </Query>
+  <Result>
+    <RaceDescriptor>Black - African American</RaceDescriptor>
+  </Result>
+</TestCase>
