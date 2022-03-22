@@ -4,10 +4,10 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT AidAmount
-		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000045'
-	</Query>
+        SELECT AidAmount
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000045'
+    </Query>
 	<Result>
 		<AidAmount>3675.2100</AidAmount>
 	</Result>

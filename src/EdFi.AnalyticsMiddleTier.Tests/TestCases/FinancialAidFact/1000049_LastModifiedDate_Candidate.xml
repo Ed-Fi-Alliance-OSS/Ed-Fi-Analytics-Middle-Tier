@@ -4,10 +4,10 @@
 	<ControlDataInsertion>
 	</ControlDataInsertion>
 	<Query>
-		SELECT LastModifiedDate
-		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000049'
-	</Query>
+        SELECT LastModifiedDate
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000049'
+    </Query>
 	<Result>
 		<LastModifiedDate>2021-11-12T17:58:27</LastModifiedDate>
 	</Result>

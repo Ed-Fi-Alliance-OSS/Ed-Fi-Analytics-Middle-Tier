@@ -6,7 +6,7 @@
 	<Query>
 		SELECT LastModifiedDate
 		FROM analytics.EPP_FinancialAidFact
-		WHERE CandidateIdentifier='1000045'
+		WHERE CandidateKey='1000045'
 	</Query>
 	<Result>
 		<LastModifiedDate>2021-11-12T18:00:16</LastModifiedDate>
