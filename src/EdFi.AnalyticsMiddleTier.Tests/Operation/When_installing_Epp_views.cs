@@ -50,7 +50,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("epp_TermDescriptorDim")]
         [TestCase("EPP_EppDim")]
         [TestCase("EPP_FinancialAidFact")]
-        [TestCase("epp_RaceDim")]
+        [TestCase("epp_RaceDescriptorDim")]
         public void Then_should_create_analytics_epp_views(string viewName) =>
             DataStandard.ViewExists(viewName).ShouldBe(true);
 

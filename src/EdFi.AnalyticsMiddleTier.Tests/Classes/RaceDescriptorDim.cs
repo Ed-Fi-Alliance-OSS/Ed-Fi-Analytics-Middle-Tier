@@ -9,7 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace EdFi.AnalyticsMiddleTier.Tests.Classes
 {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
-    public class RaceDim
+    public class RaceDescriptorDim
     {
         public int RaceDescriptorKey { get; set; }
         public string CodeValue { get; set; }

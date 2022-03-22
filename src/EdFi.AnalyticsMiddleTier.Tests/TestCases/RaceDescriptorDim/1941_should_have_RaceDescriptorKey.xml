@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT COUNT(1) AS CountValue
-    FROM analytics.epp_RaceDim
+    SELECT RaceDescriptorKey
+    FROM analytics.epp_RaceDescriptorDim
     WHERE RaceDescriptorKey = 1941
   </Query>
   <Result>
-    <CountValue>1</CountValue>
+    <RaceDescriptorKey>1941</RaceDescriptorKey>
   </Result>
 </TestCase>

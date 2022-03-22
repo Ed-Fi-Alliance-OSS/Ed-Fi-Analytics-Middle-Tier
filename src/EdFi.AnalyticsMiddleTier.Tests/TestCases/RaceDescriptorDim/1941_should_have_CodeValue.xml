@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT LastModifiedDate
-    FROM analytics.epp_RaceDim
+    SELECT CodeValue
+    FROM analytics.epp_RaceDescriptorDim
     WHERE RaceDescriptorKey = 1941
   </Query>
   <Result>
-      <LastModifiedDate>2020-01-23T11:36:26</LastModifiedDate>
+      <CodeValue>White</CodeValue>
   </Result>
 </TestCase>

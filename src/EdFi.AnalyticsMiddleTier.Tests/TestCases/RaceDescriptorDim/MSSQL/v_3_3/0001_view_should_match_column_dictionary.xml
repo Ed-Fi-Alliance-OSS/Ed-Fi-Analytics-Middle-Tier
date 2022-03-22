@@ -8,7 +8,7 @@
       DATA_TYPE AS DataType
       FROM information_schema.columns
       WHERE table_schema = 'analytics'
-      AND table_name = 'epp_RaceDim'
+      AND table_name = 'epp_RaceDescriptorDim'
       ORDER BY ORDINAL_POSITION ASC;
     </Query>
     <Result>

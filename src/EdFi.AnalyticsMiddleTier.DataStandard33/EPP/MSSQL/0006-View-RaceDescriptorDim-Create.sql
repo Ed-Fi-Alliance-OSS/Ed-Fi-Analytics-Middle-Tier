@@ -9,11 +9,11 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF OBJECT_ID('analytics.epp_RaceDim') IS NOT NULL
-	DROP VIEW analytics.epp_RaceDim
+IF OBJECT_ID('analytics.epp_RaceDescriptorDim') IS NOT NULL
+	DROP VIEW analytics.epp_RaceDescriptorDim
 GO
 
-CREATE VIEW analytics.epp_RaceDim AS
+CREATE VIEW analytics.epp_RaceDescriptorDim AS
 
 SELECT
 	RaceDescriptor.RaceDescriptorId as RaceDescriptorKey

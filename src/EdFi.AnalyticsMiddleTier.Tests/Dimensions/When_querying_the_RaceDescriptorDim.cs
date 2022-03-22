@@ -10,13 +10,13 @@ using NUnit.Framework;
 using Shouldly;
 
 // ReSharper disable once CheckNamespace
-namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.RaceDimTestGroup
+namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.RaceDescriptorDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_RaceDim_view : When_querying_a_view_ds3_3
+    public abstract class When_querying_the_RaceDescriptorDim_view : When_querying_a_view_ds3_3
     {
-        protected const string TestCasesFolder = "TestCases.RaceDim";
-        protected const string TestCasesDataFileName = "0000_RaceDim_Data_Load.xml";
+        protected const string TestCasesFolder = "TestCases.RaceDescriptorDim";
+        protected const string TestCasesDataFileName = "0000_RaceDescriptorDim_Data_Load.xml";
 
         [Test]
         public void Then_view_should_match_column_dictionary()
@@ -26,16 +26,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.RaceDimTestGroup
         }
         
         [SetUpFixture]
-        public class SetupRaceDimTestCase
-            : When_querying_the_RaceDim_view
+        public class SetupRaceDescriptorDimTestCase
+            : When_querying_the_RaceDescriptorDim_view
         {
             [OneTimeSetUp]
-            public void PrepareDatabase() => PrepareTestData<RaceDim>(TestCasesFolder, TestCasesDataFileName, Component.EPP);
+            public void PrepareDatabase() => PrepareTestData<RaceDescriptorDim>(TestCasesFolder, TestCasesDataFileName, Component.EPP);
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class Given_Race_1941
-        : When_querying_the_RaceDim_view
+        : When_querying_the_RaceDescriptorDim_view
         {
             public Given_Race_1941(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "1941";
@@ -50,20 +50,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.RaceDimTestGroup
             [Test]
             public void Then_should_have_RaceDescriptorKey()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<RaceDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_RaceDescriptorKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<RaceDescriptorDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_RaceDescriptorKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_CodeValue()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<RaceDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CodeValue.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<RaceDescriptorDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CodeValue.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
             public void Then_should_have_LastModifiedDate()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<RaceDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<RaceDescriptorDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LastModifiedDate.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

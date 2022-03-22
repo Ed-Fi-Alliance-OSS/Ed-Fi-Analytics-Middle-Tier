@@ -3,9 +3,9 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-DROP VIEW IF EXISTS analytics.epp_RaceDim;
+DROP VIEW IF EXISTS analytics.epp_RaceDescriptorDim;
 
-CREATE VIEW analytics.epp_RaceDim AS
+CREATE VIEW analytics.epp_RaceDescriptorDim AS
 
 SELECT
 	RaceDescriptor.RaceDescriptorId as RaceDescriptorKey
