@@ -17,9 +17,9 @@ CREATE VIEW analytics.EPP_CandidateDim AS
 		,COALESCE(CAST(CandidateEducatorPreparationProgramAssociationCohortYear.SchoolYear AS VARCHAR), '') AS Cohort
 		,CAST(CASE 
 			WHEN ReasonExitedDescriptor.CodeValue = 'Completed' 
-				THEN 1 
-			ELSE 0 
-		END AS BIT) ProgramComplete
+				THEN 1
+			ELSE 0
+		END AS Boolean) ProgramComplete
 		,COALESCE(CAST(Student.StudentUSI AS VARCHAR), '') AS StudentUSI
 		,CandidateEducatorPreparationProgramAssociation.ProgramName
 		,CandidateEducatorPreparationProgramAssociation.BeginDate
