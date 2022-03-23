@@ -789,6 +789,97 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AllStudentSchoolDimTestGroup
             }
 
             [Test]
+            public void Then_should_have_IsEnrolled()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<AllStudentSchoolDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_IsEnrolled.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_DeviceAccess_NA()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_DeviceAccess_NA.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            [Test]
+            public void Then_should_have_DigitalDevice_NA()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_DigitalDevice_NA.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            [Test]
+            public void Then_should_have_InternetAccessInResidence_NA()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessInResidence_NA.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            [Test]
+            public void Then_should_have_InternetAccessTypeInResidence_NA()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessTypeInResidence_NA.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+            [Test]
+            public void Then_should_have_InternetPerformance_NA()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetPerformance_NA.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+            [Test]
             public void Then_should_have_Sex_empty()
             {
                 if (!DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))

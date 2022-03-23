@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT ExitWithdrawDate
+      SELECT IsEnrolled
       FROM analytics.AllStudentSchoolDim
-      WHERE AllStudentSchoolKey = '189854-867530011-20110920';
+      WHERE AllStudentSchoolKey = '190034-867530022-20110822';
   </Query>
   <Result>
-      <ExitWithdrawDate></ExitWithdrawDate>
+      <IsEnrolled>1</IsEnrolled>
   </Result>
 </TestCase>
