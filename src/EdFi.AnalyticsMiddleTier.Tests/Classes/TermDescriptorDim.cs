@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class TermDescriptorDim
     {
-        public int TermDescriptorId { get; set; }
+        public string TermDescriptorKey { get; set; }
         public string CodeValue { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }

@@ -13,7 +13,7 @@
     </Query>
     <Result>
         <ColumnName>termdescriptorkey</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>codevalue</ColumnName>

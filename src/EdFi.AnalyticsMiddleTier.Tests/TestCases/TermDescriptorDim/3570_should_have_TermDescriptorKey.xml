@@ -6,7 +6,7 @@
   <Query>
       SELECT TermDescriptorKey
       FROM analytics.epp_TermDescriptorDim
-      WHERE TermDescriptorKey = 3570
+      WHERE TermDescriptorKey = '3570'
   </Query>
   <Result>
       <TermDescriptorKey>3570</TermDescriptorKey>

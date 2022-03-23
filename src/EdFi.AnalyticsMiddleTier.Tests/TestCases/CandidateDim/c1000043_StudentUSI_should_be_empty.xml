@@ -9,6 +9,6 @@
     WHERE CandidateKey = '1000043'
   </Query>
   <Result>
-    <StudentUSI>0</StudentUSI>
+    <StudentUSI></StudentUSI>
   </Result>
 </TestCase>

@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-      SELECT CodeValue
-      FROM analytics.epp_TermDescriptorDim
-      WHERE TermDescriptorKey = '3570'
+    SELECT RaceDescriptorKey
+    FROM analytics.EPP_CandidateDim
+    WHERE CandidateKey = '1000043'
   </Query>
   <Result>
-      <CodeValue>Fall Semester</CodeValue>
+    <RaceDescriptorKey></RaceDescriptorKey>
   </Result>
 </TestCase>
