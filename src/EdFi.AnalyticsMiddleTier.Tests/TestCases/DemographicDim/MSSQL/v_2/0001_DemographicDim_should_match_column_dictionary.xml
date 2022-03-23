@@ -23,4 +23,8 @@
         <ColumnName>DemographicLabel</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+	<Result>
+		<ColumnName>ShortDescription</ColumnName>
+		<DataType>nvarchar</DataType>
+	</Result>
 </TestCase>

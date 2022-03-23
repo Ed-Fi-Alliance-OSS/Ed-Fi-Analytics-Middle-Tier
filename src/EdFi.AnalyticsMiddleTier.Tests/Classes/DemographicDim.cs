@@ -13,5 +13,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string DemographicKey { get; set; }
         public string DemographicParentKey { get; set; }
         public string DemographicLabel { get; set; }
+        public string ShortDescription { get; set; }
     }
 }
