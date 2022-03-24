@@ -687,6 +687,90 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AllStudentSchoolDimTestGroup
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_LimitedEnglishProficiency.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_should_have_DeviceAccess()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_DeviceAccess.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            [Test]
+            public void Then_should_have_DigitalDevice()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_DigitalDevice.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            [Test]
+            public void Then_should_have_InternetAccessInResidence()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessInResidence.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+
+            [Test]
+            public void Then_should_have_InternetAccessTypeInResidence()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetAccessTypeInResidence.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
+            [Test]
+            public void Then_should_have_InternetPerformance()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore(
+                        $"The StudentSchoolDim view does not include digital access information in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
+                }
+                else
+                {
+                    (bool success, string errorMessage) testResult =
+                        DataStandard.RunTestCase<StudentSchoolDim>(
+                            $"{TestCasesFolder}.{_caseIdentifier}_should_have_InternetPerformance.xml");
+                    testResult.success.ShouldBe(true, testResult.errorMessage);
+                }
+            }
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]

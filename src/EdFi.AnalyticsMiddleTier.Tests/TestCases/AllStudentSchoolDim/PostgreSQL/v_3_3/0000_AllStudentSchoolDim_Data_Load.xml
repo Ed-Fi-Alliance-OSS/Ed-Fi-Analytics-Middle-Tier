@@ -442,7 +442,18 @@
         ('867530','10100494','Device Access','School Provided - Dedicated__'),
 
         -- This record is for a different student
-        ('867530011','10133197','Device Access','School Provided - DedicatedX')
+        ('867530011','10133197','Internet Access In Residence','Yes (Other)'),
+        ('867530011','10133197','Internet Access Type In Residence','ResidentialBroadband (Other)'),
+        ('867530011','10133197','Internet Performance In Residence','Yes - No issues (Other)'),
+        ('867530011','10133197','Digital Device','Chromebook (Other)'),
+        ('867530011','10133197','Device Access','School Provided - Dedicated (Other)'),
+
+        --Add rows by district
+        ('867530','100050862','Internet Access In Residence','Yes (dist)'),
+        ('867530','100050862','Internet Access Type In Residence','ResidentialBroadband (dist)'),
+        ('867530','100050862','Internet Performance In Residence','Yes - No issues (dist)'),
+        ('867530','100050862','Digital Device','Chromebook (dist)'),
+        ('867530','100050862','Device Access','School Provided-Dedicated (dist)')
 
     </ControlDataInsertion>
 </TestCase>

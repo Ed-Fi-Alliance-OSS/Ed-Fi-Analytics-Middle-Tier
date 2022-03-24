@@ -499,8 +499,19 @@
         (@districtId,@studentUsi1,'Device Access','School Provided - Dedicated__'),
 
         -- This record is for a different student
-        (@schoolId1,@studentUsi2,'Device Access','School Provided - DedicatedX')
+        (@schoolId1,@studentUsi2,'Internet Access In Residence','Yes (Other)'),
+        (@schoolId1,@studentUsi2,'Internet Access Type In Residence','ResidentialBroadband (Other)'),
+        (@schoolId1,@studentUsi2,'Internet Performance In Residence','Yes - No issues (Other)'),
+        (@schoolId1,@studentUsi2,'Digital Device','Chromebook (Other)'),
+        (@schoolId1,@studentUsi2,'Device Access','School Provided - Dedicated (Other)'),
 
         -- @studentUsi3 is in @schoolId1 but has no indicator records
+
+        --Add rows by district
+        ('867530','100050862','Internet Access In Residence','Yes (dist)'),
+        ('867530','100050862','Internet Access Type In Residence','ResidentialBroadband (dist)'),
+        ('867530','100050862','Internet Performance In Residence','Yes - No issues (dist)'),
+        ('867530','100050862','Digital Device','Chromebook (dist)'),
+        ('867530','100050862','Device Access','School Provided-Dedicated (dist)')
     </ControlDataInsertion>
 </TestCase>

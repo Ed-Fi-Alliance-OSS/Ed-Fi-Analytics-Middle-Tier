@@ -51,11 +51,11 @@ AS
                     THEN SexTypeSchool.CodeValue
                 ELSE SexTypeDist.CodeValue
                 END, '') AS Sex
-        ,COALESCE(InternetAccessInResidence.Indicator, 'n/a') AS InternetAccessInResidence
-        ,COALESCE(InternetAccessTypeInResidence.Indicator, 'n/a') AS InternetAccessTypeInResidence
-        ,COALESCE(InternetPerformance.Indicator, 'n/a') AS InternetPerformance
-        ,COALESCE(DigitalDevice.Indicator, 'n/a') AS DigitalDevice
-        ,COALESCE(DeviceAccess.Indicator, 'n/a') AS DeviceAccess
+        ,COALESCE(InternetAccessInResidence.Indicator, InternetAccessInResidenceDistrict.Indicator, 'n/a') AS InternetAccessInResidence
+        ,COALESCE(InternetAccessTypeInResidence.Indicator, InternetAccessTypeInResidenceDistrict.Indicator, 'n/a') AS InternetAccessTypeInResidence
+        ,COALESCE(InternetPerformance.Indicator, InternetPerformanceDistrict.Indicator, 'n/a') AS InternetPerformance
+        ,COALESCE(DigitalDevice.Indicator, DigitalDeviceDistrict.Indicator, 'n/a') AS DigitalDevice
+        ,COALESCE(DeviceAccess.Indicator, DeviceAccessDistrict.Indicator, 'n/a') AS DeviceAccess
         ,CAST((CASE WHEN StudentSchoolAssociation.ExitWithdrawDate IS NULL
             OR StudentSchoolAssociation.ExitWithdrawDate > GETDATE()
             THEN 1
@@ -63,8 +63,7 @@ AS
             END
           ) AS BIT) AS IsEnrolled
         ,COALESCE(cast(StudentSchoolAssociation.ExitWithdrawDate AS VARCHAR(100)), '') AS ExitWithdrawDate
-        ,(
-            SELECT MAX(MaxLastModifiedDate)
+        ,(SELECT MAX(MaxLastModifiedDate)
             FROM (
                 VALUES (Student.LastModifiedDate)
                     ,(studentEdOrg.LastModifiedDate)
@@ -92,38 +91,48 @@ AS
         ON districtEdOrg.LimitedEnglishProficiencyDescriptorId = LimitedEnglishDescriptorDist.DescriptorId
     LEFT OUTER JOIN edfi.Descriptor AS SexTypeDist
         ON districtEdOrg.SexDescriptorId = SexTypeDist.DescriptorId
+    --InternetAccessInResidence
     LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessInResidence
         ON studentEdOrg.StudentUSI = InternetAccessInResidence.StudentUSI
             AND studentEdOrg.EducationOrganizationId = InternetAccessInResidence.EducationOrganizationId
-            AND (
-                InternetAccessInResidence.StudentUSI IS NULL
-                OR InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence'
-                )
-    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessTypeInResidence
-        ON studentEdOrg.StudentUSI = InternetAccessTypeInResidence.StudentUSI
-            AND studentEdOrg.EducationOrganizationId = InternetAccessTypeInResidence.EducationOrganizationId
-            AND (
-                InternetAccessTypeInResidence.StudentUSI IS NULL
-                OR InternetAccessTypeInResidence.IndicatorName = 'InternetAccessTypeInResidence'
-                )
-    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetPerformance
-        ON studentEdOrg.StudentUSI = InternetPerformance.StudentUSI
-            AND studentEdOrg.EducationOrganizationId = InternetPerformance.EducationOrganizationId
-            AND (
-                InternetPerformance.StudentUSI IS NULL
-                OR InternetPerformance.IndicatorName = 'InternetPerformance'
-                )
-    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS DigitalDevice
-        ON studentEdOrg.StudentUSI = DigitalDevice.StudentUSI
-            AND studentEdOrg.EducationOrganizationId = DigitalDevice.EducationOrganizationId
-            AND (
-                DigitalDevice.StudentUSI IS NULL
-                OR DigitalDevice.IndicatorName = 'DigitalDevice'
-                )
-    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccess
-        ON studentEdOrg.StudentUSI = DeviceAccess.StudentUSI
-            AND studentEdOrg.EducationOrganizationId = DeviceAccess.EducationOrganizationId
-            AND (
-                DeviceAccess.StudentUSI IS NULL
-                OR DeviceAccess.IndicatorName = 'DeviceAccess'
-                );
+            AND InternetAccessInResidence.IndicatorName = 'InternetAccessInResidence'
+    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessInResidenceDistrict
+        ON districtEdOrg.StudentUSI = InternetAccessInResidenceDistrict.StudentUSI
+            AND districtEdOrg.EducationOrganizationId = InternetAccessInResidenceDistrict.EducationOrganizationId
+            AND InternetAccessInResidenceDistrict.IndicatorName = 'InternetAccessInResidence'
+    --InternetAccessTypeInResidence
+        LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessTypeInResidence
+            ON studentEdOrg.StudentUSI = InternetAccessTypeInResidence.StudentUSI
+                AND studentEdOrg.EducationOrganizationId = InternetAccessTypeInResidence.EducationOrganizationId
+                AND InternetAccessTypeInResidence.IndicatorName = 'InternetAccessTypeInResidence'
+    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetAccessTypeInResidenceDistrict
+        ON districtEdOrg.StudentUSI = InternetAccessTypeInResidenceDistrict.StudentUSI
+            AND districtEdOrg.EducationOrganizationId = InternetAccessTypeInResidenceDistrict.EducationOrganizationId
+            AND InternetAccessTypeInResidenceDistrict.IndicatorName = 'InternetAccessTypeInResidence'
+    --InternetPerformance
+        LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetPerformance
+            ON studentEdOrg.StudentUSI = InternetPerformance.StudentUSI
+                AND studentEdOrg.EducationOrganizationId = InternetPerformance.EducationOrganizationId
+                AND InternetPerformance.IndicatorName = 'InternetPerformance'
+    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS InternetPerformanceDistrict
+        ON districtEdOrg.StudentUSI = InternetPerformanceDistrict.StudentUSI
+            AND districtEdOrg.EducationOrganizationId = InternetPerformanceDistrict.EducationOrganizationId
+            AND InternetPerformanceDistrict.IndicatorName = 'InternetPerformance'
+    --DigitalDevice
+        LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS DigitalDevice
+            ON studentEdOrg.StudentUSI = DigitalDevice.StudentUSI
+                AND studentEdOrg.EducationOrganizationId = DigitalDevice.EducationOrganizationId
+                AND DigitalDevice.IndicatorName = 'DigitalDevice'
+    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS DigitalDeviceDistrict
+        ON districtEdOrg.StudentUSI = DigitalDeviceDistrict.StudentUSI
+            AND districtEdOrg.EducationOrganizationId = DigitalDeviceDistrict.EducationOrganizationId
+            AND DigitalDeviceDistrict.IndicatorName = 'DigitalDevice'
+    --DeviceAccess
+        LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccess
+            ON studentEdOrg.StudentUSI = DeviceAccess.StudentUSI
+                AND studentEdOrg.EducationOrganizationId = DeviceAccess.EducationOrganizationId
+            AND DeviceAccess.IndicatorName = 'DeviceAccess'
+    LEFT OUTER JOIN edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccessDistrict
+        ON districtEdOrg.StudentUSI = DeviceAccessDistrict.StudentUSI
+            AND districtEdOrg.EducationOrganizationId = DeviceAccessDistrict.EducationOrganizationId
+            AND DeviceAccessDistrict.IndicatorName = 'DeviceAccess';
