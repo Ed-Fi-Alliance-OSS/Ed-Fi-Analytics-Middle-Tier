@@ -24,12 +24,20 @@
     <DataType>character varying</DataType>
   </Result>
   <Result>
-    <ColumnName>sexdescriptorid</ColumnName>
-    <DataType>integer</DataType>
+    <ColumnName>sexdescriptorkey</ColumnName>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
-    <ColumnName>racedescriptorid</ColumnName>
-    <DataType>integer</DataType>
+    <ColumnName>sexdescriptor</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>racedescriptorkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>racedescriptor</ColumnName>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>hispaniclatinoethnicity</ColumnName>
@@ -41,15 +49,15 @@
   </Result>
   <Result>
     <ColumnName>cohort</ColumnName>
-    <DataType>integer</DataType>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>programcomplete</ColumnName>
-    <DataType>bit</DataType>
+    <DataType>boolean</DataType>
   </Result>
   <Result>
     <ColumnName>studentusi</ColumnName>
-    <DataType>integer</DataType>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>programname</ColumnName>

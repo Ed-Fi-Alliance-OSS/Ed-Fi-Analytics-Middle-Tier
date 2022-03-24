@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT RaceDescriptorId
-    FROM analytics.EPP_CandidateDim
-    WHERE CandidateKey = '1000042'
+    SELECT RaceDescriptorKey
+    FROM analytics.epp_RaceDescriptorDim
+    WHERE RaceDescriptorKey = '1941'
   </Query>
   <Result>
-    <RaceDescriptorId>1938</RaceDescriptorId>
+    <RaceDescriptorKey>1941</RaceDescriptorKey>
   </Result>
 </TestCase>

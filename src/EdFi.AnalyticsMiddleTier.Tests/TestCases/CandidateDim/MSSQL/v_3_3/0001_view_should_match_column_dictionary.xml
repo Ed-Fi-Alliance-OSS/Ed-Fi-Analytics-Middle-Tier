@@ -24,24 +24,32 @@
     <DataType>nvarchar</DataType>
   </Result>
   <Result>
-    <ColumnName>SexDescriptorId</ColumnName>
-    <DataType>int</DataType>
+    <ColumnName>SexDescriptorKey</ColumnName>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
-    <ColumnName>RaceDescriptorId</ColumnName>
-    <DataType>int</DataType>
+    <ColumnName>SexDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>RaceDescriptorKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>RaceDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
   </Result>
   <Result>
     <ColumnName>HispanicLatinoEthnicity</ColumnName>
-    <DataType>int</DataType>
+    <DataType>bit</DataType>
   </Result>
   <Result>
     <ColumnName>EconomicDisadvantaged</ColumnName>
-    <DataType>int</DataType>
+    <DataType>bit</DataType>
   </Result>
   <Result>
     <ColumnName>Cohort</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>ProgramComplete</ColumnName>
@@ -49,7 +57,7 @@
   </Result>
   <Result>
     <ColumnName>StudentUSI</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>ProgramName</ColumnName>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+        SELECT CandidateAidKey
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000045' and AidType='Pell Grants' and BeginDate='2011-01-24'
+    </Query>
+	<Result>
+		<CandidateAidKey>1000045-3060-20110124</CandidateAidKey>
+	</Result>
+</TestCase>

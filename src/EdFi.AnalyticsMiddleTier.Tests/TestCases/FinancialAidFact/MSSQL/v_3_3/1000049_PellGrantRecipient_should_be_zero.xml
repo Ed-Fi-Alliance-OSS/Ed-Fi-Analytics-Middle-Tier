@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+        SELECT COALESCE(PellGrantRecipient,-1) As PellGrantRecipient
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000049'
+    </Query>
+	<Result>
+		<PellGrantRecipient>0</PellGrantRecipient>
+	</Result>
+</TestCase>

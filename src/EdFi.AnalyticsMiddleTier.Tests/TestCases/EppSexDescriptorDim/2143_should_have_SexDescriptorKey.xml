@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT Cohort
-    FROM analytics.EPP_CandidateDim
-    WHERE CandidateKey = '1000045' and ProgramName = 'English Education Secondary'
+      SELECT SexDescriptorKey
+      FROM analytics.epp_SexDescriptorDim
+      WHERE SexDescriptorKey = '2143'
   </Query>
   <Result>
-    <Cohort>0</Cohort>
+      <SexDescriptorKey>2143</SexDescriptorKey>
   </Result>
 </TestCase>
