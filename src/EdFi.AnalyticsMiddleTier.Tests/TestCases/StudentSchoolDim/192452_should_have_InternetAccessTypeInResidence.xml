@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT InternetAccessTypeInResidence
+        FROM analytics.StudentSchoolDim
+        WHERE StudentSchoolKey = '192452-867530011';
+    </Query>
+    <Result>
+        <InternetAccessTypeInResidence>ResidentialBroadband (dist)</InternetAccessTypeInResidence>
+    </Result>
+</TestCase>
