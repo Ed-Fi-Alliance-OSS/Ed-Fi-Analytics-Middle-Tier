@@ -416,7 +416,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
             {
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
-                        $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_ShortDescription_should_be_Dominant_language.xml");
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Dominant_language.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
