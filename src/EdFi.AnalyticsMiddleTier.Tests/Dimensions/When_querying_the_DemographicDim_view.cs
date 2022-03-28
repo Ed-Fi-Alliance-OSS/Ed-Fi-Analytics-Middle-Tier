@@ -64,6 +64,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicParentKey_should_be_CohortYear.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_ShortDescription_should_be_Eight_grade()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Eight_grade.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -161,6 +170,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_Other.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_ShortDescription_should_be_Other()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Other.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -263,6 +281,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_English.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_ShortDescription_should_be_English()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_English.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -383,6 +410,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_Dominant_language.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_ShortDescription_should_be_Dominant_language()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_ShortDescription_should_be_Dominant_language.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -431,6 +467,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_Asian.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_Race_Asian_ShortDescription_should_be_Asian()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Asian.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -524,6 +569,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_Afognak.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_ShortDescription_should_be_Afognak()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Afognak.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -626,6 +680,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_Migrant.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_ShortDescription_should_be_Migrant()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Migrant.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -744,6 +807,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.DemographicDimTestGroup
                 (bool success, string errorMessage) testResult =
                     DataStandard.RunTestCase<DemographicDim>(
                         $"{TestCasesFolder}.{_caseIdentifier}_DemographicLabel_should_be_Medical_condition.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_ShortDescription_should_be_Medical_condition()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<DemographicDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_ShortDescription_should_be_Medical_condition.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
