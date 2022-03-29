@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT LimitedEnglishProficiency
+      FROM analytics.AllStudentSchoolDim
+      WHERE AllStudentSchoolKey = '189914-867530188-20111130';
+  </Query>
+  <Result>
+    <LimitedEnglishProficiency>Not applicable</LimitedEnglishProficiency>
+  </Result>
+</TestCase>

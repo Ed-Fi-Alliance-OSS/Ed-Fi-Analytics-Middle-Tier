@@ -70,6 +70,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("StaffSectionDim")]
         [TestCase("SectionDim")]
         [TestCase("StudentProgramDim")]
+        [TestCase("AllStudentSchoolDim")]
         public void Then_should_create_analytics_view(string viewName) =>
             DataStandard.ViewExists(viewName).ShouldBe(true);
 
