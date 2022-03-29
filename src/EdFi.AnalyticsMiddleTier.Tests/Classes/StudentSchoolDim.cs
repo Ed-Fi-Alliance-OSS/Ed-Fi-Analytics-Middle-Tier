@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string EnrollmentDateKey { get; set; } //(string, not null)
         public string GradeLevel { get; set; } //(nvarchar(50), not null)
         public string LimitedEnglishProficiency { get; set; } //(nvarchar(50), not null)
-        public bool IsHispanic { get; set; } //(bit, not null)
+        public bool? IsHispanic { get; set; } //(bit, not null)
         public string Sex { get; set; } //(nvarchar(50), not null)
         public DateTime LastModifiedDate { get; set; } //(datetime, null)
         public string InternetAccessInResidence { get; set; } //(nvarchar(60), not null)
