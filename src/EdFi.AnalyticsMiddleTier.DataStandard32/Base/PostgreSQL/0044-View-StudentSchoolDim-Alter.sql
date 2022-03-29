@@ -16,7 +16,7 @@ AS
         ,COALESCE(CAST(StudentSchoolAssociation.SchoolYear AS VARCHAR), 'Unknown') AS SchoolYear
         ,Student.FirstName AS StudentFirstName
         ,COALESCE(Student.MiddleName, '') AS StudentMiddleName
-        ,COALESCE(Student.LastSurname, '') AS StudentLastName
+        ,Student.LastSurname AS StudentLastName
         ,CAST(StudentSchoolAssociation.EntryDate AS VARCHAR) AS EnrollmentDateKey
         ,Descriptor.CodeValue AS GradeLevel
         ,COALESCE(CASE 
