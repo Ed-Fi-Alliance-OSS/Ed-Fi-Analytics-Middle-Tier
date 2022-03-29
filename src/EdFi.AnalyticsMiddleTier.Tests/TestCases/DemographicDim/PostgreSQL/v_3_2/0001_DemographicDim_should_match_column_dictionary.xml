@@ -23,4 +23,8 @@
         <ColumnName>demographiclabel</ColumnName>
         <DataType>text</DataType>
     </Result>
+	<Result>
+		<ColumnName>shortdescription</ColumnName>
+		<DataType>character varying</DataType>
+	</Result>
 </TestCase>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ShortDescription
+    FROM analytics.DemographicDim
+    WHERE DemographicKey = 'LanguageUse:Dominant language'
+  </Query>
+  <Result>
+    <ShortDescription>Dominant language</ShortDescription>
+  </Result>
+</TestCase>

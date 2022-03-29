@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT ShortDescription
+    FROM analytics.DemographicDim
+    WHERE DemographicKey = 'TribalAffiliation:Afognak'
+  </Query>
+  <Result>
+    <ShortDescription>Afognak</ShortDescription>
+  </Result>
+</TestCase>
