@@ -184,7 +184,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-
+        
         public class Given_student_assessment_fact_0E886CBB_AB8F_ABD3_747F_C455C5141145_2009_04_01
         : When_querying_the_StudentAssessmentFact_view
         {
@@ -251,6 +251,31 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
             public void Then_should_have_PerformanceResult_empty()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentAssessmentReportingMethod_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentReportingMethod_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentAssessmentResultDataType_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentResultDataType_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentAssessmentScore_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentScore_empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentAssessmentPerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentPerformanceResult_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -439,6 +464,34 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
             public void Then_should_have_PerformanceResult()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentAssessmentScore()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentScore.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentAssessmentResultDataType()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentResultDataType.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentAssessmentReportingMethod()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentReportingMethod.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentAssessmentPerformanceResult()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentPerformanceResult.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
@@ -706,9 +759,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
             }
 
             [Test]
-            public void Then_should_have_ReportingMethod_empty()
+            public void Then_should_have_PerformanceResult_empty()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_PerformanceResult_Empty.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+            [Test]
+            public void Then_should_have_StudentAssessmentPerformanceResult_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentAssessmentPerformanceResult_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

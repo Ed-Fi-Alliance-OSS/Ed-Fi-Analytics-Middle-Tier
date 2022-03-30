@@ -27,5 +27,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string ResultDataType { get; set; }
         public string ReportingMethod { get; set; }
         public string PerformanceResult { get; set; }
+        public string StudentAssessmentScore { get; set; }
+        public string StudentAssessmentResultDataType { get; set; }
+        public string StudentAssessmentReportingMethod { get; set; }
+        public string StudentAssessmentPerformanceResult { get; set; }
     }
 }
