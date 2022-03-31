@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+      SELECT StudentAssessmentPerformanceResult
+      FROM analytics.asmt_StudentAssessmentFact
+      WHERE StudentAssessmentFactKey='MP-2013-Mathematics-Seventh grade-uri://ed-fi.org/Assessment/Assessment.xml-zXFMqaQUouumDhHF8VnSmBJPaZ1Xbc8f/Li1nh1q-231-636-Seventh grade Mathematics-48-1090-636-605213-255901044-20100823'
+      AND ReportingMethod = 'Achievement/proficiency level';
+  </Query>
+  <Result>
+      <StudentAssessmentPerformanceResult>Basic</StudentAssessmentPerformanceResult>
+  </Result>
+</TestCase>

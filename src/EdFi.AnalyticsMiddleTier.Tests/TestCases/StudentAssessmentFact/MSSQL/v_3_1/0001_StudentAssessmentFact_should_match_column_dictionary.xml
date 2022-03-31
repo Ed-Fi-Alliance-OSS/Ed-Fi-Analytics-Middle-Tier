@@ -79,4 +79,20 @@
         <ColumnName>PerformanceResult</ColumnName>
         <DataType>nvarchar</DataType>
     </Result>
+    <Result>
+        <ColumnName>StudentAssessmentScore</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentAssessmentResultDataType</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentAssessmentReportingMethod</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StudentAssessmentPerformanceResult</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
 </TestCase>

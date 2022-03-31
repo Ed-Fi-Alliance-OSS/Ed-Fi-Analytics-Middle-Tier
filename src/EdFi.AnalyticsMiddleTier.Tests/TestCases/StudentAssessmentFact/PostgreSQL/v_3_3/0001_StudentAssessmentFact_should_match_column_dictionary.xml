@@ -79,4 +79,20 @@
         <ColumnName>performanceresult</ColumnName>
         <DataType>character varying</DataType>
     </Result>
+    <Result>
+        <ColumnName>studentassessmentscore</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentresultdatatype</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentreportingmethod</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentperformanceresult</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
 </TestCase>
