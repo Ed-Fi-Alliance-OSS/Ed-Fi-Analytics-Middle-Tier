@@ -11,6 +11,10 @@
     <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
     <PackageReference Include="Npgsql" Version="6.0.5" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
