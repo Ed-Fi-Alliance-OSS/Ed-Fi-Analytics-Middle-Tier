@@ -59,3 +59,6 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 # We _want_ to use `this.Whatever` rather than `Whatever`
 dotnet_style_qualification_for_field = true
 dotnet_style_qualification_for_method = true
+
+# IDE0008: Use explicit type
+dotnet_diagnostic.IDE0008.severity = none
