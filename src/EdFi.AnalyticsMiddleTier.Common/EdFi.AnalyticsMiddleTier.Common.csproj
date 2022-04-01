@@ -10,6 +10,10 @@
     <PackageReference Include="dbup-postgresql" Version="4.2.0" />
     <PackageReference Include="dbup-sqlserver" Version="4.2.0" />
     <PackageReference Include="Npgsql" Version="4.1.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.37.0.45539">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
 
