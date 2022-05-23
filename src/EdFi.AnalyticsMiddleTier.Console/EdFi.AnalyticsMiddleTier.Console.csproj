@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <RuntimeIdentifiers>win10-x64;linux-x64</RuntimeIdentifiers>
     <Authors>Ed-Fi Alliance</Authors>
     <Company>Ed-Fi Alliance</Company>
     <Copyright>Copyright (c) 2018, Ed-Fi Alliance</Copyright>
