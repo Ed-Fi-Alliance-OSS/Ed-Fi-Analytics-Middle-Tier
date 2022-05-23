@@ -1,11 +1,11 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
 
 RUN mkdir /Ed-Fi \
   && mkdir /Ed-Fi/AMT
 
 ADD https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier/releases/download/2.9.0-pre-2067653593/EdFi.AnalyticsMiddleTier-win10.x64-2.9.0.zip /Ed-Fi/AMT/
 
-RUN apt-get update && apt install unzip
+RUN apk add --no-cache unzip
 
 RUN unzip /Ed-Fi/AMT/EdFi.AnalyticsMiddleTier-win10.x64-2.9.0.zip -d /Ed-Fi/AMT
 
