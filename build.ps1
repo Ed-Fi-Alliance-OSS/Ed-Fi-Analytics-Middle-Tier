@@ -124,7 +124,7 @@ function AssemblyInfo {
 function Compile {
     Invoke-Execute {
         dotnet --info
-        dotnet build $solutionRoot -c $Configuration --nologo
+        dotnet build $solutionRoot -c $Configuration -r win10-x64 --nologo
     }
 }
 
@@ -134,7 +134,7 @@ function Publish {
 		if ($SelfContained) {
             CleanPublishScdOutputDirectory
             Write-Host "Self contained." -ForegroundColor Cyan
-            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o "$publishScdOutputDirectory" --self-contained -r win10-x64 --nologo
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o "$publishScdOutputDirectory" --self-contained -r win10-x64 --no-build --nologo
         }
         else 
         {
