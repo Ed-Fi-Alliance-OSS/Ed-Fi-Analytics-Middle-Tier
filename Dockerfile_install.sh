@@ -1,3 +1,2 @@
-echo "CONNECTION:" "$@"
-cd "/Ed-Fi/AMT/"
+cd "/app"
 dotnet EdFi.AnalyticsMiddleTier.Console.dll "$@"
