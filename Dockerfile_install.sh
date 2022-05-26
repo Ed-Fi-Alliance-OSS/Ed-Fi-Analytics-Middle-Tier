@@ -1,2 +1,1 @@
-cd "/app"
-dotnet EdFi.AnalyticsMiddleTier.Console.dll "$@"
+dotnet /app/EdFi.AnalyticsMiddleTier.Console.dll "$@"
