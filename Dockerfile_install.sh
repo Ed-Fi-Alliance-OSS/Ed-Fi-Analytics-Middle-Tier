@@ -1,0 +1,1 @@
+dotnet /app/EdFi.AnalyticsMiddleTier.Console.dll "$@"
