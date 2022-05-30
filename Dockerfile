@@ -13,6 +13,8 @@ RUN apk add --no-cache unzip
 
 RUN unzip "/app/${PACKAGE_NAME}-${AMT_VERSION}.zip" -d /app
 
+RUN rm "/app/${PACKAGE_NAME}-${AMT_VERSION}.zip"
+
 ADD Dockerfile_install.sh /app
 
 RUN chmod +x /app/Dockerfile_install.sh
