@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
 
 ENV PACKAGE_URL "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier"
 ENV PACKAGE_NAME "EdFi.AnalyticsMiddleTier"
-ENV AMT_VERSION "2.8.0"
+ENV AMT_VERSION "2.9.1"
 ENV RELEASE_URL "${PACKAGE_URL}/releases/download/${AMT_VERSION}/${PACKAGE_NAME}-${AMT_VERSION}.zip"
 
 RUN mkdir /app
