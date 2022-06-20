@@ -30,11 +30,20 @@
     <PackageReference Include="dbup-sqlserver" Version="4.2.0" />
     <PackageReference Include="dotenv.net" Version="3.1.0" />
     <PackageReference Include="FakeItEasy" Version="6.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="3.8.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.SqlServer.DacFx" Version="150.4534.2-preview" />
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Shouldly" Version="3.0.2" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.40.0.48530">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.0-preview1.19504.10" />
     <PackageReference Include="XmlDiffPatch.Core" Version="1.0.1" />
     <PackageReference Include="XmlDiffView.Core" Version="1.0.1" />

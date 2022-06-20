@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29411.108
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32428.209
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.Console", "EdFi.AnalyticsMiddleTier.Console\EdFi.AnalyticsMiddleTier.Console.csproj", "{DA0B242C-2FE6-4314-AA3F-F3BB5DC57130}"
 EndProject
@@ -17,6 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdFi.AnalyticsMiddleTier.Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Project Information", "_Project Information", "{DE1426B4-7773-4A66-BC6F-E151B9A265E6}"
 	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
 		..\CONTRIBUTORS.md = ..\CONTRIBUTORS.md
 		..\NOTICES.md = ..\NOTICES.md
 		..\README.md = ..\README.md
