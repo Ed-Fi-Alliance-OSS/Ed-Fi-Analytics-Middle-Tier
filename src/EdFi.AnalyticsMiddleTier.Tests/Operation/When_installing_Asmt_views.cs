@@ -33,7 +33,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [OneTimeTearDown]
         public void Uninstall()
         {
-            Result = DataStandard.Uninstall();
+            Result = DataStandard.Uninstall(true);
         }
 
         [Test]

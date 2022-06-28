@@ -18,7 +18,11 @@ namespace EdFi.AnalyticsMiddleTier.Common
         protected string SchemaDefault = "dbo";
         protected string JournalingVersionsTable = "AnalyticsMiddleTierSchemaVersion";
         protected string IndexJournalTable = "IndexJournal";
-        
+        protected string Ews_LetterGradeTranslation = "ews_LetterGradeTranslation";
+        protected string DescriptorConstant = "DescriptorConstant";
+        protected string DescriptorMap = "DescriptorMap";
+        protected string TypeMap = "TypeMap";
+
         protected DatabaseUninstallStrategyBase(IOrm orm)
         {
             Orm = orm ?? throw new ArgumentNullException(nameof(orm));
@@ -37,6 +41,10 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 RemoveAllViews(AnalyticsConfigSchema);
                 RemoveAllIndexes(AnalyticsConfigSchema);
                 DropTable(AnalyticsConfigSchema, IndexJournalTable);
+                DropTable(AnalyticsConfigSchema, Ews_LetterGradeTranslation);
+                DropTable(AnalyticsConfigSchema, TypeMap);
+                DropTable(AnalyticsConfigSchema, DescriptorMap);
+                DropTable(AnalyticsConfigSchema, DescriptorConstant);
                 DropTable(SchemaDefault, JournalingVersionsTable);
                 RemoveAllStoredProcedures(AnalyticsConfigSchema);
                 if (uninstallAll)
@@ -60,7 +68,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
 
         public virtual string GetDropSchemaTemplate(string schema)
         {
-            return $"DROP SCHEMA IF EXISTS {schema} CASCADE;DROP SCHEMA IF EXISTS {schema.ToLower()} CASCADE;";
+            return $"DROP SCHEMA IF EXISTS {schema};DROP SCHEMA IF EXISTS {schema.ToLower()};";
         }
 
         public virtual string GetDropStoredProceduresTemplate(string schema, string storedProcedure)
