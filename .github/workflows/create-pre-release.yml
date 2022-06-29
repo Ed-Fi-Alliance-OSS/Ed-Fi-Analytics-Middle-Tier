@@ -61,7 +61,7 @@ jobs:
 
       - name: Create pre-release
         id: create_pre_release
-        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e
+        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e  # v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
           RELEASE_TAG:  ${{ contains( github.event.inputs.createRelease, 'true') && env.BUILD_VERSION ||  format('{0}-pre-{1}', env.BUILD_VERSION, github.run_id)  }}
@@ -75,7 +75,7 @@ jobs:
 
       - name: Upload publish zip
         id: upload-publish-zip-asset 
-        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5  # v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -86,7 +86,7 @@ jobs:
 
       - name: Upload self-contained publish zip
         id: upload-publish-self-contained-zip-asset 
-        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5  # v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
