@@ -37,7 +37,52 @@ env:
   POSTGRES_POOLING: "false"
 
 jobs:
-  AMT-runner-job:
+  AMT-Unit-Tests:
+    runs-on: Ubuntu-latest
+    # Service containers to run with `AMT-runner-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:11
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASS }}
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          -  5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+      
+      - name: Caching packages
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+    
+      - name: Building AMT
+        run: |
+          .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+        shell: pwsh
+
+      - name: Unit Tests
+        run: |
+          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
+
+AMT-Integration-Tests:
+    needs: AMT-Unit-Tests
+    
     runs-on: Ubuntu-latest
     # Service containers to run with `AMT-runner-job`
     services:
@@ -63,22 +108,6 @@ jobs:
         run: |
          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
 
-      - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
-      
-      - name: Caching packages
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-    
-      - name: Building AMT
-        run: |
-          .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
-        shell: pwsh
-
       - name: Create Postgres DB DS v3.2
         run: |
           .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS32 }} -ds 3.2
@@ -92,12 +121,7 @@ jobs:
         shell: pwsh
         env:
           PGPASSWORD: ${{ env.POSTGRES_PASS }}
-
-      - name: Unit Tests
-        run: |
-          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
-        shell: pwsh
-      
+     
       - name: Integration Tests
         run: |
           .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
