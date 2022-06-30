@@ -9,7 +9,7 @@ version: "3"
 services:
   mssql-service:
     container_name: amt-mssql
-    image: mcr.microsoft.com/mssql/server:2017-GA-ubuntu
+    image: mcr.microsoft.com/mssql/server:2019-latest
     restart: always
     ports:
       - 1433:1433
@@ -19,7 +19,7 @@ services:
       SA_PASSWORD: "${SQLSERVER_ADMIN_PASS}"
   pg-service:
     container_name: amt-pg
-    image: postgres:11-alpine
+    image: postgres:13-alpine
     ports:
       - 5432:5432
     environment:
