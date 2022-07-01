@@ -37,7 +37,33 @@ env:
   POSTGRES_POOLING: "false"
 
 jobs:
-  AMT-runner-job:
+  AMT-Build-Unit-Tests:
+    runs-on: Ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+      
+      - name: Caching packages
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+    
+      - name: Building AMT
+        run: |
+          .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
+        shell: pwsh
+
+      - name: Unit Tests
+        run: |
+          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+        shell: pwsh
+
+  AMT-Integration-Tests:
+    needs: AMT-Build-Unit-Tests
     runs-on: Ubuntu-latest
     # Service containers to run with `AMT-runner-job`
     services:
@@ -59,10 +85,6 @@ jobs:
           -  5432:5432
 
     steps:
-      - name: Start Ubuntu container for SQLServer 2019 Express
-        run: |
-         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
-
       - name: Checkout code
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
       
@@ -73,11 +95,10 @@ jobs:
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-    
-      - name: Building AMT
+        
+      - name: Start Ubuntu container for SQLServer 2019 Express
         run: |
-          .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
-        shell: pwsh
+         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
 
       - name: Create Postgres DB DS v3.2
         run: |
@@ -92,13 +113,14 @@ jobs:
         shell: pwsh
         env:
           PGPASSWORD: ${{ env.POSTGRES_PASS }}
-
-      - name: Unit Tests
+          
+      - name: Building AMT
         run: |
-          .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
+          .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
         shell: pwsh
-      
+     
       - name: Integration Tests
         run: |
           .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
         shell: pwsh
+        
