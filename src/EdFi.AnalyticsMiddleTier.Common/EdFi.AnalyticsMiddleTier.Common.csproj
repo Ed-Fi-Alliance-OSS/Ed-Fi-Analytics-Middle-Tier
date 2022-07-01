@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.30" />
-    <PackageReference Include="dbup-core" Version="4.2.0" />
-    <PackageReference Include="dbup-postgresql" Version="4.2.0" />
-    <PackageReference Include="dbup-sqlserver" Version="4.2.0" />
-    <PackageReference Include="Npgsql" Version="4.1.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="dbup-core" Version="4.6.3" />
+    <PackageReference Include="dbup-postgresql" Version="4.6.3" />
+    <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
+    <PackageReference Include="Npgsql" Version="6.0.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 </Project>

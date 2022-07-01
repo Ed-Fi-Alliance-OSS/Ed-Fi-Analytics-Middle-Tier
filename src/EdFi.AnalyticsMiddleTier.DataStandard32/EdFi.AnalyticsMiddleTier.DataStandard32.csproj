@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <Authors>Ed-Fi Alliance</Authors>
         <Copyright>Copyright (c) 2020, Ed-Fi Alliance LLC and contributors</Copyright>
     </PropertyGroup>
@@ -15,7 +15,7 @@
         <EmbeddedResource Include="**\*.sql" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+        <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     </ItemGroup>
 
     <ItemGroup>

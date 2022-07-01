@@ -4,7 +4,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -24,18 +24,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.30" />
-    <PackageReference Include="dbup" Version="4.2.0" />
-    <PackageReference Include="dbup-core" Version="4.2.0" />
-    <PackageReference Include="dbup-sqlserver" Version="4.2.0" />
-    <PackageReference Include="dotenv.net" Version="3.1.0" />
-    <PackageReference Include="FakeItEasy" Version="6.0.0" />
-    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="150.4534.2-preview" />
-    <PackageReference Include="nunit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="Shouldly" Version="3.0.2" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.0-preview1.19504.10" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="dbup" Version="4.6.0" />
+    <PackageReference Include="dbup-core" Version="4.6.3" />
+    <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
+    <PackageReference Include="dotenv.net" Version="3.1.1" />
+    <PackageReference Include="FakeItEasy" Version="7.3.1" />
+    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="160.6161.0" />
+    <PackageReference Include="nunit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="Shouldly" Version="4.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="XmlDiffPatch.Core" Version="1.0.1" />
     <PackageReference Include="XmlDiffView.Core" Version="1.0.1" />
   </ItemGroup>

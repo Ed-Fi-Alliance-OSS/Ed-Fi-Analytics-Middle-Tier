@@ -25,5 +25,10 @@ namespace EdFi.AnalyticsMiddleTier.Common
         {
             return $"DROP VIEW IF EXISTS {schema.ToLower()}.{view.ToLower()} CASCADE;";
         }
+
+        public override string GetDropSchemaTemplate(string schema)
+        {
+            return $"DROP SCHEMA IF EXISTS {schema} CASCADE;DROP SCHEMA IF EXISTS {schema.ToLower()} CASCADE;";
+        }
     }
 }

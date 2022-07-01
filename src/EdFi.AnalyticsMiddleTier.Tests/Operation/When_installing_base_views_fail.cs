@@ -26,7 +26,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Uninstall()
         {
             DataStandard.ExecuteQuery("ALTER TABLE edfi.GradingPeriod ADD TotalInstructionalDays int NOT NULL;");
-            DataStandard.Uninstall();
+            DataStandard.Uninstall(true);
         }
         public class Given_an_expected_table_column_is_missing : When_installing_base_views_fail
         {
