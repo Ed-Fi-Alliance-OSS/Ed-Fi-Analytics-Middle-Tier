@@ -44,7 +44,7 @@ jobs:
       # Label used to access the service container
       postgres:
         # Docker Hub image
-        image: postgres:11
+        image: postgres:13
         # Provide the password for postgres
         env:
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASS }}
@@ -59,9 +59,9 @@ jobs:
           -  5432:5432
 
     steps:
-      - name: Start Ubuntu container for SQLServer 2017 Express
+      - name: Start Ubuntu container for SQLServer 2019 Express
         run: |
-         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2017-latest       
+         docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
 
       - name: Checkout code
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
@@ -102,4 +102,3 @@ jobs:
         run: |
           .\build.ps1 integrationtest -Configuration ${{ env.CONFIGURATION }}
         shell: pwsh
-        
