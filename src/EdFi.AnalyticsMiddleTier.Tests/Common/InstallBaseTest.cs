@@ -33,8 +33,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         protected const string QuickSightEWSDirectory = "Qews";
 
         protected IDatabaseMigrationStrategy MigrationStrategy { get; set; }
-        protected DatabaseUpgradeResult migrationResult = new DatabaseUpgradeResult(new List<SqlScript>(), true, null);
-        protected DatabaseUpgradeResult DatabaseAccessError = new DatabaseUpgradeResult(new List<SqlScript>(), false, new Exception(DatabaseAccessErrorMessage));
+        protected DatabaseUpgradeResult MigrationResult { get; set; }
+        protected DatabaseUpgradeResult DatabaseAccessError { get; set; }
 
         [OneTimeSetUp]
         public void Setup()
@@ -42,9 +42,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
             MigrationStrategy = A.Fake<IDatabaseMigrationStrategy>();
             Install = new InstallBaseImplementation(MigrationStrategy);
 
-            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, BaseDirectory, ValidConnectionString, ValidTimeout)).Returns(migrationResult);
-            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, IndexesDirectory, ValidConnectionString, ValidTimeout)).Returns(migrationResult);
-            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, QuickSightEWSDirectory, ValidConnectionString, ValidTimeout)).Returns(migrationResult);
+            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, BaseDirectory, ValidConnectionString, ValidTimeout)).Returns(MigrationResult);
+            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, IndexesDirectory, ValidConnectionString, ValidTimeout)).Returns(MigrationResult);
+            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, QuickSightEWSDirectory, ValidConnectionString, ValidTimeout)).Returns(MigrationResult);
         }
 
         [Test]

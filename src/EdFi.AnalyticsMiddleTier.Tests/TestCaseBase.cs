@@ -31,8 +31,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
         }
 
+#pragma warning disable S101  // Rule: use PascalCase. But "PostgreSQL" is a proper word.
         [TestFixtureSource(typeof(DataStandardTestFixturePostgres))]
         public class TestCasePostgreSQL : TestCaseBase
+#pragma warning restore S101
+
         {
             protected TestCasePostgreSQL() => fixtureList = new DataStandardTestFixturePostgres();
         }

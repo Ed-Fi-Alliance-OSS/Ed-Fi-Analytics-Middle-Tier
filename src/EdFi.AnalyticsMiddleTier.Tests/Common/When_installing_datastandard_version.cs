@@ -150,7 +150,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
             string statement = PostgresMigrationStrategy.DataStandardVersionTemplate;
             A.CallTo(() => Orm.ExecuteScalar<string>(statement)).Returns(_dataStandard.ToString());
             //
-            //_result = postgresqlServerMigrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
             _result = postgresqlServerMigrationStrategy.GetDataStandardVersion();
         }
         [Test]

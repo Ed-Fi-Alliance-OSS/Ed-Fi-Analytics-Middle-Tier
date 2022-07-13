@@ -19,7 +19,7 @@ using Ds33 = EdFi.AnalyticsMiddleTier.DataStandard33;
 
 namespace EdFi.AnalyticsMiddleTier.Console
 {
-    internal class Program
+    internal static class Program
     {
 
         private static readonly string _odsVersionNotSupportedMessage

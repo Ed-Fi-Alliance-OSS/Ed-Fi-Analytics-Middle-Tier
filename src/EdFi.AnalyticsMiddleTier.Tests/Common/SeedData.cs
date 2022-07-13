@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
-    public class SeedData
+    public static class SeedData
     {
         public static List<String> GetViews()
         {
