@@ -13,7 +13,7 @@ using Dapper;
 namespace EdFi.AnalyticsMiddleTier.Common
 {
     [ExcludeFromCodeCoverage]
-    public class DapperWrapper : IOrm
+    public sealed class DapperWrapper : IOrm
     {
         private readonly IDbConnection _dbConnection;
 

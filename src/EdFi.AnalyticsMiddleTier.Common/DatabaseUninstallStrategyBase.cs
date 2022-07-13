@@ -177,7 +177,16 @@ namespace EdFi.AnalyticsMiddleTier.Common
 
         public void Dispose()
         {
-            this.Orm?.Dispose();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if ( disposing )
+            {
+                this.Orm?.Dispose();
+            }
         }
     }
 }

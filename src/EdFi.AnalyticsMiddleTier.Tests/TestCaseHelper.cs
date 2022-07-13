@@ -58,8 +58,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         public void Dispose()
         {
-            this.Connection?.Dispose();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if ( disposing )
+            {
+                this.Connection?.Dispose();
+            }
+        }
+
         private string GetResultXml()
         {
             StringWriter sw = new StringWriter();
@@ -70,6 +80,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         private (bool success, string errorMessage) CompareResultsets(List<T> queryResultList)
         {
+#pragma warning disable S3265 // Non-flags enums should not be used in bitwise operations. We can't change XmlDiffOptions to fix this
             XmlDiff xmlDiff = new XmlDiff(XmlDiffOptions.IgnoreChildOrder
                                           | XmlDiffOptions.IgnoreNamespaces
                                           | XmlDiffOptions.IgnoreComments
@@ -87,6 +98,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 ? $"The expected data set does not match the one received from the database.{Environment.NewLine}Xml Diff Result:{Environment.NewLine}{(result.Root?.ToString() ?? string.Empty)}"
                 : string.Empty;
             return (bIdentical, comparisonResult);
+#pragma warning restore S3265
         }
     }
 }
