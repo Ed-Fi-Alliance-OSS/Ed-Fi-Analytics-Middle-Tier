@@ -8,11 +8,11 @@ using System.Data.SqlClient;
 
 namespace EdFi.AnalyticsMiddleTier.Common
 {
-    public class SQLServerConnectionStringValidator : IConnectionStringValidator
+    public class SqlServerConnectionStringValidator : IConnectionStringValidator
     {
         protected readonly string _connectionString;
 
-        public SQLServerConnectionStringValidator(string connectionString)
+        public SqlServerConnectionStringValidator(string connectionString)
         {
             _connectionString = connectionString;
         }

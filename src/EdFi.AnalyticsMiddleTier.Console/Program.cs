@@ -59,7 +59,7 @@ namespace EdFi.AnalyticsMiddleTier.Console
                         || options.DatabaseEngine == Engine.MSSQL
                         || options.DatabaseEngine == Engine.Sql
                         || options.DatabaseEngine == Engine.Sqlserver)
-                    connectionStringValidator = new SQLServerConnectionStringValidator(options.ConnectionString);
+                    connectionStringValidator = new SqlServerConnectionStringValidator(options.ConnectionString);
                 else
                     connectionStringValidator = new NpgsqlConnectionStringValidator(options.ConnectionString);
 
