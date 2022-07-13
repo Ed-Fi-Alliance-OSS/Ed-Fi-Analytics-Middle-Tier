@@ -13,11 +13,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         IOrm Orm { get; }
 
         IDatabaseMigrationStrategy DatabaseMigrationStrategy { get; }
-        
+
         IUninstallStrategy UninstallStrategy { get; }
 
         string DatabaseName { get; }
-        
+
         string MainDatabaseConnectionString { get; }
 
         string ConnectionString { get; }

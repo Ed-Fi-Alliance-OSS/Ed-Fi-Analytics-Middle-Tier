@@ -91,7 +91,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SectionKeyPermission_with_UserScope_equal_to_District.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-         
+
         }
 
 
@@ -162,7 +162,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.querying_SectionPermission_should_have_SectionKeyPermission.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-        } 
+        }
 
 
         public class Given_a_request_to_retrieve_a_specific_record

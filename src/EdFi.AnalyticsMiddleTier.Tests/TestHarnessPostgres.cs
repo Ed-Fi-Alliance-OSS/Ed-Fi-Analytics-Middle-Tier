@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         public static TestHarnessPostgres DataStandard32PG
                 = new TestHarnessPostgres(new PostgresDataStandardSettings(DataStandard.Ds32));
 
-        public static TestHarnessPostgres DataStandard33PG 
+        public static TestHarnessPostgres DataStandard33PG
                 = new TestHarnessPostgres(new PostgresDataStandardSettings(DataStandard.Ds33));
 
         protected TestHarnessPostgres(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)

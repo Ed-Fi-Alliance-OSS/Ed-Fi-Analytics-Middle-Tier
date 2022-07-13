@@ -36,7 +36,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         [TestCase("analytics_config")]
         public void Then_create_schema(string schema)
         {
-            if(DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
+            if (DataStandard.DataStandardEngine.Equals(Engine.MSSQL))
             {
                 DataStandard
                 .ExecuteScalarQuery<int>($"select 1 from sys.schemas where name = '{schema}'")
@@ -104,10 +104,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
                 Assert.Ignore("Indexes are not installed (PostgreSQL).");
             }
         }
-       
+
         public class Given_a_data_standard : When_installing_base_views
         {
             public Given_a_data_standard(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-        }             
+        }
     }
 }

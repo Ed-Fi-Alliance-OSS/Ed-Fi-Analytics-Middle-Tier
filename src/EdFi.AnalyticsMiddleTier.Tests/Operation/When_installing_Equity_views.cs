@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using NUnit.Framework;
 using Shouldly;
-using CommonLib=EdFi.AnalyticsMiddleTier.Common;
+using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
 // ReSharper disable once CheckNamespace
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
@@ -26,7 +26,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             }
             else
             {
-                Result = DataStandard.Install(10, Component.Equity); 
+                Result = DataStandard.Install(10, Component.Equity);
             }
         }
 
@@ -57,7 +57,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             {
                 Assert.Ignore($"The function {scalarFunctionName} is only for MSSQL databases.");
             }
-        } 
+        }
 
 
         [TestCase]

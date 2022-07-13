@@ -61,12 +61,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
             [TestCase("IX_AMT_AcademicSubjectType_CodeValue")]
             [TestCase("IX_AMT_StudentSectionAssociation_StudentSectionDim")]
-            public void Then_should_create_index_ds2(string indexName) {
+            public void Then_should_create_index_ds2(string indexName)
+            {
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
                 {
-                    AssertIndexCreated(indexName); 
+                    AssertIndexCreated(indexName);
                 }
-                else {
+                else
+                {
                     Assert.Ignore($"The index {indexName} does not exist in this version of the Data Standard. ({DataStandard.DataStandardVersion.ToString()})");
                 }
             }
@@ -87,7 +89,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 
             [TestCase("IX_AMT_Grade_SectionKey")]
             public void Then_should_create_index(string indexName)
-            { 
+            {
                 AssertIndexCreated(indexName);
             }
 

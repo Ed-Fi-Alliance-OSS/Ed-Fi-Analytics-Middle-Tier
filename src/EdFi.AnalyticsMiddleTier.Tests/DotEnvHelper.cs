@@ -6,7 +6,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     public class DotEnvHelper
     {
         private readonly IDictionary<string, string> _variables;
-        
+
         public DotEnvHelper()
         {
             if (_variables != null)

@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FeederSchoolDimTestGroup
     {
         protected const string TestCasesFolder = "TestCases.FeederSchoolDim";
         protected const string TestCasesDataFileName = "0000_FeederSchoolDim_Data_Load.xml";
-        
+
         [Test]
         public void Then_view_should_match_column_dictionary()
         {

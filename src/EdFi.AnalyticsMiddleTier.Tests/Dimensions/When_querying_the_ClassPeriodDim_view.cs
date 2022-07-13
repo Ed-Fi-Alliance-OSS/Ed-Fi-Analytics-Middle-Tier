@@ -17,7 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ClassPeriodDimTestGroup
     {
         protected const string TestCasesFolder = "TestCases.ClassPeriodDim";
         protected const string TestCasesDataFileName = "0000_ClassPeriodDim_Data_Load.xml";
-        
+
         [Test]
         public void Then_view_should_match_column_dictionary()
         {

@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         [XmlElement(ElementName = "ControlDataInsertion")]
         public List<string> ControlDataInsertion { get; set; }
-        
+
         [XmlElement(ElementName = "Query")]
         public string Query { get; set; }
 
@@ -55,7 +55,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 }
             }
         }
-        
+
         public void Dispose()
         {
             this.Connection?.Dispose();

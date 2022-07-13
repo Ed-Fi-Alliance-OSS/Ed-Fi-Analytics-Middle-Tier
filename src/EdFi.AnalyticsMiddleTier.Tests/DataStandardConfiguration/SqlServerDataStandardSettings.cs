@@ -10,7 +10,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     public class SqlServerDataStandardSettings : DataStandardSettings
     {
         public override Engine DatabaseEngine => Engine.MSSQL;
-        
+
         protected override string DatabaseBackupFileFormat => "EdFi_Ods_{0}.dacpac";
 
         public SqlServerDataStandardSettings(DataStandard dataStandard)

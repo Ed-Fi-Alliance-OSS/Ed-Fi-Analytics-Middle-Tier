@@ -16,6 +16,6 @@ namespace EdFi.AnalyticsMiddleTier.DataStandard32
         protected override void RunInstall(string directoryName)
         {
             Install(Assembly.GetExecutingAssembly(), directoryName);
-        } 
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
         public void Act()
         {
             DataStandard.Install(10, Component.Indexes);
-           Result = DataStandard.Uninstall();
+            Result = DataStandard.Uninstall();
         }
 
         [Test]

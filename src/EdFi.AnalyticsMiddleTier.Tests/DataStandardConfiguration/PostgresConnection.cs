@@ -8,7 +8,8 @@ using Npgsql;
 
 namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 {
-    public class PostgresConnection : DatabaseConnection {
+    public class PostgresConnection : DatabaseConnection
+    {
         public override string ConnectionString
             => DbConnectionStringParameter.UseDefaultConnectionString
                 ? "User ID=postgres;" +
@@ -30,7 +31,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         {
             Initialize();
         }
-        
+
         public override string MainDatabaseConnectionString => string.Empty;
 
         public override IOrm Orm => new DapperWrapper(new NpgsqlConnection(ConnectionString));

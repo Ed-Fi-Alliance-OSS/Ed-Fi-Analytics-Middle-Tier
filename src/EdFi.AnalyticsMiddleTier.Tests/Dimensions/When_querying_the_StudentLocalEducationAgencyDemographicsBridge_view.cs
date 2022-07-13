@@ -36,7 +36,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_2011_Eighth_grade_193964_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "2011_Eighth_grade_193964_867530";
+            private readonly string _caseIdentifier = "2011_Eighth_grade_193964_867530";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -69,7 +69,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_disability_designation(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "disability_designation";
+            private readonly string _caseIdentifier = "disability_designation";
             [SetUp]
             public void IgnoreTestCase()
             {
@@ -117,7 +117,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_disability(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "disability";
+            private readonly string _caseIdentifier = "disability";
 
             [Test]
             public void Then_should_return_one_record()
@@ -158,7 +158,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_languageuse(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "languageuse";
+            private readonly string _caseIdentifier = "languageuse";
 
             [Test]
             public void Then_should_return_one_record()
@@ -199,7 +199,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_language(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "language";
+            private readonly string _caseIdentifier = "language";
 
             [Test]
             public void Then_should_return_one_record()
@@ -240,7 +240,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_race(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "race";
+            private readonly string _caseIdentifier = "race";
 
             [Test]
             public void Then_should_return_one_record()
@@ -281,7 +281,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_tribalaffiliation(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "tribalaffiliation";
+            private readonly string _caseIdentifier = "tribalaffiliation";
 
             [SetUp]
             public void IgnoreTestCase()
@@ -331,7 +331,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "studentcharacteristic";
+            private readonly string _caseIdentifier = "studentcharacteristic";
 
             [Test]
             public void Then_should_return_one_record()
@@ -372,7 +372,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Homeless(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "studentcharacteristic_homeless";
+            private readonly string _caseIdentifier = "studentcharacteristic_homeless";
 
             [Test]
             public void Then_should_return_one_record()
@@ -386,7 +386,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Refugee(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "studentcharacteristic_refugee";
+            private readonly string _caseIdentifier = "studentcharacteristic_refugee";
 
             [Test]
             public void Then_should_return_one_record()
@@ -400,7 +400,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
             public Given_StudentLocalEducationAgencyDemographicsBridge_student_characteristic_economic_disadvantaged(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "studentcharacteristic_economic_disadvantaged";
+            private readonly string _caseIdentifier = "studentcharacteristic_economic_disadvantaged";
 
             [SetUp]
             public void IgnoreTestCase()
@@ -444,7 +444,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             public Given_StudentLocalEducationAgencyDemographicsBridge_cohortyear(
                 TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "cohortyear";
+            private readonly string _caseIdentifier = "cohortyear";
 
             [Test]
             public void Then_should_not_return_records()
@@ -452,7 +452,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_not_return_records.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
         }
         public class Given_StudentLocalEducationAgencyDemographicsBridge_189919_628530
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
@@ -460,7 +460,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             public Given_StudentLocalEducationAgencyDemographicsBridge_189919_628530(
                 TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "189919_628530";
+            private readonly string _caseIdentifier = "189919_628530";
 
             [Test]
             public void Then_should_not_return_cohortyear_records()
@@ -518,7 +518,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             public Given_StudentLocalEducationAgencyDemographicsBridge_189871_828530(
                 TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "189871_828530";
+            private readonly string _caseIdentifier = "189871_828530";
 
             [Test]
             public void Then_should_not_return_cohortyear_records()
@@ -576,7 +576,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             public Given_StudentLocalEducationAgencyDemographicsBridge_189919_828530(
                 TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "189919_828530";
+            private readonly string _caseIdentifier = "189919_828530";
 
             [Test]
             public void Then_should_return_one_cohortyear_record()
@@ -614,7 +614,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_race_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-           
+
             [Test]
             public void Then_should_return_one_studentcharacteristic_record()
             {

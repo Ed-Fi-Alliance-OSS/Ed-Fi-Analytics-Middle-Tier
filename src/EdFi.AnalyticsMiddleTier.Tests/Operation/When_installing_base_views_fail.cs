@@ -37,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             {
                 Result = DataStandard.Install();
             }
-            
+
             [Test]
             public void Then_should_not_be_successful() => Result.success.ShouldBe(false);
 

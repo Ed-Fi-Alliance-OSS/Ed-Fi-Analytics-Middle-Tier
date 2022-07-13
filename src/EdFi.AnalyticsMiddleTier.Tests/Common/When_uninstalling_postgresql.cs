@@ -36,10 +36,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
             A.CallTo(() => Orm.Query<String>(postgresUninstallStrategy.GetQueryViewsTemplate("analytics"))).Returns(ViewsList);
             A.CallTo(() => Orm.Query<String>(postgresUninstallStrategy.GetQueryIndexesTemplate("analytics"))).Returns(IndexesList);
             A.CallTo(() => Orm.Query<String>(postgresUninstallStrategy.GetQueryStoredProceduresTemplate("analytics"))).Returns(StoredProcedureList);
-            A.CallTo(() => Orm.Execute(postgresUninstallStrategy.GetDropTableTemplate("analytics","Table"))).Returns(1);
+            A.CallTo(() => Orm.Execute(postgresUninstallStrategy.GetDropTableTemplate("analytics", "Table"))).Returns(1);
             A.CallTo(() => Orm.Execute(postgresUninstallStrategy.GetDropIndexTemplate("Index1"))).Returns(1);
-            A.CallTo(() => Orm.Execute(postgresUninstallStrategy.GetDropStoredProceduresTemplate("analytics","Procedure"))).Returns(1);
-            A.CallTo(() => Orm.Execute(String.Join(String.Empty, ViewsList.Select(i => (postgresUninstallStrategy.GetDropViewsTemplate("analytics",i)))))).Returns(ViewsList.Count);
+            A.CallTo(() => Orm.Execute(postgresUninstallStrategy.GetDropStoredProceduresTemplate("analytics", "Procedure"))).Returns(1);
+            A.CallTo(() => Orm.Execute(String.Join(String.Empty, ViewsList.Select(i => (postgresUninstallStrategy.GetDropViewsTemplate("analytics", i)))))).Returns(ViewsList.Count);
             A.CallTo(() => Orm.Execute(String.Join(String.Empty, StoredProcedureList.Select(i => (postgresUninstallStrategy.GetDropStoredProceduresTemplate("analytics", i)))))).Returns(StoredProcedureList.Count);
             A.CallTo(() => Orm.Execute(String.Join(String.Empty, IndexesList.Select(i => (postgresUninstallStrategy.GetDropIndexTemplate("analytics")))))).Returns(IndexesList.Count);
         }
@@ -132,7 +132,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     }
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [TestFixture]
-    public class Given_uninstalling_views_without_schema: When_uninstalling_postgresql
+    public class Given_uninstalling_views_without_schema : When_uninstalling_postgresql
     {
         private int _result;
 

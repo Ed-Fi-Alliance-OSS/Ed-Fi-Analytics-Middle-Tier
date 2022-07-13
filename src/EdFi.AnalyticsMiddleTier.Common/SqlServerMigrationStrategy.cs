@@ -37,7 +37,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
              END";
 
         private readonly IOrm _orm;
-        public SqlServerMigrationStrategy(IOrm orm){
+        public SqlServerMigrationStrategy(IOrm orm)
+        {
             _orm = orm ?? throw new ArgumentNullException(nameof(orm), "ORM cannot be null");
         }
         public DatabaseUpgradeResult Migrate(Assembly assembly, string directoryName, string connectionString,
@@ -54,7 +55,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 .PerformUpgrade();
         }
 
-        
+
 
         public DataStandard GetDataStandardVersion()
         {

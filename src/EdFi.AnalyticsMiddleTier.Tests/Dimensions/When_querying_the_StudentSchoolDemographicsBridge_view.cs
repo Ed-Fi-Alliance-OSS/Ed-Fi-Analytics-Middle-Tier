@@ -33,12 +33,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
             [OneTimeSetUp]
             public void PrepareDatabase() => PrepareTestData<StudentSchoolDemographicsBridge>(TestCasesFolder, TestCasesDataFileName);
         }
-        
+
         public class Given_student_school_demographics_bridge_cohortyear
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_cohortyear(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "cohortyear";
+            private readonly string _caseIdentifier = "cohortyear";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -76,7 +76,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_disability(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "disability";
+            private readonly string _caseIdentifier = "disability";
 
             [Test]
             public void Then_should_return_one_record()
@@ -115,7 +115,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_disabilitydesignation(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "disabilitydesignation";
+            private readonly string _caseIdentifier = "disabilitydesignation";
             [SetUp]
             public void IgnoreTestCase()
             {
@@ -156,13 +156,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-      
+
         public class Given_student_school_demographics_bridge_language
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_language(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "language";
-            
+            private readonly string _caseIdentifier = "language";
+
             [Test]
             public void Then_should_return_one_record()
             {
@@ -195,12 +195,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-       
+
         public class Given_student_school_demographics_bridge_languageuse
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_languageuse(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "languageuse";
+            private readonly string _caseIdentifier = "languageuse";
 
             [Test]
             public void Then_should_return_one_record()
@@ -238,8 +238,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
         : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_race(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "race";
-            
+            private readonly string _caseIdentifier = "race";
+
             [Test]
             public void Then_should_return_one_record()
             {
@@ -277,7 +277,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
        : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_tribalaffiliation(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "tribalaffiliation";
+            private readonly string _caseIdentifier = "tribalaffiliation";
             [SetUp]
             public void IgnoreTestCase()
             {
@@ -323,9 +323,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
        : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_studentcharacteristic(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "studentcharacteristic";
+            private readonly string _caseIdentifier = "studentcharacteristic";
 
-           
+
 
             [Test]
             public void Then_should_return_one_record()
@@ -364,7 +364,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
        : When_querying_the_StudentSchoolDemographicsBridge_view
         {
             public Given_student_school_demographics_bridge_StudentCharacteristic_EconomicDisadvantaged(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "studentcharacteristic_EconomicDisadvantaged";
+            private readonly string _caseIdentifier = "studentcharacteristic_EconomicDisadvantaged";
 
             [SetUp]
             public void IgnoreTestCase()
@@ -419,7 +419,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
             public Given_StudentSchoolDemographicsBridge_189871_867530011(
                 TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "189871_867530011";
+            private readonly string _caseIdentifier = "189871_867530011";
 
             [Test]
             public void Then_should_return_one_cohortyear_record()
@@ -483,7 +483,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
                     (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_tribalaffiliation_should_return_one_record.xml");
                     testResult.success.ShouldBe(true, testResult.errorMessage);
                 }
-                
+
             }
         }
     }

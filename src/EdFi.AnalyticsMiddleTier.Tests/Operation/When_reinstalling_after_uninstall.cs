@@ -11,7 +11,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Operation
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class When_reinstalling_after_uninstall: When_installing_a_Collection
+    public class When_reinstalling_after_uninstall : When_installing_a_Collection
     {
         public When_reinstalling_after_uninstall(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 

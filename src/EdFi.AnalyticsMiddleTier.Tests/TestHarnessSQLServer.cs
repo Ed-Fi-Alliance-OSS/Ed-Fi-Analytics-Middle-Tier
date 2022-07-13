@@ -21,16 +21,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     {
         private string _snapshotName => $"{_databaseName}_ss";
 
-        public static TestHarnessSQLServer DataStandard2 
+        public static TestHarnessSQLServer DataStandard2
             = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds2));
 
         public static TestHarnessSQLServer DataStandard31
             = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds31));
 
-        public static TestHarnessSQLServer DataStandard32 
+        public static TestHarnessSQLServer DataStandard32
             = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds32));
 
-        public static TestHarnessSQLServer DataStandard33 
+        public static TestHarnessSQLServer DataStandard33
             = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds33));
 
         protected TestHarnessSQLServer(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)
@@ -65,7 +65,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                     //return true;
                     const string analyticsMiddleTierNoSnapshots = "ANALYTICSMIDDLETIER_NO_SNAPSHOTS";
 
-                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) 
+                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots)
                                                 ?? "false";
 
                     if (bool.TryParse(noSnapshotsEnvVar, out bool avoidSnapshot))

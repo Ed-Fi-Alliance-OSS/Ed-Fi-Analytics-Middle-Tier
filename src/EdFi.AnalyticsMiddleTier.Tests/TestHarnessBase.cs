@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
-        protected IDatabaseConnection _databaseConnection 
+        protected IDatabaseConnection _databaseConnection
                             => _dataStandardSettings.DatabaseConnection;
 
         protected string _databaseName => _databaseConnection.DatabaseName;
@@ -60,11 +60,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         protected string _mainDatabaseConnectionString => _databaseConnection.MainDatabaseConnectionString;
 
         protected IOrm _orm { get; set; }
-        
+
         public IOrm Orm => _orm ??= _dataStandardSettings.DatabaseConnection.Orm;
 
         protected IDatabaseMigrationStrategy DatabaseMigrationStrategy =>
-            _databaseMigrationStrategy 
+            _databaseMigrationStrategy
                 ??= _dataStandardSettings.DatabaseConnection.DatabaseMigrationStrategy;
 
         protected IUninstallStrategy UninstallStrategy =>
@@ -81,7 +81,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             }
             set => _dataStandardInstallBase = value;
         }
-        
+
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
             get

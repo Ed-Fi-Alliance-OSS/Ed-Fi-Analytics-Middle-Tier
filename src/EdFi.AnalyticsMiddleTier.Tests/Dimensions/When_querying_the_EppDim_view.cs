@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EppDimTestGroup
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_view_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-        
+
         [SetUpFixture]
         public class SetupEppDimTestCase
             : When_querying_the_EppDim_View
@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EppDimTestGroup
         : When_querying_the_EppDim_View
         {
             public Given_educationOrganizationKey_5(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "eo5";
+            private readonly string _caseIdentifier = "eo5";
 
             [Test]
             public void Then_should_return_one_record()
@@ -74,7 +74,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EppDimTestGroup
         : When_querying_the_EppDim_View
         {
             public Given_educationOrganizationKey_6(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "eo6";
+            private readonly string _caseIdentifier = "eo6";
 
             [Test]
             public void Then_should_return_no_records()

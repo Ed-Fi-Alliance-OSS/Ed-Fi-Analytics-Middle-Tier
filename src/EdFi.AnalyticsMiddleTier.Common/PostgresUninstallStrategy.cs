@@ -16,7 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
             this.SchemaDefault = "public";
             this.JournalingVersionsTable = $"\"{JournalingVersionsTable}\"";
         }
-        
+
         public override string GetQueryIndexesTemplate(string schema)
         {
             return $"SELECT indexname as FullyQualifiedIndexName FROM pg_indexes WHERE schemaname = '{schema.ToLower()}';";

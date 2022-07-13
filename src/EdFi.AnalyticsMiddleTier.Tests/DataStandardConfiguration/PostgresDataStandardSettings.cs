@@ -12,7 +12,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         public override Engine DatabaseEngine => Engine.PostgreSQL;
 
         protected override string DatabaseBackupFileFormat => "EdFi.Ods{0}.Minimal.Template.sql";
-        
+
         public PostgresDataStandardSettings(DataStandard dataStandard)
         {
             InitializeSettings(dataStandard);

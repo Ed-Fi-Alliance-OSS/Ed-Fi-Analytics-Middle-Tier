@@ -18,7 +18,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolFoodServiceProg
     {
         protected const string TestCasesFolder = "TestCases.StudentSchoolFoodServiceProgramDim";
         protected const string TestCasesDataFileName = "0000_StudentSchoolFoodServiceProgramDim_Data_Load.xml";
-    
+
         [Test]
         public void Then_view_should_match_column_dictionary()
         {

@@ -32,7 +32,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
         protected DbConnectionStringParameters DbConnectionStringParameter
             => _dbConnectionStringParam ??= new DbConnectionStringParameters(DefaultDatabaseNamePrefix, EnvParameterDataBaseNamePrefix);
-        
+
         private readonly DotEnvHelper _dotEnvHelper;
 
         protected DatabaseConnection(string versionFileSuffix)

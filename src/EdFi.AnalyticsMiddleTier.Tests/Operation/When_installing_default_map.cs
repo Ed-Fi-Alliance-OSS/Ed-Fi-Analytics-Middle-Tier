@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             Result = DataStandard.LoadTestCaseData<LocalEducationAgencyDim>(
                 $"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0000_descriptormap_case_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading descriptor data: '{Result.errorMessage}'");
-            
+
             Result = DataStandard.Install(10);
             Result.success.ShouldBeTrue($"Error while installing Base and DefaultMap: '{Result.errorMessage}'");
         }

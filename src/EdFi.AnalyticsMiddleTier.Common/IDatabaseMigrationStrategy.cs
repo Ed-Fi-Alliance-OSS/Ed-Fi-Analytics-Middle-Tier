@@ -10,8 +10,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
 {
     public interface IDatabaseMigrationStrategy
     {
-        DatabaseUpgradeResult Migrate(Assembly assembly, string directoryName,string connectionString,int timeoutSeconds);
-        
+        DatabaseUpgradeResult Migrate(Assembly assembly, string directoryName, string connectionString, int timeoutSeconds);
+
         DataStandard GetDataStandardVersion();
     }
 }

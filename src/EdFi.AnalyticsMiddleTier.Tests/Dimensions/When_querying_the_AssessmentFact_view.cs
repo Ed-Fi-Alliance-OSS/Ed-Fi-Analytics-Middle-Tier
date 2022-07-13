@@ -129,7 +129,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AssessmentFactTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_Version.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_AcademicSubject()
             {

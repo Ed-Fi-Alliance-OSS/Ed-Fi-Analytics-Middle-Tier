@@ -16,8 +16,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
     {
         protected const string TestCasesFolder = "TestCases.AcademicTimePeriodDim";
         protected const string TestCasesDataFileName = "0000_AcademicTimePeriodDim_Data_Load.xml";
-                
-        [SetUpFixture]      
+
+        [SetUpFixture]
         public class SetupAcademicTimePeriodDimTestCase
             : When_querying_the_AcademicTimePeriodDim_view
         {
@@ -47,8 +47,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
             [Test]
             public void Then_should_have_AcademicTimePeriodKey()
             {
-                
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AcademicTimePeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.should_have_AcademicTimePeriodKey.xml");
+
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<AcademicTimePeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.should_have_AcademicTimePeriodKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -150,7 +150,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.AcademicTimePeriodDimTestGro
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-        
+
 
     }
 }

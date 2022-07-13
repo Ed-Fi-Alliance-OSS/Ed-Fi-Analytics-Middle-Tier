@@ -17,13 +17,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     public abstract class When_installing_datastandard_version
     {
         protected IOrm Orm { get; set; }
-        
+
         [OneTimeSetUp]
         public void Setup()
         {
             Orm = A.Fake<IOrm>();
         }
-        
+
     }
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [TestFixture]
@@ -32,15 +32,16 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     {
         protected SqlServerMigrationStrategy sqlServerMigrationStrategy { get; set; }
 
-        readonly DataStandard _dataStandard;
-        DataStandard _result;
-        static object[] FixtureArgs = {
+        private readonly DataStandard _dataStandard;
+        private DataStandard _result;
+        private static object[] FixtureArgs = {
         new object[] { DataStandard.Ds2 },
         new object[] { DataStandard.Ds31 },
         new object[] { DataStandard.Ds32 },
         new object[] { DataStandard.Ds33 }
         };
-        public Given_SqlServer_database_with_a_valid_datastandard_version(DataStandard dataStandard) {
+        public Given_SqlServer_database_with_a_valid_datastandard_version(DataStandard dataStandard)
+        {
             _dataStandard = dataStandard;
         }
 
@@ -80,16 +81,17 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     public class Given_SqlServer_database_with_an_invalid_datastandard_version : When_installing_datastandard_version
     {
         protected SqlServerMigrationStrategy sqlServerMigrationStrategy { get; set; }
-        static object[] FixtureArgs = {
+
+        private static object[] FixtureArgs = {
         new object[] { DataStandard.InvalidDs }
         };
-        readonly DataStandard _dataStandard;
-        DataStandard _result;
+        private readonly DataStandard _dataStandard;
+        private DataStandard _result;
         public Given_SqlServer_database_with_an_invalid_datastandard_version(DataStandard dataStandard)
         {
             _dataStandard = dataStandard;
         }
-        
+
         [SetUp]
         public void Act()
         {
@@ -127,18 +129,19 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
     [TestFixtureSource("FixtureArgs")]
     public class Given_Postgresql_database_with_a_valid_datastandard_version : When_installing_datastandard_version
     {
-        protected PostgresMigrationStrategy postgresqlServerMigrationStrategy{ get; set; }
-        static object[] FixtureArgs = {
+        protected PostgresMigrationStrategy postgresqlServerMigrationStrategy { get; set; }
+
+        private static object[] FixtureArgs = {
             new object[] { DataStandard.Ds32 },
             new object[] { DataStandard.Ds33 }
         };
-        readonly DataStandard _dataStandard;
-        DataStandard _result;
+        private readonly DataStandard _dataStandard;
+        private DataStandard _result;
         public Given_Postgresql_database_with_a_valid_datastandard_version(DataStandard dataStandard)
         {
             _dataStandard = dataStandard;
         }
-        
+
         [SetUp]
         public void Act()
         {

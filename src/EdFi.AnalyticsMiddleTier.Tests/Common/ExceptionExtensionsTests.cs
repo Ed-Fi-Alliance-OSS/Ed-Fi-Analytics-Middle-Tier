@@ -12,10 +12,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [TestFixture]
     [Category("UnitTest")]
-    class ExceptionExtensionsTests
+    internal class ExceptionExtensionsTests
     {
-        private string exceptionMessage = "Exception message";
-        private string innerExceptionMessage = "Inner exception message";
+        private readonly string exceptionMessage = "Exception message";
+        private readonly string innerExceptionMessage = "Inner exception message";
 
         [Test]
         public void Inner_exception_are_concatenated_properly()

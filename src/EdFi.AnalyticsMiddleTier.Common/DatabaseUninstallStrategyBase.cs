@@ -118,7 +118,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
         /// Remove all indexes in a schema.
         /// </summary>
         /// <param name="schema">Schema to filter.</param>
-        public int RemoveAllIndexes(string schema)=> RemoveDbObjectsBySchema(GetQueryIndexesTemplate, GetDropIndexTemplate, schema);
+        public int RemoveAllIndexes(string schema) => RemoveDbObjectsBySchema(GetQueryIndexesTemplate, GetDropIndexTemplate, schema);
 
         /// <summary>
         /// Remove all views in a schema.
@@ -136,14 +136,14 @@ namespace EdFi.AnalyticsMiddleTier.Common
         /// Remove all stored procedures in a schema.
         /// </summary>
         /// <param name="schema">Schema to filter.</param>
-        public int RemoveAllStoredProcedures(string schema)=> RemoveDbObjectsBySchema(GetQueryStoredProceduresTemplate, GetDropStoredProceduresTemplate, schema);
+        public int RemoveAllStoredProcedures(string schema) => RemoveDbObjectsBySchema(GetQueryStoredProceduresTemplate, GetDropStoredProceduresTemplate, schema);
 
 
-        protected int RemoveDbObjectsBySchema(Func<string, string>queryTemplate, Func<string, string, string>DropTemplate, string schema)
+        protected int RemoveDbObjectsBySchema(Func<string, string> queryTemplate, Func<string, string, string> DropTemplate, string schema)
         {
             var dbSchema = schema.ToLower();
             var objectsToDrop = Orm.Query<string>(queryTemplate(dbSchema));
-            if ((objectsToDrop?.Count ?? 0) <= 0){ return 0;}
+            if ((objectsToDrop?.Count ?? 0) <= 0) { return 0; }
             var sql = String.Join(string.Empty, objectsToDrop.Select(i => (DropTemplate(dbSchema, i))));
             return Orm.Execute(sql);
         }
@@ -151,7 +151,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
         {
             var dbSchema = schema.ToLower();
             var objectsToDrop = Orm.Query<string>(queryTemplate(dbSchema));
-            if ((objectsToDrop?.Count ?? 0) <= 0){ return 0;}
+            if ((objectsToDrop?.Count ?? 0) <= 0) { return 0; }
             var sql = String.Join(String.Empty, objectsToDrop.Select(i => (DropTemplate(i))));
             return Orm.Execute(sql);
         }
