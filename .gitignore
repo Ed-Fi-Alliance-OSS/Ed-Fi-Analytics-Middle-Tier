@@ -11,3 +11,5 @@ node_modules/
 launchSettings.json
 *.bak
 .env
+
+*.sarif
