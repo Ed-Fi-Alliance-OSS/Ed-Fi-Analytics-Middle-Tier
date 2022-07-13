@@ -56,7 +56,78 @@ jobs:
         run: |
           .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
         shell: pwsh
+        
+      - name: Fix locale in sarif files
+        run: |
+           $files = Get-ChildItem -Include *.sarif -Recurse
+           $from = '"language": ""'
+           $to = '"language": "en-US"'
+           $files | ForEach-Object { (Get-Content $_) -replace $from, $to | Out-File $_ }
+        shell: pwsh
 
+      - name: Upload SARIF file - Console
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.Console/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.Console
+
+      - name: Upload SARIF file - Common
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.Common/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.Common
+
+      - name: Upload SARIF file - DataStandard2
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.DataStandard2/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.DataStandard2
+
+      - name: Upload SARIF file - DataStandard31
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.DataStandard31/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.DataStandard31
+
+      - name: Upload SARIF file - DataStandard32
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.DataStandard32/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.DataStandard32
+
+      - name: Upload SARIF file - DataStandard33
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.DataStandard33/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.DataStandard33
+
+      - name: Upload SARIF file - Console
+        uses: github/codeql-action/upload-sarif@81b419c908d540ec4c7da9bfb4b5d941fca8f624
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: src/EdFi.AnalyticsMiddleTier.Tests/results.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: EdFi.AnalyticsMiddleTier.Tests
+          
       - name: Unit Tests
         run: |
           .\build.ps1 unittest -Configuration ${{ env.CONFIGURATION }}
