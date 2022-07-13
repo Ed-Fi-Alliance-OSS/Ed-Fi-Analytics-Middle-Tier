@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -45,7 +45,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
                 }
 
                 XmlSerializer serializer = new XmlSerializer(typeof(TestCaseHelper<T>));
-                returnObject = (TestCaseHelper<T>)serializer.Deserialize(stream);
+                returnObject = (TestCaseHelper<T>) serializer.Deserialize(stream);
             }
             return returnObject;
         }
@@ -55,7 +55,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
             using (var stream = ExecutingAssembly.GetManifestResourceStream($"{ExecutingAssembly.GetName().Name}.{jsonFilename}"))
             {
                 DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(TestCaseHelper<T>));
-                returnObject = (TestCaseHelper<T>)js.ReadObject(stream);
+                returnObject = (TestCaseHelper<T>) js.ReadObject(stream);
             }
             return returnObject;
         }
