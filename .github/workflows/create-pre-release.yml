@@ -22,11 +22,8 @@ on:
         default: 'false'
 
 env:
-  BUILD_VERSION:  ${{ secrets.SEMANTIC_VERSION }}
   CONFIGURATION: "Release"
   PUBLISH_FOLDER: "./publish/"
-  PUBLISH_FDD_ZIP: "EdFi.AnalyticsMiddleTier-${{ secrets.SEMANTIC_VERSION }}.zip"
-  PUBLISH_SCD_ZIP: "EdFi.AnalyticsMiddleTier-win10.x64-${{ secrets.SEMANTIC_VERSION }}.zip"
 
 jobs:
   AMT-Create-Release:
@@ -35,6 +32,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+        
+      - name: Assign release version from .version to Env variable
+        run: |
+          cat .version >> $GITHUB_ENV
       
       - name: Caching packages
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
@@ -78,6 +79,7 @@ jobs:
         uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5  # v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_FDD_ZIP: "EdFi.AnalyticsMiddleTier-${{ env.BUILD_VERSION }}.zip"
         with:
           upload_url: ${{ steps.create_pre_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ${{ env.PUBLISH_FOLDER }}${{ env.PUBLISH_FDD_ZIP }}
@@ -89,6 +91,7 @@ jobs:
         uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5  # v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_SCD_ZIP: "EdFi.AnalyticsMiddleTier-win10.x64-${{ env.BUILD_VERSION }}.zip"
         with:
           upload_url: ${{ steps.create_pre_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
           asset_path: ${{ env.PUBLISH_FOLDER }}${{ env.PUBLISH_SCD_ZIP }}
