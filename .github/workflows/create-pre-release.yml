@@ -22,7 +22,6 @@ on:
         default: 'false'
 
 env:
-  # BUILD_VERSION:  ${{ secrets.SEMANTIC_VERSION }}
   CONFIGURATION: "Release"
   PUBLISH_FOLDER: "./publish/"
 

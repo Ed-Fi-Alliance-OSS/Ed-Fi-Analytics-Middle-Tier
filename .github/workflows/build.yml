@@ -13,7 +13,6 @@ on:
   workflow_dispatch:
 
 env:
-  # BUILD_VERSION: ${{ secrets.SEMANTIC_VERSION }}
   CONFIGURATION: "Release"
   GA_USE_GITHUB_ENV: "true"
   USE_MSSQL_DEFAULT_CONN_STRING: "FALSE"
