@@ -103,7 +103,8 @@ function CleanPublishScdOutputDirectory {
 function AssemblyInfo {
     Invoke-Execute {
         $assembly_version = "$Version.$BuildCounter"
-        $year = (Get-Date -Format yyyy)
+        
+		$year = (Get-Date -Format yyyy)
 
         Invoke-RegenerateFile ("$solutionRoot/Directory.Build.props") @"
 <Project>
@@ -117,7 +118,7 @@ function AssemblyInfo {
         <VersionSuffix></VersionSuffix>
     </PropertyGroup>
 </Project>
-
+ 
 "@
     }
 }
