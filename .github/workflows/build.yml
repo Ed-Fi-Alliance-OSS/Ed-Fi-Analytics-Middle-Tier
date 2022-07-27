@@ -25,7 +25,7 @@ env:
   SQLSERVER_DATABASE_DS32: "AnalyticsMiddleTier_Testing_Ds32"
   SQLSERVER_DATABASE_DS33: "AnalyticsMiddleTier_Testing_Ds33"
   SQLSERVER_INTEGRATED_SECURITY: "false"
-  SQLSERVER_USER: "sa"
+  SQLSERVER_USER: "sa" 
   SQLSERVER_PASS: ${{ secrets.MSSQL_PWD }}
   POSTGRES_HOST: "localhost"
   POSTGRES_DATABASE_DS32: "edfi_ods_tests_ds32"
