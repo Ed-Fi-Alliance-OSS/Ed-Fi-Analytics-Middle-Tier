@@ -31,6 +31,7 @@ env:
   POSTGRES_DATABASE_DS32: "edfi_ods_tests_ds32"
   POSTGRES_DATABASE_DS33: "edfi_ods_tests_ds33"
   POSTGRES_PORT: "5432"
+  POSTGRES_USER: "postgres"
   POSTGRES_PASS: ${{ secrets.POSTGRESQL_PWD }}
   POSTGRES_POOLING: "false"
 
