@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_view_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-        
+
         [SetUpFixture]
         public class SetupCandidateDimTestCase
             : When_querying_the_CandidateDim_View
@@ -170,6 +170,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             public void Then_LastModifiedDate_should_be_2021_11_11()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_LastModifiedDate_should_be_2021_11_11.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_StudentKey_should_be_1000052()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_StudentKey_should_be_1000052.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }

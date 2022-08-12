@@ -60,6 +60,10 @@
     <DataType>varchar</DataType>
   </Result>
   <Result>
+    <ColumnName>StudentKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
     <ColumnName>ProgramName</ColumnName>
     <DataType>nvarchar</DataType>
   </Result>

@@ -23,6 +23,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string Cohort { get; set; }
         public bool ProgramComplete { get; set; }
         public string StudentUSI { get; set; }
+        public string StudentKey { get; set; }
         public string ProgramName { get; set; }
         public DateTime BeginDate { get; set; }
         public int EducationOrganizationId { get; set; }

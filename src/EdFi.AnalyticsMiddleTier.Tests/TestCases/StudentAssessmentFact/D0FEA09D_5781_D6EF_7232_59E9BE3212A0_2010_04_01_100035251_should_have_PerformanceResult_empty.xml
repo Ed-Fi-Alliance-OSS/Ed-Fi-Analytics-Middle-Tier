@@ -4,9 +4,9 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT PerformanceResult
-        FROM analytics.asmt_StudentAssessmentFact
-        WHERE StudentAssessmentKey = 'D0FEA09D-5781-D6EF-7232-59E9BE3212A0-uri://edfi.org/Assessment-D0FEA09D-5781-D6EF-7232-59E9BE3212A0_2010-04-01-100035251';
+      SELECT PerformanceResult
+      FROM analytics.asmt_StudentAssessmentFact
+      WHERE StudentAssessmentKey = 'D0FEA09D-5781-D6EF-7232-59E9BE3212A0-uri://edfi.org/Assessment-D0FEA09D-5781-D6EF-7232-59E9BE3212A0_2010-04-01-190151';
     </Query>
     <Result>
       <PerformanceResult></PerformanceResult>
