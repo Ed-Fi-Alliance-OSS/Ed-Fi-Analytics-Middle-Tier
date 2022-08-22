@@ -3,11 +3,11 @@
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
 
-using System.Diagnostics.CodeAnalysis;
 using EdFi.AnalyticsMiddleTier.Common;
 using EdFi.AnalyticsMiddleTier.Tests.Classes;
 using NUnit.Framework;
 using Shouldly;
+using System.Diagnostics.CodeAnalysis;
 using CommonLib = EdFi.AnalyticsMiddleTier.Common;
 
 // ReSharper disable once CheckNamespace
@@ -94,6 +94,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
             public void Then_should_have_StudentUSI()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentUSI.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_should_have_StudentKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentAssessmentFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_StudentKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -184,7 +191,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-        
+
         public class Given_student_assessment_fact_0E886CBB_AB8F_ABD3_747F_C455C5141145_2009_04_01
         : When_querying_the_StudentAssessmentFact_view
         {
@@ -612,7 +619,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
-        
+
         public class Given_student_assessment_fact_100035251_D0FEA09D_5781_D6EF_7232_59E9BE3212A0_ns_should_return_one_record
             : When_querying_the_StudentAssessmentFact_view
         {
@@ -636,7 +643,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentAssessmentFactTestGro
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_AssessedGradeLevel_Empty()
             {

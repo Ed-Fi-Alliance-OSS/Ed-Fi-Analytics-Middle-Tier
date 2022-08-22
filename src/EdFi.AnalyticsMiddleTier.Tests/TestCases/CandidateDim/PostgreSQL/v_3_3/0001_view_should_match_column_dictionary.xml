@@ -60,6 +60,10 @@
     <DataType>character varying</DataType>
   </Result>
   <Result>
+    <ColumnName>studentkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
     <ColumnName>programname</ColumnName>
     <DataType>character varying</DataType>
   </Result>

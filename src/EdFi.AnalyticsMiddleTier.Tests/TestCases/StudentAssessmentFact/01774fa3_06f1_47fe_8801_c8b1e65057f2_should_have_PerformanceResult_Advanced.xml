@@ -4,10 +4,10 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT PerformanceResult
-        FROM analytics.asmt_StudentAssessmentFact
-        WHERE
-        StudentAssessmentKey='01774fa3-06f1-47fe-8801-c8b1e65057f2-uri://ed-fi.org/Assessment/Assessment.xml-6I2A+twg+g6XWq8kcZqDRTlv6X3orG80tFtsihFv-25';
+      SELECT PerformanceResult
+      FROM analytics.asmt_StudentAssessmentFact
+      WHERE
+      StudentAssessmentKey='01774fa3-06f1-47fe-8801-c8b1e65057f2-uri://ed-fi.org/Assessment/Assessment.xml-6I2A+twg+g6XWq8kcZqDRTlv6X3orG80tFtsihFv-604845';
     </Query>
     <Result>
         <PerformanceResult>Advanced</PerformanceResult>

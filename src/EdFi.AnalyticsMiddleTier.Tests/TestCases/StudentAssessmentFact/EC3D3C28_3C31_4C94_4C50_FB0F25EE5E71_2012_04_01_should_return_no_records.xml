@@ -4,9 +4,9 @@
     <ControlDataInsertion>
     </ControlDataInsertion>
     <Query>
-        SELECT COUNT(1) AS CountValue
-        FROM analytics.asmt_StudentAssessmentFact
-        WHERE StudentAssessmentKey = 'EC3D3C28-3C31-4C94-4C50-FB0F25EE5E71-uri://edfi.org/Assessment-EC3D3C28-3C31-4C94-4C50-FB0F25EE5E71_2012-04-01-100035251';
+      SELECT COUNT(1) AS CountValue
+      FROM analytics.asmt_StudentAssessmentFact
+      WHERE StudentAssessmentKey = 'EC3D3C28-3C31-4C94-4C50-FB0F25EE5E71-uri://edfi.org/Assessment-EC3D3C28-3C31-4C94-4C50-FB0F25EE5E71_2012-04-01-190151';
     </Query>
     <Result>
         <CountValue>0</CountValue>

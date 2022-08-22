@@ -47,6 +47,10 @@
         <ColumnName>StudentUSI</ColumnName>
         <DataType>int</DataType>
     </Result>
+   <Result>
+        <ColumnName>StudentKey</ColumnName>
+        <DataType>varchar</DataType>
+    </Result>
     <Result>
         <ColumnName>StudentSchoolKey</ColumnName>
         <DataType>nvarchar</DataType>
