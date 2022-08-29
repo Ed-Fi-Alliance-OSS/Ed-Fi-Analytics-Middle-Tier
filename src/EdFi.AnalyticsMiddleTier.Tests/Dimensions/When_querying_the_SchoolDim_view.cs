@@ -240,5 +240,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class When_querying_the_SchoolDim_view_867530019
+            : When_querying_the_SchoolDim_view_base
+        {
+            public When_querying_the_SchoolDim_view_867530019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            
+            private const string _caseIdentifier = "SchoolKey_867530019";
+
+            [Test]
+            public void Then_SchoolAddress_is_not_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.{_caseIdentifier}_when_querying_SchoolAddress.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+        }
     }
 }

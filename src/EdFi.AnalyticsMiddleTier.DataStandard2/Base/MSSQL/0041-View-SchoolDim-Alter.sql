@@ -49,7 +49,7 @@ AS
        ON LocalEducationAgency.EducationServiceCenterId = EdOrgServiceCenter.EducationOrganizationId
      OUTER APPLY
      (
-         SELECT TOP 1 CONCAT(EducationOrganizationAddress.StreetNumberName, ', ', (EducationOrganizationAddress.ApartmentRoomSuiteNumber + ', '), EducationOrganizationAddress.City, StateAbbreviationType.CodeValue, ' ', EducationOrganizationAddress.PostalCode) AS SchoolAddress, 
+         SELECT TOP 1 CONCAT(EducationOrganizationAddress.StreetNumberName, ', ', (EducationOrganizationAddress.ApartmentRoomSuiteNumber + ', '), EducationOrganizationAddress.City, ' ', StateAbbreviationType.CodeValue, ' ', EducationOrganizationAddress.PostalCode) AS SchoolAddress, 
                       EducationOrganizationAddress.City AS SchoolCity, 
                       EducationOrganizationAddress.NameOfCounty AS SchoolCounty, 
                       StateAbbreviationType.CodeValue AS SchoolState, 

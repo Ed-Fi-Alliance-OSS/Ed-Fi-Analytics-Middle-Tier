@@ -59,7 +59,7 @@ CREATE VIEW analytics.SchoolDim AS
 		SELECT TOP 1
 			CONCAT(EducationOrganizationAddress.StreetNumberName, ', ',
 				(EducationOrganizationAddress.ApartmentRoomSuiteNumber + ', '),
-				EducationOrganizationAddress.City,
+				EducationOrganizationAddress.City, ' ',
 				StateAbbreviationType.CodeValue, ' ',
 				EducationOrganizationAddress.PostalCode) as SchoolAddress,
 			EducationOrganizationAddress.City as SchoolCity,
