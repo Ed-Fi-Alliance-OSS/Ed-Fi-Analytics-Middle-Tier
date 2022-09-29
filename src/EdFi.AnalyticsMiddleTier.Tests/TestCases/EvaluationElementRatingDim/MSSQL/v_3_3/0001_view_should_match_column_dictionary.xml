@@ -36,6 +36,18 @@
     <DataType>nvarchar</DataType>
   </Result>
   <Result>
+    <ColumnName>EvaluationTitle</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>TermDescriptorId</ColumnName>
+    <DataType>int</DataType>
+  </Result>
+  <Result>
+    <ColumnName>SchoolYear</ColumnName>
+    <DataType>smallint</DataType>
+  </Result>
+  <Result>
     <ColumnName>Rating</ColumnName>
     <DataType>decimal</DataType>
   </Result>
