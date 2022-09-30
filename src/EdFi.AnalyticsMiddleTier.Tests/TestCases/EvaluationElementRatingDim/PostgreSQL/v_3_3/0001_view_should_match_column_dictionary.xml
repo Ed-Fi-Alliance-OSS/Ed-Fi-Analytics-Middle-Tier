@@ -36,6 +36,18 @@
     <DataType>character varying</DataType>
   </Result>
   <Result>
+    <ColumnName>evaluationtitle</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>termdescriptorid</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>schoolyear</ColumnName>
+    <DataType>smallint</DataType>
+  </Result>
+  <Result>
     <ColumnName>rating</ColumnName>
     <DataType>numeric</DataType>
   </Result>

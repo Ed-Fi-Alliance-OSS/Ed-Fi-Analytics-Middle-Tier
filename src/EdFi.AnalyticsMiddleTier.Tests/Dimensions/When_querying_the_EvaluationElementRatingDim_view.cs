@@ -90,6 +90,27 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
             }
 
             [Test]
+            public void Then_SchoolYear_should_be_2022()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_SchoolYear_should_be_2022.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_TermDescriptorId_should_be_2404()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_TermDescriptorId_should_be_2404.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_EvaluationTitle_should_be_Formal_Observation()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_EvaluationTitle_should_be_Formal_Observation.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_RatingResultTitle_should_be_Effective()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_RatingResultTitle_should_be_Effective.xml");
