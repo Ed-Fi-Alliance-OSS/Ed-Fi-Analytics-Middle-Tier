@@ -91,9 +91,9 @@ AS
                  AND StaffSectionAssociation.UniqueSectionCode = Section.UniqueSectionCode
                  AND StaffSectionAssociation.SequenceOfCourse = Section.SequenceOfCourse
           WHERE staffToScopeMap.UserScope IN('AuthorizationScope.District', 'AuthorizationScope.School')
+          OR (StaffSectionAssociation.Id IS NOT NULL
 	        AND (
 		        StaffSectionAssociation.EndDate IS NULL 
 			        OR StaffSectionAssociation.EndDate >= GETDATE()
-		        )
-          OR StaffSectionAssociation.Id IS NOT NULL;
+		        ));
 GO

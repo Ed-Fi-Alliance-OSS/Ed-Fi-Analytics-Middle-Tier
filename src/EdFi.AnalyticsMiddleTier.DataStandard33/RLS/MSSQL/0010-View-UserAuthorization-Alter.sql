@@ -95,8 +95,9 @@ WHERE (
 			,'AuthorizationScope.School'
 			)
 		)
-	AND (
-		StaffSectionAssociation.EndDate IS NULL 
-			OR StaffSectionAssociation.EndDate >= GETDATE()
-		)
-	OR (StaffSectionAssociation.Id IS NOT NULL);
+	OR (StaffSectionAssociation.Id IS NOT NULL
+		AND (
+			StaffSectionAssociation.EndDate IS NULL 
+				OR StaffSectionAssociation.EndDate >= GETDATE()
+			)
+	);
