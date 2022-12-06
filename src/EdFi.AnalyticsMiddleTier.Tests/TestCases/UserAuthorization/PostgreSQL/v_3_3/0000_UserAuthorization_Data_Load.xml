@@ -198,6 +198,21 @@
 
     INSERT INTO edfi.StaffEducationOrganizationAssignmentAssociation(StaffUSI,EducationOrganizationId,StaffClassificationDescriptorId,BeginDate,PositionTitle,EndDate,OrderOfAssignment,EmploymentEducationOrganizationId,EmploymentStatusDescriptorId,EmploymentHireDate,Id,LastModifiedDate,CreateDate,CredentialIdentifier,StateOfIssueStateAbbreviationDescriptorId,Discriminator)(SELECT '288237','867530067','157','2011-04-28','Middle School Teacher',NULL,NULL,NULL,NULL,NULL,'7FB73436-583C-4C28-9D77-FC956596045E','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE id='7FB73436-583C-4C28-9D77-FC956596045E'));
 
-    UPDATE edfi.StaffEducationOrganizationAssignmentAssociation SET enddate='2015-06-19' WHERE id='FE5420B9-860E-46B1-A1DD-CDADB6550C90'
+    UPDATE edfi.StaffEducationOrganizationAssignmentAssociation SET enddate='2015-06-19' WHERE id='FE5420B9-860E-46B1-A1DD-CDADB6550C90';
+
+    ---
+
+    INSERT INTO edfi.Staff(StaffUSI,FirstName,MiddleName,LastSurname,BirthDate,StaffUniqueId,Id,LastModifiedDate,CreateDate)
+    (SELECT '1752','Jayme','O','Smith','1960-06-13','21606','866CB16D-9D51-47C8-92AE-600A89FDE390','Nov 19 2015  4:09PM','Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1752'));
+    
+    INSERT INTO edfi.StaffEducationOrganizationAssignmentAssociation(StaffUSI,EducationOrganizationId,StaffClassificationDescriptorId,BeginDate,PositionTitle,Id,LastModifiedDate,CreateDate)
+    (SELECT '1752','867530067','157','2011-04-28','Middle School Teacher','94569066-6916-47E3-B1D1-B1D8BC3C00DA','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE Id='94569066-6916-47E3-B1D1-B1D8BC3C00DA'));
+
+    INSERT INTO edfi.StaffSectionAssociation(StaffUSI,SchoolId,LocalCourseCode,SchoolYear,ClassroomPositionDescriptorId,BeginDate,EndDate,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName)
+    (SELECT '1752','867530067','XSSF06','2012','127','2011-08-22',NULL,'EAF3E74E-60CC-401F-8A23-330DA051BC72','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','18032','Traditional'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffSectionAssociation WHERE id='EAF3E74E-60CC-401F-8A23-330DA051BC72'));
+
   </ControlDataInsertion>
 </TestCase>

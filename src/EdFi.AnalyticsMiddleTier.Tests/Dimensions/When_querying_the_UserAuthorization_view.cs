@@ -198,5 +198,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
+
+        public class Given_all_existing_records_returned_by_the_view_21606
+            : When_querying_the_UserAuthorization_view
+        {
+            public Given_all_existing_records_returned_by_the_view_21606(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            [Test]
+            public void Then_Userkey_iqual_to_21606_exists()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_for_specific_record_with_UserKey_equal_to_21606.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
