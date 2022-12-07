@@ -250,8 +250,6 @@
 
       UPDATE edfi.StaffEducationOrganizationAssignmentAssociation SET enddate='2015-06-19' WHERE id='FE5420B9-860E-46B1-A1DD-CDADB6550C90'
 
-      ---
-
       SET IDENTITY_INSERT edfi.Staff ON;
       INSERT INTO edfi.Staff(StaffUSI,FirstName,MiddleName,LastSurname,BirthDate,StaffUniqueId,Id,LastModifiedDate,CreateDate)
       (SELECT TOP 1'1752','Jayme','O','Smith','1960-06-13','21606','866CB16D-9D51-47C8-92AE-600A89FDE390','Nov 19 2015  4:09PM','Sep 18 2015 11:34AM'

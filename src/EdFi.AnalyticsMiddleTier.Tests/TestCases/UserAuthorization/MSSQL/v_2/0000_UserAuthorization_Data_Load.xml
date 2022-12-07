@@ -118,8 +118,6 @@
     INSERT INTO edfi.Section(SchoolId,ClassPeriodName,ClassroomIdentificationCode,LocalCourseCode,TermDescriptorId,SchoolYear,UniqueSectionCode,SequenceOfCourse,EducationalEnvironmentTypeId,MediumOfInstructionTypeId,PopulationServedTypeId,AvailableCreditTypeId,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'867530067','T04','133','XSSF06','535','2012','18032','2','1',NULL,'1',NULL,NULL,NULL,'0.00','E8A20AEF-8DF2-4F4D-BBA9-1D0198A9D87A','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Section WHERE   ClassPeriodName= 'T04'  AND ClassroomIdentificationCode= '133'  AND LocalCourseCode= 'XSSF06'  AND SchoolId= '867530067'  AND SchoolYear= '2012'  AND SequenceOfCourse= '2'  AND TermDescriptorId= '535'  AND UniqueSectionCode= '18032'));
     INSERT INTO edfi.StaffSectionAssociation(StaffUSI,ClassroomIdentificationCode,SchoolId,ClassPeriodName,LocalCourseCode,SchoolYear,TermDescriptorId,UniqueSectionCode,SequenceOfCourse,ClassroomPositionDescriptorId,BeginDate,EndDate,HighlyQualifiedTeacher,TeacherStudentDataLinkExclusion,PercentageContribution,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1130','133','867530067','T04','XSSF06','2012','535','18032','1','127','2011-08-22','2059-05-25',NULL,NULL,NULL,'B616BB15-C9DA-41D5-ACA5-4E944F4CC7C1','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffSectionAssociation WHERE StaffUSI = 1130 and SchoolId = 867530067 and ClassPeriodName = 'T04' and ClassroomIdentificationCode = 133 and LocalCourseCode = 'XSSF06' and TermDescriptorId = 535));
 
-    ---
-    
     SET IDENTITY_INSERT edfi.Staff ON;INSERT INTO edfi.Staff(StaffUSI,FirstName,MiddleName,LastSurname,HispanicLatinoEthnicity,SexTypeId,BirthDate,StaffUniqueId,Id,LastModifiedDate,CreateDate)
     (SELECT TOP 1'1752','Reina','O','Parrish','0','1','1960-06-13','21606','866CB16D-9D51-47C8-92AE-600A89FDE378','Nov 19 2015  4:09PM','Sep 18 2015 11:34AM'
     WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1752'));SET IDENTITY_INSERT edfi.Staff OFF;
@@ -129,7 +127,7 @@
     WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE StaffUSI = 1752));
 
     INSERT INTO edfi.StaffSectionAssociation(StaffUSI,ClassroomIdentificationCode,SchoolId,ClassPeriodName,LocalCourseCode,SchoolYear,TermDescriptorId,UniqueSectionCode,SequenceOfCourse,ClassroomPositionDescriptorId,BeginDate,EndDate,Id,LastModifiedDate,CreateDate)
-    (SELECT TOP 1'1752','133','867530067','T03','XSSF06','2012','535','18032','1','127','2011-08-22','2059-05-25','EAF3E74E-60CC-401F-8A23-330DA051BC68','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
+    (SELECT TOP 1'1752','133','867530067','T03','XSSF06','2012','535','18032','1','127','2011-08-22',NULL,'EAF3E74E-60CC-401F-8A23-330DA051BC68','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
     WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffSectionAssociation WHERE StaffUSI = 1752 and SchoolId = 867530067 and ClassPeriodName = 'T03' and ClassroomIdentificationCode = 133 and LocalCourseCode = 'XSSF06' and TermDescriptorId = 535));
 
   </ControlDataInsertion>
