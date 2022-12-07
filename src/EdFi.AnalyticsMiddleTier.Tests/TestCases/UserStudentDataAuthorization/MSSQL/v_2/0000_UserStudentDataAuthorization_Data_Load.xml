@@ -461,5 +461,18 @@
     INSERT INTO edfi.StaffEducationOrganizationAssignmentAssociation(StaffUSI,EducationOrganizationId,StaffClassificationDescriptorId,BeginDate,PositionTitle,EndDate,OrderOfAssignment,EmploymentEducationOrganizationId,EmploymentStatusDescriptorId,EmploymentHireDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'140527','867530010','157','2011-04-28','High School Teacher',NULL,NULL,NULL,NULL,NULL,'EEC82563-643D-4032-B16F-268215A7CAA0','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE id = 'EEC82563-643D-4032-B16F-268215A7CAA0'));
 
     INSERT INTO edfi.StudentSectionAssociation ( StudentUSI,  SchoolId,  ClassPeriodName,  ClassroomIdentificationCode,  LocalCourseCode,  UniqueSectionCode,  SequenceOfCourse,  SchoolYear,  TermDescriptorId,  BeginDate,  EndDate,  HomeroomIndicator,  RepeatIdentifierTypeId,  TeacherStudentDataLinkExclusion,  Id,  LastModifiedDate,  CreateDate ) ( SELECT TOP 1  '100023228',  '867530010',  'A02',  '702',  'XLTV31',  '14138',  '1',  '2012',  '540',  '2012-05-10',  '2012-05-10',  NULL,  NULL,  NULL,  '74F65A0A-AFF6-4DED-9734-60CA522C4F50',  'Mar  8 2016 12:16PM',  'Mar  8 2016 12:16PM' WHERE NOT EXISTS ( SELECT  1 FROM  edfi.StudentSectionAssociation WHERE  id = '74F65A0A-AFF6-4DED-9734-60CA522C4F50' ) );
+
+    --
+
+    SET IDENTITY_INSERT edfi.Staff ON;
+    INSERT INTO edfi.Staff(StaffUSI,FirstName,MiddleName,LastSurname,BirthDate,HispanicLatinoEthnicity,StaffUniqueId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1'1010','Teresa','A','Hood','1950-09-09','1','11325','C5C450D5-AE21-4836-B523-7B2822E65422','Aug 10 2014 12:00AM','Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1010'));
+    SET IDENTITY_INSERT edfi.Staff OFF;
+
+    INSERT INTO edfi.StaffEducationOrganizationAssignmentAssociation(StaffUSI,EducationOrganizationId,StaffClassificationDescriptorId,BeginDate,EndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1'1010','867530','160','2011-04-28','2089-01-01','8714DD85-AFBF-4E12-98EA-2DE587E0CBD1','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE id = '8714DD85-AFBF-4E12-98EA-2DE587E0CBD1'));
+
   </ControlDataInsertion>
 </TestCase>

@@ -401,5 +401,18 @@
     INSERT INTO edfi.Section(SchoolId,LocalCourseCode,SchoolYear,SequenceOfCourse,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate,SessionName,SectionIdentifier,LocationSchoolId,LocationClassroomIdentificationCode,PopulationServedDescriptorId,MediumOfInstructionDescriptorId,EducationalEnvironmentDescriptorId,AvailableCreditTypeDescriptorId,Discriminator)(SELECT TOP 1'867530010','XLTV31','2011','1',NULL,NULL,'1.000','06C869F3-283C-4C4A-AF19-5893AB283B01','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','SHORT','14138','867530010','702','1232',NULL,'950',NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Section WHERE   LocalCourseCode= 'XLTV31'  AND SchoolId= '867530010'  AND SchoolYear= '2011'  AND SectionIdentifier= '14138'  AND SessionName= 'SHORT'));
 
     INSERT INTO edfi.StaffSectionAssociation(StaffUSI,SchoolId,LocalCourseCode,SchoolYear,ClassroomPositionDescriptorId,BeginDate,EndDate,HighlyQualifiedTeacher,TeacherStudentDataLinkExclusion,PercentageContribution,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,Discriminator)(SELECT TOP 1'2028','867530010','XLTV31','2011','127','2012-05-10','2012-06-09',NULL,NULL,NULL,'E9227B4E-B23C-4C65-9A87-6E61E3CD41AB','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM','14138','SHORT',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffSectionAssociation WHERE id='E9227B4E-B23C-4C65-9A87-6E61E3CD41AB'));
+
+    --
+
+    SET IDENTITY_INSERT edfi.Staff ON;
+    INSERT INTO edfi.Staff(StaffUSI,FirstName,MiddleName,LastSurname,BirthDate,HispanicLatinoEthnicity,StaffUniqueId,Id,LastModifiedDate,CreateDate,SexDescriptorId)
+    (SELECT TOP 1'1010','Teresa','A','Hood','1950-09-09','1','11325','C5C450D5-AE21-4836-B523-7B2822E65422','Aug 10 2014 12:00AM','Sep 18 2015 11:34AM','1395'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1010'));
+    SET IDENTITY_INSERT edfi.Staff OFF;
+
+    INSERT INTO edfi.StaffEducationOrganizationAssignmentAssociation(StaffUSI,EducationOrganizationId,StaffClassificationDescriptorId,BeginDate,EndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1'1010','867530','160','2011-04-28','2089-01-01','8714DD85-AFBF-4E12-98EA-2DE587E0CBD1','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE id = '8714DD85-AFBF-4E12-98EA-2DE587E0CBD1'));
+
   </ControlDataInsertion>
 </TestCase>
