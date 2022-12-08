@@ -438,5 +438,17 @@
     (SELECT TOP 1'3176','867530020','156','2011-04-28','2089-01-01','C9650B65-1ED2-4D56-9AB9-4DAAC273CA5A','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
     WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE ID = 'C9650B65-1ED2-4D56-9AB9-4DAAC273CA5A'));
 
+    --
+
+    SET IDENTITY_INSERT edfi.Student ON;
+    INSERT INTO edfi.Student(StudentUSI,FirstName,MiddleName,LastSurname,BirthDate,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1'100063372','Esther','V','Labbe','1993-04-21','197185','2AA8A972-6490-483A-B5AF-DE43A3E22707','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100063372'));
+    SET IDENTITY_INSERT edfi.Student OFF;
+
+    INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,ExitWithdrawDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1'100063372','867530020','2011-08-22','38','2089-01-01','94B15370-73C9-4E36-A36F-22EDBF563CF7','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE ID = '94B15370-73C9-4E36-A36F-22EDBF563CF7'));
+
   </ControlDataInsertion>
 </TestCase>
