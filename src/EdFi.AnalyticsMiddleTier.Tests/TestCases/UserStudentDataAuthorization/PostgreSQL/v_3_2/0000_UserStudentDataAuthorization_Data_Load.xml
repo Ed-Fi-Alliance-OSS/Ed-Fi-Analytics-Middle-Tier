@@ -407,10 +407,20 @@
       INSERT INTO edfi.Staff(StaffUSI,FirstName,MiddleName,LastSurname,BirthDate,HispanicLatinoEthnicity,StaffUniqueId,Id,LastModifiedDate,CreateDate,SexDescriptorId)
       (SELECT '1010','Teresa','A','Hood','1950-09-09','1','11325','C5C450D5-AE21-4836-B523-7B2822E65422','Aug 10 2014 12:00AM','Sep 18 2015 11:34AM','1395'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Staff WHERE   StaffUSI= '1010'));
-      
+
       INSERT INTO edfi.StaffEducationOrganizationAssignmentAssociation(StaffUSI,EducationOrganizationId,StaffClassificationDescriptorId,BeginDate,EndDate,Id,LastModifiedDate,CreateDate)
       (SELECT '1010','867530','160','2011-04-28','2089-01-01','8714DD85-AFBF-4E12-98EA-2DE587E0CBD1','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.StaffEducationOrganizationAssignmentAssociation WHERE id = '8714DD85-AFBF-4E12-98EA-2DE587E0CBD1'));
+
+      --
+
+      INSERT INTO edfi.Student(StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,BirthDate,StudentUniqueId,Id,LastModifiedDate,CreateDate)
+      (SELECT '100023229',NULL,'Claudio','C','Roche','1990-11-27','190020','0F61EFBC-7AFC-4E49-A5EE-87E423432877','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100023229'));
+
+      INSERT INTO edfi.StudentSchoolAssociation(StudentUSI,SchoolId,EntryDate,EntryGradeLevelDescriptorId,ExitWithdrawDate,Id,LastModifiedDate,CreateDate)
+      (SELECT '100023229','867530010','2012-05-10','38','2089-01-01','1D3FA61F-0B4A-4FBB-927A-314819FD3278','Mar  8 2016 12:16PM','Mar  8 2016 12:16PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSchoolAssociation WHERE id = '1D3FA61F-0B4A-4FBB-927A-314819FD3278'));
 
     </ControlDataInsertion>
 </TestCase>
