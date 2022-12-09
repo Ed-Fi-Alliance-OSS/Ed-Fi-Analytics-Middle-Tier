@@ -153,6 +153,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
             }
         }
 
+        public class Given_UserStudentDataAuthorization_11722_218269
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_11722_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "11722_218269";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_UserStudentDataAuthorization_12143_197085
             : When_querying_the_UserStudentDataAuthorization_view
         {
