@@ -402,6 +402,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Asylee(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
             private string _caseIdentifier = "studentcharacteristic_asylee";
 
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore($"Not valid test for ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
             [Test]
             public void Then_should_return_one_record()
             {
