@@ -153,6 +153,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
             }
         }
 
+        public class Given_UserStudentDataAuthorization_11722_218269
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_11722_218269(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "11722_218269";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_UserStudentDataAuthorization_12143_197085
             : When_querying_the_UserStudentDataAuthorization_view
         {
@@ -174,6 +189,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
             public Given_UserStudentDataAuthorization_12143_197184(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "12143_197184";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_UserStudentDataAuthorization_12143_197185
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_12143_197185(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "12143_197185";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_UserStudentDataAuthorization_12144_197184
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_12144_197184(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "12144_197184";
 
             [Test]
             public void Then_should_return_one_record()
@@ -234,6 +279,36 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserStudentDataAuthorization
             public Given_UserStudentDataAuthorization_11721_218271(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
 
             private const string _caseIdentifier = "11721_218271";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_UserStudentDataAuthorization_11325_190019
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_11325_190019(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "11325_190019";
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
+        public class Given_UserStudentDataAuthorization_11325_190020
+            : When_querying_the_UserStudentDataAuthorization_view
+        {
+            public Given_UserStudentDataAuthorization_11325_190020(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "11325_190020";
 
             [Test]
             public void Then_should_return_one_record()
