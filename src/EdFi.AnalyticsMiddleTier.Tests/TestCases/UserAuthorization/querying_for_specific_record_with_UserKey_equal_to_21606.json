@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "select UserKey from analytics.rls_UserAuthorization where UserKey = '21606'",
+  "Result": [
+    {
+      "UserKey": "21606"
+    }
+  ]
+}

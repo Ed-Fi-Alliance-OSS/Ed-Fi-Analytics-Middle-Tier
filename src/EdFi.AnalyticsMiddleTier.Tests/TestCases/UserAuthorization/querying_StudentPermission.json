@@ -15,6 +15,9 @@
     },
     {
       "StudentPermission": "ALL"
+    },
+    {
+      "StudentPermission": "ALL"
     }
   ]
 }
