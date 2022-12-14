@@ -396,6 +396,29 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
             }
         }
 
+        public class Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Asylee
+            : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
+        {
+            public Given_StudentLocalEducationAgencyDemographicsBridge_studentcharacteristic_Asylee(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+            private string _caseIdentifier = "studentcharacteristic_asylee";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore($"Not valid test for ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         public class Given_StudentLocalEducationAgencyDemographicsBridge_student_characteristic_economic_disadvantaged
             : When_querying_the_StudentLocalEducationAgencyDemographicsBridge_view
         {
