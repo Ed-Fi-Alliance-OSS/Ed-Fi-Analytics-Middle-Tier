@@ -486,5 +486,30 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSchoolDemographicsBri
                 
             }
         }
+
+        public class Given_StudentSchoolDemographicsBridge_189872_867530007
+            : When_querying_the_StudentSchoolDemographicsBridge_view
+        {
+            public Given_StudentSchoolDemographicsBridge_189872_867530007(
+                TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private string _caseIdentifier = "189872_867530007";
+
+            [SetUp]
+            public void IgnoreTestCase()
+            {
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds2))
+                {
+                    Assert.Ignore($"Not valid test for ({DataStandard.DataStandardVersion.ToString()})");
+                }
+            }
+
+            [Test]
+            public void Then_should_return_one_cohortyear_record()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_studentcharacteristic_should_return_one_record.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
     }
 }
