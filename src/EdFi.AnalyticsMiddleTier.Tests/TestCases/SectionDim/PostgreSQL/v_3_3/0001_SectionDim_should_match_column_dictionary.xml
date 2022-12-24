@@ -37,7 +37,7 @@
     </Result>
     <Result>
         <ColumnName>schoolyear</ColumnName>
-        <DataType>smallint</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>educationalenvironmentdescriptor</ColumnName>
@@ -45,7 +45,7 @@
     </Result>
     <Result>
         <ColumnName>localeducationagencykey</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>lastmodifieddate</ColumnName>

@@ -16,6 +16,6 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string SectionPermission { get; set; } //(varchar(50), null)
         public string SectionKeyPermission { get; set; }
         public string SchoolPermission { get; set; } //(varchar(30), null)
-        public int? DistrictId { get; set; } //(int, null)
+        public string DistrictId { get; set; } //(int, null)
     }
 }

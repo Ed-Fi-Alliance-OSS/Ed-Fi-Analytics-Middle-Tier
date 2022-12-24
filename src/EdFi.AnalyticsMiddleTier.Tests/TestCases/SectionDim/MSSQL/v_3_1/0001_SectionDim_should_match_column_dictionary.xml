@@ -37,11 +37,11 @@
   </Result>
   <Result>
     <ColumnName>SchoolYear</ColumnName>
-    <DataType>smallint</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
       <ColumnName>LocalEducationAgencyKey</ColumnName>
-      <DataType>int</DataType>
+      <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>EducationalEnvironmentDescriptor</ColumnName>

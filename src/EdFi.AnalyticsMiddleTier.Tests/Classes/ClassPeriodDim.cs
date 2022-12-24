@@ -14,8 +14,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string SectionKey { get; set; }
         public string ClassPeriodName { get; set; } //(string, not null)
         public string LocalCourseCode { get; set; } //(string, not null)
-        public int SchoolId { get; set; } //(string, not null)
-        public int SchoolYear { get; set; } //(string, not null)
+        public string SchoolId { get; set; } //(string, not null)
+        public string SchoolKey { get; set; } //(string, not null)
+        public string SchoolYear { get; set; } //(string, not null)
         public string SectionIdentifier { get; set; } //(string, not null)
         public string SessionName { get; set; } //(string, not null)
     }

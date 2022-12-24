@@ -57,7 +57,7 @@
     </Result>
     <Result>
         <ColumnName>SchoolKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>AdministrationDate</ColumnName>

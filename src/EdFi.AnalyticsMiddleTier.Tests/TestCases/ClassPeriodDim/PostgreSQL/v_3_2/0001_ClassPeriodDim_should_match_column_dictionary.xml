@@ -28,12 +28,16 @@
         <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>schoolid</ColumnName>
-        <DataType>integer</DataType>
+      <ColumnName>schoolid</ColumnName>
+      <DataType>character varying</DataType>
     </Result>
     <Result>
-        <ColumnName>schoolyear</ColumnName>
-        <DataType>smallint</DataType>
+      <ColumnName>schoolkey</ColumnName>
+      <DataType>character varying</DataType>
+    </Result>
+    <Result>
+      <ColumnName>schoolyear</ColumnName>
+      <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>sectionidentifier</ColumnName>

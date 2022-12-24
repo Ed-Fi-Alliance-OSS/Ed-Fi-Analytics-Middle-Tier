@@ -21,7 +21,11 @@
     </Result>
     <Result>
         <ColumnName>educationorganizationid</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+      <ColumnName>educationorganizationkey</ColumnName>
+      <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>programname</ColumnName>
@@ -33,7 +37,7 @@
     </Result>
     <Result>
         <ColumnName>schoolkey</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>studentschoolkey</ColumnName>

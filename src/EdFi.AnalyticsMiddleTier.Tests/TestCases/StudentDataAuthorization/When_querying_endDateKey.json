@@ -1,0 +1,11 @@
+{
+  "DBMS": "Any",
+  "ControlDataInsertion": "",
+  "DropControlData": "",
+  "Query": "SELECT EndDateKey FROM analytics.rls_studentdataauthorization WHERE StudentKey='198070' AND SchoolKey='867530007' AND SectionId='a460d6ff-ce92-4699-89cb-fbb4c0f1fb90';",
+  "Result": [
+    {
+      "EndDateKey": "20120417"
+    }
+  ]
+}

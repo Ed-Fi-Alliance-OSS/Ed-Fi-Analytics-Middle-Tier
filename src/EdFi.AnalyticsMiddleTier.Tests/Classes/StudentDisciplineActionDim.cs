@@ -15,7 +15,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string DisciplineDateKey { get; set; }
         public string StudentSchoolKey { get; set; }
         public string StudentKey { get; set; }
-        public int SchoolKey { get; set; }
+        public string SchoolKey { get; set; }
         public string DisciplineActionDescription { get; set; }
         public string UserKey { get; set; }
         public DateTime? LastModifiedDate { get; set; }

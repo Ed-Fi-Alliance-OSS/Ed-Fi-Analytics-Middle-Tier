@@ -16,5 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string SectionId { get; set; } //(nvarchar(50), null)
         public DateTime BeginDate { get; set; } //(date, not null)
         public DateTime EndDate { get; set; } //(date, null)
+        public string BeginDateKey { get; set; } //(date, not null)
+        public string EndDateKey { get; set; } //(date, null)
     }
 }

@@ -4,10 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT LocalEducationAgencyParentLocalEducationAgencyKey
-    FROM analytics.LocalEducationAgencyDim
-    WHERE LocalEducationAgencyKey = 628530;
+      SELECT SchoolKey
+      FROM analytics.ClassPeriodDim
+      WHERE ClassPeriodKey = 'T01-QALR11-867530007-2012-530-21958-Traditional';
   </Query>
   <Result>
+    <SchoolKey>867530007</SchoolKey>
   </Result>
 </TestCase>

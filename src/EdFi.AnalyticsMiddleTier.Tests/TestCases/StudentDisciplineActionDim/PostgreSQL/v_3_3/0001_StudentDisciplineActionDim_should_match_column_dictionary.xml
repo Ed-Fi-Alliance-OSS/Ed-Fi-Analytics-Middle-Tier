@@ -29,7 +29,7 @@
     </Result>
     <Result>
         <ColumnName>schoolkey</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>disciplineactiondescription</ColumnName>

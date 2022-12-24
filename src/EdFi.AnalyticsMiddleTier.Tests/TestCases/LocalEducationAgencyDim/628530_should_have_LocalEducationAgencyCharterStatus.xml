@@ -6,7 +6,7 @@
   <Query>
     SELECT LocalEducationAgencyCharterStatus
     FROM analytics.LocalEducationAgencyDim
-    WHERE LocalEducationAgencyKey = 628530;
+    WHERE LocalEducationAgencyKey = '628530';
   </Query>
   <Result>
     <LocalEducationAgencyCharterStatus>Open Enrollment</LocalEducationAgencyCharterStatus>

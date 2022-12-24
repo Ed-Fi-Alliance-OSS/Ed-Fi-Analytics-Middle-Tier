@@ -21,7 +21,11 @@
         </Result>
         <Result>
             <ColumnName>EducationOrganizationId</ColumnName>
-            <DataType>int</DataType>
+            <DataType>varchar</DataType>
+        </Result>
+        <Result>
+          <ColumnName>EducationOrganizationKey</ColumnName>
+          <DataType>varchar</DataType>
         </Result>
         <Result>
             <ColumnName>ProgramName</ColumnName>
@@ -33,7 +37,7 @@
         </Result>
         <Result>
             <ColumnName>SchoolKey</ColumnName>
-            <DataType>int</DataType>
+            <DataType>varchar</DataType>
         </Result>
         <Result>
             <ColumnName>StudentSchoolKey</ColumnName>

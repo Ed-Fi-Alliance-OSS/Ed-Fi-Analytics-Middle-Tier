@@ -71,6 +71,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentProgramDimTestGroup
             }
 
             [Test]
+            public void Then_should_have_EducationOrganizationKey()
+            {
+                (bool success, string errorMessage) testResult =
+                    DataStandard.RunTestCase<StudentProgramDim>(
+                        $"{TestCasesFolder}.{_caseIdentifier}_should_have_EducationOrganizationKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_ProgramName()
             {
                 (bool success, string errorMessage) testResult =

@@ -27,8 +27,8 @@
             "DataType": "varchar"
         },
         {
-            "ColumnName": "DistrictId",
-            "DataType": "int"
+          "ColumnName": "DistrictId",
+          "DataType": "varchar"
         }
     ]
 }

@@ -21,6 +21,14 @@
     {
       "ColumnName": "EndDate",
       "DataType": "date"
+    },
+    {
+      "ColumnName": "BeginDateKey",
+      "DataType": "varchar"
+    },
+    {
+      "ColumnName": "EndDateKey",
+      "DataType": "varchar"
     }
   ]
 }

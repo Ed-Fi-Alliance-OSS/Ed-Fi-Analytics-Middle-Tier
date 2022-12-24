@@ -21,6 +21,14 @@
     {
       "ColumnName": "enddate",
       "DataType": "date"
+    },
+    {
+      "ColumnName": "begindatekey",
+      "DataType": "text"
+    },
+    {
+      "ColumnName": "enddatekey",
+      "DataType": "text"
     }
   ]
 }

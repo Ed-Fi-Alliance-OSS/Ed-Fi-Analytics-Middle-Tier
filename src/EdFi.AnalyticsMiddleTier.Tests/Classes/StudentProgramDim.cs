@@ -13,10 +13,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     {
         public string StudentSchoolProgramKey { get; set; }
         public string BeginDateKey { get; set; }
-        public int EducationOrganizationId { get; set; }
+        public string EducationOrganizationId { get; set; }
+        public string EducationOrganizationKey { get; set; }
         public string ProgramName { get; set; }
         public string StudentKey { get; set; }
-        public int SchoolKey { get; set; }
+        public string SchoolKey { get; set; }
         public string StudentSchoolKey { get; set; }
         public DateTime? LastModifiedDate { get; set; }
 

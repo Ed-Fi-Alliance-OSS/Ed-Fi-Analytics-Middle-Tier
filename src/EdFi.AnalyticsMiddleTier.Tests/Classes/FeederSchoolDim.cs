@@ -12,8 +12,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     public class FeederSchoolDim
     {
         public string FeederSchoolUniqueKey { get; set; }
-        public int SchoolKey { get; set; }
-        public int FeederSchoolKey { get; set; }
+        public string SchoolKey { get; set; }
+        public string FeederSchoolKey { get; set; }
         public string FeederSchoolName { get; set; }
         public DateTime? LastModifiedDate { get; set; }
     }
