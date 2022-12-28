@@ -6,7 +6,7 @@
   "Result": [
     {
         "UserScope": "AuthorizationScope.Section",
-        "DistrictId": null
+        "DistrictId": ""
     }
   ]
 }
