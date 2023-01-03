@@ -34,13 +34,13 @@ CREATE OR REPLACE VIEW analytics.EPP_CandidateDim AS
 				ELSE 0 
 			END) > 0 
 				THEN CAST(MIN(Credential.IssuanceDate) as VARCHAR) END, '') IssuanceDate
-		,to_char(COALESCE(CASE WHEN
+		,COALESCE(CASE WHEN
 			SUM(CASE 
 				WHEN Credential.CredentialIdentifier IS NOT NULL 
 					THEN 1 
 				ELSE 0 
 			END) > 0 
-				THEN CAST(MIN(Credential.IssuanceDate) as VARCHAR) END, '')),'yyyymmdd') IssuanceDateKey
+				THEN TO_CHAR(MIN(Credential.IssuanceDate),'yyyymmdd') END, '') as IssuanceDateKey
         ,COALESCE(TermDescriptor.CodeValue, '') AS CohortYearTermDescription,
 		(SELECT 
 			MAX(MaxLastModifiedDate)
