@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT TermDescriptorKey
+    FROM analytics.EPP_EvaluationElementRatingDim
+    WHERE candidatekey = '1000048'
+  </Query>
+  <Result>
+    <TermDescriptorKey>2404</TermDescriptorKey>
+  </Result>
+</TestCase>

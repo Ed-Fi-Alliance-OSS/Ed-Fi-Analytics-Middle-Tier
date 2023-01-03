@@ -61,7 +61,7 @@
     </Result>
     <Result>
         <ColumnName>HispanicLatinoEthnicity</ColumnName>
-        <DataType>int</DataType>
+        <DataType>bit</DataType>
     </Result>
     <Result>
         <ColumnName>HighestCompletedLevelOfEducation</ColumnName>
@@ -77,7 +77,7 @@
     </Result>
     <Result>
         <ColumnName>HighlyQualifiedTeacher</ColumnName>
-        <DataType>int</DataType>
+        <DataType>bit</DataType>
     </Result>
     <Result>
         <ColumnName>LoginId</ColumnName>

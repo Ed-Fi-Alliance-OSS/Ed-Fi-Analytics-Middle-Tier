@@ -11,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class EppDim
     {
-        public int EducationOrganizationKey { get; set; }
+        public string EducationOrganizationKey { get; set; }
         public string NameOfInstitution { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }

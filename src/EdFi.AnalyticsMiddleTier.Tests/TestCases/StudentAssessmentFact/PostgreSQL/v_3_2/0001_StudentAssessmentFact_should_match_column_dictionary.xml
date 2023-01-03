@@ -64,6 +64,10 @@
         <DataType>text</DataType>
     </Result>
     <Result>
+      <ColumnName>administrationdatekey</ColumnName>
+      <DataType>text</DataType>
+    </Result>
+    <Result>
         <ColumnName>assessedgradelevel</ColumnName>
         <DataType>character varying</DataType>
     </Result>

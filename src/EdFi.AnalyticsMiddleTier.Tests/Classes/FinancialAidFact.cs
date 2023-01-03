@@ -9,7 +9,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string CandidateAidKey { get; set; }
         public string CandidateIdentifier { get; set; }
         public DateTime BeginDate { get; set; }
+        public string BeginDateKey { get; set; }
         public DateTime EndDate { get; set; }
+        public string EndDateKey { get; set; }
         public string AidConditionDescription { get; set; }
         public string AidType { get; set; }
         public decimal AidAmount { get; set; }

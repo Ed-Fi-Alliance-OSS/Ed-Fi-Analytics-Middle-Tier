@@ -13,7 +13,7 @@
   </Query>
   <Result>
     <ColumnName>educationorganizationkey</ColumnName>
-    <DataType>integer</DataType>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>nameofinstitution</ColumnName>

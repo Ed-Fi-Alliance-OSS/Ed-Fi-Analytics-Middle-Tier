@@ -41,7 +41,7 @@
     </Result>
     <Result>
         <ColumnName>IsHispanic</ColumnName>
-        <DataType>int</DataType>
+        <DataType>bit</DataType>
     </Result>
     <Result>
         <ColumnName>Sex</ColumnName>

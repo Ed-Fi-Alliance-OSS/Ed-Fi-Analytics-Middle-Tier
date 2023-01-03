@@ -65,7 +65,7 @@ SELECT CONCAT (
     ,COALESCE(d.ShortDescription, '') AS HighestCompletedLevelOfEducation
     ,COALESCE(s.YearsOfPriorProfessionalExperience, '0') AS YearsOfPriorProfessionalExperience
     ,COALESCE(s.YearsOfPriorTeachingExperience, '0') AS YearsOfPriorTeachingExperience
-    ,COALESCE(s.HighlyQualifiedTeacher, 0) AS HighlyQualifiedTeacher
+    ,CAST(COALESCE(s.HighlyQualifiedTeacher, 0) AS BIT) AS HighlyQualifiedTeacher
     ,COALESCE(s.LoginId, '') AS LoginId
     ,(
         SELECT MAX(MaxLastModifiedDate)

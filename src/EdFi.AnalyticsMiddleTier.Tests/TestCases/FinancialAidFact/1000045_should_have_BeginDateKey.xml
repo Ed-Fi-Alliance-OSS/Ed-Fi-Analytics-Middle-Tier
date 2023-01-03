@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+	<DBMS>Any</DBMS>
+	<ControlDataInsertion>
+	</ControlDataInsertion>
+	<Query>
+        SELECT BeginDateKey
+        FROM analytics.EPP_FinancialAidFact
+        WHERE CandidateKey='1000045'
+    </Query>
+	<Result>
+		<BeginDateKey>20110124</BeginDateKey>
+	</Result>
+</TestCase>

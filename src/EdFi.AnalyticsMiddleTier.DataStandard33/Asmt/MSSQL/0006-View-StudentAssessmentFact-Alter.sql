@@ -69,6 +69,7 @@ SELECT
     CONCAT(Student.StudentUniqueId, '-', StudentSchoolAssociation.SchoolId) AS StudentSchoolKey,
     CAST(School.SchoolId AS VARCHAR) AS SchoolKey,
     CONVERT(VARCHAR, StudentAssessment.AdministrationDate, 112) AS AdministrationDate,
+    CONVERT(VARCHAR, StudentAssessment.AdministrationDate, 112) AS AdministrationDateKey,
     COALESCE(WhenAssessedGradeLevelDescriptor.CodeValue,'') as AssessedGradeLevel,
 	COALESCE(StudentAssessmentStudentObjectiveAssessmentScoreResult.Result, StudentAssessmentScoreResult.Result, '') AS StudentScore,
 	COALESCE(ResultDescriptor.Description, ResultDatatypeTypeDescriptorDist.Description, '') AS ResultDataType,

@@ -6,7 +6,7 @@
   <Query>
     SELECT NameOfInstitution
     FROM analytics.EPP_EppDim
-    WHERE EducationOrganizationKey = 5
+    WHERE EducationOrganizationKey = '5'
   </Query>
   <Result>
     <NameOfInstitution>UT Austin College of Education Graduate</NameOfInstitution>
