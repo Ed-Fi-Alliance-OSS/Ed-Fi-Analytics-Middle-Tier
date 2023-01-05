@@ -24,8 +24,8 @@ CREATE OR REPLACE VIEW analytics.DateDim AS
 					ELSE CAST(EXTRACT(DAY FROM Date) as varchar(2))
 				END as DateKey,
 		CAST(Date as date) as Date,
-		CAST(EXTRACT(DAY FROM Date) AS VARCHAR) as Day,
-		CAST(EXTRACT(MONTH FROM Date) AS VARCHAR) as Month,
+		RIGHT(CONCAT('OO',CAST(EXTRACT(DAY FROM Date) AS VARCHAR)), 2) as Day,
+		RIGHT(CONCAT('OO',CAST(EXTRACT(MONTH FROM Date) AS VARCHAR)), 2) as Month,
 		to_char(Date, 'Month') as MonthName,
 		CAST(CASE 
 			WHEN EXTRACT(MONTH FROM Date) BETWEEN 1 AND 3 THEN 1

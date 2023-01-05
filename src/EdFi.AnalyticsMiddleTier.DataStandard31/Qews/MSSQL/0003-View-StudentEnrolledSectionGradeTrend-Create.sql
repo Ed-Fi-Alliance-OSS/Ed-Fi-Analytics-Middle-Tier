@@ -12,7 +12,7 @@ CREATE VIEW [analytics].[qews_StudentEnrolledSectionGradeTrend] AS
 			[StudentSectionDim].[SchoolKey],
 			CASE WHEN [StudentSectionDim].[Subject] = 'Mathematics' THEN 'Math' 
 				 WHEN [StudentSectionDim].[Subject] IN ('English Language Arts', 'Reading', 'Writing') THEN 'English' END as [Subject],
-			CONCAT([DateDim].[CalendarYear], '-', FORMAT([DateDim].[Month], '00')) as [Month],
+			CONCAT([DateDim].[CalendarYear], '-', RIGHT(CONCAT('00', [DateDim].[Month]), 2)) as [Month],
 			[ews_StudentSectionGradeFact].[NumericGradeEarned]
 		FROM
 			[analytics].[StudentSectionDim] 

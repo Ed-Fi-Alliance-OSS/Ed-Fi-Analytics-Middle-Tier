@@ -18,8 +18,8 @@ CREATE VIEW [analytics].[DateDim] AS
 	SELECT
 		CONVERT(varchar, [Date], 112) as [DateKey],
 		CAST(CONVERT(varchar, [Date], 1) as DATETIME) as [Date],
-		CAST(DAY([Date]) AS VARCHAR) as [Day],
-		CAST(MONTH([Date]) AS VARCHAR) as [Month],
+		RIGHT(CONCAT('00', CAST(DAY([Date]) AS VARCHAR)), 2) as [Day],
+		RIGHT(CONCAT('00', CAST(MONTH([Date]) AS VARCHAR)), 2) as [Month],
 		DATENAME(month, [Date]) as [MonthName],
 		CAST(CASE 
 			WHEN MONTH([Date]) BETWEEN 1 AND 3 THEN 1

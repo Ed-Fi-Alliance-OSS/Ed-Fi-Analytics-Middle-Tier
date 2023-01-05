@@ -2,7 +2,11 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
-
+IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics' AND TABLE_NAME = 'qews_SchoolRiskTrend')
+BEGIN
+	DROP VIEW analytics.qews_SchoolRiskTrend
+END
+GO
 CREATE VIEW [analytics].[qews_SchoolRiskTrend] AS
 
 	WITH [risk] as (
@@ -47,7 +51,7 @@ CREATE VIEW [analytics].[qews_SchoolRiskTrend] AS
 	)
 	SELECT
 		[SchoolKey],
-		CONCAT([CalendarYear],'-',RIGHT(CONCAT('00', [Month]), 2)) as [YearMonth],
+		CONCAT([CalendarYear],'-',RIGHT(CONCAT('00', [Month]),2)) as [YearMonth],
 		1.0 - (CAST([Enrolled] as DECIMAL) - CAST([EarlyWarning] as DECIMAL))/CAST([Enrolled] as DECIMAL) as [PercentEarlyWarning],
 		1.0 - (CAST([Enrolled] as DECIMAL) - CAST([AtRisk] as DECIMAL))/CAST([Enrolled] as DECIMAL) as [PercentAtRisk],
 		[Enrolled],
