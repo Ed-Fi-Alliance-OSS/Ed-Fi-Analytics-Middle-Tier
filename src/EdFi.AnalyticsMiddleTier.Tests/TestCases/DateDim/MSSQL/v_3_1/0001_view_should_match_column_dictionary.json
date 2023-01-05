@@ -12,11 +12,11 @@
     },
     {
       "ColumnName": "Day",
-      "DataType": "int"
+      "DataType": "varchar"
     },
     {
       "ColumnName": "Month",
-      "DataType": "int"
+      "DataType": "varchar"
     },
     {
       "ColumnName": "MonthName",
@@ -24,15 +24,15 @@
     },
     {
       "ColumnName": "CalendarQuarter",
-      "DataType": "int"
+      "DataType": "varchar"
     },
     {
       "ColumnName": "CalendarQuarterName",
       "DataType": "varchar"
     },
     {
-        "ColumnName": "CalendarYear",
-        "DataType": "int"
+      "ColumnName": "CalendarYear",
+      "DataType": "varchar"
     },
     {
         "ColumnName": "SchoolYear",

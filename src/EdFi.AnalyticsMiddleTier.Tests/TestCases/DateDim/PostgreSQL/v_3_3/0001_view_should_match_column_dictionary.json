@@ -10,33 +10,33 @@
             "ColumnName": "date",
             "DataType": "date"
         },
-        {
-            "ColumnName": "day",
-            "DataType": "float8"
-        },
-        {
-            "ColumnName": "month",
-            "DataType": "float8"
-        },
+      {
+        "ColumnName": "day",
+        "DataType": "varchar"
+      },
+      {
+        "ColumnName": "month",
+        "DataType": "varchar"
+      },
         {
             "ColumnName": "monthname",
             "DataType": "text"
         },
-        {
-            "ColumnName": "calendarquarter",
-            "DataType": "int4"
-        },
+      {
+        "ColumnName": "calendarquarter",
+        "DataType": "varchar"
+      },
         {
             "ColumnName": "calendarquartername",
             "DataType": "text"
         },
-        {
-            "ColumnName": "calendaryear",
-            "DataType": "float8"
-        },
-        {
-            "ColumnName": "schoolyear",
-            "DataType": "varchar"
-        }
+      {
+        "ColumnName": "calendaryear",
+        "DataType": "varchar"
+      },
+      {
+        "ColumnName": "schoolyear",
+        "DataType": "varchar"
+      }
     ]
 }
