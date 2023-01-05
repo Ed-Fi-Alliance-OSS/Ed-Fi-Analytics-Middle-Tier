@@ -12,11 +12,11 @@
         },
       {
         "ColumnName": "day",
-        "DataType": "varchar"
+        "DataType": "text"
       },
       {
         "ColumnName": "month",
-        "DataType": "varchar"
+        "DataType": "text"
       },
         {
             "ColumnName": "monthname",
