@@ -94,9 +94,30 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SchoolDimTestGroup
             }
 
             [Test]
+            public void Then_StateEducationAgencyKey_is_replaced_with_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_EdOrgState.StateEducationAgencyKey_is_null.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_EducationServiceCenterName_is_replaced_with_empty()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_EdOrgServiceCenter.NameOfInstitution_is_null.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_EducationServiceCenterKey_is_replaced_with_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_EdOrgServiceCenter.EducationServiceCenterKey_is_null.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_LocalEducationAgencyKey_is_replaced_with_empty()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SchoolDim>($"{TestCasesFolder}.When_EdOrgLocal.LocalEducationAgencyKey_is_null.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
