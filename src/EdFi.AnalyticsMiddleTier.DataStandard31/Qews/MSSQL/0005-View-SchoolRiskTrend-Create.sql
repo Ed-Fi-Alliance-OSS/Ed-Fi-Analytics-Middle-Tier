@@ -47,7 +47,7 @@ CREATE VIEW [analytics].[qews_SchoolRiskTrend] AS
 	)
 	SELECT
 		[SchoolKey],
-		CONCAT([CalendarYear],'-',FORMAT([Month], '00')) as [YearMonth],
+		CONCAT([CalendarYear],'-',RIGHT(CONCAT('00', [Month]), 2)) as [YearMonth],
 		1.0 - (CAST([Enrolled] as DECIMAL) - CAST([EarlyWarning] as DECIMAL))/CAST([Enrolled] as DECIMAL) as [PercentEarlyWarning],
 		1.0 - (CAST([Enrolled] as DECIMAL) - CAST([AtRisk] as DECIMAL))/CAST([Enrolled] as DECIMAL) as [PercentAtRisk],
 		[Enrolled],

@@ -6,7 +6,7 @@
   <Query>
     SELECT SchoolYear
     FROM analytics.SectionDim
-    WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
+    WHERE SchoolYear = '2012' AND LocalCourseCode = 'YTAR11';
   </Query>
   <Result>
     <SchoolYear>2012</SchoolYear>

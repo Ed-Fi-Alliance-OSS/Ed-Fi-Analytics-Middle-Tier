@@ -13,11 +13,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     {
         public string CandidateKey { get; set; }
         public DateTime EvaluationDate { get; set; }
+        public string EvaluationDateKey { get; set; }
         public string PerformanceEvaluationTitle { get; set; }
         public string EvaluationObjectiveTitle { get; set; }
         public string EvaluationElementTitle { get; set; }
         public string RatingResultTitle { get; set; }
         public decimal Rating { get; set; }
+        public string SchoolYear { get; set; }
+        public string TermDescriptorId { get; set; }
+        public string TermDescriptorKey { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }
 }

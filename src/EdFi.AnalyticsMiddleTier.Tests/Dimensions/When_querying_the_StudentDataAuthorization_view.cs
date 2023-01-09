@@ -63,6 +63,20 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentDataAuthorizationTest
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDataAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardEngine}.When_querying_sectionId.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
+
+            [Test]
+            public void Then_BeginDateKey_is_not_null()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDataAuthorization>($"{TestCasesFolder}.When_querying_beginDateKey.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_EndDateKey_is_not_null()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentDataAuthorization>($"{TestCasesFolder}.When_querying_endDateKey.json");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
         }
     }
 }

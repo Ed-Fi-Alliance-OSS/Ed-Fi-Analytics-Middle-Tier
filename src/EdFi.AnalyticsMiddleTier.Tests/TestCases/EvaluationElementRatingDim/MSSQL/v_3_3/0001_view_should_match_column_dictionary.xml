@@ -20,6 +20,10 @@
     <DataType>datetime2</DataType>
   </Result>
   <Result>
+    <ColumnName>EvaluationDateKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
     <ColumnName>PerformanceEvaluationTitle</ColumnName>
     <DataType>nvarchar</DataType>
   </Result>
@@ -41,11 +45,15 @@
   </Result>
   <Result>
     <ColumnName>TermDescriptorId</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>TermDescriptorKey</ColumnName>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>SchoolYear</ColumnName>
-    <DataType>smallint</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>Rating</ColumnName>

@@ -20,6 +20,10 @@
     <DataType>timestamp without time zone</DataType>
   </Result>
   <Result>
+    <ColumnName>evaluationdatekey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
     <ColumnName>performanceevaluationtitle</ColumnName>
     <DataType>character varying</DataType>
   </Result>
@@ -41,11 +45,15 @@
   </Result>
   <Result>
     <ColumnName>termdescriptorid</ColumnName>
-    <DataType>integer</DataType>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>termdescriptorkey</ColumnName>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>schoolyear</ColumnName>
-    <DataType>smallint</DataType>
+    <DataType>character varying</DataType>
   </Result>
   <Result>
     <ColumnName>rating</ColumnName>

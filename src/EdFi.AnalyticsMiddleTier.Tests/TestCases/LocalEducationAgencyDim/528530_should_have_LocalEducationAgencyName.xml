@@ -6,7 +6,7 @@
   <Query>
     SELECT LocalEducationAgencyName
     FROM analytics.LocalEducationAgencyDim
-    WHERE LocalEducationAgencyKey = 528530;
+    WHERE LocalEducationAgencyKey = '528530';
   </Query>
   <Result>
     <LocalEducationAgencyName>Kingston ISD</LocalEducationAgencyName>

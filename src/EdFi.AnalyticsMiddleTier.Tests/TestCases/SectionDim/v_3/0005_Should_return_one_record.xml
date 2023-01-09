@@ -6,7 +6,7 @@
   <Query>
     SELECT COUNT(1) AS CountValue
     FROM analytics.SectionDim
-    WHERE Description = 'Social Studies-(QAGR40)-United States Government (1/2 Unit)-()-Spring Semester' and SchoolYear = 2011;
+    WHERE Description = 'Social Studies-(QAGR40)-United States Government (1/2 Unit)-()-Spring Semester' and SchoolYear = '2011';
   </Query>
   <Result>
     <CountValue>1</CountValue>

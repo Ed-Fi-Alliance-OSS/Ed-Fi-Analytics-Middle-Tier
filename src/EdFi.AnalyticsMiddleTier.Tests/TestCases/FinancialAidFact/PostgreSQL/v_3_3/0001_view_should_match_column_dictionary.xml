@@ -23,9 +23,17 @@
 		<ColumnName>begindate</ColumnName>
 		<DataType>date</DataType>
 	</Result>
+  <Result>
+    <ColumnName>begindatekey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>enddate</ColumnName>
+    <DataType>date</DataType>
+  </Result>
 	<Result>
-		<ColumnName>enddate</ColumnName>
-		<DataType>date</DataType>
+		<ColumnName>enddatekey</ColumnName>
+		<DataType>text</DataType>
 	</Result>
 	<Result>
 		<ColumnName>aidconditiondescription</ColumnName>

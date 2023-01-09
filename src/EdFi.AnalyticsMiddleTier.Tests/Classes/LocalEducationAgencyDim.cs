@@ -11,14 +11,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class LocalEducationAgencyDim
     {
-        public int LocalEducationAgencyKey { get; set; } //(int, not null)
+        public string LocalEducationAgencyKey { get; set; } //(int, not null)
         public string LocalEducationAgencyName { get; set; } //(nvarchar(75), not null)
         public string LocalEducationAgencyType { get; set; } //(nvarchar(50), not null)
-        public int LocalEducationAgencyParentLocalEducationAgencyKey { get; set; } //(int, null)
+        public string LocalEducationAgencyParentLocalEducationAgencyKey { get; set; } //(int, null)
         public string LocalEducationAgencyStateEducationAgencyName { get; set; } //(nvarchar(75), not null)
-        public int? LocalEducationAgencyStateEducationAgencyKey { get; set; } //(int, null)
+        public string LocalEducationAgencyStateEducationAgencyKey { get; set; } //(int, null)
         public string LocalEducationAgencyServiceCenterName { get; set; } //(nvarchar(75), not null)
-        public int LocalEducationAgencyServiceCenterKey { get; set; } //(int, null)
+        public string LocalEducationAgencyServiceCenterKey { get; set; } //(int, null)
         public string LocalEducationAgencyCharterStatus { get; set; } //(nvarchar(50), not null)
         public DateTime LastModifiedDate { get; set; } //(datetime, null)
     }

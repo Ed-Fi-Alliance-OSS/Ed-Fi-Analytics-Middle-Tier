@@ -6,9 +6,9 @@
   <Query>
     SELECT LocalEducationAgencyStateEducationAgencyKey
     FROM analytics.LocalEducationAgencyDim
-    WHERE LocalEducationAgencyKey = 628530;
+    WHERE LocalEducationAgencyKey = '628530';
   </Query>
   <Result>
-	<LocalEducationAgencyStateEducationAgencyKey>778530</LocalEducationAgencyStateEducationAgencyKey>
+	  <LocalEducationAgencyStateEducationAgencyKey>778530</LocalEducationAgencyStateEducationAgencyKey>
   </Result>
 </TestCase>

@@ -21,8 +21,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string StudentUSI { get; set; }
         public string StudentKey { get; set; }
         public string StudentSchoolKey { get; set; }
-        public int SchoolKey { get; set; }
+        public string SchoolKey { get; set; }
         public string AdministrationDate { get; set; }
+        public string AdministrationDateKey { get; set; }
         public string AssessedGradeLevel { get; set; }
         public string StudentScore { get; set; }
         public string ResultDataType { get; set; }

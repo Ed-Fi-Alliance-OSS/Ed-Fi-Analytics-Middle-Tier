@@ -23,9 +23,17 @@
 		<ColumnName>BeginDate</ColumnName>
 		<DataType>date</DataType>
 	</Result>
+  <Result>
+    <ColumnName>BeginDateKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>EndDate</ColumnName>
+    <DataType>date</DataType>
+  </Result>
 	<Result>
-		<ColumnName>EndDate</ColumnName>
-		<DataType>date</DataType>
+		<ColumnName>EndDateKey</ColumnName>
+		<DataType>varchar</DataType>
 	</Result>
 	<Result>
 		<ColumnName>AidConditionDescription</ColumnName>
@@ -41,7 +49,7 @@
 	</Result>
 	<Result>
 		<ColumnName>PellGrantRecipient</ColumnName>
-		<DataType>int</DataType>
+		<DataType>bit</DataType>
 	</Result>
 	<Result>
 		<ColumnName>LastModifiedDate</ColumnName>

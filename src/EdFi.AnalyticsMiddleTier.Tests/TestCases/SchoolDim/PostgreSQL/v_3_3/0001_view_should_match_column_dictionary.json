@@ -36,7 +36,7 @@
     },
     {
       "ColumnName": "localeducationagencykey",
-      "DataType": "integer"
+      "DataType": "character varying"
     },
     {
       "ColumnName": "stateeducationagencyname",
@@ -44,7 +44,7 @@
     },
     {
       "ColumnName": "stateeducationagencykey",
-      "DataType": "integer"
+      "DataType": "character varying"
     },
     {
       "ColumnName": "educationservicecentername",
@@ -52,7 +52,7 @@
     },
     {
       "ColumnName": "educationservicecenterkey",
-      "DataType": "integer"
+      "DataType": "character varying"
     },
     {
       "ColumnName": "lastmodifieddate",

@@ -6,7 +6,7 @@
   <Query>
     SELECT SectionName
     FROM analytics.SectionDim
-    WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
+    WHERE SchoolYear = '2012' AND LocalCourseCode = 'YTAR11';
   </Query>
   <Result>
     <SectionName>YTAR11-Traditional</SectionName>

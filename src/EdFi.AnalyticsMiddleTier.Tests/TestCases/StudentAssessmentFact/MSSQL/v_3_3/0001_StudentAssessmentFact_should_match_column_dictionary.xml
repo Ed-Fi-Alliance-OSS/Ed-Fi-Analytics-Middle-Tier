@@ -57,11 +57,15 @@
     </Result>
     <Result>
         <ColumnName>SchoolKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>AdministrationDate</ColumnName>
         <DataType>varchar</DataType>
+    </Result>
+    <Result>
+      <ColumnName>AdministrationDateKey</ColumnName>
+      <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>AssessedGradeLevel</ColumnName>

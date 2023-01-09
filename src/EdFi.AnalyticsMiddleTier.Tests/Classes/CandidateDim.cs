@@ -26,9 +26,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Classes
         public string StudentKey { get; set; }
         public string ProgramName { get; set; }
         public DateTime BeginDate { get; set; }
-        public int EducationOrganizationId { get; set; }
+        public string BeginDateKey { get; set; }
+        public string EducationOrganizationId { get; set; }
+        public string EducationOrganizationKey { get; set; }
         public string PersonId { get; set; }
         public string IssuanceDate { get; set; }
+        public string IssuanceDateKey { get; set; }
         public string CohortYearTermDescription { get; set; }
         public DateTime LastModifiedDate { get; set; }
     }

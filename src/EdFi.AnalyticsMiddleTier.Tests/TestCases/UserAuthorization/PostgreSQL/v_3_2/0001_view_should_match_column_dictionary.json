@@ -28,7 +28,7 @@
 		},
 		{
 			"ColumnName": "districtid",
-			"DataType": "integer"
+			"DataType": "character varying"
 		}
 	]
 }

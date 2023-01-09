@@ -29,11 +29,15 @@
     </Result>
     <Result>
         <ColumnName>schoolid</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+      <ColumnName>schoolkey</ColumnName>
+      <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>schoolyear</ColumnName>
-        <DataType>smallint</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>sectionidentifier</ColumnName>

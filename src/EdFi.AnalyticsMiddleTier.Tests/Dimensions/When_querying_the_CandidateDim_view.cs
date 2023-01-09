@@ -62,6 +62,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
+            public void Then_BeginDateKey_should_be_20110403()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_BeginDateKey_should_be_20110403.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_Cohort_should_be_2022()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_Cohort_should_be_2022.xml");
@@ -90,6 +97,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             }
 
             [Test]
+            public void Then_EducationOrganizationKey_should_be_7()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_EducationOrganizationKey_should_be_7.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_FirstName_should_be_Bryce()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_FirstName_should_be_Bryce.xml");
@@ -107,6 +121,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
             public void Then_IssuanceDate_should_be_1997_03_17()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_IssuanceDate_should_be_1997_03_17.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_IssuanceDateKey_should_be_19970317()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CandidateDim>($"{TestCasesFolder}.{_caseIdentifier}_IssuanceDateKey_should_be_19970317.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 

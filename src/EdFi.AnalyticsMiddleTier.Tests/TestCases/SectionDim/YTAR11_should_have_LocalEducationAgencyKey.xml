@@ -6,7 +6,7 @@
   <Query>
     SELECT LocalEducationAgencyKey
     FROM analytics.SectionDim
-    WHERE SchoolYear = 2012 AND LocalCourseCode = 'YTAR11';
+    WHERE SchoolYear = '2012' AND LocalCourseCode = 'YTAR11';
   </Query>
   <Result>
       <LocalEducationAgencyKey>867530</LocalEducationAgencyKey>

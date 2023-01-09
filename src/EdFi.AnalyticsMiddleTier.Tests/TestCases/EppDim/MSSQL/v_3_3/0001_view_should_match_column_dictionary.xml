@@ -13,7 +13,7 @@
   </Query>
   <Result>
     <ColumnName>EducationOrganizationKey</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>NameOfInstitution</ColumnName>

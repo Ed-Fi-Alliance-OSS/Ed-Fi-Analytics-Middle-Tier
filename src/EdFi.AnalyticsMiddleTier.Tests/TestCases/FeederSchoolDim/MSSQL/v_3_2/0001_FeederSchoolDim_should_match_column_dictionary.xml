@@ -17,11 +17,11 @@
     </Result>
     <Result>
         <ColumnName>SchoolKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>FeederSchoolKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>FeederSchoolName</ColumnName>

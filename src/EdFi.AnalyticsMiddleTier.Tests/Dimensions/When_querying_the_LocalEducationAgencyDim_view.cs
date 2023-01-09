@@ -67,9 +67,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LocalEducationAgencyServiceCenterKey_null()
+            public void Then_should_have_LocalEducationAgencyServiceCenterKey_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyServiceCenterKey_null.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyServiceCenterKey_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -79,9 +79,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_null()
+            public void Then_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_null.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -91,9 +91,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LocalEducationAgencyStateEducationAgencyKey_null()
+            public void Then_should_have_LocalEducationAgencyStateEducationAgencyKey_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyStateEducationAgencyKey_null.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyStateEducationAgencyKey_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -153,9 +153,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_null()
+            public void Then_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_empty()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_null.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyParentLocalEducationAgencyKey_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]

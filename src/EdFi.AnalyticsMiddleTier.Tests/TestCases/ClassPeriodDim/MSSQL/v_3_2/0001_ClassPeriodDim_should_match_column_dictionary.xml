@@ -28,12 +28,16 @@
         <DataType>nvarchar</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolId</ColumnName>
-        <DataType>int</DataType>
+      <ColumnName>SchoolId</ColumnName>
+      <DataType>varchar</DataType>
     </Result>
     <Result>
-        <ColumnName>SchoolYear</ColumnName>
-        <DataType>smallint</DataType>
+      <ColumnName>SchoolKey</ColumnName>
+      <DataType>varchar</DataType>
+    </Result>
+    <Result>
+      <ColumnName>SchoolYear</ColumnName>
+      <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>SectionIdentifier</ColumnName>

@@ -6,7 +6,7 @@
   <Query>
     SELECT LocalEducationAgencyServiceCenterName
     FROM analytics.LocalEducationAgencyDim
-    WHERE LocalEducationAgencyKey = 628530;
+    WHERE LocalEducationAgencyKey = '628530';
   </Query>
   <Result>
     <LocalEducationAgencyServiceCenterName>ESC Region 17</LocalEducationAgencyServiceCenterName>

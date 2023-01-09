@@ -38,7 +38,7 @@ CREATE VIEW [analytics].[qews_StudentAttendanceTrend] AS
 			+ ' ' + [StudentSchoolDim].[StudentMiddleName]
 			+ ' ' + [StudentSchoolDim].[StudentLastName]
 			as [StudentName],
-		CONCAT([DateDim].[CalendarYear], '-', FORMAT([DateDim].[Month], '00')) as [YearMonth],
+		CONCAT([DateDim].[CalendarYear], '-', RIGHT(CONCAT('00', [DateDim].[Month]), 2)) as [YearMonth],
 		(CAST(SUM([IsEnrolled]) as DECIMAL) - CAST(SUM([IsAbsent]) as DECIMAL)) / CAST(SUM([IsEnrolled]) as DECIMAL) as AttendanceRate
 	FROM 
 		[attendanceData]

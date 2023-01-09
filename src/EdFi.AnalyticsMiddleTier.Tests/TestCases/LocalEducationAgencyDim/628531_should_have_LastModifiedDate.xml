@@ -6,7 +6,7 @@
   <Query>
     SELECT LastModifiedDate
     FROM analytics.LocalEducationAgencyDim
-    WHERE LocalEducationAgencyKey = 628531;
+    WHERE LocalEducationAgencyKey = '628531';
   </Query>
   <Result>
     <LastModifiedDate>2015-09-17T00:00:00</LastModifiedDate>

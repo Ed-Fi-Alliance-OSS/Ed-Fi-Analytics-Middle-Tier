@@ -6,7 +6,7 @@
   <Query>
     SELECT EducationOrganizationKey
     FROM analytics.EPP_EppDim
-    WHERE EducationOrganizationKey = 5
+    WHERE EducationOrganizationKey = '5'
   </Query>
   <Result>
     <EducationOrganizationKey>5</EducationOrganizationKey>

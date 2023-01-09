@@ -13,7 +13,7 @@
   </Query>
     <Result>
         <ColumnName>LocalEducationAgencyKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyName</ColumnName>
@@ -25,7 +25,7 @@
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyParentLocalEducationAgencyKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyStateEducationAgencyName</ColumnName>
@@ -33,7 +33,7 @@
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyStateEducationAgencyKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyServiceCenterName</ColumnName>
@@ -41,7 +41,7 @@
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyServiceCenterKey</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>LocalEducationAgencyCharterStatus</ColumnName>

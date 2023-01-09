@@ -41,7 +41,7 @@
     </Result>
     <Result>
         <ColumnName>numericresponse</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>textresponse</ColumnName>

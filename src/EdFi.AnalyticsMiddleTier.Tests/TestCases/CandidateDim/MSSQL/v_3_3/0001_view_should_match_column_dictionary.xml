@@ -72,8 +72,16 @@
     <DataType>date</DataType>
   </Result>
   <Result>
+    <ColumnName>BeginDateKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
     <ColumnName>EducationOrganizationId</ColumnName>
-    <DataType>int</DataType>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>EducationOrganizationKey</ColumnName>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>PersonId</ColumnName>
@@ -82,6 +90,10 @@
   <Result>
     <ColumnName>IssuanceDate</ColumnName>
     <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>IssuanceDateKey</ColumnName>
+    <DataType>varchar</DataType>
   </Result>
   <Result>
     <ColumnName>CohortYearTermDescription</ColumnName>

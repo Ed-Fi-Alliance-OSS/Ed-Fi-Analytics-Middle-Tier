@@ -57,11 +57,15 @@
     </Result>
     <Result>
         <ColumnName>schoolkey</ColumnName>
-        <DataType>integer</DataType>
+        <DataType>character varying</DataType>
     </Result>
     <Result>
         <ColumnName>administrationdate</ColumnName>
         <DataType>text</DataType>
+    </Result>
+    <Result>
+      <ColumnName>administrationdatekey</ColumnName>
+      <DataType>text</DataType>
     </Result>
     <Result>
         <ColumnName>assessedgradelevel</ColumnName>

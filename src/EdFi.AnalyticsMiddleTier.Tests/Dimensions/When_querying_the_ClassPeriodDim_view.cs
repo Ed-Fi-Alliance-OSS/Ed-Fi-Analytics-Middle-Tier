@@ -94,6 +94,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ClassPeriodDimTestGroup
             }
 
             [Test]
+            public void Then_should_have_SchoolKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_should_have_SchoolYear()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<ClassPeriodDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_SchoolYear.xml");

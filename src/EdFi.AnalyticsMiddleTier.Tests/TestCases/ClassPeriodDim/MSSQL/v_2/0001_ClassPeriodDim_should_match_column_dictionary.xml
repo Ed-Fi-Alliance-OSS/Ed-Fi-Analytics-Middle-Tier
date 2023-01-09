@@ -29,11 +29,15 @@
     </Result>
     <Result>
         <ColumnName>SchoolId</ColumnName>
-        <DataType>int</DataType>
+        <DataType>varchar</DataType>
+    </Result>
+    <Result>
+      <ColumnName>SchoolKey</ColumnName>
+      <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>SchoolYear</ColumnName>
-        <DataType>smallint</DataType>
+        <DataType>varchar</DataType>
     </Result>
     <Result>
         <ColumnName>SectionIdentifier</ColumnName>

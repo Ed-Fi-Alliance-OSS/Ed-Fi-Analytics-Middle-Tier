@@ -36,7 +36,7 @@
     },
     {
       "ColumnName": "LocalEducationAgencyKey",
-      "DataType": "int"
+      "DataType": "varchar"
     },
     {
       "ColumnName": "StateEducationAgencyName",
@@ -44,7 +44,7 @@
     },
     {
       "ColumnName": "StateEducationAgencyKey",
-      "DataType": "int"
+      "DataType": "varchar"
     },
     {
       "ColumnName": "EducationServiceCenterName",
@@ -52,7 +52,7 @@
     },
     {
       "ColumnName": "EducationServiceCenterKey",
-      "DataType": "int"
+      "DataType": "varchar"
     },
     {
       "ColumnName": "LastModifiedDate",

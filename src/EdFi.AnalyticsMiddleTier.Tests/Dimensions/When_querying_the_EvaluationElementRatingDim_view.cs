@@ -62,6 +62,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
             }
 
             [Test]
+            public void Then_EvaluationDateKey_should_be_20111101()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_EvaluationDateKey_should_be_20111101.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
             public void Then_EvaluationElementTitle_should_be_adddress_misconceptions()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_EvaluationElementTitle_should_be_adddress_misconceptions.xml");
@@ -100,6 +107,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
             public void Then_TermDescriptorId_should_be_2404()
             {
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_TermDescriptorId_should_be_2404.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+
+            [Test]
+            public void Then_TermDescriptorKey_should_be_2404()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<EvaluationElementRatingDim>($"{TestCasesFolder}.{_caseIdentifier}_TermDescriptorKey_should_be_2404.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
