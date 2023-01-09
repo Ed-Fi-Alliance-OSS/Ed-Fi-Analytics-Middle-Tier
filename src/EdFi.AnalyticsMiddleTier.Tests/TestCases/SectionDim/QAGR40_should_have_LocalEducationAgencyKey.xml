@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT LocalEducationAgencyKey
+    FROM analytics.SectionDim
+    WHERE SchoolYear = '2012' AND LocalCourseCode = 'QAGR40' and SchoolKey = '628530001';
+  </Query>
+  <Result>
+      <LocalEducationAgencyKey></LocalEducationAgencyKey>
+  </Result>
+</TestCase>
