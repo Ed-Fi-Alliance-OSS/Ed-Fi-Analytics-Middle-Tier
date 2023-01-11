@@ -9,7 +9,7 @@ AS
 SELECT 
     CONCAT(FeederSchoolAssociation.SchoolId,'-',FeederSchoolAssociation.FeederSchoolId) AS FeederSchoolUniqueKey
     ,cast(FeederSchoolAssociation.SchoolId as varchar) AS SchoolKey
-    ,COALESCE(CAST(FeederSchoolAssociation.FeederSchoolId AS VARCHAR), '') AS FeederSchoolKey
+    ,CAST(FeederSchoolAssociation.FeederSchoolId AS VARCHAR) AS FeederSchoolKey
     ,EducationOrganization.NameOfInstitution AS FeederSchoolName
     ,(
         SELECT MAX(MaxLastModifiedDate)
