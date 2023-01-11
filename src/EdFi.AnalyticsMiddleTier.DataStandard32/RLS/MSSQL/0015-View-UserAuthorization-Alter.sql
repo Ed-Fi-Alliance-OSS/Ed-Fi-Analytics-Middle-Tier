@@ -71,11 +71,11 @@ SELECT DISTINCT staffToScopeMap.StaffUniqueId AS UserKey
 	,CASE staffToScopeMap.UserScope
 		WHEN 'AuthorizationScope.District'
 			THEN 'ALL'
-		ELSE COALESCE(CAST(staffToScopeMap.EducationOrganizationId AS VARCHAR), '')
+		ELSE CAST(staffToScopeMap.EducationOrganizationId AS VARCHAR)
 		END AS SchoolPermission,
     CASE staffToScopeMap.UserScope
         WHEN 'AuthorizationScope.District'
-            THEN COALESCE(CAST(staffToScopeMap.EducationOrganizationId AS VARCHAR), '')
+            THEN CAST(staffToScopeMap.EducationOrganizationId AS VARCHAR)
 		ELSE ''
         END AS DistrictId
 FROM staffToScopeMap
