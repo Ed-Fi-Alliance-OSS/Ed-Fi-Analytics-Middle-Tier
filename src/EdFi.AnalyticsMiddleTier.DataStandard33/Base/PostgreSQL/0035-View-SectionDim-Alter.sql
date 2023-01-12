@@ -33,7 +33,7 @@ CREATE VIEW analytics.SectionDim AS
         ,COALESCE(SectionClassPeriod.LocalCourseCode,CourseOffering.LocalCourseCode) as LocalCourseCode
         ,CAST(COALESCE(Session.SchoolYear,CourseOffering.SchoolYear) as VARCHAR) as SchoolYear
         ,eed.Description AS EducationalEnvironmentDescriptor
-        ,CAST(sch.LocalEducationAgencyId AS VARCHAR) as LocalEducationAgencyKey
+        ,COALESCE(CAST(sch.LocalEducationAgencyId AS VARCHAR), '') as LocalEducationAgencyKey
         ,s.LastModifiedDate
         ,course.CourseTitle
         ,FORMAT(

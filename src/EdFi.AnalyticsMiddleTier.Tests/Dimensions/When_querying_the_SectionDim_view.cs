@@ -125,6 +125,21 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SectionDimTestGroup
             }
         }
 
+        public class When_querying_the_SectionDim_view_with_LocalCourseCode_QAGR40
+            : When_querying_the_SectionDim_view_base
+        {
+            public When_querying_the_SectionDim_view_with_LocalCourseCode_QAGR40(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
+
+            private const string _caseIdentifier = "QAGR40";
+
+            [Test]
+            public void Then_should_have_LocalEducationAgencyKey()
+            {
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyKey.xml");
+                testResult.success.ShouldBe(true, testResult.errorMessage);
+            }
+        }
+
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public class When_querying_the_SectionDim_V2_view
             : When_querying_the_SectionDim_view_base
