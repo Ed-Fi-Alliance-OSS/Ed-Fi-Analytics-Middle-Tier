@@ -18,6 +18,7 @@ jobs:
     uses: ed-fi-alliance-oss/ed-fi-actions/.github/workflows/repository-scanner.yml@main
     with:
       config-file-path: ./.github/workflows/bidi-scanner/config.json
+      directory: src/
 
   analyze-code:
     name: Analyze Code Dependencies
