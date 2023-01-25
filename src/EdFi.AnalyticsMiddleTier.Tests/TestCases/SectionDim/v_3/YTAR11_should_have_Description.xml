@@ -4,11 +4,11 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT COUNT(1) AS CountValue
+    SELECT Description
     FROM analytics.SectionDim
-    WHERE Description = 'Social Studies-(QAGR40)-United States Government (1/2 Unit)-(CL1)-Spring Semester';
+    WHERE SchoolYear = '2012' AND LocalCourseCode = 'YTAR11';
   </Query>
   <Result>
-    <CountValue>1</CountValue>
+    <Description>Other-(YTAR11)-Animation-Fall Semester</Description>
   </Result>
 </TestCase>
