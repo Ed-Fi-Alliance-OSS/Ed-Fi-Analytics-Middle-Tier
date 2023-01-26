@@ -28,14 +28,14 @@
     <PackageReference Include="dbup" Version="4.6.0" />
     <PackageReference Include="dbup-core" Version="4.6.3" />
     <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
-    <PackageReference Include="dotenv.net" Version="3.1.1" />
+    <PackageReference Include="dotenv.net" Version="3.1.2" />
     <PackageReference Include="FakeItEasy" Version="7.3.1" />
     <PackageReference Include="Microsoft.SqlServer.DacFx" Version="160.6161.0" />
     <PackageReference Include="nunit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-    <PackageReference Include="Shouldly" Version="4.0.3" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
+    <PackageReference Include="Shouldly" Version="4.1.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="XmlDiffPatch.Core" Version="1.0.1" />
     <PackageReference Include="XmlDiffView.Core" Version="1.0.1" />
   </ItemGroup>
