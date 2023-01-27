@@ -33,8 +33,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         protected const string QuickSightEWSDirectory = "Qews";
 
         protected IDatabaseMigrationStrategy MigrationStrategy { get; set; }
-        protected DatabaseUpgradeResult migrationResult = new DatabaseUpgradeResult(new List<SqlScript>(), true, null);
-        protected DatabaseUpgradeResult DatabaseAccessError = new DatabaseUpgradeResult(new List<SqlScript>(), false, new Exception(DatabaseAccessErrorMessage));
+        protected DatabaseUpgradeResult migrationResult = new DatabaseUpgradeResult(new List<SqlScript>(), true, null, null);
+        protected DatabaseUpgradeResult DatabaseAccessError = new DatabaseUpgradeResult(new List<SqlScript>(), false, new Exception(DatabaseAccessErrorMessage), null);
 
         [OneTimeSetUp]
         public void Setup()
