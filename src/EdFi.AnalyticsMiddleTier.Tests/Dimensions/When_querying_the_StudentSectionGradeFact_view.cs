@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -37,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         : When_querying_the_StudentSectionGradeFact_view
         {
             public Given_sudent_section_grade_fact_189889(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189889";
+            private readonly string _caseIdentifier = "189889";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -116,7 +116,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         : When_querying_the_StudentSectionGradeFact_view
         {
             public Given_sudent_section_grade_fact_189919(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189919";
+            private readonly string _caseIdentifier = "189919";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -194,7 +194,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         : When_querying_the_StudentSectionGradeFact_view
         {
             public Given_sudent_section_grade_fact_190966(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "190966";
+            private readonly string _caseIdentifier = "190966";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -272,7 +272,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         : When_querying_the_StudentSectionGradeFact_view
         {
             public Given_sudent_section_grade_fact_189914(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189914";
+            private readonly string _caseIdentifier = "189914";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -349,7 +349,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
         : When_querying_the_StudentSectionGradeFact_view
         {
             public Given_sudent_section_grade_fact_203451(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "203451";
+            private readonly string _caseIdentifier = "203451";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -370,7 +370,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
        : When_querying_the_StudentSectionGradeFact_view
         {
             public Given_sudent_section_grade_fact_205689(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "205689";
+            private readonly string _caseIdentifier = "205689";
             [Test]
             public void Then_should_return_one_record()
             {

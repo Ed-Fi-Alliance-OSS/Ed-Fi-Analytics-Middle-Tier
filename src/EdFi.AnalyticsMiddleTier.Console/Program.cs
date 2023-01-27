@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -19,7 +19,7 @@ using Ds33 = EdFi.AnalyticsMiddleTier.DataStandard33;
 
 namespace EdFi.AnalyticsMiddleTier.Console
 {
-    internal class Program
+    internal static class Program
     {
 
         private static readonly string _odsVersionNotSupportedMessage
@@ -59,7 +59,7 @@ namespace EdFi.AnalyticsMiddleTier.Console
                         || options.DatabaseEngine == Engine.MSSQL
                         || options.DatabaseEngine == Engine.Sql
                         || options.DatabaseEngine == Engine.Sqlserver)
-                    connectionStringValidator = new SQLServerConnectionStringValidator(options.ConnectionString);
+                    connectionStringValidator = new SqlServerConnectionStringValidator(options.ConnectionString);
                 else
                     connectionStringValidator = new NpgsqlConnectionStringValidator(options.ConnectionString);
 
@@ -142,7 +142,7 @@ namespace EdFi.AnalyticsMiddleTier.Console
                         message += NotSupportedOnDs31(dataStandardVersion, options, Component.EPP);
                         message += NotSupportedOnDs32(dataStandardVersion, options, Component.EPP);
                         message += NotSupportedOnPostgres(options, Component.Engage);
-                        
+
                         if (string.IsNullOrEmpty(message))
                         {
                             try

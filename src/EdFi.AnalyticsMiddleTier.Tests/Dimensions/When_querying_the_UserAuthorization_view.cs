@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -91,7 +91,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.querying_SectionKeyPermission_with_UserScope_equal_to_District.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-         
+
         }
 
 
@@ -162,7 +162,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.UserAuthorizationTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<UserAuthorization>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.querying_SectionPermission_should_have_SectionKeyPermission.json");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-        } 
+        }
 
 
         public class Given_a_request_to_retrieve_a_specific_record

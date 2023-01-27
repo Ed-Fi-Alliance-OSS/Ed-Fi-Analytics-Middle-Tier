@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.RaceDescriptorDimTestGroup
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_view_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-        
+
         [SetUpFixture]
         public class SetupRaceDescriptorDimTestCase
             : When_querying_the_RaceDescriptorDim_view
@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.RaceDescriptorDimTestGroup
         : When_querying_the_RaceDescriptorDim_view
         {
             public Given_Race_1941(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "1941";
+            private readonly string _caseIdentifier = "1941";
 
             [Test]
             public void Then_should_return_one_record()

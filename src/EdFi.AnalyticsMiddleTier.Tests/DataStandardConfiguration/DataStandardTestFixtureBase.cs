@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -28,7 +28,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixture()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33 };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSqlServer.DataStandard2, TestHarnessSqlServer.DataStandard31, TestHarnessSqlServer.DataStandard32, TestHarnessSqlServer.DataStandard33 };
         }
     }
 
@@ -36,7 +36,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixtureDs3()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33 };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSqlServer.DataStandard31, TestHarnessSqlServer.DataStandard32, TestHarnessSqlServer.DataStandard33 };
         }
     }
 
@@ -44,7 +44,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixtureDs3_3()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard33PG };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSqlServer.DataStandard33, TestHarnessPostgres.DataStandard33PG };
         }
     }
 
@@ -52,7 +52,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixturePostgres()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard2, TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard32PG, TestHarnessPostgres.DataStandard33PG};
+            FixtureList = new ITestHarnessBase[] { TestHarnessSqlServer.DataStandard2, TestHarnessSqlServer.DataStandard31, TestHarnessSqlServer.DataStandard32, TestHarnessSqlServer.DataStandard33, TestHarnessPostgres.DataStandard32PG, TestHarnessPostgres.DataStandard33PG };
         }
     }
 
@@ -60,7 +60,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixturePostgresDs3()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessPostgres.DataStandard32PG, TestHarnessPostgres.DataStandard33PG};
+            FixtureList = new ITestHarnessBase[] { TestHarnessSqlServer.DataStandard31, TestHarnessSqlServer.DataStandard32, TestHarnessSqlServer.DataStandard33, TestHarnessPostgres.DataStandard32PG, TestHarnessPostgres.DataStandard33PG };
         }
     }
 }

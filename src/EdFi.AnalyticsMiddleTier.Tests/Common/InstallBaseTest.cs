@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -17,7 +17,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     [Category("UnitTest")]
-    abstract class When_running_installation
+    internal abstract class When_running_installation
     {
         protected bool Successful;
         protected string Message;
@@ -33,8 +33,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         protected const string QuickSightEWSDirectory = "Qews";
 
         protected IDatabaseMigrationStrategy MigrationStrategy { get; set; }
-        protected DatabaseUpgradeResult migrationResult = new DatabaseUpgradeResult(new List<SqlScript>(), true, null);
-        protected DatabaseUpgradeResult DatabaseAccessError = new DatabaseUpgradeResult(new List<SqlScript>(), false, new Exception(DatabaseAccessErrorMessage));
+        protected DatabaseUpgradeResult MigrationResult { get; set; }
+        protected DatabaseUpgradeResult DatabaseAccessError { get; set; }
 
         [OneTimeSetUp]
         public void Setup()
@@ -42,9 +42,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
             MigrationStrategy = A.Fake<IDatabaseMigrationStrategy>();
             Install = new InstallBaseImplementation(MigrationStrategy);
 
-            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, BaseDirectory, ValidConnectionString, ValidTimeout)).Returns(migrationResult);
-            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, IndexesDirectory, ValidConnectionString, ValidTimeout)).Returns(migrationResult);
-            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, QuickSightEWSDirectory, ValidConnectionString, ValidTimeout)).Returns(migrationResult);
+            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, BaseDirectory, ValidConnectionString, ValidTimeout)).Returns(MigrationResult);
+            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, IndexesDirectory, ValidConnectionString, ValidTimeout)).Returns(MigrationResult);
+            A.CallTo(() => MigrationStrategy.Migrate(A<Assembly>._, QuickSightEWSDirectory, ValidConnectionString, ValidTimeout)).Returns(MigrationResult);
         }
 
         [Test]
@@ -62,7 +62,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_a_connection_string_null_or_empty : When_running_installation
+    internal class Given_an_installation_with_a_connection_string_null_or_empty : When_running_installation
     {
         [Test]
         public void When_running_migration_and_connectionstring_is_null_we_get_exception()
@@ -79,7 +79,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_an_escenario_where_all_parameters_all_valid : When_running_installation
+    internal class Given_an_installation_with_an_escenario_where_all_parameters_all_valid : When_running_installation
     {
         private Component[] _components;
 
@@ -108,7 +108,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_a_not_valid_connection_string : When_running_installation
+    internal class Given_an_installation_with_a_not_valid_connection_string : When_running_installation
     {
         private Component[] _components;
 
@@ -136,7 +136,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_a_not_valid_timeout : When_running_installation
+    internal class Given_an_installation_with_a_not_valid_timeout : When_running_installation
     {
         private Component[] _components;
 
@@ -165,7 +165,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_without_collections_included : When_running_installation
+    internal class Given_an_installation_without_collections_included : When_running_installation
     {
         private List<Component> _components;
 
@@ -185,7 +185,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_Indexes_collection_included : When_running_installation
+    internal class Given_an_installation_with_Indexes_collection_included : When_running_installation
     {
         private List<Component> _components;
 
@@ -205,7 +205,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_Rls_collection_included : When_running_installation
+    internal class Given_an_installation_with_Rls_collection_included : When_running_installation
     {
         private List<Component> _components;
 
@@ -225,7 +225,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_Ews_collection_included : When_running_installation
+    internal class Given_an_installation_with_Ews_collection_included : When_running_installation
     {
         private List<Component> _components;
 
@@ -245,7 +245,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_Qews_collection_included : When_running_installation
+    internal class Given_an_installation_with_Qews_collection_included : When_running_installation
     {
         private List<Component> _components;
 
@@ -267,7 +267,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 
     [TestFixture]
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    class Given_an_installation_with_Chrab_collection_included : When_running_installation
+    internal class Given_an_installation_with_Chrab_collection_included : When_running_installation
     {
         private List<Component> _components;
 

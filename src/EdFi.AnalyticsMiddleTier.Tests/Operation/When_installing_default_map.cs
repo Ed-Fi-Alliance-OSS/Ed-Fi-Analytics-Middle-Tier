@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             Result = DataStandard.LoadTestCaseData<LocalEducationAgencyDim>(
                 $"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0000_descriptormap_case_Data_Load.xml");
             Result.success.ShouldBeTrue($"Error while loading descriptor data: '{Result.errorMessage}'");
-            
+
             Result = DataStandard.Install(10);
             Result.success.ShouldBeTrue($"Error while installing Base and DefaultMap: '{Result.errorMessage}'");
         }

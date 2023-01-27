@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -40,14 +40,14 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentEarlyWarningFactTestG
             [Test]
             public void Then_should_return_one_record()
             {
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_CountByDayOfConductOffenses_0()
             {
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentEarlyWarningFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CountByDayOfConductOffenses_0.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<StudentEarlyWarningFact>($"{TestCasesFolder}.{_caseIdentifier}_should_have_CountByDayOfConductOffenses_0.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]

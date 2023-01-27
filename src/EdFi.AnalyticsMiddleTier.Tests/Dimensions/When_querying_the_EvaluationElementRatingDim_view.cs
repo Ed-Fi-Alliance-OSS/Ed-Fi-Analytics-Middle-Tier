@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_view_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-        
+
         [SetUpFixture]
         public class SetupEvaluationElementRatingDimTestCase
             : When_querying_the_EvaluationElementRatingDim_View
@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
         : When_querying_the_EvaluationElementRatingDim_View
         {
             public Given_candidatekey_1000048(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "c1000048";
+            private readonly string _caseIdentifier = "c1000048";
 
             [Test]
             public void Then_should_return_one_record()
@@ -144,7 +144,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EvaluationElementRatingDimTe
         : When_querying_the_EvaluationElementRatingDim_View
         {
             public Given_candidatekey_1000049(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "c1000049";
+            private readonly string _caseIdentifier = "c1000049";
 
             [Test]
             public void Then_should_return_one_record()

@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -15,7 +15,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public override string MainDatabaseConnectionString
             => String.Format(GetConnectionStringFormat(),
-                DbConnectionStringParameter.Server, 
+                DbConnectionStringParameter.Server,
                 "master",
                 DbConnectionStringParameter.IntegratedSecurity,
                 DbConnectionStringParameter.AdminUser,
@@ -23,7 +23,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
         public override string ConnectionString
             => String.Format(GetConnectionStringFormat(),
-                DbConnectionStringParameter.Server, 
+                DbConnectionStringParameter.Server,
                 DatabaseName,
                 DbConnectionStringParameter.IntegratedSecurity,
                 DbConnectionStringParameter.User,
@@ -37,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         {
             Initialize();
         }
-        
+
         public override IOrm Orm => new DapperWrapper(new SqlConnection(ConnectionString));
 
         public override IDatabaseMigrationStrategy DatabaseMigrationStrategy => new SqlServerMigrationStrategy(Orm);

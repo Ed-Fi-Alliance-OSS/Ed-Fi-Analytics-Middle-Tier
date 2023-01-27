@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -24,7 +24,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateSurveyDimTestGroup
             (bool success, string errorMessage) testResult = DataStandard.RunTestCase<TableColumns>($"{TestCasesFolder}.{DataStandard.TestDataFolderName}.0001_view_should_match_column_dictionary.xml");
             testResult.success.ShouldBe(true, testResult.errorMessage);
         }
-        
+
         [SetUpFixture]
         public class SetupCandidateSurveyDimTestCase
             : When_querying_the_CandidateSurveyDim_view
@@ -38,7 +38,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateSurveyDimTestGroup
         : When_querying_the_CandidateSurveyDim_view
         {
             public Given_SurveyCandidateIdentifier_1000006906_TBMS4_1(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "1000006906_TBMS4_1";
+            private readonly string _caseIdentifier = "1000006906_TBMS4_1";
 
             [Test]
             public void Then_should_return_one_record()
@@ -124,8 +124,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateSurveyDimTestGroup
             public Given_SurveyCandidateIdentifier_1000006906_TBMS4_2(TestHarnessBase dataStandard) =>
                 SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "1000006906_TBMS4_2";
-            
+            private readonly string _caseIdentifier = "1000006906_TBMS4_2";
+
             [Test]
             public void Then_should_have_TextResponse_Empty()
             {
@@ -148,7 +148,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateSurveyDimTestGroup
             public Given_SurveyCandidateIdentifier_1000001359_TBMS4_1(TestHarnessBase dataStandard) =>
                 SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "1000001359_TBMS4_1";
+            private readonly string _caseIdentifier = "1000001359_TBMS4_1";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -165,7 +165,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateSurveyDimTestGroup
             public Given_SurveyCandidateIdentifier_1000006906_4083(TestHarnessBase dataStandard) =>
                 SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "1000006906_4083";
+            private readonly string _caseIdentifier = "1000006906_4083";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -182,7 +182,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateSurveyDimTestGroup
             public Given_SurveyCandidateIdentifier_1000001308_TBMS4_1(TestHarnessBase dataStandard) =>
                 SetDataStandard(dataStandard);
 
-            private string _caseIdentifier = "1000001308_TBMS4_1";
+            private readonly string _caseIdentifier = "1000001308_TBMS4_1";
 
             [Test]
             public void Then_should_have_LastModifiedDate()

@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -34,18 +34,18 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
             : When_querying_the_LocalEducationAgencyDim_view
         {
             public Given_grading_period_528530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "528530";
+            private readonly string _caseIdentifier = "528530";
             [Test]
             public void Then_should_return_one_record()
             {
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{_caseIdentifier}_should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
             [Test]
             public void Then_should_have_LocalEducationAgencyKey()
             {
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyKey.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<LocalEducationAgencyDim>($"{TestCasesFolder}.{_caseIdentifier}_should_have_LocalEducationAgencyKey.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -108,7 +108,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
             : When_querying_the_LocalEducationAgencyDim_view
         {
             public Given_grading_period_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "628530";
+            private readonly string _caseIdentifier = "628530";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -182,7 +182,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.LocalEducationAgencyDimTestG
             : When_querying_the_LocalEducationAgencyDim_view
         {
             public Given_grading_period_628531(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "628531";
+            private readonly string _caseIdentifier = "628531";
 
             [Test]
             public void Then_should_have_LastModifiedDate()

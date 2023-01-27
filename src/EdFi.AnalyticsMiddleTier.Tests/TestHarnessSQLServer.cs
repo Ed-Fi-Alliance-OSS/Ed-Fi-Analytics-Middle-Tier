@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -17,23 +17,23 @@ using Microsoft.SqlServer.Dac;
 namespace EdFi.AnalyticsMiddleTier.Tests
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public class TestHarnessSQLServer : TestHarnessBase
+    public class TestHarnessSqlServer : TestHarnessBase
     {
         private string _snapshotName => $"{_databaseName}_ss";
 
-        public static TestHarnessSQLServer DataStandard2 
-            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds2));
+        public static TestHarnessSqlServer DataStandard2
+            = new TestHarnessSqlServer(new SqlServerDataStandardSettings(DataStandard.Ds2));
 
-        public static TestHarnessSQLServer DataStandard31
-            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds31));
+        public static TestHarnessSqlServer DataStandard31
+            = new TestHarnessSqlServer(new SqlServerDataStandardSettings(DataStandard.Ds31));
 
-        public static TestHarnessSQLServer DataStandard32 
-            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds32));
+        public static TestHarnessSqlServer DataStandard32
+            = new TestHarnessSqlServer(new SqlServerDataStandardSettings(DataStandard.Ds32));
 
-        public static TestHarnessSQLServer DataStandard33 
-            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds33));
+        public static TestHarnessSqlServer DataStandard33
+            = new TestHarnessSqlServer(new SqlServerDataStandardSettings(DataStandard.Ds33));
 
-        protected TestHarnessSQLServer(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)
+        protected TestHarnessSqlServer(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)
         {
         }
 
@@ -62,10 +62,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
                 bool NotUsingSnapshots()
                 {
-                    //return true;
                     const string analyticsMiddleTierNoSnapshots = "ANALYTICSMIDDLETIER_NO_SNAPSHOTS";
 
-                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots) 
+                    var noSnapshotsEnvVar = Environment.GetEnvironmentVariable(analyticsMiddleTierNoSnapshots)
                                                 ?? "false";
 
                     if (bool.TryParse(noSnapshotsEnvVar, out bool avoidSnapshot))

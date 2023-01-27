@@ -1,4 +1,9 @@
-﻿using dotenv.net;
+// SPDX-License-Identifier: Apache-2.0
+// Licensed to the Ed-Fi Alliance under one or more agreements.
+// The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+// See the LICENSE and NOTICES files in the project root for more information.
+
+using dotenv.net;
 using System.Collections.Generic;
 
 namespace EdFi.AnalyticsMiddleTier.Tests
@@ -6,7 +11,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
     public class DotEnvHelper
     {
         private readonly IDictionary<string, string> _variables;
-        
+
         public DotEnvHelper()
         {
             if (_variables != null)

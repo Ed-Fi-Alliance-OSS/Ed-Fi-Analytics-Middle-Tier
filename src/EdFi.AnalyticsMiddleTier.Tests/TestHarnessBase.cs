@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -29,7 +29,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests
 
         protected IDatabaseMigrationStrategy _databaseMigrationStrategy;
 
-        protected IDatabaseConnection _databaseConnection 
+        protected IDatabaseConnection _databaseConnection
                             => _dataStandardSettings.DatabaseConnection;
 
         protected string _databaseName => _databaseConnection.DatabaseName;
@@ -60,11 +60,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         protected string _mainDatabaseConnectionString => _databaseConnection.MainDatabaseConnectionString;
 
         protected IOrm _orm { get; set; }
-        
+
         public IOrm Orm => _orm ??= _dataStandardSettings.DatabaseConnection.Orm;
 
         protected IDatabaseMigrationStrategy DatabaseMigrationStrategy =>
-            _databaseMigrationStrategy 
+            _databaseMigrationStrategy
                 ??= _dataStandardSettings.DatabaseConnection.DatabaseMigrationStrategy;
 
         protected IUninstallStrategy UninstallStrategy =>
@@ -75,13 +75,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         {
             get
             {
-                _dataStandardInstallBase ??= (InstallBase)Activator.CreateInstance(_dataStandardInstallType,
+                _dataStandardInstallBase ??= (InstallBase) Activator.CreateInstance(_dataStandardInstallType,
                     DatabaseMigrationStrategy);
                 return _dataStandardInstallBase;
             }
             set => _dataStandardInstallBase = value;
         }
-        
+
         public Func<string, int, Component[], (bool success, string errorMessage)> InstallDelegate
         {
             get

@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -37,7 +37,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
              END";
 
         private readonly IOrm _orm;
-        public SqlServerMigrationStrategy(IOrm orm){
+        public SqlServerMigrationStrategy(IOrm orm)
+        {
             _orm = orm ?? throw new ArgumentNullException(nameof(orm), "ORM cannot be null");
         }
         public DatabaseUpgradeResult Migrate(Assembly assembly, string directoryName, string connectionString,
@@ -54,13 +55,13 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 .PerformUpgrade();
         }
 
-        
+
 
         public DataStandard GetDataStandardVersion()
         {
             var sql = DataStandardVersionTemplate;
             var result = _orm.ExecuteScalar<String>(sql);
-            DataStandard dataStandardVersion = (DataStandard)Enum.Parse(typeof(DataStandard), result, true);
+            DataStandard dataStandardVersion = (DataStandard) Enum.Parse(typeof(DataStandard), result, true);
             return dataStandardVersion;
         }
     }

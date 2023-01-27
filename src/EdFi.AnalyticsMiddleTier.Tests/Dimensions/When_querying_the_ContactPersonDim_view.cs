@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -16,7 +16,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
     {
         protected const string TestCasesFolder = "TestCases.ContactPersonDim";
         protected const string TestCasesDataFileName = "0000_ContactPersonDim_Data_Load.xml";
-        
+
         [Test]
         public void Then_view_should_match_column_dictionary()
         {
@@ -34,7 +34,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_132500_189856(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "132500_189856";
+            private readonly string _caseIdentifier = "132500_189856";
 
             [Test]
             public void Then_should_return_one_record()
@@ -208,7 +208,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_133012_190142(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "133012_190142";
+            private readonly string _caseIdentifier = "133012_190142";
 
             [Test]
             public void Then_should_return_one_record()
@@ -382,7 +382,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_154283_189864(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "154283_189864";
+            private readonly string _caseIdentifier = "154283_189864";
 
             [Test]
             public void Then_should_return_one_record()
@@ -556,7 +556,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_156809_231203(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "156809_231203";
+            private readonly string _caseIdentifier = "156809_231203";
 
             [Test]
             public void Then_should_return_one_record()
@@ -722,7 +722,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_163235_189865(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "163235_189865";
+            private readonly string _caseIdentifier = "163235_189865";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -735,7 +735,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_132579_232151(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "132579_232151";
+            private readonly string _caseIdentifier = "132579_232151";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -748,7 +748,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_133100_195827(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "133100_195827";
+            private readonly string _caseIdentifier = "133100_195827";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -762,7 +762,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_132584_195828(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "132584_195828";
+            private readonly string _caseIdentifier = "132584_195828";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -776,7 +776,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_134484_195830(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "134484_195830";
+            private readonly string _caseIdentifier = "134484_195830";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -790,7 +790,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_142822_190237(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "142822_190237";
+            private readonly string _caseIdentifier = "142822_190237";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -804,7 +804,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_162262_190191(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "162262_190191";
+            private readonly string _caseIdentifier = "162262_190191";
 
             [Test]
             public void Then_should_have_LastModifiedDate()
@@ -818,7 +818,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.ContactPersonDimTestGroup
             : When_querying_the_ContactPersonDim_view
         {
             public Given_contact_person_145198_237148(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "145198_237148";
+            private readonly string _caseIdentifier = "145198_237148";
 
             [Test]
             public void Then_should_have_LastModifiedDate()

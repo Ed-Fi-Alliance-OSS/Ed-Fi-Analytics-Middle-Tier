@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -35,7 +35,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
         : When_querying_the_GradingPeriodDim_view
         {
             public Given_grading_period_54_628530001_20110822(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "54_628530001_20110822";
+            private readonly string _caseIdentifier = "54_628530001_20110822";
 
             [Test]
             public void Then_should_return_one_record()
@@ -47,7 +47,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
             [Test]
             public void Then_gradingPeriodKey_should_be_set_correctly()
             {
-               (bool success, string errorMessage) testResult = DataStandard.RunTestCase<GradingPeriodDim>($"{TestCasesFolder}.{_caseIdentifier}_gradingPeriodKey_should_be_set_correctly.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<GradingPeriodDim>($"{TestCasesFolder}.{_caseIdentifier}_gradingPeriodKey_should_be_set_correctly.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
 
@@ -128,7 +128,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
         : When_querying_the_GradingPeriodDim_view
         {
             public Given_grading_period_54_628530001_20111120(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "54_628530001_20111120";
+            private readonly string _caseIdentifier = "54_628530001_20111120";
 
             [Test]
             public void Then_should_return_one_record()
@@ -190,7 +190,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.GradingPeriodDimTestGroup
         : When_querying_the_GradingPeriodDim_view
         {
             public Given_grading_period_54_628530001_21001120(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "54_628530001_21001120";
+            private readonly string _caseIdentifier = "54_628530001_21001120";
 
             [Test]
             public void Then_should_return_zero_records()

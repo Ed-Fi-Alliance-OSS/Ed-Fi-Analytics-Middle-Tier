@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -12,10 +12,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
 {
     [TestFixture]
     [Category("UnitTest")]
-    class ExceptionExtensionsTests
+    internal class ExceptionExtensionsTests
     {
-        private string exceptionMessage = "Exception message";
-        private string innerExceptionMessage = "Inner exception message";
+        private readonly string exceptionMessage = "Exception message";
+        private readonly string innerExceptionMessage = "Inner exception message";
 
         [Test]
         public void Inner_exception_are_concatenated_properly()

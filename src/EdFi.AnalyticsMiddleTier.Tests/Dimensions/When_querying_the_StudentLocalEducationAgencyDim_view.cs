@@ -1,4 +1,4 @@
-﻿// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 // Licensed to the Ed-Fi Alliance under one or more agreements.
 // The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 // See the LICENSE and NOTICES files in the project root for more information.
@@ -37,7 +37,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             public Given_student_local_education_agency_189871_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189871_867530";
+            private readonly string _caseIdentifier = "189871_867530";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -132,7 +132,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
          : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             public Given_student_local_education_agency_189871_867530_digital_access(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189871_867530";
+            private readonly string _caseIdentifier = "189871_867530";
 
             [SetUp]
             public void IgnoreTestCase()
@@ -189,7 +189,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             public Given_student_local_education_agency_189919_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189919_867530";
+            private readonly string _caseIdentifier = "189919_867530";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -205,7 +205,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_FirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_IsHispanic()
             {
@@ -246,7 +246,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_MiddleName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_sex_female()
             {
@@ -321,7 +321,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             public Given_student_local_education_agency_193964_867530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "193964_867530";
+            private readonly string _caseIdentifier = "193964_867530";
             [Test]
             public void Then_should_return_one_record()
             {
@@ -337,7 +337,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_FirstName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-           
+
             [Test]
             public void Then_should_have_IsHispanic()
             {
@@ -378,7 +378,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
                         $"{TestCasesFolder}.{_caseIdentifier}_should_have_MiddleName.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-            
+
             [Test]
             public void Then_should_have_sex_male()
             {
@@ -425,7 +425,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             public Given_student_local_education_agency_189919_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "189919_628530";
+            private readonly string _caseIdentifier = "189919_628530";
             [Test]
             public void Then_should_not_return_any_record()
             {
@@ -438,7 +438,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentLocalEducationAgencyD
         : When_querying_the_StudentLocalEducationAgencyDim_view
         {
             public Given_student_local_education_agency_193910_628530(TestHarnessBase dataStandard) => SetDataStandard(dataStandard);
-            private string _caseIdentifier = "193910_628530";
+            private readonly string _caseIdentifier = "193910_628530";
             [Test]
             public void Then_should_return_one_record()
             {

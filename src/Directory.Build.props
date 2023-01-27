@@ -3,9 +3,11 @@
     <PropertyGroup>
         <Product>Ed-Fi AMT</Product>
         <Authors>Ed-Fi Alliance, LLC and contributors</Authors>
-        <Company>Ed-Fi Alliance, LLC and contributors</Company>
-        <Copyright>Copyright Â© 2016 Ed-Fi Alliance</Copyright>
-        <VersionPrefix>3.2.1</VersionPrefix>
+        <Company>Ed-Fi Alliance, LLC</Company>
+        <Copyright>Copyright © 2022, Ed-Fi Alliance, LLC, and contributors</Copyright>
+        <VersionPrefix>5.2.1</VersionPrefix>
         <VersionSuffix></VersionSuffix>
+        <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+        <ErrorLog>results.sarif,version=2.1</ErrorLog>
     </PropertyGroup>
 </Project>
