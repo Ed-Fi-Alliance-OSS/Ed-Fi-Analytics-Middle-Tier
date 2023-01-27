@@ -116,7 +116,8 @@ To combine options, simply list them with a space separating, e.g.
 .\EdFi.AnalyticsMiddleTier.Console.exe -c "Server=.;Database=EdFi_Glendale;Trusted_connection=true" -o Indexes EWS
 ```
 
-For SqlServer, if you need to send secure connections, you can include the parameter Encrypt=True. AMT defaults to Encrypt=false.
+For SqlServer, if you need to send secure connections, you can include the parameter `Encrypt=True` in the
+connection string. AMT defaults to `Encrypt=false`.
 
 ## Next Steps
 
