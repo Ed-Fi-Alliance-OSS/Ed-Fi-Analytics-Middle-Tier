@@ -9,7 +9,7 @@ using EdFi.AnalyticsMiddleTier.Common;
 using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using Ds2 = EdFi.AnalyticsMiddleTier.DataStandard2;

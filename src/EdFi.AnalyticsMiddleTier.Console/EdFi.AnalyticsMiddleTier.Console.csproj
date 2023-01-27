@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="DbUp" Version="4.6.0" />
+    <PackageReference Include="DbUp" Version="5.0.8" />
   </ItemGroup>
 
   <ItemGroup>

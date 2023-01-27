@@ -6,11 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
-    <PackageReference Include="dbup-core" Version="4.6.3" />
-    <PackageReference Include="dbup-postgresql" Version="4.6.3" />
-    <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
+    <PackageReference Include="dbup-core" Version="5.0.10" />
+    <PackageReference Include="dbup-postgresql" Version="5.0.8" />
+    <PackageReference Include="dbup-sqlserver" Version="5.0.8" />
     <PackageReference Include="Npgsql" Version="7.0.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
 </Project>
