@@ -267,7 +267,7 @@ namespace EdFi.AnalyticsMiddleTier.Console
             }
         }
 
-        private const string SampleConnectionString = "Server=yourServer;Initial Catalog=yourODSdbName;Integrated Security=SSPI";
+        private const string SampleConnectionString = "Server=yourServer;Initial Catalog=yourODSdbName;Integrated Security=SSPI;Encrypt=true";
 
     }
 }
