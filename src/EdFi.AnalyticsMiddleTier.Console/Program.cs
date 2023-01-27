@@ -16,6 +16,7 @@ using Ds2 = EdFi.AnalyticsMiddleTier.DataStandard2;
 using Ds31 = EdFi.AnalyticsMiddleTier.DataStandard31;
 using Ds32 = EdFi.AnalyticsMiddleTier.DataStandard32;
 using Ds33 = EdFi.AnalyticsMiddleTier.DataStandard33;
+using System.Text.RegularExpressions;
 
 namespace EdFi.AnalyticsMiddleTier.Console
 {
@@ -59,7 +60,16 @@ namespace EdFi.AnalyticsMiddleTier.Console
                         || options.DatabaseEngine == Engine.MSSQL
                         || options.DatabaseEngine == Engine.Sql
                         || options.DatabaseEngine == Engine.Sqlserver)
+                {
                     connectionStringValidator = new SQLServerConnectionStringValidator(options.ConnectionString);
+                    SqlConnectionStringBuilder connSql = new SqlConnectionStringBuilder(options.ConnectionString);
+                    // Check if the connection string has the property encrypt. If it is empty it's set to false.
+                    if (!Regex.Replace(options.ConnectionString, @"\s+", "").ToLower().Contains("encrypt="))
+                    {
+                        connSql.Encrypt = false;
+                    }
+                    options.ConnectionString = connSql.ToString();
+                }
                 else
                     connectionStringValidator = new NpgsqlConnectionStringValidator(options.ConnectionString);
 
