@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 
 using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace EdFi.AnalyticsMiddleTier.Common
 {
@@ -22,7 +22,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
             errorMessage = string.Empty;
             try
             {
-                SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder(_connectionString);
+                var connectionStringBuilder = new SqlConnectionStringBuilder(_connectionString);
 
                 if (string.IsNullOrWhiteSpace(connectionStringBuilder.DataSource))
                 {

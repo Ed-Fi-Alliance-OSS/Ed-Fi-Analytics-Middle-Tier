@@ -4,7 +4,7 @@
 // See the LICENSE and NOTICES files in the project root for more information.
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using EdFi.AnalyticsMiddleTier.Common;
 // ReSharper disable StringLiteralTypo
@@ -59,6 +59,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
             DbConnectionStringParameter.AdminUser = GetEnvironmentVariable("SQLSERVER_ADMIN_USER") ?? "sa";
 
             DbConnectionStringParameter.AdminUserPass = GetEnvironmentVariable("SQLSERVER_ADMIN_PASS");
+            
+            DbConnectionStringParameter.Encrypt = GetEnvironmentVariable("SQLSERVER_ENCRYPT") ?? "false";
+
+
         }
 
         private string GetConnectionStringFormat()
@@ -69,15 +73,15 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
             if (DbConnectionStringParameter.UseDefaultConnectionString)
             {
-                return "server=localhost;database={1};integrated security=sspi";
+                return "server=localhost;database={1};integrated security=sspi;encrypt=false";
             }
             else if (useIntegratedSecurity)
             {
-                return "server={0};database={1};integrated security={2};";
+                return "server={0};database={1};integrated security={2};encrypt=false";
             }
             else
             {
-                return "server={0};database={1};User={3};Password={4}";
+                return "server={0};database={1};User={3};Password={4};encrypt=false";
             }
         }
     }

@@ -1,16 +1,21 @@
 # Installing the Ed-Fi Analytics Middle Tier
 
-* [Migration Utility](#migration-utility)
-* [Execution Instructions](#execution-instructions)
-  * [Download Binaries](#download-binaries)
-  * [Run](#run)
-  * [Options](#options)
-* [Next Steps](#next-steps)
-  * [Managing Database User Roles](#managing-database-user-roles)
-  * [Managing Staff Authorization Scope](#managing-staff-authorization-scope)
-    * [View Existing Mappings](#view-existing-mappings)
-    * [Insert a New Mapping](#insert-a-new-mapping)
-    * [Remove a Mapping](#remove-a-mapping)
+- [Installing the Ed-Fi Analytics Middle Tier](#installing-the-ed-fi-analytics-middle-tier)
+  - [Migration Utility](#migration-utility)
+  - [Execution Instructions](#execution-instructions)
+    - [Download Binaries](#download-binaries)
+    - [Run](#run)
+    - [Options](#options)
+  - [Next Steps](#next-steps)
+    - [Setup Descriptor Mappings](#setup-descriptor-mappings)
+    - [Managing Database User Roles](#managing-database-user-roles)
+    - [Managing Staff Authorization Scope](#managing-staff-authorization-scope)
+      - [View Existing Mappings](#view-existing-mappings)
+      - [Insert a New Mapping](#insert-a-new-mapping)
+      - [Remove a Mapping](#remove-a-mapping)
+    - [Optional Configuration](#optional-configuration)
+      - [Letter Grade Translation](#letter-grade-translation)
+      - [Early Warning System (QuickSight-only)](#early-warning-system-quicksight-only)
 
 *[Back to main readme](../readme.md)*
 
@@ -110,6 +115,9 @@ To combine options, simply list them with a space separating, e.g.
 ```powershell
 .\EdFi.AnalyticsMiddleTier.Console.exe -c "Server=.;Database=EdFi_Glendale;Trusted_connection=true" -o Indexes EWS
 ```
+
+For SqlServer, if you need to send secure connections, you can include the parameter `Encrypt=True` in the
+connection string. AMT defaults to `Encrypt=false`.
 
 ## Next Steps
 

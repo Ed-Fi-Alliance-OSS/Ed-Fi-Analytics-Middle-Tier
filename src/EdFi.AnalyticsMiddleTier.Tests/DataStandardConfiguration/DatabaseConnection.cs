@@ -78,6 +78,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
 
             public string EnvParameterDataBaseNamePrefix { get; }
 
+            public string Encrypt { get; set; } = "false";
+
             public string DefaultDataBaseName => $"{DefaultDatabaseNamePrefix}{DatabaseVersionSuffix}";
 
             public string EnvParameterDataBaseName => $"{EnvParameterDataBaseNamePrefix}{DatabaseVersionSuffix.ToUpper()}";
