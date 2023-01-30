@@ -211,39 +211,10 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.SectionDimTestGroup
                 (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.0005_Should_return_one_record.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
-
             [Test]
-            public void Then_should_return_one_record_4()
+            public void Then_should_have_Description()
             {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.0006_Should_return_one_record.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_return_one_record_5()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.0007_Should_return_one_record.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_return_one_record_6()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.0008_Should_return_one_record.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_return_one_record_7()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.0009_Should_return_one_record.xml");
-                testResult.success.ShouldBe(true, testResult.errorMessage);
-            }
-
-            [Test]
-            public void Then_should_return_one_record_8()
-            {
-                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<CountResult>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.0010_Should_return_one_record.xml");
+                (bool success, string errorMessage) testResult = DataStandard.RunTestCase<SectionDim>($"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.YTAR11_should_have_Description.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
         }
