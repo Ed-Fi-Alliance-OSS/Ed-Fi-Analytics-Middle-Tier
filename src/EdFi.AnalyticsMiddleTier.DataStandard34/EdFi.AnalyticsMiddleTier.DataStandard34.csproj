@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Authors>Ed-Fi Alliance</Authors>
+        <Copyright>Copyright (c) 2020, Ed-Fi Alliance LLC and contributors</Copyright>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="**\*.sql" />
+        <None Remove="**\Rls\MSSQL\*.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="**\*.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.Common\EdFi.AnalyticsMiddleTier.Common.csproj" />
+    </ItemGroup>
+
+</Project>
