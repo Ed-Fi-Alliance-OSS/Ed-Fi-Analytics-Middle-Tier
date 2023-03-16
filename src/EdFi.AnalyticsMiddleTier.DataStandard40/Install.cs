@@ -6,7 +6,7 @@
 using System.Reflection;
 using EdFi.AnalyticsMiddleTier.Common;
 
-namespace EdFi.AnalyticsMiddleTier.DataStandard33
+namespace EdFi.AnalyticsMiddleTier.DataStandard40
 {
     public class Install : InstallBase
     {

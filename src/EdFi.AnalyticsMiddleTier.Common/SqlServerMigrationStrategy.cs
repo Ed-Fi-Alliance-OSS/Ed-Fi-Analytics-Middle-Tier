@@ -23,6 +23,10 @@ namespace EdFi.AnalyticsMiddleTier.Common
              BEGIN
             	SELECT 'Ds31' AS version
              END
+			 ELSE IF (SELECT OBJECT_ID('edfi.LocalBudget')) IS NOT NULL
+             BEGIN
+            	SELECT 'Ds40' AS version
+             END
 			 ELSE IF (SELECT OBJECT_ID('edfi.Survey')) IS NOT NULL
              BEGIN
             	SELECT 'Ds33' AS version
