@@ -53,6 +53,15 @@ CREATE SCHEMA interop;
 ALTER SCHEMA interop OWNER TO postgres;
 
 --
+-- Name: tpdm; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA tpdm;
+
+
+ALTER SCHEMA tpdm OWNER TO postgres;
+
+--
 -- Name: tracked_changes_edfi; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
@@ -60,6 +69,15 @@ CREATE SCHEMA tracked_changes_edfi;
 
 
 ALTER SCHEMA tracked_changes_edfi OWNER TO postgres;
+
+--
+-- Name: tracked_changes_tpdm; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA tracked_changes_tpdm;
+
+
+ALTER SCHEMA tracked_changes_tpdm OWNER TO postgres;
 
 --
 -- Name: util; Type: SCHEMA; Schema: -; Owner: postgres
@@ -7951,6 +7969,803 @@ $$;
 
 
 ALTER FUNCTION tracked_changes_edfi.weapondescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: accreditationstatusdescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.accreditationstatusdescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.AccreditationStatusDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.AccreditationStatusDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.AccreditationStatusDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.accreditationstatusdescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: aidtypedescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.aidtypedescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.AidTypeDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.AidTypeDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.AidTypeDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.aidtypedescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: candidate_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.candidate_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_tpdm.candidate(
+        oldcandidateidentifier,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.candidateidentifier, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.candidate_deleted() OWNER TO postgres;
+
+--
+-- Name: candidateeducatorpreparationprogramassociation_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.candidateeducatorpreparationprogramassociation_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.programtypedescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.candidateeducatorpreparationprogramassociation(
+        oldbegindate, oldcandidateidentifier, oldeducationorganizationid, oldprogramname, oldprogramtypedescriptorid, oldprogramtypedescriptornamespace, oldprogramtypedescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.begindate, OLD.candidateidentifier, OLD.educationorganizationid, OLD.programname, OLD.programtypedescriptorid, dj0.namespace, dj0.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.candidateeducatorpreparationprogramassociation_deleted() OWNER TO postgres;
+
+--
+-- Name: certificationroutedescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.certificationroutedescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.CertificationRouteDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.CertificationRouteDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.CertificationRouteDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.certificationroutedescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: coteachingstyleobserveddescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.coteachingstyleobserveddescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.CoteachingStyleObservedDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.CoteachingStyleObservedDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.CoteachingStyleObservedDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.coteachingstyleobserveddescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: credentialstatusdescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.credentialstatusdescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.CredentialStatusDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.CredentialStatusDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.CredentialStatusDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.credentialstatusdescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: educatorpreparationprogram_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.educatorpreparationprogram_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.programtypedescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.educatorpreparationprogram(
+        oldeducationorganizationid, oldprogramname, oldprogramtypedescriptorid, oldprogramtypedescriptornamespace, oldprogramtypedescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.programname, OLD.programtypedescriptorid, dj0.namespace, dj0.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.educatorpreparationprogram_deleted() OWNER TO postgres;
+
+--
+-- Name: educatorroledescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.educatorroledescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EducatorRoleDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EducatorRoleDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EducatorRoleDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.educatorroledescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: englishlanguageexamdescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.englishlanguageexamdescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EnglishLanguageExamDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EnglishLanguageExamDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EnglishLanguageExamDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.englishlanguageexamdescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: eppprogrampathwaydescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.eppprogrampathwaydescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EPPProgramPathwayDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EPPProgramPathwayDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EPPProgramPathwayDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.eppprogrampathwaydescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluation_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluation_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.evaluation(
+        oldeducationorganizationid, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.schoolyear, OLD.termdescriptorid, dj2.namespace, dj2.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluation_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationelement_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationelement_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.evaluationelement(
+        oldeducationorganizationid, oldevaluationelementtitle, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationelementtitle, OLD.evaluationobjectivetitle, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.schoolyear, OLD.termdescriptorid, dj2.namespace, dj2.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationelement_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationelementrating_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationelementrating_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+    dj3 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.sourcesystemdescriptorid;
+
+    SELECT INTO dj3 * FROM edfi.descriptor j3 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.evaluationelementrating(
+        oldeducationorganizationid, oldevaluationdate, oldevaluationelementtitle, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationdate, OLD.evaluationelementtitle, OLD.evaluationobjectivetitle, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.personid, OLD.schoolyear, OLD.sourcesystemdescriptorid, dj2.namespace, dj2.codevalue, OLD.termdescriptorid, dj3.namespace, dj3.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationelementrating_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationelementratingleveldescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationelementratingleveldescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EvaluationElementRatingLevelDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EvaluationElementRatingLevelDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EvaluationElementRatingLevelDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationelementratingleveldescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationobjective_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationobjective_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.evaluationobjective(
+        oldeducationorganizationid, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationobjectivetitle, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.schoolyear, OLD.termdescriptorid, dj2.namespace, dj2.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationobjective_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationobjectiverating_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationobjectiverating_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+    dj3 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.sourcesystemdescriptorid;
+
+    SELECT INTO dj3 * FROM edfi.descriptor j3 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.evaluationobjectiverating(
+        oldeducationorganizationid, oldevaluationdate, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationdate, OLD.evaluationobjectivetitle, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.personid, OLD.schoolyear, OLD.sourcesystemdescriptorid, dj2.namespace, dj2.codevalue, OLD.termdescriptorid, dj3.namespace, dj3.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationobjectiverating_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationperioddescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationperioddescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EvaluationPeriodDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EvaluationPeriodDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EvaluationPeriodDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationperioddescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationrating_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationrating_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+    dj3 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.sourcesystemdescriptorid;
+
+    SELECT INTO dj3 * FROM edfi.descriptor j3 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.evaluationrating(
+        oldeducationorganizationid, oldevaluationdate, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationdate, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.personid, OLD.schoolyear, OLD.sourcesystemdescriptorid, dj2.namespace, dj2.codevalue, OLD.termdescriptorid, dj3.namespace, dj3.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationrating_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationratingleveldescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationratingleveldescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EvaluationRatingLevelDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EvaluationRatingLevelDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EvaluationRatingLevelDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationratingleveldescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationratingstatusdescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationratingstatusdescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EvaluationRatingStatusDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EvaluationRatingStatusDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EvaluationRatingStatusDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationratingstatusdescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: evaluationtypedescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.evaluationtypedescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.EvaluationTypeDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.EvaluationTypeDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.EvaluationTypeDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.evaluationtypedescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: financialaid_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.financialaid_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.student%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.aidtypedescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.student j1 WHERE studentusi = old.studentusi;
+
+    INSERT INTO tracked_changes_tpdm.financialaid(
+        oldaidtypedescriptorid, oldaidtypedescriptornamespace, oldaidtypedescriptorcodevalue, oldbegindate, oldstudentusi, oldstudentuniqueid,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.aidtypedescriptorid, dj0.namespace, dj0.codevalue, OLD.begindate, OLD.studentusi, dj1.studentuniqueid, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.financialaid_deleted() OWNER TO postgres;
+
+--
+-- Name: genderdescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.genderdescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.GenderDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.GenderDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.GenderDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.genderdescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: objectiveratingleveldescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.objectiveratingleveldescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.ObjectiveRatingLevelDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.ObjectiveRatingLevelDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.ObjectiveRatingLevelDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.objectiveratingleveldescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: performanceevaluation_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.performanceevaluation_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.performanceevaluation(
+        oldeducationorganizationid, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.schoolyear, OLD.termdescriptorid, dj2.namespace, dj2.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.performanceevaluation_deleted() OWNER TO postgres;
+
+--
+-- Name: performanceevaluationrating_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.performanceevaluationrating_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+    dj3 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.sourcesystemdescriptorid;
+
+    SELECT INTO dj3 * FROM edfi.descriptor j3 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.performanceevaluationrating(
+        oldeducationorganizationid, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.personid, OLD.schoolyear, OLD.sourcesystemdescriptorid, dj2.namespace, dj2.codevalue, OLD.termdescriptorid, dj3.namespace, dj3.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.performanceevaluationrating_deleted() OWNER TO postgres;
+
+--
+-- Name: performanceevaluationratingleveldescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.performanceevaluationratingleveldescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.PerformanceEvaluationRatingLevelDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.PerformanceEvaluationRatingLevelDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.PerformanceEvaluationRatingLevelDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.performanceevaluationratingleveldescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: performanceevaluationtypedescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.performanceevaluationtypedescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.PerformanceEvaluationTypeDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.PerformanceEvaluationTypeDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.PerformanceEvaluationTypeDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.performanceevaluationtypedescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: rubricdimension_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.rubricdimension_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+    dj1 edfi.descriptor%ROWTYPE;
+    dj2 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.evaluationperioddescriptorid;
+
+    SELECT INTO dj1 * FROM edfi.descriptor j1 WHERE descriptorid = old.performanceevaluationtypedescriptorid;
+
+    SELECT INTO dj2 * FROM edfi.descriptor j2 WHERE descriptorid = old.termdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.rubricdimension(
+        oldeducationorganizationid, oldevaluationelementtitle, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldrubricrating, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.educationorganizationid, OLD.evaluationelementtitle, OLD.evaluationobjectivetitle, OLD.evaluationperioddescriptorid, dj0.namespace, dj0.codevalue, OLD.evaluationtitle, OLD.performanceevaluationtitle, OLD.performanceevaluationtypedescriptorid, dj1.namespace, dj1.codevalue, OLD.rubricrating, OLD.schoolyear, OLD.termdescriptorid, dj2.namespace, dj2.codevalue, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.rubricdimension_deleted() OWNER TO postgres;
+
+--
+-- Name: rubricratingleveldescriptor_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.rubricratingleveldescriptor_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    INSERT INTO tracked_changes_edfi.descriptor(olddescriptorid, oldcodevalue, oldnamespace, id, discriminator, changeversion)
+    SELECT OLD.RubricRatingLevelDescriptorId, b.codevalue, b.namespace, b.id, 'tpdm.RubricRatingLevelDescriptor', nextval('changes.ChangeVersionSequence')
+    FROM edfi.descriptor b WHERE old.RubricRatingLevelDescriptorId = b.descriptorid ;
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.rubricratingleveldescriptor_deleted() OWNER TO postgres;
+
+--
+-- Name: surveyresponsepersontargetassociation_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.surveyresponsepersontargetassociation_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.sourcesystemdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.surveyresponsepersontargetassociation(
+        oldnamespace, oldpersonid, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldsurveyidentifier, oldsurveyresponseidentifier,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.namespace, OLD.personid, OLD.sourcesystemdescriptorid, dj0.namespace, dj0.codevalue, OLD.surveyidentifier, OLD.surveyresponseidentifier, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.surveyresponsepersontargetassociation_deleted() OWNER TO postgres;
+
+--
+-- Name: surveysectionresponsepersontargetassociation_deleted(); Type: FUNCTION; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE FUNCTION tracked_changes_tpdm.surveysectionresponsepersontargetassociation_deleted() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    dj0 edfi.descriptor%ROWTYPE;
+BEGIN
+    SELECT INTO dj0 * FROM edfi.descriptor j0 WHERE descriptorid = old.sourcesystemdescriptorid;
+
+    INSERT INTO tracked_changes_tpdm.surveysectionresponsepersontargetassociation(
+        oldnamespace, oldpersonid, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldsurveyidentifier, oldsurveyresponseidentifier, oldsurveysectiontitle,
+        id, discriminator, changeversion)
+    VALUES (
+        OLD.namespace, OLD.personid, OLD.sourcesystemdescriptorid, dj0.namespace, dj0.codevalue, OLD.surveyidentifier, OLD.surveyresponseidentifier, OLD.surveysectiontitle, 
+        OLD.id, OLD.discriminator, nextval('changes.changeversionsequence'));
+
+    RETURN NULL;
+END;
+$$;
+
+
+ALTER FUNCTION tracked_changes_tpdm.surveysectionresponsepersontargetassociation_deleted() OWNER TO postgres;
 
 --
 -- Name: getedfiodsversion(); Type: FUNCTION; Schema: util; Owner: postgres
@@ -40719,6 +41534,4828 @@ ALTER SEQUENCE public."DeployJournal_schemaversionsid_seq" OWNED BY public."Depl
 
 
 --
+-- Name: accreditationstatusdescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.accreditationstatusdescriptor (
+    accreditationstatusdescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.accreditationstatusdescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE accreditationstatusdescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.accreditationstatusdescriptor IS 'Accreditation Status for a Teacher Preparation Provider.';
+
+
+--
+-- Name: COLUMN accreditationstatusdescriptor.accreditationstatusdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.accreditationstatusdescriptor.accreditationstatusdescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: aidtypedescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.aidtypedescriptor (
+    aidtypedescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.aidtypedescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE aidtypedescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.aidtypedescriptor IS 'This descriptor defines the classification of financial aid awarded to a person for the academic term/year.';
+
+
+--
+-- Name: COLUMN aidtypedescriptor.aidtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.aidtypedescriptor.aidtypedescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: candidate; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidate (
+    candidateidentifier character varying(32) NOT NULL,
+    personaltitleprefix character varying(30),
+    firstname character varying(75) NOT NULL,
+    middlename character varying(75),
+    lastsurname character varying(75) NOT NULL,
+    generationcodesuffix character varying(10),
+    maidenname character varying(75),
+    sexdescriptorid integer NOT NULL,
+    birthdate date NOT NULL,
+    birthcity character varying(30),
+    birthstateabbreviationdescriptorid integer,
+    birthinternationalprovince character varying(150),
+    birthcountrydescriptorid integer,
+    dateenteredus date,
+    multiplebirthstatus boolean,
+    birthsexdescriptorid integer,
+    hispaniclatinoethnicity boolean,
+    economicdisadvantaged boolean,
+    limitedenglishproficiencydescriptorid integer,
+    displacementstatus character varying(30),
+    genderdescriptorid integer,
+    englishlanguageexamdescriptorid integer,
+    firstgenerationstudent boolean,
+    personid character varying(32),
+    sourcesystemdescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidate OWNER TO postgres;
+
+--
+-- Name: TABLE candidate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidate IS 'A candidate is both a person enrolled in a educator preparation program and a candidate to become an educator.';
+
+
+--
+-- Name: COLUMN candidate.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidate.personaltitleprefix; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.personaltitleprefix IS 'A prefix used to denote the title, degree, position, or seniority of the individual.';
+
+
+--
+-- Name: COLUMN candidate.firstname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.firstname IS 'A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.';
+
+
+--
+-- Name: COLUMN candidate.middlename; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.middlename IS 'A secondary name given to an individual at birth, baptism, or during another naming ceremony.';
+
+
+--
+-- Name: COLUMN candidate.lastsurname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.lastsurname IS 'The name borne in common by members of a family.';
+
+
+--
+-- Name: COLUMN candidate.generationcodesuffix; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.generationcodesuffix IS 'An appendage, if any, used to denote an individual''s generation in his family (e.g., Jr., Sr., III).';
+
+
+--
+-- Name: COLUMN candidate.maidenname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.maidenname IS 'The individual''s maiden name.';
+
+
+--
+-- Name: COLUMN candidate.sexdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.sexdescriptorid IS 'The sex of the candidate.';
+
+
+--
+-- Name: COLUMN candidate.birthdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.birthdate IS 'The month, day, and year on which an individual was born.';
+
+
+--
+-- Name: COLUMN candidate.birthcity; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.birthcity IS 'The city the student was born in.';
+
+
+--
+-- Name: COLUMN candidate.birthstateabbreviationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.birthstateabbreviationdescriptorid IS 'The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which an individual was born.';
+
+
+--
+-- Name: COLUMN candidate.birthinternationalprovince; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.birthinternationalprovince IS 'For students born outside of the U.S., the Province or jurisdiction in which an individual is born.';
+
+
+--
+-- Name: COLUMN candidate.birthcountrydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.birthcountrydescriptorid IS 'The country in which an individual is born. It is strongly recommended that entries use only ISO 3166 2-letter country codes.';
+
+
+--
+-- Name: COLUMN candidate.dateenteredus; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.dateenteredus IS 'For students born outside of the U.S., the date the student entered the U.S.';
+
+
+--
+-- Name: COLUMN candidate.multiplebirthstatus; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.multiplebirthstatus IS 'Indicator of whether the student was born with other siblings (i.e., twins, triplets, etc.)';
+
+
+--
+-- Name: COLUMN candidate.birthsexdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.birthsexdescriptorid IS 'A person''s gender at birth.';
+
+
+--
+-- Name: COLUMN candidate.hispaniclatinoethnicity; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.hispaniclatinoethnicity IS 'An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race. The term, "Spanish origin," can be used in addition to "Hispanic or Latino."';
+
+
+--
+-- Name: COLUMN candidate.economicdisadvantaged; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.economicdisadvantaged IS 'An indication of inadequate financial condition of an individual''s family, as determined by family income, number of family members/dependents, participation in public assistance programs, and/or other characteristics considered relevant by federal, state, and local policy.';
+
+
+--
+-- Name: COLUMN candidate.limitedenglishproficiencydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.limitedenglishproficiencydescriptorid IS 'An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient.';
+
+
+--
+-- Name: COLUMN candidate.displacementstatus; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.displacementstatus IS 'Indicates a state health or weather related event that displaces a group of students, and may require additional funding, educational, or social services.';
+
+
+--
+-- Name: COLUMN candidate.genderdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.genderdescriptorid IS 'The gender of the candidate.';
+
+
+--
+-- Name: COLUMN candidate.englishlanguageexamdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.englishlanguageexamdescriptorid IS 'Indicates that a person passed, failed, or did not take an English Language assessment (e.g., TOEFFL).';
+
+
+--
+-- Name: COLUMN candidate.firstgenerationstudent; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.firstgenerationstudent IS 'Indicator of whether individual is a first generation college student.';
+
+
+--
+-- Name: COLUMN candidate.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN candidate.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidate.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: candidateaddress; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateaddress (
+    addresstypedescriptorid integer NOT NULL,
+    candidateidentifier character varying(32) NOT NULL,
+    city character varying(30) NOT NULL,
+    postalcode character varying(17) NOT NULL,
+    stateabbreviationdescriptorid integer NOT NULL,
+    streetnumbername character varying(150) NOT NULL,
+    apartmentroomsuitenumber character varying(50),
+    buildingsitenumber character varying(20),
+    nameofcounty character varying(30),
+    countyfipscode character varying(5),
+    latitude character varying(20),
+    longitude character varying(20),
+    donotpublishindicator boolean,
+    congressionaldistrict character varying(30),
+    localedescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateaddress OWNER TO postgres;
+
+--
+-- Name: TABLE candidateaddress; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateaddress IS 'The set of elements that describes an address, including the street address, city, state, and ZIP code.';
+
+
+--
+-- Name: COLUMN candidateaddress.addresstypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.addresstypedescriptorid IS 'The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)';
+
+
+--
+-- Name: COLUMN candidateaddress.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateaddress.city; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.city IS 'The name of the city in which an address is located.';
+
+
+--
+-- Name: COLUMN candidateaddress.postalcode; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.postalcode IS 'The five or nine digit zip code or overseas postal code portion of an address.';
+
+
+--
+-- Name: COLUMN candidateaddress.stateabbreviationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.stateabbreviationdescriptorid IS 'The abbreviation for the state (within the United States) or outlying area in which an address is located.';
+
+
+--
+-- Name: COLUMN candidateaddress.streetnumbername; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.streetnumbername IS 'The street number and street name or post office box number of an address.';
+
+
+--
+-- Name: COLUMN candidateaddress.apartmentroomsuitenumber; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.apartmentroomsuitenumber IS 'The apartment, room, or suite number of an address.';
+
+
+--
+-- Name: COLUMN candidateaddress.buildingsitenumber; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.buildingsitenumber IS 'The number of the building on the site, if more than one building shares the same address.';
+
+
+--
+-- Name: COLUMN candidateaddress.nameofcounty; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.nameofcounty IS 'The name of the county, parish, borough, or comparable unit (within a state) in
+                      ''which an address is located.';
+
+
+--
+-- Name: COLUMN candidateaddress.countyfipscode; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.countyfipscode IS 'The Federal Information Processing Standards (FIPS) numeric code for the county issued by the National Institute of Standards and Technology (NIST). Counties are considered to be the "first-order subdivisions" of each State and statistically equivalent entity, regardless of their local designations (county, parish, borough, etc.) Counties in different States will have the same code. A unique county number is created when combined with the 2-digit FIPS State Code.';
+
+
+--
+-- Name: COLUMN candidateaddress.latitude; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.latitude IS 'The geographic latitude of the physical address.';
+
+
+--
+-- Name: COLUMN candidateaddress.longitude; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.longitude IS 'The geographic longitude of the physical address.';
+
+
+--
+-- Name: COLUMN candidateaddress.donotpublishindicator; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.donotpublishindicator IS 'An indication that the address should not be published.';
+
+
+--
+-- Name: COLUMN candidateaddress.congressionaldistrict; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.congressionaldistrict IS 'The congressional district in which an address is located.';
+
+
+--
+-- Name: COLUMN candidateaddress.localedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddress.localedescriptorid IS 'A general geographic indicator that categorizes U.S. territory (e.g., City, Suburban).';
+
+
+--
+-- Name: candidateaddressperiod; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateaddressperiod (
+    addresstypedescriptorid integer NOT NULL,
+    begindate date NOT NULL,
+    candidateidentifier character varying(32) NOT NULL,
+    city character varying(30) NOT NULL,
+    postalcode character varying(17) NOT NULL,
+    stateabbreviationdescriptorid integer NOT NULL,
+    streetnumbername character varying(150) NOT NULL,
+    enddate date,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateaddressperiod OWNER TO postgres;
+
+--
+-- Name: TABLE candidateaddressperiod; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateaddressperiod IS 'The time periods for which the address is valid. For physical addresses, the periods in which the person lived at that address.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.addresstypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.addresstypedescriptorid IS 'The type of address listed for an individual or organization.    For example:  Physical Address, Mailing Address, Home Address, etc.)';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.begindate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.begindate IS 'The month, day, and year for the start of the period.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.city; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.city IS 'The name of the city in which an address is located.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.postalcode; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.postalcode IS 'The five or nine digit zip code or overseas postal code portion of an address.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.stateabbreviationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.stateabbreviationdescriptorid IS 'The abbreviation for the state (within the United States) or outlying area in which an address is located.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.streetnumbername; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.streetnumbername IS 'The street number and street name or post office box number of an address.';
+
+
+--
+-- Name: COLUMN candidateaddressperiod.enddate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateaddressperiod.enddate IS 'The month, day, and year for the end of the period.';
+
+
+--
+-- Name: candidatedisability; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidatedisability (
+    candidateidentifier character varying(32) NOT NULL,
+    disabilitydescriptorid integer NOT NULL,
+    disabilitydiagnosis character varying(80),
+    orderofdisability integer,
+    disabilitydeterminationsourcetypedescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidatedisability OWNER TO postgres;
+
+--
+-- Name: TABLE candidatedisability; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidatedisability IS 'The disability condition(s) that best describes an individual''s impairment.';
+
+
+--
+-- Name: COLUMN candidatedisability.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisability.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidatedisability.disabilitydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisability.disabilitydescriptorid IS 'A disability category that describes a individual''s impairment.';
+
+
+--
+-- Name: COLUMN candidatedisability.disabilitydiagnosis; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisability.disabilitydiagnosis IS 'A description of the disability diagnosis.';
+
+
+--
+-- Name: COLUMN candidatedisability.orderofdisability; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisability.orderofdisability IS 'The order by severity of individual''s disabilities: 1- Primary, 2 -  Secondary, 3 - Tertiary, etc.';
+
+
+--
+-- Name: COLUMN candidatedisability.disabilitydeterminationsourcetypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisability.disabilitydeterminationsourcetypedescriptorid IS 'The source that provided the disability determination.';
+
+
+--
+-- Name: candidatedisabilitydesignation; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidatedisabilitydesignation (
+    candidateidentifier character varying(32) NOT NULL,
+    disabilitydescriptorid integer NOT NULL,
+    disabilitydesignationdescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidatedisabilitydesignation OWNER TO postgres;
+
+--
+-- Name: TABLE candidatedisabilitydesignation; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidatedisabilitydesignation IS 'Whether the disability is IDEA, Section 504, or other disability designation.';
+
+
+--
+-- Name: COLUMN candidatedisabilitydesignation.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisabilitydesignation.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidatedisabilitydesignation.disabilitydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisabilitydesignation.disabilitydescriptorid IS 'A disability category that describes a individual''s impairment.';
+
+
+--
+-- Name: COLUMN candidatedisabilitydesignation.disabilitydesignationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatedisabilitydesignation.disabilitydesignationdescriptorid IS 'Whether the disability is IDEA, Section 504, or other disability designation.';
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateeducatorpreparationprogramassociation (
+    begindate date NOT NULL,
+    candidateidentifier character varying(32) NOT NULL,
+    educationorganizationid integer NOT NULL,
+    programname character varying(255) NOT NULL,
+    programtypedescriptorid integer NOT NULL,
+    enddate date,
+    reasonexiteddescriptorid integer,
+    eppprogrampathwaydescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateeducatorpreparationprogramassociation OWNER TO postgres;
+
+--
+-- Name: TABLE candidateeducatorpreparationprogramassociation; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateeducatorpreparationprogramassociation IS 'Information about the association between the Teacher Candidate and the EducatorPreparationProgram';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.begindate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.begindate IS 'The begin date for the association.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.programname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.programname IS 'The name of the Educator Preparation Program.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.programtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.programtypedescriptorid IS 'The type of program.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.enddate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.enddate IS 'The end date for the association.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.reasonexiteddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.reasonexiteddescriptorid IS 'Reason exited for the association.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociation.eppprogrampathwaydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociation.eppprogrampathwaydescriptorid IS 'The program pathway the candidate is following; for example: Residency, Internship, Traditional';
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationcohortyear; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateeducatorpreparationprogramassociationcohortyear (
+    begindate date NOT NULL,
+    candidateidentifier character varying(32) NOT NULL,
+    cohortyeartypedescriptorid integer NOT NULL,
+    educationorganizationid integer NOT NULL,
+    programname character varying(255) NOT NULL,
+    programtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateeducatorpreparationprogramassociationcohortyear OWNER TO postgres;
+
+--
+-- Name: TABLE candidateeducatorpreparationprogramassociationcohortyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateeducatorpreparationprogramassociationcohortyear IS 'The type and year of a cohort the student belongs to as determined by the year that student entered a specific grade.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.begindate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.begindate IS 'The begin date for the association.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.cohortyeartypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.cohortyeartypedescriptorid IS 'The type of cohort year (9th grade, graduation).';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.programname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.programname IS 'The name of the Educator Preparation Program.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.programtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.programtypedescriptorid IS 'The type of program.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.schoolyear IS 'The school year associated with the cohort; for example, the intended school year of graduation.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationcohortyear.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationcohortyear.termdescriptorid IS 'The term associated with the cohort year; for example, the intended term of graduation.';
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationdegreespec_2501c4; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4 (
+    begindate date NOT NULL,
+    candidateidentifier character varying(32) NOT NULL,
+    educationorganizationid integer NOT NULL,
+    majorspecialization character varying(255) NOT NULL,
+    programname character varying(255) NOT NULL,
+    programtypedescriptorid integer NOT NULL,
+    minorspecialization character varying(255),
+    enddate date,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4 OWNER TO postgres;
+
+--
+-- Name: TABLE candidateeducatorpreparationprogramassociationdegreespec_2501c4; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4 IS 'Information around the area(s) of specialization for an individual.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.begindate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.begindate IS 'The month, day, and year on which the Teacher Candidate first declared specialization.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.majorspecialization; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.majorspecialization IS 'The major area for a degree or area of specialization for a certificate.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.programname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.programname IS 'The name of the Educator Preparation Program.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.programtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.programtypedescriptorid IS 'The type of program.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.minorspecialization; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.minorspecialization IS 'The minor area for a degree or area of specialization for a certificate.';
+
+
+--
+-- Name: COLUMN candidateeducatorpreparationprogramassociationdegreespec_2501c4.enddate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4.enddate IS 'The month, day, and year on which the Teacher Candidate exited the declared specialization.';
+
+
+--
+-- Name: candidateelectronicmail; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateelectronicmail (
+    candidateidentifier character varying(32) NOT NULL,
+    electronicmailaddress character varying(128) NOT NULL,
+    electronicmailtypedescriptorid integer NOT NULL,
+    primaryemailaddressindicator boolean,
+    donotpublishindicator boolean,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateelectronicmail OWNER TO postgres;
+
+--
+-- Name: TABLE candidateelectronicmail; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateelectronicmail IS 'The numbers, letters, and symbols used to identify an electronic mail (e-mail) user within the network to which the individual or organization belongs.';
+
+
+--
+-- Name: COLUMN candidateelectronicmail.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateelectronicmail.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateelectronicmail.electronicmailaddress; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateelectronicmail.electronicmailaddress IS 'The electronic mail (e-mail) address listed for an individual or organization.';
+
+
+--
+-- Name: COLUMN candidateelectronicmail.electronicmailtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateelectronicmail.electronicmailtypedescriptorid IS 'The type of email listed for an individual or organization. For example: Home/Personal, Work, etc.)';
+
+
+--
+-- Name: COLUMN candidateelectronicmail.primaryemailaddressindicator; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateelectronicmail.primaryemailaddressindicator IS 'An indication that the electronic mail address should be used as the principal electronic mail address for an individual or organization.';
+
+
+--
+-- Name: COLUMN candidateelectronicmail.donotpublishindicator; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateelectronicmail.donotpublishindicator IS 'An indication that the electronic email address should not be published.';
+
+
+--
+-- Name: candidatelanguage; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidatelanguage (
+    candidateidentifier character varying(32) NOT NULL,
+    languagedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidatelanguage OWNER TO postgres;
+
+--
+-- Name: TABLE candidatelanguage; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidatelanguage IS 'The language(s) the individual uses to communicate.';
+
+
+--
+-- Name: COLUMN candidatelanguage.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatelanguage.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidatelanguage.languagedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatelanguage.languagedescriptorid IS 'A specification of which written or spoken communication is being used.';
+
+
+--
+-- Name: candidatelanguageuse; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidatelanguageuse (
+    candidateidentifier character varying(32) NOT NULL,
+    languagedescriptorid integer NOT NULL,
+    languageusedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidatelanguageuse OWNER TO postgres;
+
+--
+-- Name: TABLE candidatelanguageuse; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidatelanguageuse IS 'A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).';
+
+
+--
+-- Name: COLUMN candidatelanguageuse.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatelanguageuse.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidatelanguageuse.languagedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatelanguageuse.languagedescriptorid IS 'A specification of which written or spoken communication is being used.';
+
+
+--
+-- Name: COLUMN candidatelanguageuse.languageusedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatelanguageuse.languageusedescriptorid IS 'A description of how the language is used (e.g. Home Language, Native Language, Spoken Language).';
+
+
+--
+-- Name: candidateothername; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidateothername (
+    candidateidentifier character varying(32) NOT NULL,
+    othernametypedescriptorid integer NOT NULL,
+    personaltitleprefix character varying(30),
+    firstname character varying(75) NOT NULL,
+    middlename character varying(75),
+    lastsurname character varying(75) NOT NULL,
+    generationcodesuffix character varying(10),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidateothername OWNER TO postgres;
+
+--
+-- Name: TABLE candidateothername; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidateothername IS 'Other names (e.g., alias, nickname, previous legal name) associated with a person.';
+
+
+--
+-- Name: COLUMN candidateothername.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidateothername.othernametypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.othernametypedescriptorid IS 'The types of alternate names for an individual.';
+
+
+--
+-- Name: COLUMN candidateothername.personaltitleprefix; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.personaltitleprefix IS 'A prefix used to denote the title, degree, position, or seniority of the individual.';
+
+
+--
+-- Name: COLUMN candidateothername.firstname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.firstname IS 'A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.';
+
+
+--
+-- Name: COLUMN candidateothername.middlename; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.middlename IS 'A secondary name given to an individual at birth, baptism, or during another naming ceremony.';
+
+
+--
+-- Name: COLUMN candidateothername.lastsurname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.lastsurname IS 'The name borne in common by members of a family.';
+
+
+--
+-- Name: COLUMN candidateothername.generationcodesuffix; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidateothername.generationcodesuffix IS 'An appendage, if any, used to denote an individual''s generation in his family (e.g., Jr., Sr., III).';
+
+
+--
+-- Name: candidatepersonalidentificationdocument; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidatepersonalidentificationdocument (
+    candidateidentifier character varying(32) NOT NULL,
+    identificationdocumentusedescriptorid integer NOT NULL,
+    personalinformationverificationdescriptorid integer NOT NULL,
+    documenttitle character varying(60),
+    documentexpirationdate date,
+    issuerdocumentidentificationcode character varying(60),
+    issuername character varying(150),
+    issuercountrydescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidatepersonalidentificationdocument OWNER TO postgres;
+
+--
+-- Name: TABLE candidatepersonalidentificationdocument; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidatepersonalidentificationdocument IS 'The documents presented as evident to verify one''s personal identity; for example: drivers license, passport, birth certificate, etc.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.identificationdocumentusedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.identificationdocumentusedescriptorid IS 'The primary function of the document used for establishing identity.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.personalinformationverificationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.personalinformationverificationdescriptorid IS 'The category of the document relative to its purpose.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.documenttitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.documenttitle IS 'The title of the document given by the issuer.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.documentexpirationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.documentexpirationdate IS 'The day when the document  expires, if null then never expires.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.issuerdocumentidentificationcode; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.issuerdocumentidentificationcode IS 'The unique identifier on the issuer''s identification system.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.issuername; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.issuername IS 'Name of the entity or institution that issued the document.';
+
+
+--
+-- Name: COLUMN candidatepersonalidentificationdocument.issuercountrydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatepersonalidentificationdocument.issuercountrydescriptorid IS 'Country of origin of the document. It is strongly recommended that entries use only ISO 3166 2-letter country codes.';
+
+
+--
+-- Name: candidaterace; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidaterace (
+    candidateidentifier character varying(32) NOT NULL,
+    racedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidaterace OWNER TO postgres;
+
+--
+-- Name: TABLE candidaterace; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidaterace IS 'The general racial category which most clearly reflects the individual''s recognition of his or her community or with which the individual most identifies. The data model allows for multiple entries so that each individual can specify all appropriate races.';
+
+
+--
+-- Name: COLUMN candidaterace.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidaterace.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidaterace.racedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidaterace.racedescriptorid IS 'The general racial category which most clearly reflects the individual''s recognition of his or her community or with which the individual most identifies. The data model allows for multiple entries so that each individual can specify all appropriate races.';
+
+
+--
+-- Name: candidatetelephone; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.candidatetelephone (
+    candidateidentifier character varying(32) NOT NULL,
+    telephonenumber character varying(24) NOT NULL,
+    telephonenumbertypedescriptorid integer NOT NULL,
+    orderofpriority integer,
+    textmessagecapabilityindicator boolean,
+    donotpublishindicator boolean,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.candidatetelephone OWNER TO postgres;
+
+--
+-- Name: TABLE candidatetelephone; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.candidatetelephone IS 'The 10-digit telephone number, including the area code, for the person.';
+
+
+--
+-- Name: COLUMN candidatetelephone.candidateidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatetelephone.candidateidentifier IS 'A unique alphanumeric code assigned to a candidate.';
+
+
+--
+-- Name: COLUMN candidatetelephone.telephonenumber; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatetelephone.telephonenumber IS 'The telephone number including the area code, and extension, if applicable.';
+
+
+--
+-- Name: COLUMN candidatetelephone.telephonenumbertypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatetelephone.telephonenumbertypedescriptorid IS 'The type of communication number listed for an individual or organization.';
+
+
+--
+-- Name: COLUMN candidatetelephone.orderofpriority; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatetelephone.orderofpriority IS 'The order of priority assigned to telephone numbers to define which number to attempt first, second, etc.';
+
+
+--
+-- Name: COLUMN candidatetelephone.textmessagecapabilityindicator; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatetelephone.textmessagecapabilityindicator IS 'An indication that the telephone number is technically capable of sending and receiving Short Message Service (SMS) text messages.';
+
+
+--
+-- Name: COLUMN candidatetelephone.donotpublishindicator; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.candidatetelephone.donotpublishindicator IS 'An indication that the telephone number should not be published.';
+
+
+--
+-- Name: certificationroutedescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.certificationroutedescriptor (
+    certificationroutedescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.certificationroutedescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE certificationroutedescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.certificationroutedescriptor IS 'The process, program, or pathway used to obtain a certification.';
+
+
+--
+-- Name: COLUMN certificationroutedescriptor.certificationroutedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.certificationroutedescriptor.certificationroutedescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: coteachingstyleobserveddescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.coteachingstyleobserveddescriptor (
+    coteachingstyleobserveddescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.coteachingstyleobserveddescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE coteachingstyleobserveddescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.coteachingstyleobserveddescriptor IS 'A type of co-teaching observed as part of the performance evaluation.';
+
+
+--
+-- Name: COLUMN coteachingstyleobserveddescriptor.coteachingstyleobserveddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.coteachingstyleobserveddescriptor.coteachingstyleobserveddescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: credentialextension; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.credentialextension (
+    credentialidentifier character varying(60) NOT NULL,
+    stateofissuestateabbreviationdescriptorid integer NOT NULL,
+    personid character varying(32),
+    sourcesystemdescriptorid integer,
+    certificationtitle character varying(64),
+    certificationroutedescriptorid integer,
+    boardcertificationindicator boolean,
+    credentialstatusdescriptorid integer,
+    credentialstatusdate date,
+    educatorroledescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.credentialextension OWNER TO postgres;
+
+--
+-- Name: COLUMN credentialextension.credentialidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.credentialidentifier IS 'Identifier or serial number assigned to the credential.';
+
+
+--
+-- Name: COLUMN credentialextension.stateofissuestateabbreviationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.stateofissuestateabbreviationdescriptorid IS 'The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which a license/credential was issued.';
+
+
+--
+-- Name: COLUMN credentialextension.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN credentialextension.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN credentialextension.certificationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.certificationtitle IS 'The title of the certification obtained by the educator.';
+
+
+--
+-- Name: COLUMN credentialextension.certificationroutedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.certificationroutedescriptorid IS 'The process, program, or pathway used to obtain certification.';
+
+
+--
+-- Name: COLUMN credentialextension.boardcertificationindicator; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.boardcertificationindicator IS 'Indicator that the credential was granted under the authority of a national Board Certification.';
+
+
+--
+-- Name: COLUMN credentialextension.credentialstatusdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.credentialstatusdescriptorid IS 'The current status of the credential (e.g., active, suspended, etc.).';
+
+
+--
+-- Name: COLUMN credentialextension.credentialstatusdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.credentialstatusdate IS 'The month, day, and year on which the credential status was effective.';
+
+
+--
+-- Name: COLUMN credentialextension.educatorroledescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialextension.educatorroledescriptorid IS 'The specific roles or positions within an organization that the credential is intended to authorize (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.';
+
+
+--
+-- Name: credentialstatusdescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.credentialstatusdescriptor (
+    credentialstatusdescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.credentialstatusdescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE credentialstatusdescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.credentialstatusdescriptor IS 'The current status of the credential.';
+
+
+--
+-- Name: COLUMN credentialstatusdescriptor.credentialstatusdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstatusdescriptor.credentialstatusdescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: credentialstudentacademicrecord; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.credentialstudentacademicrecord (
+    credentialidentifier character varying(60) NOT NULL,
+    educationorganizationid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    stateofissuestateabbreviationdescriptorid integer NOT NULL,
+    studentusi integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.credentialstudentacademicrecord OWNER TO postgres;
+
+--
+-- Name: TABLE credentialstudentacademicrecord; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.credentialstudentacademicrecord IS 'Reference to the person''s Student Academic Records for the school(s) with which the Credential is associated.';
+
+
+--
+-- Name: COLUMN credentialstudentacademicrecord.credentialidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstudentacademicrecord.credentialidentifier IS 'Identifier or serial number assigned to the credential.';
+
+
+--
+-- Name: COLUMN credentialstudentacademicrecord.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstudentacademicrecord.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN credentialstudentacademicrecord.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstudentacademicrecord.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN credentialstudentacademicrecord.stateofissuestateabbreviationdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstudentacademicrecord.stateofissuestateabbreviationdescriptorid IS 'The abbreviation for the name of the state (within the United States) or extra-state jurisdiction in which a license/credential was issued.';
+
+
+--
+-- Name: COLUMN credentialstudentacademicrecord.studentusi; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstudentacademicrecord.studentusi IS 'A unique alphanumeric code assigned to a student.';
+
+
+--
+-- Name: COLUMN credentialstudentacademicrecord.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.credentialstudentacademicrecord.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: educatorpreparationprogram; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.educatorpreparationprogram (
+    educationorganizationid integer NOT NULL,
+    programname character varying(255) NOT NULL,
+    programtypedescriptorid integer NOT NULL,
+    programid character varying(20),
+    accreditationstatusdescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.educatorpreparationprogram OWNER TO postgres;
+
+--
+-- Name: TABLE educatorpreparationprogram; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.educatorpreparationprogram IS 'The Educator Preparation Program is designed to prepare students to become licensed educators.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogram.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogram.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogram.programname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogram.programname IS 'The name of the Educator Preparation Program.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogram.programtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogram.programtypedescriptorid IS 'The type of program.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogram.programid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogram.programid IS 'A unique number or alphanumeric code assigned to a program by a school, school system, a state, or other agency or entity.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogram.accreditationstatusdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogram.accreditationstatusdescriptorid IS 'The current accreditation status of the Educator Preparation Program.';
+
+
+--
+-- Name: educatorpreparationprogramgradelevel; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.educatorpreparationprogramgradelevel (
+    educationorganizationid integer NOT NULL,
+    gradeleveldescriptorid integer NOT NULL,
+    programname character varying(255) NOT NULL,
+    programtypedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.educatorpreparationprogramgradelevel OWNER TO postgres;
+
+--
+-- Name: TABLE educatorpreparationprogramgradelevel; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.educatorpreparationprogramgradelevel IS 'The grade levels served at the EPP Program.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogramgradelevel.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogramgradelevel.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogramgradelevel.gradeleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogramgradelevel.gradeleveldescriptorid IS 'The grade levels served at the EPP Program.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogramgradelevel.programname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogramgradelevel.programname IS 'The name of the Educator Preparation Program.';
+
+
+--
+-- Name: COLUMN educatorpreparationprogramgradelevel.programtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorpreparationprogramgradelevel.programtypedescriptorid IS 'The type of program.';
+
+
+--
+-- Name: educatorroledescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.educatorroledescriptor (
+    educatorroledescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.educatorroledescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE educatorroledescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.educatorroledescriptor IS 'The role authorized by the Credential or Certification (e.g., Principal, Reading Specialist), typically associated with service and administrative certifications.';
+
+
+--
+-- Name: COLUMN educatorroledescriptor.educatorroledescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.educatorroledescriptor.educatorroledescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: englishlanguageexamdescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.englishlanguageexamdescriptor (
+    englishlanguageexamdescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.englishlanguageexamdescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE englishlanguageexamdescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.englishlanguageexamdescriptor IS 'Indicates that a person passed, failed, or did not take an English Language assessment.';
+
+
+--
+-- Name: COLUMN englishlanguageexamdescriptor.englishlanguageexamdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.englishlanguageexamdescriptor.englishlanguageexamdescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: eppprogrampathwaydescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.eppprogrampathwaydescriptor (
+    eppprogrampathwaydescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.eppprogrampathwaydescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE eppprogrampathwaydescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.eppprogrampathwaydescriptor IS 'The description of the program pathway, for example: Residency, Internship, Traditional';
+
+
+--
+-- Name: COLUMN eppprogrampathwaydescriptor.eppprogrampathwaydescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.eppprogrampathwaydescriptor.eppprogrampathwaydescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: evaluation; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluation (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    evaluationdescription character varying(255),
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    evaluationtypedescriptorid integer,
+    interraterreliabilityscore integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluation OWNER TO postgres;
+
+--
+-- Name: TABLE evaluation; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluation IS 'An evaluation instrument appled to evaluate an educator.  The evaluation could be internally developed, or could be an industry recognized instrument such as TTESS or Marzano.';
+
+
+--
+-- Name: COLUMN evaluation.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluation.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluation.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluation.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluation.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluation.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluation.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluation.evaluationdescription; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.evaluationdescription IS 'The long description of the Evaluation.';
+
+
+--
+-- Name: COLUMN evaluation.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.minrating IS 'The minimum summary numerical rating or score for the evaluation. If omitted, assumed to be 0.0.';
+
+
+--
+-- Name: COLUMN evaluation.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.maxrating IS 'The maximum summary numerical rating or score for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluation.evaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.evaluationtypedescriptorid IS 'The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).';
+
+
+--
+-- Name: COLUMN evaluation.interraterreliabilityscore; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluation.interraterreliabilityscore IS 'A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)';
+
+
+--
+-- Name: evaluationelement; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationelement (
+    educationorganizationid integer NOT NULL,
+    evaluationelementtitle character varying(255) NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    sortorder integer,
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    evaluationtypedescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationelement OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationelement; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationelement IS 'The lowest-level Elements or criterion of performance being evaluated by rubric, quantitative measure, or aggregate survey response.';
+
+
+--
+-- Name: COLUMN evaluationelement.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationelement.evaluationelementtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.evaluationelementtitle IS 'The name or title of the evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelement.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationelement.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelement.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelement.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelement.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationelement.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationelement.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationelement.sortorder; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.sortorder IS 'The sort order of this Evaluation Element.';
+
+
+--
+-- Name: COLUMN evaluationelement.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.minrating IS 'The minimum summary numerical rating or score for the evaluation element. If omitted, assumed to be 0.0.';
+
+
+--
+-- Name: COLUMN evaluationelement.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.maxrating IS 'The maximum summary numerical rating or score for the evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelement.evaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelement.evaluationtypedescriptorid IS 'The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).';
+
+
+--
+-- Name: evaluationelementrating; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationelementrating (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationelementtitle character varying(255) NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    evaluationelementratingleveldescriptorid integer,
+    areaofrefinement character varying(1024),
+    areaofreinforcement character varying(1024),
+    comments character varying(1024),
+    feedback character varying(2048),
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationelementrating OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationelementrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationelementrating IS 'The lowest-level rating for an Evaluation Element for an individual educator.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.evaluationelementtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.evaluationelementtitle IS 'The name or title of the evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.evaluationelementratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.evaluationelementratingleveldescriptorid IS 'The rating level achieved based upon the rating or score.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.areaofrefinement; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.areaofrefinement IS 'Area identified for person to refine or improve as part of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.areaofreinforcement; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.areaofreinforcement IS 'Area identified for reinforcement or positive feedback as part of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.comments; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.comments IS 'Any comments about the performance evaluation to be captured.';
+
+
+--
+-- Name: COLUMN evaluationelementrating.feedback; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementrating.feedback IS 'Feedback provided to the evaluated person.';
+
+
+--
+-- Name: evaluationelementratinglevel; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationelementratinglevel (
+    educationorganizationid integer NOT NULL,
+    evaluationelementtitle character varying(255) NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationratingleveldescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationelementratinglevel OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationelementratinglevel; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationelementratinglevel IS 'The descriptive level(s) of ratings (cut scores) for evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.evaluationelementtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.evaluationelementtitle IS 'The name or title of the evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.evaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.evaluationratingleveldescriptorid IS 'The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.minrating IS 'The minimum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: COLUMN evaluationelementratinglevel.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratinglevel.maxrating IS 'The maximum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: evaluationelementratingleveldescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationelementratingleveldescriptor (
+    evaluationelementratingleveldescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationelementratingleveldescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationelementratingleveldescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationelementratingleveldescriptor IS 'Rating levels for Evaluation Elements.';
+
+
+--
+-- Name: COLUMN evaluationelementratingleveldescriptor.evaluationelementratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingleveldescriptor.evaluationelementratingleveldescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: evaluationelementratingresult; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationelementratingresult (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationelementtitle character varying(255) NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    rating numeric(6,3) NOT NULL,
+    ratingresulttitle character varying(50) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    resultdatatypetypedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationelementratingresult OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationelementratingresult; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationelementratingresult IS 'The numerical summary rating or score for the evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.evaluationelementtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.evaluationelementtitle IS 'The name or title of the evaluation element.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.rating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.rating IS 'The numerical summary rating or score for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.ratingresulttitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.ratingresulttitle IS 'The title of Rating Result.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationelementratingresult.resultdatatypetypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationelementratingresult.resultdatatypetypedescriptorid IS 'The datatype of the result.';
+
+
+--
+-- Name: evaluationobjective; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationobjective (
+    educationorganizationid integer NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    evaluationobjectivedescription character varying(255),
+    sortorder integer,
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    evaluationtypedescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationobjective OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationobjective; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationobjective IS 'A subcomponent of an Evaluation, a specific educator Objective or domain of performance that is being evaluated.';
+
+
+--
+-- Name: COLUMN evaluationobjective.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationobjective.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjective.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjective.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjective.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjective.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationobjective.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjective.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjective.evaluationobjectivedescription; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.evaluationobjectivedescription IS 'The long description of the Evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjective.sortorder; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.sortorder IS 'The sort order of this Evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjective.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.minrating IS 'The minimum summary numerical rating or score for the evaluation Objective. If omitted, assumed to be 0.0.';
+
+
+--
+-- Name: COLUMN evaluationobjective.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.maxrating IS 'The maximum summary numerical rating or score for the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjective.evaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjective.evaluationtypedescriptorid IS 'The type of the evaluation Objective (e.g., observation, principal, peer, student survey, student growth).';
+
+
+--
+-- Name: evaluationobjectiverating; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationobjectiverating (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    objectiveratingleveldescriptorid integer,
+    comments character varying(1024),
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationobjectiverating OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationobjectiverating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationobjectiverating IS 'The rating for the component Evaluation Objective for an individual educator.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.objectiveratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.objectiveratingleveldescriptorid IS 'The rating level achieved based upon the rating or score.';
+
+
+--
+-- Name: COLUMN evaluationobjectiverating.comments; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiverating.comments IS 'Any comments about the performance evaluation to be captured.';
+
+
+--
+-- Name: evaluationobjectiveratinglevel; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationobjectiveratinglevel (
+    educationorganizationid integer NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationratingleveldescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationobjectiveratinglevel OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationobjectiveratinglevel; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationobjectiveratinglevel IS 'The descriptive level(s) of ratings (cut scores) for evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.evaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.evaluationratingleveldescriptorid IS 'The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.minrating IS 'The minimum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratinglevel.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratinglevel.maxrating IS 'The maximum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: evaluationobjectiveratingresult; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationobjectiveratingresult (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    rating numeric(6,3) NOT NULL,
+    ratingresulttitle character varying(50) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    resultdatatypetypedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationobjectiveratingresult OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationobjectiveratingresult; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationobjectiveratingresult IS 'The numerical summary rating or score for the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.rating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.rating IS 'The numerical summary rating or score for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.ratingresulttitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.ratingresulttitle IS 'The title of Rating Result.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationobjectiveratingresult.resultdatatypetypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationobjectiveratingresult.resultdatatypetypedescriptorid IS 'The datatype of the result.';
+
+
+--
+-- Name: evaluationperioddescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationperioddescriptor (
+    evaluationperioddescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationperioddescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationperioddescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationperioddescriptor IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationperioddescriptor.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationperioddescriptor.evaluationperioddescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: evaluationrating; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationrating (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    evaluationratingleveldescriptorid integer,
+    sectionidentifier character varying(255),
+    localcoursecode character varying(60),
+    sessionname character varying(60),
+    schoolid integer,
+    evaluationratingstatusdescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationrating OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationrating IS 'The summary weighting for the Evaluation instrument for an individual educator.';
+
+
+--
+-- Name: COLUMN evaluationrating.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationrating.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationrating.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationrating.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationrating.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationrating.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationrating.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationrating.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationrating.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationrating.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationrating.evaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.evaluationratingleveldescriptorid IS 'The rating level achieved based upon the rating or score.';
+
+
+--
+-- Name: COLUMN evaluationrating.sectionidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.sectionidentifier IS 'The local identifier assigned to a section.';
+
+
+--
+-- Name: COLUMN evaluationrating.localcoursecode; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.localcoursecode IS 'The local code assigned by the School that identifies the course offering provided for the instruction of students.';
+
+
+--
+-- Name: COLUMN evaluationrating.sessionname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.sessionname IS 'The identifier for the calendar for the academic session.';
+
+
+--
+-- Name: COLUMN evaluationrating.schoolid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.schoolid IS 'The identifier assigned to a school.';
+
+
+--
+-- Name: COLUMN evaluationrating.evaluationratingstatusdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationrating.evaluationratingstatusdescriptorid IS 'The Status of the poerformance evaluation.';
+
+
+--
+-- Name: evaluationratinglevel; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationratinglevel (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationratingleveldescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationratinglevel OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationratinglevel; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationratinglevel IS 'The descriptive level(s) of ratings (cut scores) for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.evaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.evaluationratingleveldescriptorid IS 'The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.minrating IS 'The minimum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: COLUMN evaluationratinglevel.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratinglevel.maxrating IS 'The maximum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: evaluationratingleveldescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationratingleveldescriptor (
+    evaluationratingleveldescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationratingleveldescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationratingleveldescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationratingleveldescriptor IS 'Rating levels for Evaluations.';
+
+
+--
+-- Name: COLUMN evaluationratingleveldescriptor.evaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingleveldescriptor.evaluationratingleveldescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: evaluationratingresult; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationratingresult (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    rating numeric(6,3) NOT NULL,
+    ratingresulttitle character varying(50) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    resultdatatypetypedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationratingresult OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationratingresult; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationratingresult IS 'The numerical summary rating or score for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.rating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.rating IS 'The numerical summary rating or score for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.ratingresulttitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.ratingresulttitle IS 'The title of Rating Result.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationratingresult.resultdatatypetypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingresult.resultdatatypetypedescriptorid IS 'The datatype of the result.';
+
+
+--
+-- Name: evaluationratingreviewer; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationratingreviewer (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    firstname character varying(75) NOT NULL,
+    lastsurname character varying(75) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    reviewerpersonid character varying(32),
+    reviewersourcesystemdescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationratingreviewer OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationratingreviewer; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationratingreviewer IS 'The person(s) that conducted the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.firstname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.firstname IS 'A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.lastsurname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.lastsurname IS 'The name borne in common by members of a family.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.reviewerpersonid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.reviewerpersonid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewer.reviewersourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewer.reviewersourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: evaluationratingreviewerreceivedtraining; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationratingreviewerreceivedtraining (
+    educationorganizationid integer NOT NULL,
+    evaluationdate timestamp without time zone NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    firstname character varying(75) NOT NULL,
+    lastsurname character varying(75) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    receivedtrainingdate date,
+    interraterreliabilityscore integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationratingreviewerreceivedtraining OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationratingreviewerreceivedtraining; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationratingreviewerreceivedtraining IS 'An indication that the person administering the performance evauation has or has not received training on conducting performance measures.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.evaluationdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.evaluationdate IS 'The date for the person''s evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.firstname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.firstname IS 'A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.lastsurname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.lastsurname IS 'The name borne in common by members of a family.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.receivedtrainingdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.receivedtrainingdate IS 'The date on which the person administering the performance meausre received training on how to conduct performance measures.';
+
+
+--
+-- Name: COLUMN evaluationratingreviewerreceivedtraining.interraterreliabilityscore; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingreviewerreceivedtraining.interraterreliabilityscore IS 'A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)';
+
+
+--
+-- Name: evaluationratingstatusdescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationratingstatusdescriptor (
+    evaluationratingstatusdescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationratingstatusdescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationratingstatusdescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationratingstatusdescriptor IS 'Represents the status of a Evaluation Rating.';
+
+
+--
+-- Name: COLUMN evaluationratingstatusdescriptor.evaluationratingstatusdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationratingstatusdescriptor.evaluationratingstatusdescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: evaluationtypedescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.evaluationtypedescriptor (
+    evaluationtypedescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.evaluationtypedescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE evaluationtypedescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.evaluationtypedescriptor IS 'The type of the evaluation (e.g., observation, principal, peer, student survey, student growth).';
+
+
+--
+-- Name: COLUMN evaluationtypedescriptor.evaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.evaluationtypedescriptor.evaluationtypedescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: financialaid; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.financialaid (
+    aidtypedescriptorid integer NOT NULL,
+    begindate date NOT NULL,
+    studentusi integer NOT NULL,
+    enddate date,
+    aidconditiondescription character varying(1024),
+    aidamount numeric(19,4),
+    pellgrantrecipient boolean,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.financialaid OWNER TO postgres;
+
+--
+-- Name: TABLE financialaid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.financialaid IS 'This entity represents the financial aid a person is awarded.';
+
+
+--
+-- Name: COLUMN financialaid.aidtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.aidtypedescriptorid IS 'The classification of financial aid awarded to a person for the academic term/year.';
+
+
+--
+-- Name: COLUMN financialaid.begindate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.begindate IS 'The date the award was designated.';
+
+
+--
+-- Name: COLUMN financialaid.studentusi; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.studentusi IS 'A unique alphanumeric code assigned to a student.';
+
+
+--
+-- Name: COLUMN financialaid.enddate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.enddate IS 'The date the award was removed.';
+
+
+--
+-- Name: COLUMN financialaid.aidconditiondescription; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.aidconditiondescription IS 'The description of the condition (e.g., placement in a high need school) under which the aid was given.';
+
+
+--
+-- Name: COLUMN financialaid.aidamount; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.aidamount IS 'The amount of financial aid awarded to a person for the term/year.';
+
+
+--
+-- Name: COLUMN financialaid.pellgrantrecipient; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.financialaid.pellgrantrecipient IS 'Indicates a person who receives Pell Grant aid.';
+
+
+--
+-- Name: genderdescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.genderdescriptor (
+    genderdescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.genderdescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE genderdescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.genderdescriptor IS 'A person''s gender.';
+
+
+--
+-- Name: COLUMN genderdescriptor.genderdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.genderdescriptor.genderdescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: objectiveratingleveldescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.objectiveratingleveldescriptor (
+    objectiveratingleveldescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.objectiveratingleveldescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE objectiveratingleveldescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.objectiveratingleveldescriptor IS 'Rating levels for Evaluation Objectives.';
+
+
+--
+-- Name: COLUMN objectiveratingleveldescriptor.objectiveratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.objectiveratingleveldescriptor.objectiveratingleveldescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: performanceevaluation; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluation (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    performanceevaluationdescription character varying(255),
+    academicsubjectdescriptorid integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluation OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluation; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluation IS 'A performance evaluation of an educator, typically regularly scheduled and uniformly applied, composed of one or more Evaluations.';
+
+
+--
+-- Name: COLUMN performanceevaluation.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluation.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluation.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluation.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluation.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluation.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluation.performanceevaluationdescription; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.performanceevaluationdescription IS 'The long description of the Performance Evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluation.academicsubjectdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluation.academicsubjectdescriptorid IS 'The description of the content or subject area of a performance evaluation.';
+
+
+--
+-- Name: performanceevaluationgradelevel; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationgradelevel (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    gradeleveldescriptorid integer NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationgradelevel OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationgradelevel; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationgradelevel IS 'The grade levels involved with the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.gradeleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.gradeleveldescriptorid IS 'The grade levels involved with the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationgradelevel.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationgradelevel.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: performanceevaluationrating; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationrating (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    actualdate date NOT NULL,
+    announced boolean,
+    comments character varying(1024),
+    coteachingstyleobserveddescriptorid integer,
+    actualduration integer,
+    performanceevaluationratingleveldescriptorid integer,
+    scheduledate date,
+    actualtime time without time zone,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationrating OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationrating IS 'The summary rating for a Performance Evaluation across all Evaluation instruments for an individual educator.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.actualdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.actualdate IS 'The month, day, and year on which the performance evaluation was conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.announced; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.announced IS 'An indicator of whether the performance evaluation was announced or not.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.comments; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.comments IS 'Any comments about the performance evaluation to be captured.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.coteachingstyleobserveddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.coteachingstyleobserveddescriptorid IS 'A type of co-teaching observed as part of the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.actualduration; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.actualduration IS 'The actual or estimated number of clock minutes during which the performance evaluation was conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.performanceevaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.performanceevaluationratingleveldescriptorid IS 'The rating level achieved based upon the rating or score.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.scheduledate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.scheduledate IS 'The month, day, and year on which the performance evaluation was scheduled.';
+
+
+--
+-- Name: COLUMN performanceevaluationrating.actualtime; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationrating.actualtime IS 'An indication of the the time at which the performance evaluation was conducted.';
+
+
+--
+-- Name: performanceevaluationratinglevel; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationratinglevel (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationratingleveldescriptorid integer NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    minrating numeric(6,3),
+    maxrating numeric(6,3),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationratinglevel OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationratinglevel; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationratinglevel IS 'The descriptive level(s) of ratings (cut scores) for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.evaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.evaluationratingleveldescriptorid IS 'The title for a level of rating or evaluation band (e.g., Excellent, Acceptable, Needs Improvement, Unacceptable).';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.minrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.minrating IS 'The minimum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: COLUMN performanceevaluationratinglevel.maxrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratinglevel.maxrating IS 'The maximum numerical rating or score to achieve the evaluation rating level.';
+
+
+--
+-- Name: performanceevaluationratingleveldescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationratingleveldescriptor (
+    performanceevaluationratingleveldescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationratingleveldescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationratingleveldescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationratingleveldescriptor IS 'Rating levels for Performance Evaluations.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingleveldescriptor.performanceevaluationratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingleveldescriptor.performanceevaluationratingleveldescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: performanceevaluationratingresult; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationratingresult (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    rating numeric(6,3) NOT NULL,
+    ratingresulttitle character varying(50) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    resultdatatypetypedescriptorid integer NOT NULL,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationratingresult OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationratingresult; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationratingresult IS 'The numerical summary rating or score for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.rating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.rating IS 'The numerical summary rating or score for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.ratingresulttitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.ratingresulttitle IS 'The title of Rating Result.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingresult.resultdatatypetypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingresult.resultdatatypetypedescriptorid IS 'The datatype of the result.';
+
+
+--
+-- Name: performanceevaluationratingreviewer; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationratingreviewer (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    firstname character varying(75) NOT NULL,
+    lastsurname character varying(75) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    reviewerpersonid character varying(32),
+    reviewersourcesystemdescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationratingreviewer OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationratingreviewer; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationratingreviewer IS 'The person(s) that conducted the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.firstname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.firstname IS 'A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.lastsurname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.lastsurname IS 'The name borne in common by members of a family.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.reviewerpersonid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.reviewerpersonid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewer.reviewersourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewer.reviewersourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: performanceevaluationratingreviewerreceivedtraining; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationratingreviewerreceivedtraining (
+    educationorganizationid integer NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    firstname character varying(75) NOT NULL,
+    lastsurname character varying(75) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    personid character varying(32) NOT NULL,
+    schoolyear smallint NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    termdescriptorid integer NOT NULL,
+    receivedtrainingdate date,
+    interraterreliabilityscore integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationratingreviewerreceivedtraining OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationratingreviewerreceivedtraining; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationratingreviewerreceivedtraining IS 'An indication that the person administering the performance evauation has or has not received training on conducting performance measures.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.firstname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.firstname IS 'A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.lastsurname; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.lastsurname IS 'The name borne in common by members of a family.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.receivedtrainingdate; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.receivedtrainingdate IS 'The date on which the person administering the performance meausre received training on how to conduct performance measures.';
+
+
+--
+-- Name: COLUMN performanceevaluationratingreviewerreceivedtraining.interraterreliabilityscore; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationratingreviewerreceivedtraining.interraterreliabilityscore IS 'A score indicating how much homogeneity, or consensus, there is in the ratings given by judges. Most commonly a percentage scale (1-100)';
+
+
+--
+-- Name: performanceevaluationtypedescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.performanceevaluationtypedescriptor (
+    performanceevaluationtypedescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.performanceevaluationtypedescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE performanceevaluationtypedescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.performanceevaluationtypedescriptor IS 'The type of performance evaluation conducted (e.g., walkthrough, summative).';
+
+
+--
+-- Name: COLUMN performanceevaluationtypedescriptor.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.performanceevaluationtypedescriptor.performanceevaluationtypedescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: rubricdimension; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.rubricdimension (
+    educationorganizationid integer NOT NULL,
+    evaluationelementtitle character varying(255) NOT NULL,
+    evaluationobjectivetitle character varying(50) NOT NULL,
+    evaluationperioddescriptorid integer NOT NULL,
+    evaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtitle character varying(50) NOT NULL,
+    performanceevaluationtypedescriptorid integer NOT NULL,
+    rubricrating integer NOT NULL,
+    schoolyear smallint NOT NULL,
+    termdescriptorid integer NOT NULL,
+    rubricratingleveldescriptorid integer,
+    criteriondescription character varying(1024) NOT NULL,
+    dimensionorder integer,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.rubricdimension OWNER TO postgres;
+
+--
+-- Name: TABLE rubricdimension; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.rubricdimension IS 'The cells of a rubric, consisting of a qualitative decription, definition, or exemplar with the associated rubric rating and rating level.';
+
+
+--
+-- Name: COLUMN rubricdimension.educationorganizationid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.educationorganizationid IS 'The identifier assigned to an education organization.';
+
+
+--
+-- Name: COLUMN rubricdimension.evaluationelementtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.evaluationelementtitle IS 'The name or title of the evaluation element.';
+
+
+--
+-- Name: COLUMN rubricdimension.evaluationobjectivetitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.evaluationobjectivetitle IS 'The name or title of the evaluation Objective.';
+
+
+--
+-- Name: COLUMN rubricdimension.evaluationperioddescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.evaluationperioddescriptorid IS 'The period for the evaluation.';
+
+
+--
+-- Name: COLUMN rubricdimension.evaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.evaluationtitle IS 'The name or title of the evaluation.';
+
+
+--
+-- Name: COLUMN rubricdimension.performanceevaluationtitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.performanceevaluationtitle IS 'An assigned unique identifier for the performance evaluation.';
+
+
+--
+-- Name: COLUMN rubricdimension.performanceevaluationtypedescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.performanceevaluationtypedescriptorid IS 'The type of performance evaluation conducted.';
+
+
+--
+-- Name: COLUMN rubricdimension.rubricrating; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.rubricrating IS 'The rating achieved for the rubric dimension.';
+
+
+--
+-- Name: COLUMN rubricdimension.schoolyear; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.schoolyear IS 'The identifier for the school year.';
+
+
+--
+-- Name: COLUMN rubricdimension.termdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.termdescriptorid IS 'The term for the session during the school year.';
+
+
+--
+-- Name: COLUMN rubricdimension.rubricratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.rubricratingleveldescriptorid IS 'The rating level achieved for the rubric dimension.';
+
+
+--
+-- Name: COLUMN rubricdimension.criteriondescription; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.criteriondescription IS 'The criterion description for the rubric dimension.';
+
+
+--
+-- Name: COLUMN rubricdimension.dimensionorder; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricdimension.dimensionorder IS 'The order for the rubric dimension.';
+
+
+--
+-- Name: rubricratingleveldescriptor; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.rubricratingleveldescriptor (
+    rubricratingleveldescriptorid integer NOT NULL
+);
+
+
+ALTER TABLE tpdm.rubricratingleveldescriptor OWNER TO postgres;
+
+--
+-- Name: TABLE rubricratingleveldescriptor; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.rubricratingleveldescriptor IS 'Rating levels for Rubric Dimensions.';
+
+
+--
+-- Name: COLUMN rubricratingleveldescriptor.rubricratingleveldescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.rubricratingleveldescriptor.rubricratingleveldescriptorid IS 'A unique identifier used as Primary Key, not derived from business logic, when acting as Foreign Key, references the parent table.';
+
+
+--
+-- Name: schoolextension; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.schoolextension (
+    schoolid integer NOT NULL,
+    postsecondaryinstitutionid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.schoolextension OWNER TO postgres;
+
+--
+-- Name: COLUMN schoolextension.schoolid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.schoolextension.schoolid IS 'The identifier assigned to a school.';
+
+
+--
+-- Name: COLUMN schoolextension.postsecondaryinstitutionid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.schoolextension.postsecondaryinstitutionid IS 'The ID of the post secondary institution.';
+
+
+--
+-- Name: surveyresponseextension; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.surveyresponseextension (
+    namespace character varying(255) NOT NULL,
+    surveyidentifier character varying(60) NOT NULL,
+    surveyresponseidentifier character varying(60) NOT NULL,
+    personid character varying(32),
+    sourcesystemdescriptorid integer,
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+
+ALTER TABLE tpdm.surveyresponseextension OWNER TO postgres;
+
+--
+-- Name: COLUMN surveyresponseextension.namespace; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponseextension.namespace IS 'Namespace for the survey.';
+
+
+--
+-- Name: COLUMN surveyresponseextension.surveyidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponseextension.surveyidentifier IS 'The unique survey identifier from the survey tool.';
+
+
+--
+-- Name: COLUMN surveyresponseextension.surveyresponseidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponseextension.surveyresponseidentifier IS 'The identifier of the survey typically from the survey application.';
+
+
+--
+-- Name: COLUMN surveyresponseextension.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponseextension.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN surveyresponseextension.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponseextension.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: surveyresponsepersontargetassociation; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.surveyresponsepersontargetassociation (
+    namespace character varying(255) NOT NULL,
+    personid character varying(32) NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    surveyidentifier character varying(60) NOT NULL,
+    surveyresponseidentifier character varying(60) NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.surveyresponsepersontargetassociation OWNER TO postgres;
+
+--
+-- Name: TABLE surveyresponsepersontargetassociation; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.surveyresponsepersontargetassociation IS 'The association provides information about the survey being taken and who the survey is about.';
+
+
+--
+-- Name: COLUMN surveyresponsepersontargetassociation.namespace; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponsepersontargetassociation.namespace IS 'Namespace for the survey.';
+
+
+--
+-- Name: COLUMN surveyresponsepersontargetassociation.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponsepersontargetassociation.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN surveyresponsepersontargetassociation.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponsepersontargetassociation.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN surveyresponsepersontargetassociation.surveyidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponsepersontargetassociation.surveyidentifier IS 'The unique survey identifier from the survey tool.';
+
+
+--
+-- Name: COLUMN surveyresponsepersontargetassociation.surveyresponseidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveyresponsepersontargetassociation.surveyresponseidentifier IS 'The identifier of the survey typically from the survey application.';
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation; Type: TABLE; Schema: tpdm; Owner: postgres
+--
+
+CREATE TABLE tpdm.surveysectionresponsepersontargetassociation (
+    namespace character varying(255) NOT NULL,
+    personid character varying(32) NOT NULL,
+    sourcesystemdescriptorid integer NOT NULL,
+    surveyidentifier character varying(60) NOT NULL,
+    surveyresponseidentifier character varying(60) NOT NULL,
+    surveysectiontitle character varying(255) NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    lastmodifieddate timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    changeversion bigint DEFAULT nextval('changes.changeversionsequence'::regclass) NOT NULL
+);
+
+
+ALTER TABLE tpdm.surveysectionresponsepersontargetassociation OWNER TO postgres;
+
+--
+-- Name: TABLE surveysectionresponsepersontargetassociation; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON TABLE tpdm.surveysectionresponsepersontargetassociation IS 'This association provides information about the survey section and the person the survey section is about.';
+
+
+--
+-- Name: COLUMN surveysectionresponsepersontargetassociation.namespace; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveysectionresponsepersontargetassociation.namespace IS 'Namespace for the survey.';
+
+
+--
+-- Name: COLUMN surveysectionresponsepersontargetassociation.personid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveysectionresponsepersontargetassociation.personid IS 'A unique alphanumeric code assigned to a person.';
+
+
+--
+-- Name: COLUMN surveysectionresponsepersontargetassociation.sourcesystemdescriptorid; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveysectionresponsepersontargetassociation.sourcesystemdescriptorid IS 'This descriptor defines the originating record source system for the person.';
+
+
+--
+-- Name: COLUMN surveysectionresponsepersontargetassociation.surveyidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveysectionresponsepersontargetassociation.surveyidentifier IS 'The unique survey identifier from the survey tool.';
+
+
+--
+-- Name: COLUMN surveysectionresponsepersontargetassociation.surveyresponseidentifier; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveysectionresponsepersontargetassociation.surveyresponseidentifier IS 'The identifier of the survey typically from the survey application.';
+
+
+--
+-- Name: COLUMN surveysectionresponsepersontargetassociation.surveysectiontitle; Type: COMMENT; Schema: tpdm; Owner: postgres
+--
+
+COMMENT ON COLUMN tpdm.surveysectionresponsepersontargetassociation.surveysectiontitle IS 'The title or label for the survey section.';
+
+
+--
 -- Name: academicweek; Type: TABLE; Schema: tracked_changes_edfi; Owner: postgres
 --
 
@@ -43140,6 +48777,570 @@ CREATE TABLE tracked_changes_edfi.surveysectionresponsestafftargetassociation (
 ALTER TABLE tracked_changes_edfi.surveysectionresponsestafftargetassociation OWNER TO postgres;
 
 --
+-- Name: candidate; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.candidate (
+    oldcandidateidentifier character varying(32) NOT NULL,
+    newcandidateidentifier character varying(32),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.candidate OWNER TO postgres;
+
+--
+-- Name: candidateeducatorpreparationprogramassociation; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.candidateeducatorpreparationprogramassociation (
+    oldbegindate date NOT NULL,
+    oldcandidateidentifier character varying(32) NOT NULL,
+    oldeducationorganizationid integer NOT NULL,
+    oldprogramname character varying(255) NOT NULL,
+    oldprogramtypedescriptorid integer NOT NULL,
+    oldprogramtypedescriptornamespace character varying(255) NOT NULL,
+    oldprogramtypedescriptorcodevalue character varying(50) NOT NULL,
+    newbegindate date,
+    newcandidateidentifier character varying(32),
+    neweducationorganizationid integer,
+    newprogramname character varying(255),
+    newprogramtypedescriptorid integer,
+    newprogramtypedescriptornamespace character varying(255),
+    newprogramtypedescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.candidateeducatorpreparationprogramassociation OWNER TO postgres;
+
+--
+-- Name: educatorpreparationprogram; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.educatorpreparationprogram (
+    oldeducationorganizationid integer NOT NULL,
+    oldprogramname character varying(255) NOT NULL,
+    oldprogramtypedescriptorid integer NOT NULL,
+    oldprogramtypedescriptornamespace character varying(255) NOT NULL,
+    oldprogramtypedescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newprogramname character varying(255),
+    newprogramtypedescriptorid integer,
+    newprogramtypedescriptornamespace character varying(255),
+    newprogramtypedescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.educatorpreparationprogram OWNER TO postgres;
+
+--
+-- Name: evaluation; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.evaluation (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newschoolyear smallint,
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.evaluation OWNER TO postgres;
+
+--
+-- Name: evaluationelement; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.evaluationelement (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationelementtitle character varying(255) NOT NULL,
+    oldevaluationobjectivetitle character varying(50) NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationelementtitle character varying(255),
+    newevaluationobjectivetitle character varying(50),
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newschoolyear smallint,
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.evaluationelement OWNER TO postgres;
+
+--
+-- Name: evaluationelementrating; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.evaluationelementrating (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationdate timestamp without time zone NOT NULL,
+    oldevaluationelementtitle character varying(255) NOT NULL,
+    oldevaluationobjectivetitle character varying(50) NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldpersonid character varying(32) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldsourcesystemdescriptorid integer NOT NULL,
+    oldsourcesystemdescriptornamespace character varying(255) NOT NULL,
+    oldsourcesystemdescriptorcodevalue character varying(50) NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationdate timestamp without time zone,
+    newevaluationelementtitle character varying(255),
+    newevaluationobjectivetitle character varying(50),
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newpersonid character varying(32),
+    newschoolyear smallint,
+    newsourcesystemdescriptorid integer,
+    newsourcesystemdescriptornamespace character varying(255),
+    newsourcesystemdescriptorcodevalue character varying(50),
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.evaluationelementrating OWNER TO postgres;
+
+--
+-- Name: evaluationobjective; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.evaluationobjective (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationobjectivetitle character varying(50) NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationobjectivetitle character varying(50),
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newschoolyear smallint,
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.evaluationobjective OWNER TO postgres;
+
+--
+-- Name: evaluationobjectiverating; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.evaluationobjectiverating (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationdate timestamp without time zone NOT NULL,
+    oldevaluationobjectivetitle character varying(50) NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldpersonid character varying(32) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldsourcesystemdescriptorid integer NOT NULL,
+    oldsourcesystemdescriptornamespace character varying(255) NOT NULL,
+    oldsourcesystemdescriptorcodevalue character varying(50) NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationdate timestamp without time zone,
+    newevaluationobjectivetitle character varying(50),
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newpersonid character varying(32),
+    newschoolyear smallint,
+    newsourcesystemdescriptorid integer,
+    newsourcesystemdescriptornamespace character varying(255),
+    newsourcesystemdescriptorcodevalue character varying(50),
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.evaluationobjectiverating OWNER TO postgres;
+
+--
+-- Name: evaluationrating; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.evaluationrating (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationdate timestamp without time zone NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldpersonid character varying(32) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldsourcesystemdescriptorid integer NOT NULL,
+    oldsourcesystemdescriptornamespace character varying(255) NOT NULL,
+    oldsourcesystemdescriptorcodevalue character varying(50) NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationdate timestamp without time zone,
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newpersonid character varying(32),
+    newschoolyear smallint,
+    newsourcesystemdescriptorid integer,
+    newsourcesystemdescriptornamespace character varying(255),
+    newsourcesystemdescriptorcodevalue character varying(50),
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.evaluationrating OWNER TO postgres;
+
+--
+-- Name: financialaid; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.financialaid (
+    oldaidtypedescriptorid integer NOT NULL,
+    oldaidtypedescriptornamespace character varying(255) NOT NULL,
+    oldaidtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldbegindate date NOT NULL,
+    oldstudentusi integer NOT NULL,
+    oldstudentuniqueid character varying(32) NOT NULL,
+    newaidtypedescriptorid integer,
+    newaidtypedescriptornamespace character varying(255),
+    newaidtypedescriptorcodevalue character varying(50),
+    newbegindate date,
+    newstudentusi integer,
+    newstudentuniqueid character varying(32),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.financialaid OWNER TO postgres;
+
+--
+-- Name: performanceevaluation; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.performanceevaluation (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newschoolyear smallint,
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.performanceevaluation OWNER TO postgres;
+
+--
+-- Name: performanceevaluationrating; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.performanceevaluationrating (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldpersonid character varying(32) NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldsourcesystemdescriptorid integer NOT NULL,
+    oldsourcesystemdescriptornamespace character varying(255) NOT NULL,
+    oldsourcesystemdescriptorcodevalue character varying(50) NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newpersonid character varying(32),
+    newschoolyear smallint,
+    newsourcesystemdescriptorid integer,
+    newsourcesystemdescriptornamespace character varying(255),
+    newsourcesystemdescriptorcodevalue character varying(50),
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.performanceevaluationrating OWNER TO postgres;
+
+--
+-- Name: rubricdimension; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.rubricdimension (
+    oldeducationorganizationid integer NOT NULL,
+    oldevaluationelementtitle character varying(255) NOT NULL,
+    oldevaluationobjectivetitle character varying(50) NOT NULL,
+    oldevaluationperioddescriptorid integer NOT NULL,
+    oldevaluationperioddescriptornamespace character varying(255) NOT NULL,
+    oldevaluationperioddescriptorcodevalue character varying(50) NOT NULL,
+    oldevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtitle character varying(50) NOT NULL,
+    oldperformanceevaluationtypedescriptorid integer NOT NULL,
+    oldperformanceevaluationtypedescriptornamespace character varying(255) NOT NULL,
+    oldperformanceevaluationtypedescriptorcodevalue character varying(50) NOT NULL,
+    oldrubricrating integer NOT NULL,
+    oldschoolyear smallint NOT NULL,
+    oldtermdescriptorid integer NOT NULL,
+    oldtermdescriptornamespace character varying(255) NOT NULL,
+    oldtermdescriptorcodevalue character varying(50) NOT NULL,
+    neweducationorganizationid integer,
+    newevaluationelementtitle character varying(255),
+    newevaluationobjectivetitle character varying(50),
+    newevaluationperioddescriptorid integer,
+    newevaluationperioddescriptornamespace character varying(255),
+    newevaluationperioddescriptorcodevalue character varying(50),
+    newevaluationtitle character varying(50),
+    newperformanceevaluationtitle character varying(50),
+    newperformanceevaluationtypedescriptorid integer,
+    newperformanceevaluationtypedescriptornamespace character varying(255),
+    newperformanceevaluationtypedescriptorcodevalue character varying(50),
+    newrubricrating integer,
+    newschoolyear smallint,
+    newtermdescriptorid integer,
+    newtermdescriptornamespace character varying(255),
+    newtermdescriptorcodevalue character varying(50),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.rubricdimension OWNER TO postgres;
+
+--
+-- Name: surveyresponsepersontargetassociation; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.surveyresponsepersontargetassociation (
+    oldnamespace character varying(255) NOT NULL,
+    oldpersonid character varying(32) NOT NULL,
+    oldsourcesystemdescriptorid integer NOT NULL,
+    oldsourcesystemdescriptornamespace character varying(255) NOT NULL,
+    oldsourcesystemdescriptorcodevalue character varying(50) NOT NULL,
+    oldsurveyidentifier character varying(60) NOT NULL,
+    oldsurveyresponseidentifier character varying(60) NOT NULL,
+    newnamespace character varying(255),
+    newpersonid character varying(32),
+    newsourcesystemdescriptorid integer,
+    newsourcesystemdescriptornamespace character varying(255),
+    newsourcesystemdescriptorcodevalue character varying(50),
+    newsurveyidentifier character varying(60),
+    newsurveyresponseidentifier character varying(60),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.surveyresponsepersontargetassociation OWNER TO postgres;
+
+--
+-- Name: surveysectionresponsepersontargetassociation; Type: TABLE; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+CREATE TABLE tracked_changes_tpdm.surveysectionresponsepersontargetassociation (
+    oldnamespace character varying(255) NOT NULL,
+    oldpersonid character varying(32) NOT NULL,
+    oldsourcesystemdescriptorid integer NOT NULL,
+    oldsourcesystemdescriptornamespace character varying(255) NOT NULL,
+    oldsourcesystemdescriptorcodevalue character varying(50) NOT NULL,
+    oldsurveyidentifier character varying(60) NOT NULL,
+    oldsurveyresponseidentifier character varying(60) NOT NULL,
+    oldsurveysectiontitle character varying(255) NOT NULL,
+    newnamespace character varying(255),
+    newpersonid character varying(32),
+    newsourcesystemdescriptorid integer,
+    newsourcesystemdescriptornamespace character varying(255),
+    newsourcesystemdescriptorcodevalue character varying(50),
+    newsurveyidentifier character varying(60),
+    newsurveyresponseidentifier character varying(60),
+    newsurveysectiontitle character varying(255),
+    id uuid NOT NULL,
+    changeversion bigint NOT NULL,
+    discriminator character varying(128),
+    createdate timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE tracked_changes_tpdm.surveysectionresponsepersontargetassociation OWNER TO postgres;
+
+--
 -- Name: descriptor descriptorid; Type: DEFAULT; Schema: edfi; Owner: postgres
 --
 
@@ -43260,6 +49461,10 @@ COPY edfi.academicsubjectdescriptor (academicsubjectdescriptorid) FROM stdin;
 44
 46
 48
+3151
+3152
+3153
+3154
 \.
 
 
@@ -44083,6 +50288,8 @@ COPY edfi.cohortyeartypedescriptor (cohortyeartypedescriptorid) FROM stdin;
 350
 351
 352
+3195
+3196
 \.
 
 
@@ -47795,6 +54002,7 @@ COPY edfi.descriptor (descriptorid, namespace, codevalue, shortdescription, desc
 2969	uri://ed-fi.org/TribalAffiliationDescriptor	Santo Domingo	Santo Domingo	Santo Domingo Pueblo	\N	\N	\N	2022-11-17 17:07:59.533996	2022-11-17 17:07:59.53397	ed94191f-54c6-4a4d-bc00-be0a31a629de	2969
 2971	uri://ed-fi.org/TribalAffiliationDescriptor	Sault Ste. Marie	Sault Ste. Marie	Sault Ste. Marie Tribe of Chippewa Indians, Michigan	\N	\N	\N	2022-11-17 17:07:59.54197	2022-11-17 17:07:59.541941	4ab4d0ed-1825-4e79-8974-d1620baa940b	2971
 2972	uri://ed-fi.org/TribalAffiliationDescriptor	Savoonga	Savoonga	Native Village of Savoonga	\N	\N	\N	2022-11-17 17:07:59.549535	2022-11-17 17:07:59.549475	f863dcc2-4433-4d98-b5b2-7a108a6d2656	2972
+3151	uri://tpdm.ed-fi.org/AcademicSubjectDescriptor	Bilingual	Bilingual	Bilingual	\N	\N	\N	2022-11-17 22:30:26.175241	2022-11-17 22:30:26.159312	6b2c81fc-737b-4af8-9205-16e8fe656fc3	3151
 2955	uri://ed-fi.org/TribalAffiliationDescriptor	Sac & Fox of Mississippi	Sac & Fox of Mississippi	Sac & Fox Tribe of the Mississippi in Iowa	\N	\N	\N	2022-11-17 17:07:59.476886	2022-11-17 17:07:59.476856	cb36fcda-edbd-43a5-9ce9-fbb21ad9def1	2955
 2956	uri://ed-fi.org/TribalAffiliationDescriptor	Saginaw Chippewa	Saginaw Chippewa	Saginaw Chippewa Indian Tribe of Michigan	\N	\N	\N	2022-11-17 17:07:59.481851	2022-11-17 17:07:59.481786	0e3b3ef0-7965-4f8f-8244-15a472136f56	2956
 2958	uri://ed-fi.org/TribalAffiliationDescriptor	Saint Regis	Saint Regis	Saint Regis Mohawk Tribe	\N	\N	\N	2022-11-17 17:07:59.491534	2022-11-17 17:07:59.491457	acb6176b-e2d2-4abc-bd74-c2ccfa0674c9	2958
@@ -47980,6 +54188,197 @@ COPY edfi.descriptor (descriptorid, namespace, codevalue, shortdescription, desc
 3150	uri://ed-fi.org/WeaponDescriptor	Unknown	Unknown	Unknown	\N	\N	\N	2022-11-17 17:08:00.703473	2022-11-17 17:08:00.703439	644a7ec8-3cd6-48a1-bcd2-1b9e7ad2da50	3150
 3147	uri://ed-fi.org/WeaponDescriptor	Other Sharp Objects	Other Sharp Objects	Other Sharp Objects	\N	\N	\N	2022-11-17 17:08:00.690955	2022-11-17 17:08:00.690923	e41c5018-6255-40eb-a1dd-707b324beeab	3147
 3148	uri://ed-fi.org/WeaponDescriptor	Rifle/Shotgun	Rifle/Shotgun	Rifle/Shotgun	\N	\N	\N	2022-11-17 17:08:00.696212	2022-11-17 17:08:00.696102	f39c2e96-2b7c-4a3c-82bb-d2847e4654d6	3148
+3152	uri://tpdm.ed-fi.org/AcademicSubjectDescriptor	English Language Learners	English Language Learners	English Language Learners	\N	\N	\N	2022-11-17 22:30:26.298963	2022-11-17 22:30:26.298198	7584da5f-410e-451c-a5bb-46daa5c23b53	3152
+3153	uri://tpdm.ed-fi.org/AcademicSubjectDescriptor	Multiple Subjects	Multiple Subjects	Multiple Subjects	\N	\N	\N	2022-11-17 22:30:26.31265	2022-11-17 22:30:26.312599	962c9f5c-9c25-45cb-9742-79fd0eaff8cd	3153
+3154	uri://tpdm.ed-fi.org/AcademicSubjectDescriptor	Special Education	Special Education	Special Education	\N	\N	\N	2022-11-17 22:30:26.32236	2022-11-17 22:30:26.322311	bc0e2ec6-23bb-4fd1-b29e-8fc028a088f7	3154
+3155	uri://tpdm.ed-fi.org/AccreditationStatusDescriptor	Not Rated	Not Rated	Not Rated	\N	\N	\N	2022-11-17 22:30:26.359108	2022-11-17 22:30:26.365739	e868e4a2-7a0b-4171-a588-5ede47f21722	3156
+3156	uri://tpdm.ed-fi.org/AccreditationStatusDescriptor	Accredited	Accredited	Accredited	\N	\N	\N	2022-11-17 22:30:26.41538	2022-11-17 22:30:26.416703	e60f2bfb-1134-412d-a271-86a5bc235f72	3158
+3157	uri://tpdm.ed-fi.org/AccreditationStatusDescriptor	Accredited - Warned	Accredited - Warned	Accredited - Warned	\N	\N	\N	2022-11-17 22:30:26.427052	2022-11-17 22:30:26.428285	c72bcd5a-9876-4956-827c-a19c20dc5364	3160
+3158	uri://tpdm.ed-fi.org/AccreditationStatusDescriptor	Accredited - Probation	Accredited - Probation	Accredited - Probation	\N	\N	\N	2022-11-17 22:30:26.438032	2022-11-17 22:30:26.439197	b412e362-824d-498d-b108-425ea691a201	3162
+3159	uri://tpdm.ed-fi.org/AccreditationStatusDescriptor	Not Accredited	Not Accredited	Not Accredited	\N	\N	\N	2022-11-17 22:30:26.448575	2022-11-17 22:30:26.449751	78f4f335-49b5-4ad9-8fa9-55b14b9aec13	3164
+3160	uri://tpdm.ed-fi.org/AidTypeDescriptor	Assistantship	Assistantship	Assistantship	\N	\N	\N	2022-11-17 22:30:26.488732	2022-11-17 22:30:26.490916	b8c07482-0da1-4ad4-8819-b1144eaa781b	3166
+3161	uri://tpdm.ed-fi.org/AidTypeDescriptor	Federal Scholarships	Federal Scholarships	Federal Scholarships	\N	\N	\N	2022-11-17 22:30:26.500996	2022-11-17 22:30:26.502166	c8ec5b55-22f5-44e9-b511-59f2a19e23dd	3168
+3162	uri://tpdm.ed-fi.org/AidTypeDescriptor	Federal Subsidized Loans	Federal Subsidized Loans	Federal Subsidized Loans	\N	\N	\N	2022-11-17 22:30:26.51155	2022-11-17 22:30:26.512775	96a4031c-6b1c-4156-b8af-9cfa04f3f67a	3170
+3163	uri://tpdm.ed-fi.org/AidTypeDescriptor	Federal Unsubsidized Loans	Federal Unsubsidized Loans	Federal Unsubsidized Loans	\N	\N	\N	2022-11-17 22:30:26.524209	2022-11-17 22:30:26.525828	a6353949-8762-4316-8b0d-8594953b76b9	3172
+3164	uri://tpdm.ed-fi.org/AidTypeDescriptor	Federal Work Study	Federal Work Study	Federal Work Study	\N	\N	\N	2022-11-17 22:30:26.535242	2022-11-17 22:30:26.536481	bb0e66a1-9391-4010-a531-7673936db5ba	3174
+3165	uri://tpdm.ed-fi.org/AidTypeDescriptor	Institutional Grants	Institutional Grants	Institutional Grants	\N	\N	\N	2022-11-17 22:30:26.546386	2022-11-17 22:30:26.547611	29ca30d2-fb9c-467c-a4b5-7ccdffce748a	3176
+3166	uri://tpdm.ed-fi.org/AidTypeDescriptor	Institutional Loans	Institutional Loans	Institutional Loans	\N	\N	\N	2022-11-17 22:30:26.556182	2022-11-17 22:30:26.557363	73cf7b5a-0203-428a-b29b-b372534849db	3178
+3167	uri://tpdm.ed-fi.org/AidTypeDescriptor	Institutional Scholarships	Institutional Scholarships	Institutional Scholarships	\N	\N	\N	2022-11-17 22:30:26.566508	2022-11-17 22:30:26.567696	fb158e96-3a6c-4fb0-96f9-482e16d00dd5	3180
+3168	uri://tpdm.ed-fi.org/AidTypeDescriptor	Loan Forgiveness	Loan Forgiveness	Loan Forgiveness	\N	\N	\N	2022-11-17 22:30:26.57643	2022-11-17 22:30:26.577581	1caa80f0-39f0-431c-b22e-75f4bad1a150	3182
+3169	uri://tpdm.ed-fi.org/AidTypeDescriptor	Other Federal Grants	Other Federal Grants	Other Federal Grants	\N	\N	\N	2022-11-17 22:30:26.587499	2022-11-17 22:30:26.588636	66c317a5-b371-479d-a2e0-ceb5915d2cc1	3184
+3170	uri://tpdm.ed-fi.org/AidTypeDescriptor	Other Grants	Other Grants	Other Grants	\N	\N	\N	2022-11-17 22:30:26.59836	2022-11-17 22:30:26.599506	5b978ed5-dfcd-4d41-af1b-be51d5d9572d	3186
+3171	uri://tpdm.ed-fi.org/AidTypeDescriptor	Other On-Campus Work	Other On-Campus Work	Other On-Campus Work	\N	\N	\N	2022-11-17 22:30:26.609163	2022-11-17 22:30:26.610327	3a6f00ed-f7ae-464b-9b1a-ed660bcae297	3188
+3172	uri://tpdm.ed-fi.org/AidTypeDescriptor	Other Scholarships	Other Scholarships	Other Scholarships	\N	\N	\N	2022-11-17 22:30:26.619604	2022-11-17 22:30:26.620804	12481eba-1234-4090-83fa-3ea090e9e424	3190
+3173	uri://tpdm.ed-fi.org/AidTypeDescriptor	Parent PLUS Loans	Parent PLUS Loans	Parent PLUS Loans	\N	\N	\N	2022-11-17 22:30:26.63003	2022-11-17 22:30:26.631212	f3a39a92-79df-4f70-970c-8ff1bd3024c8	3192
+3174	uri://tpdm.ed-fi.org/AidTypeDescriptor	Pell Grants	Pell Grants	Pell Grants	\N	\N	\N	2022-11-17 22:30:26.640464	2022-11-17 22:30:26.641642	2b1e9977-0ec2-424e-81d7-7480370a1b54	3194
+3175	uri://tpdm.ed-fi.org/AidTypeDescriptor	Private Grants	Private Grants	Private Grants	\N	\N	\N	2022-11-17 22:30:26.650676	2022-11-17 22:30:26.651831	03d9eb80-a0ab-43ec-ac6d-9bfa12e46554	3196
+3176	uri://tpdm.ed-fi.org/AidTypeDescriptor	Private Loans	Private Loans	Private Loans	\N	\N	\N	2022-11-17 22:30:26.661236	2022-11-17 22:30:26.662531	7bc3dfa1-7aba-441e-8e17-67c2c8f6a162	3198
+3177	uri://tpdm.ed-fi.org/AidTypeDescriptor	Private Scholarships	Private Scholarships	Private Scholarships	\N	\N	\N	2022-11-17 22:30:26.672224	2022-11-17 22:30:26.673367	0daf8451-d215-4e2b-a564-9324cc9ac8a5	3200
+3178	uri://tpdm.ed-fi.org/AidTypeDescriptor	State and Local Grants	State and Local Grants	State and Local Grants	\N	\N	\N	2022-11-17 22:30:26.683026	2022-11-17 22:30:26.684158	81f128c6-2b7c-4675-bbf9-de6956c7d492	3202
+3179	uri://tpdm.ed-fi.org/AidTypeDescriptor	State and Local Scholarships	State and Local Scholarships	State and Local Scholarships	\N	\N	\N	2022-11-17 22:30:26.693242	2022-11-17 22:30:26.694372	40ad9219-fba4-4f8e-b573-ee770a8bf078	3204
+3180	uri://tpdm.ed-fi.org/AidTypeDescriptor	State Loans	State Loans	State Loans	\N	\N	\N	2022-11-17 22:30:26.707449	2022-11-17 22:30:26.708593	e586a298-14d2-4eb4-a32c-57613425178f	3206
+3181	uri://tpdm.ed-fi.org/AidTypeDescriptor	State Work	State Work	State Work	\N	\N	\N	2022-11-17 22:30:26.719622	2022-11-17 22:30:26.720776	5c84adaf-c224-4222-8f00-8ba30962b402	3208
+3182	uri://tpdm.ed-fi.org/AidTypeDescriptor	Teach Grants	Teach Grants	Teach Grants	\N	\N	\N	2022-11-17 22:30:26.731807	2022-11-17 22:30:26.734647	d0083b11-4a92-4cc0-9bcb-2bad16c277ff	3210
+3183	uri://tpdm.ed-fi.org/AidTypeDescriptor	Tuition Reimbursements	Tuition Reimbursements	Tuition Reimbursements	\N	\N	\N	2022-11-17 22:30:26.748036	2022-11-17 22:30:26.749207	ad836058-374d-40be-bfe8-273ffae323cb	3212
+3184	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Alternative Program	Alternative Program	Alternative Program	\N	\N	\N	2022-11-17 22:30:26.786969	2022-11-17 22:30:26.789147	e49d8ff9-2621-40e5-a40c-be756733f6f8	3214
+3185	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Center for Professional Development	Center for Professional Development	Center for Professional Development	\N	\N	\N	2022-11-17 22:30:26.800727	2022-11-17 22:30:26.801886	d94a066e-a748-469f-ae56-16ed244cbf85	3216
+3186	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Vocational Experience	Vocational Experience	Vocational Experience	\N	\N	\N	2022-11-17 22:30:26.810829	2022-11-17 22:30:26.811955	33bbb6c4-1661-4f2b-af39-1c3e16572334	3218
+3187	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Certification by Exam	Certification by Exam	Certification by Exam	\N	\N	\N	2022-11-17 22:30:26.820744	2022-11-17 22:30:26.821995	7cfe3a5d-e338-484a-9377-0e945a3f79c1	3220
+3188	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Out of State	Out of State	Out of State	\N	\N	\N	2022-11-17 22:30:26.830721	2022-11-17 22:30:26.831864	5374ee5c-b4bc-463e-9cdb-a26c7ca83ccc	3222
+3189	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Paraprofessional Program	Paraprofessional Program	Paraprofessional Program	\N	\N	\N	2022-11-17 22:30:26.840574	2022-11-17 22:30:26.841707	553ba5b7-b241-4e22-82f6-4d854be37fc1	3224
+3190	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Post-Baccalaureate	Post-Baccalaureate	Post-Baccalaureate	\N	\N	\N	2022-11-17 22:30:26.85059	2022-11-17 22:30:26.851722	42b12682-bdc0-4ab6-9aef-33307df04d88	3226
+3191	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Permit Program	Permit Program	Permit Program	\N	\N	\N	2022-11-17 22:30:26.86055	2022-11-17 22:30:26.861671	d1daf7b9-3f84-4db1-9b1e-a37aebe62891	3228
+3192	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Standard Program	Standard Program	Standard Program	\N	\N	\N	2022-11-17 22:30:26.870422	2022-11-17 22:30:26.871548	19bee3a5-2f33-4f5b-a1d0-de5a5db25528	3230
+3193	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Unknown	Unknown	Unknown	\N	\N	\N	2022-11-17 22:30:26.880265	2022-11-17 22:30:26.88138	52a04bf8-f3a2-45f7-bd22-84ffca6aa81f	3232
+3194	uri://tpdm.ed-fi.org/CertificationRouteDescriptor	Temporary Teaching Certificate	Temporary Teaching Certificate	Temporary Teaching Certificate	\N	\N	\N	2022-11-17 22:30:26.891925	2022-11-17 22:30:26.893066	73bf581c-22b1-4bb1-95cf-ae50ec503a72	3234
+3195	uri://tpdm.ed-fi.org/CohortYearTypeDescriptor	Completion	Completion	A cohort year based on the candidate's scheduled completion	\N	\N	\N	2022-11-17 22:30:26.934207	2022-11-17 22:30:26.933012	de23c9a5-4ef1-4f25-ac66-9044e858392a	3235
+3196	uri://tpdm.ed-fi.org/CohortYearTypeDescriptor	Entry	Entry	A cohort year based on the entry of candidate into the Eucator Preparation Provider	\N	\N	\N	2022-11-17 22:30:26.944366	2022-11-17 22:30:26.944321	58104bf1-c490-4f23-88f1-cbe4ce2d835a	3236
+3197	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	One Teach, One Assist	One Teach, One Assist	One Teach, One Assist	\N	\N	\N	2022-11-17 22:30:26.979719	2022-11-17 22:30:26.98189	f06acbb3-3595-494b-ad17-bbd6f669b02e	3238
+3198	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	One Teach, One Observe	One Teach, One Observe	One Teach, One Observe	\N	\N	\N	2022-11-17 22:30:26.99227	2022-11-17 22:30:26.993476	ef913efe-e160-4ff3-8960-0b365e6236cc	3240
+3199	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	Parallel Teaching	Parallel Teaching	Parallel Teaching	\N	\N	\N	2022-11-17 22:30:27.002607	2022-11-17 22:30:27.003987	6795b11c-c3a8-406e-a287-8abbff03179d	3242
+3200	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	Station Teaching	Station Teaching	Station Teaching	\N	\N	\N	2022-11-17 22:30:27.014377	2022-11-17 22:30:27.01567	64596ddf-0015-4d73-aef2-1d3d0051bba8	3244
+3201	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	Other	Other	Other	\N	\N	\N	2022-11-17 22:30:27.024512	2022-11-17 22:30:27.025729	a0243c58-36ae-466d-b1e1-61111863c7d1	3246
+3202	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	Team Teaching	Team Teaching	Team Teaching	\N	\N	\N	2022-11-17 22:30:27.034543	2022-11-17 22:30:27.035728	b7683731-698a-4c3f-8ab1-684f56e6a4e9	3248
+3203	uri://tpdm.ed-fi.org/CoteachingStyleObservedDescriptor	Alternative Teaching	Alternative Teaching	Alternative Teaching	\N	\N	\N	2022-11-17 22:30:27.045258	2022-11-17 22:30:27.046385	ecd9d10b-d619-4a6b-95d9-3d5149d05075	3250
+3204	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Renewed	Renewed	Renewed	\N	\N	\N	2022-11-17 22:30:27.086245	2022-11-17 22:30:27.089466	1ebc9870-31e2-4358-91ab-a716fe81f532	3252
+3205	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Revoked	Revoked	Revoked	\N	\N	\N	2022-11-17 22:30:27.104127	2022-11-17 22:30:27.105322	062b4cdf-4ea6-42e9-be96-3ef524cea42c	3254
+3206	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Suspended	Suspended	Suspended	\N	\N	\N	2022-11-17 22:30:27.114481	2022-11-17 22:30:27.115622	a1ea3a3c-166f-4a5a-9eb4-37ea60607449	3256
+3207	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Retired	Retired	Retired	\N	\N	\N	2022-11-17 22:30:27.124683	2022-11-17 22:30:27.125941	31b900c6-c98b-4aa1-87b5-dded9e34216c	3258
+3208	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Voluntary Surrender	Voluntary Surrender	Voluntary Surrender	\N	\N	\N	2022-11-17 22:30:27.135018	2022-11-17 22:30:27.136169	f5686c2a-9c29-43cb-80ef-57ef41cb95b7	3260
+3209	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Expired	Expired	Expired	\N	\N	\N	2022-11-17 22:30:27.145855	2022-11-17 22:30:27.147107	347e306e-ba6f-4c01-b3a5-b4e10ab44ca8	3262
+3210	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Deprecated	Deprecated	Deprecated	\N	\N	\N	2022-11-17 22:30:27.156006	2022-11-17 22:30:27.157144	c0cee7a1-3d61-40b1-93ea-52c8b04c739d	3264
+3211	uri://tpdm.ed-fi.org/CredentialStatusDescriptor	Active	Active	Active	\N	\N	\N	2022-11-17 22:30:27.168839	2022-11-17 22:30:27.170036	839b3a22-f1a6-4414-bc6f-855d7d84ff91	3266
+3212	uri://tpdm.ed-fi.org/EducationOrganizationCategoryDescriptor	Educator Preparation Provider	Educator Preparation Provider	Educator Preparation Provider	\N	\N	\N	2022-11-17 22:30:27.216717	2022-11-17 22:30:27.215469	b2e63f1b-c4e7-45c5-b0fb-dc5e5f23372e	3267
+3213	uri://tpdm.ed-fi.org/EducationOrganizationCategoryDescriptor	University	University	University	\N	\N	\N	2022-11-17 22:30:27.228234	2022-11-17 22:30:27.228185	a049f6f2-95fc-4ad3-8b8c-d37bfb2037cc	3268
+3214	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Administrative	Administrative	Administrative	\N	\N	\N	2022-11-17 22:30:27.264536	2022-11-17 22:30:27.266735	5848c494-26bc-43f9-8400-d938530b5d46	3270
+3215	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Assistant Principal	Assistant Principal	Assistant Principal	\N	\N	\N	2022-11-17 22:30:27.277205	2022-11-17 22:30:27.278382	0a707cb9-fd0c-4226-8b21-c0e8a5fd8f8f	3272
+3216	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Associate School Psychologist	Associate School Psychologist	Associate School Psychologist	\N	\N	\N	2022-11-17 22:30:27.287777	2022-11-17 22:30:27.288932	d2b2451b-cea2-4f47-b9ed-9ef2aac70093	3274
+3217	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Counselor	Counselor	Counselor	\N	\N	\N	2022-11-17 22:30:27.297979	2022-11-17 22:30:27.299152	eccfb583-a45e-4252-9d43-098a112d934f	3276
+3218	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Educational Diagnostician	Educational Diagnostician	Educational Diagnostician	\N	\N	\N	2022-11-17 22:30:27.308528	2022-11-17 22:30:27.309774	dd128e5e-2ef7-4ce0-a8f2-cc18fd4f7fbd	3278
+3219	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Instructional Officer	Instructional Officer	Instructional Officer	\N	\N	\N	2022-11-17 22:30:27.318639	2022-11-17 22:30:27.319776	9bd58dc7-9ae4-4735-a3e1-c3e306b6bc1d	3280
+3220	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Librarian	Librarian	Librarian	\N	\N	\N	2022-11-17 22:30:27.331828	2022-11-17 22:30:27.332969	2380c124-2edd-41df-ab5e-55c86e7e406f	3282
+3221	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Physician	Physician	Physician	\N	\N	\N	2022-11-17 22:30:27.342816	2022-11-17 22:30:27.343958	67875ac3-f991-42d5-9c93-ebc1dcf7e9f3	3284
+3222	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Principal	Principal	Principal	\N	\N	\N	2022-11-17 22:30:27.352888	2022-11-17 22:30:27.354044	6d9dcfd8-becc-4703-ab0e-9416aa47767c	3286
+3223	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	School Nurse	School Nurse	School Nurse	\N	\N	\N	2022-11-17 22:30:27.362959	2022-11-17 22:30:27.364096	439ca4e4-568f-4fa4-846f-32880608ae71	3288
+3224	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	School Psychologist	School Psychologist	School Psychologist	\N	\N	\N	2022-11-17 22:30:27.373044	2022-11-17 22:30:27.374171	7ea85f2b-dcd2-48c6-96ff-95899e05426d	3290
+3225	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Superintendent	Superintendent	Superintendent	\N	\N	\N	2022-11-17 22:30:27.382904	2022-11-17 22:30:27.38403	dcfce722-361a-4e21-a898-81bece98aefc	3292
+3226	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Teacher Supervisor	Teacher Supervisor	Teacher Supervisor	\N	\N	\N	2022-11-17 22:30:27.393089	2022-11-17 22:30:27.39421	2d1ca5f6-40f7-42c6-ae21-e99fd5c53168	3294
+3227	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Teacher	Teacher	Teacher	\N	\N	\N	2022-11-17 22:30:27.403352	2022-11-17 22:30:27.404491	8f32531c-4247-4eb9-a8f1-27c4ebcb8ec9	3296
+3228	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Visiting Teacher	Visiting Teacher	Visiting Teacher	\N	\N	\N	2022-11-17 22:30:27.413468	2022-11-17 22:30:27.414596	c3663ca4-f972-4b5a-8b1f-da5b3a8b9973	3298
+3229	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Educational Secretary	Educational Secretary	Educational Secretary	\N	\N	\N	2022-11-17 22:30:27.42346	2022-11-17 22:30:27.424541	45986672-d960-47ad-95e7-62e4cc75c18c	3300
+3230	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Educational Aide	Educational Aide	Educational Aide	\N	\N	\N	2022-11-17 22:30:27.493364	2022-11-17 22:30:27.494863	a70a17d5-393f-47aa-a1b5-262a1f90f270	3302
+3231	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Special Education	Special Education	Special Education	\N	\N	\N	2022-11-17 22:30:27.505654	2022-11-17 22:30:27.506767	db86c433-39a9-4a47-8054-14a8a1332ba9	3304
+3232	uri://tpdm.ed-fi.org/EducatorRoleDescriptor	Generalist	Generalist	Generalist	\N	\N	\N	2022-11-17 22:30:27.518553	2022-11-17 22:30:27.519662	bb9aa0ad-8268-49cb-b354-3d2d626c8ade	3306
+3233	uri://tpdm.ed-fi.org/EnglishLanguageExamDescriptor	Fail	Fail	Fail	\N	\N	\N	2022-11-17 22:30:27.556631	2022-11-17 22:30:27.558863	6da7a212-0beb-4d24-a918-8d3fb5132166	3308
+3234	uri://tpdm.ed-fi.org/EnglishLanguageExamDescriptor	Not Applicable	Not Applicable	Not Applicable	\N	\N	\N	2022-11-17 22:30:27.575405	2022-11-17 22:30:27.576529	efeca2c2-32c3-48ec-a98e-2f6046f9ebe0	3310
+3235	uri://tpdm.ed-fi.org/EnglishLanguageExamDescriptor	Pass	Pass	Pass	\N	\N	\N	2022-11-17 22:30:27.585631	2022-11-17 22:30:27.586739	9b5f0829-d3d7-4d67-8e10-5332a1d872a8	3312
+3236	uri://tpdm.ed-fi.org/EnglishLanguageExamDescriptor	Other	Other	Other	\N	\N	\N	2022-11-17 22:30:27.595704	2022-11-17 22:30:27.59681	de6685a9-e9df-4061-bcc4-c8fadb9a649d	3314
+3237	uri://tpdm.ed-fi.org/EPPProgramPathwayDescriptor	Fellowship	Fellowship	Fellowship	\N	\N	\N	2022-11-17 22:30:27.634213	2022-11-17 22:30:27.636432	15581b64-c170-4313-b8cf-49381dfd39c5	3316
+3238	uri://tpdm.ed-fi.org/EPPProgramPathwayDescriptor	Internship	Internship	Internship	\N	\N	\N	2022-11-17 22:30:27.647181	2022-11-17 22:30:27.64832	b42bf1c5-81ce-4f68-99bd-d60014910579	3318
+3239	uri://tpdm.ed-fi.org/EPPProgramPathwayDescriptor	Residency	Residency	Residency	\N	\N	\N	2022-11-17 22:30:27.660876	2022-11-17 22:30:27.661994	2de1a388-d1e6-4672-b92d-b4bc6a9b0b43	3320
+3240	uri://tpdm.ed-fi.org/EPPProgramPathwayDescriptor	Traditional	Traditional	Traditional	\N	\N	\N	2022-11-17 22:30:27.671094	2022-11-17 22:30:27.672196	0b36a810-7276-4307-9ea5-32c41b982b3f	3322
+3241	uri://tpdm.ed-fi.org/EPPProgramPathwayDescriptor	Other	Other	Other	\N	\N	\N	2022-11-17 22:30:27.680761	2022-11-17 22:30:27.681859	3d021069-b53f-4d8f-81da-4ea195a26fd1	3324
+3242	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Developing	Developing	Developing	\N	\N	\N	2022-11-17 22:30:27.717428	2022-11-17 22:30:27.71961	9a7c3ca4-6543-4752-8bd7-590b5841819a	3326
+3243	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Minimally Effective	Minimally Effective	Minimally Effective	\N	\N	\N	2022-11-17 22:30:27.729693	2022-11-17 22:30:27.730856	1e026448-4d49-4064-a716-9e652ffac73b	3328
+3244	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Ineffective	Ineffective	Ineffective	\N	\N	\N	2022-11-17 22:30:27.739435	2022-11-17 22:30:27.740714	af20d682-5547-46c1-a34a-0261b4bdca85	3330
+3245	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Accomplished	Accomplished	Accomplished	\N	\N	\N	2022-11-17 22:30:27.749874	2022-11-17 22:30:27.751248	369b30c3-c823-4cb5-83ad-f6f5cfd545bd	3332
+3246	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Highly Effective	Highly Effective	Highly Effective	\N	\N	\N	2022-11-17 22:30:27.761382	2022-11-17 22:30:27.762478	42a5fabc-deca-40ad-85df-d0619f51c087	3334
+3247	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Effective	Effective	Effective	\N	\N	\N	2022-11-17 22:30:27.770943	2022-11-17 22:30:27.772057	63b81352-147e-4f0e-8b11-0a4984f90834	3336
+3248	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Not Demonstrated	Not Demonstrated	Not Demonstrated	\N	\N	\N	2022-11-17 22:30:27.780643	2022-11-17 22:30:27.781886	c1d28970-63b7-408b-89ea-0e18e355855d	3338
+3249	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Demonstrated	Demonstrated	Demonstrated	\N	\N	\N	2022-11-17 22:30:27.790486	2022-11-17 22:30:27.791622	b033c7a1-054d-4eb6-be39-727e67c77fd4	3340
+3250	uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor	Skilled	Skilled	Skilled	\N	\N	\N	2022-11-17 22:30:27.803963	2022-11-17 22:30:27.805073	4eb2e243-c99f-4283-9fd8-c680afc4a53a	3342
+3251	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	MOY	MOY	Mid-Year	\N	\N	\N	2022-11-17 22:30:27.840628	2022-11-17 22:30:27.842853	ef575794-e67d-4163-ae00-88386e860155	3344
+3252	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	BOY	BOY	Beginning of year	\N	\N	\N	2022-11-17 22:30:27.861216	2022-11-17 22:30:27.862359	bd8e4191-e58b-4cd7-863b-e20c1584d6b0	3346
+3253	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	EOY	EOY	End of Year	\N	\N	\N	2022-11-17 22:30:27.874982	2022-11-17 22:30:27.876099	dc1d91be-8968-4e1b-82c7-d0d17fd6ef85	3348
+3254	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	First Quarter	First Quarter	First Quarter	\N	\N	\N	2022-11-17 22:30:27.884516	2022-11-17 22:30:27.885886	4fc71eb0-f495-4163-a5fe-680e91a79816	3350
+3255	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Second Quarter	Second Quarter	Second Quarter	\N	\N	\N	2022-11-17 22:30:27.894677	2022-11-17 22:30:27.895782	83baf2fa-4238-45a6-be3d-071fd006c1b0	3352
+3256	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Third Quarter	Third Quarter	Third Quarter	\N	\N	\N	2022-11-17 22:30:27.904564	2022-11-17 22:30:27.905803	0481b3ca-46e0-4ece-b42f-52720e3e6611	3354
+3257	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Fall Semester	Fall	Fall	\N	\N	\N	2022-11-17 22:30:27.914633	2022-11-17 22:30:27.915724	e31e8de3-de8f-4f35-8bcb-55a2daa89eff	3356
+3258	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Fourth Quarter	Fourth Quarter	Fourth Quarter	\N	\N	\N	2022-11-17 22:30:27.924699	2022-11-17 22:30:27.925813	42188332-27fe-494d-880f-f3f5cc5f23ff	3358
+3259	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Spring Semester	Spring Semester	Spring Semester	\N	\N	\N	2022-11-17 22:30:27.934882	2022-11-17 22:30:27.935989	df7eba0b-3810-421c-954a-56674c62e288	3360
+3260	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Summer Semester	Summer Semester	Summer Semester	\N	\N	\N	2022-11-17 22:30:27.944745	2022-11-17 22:30:27.945855	70d18320-e7fb-44f5-a0fd-99ae01b88084	3362
+3261	uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor	Winter Semester	Winter Semester	Winter Semester	\N	\N	\N	2022-11-17 22:30:27.963967	2022-11-17 22:30:27.965331	6aa7e1ec-c5ee-4c71-b4bf-66d9331123f4	3364
+3262	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Developing	Developing	Developing	\N	\N	\N	2022-11-17 22:30:28.00211	2022-11-17 22:30:28.004302	1977b23c-b890-4f2e-be4f-c0c9febff822	3366
+3263	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Minimally Effective	Minimally Effective	Minimally Effective	\N	\N	\N	2022-11-17 22:30:28.015473	2022-11-17 22:30:28.016731	7911648f-7e37-4ab3-bc6c-b3be63fb8eac	3368
+3264	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Ineffective	Ineffective	Ineffective	\N	\N	\N	2022-11-17 22:30:28.026138	2022-11-17 22:30:28.027441	2c07a5cf-d0ae-4aa1-a32a-8cde826368ae	3370
+3265	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Accomplished	Accomplished	Accomplished	\N	\N	\N	2022-11-17 22:30:28.036445	2022-11-17 22:30:28.037598	635900d4-b774-4545-af57-9127c4f21b4d	3372
+3266	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Highly Effective	Highly Effective	Highly Effective	\N	\N	\N	2022-11-17 22:30:28.048123	2022-11-17 22:30:28.049315	a099cd70-9b5c-4a46-9b2a-06a99b504701	3374
+3267	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Effective	Effective	Effective	\N	\N	\N	2022-11-17 22:30:28.058522	2022-11-17 22:30:28.059836	fa87a639-28c8-464d-a1a1-3b11c0f5790b	3376
+3268	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Not Demonstrated	Not Demonstrated	Not Demonstrated	\N	\N	\N	2022-11-17 22:30:28.069195	2022-11-17 22:30:28.070397	719df8bc-3016-461d-8ef2-9aeea4eb1c31	3378
+3269	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Demonstrated	Demonstrated	Demonstrated	\N	\N	\N	2022-11-17 22:30:28.07965	2022-11-17 22:30:28.080955	3d566939-22b0-48c8-9c6c-0a0d610429ca	3380
+3270	uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor	Skilled	Skilled	Skilled	\N	\N	\N	2022-11-17 22:30:28.091005	2022-11-17 22:30:28.092143	56cb9588-f924-4b7d-af77-291afbe1f035	3382
+3271	uri://tpdm.ed-fi.org/EvaluationRatingStatusDescriptor	Not Started	Not Started	Not Started	\N	\N	\N	2022-11-17 22:30:28.132749	2022-11-17 22:30:28.13499	1d2b5dbf-bdaf-4877-8ca4-d9884f88261b	3384
+3272	uri://tpdm.ed-fi.org/EvaluationRatingStatusDescriptor	In Progress	In Progress	In Progress	\N	\N	\N	2022-11-17 22:30:28.149751	2022-11-17 22:30:28.150904	8dfbdbbb-e445-4ef8-9dd8-ce26cca9343e	3386
+3273	uri://tpdm.ed-fi.org/EvaluationRatingStatusDescriptor	Draft	Draft	Draft	\N	\N	\N	2022-11-17 22:30:28.161546	2022-11-17 22:30:28.162672	f19502cf-8d64-405d-b270-bb76c2c972ea	3388
+3274	uri://tpdm.ed-fi.org/EvaluationRatingStatusDescriptor	Queued	Queued	Queued	\N	\N	\N	2022-11-17 22:30:28.174455	2022-11-17 22:30:28.175572	5ed78437-5363-4a99-b117-49cfc862a69f	3390
+3275	uri://tpdm.ed-fi.org/EvaluationRatingStatusDescriptor	Completed	Completed	Completed	\N	\N	\N	2022-11-17 22:30:28.185061	2022-11-17 22:30:28.186204	ed78b43e-1ee6-4cd5-b918-a33d02253886	3392
+3276	uri://tpdm.ed-fi.org/EvaluationRatingStatusDescriptor	Incomplete	Incomplete	Incomplete	\N	\N	\N	2022-11-17 22:30:28.198546	2022-11-17 22:30:28.199642	7c5f859c-4e01-4180-aa71-5579893165f0	3394
+3277	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Formal Evaluation	Formal Evaluation	Formal Evaluation	\N	\N	\N	2022-11-17 22:30:28.238119	2022-11-17 22:30:28.240283	f7cdba0a-2a80-4687-b3e5-a776423d9b3c	3396
+3278	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Formal Observation	Formal Observation	Formal Observation	\N	\N	\N	2022-11-17 22:30:28.250666	2022-11-17 22:30:28.25195	0c2d952f-b12c-4d0c-a6c3-c7706be5484c	3398
+3279	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Formal Evaluation Self-Rating	Formal Evaluation Self-Rating	Formal Evaluation Self-Rating	\N	\N	\N	2022-11-17 22:30:28.261086	2022-11-17 22:30:28.262294	d17afd82-9191-436e-9c63-29cf18ae7b86	3400
+3280	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Informal Observation	Informal Observation	Informal Observation	\N	\N	\N	2022-11-17 22:30:28.271272	2022-11-17 22:30:28.272445	fcc33ce3-0cd7-4dc1-8b36-19979ec309bc	3402
+3281	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Student Growth	Student Growth	Student Growth Measures	\N	\N	\N	2022-11-17 22:30:28.284145	2022-11-17 22:30:28.285322	c222597b-a615-4333-bb3b-b5d0ec8772f4	3404
+3282	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Informal Observation Self-Rating	Informal Observation Self-Rating	Informal Observation Self-Rating	\N	\N	\N	2022-11-17 22:30:28.295791	2022-11-17 22:30:28.297003	b4852e4e-ea03-43f2-bef0-e0f435ed9866	3406
+3283	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Formal Observation Self-Rating	Formal Observation Self-Rating	Formal Observation Self-Rating	\N	\N	\N	2022-11-17 22:30:28.30718	2022-11-17 22:30:28.308352	f6b7f1f6-c529-4abe-9f3e-0f508c45b10b	3408
+3284	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Student Work	Student Work	Student Work	\N	\N	\N	2022-11-17 22:30:28.317597	2022-11-17 22:30:28.318792	34cb82bb-5a6d-41a2-b7b8-6a47a612c1fd	3410
+3285	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Walkthrough	Walkthrough	Walkthrough	\N	\N	\N	2022-11-17 22:30:28.331708	2022-11-17 22:30:28.33293	f9ab816e-d959-4c93-8a36-4881e2e108ed	3412
+3286	uri://tpdm.ed-fi.org/EvaluationTypeDescriptor	Student Survey	Student Survey	Student Survey	\N	\N	\N	2022-11-17 22:30:28.341857	2022-11-17 22:30:28.34366	1a74e874-a820-4247-a259-265ee83fed19	3414
+3287	uri://tpdm.ed-fi.org/GenderDescriptor	Female	Female	Female	\N	\N	\N	2022-11-17 22:30:28.381997	2022-11-17 22:30:28.384159	b169ef2e-d104-417f-b0e0-dd1ff88f49b4	3416
+3288	uri://tpdm.ed-fi.org/GenderDescriptor	Male	Male	Male	\N	\N	\N	2022-11-17 22:30:28.401003	2022-11-17 22:30:28.402122	915e562e-2ff9-48e0-a536-4ed2d43c9ca9	3418
+3289	uri://tpdm.ed-fi.org/GenderDescriptor	Other	Other	Other	\N	\N	\N	2022-11-17 22:30:28.411685	2022-11-17 22:30:28.412858	c1c5deb5-83b2-46be-82eb-b2c958ef4b79	3420
+3290	uri://tpdm.ed-fi.org/GenderDescriptor	Not Selected	Not Selected	Not Selected	\N	\N	\N	2022-11-17 22:30:28.425031	2022-11-17 22:30:28.426191	c4d5e719-d820-4a3e-8070-c5590f8f8d4d	3422
+3291	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Master's Program	Master's Program	Master's Program	\N	\N	\N	2022-11-17 22:30:28.471017	2022-11-17 22:30:28.469483	84727a83-3e28-48cf-b569-0ff5bcfd90e1	3423
+3292	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Professional Certification	Professional Certification	Professional Certification	\N	\N	\N	2022-11-17 22:30:28.48179	2022-11-17 22:30:28.481745	46d106ab-6732-4cd3-93b2-eacc78a0edde	3424
+3293	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Undergraduate	Undergraduate	Undergraduate	\N	\N	\N	2022-11-17 22:30:28.490941	2022-11-17 22:30:28.490897	b2bb71ba-82e4-44a0-b58f-1c0dbe7cc04e	3425
+3294	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Freshman	Freshman	Freshman	\N	\N	\N	2022-11-17 22:30:28.500455	2022-11-17 22:30:28.500412	51d77bad-94a0-4873-9269-f4fb49294271	3426
+3295	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Sophomore	Sophomore	Sophomore	\N	\N	\N	2022-11-17 22:30:28.51201	2022-11-17 22:30:28.511968	ea76e5cf-1044-4cee-a790-b1896b5dfdee	3427
+3296	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Junior	Junior	Junior	\N	\N	\N	2022-11-17 22:30:28.521575	2022-11-17 22:30:28.52153	d66a4681-0917-4e39-842f-390bf8fa33d0	3428
+3297	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Senior	Senior	Senior	\N	\N	\N	2022-11-17 22:30:28.531019	2022-11-17 22:30:28.530975	a1b8be1e-f95c-4e5d-a905-ec7a0b1ba490	3429
+3298	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Postbaccalaureate	Postbaccalaureate	Postbaccalaureate	\N	\N	\N	2022-11-17 22:30:28.542726	2022-11-17 22:30:28.542681	73ac3c83-1ba8-4660-90b8-067418d085cf	3430
+3299	uri://tpdm.ed-fi.org/GradeLevelDescriptor	Doctoral Program	Doctoral Program	Doctoral Program	\N	\N	\N	2022-11-17 22:30:28.551157	2022-11-17 22:30:28.551114	89b44133-6a2d-4aaa-80d1-c5e82532b0e6	3431
+3300	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Developing	Developing	Developing	\N	\N	\N	2022-11-17 22:30:28.59621	2022-11-17 22:30:28.598297	5cc2518a-5e3d-43ee-ac92-a0561009f163	3433
+3301	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Minimally Effective	Minimally Effective	Minimally Effective	\N	\N	\N	2022-11-17 22:30:28.624835	2022-11-17 22:30:28.627173	988d3ef5-ae92-40f6-86ae-3e4804737f00	3435
+3302	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Ineffective	Ineffective	Ineffective	\N	\N	\N	2022-11-17 22:30:28.63659	2022-11-17 22:30:28.63773	df5b877a-69b0-492f-8cbe-316565d2fe26	3437
+3303	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Accomplished	Accomplished	Accomplished	\N	\N	\N	2022-11-17 22:30:28.646603	2022-11-17 22:30:28.647723	342fbfce-7c2a-40e4-807a-2d0b0d139bf4	3439
+3304	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Highly Effective	Highly Effective	Highly Effective	\N	\N	\N	2022-11-17 22:30:28.656521	2022-11-17 22:30:28.657695	8d7c5cc8-cb57-447e-989b-a829b55a7159	3441
+3305	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Effective	Effective	Effective	\N	\N	\N	2022-11-17 22:30:28.681739	2022-11-17 22:30:28.682973	9182d555-9022-4c03-b32a-586320beb1db	3443
+3306	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Not Demonstrated	Not Demonstrated	Not Demonstrated	\N	\N	\N	2022-11-17 22:30:28.692116	2022-11-17 22:30:28.693275	3bc67e37-df0d-4299-9ca4-72c0b0aea484	3445
+3307	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Demonstrated	Demonstrated	Demonstrated	\N	\N	\N	2022-11-17 22:30:28.702176	2022-11-17 22:30:28.703408	5f2f5ab4-be46-43d6-a8af-c4fdc4d63d6b	3447
+3308	uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor	Skilled	Skilled	Skilled	\N	\N	\N	2022-11-17 22:30:28.712244	2022-11-17 22:30:28.713526	110b3804-bff3-4948-bae7-10308d30e72f	3449
+3309	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Developing	Developing	Developing	\N	\N	\N	2022-11-17 22:30:28.783024	2022-11-17 22:30:28.785296	4791a261-00fb-40cf-98cb-267aa34fa109	3451
+3310	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Minimally Effective	Minimally Effective	Minimally Effective	\N	\N	\N	2022-11-17 22:30:28.796299	2022-11-17 22:30:28.797754	296cc4a0-6e4e-43d2-bfff-d33233c635b2	3453
+3311	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Ineffective	Ineffective	Ineffective	\N	\N	\N	2022-11-17 22:30:28.80669	2022-11-17 22:30:28.807881	ca5d52c7-ccc9-4561-885c-b0b76f92ac37	3455
+3312	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Accomplished	Accomplished	Accomplished	\N	\N	\N	2022-11-17 22:30:28.816705	2022-11-17 22:30:28.818905	018f56a9-7f6d-46f7-9ebb-6df83c88c334	3457
+3313	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Highly Effective	Highly Effective	Highly Effective	\N	\N	\N	2022-11-17 22:30:28.833303	2022-11-17 22:30:28.834497	2804e70b-f08b-421b-a799-db515c1f81be	3459
+3314	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Effective	Effective	Effective	\N	\N	\N	2022-11-17 22:30:28.843736	2022-11-17 22:30:28.844912	8dc5af45-a1e5-4664-ba26-d86c2f6e0982	3461
+3315	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Not Demonstrated	Not Demonstrated	Not Demonstrated	\N	\N	\N	2022-11-17 22:30:28.854861	2022-11-17 22:30:28.856033	f3d38356-0a21-4804-a467-879b5f0a46aa	3463
+3316	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Demonstrated	Demonstrated	Demonstrated	\N	\N	\N	2022-11-17 22:30:28.865218	2022-11-17 22:30:28.866339	12232d60-921a-49e3-98be-a62d1fbe1cad	3465
+3317	uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor	Skilled	Skilled	Skilled	\N	\N	\N	2022-11-17 22:30:28.875119	2022-11-17 22:30:28.876223	6e68f6c4-c325-4638-8914-9a7179c584b0	3467
+3318	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Formal Evaluation	Formal Evaluation	Formal Evaluation	\N	\N	\N	2022-11-17 22:30:28.914571	2022-11-17 22:30:28.916816	376a059d-7216-443a-af28-7d38df274089	3469
+3319	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Formal Observation	Formal Observation	Formal Observation	\N	\N	\N	2022-11-17 22:30:28.927404	2022-11-17 22:30:28.928503	e255f977-c404-47e5-96f8-6d85078398e3	3471
+3320	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Formal Evaluation Self-Rating	Formal Evaluation Self-Rating	Formal Evaluation Self-Rating	\N	\N	\N	2022-11-17 22:30:28.937662	2022-11-17 22:30:28.939036	f3b6355f-061a-4f86-963f-dacdcdefabe7	3473
+3321	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Informal Observation	Informal Observation	Informal Observation	\N	\N	\N	2022-11-17 22:30:28.947577	2022-11-17 22:30:28.948665	348d58bd-cdf3-410f-aa65-35b38345d254	3475
+3322	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Student Growth Measures	Student Growth Measures	Student Growth Measures	\N	\N	\N	2022-11-17 22:30:28.95748	2022-11-17 22:30:28.958594	f328b0ad-7e79-47d2-a9b7-e267cc70fb72	3477
+3323	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Informal Observation Self-Rating	Informal Observation Self-Rating	Informal Observation Self-Rating	\N	\N	\N	2022-11-17 22:30:28.969002	2022-11-17 22:30:28.970137	4a9d5994-7a24-48f8-a5d3-be20abab9b23	3479
+3324	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Formal Observation Self-Rating	Formal Observation Self-Rating	Formal Observation Self-Rating	\N	\N	\N	2022-11-17 22:30:28.978888	2022-11-17 22:30:28.980086	d55fdcfd-6583-498d-94ed-9b0a963e37c4	3481
+3325	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Student Work	Student Work	Student Work	\N	\N	\N	2022-11-17 22:30:28.989137	2022-11-17 22:30:28.990494	2eefd600-202f-4ab3-8051-e4b2d5502f03	3483
+3326	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Walkthrough	Walkthrough	Walkthrough	\N	\N	\N	2022-11-17 22:30:29.000519	2022-11-17 22:30:29.001884	ab189009-e4a9-4a69-afef-c25eb0e329b4	3485
+3327	uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor	Student Survey	Student Survey	Student Survey	\N	\N	\N	2022-11-17 22:30:29.011398	2022-11-17 22:30:29.012557	c45f3c08-cf52-468d-85b4-6f86881c9334	3487
+3328	uri://tpdm.ed-fi.org/ProgramTypeDescriptor	Traditional Certification Program	Traditional Certification Program	Traditional Certification Program	\N	\N	\N	2022-11-17 22:30:29.058943	2022-11-17 22:30:29.057634	53e39fad-8e10-4433-b2e6-d2ca4004f4e2	3488
+3329	uri://tpdm.ed-fi.org/ProgramTypeDescriptor	Post-Baccalaureate	Post-Baccalaureate	Master's + Teaching certificate	\N	\N	\N	2022-11-17 22:30:29.073865	2022-11-17 22:30:29.073806	295b5de9-0357-4bd4-a983-49d442248e6c	3489
+3330	uri://tpdm.ed-fi.org/ProgramTypeDescriptor	Continuing Education Certificate	Continuing Education Certificate	Certificates offered by education institution	\N	\N	\N	2022-11-17 22:30:29.105781	2022-11-17 22:30:29.105721	75662ec3-8424-465f-a832-e33ae2fe001b	3490
+3331	uri://tpdm.ed-fi.org/ProgramTypeDescriptor	Alternative	Alternative	Training offered in ESC's, community colleges, private vendors, etc.	\N	\N	\N	2022-11-17 22:30:29.116926	2022-11-17 22:30:29.116874	00b3974a-61b3-491f-b3e8-afd45a016d0a	3491
+3332	uri://tpdm.ed-fi.org/ReasonExitedDescriptor	Completed	Completed	Completed	\N	\N	\N	2022-11-17 22:30:29.16025	2022-11-17 22:30:29.158978	597f3791-5592-4e1f-8d4d-1d81bfd9bf16	3492
+3333	uri://tpdm.ed-fi.org/ReasonExitedDescriptor	Received Degree	Received Degree	Received Degree	\N	\N	\N	2022-11-17 22:30:29.17219	2022-11-17 22:30:29.172075	a7e94a17-036f-415d-a62c-1b63f7a3642f	3493
+3334	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Developing	Developing	Developing	\N	\N	\N	2022-11-17 22:30:29.209444	2022-11-17 22:30:29.211717	16c7a0f9-ae85-4690-817f-004f17d253d3	3495
+3335	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Minimally Effective	Minimally Effective	Minimally Effective	\N	\N	\N	2022-11-17 22:30:29.222878	2022-11-17 22:30:29.224132	0f24d3cf-198d-4fdf-99a9-cd9f862a1407	3497
+3336	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Ineffective	Ineffective	Ineffective	\N	\N	\N	2022-11-17 22:30:29.23329	2022-11-17 22:30:29.234409	94582955-261b-4b9d-9eb6-412f8f93fb67	3499
+3337	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Accomplished	Accomplished	Accomplished	\N	\N	\N	2022-11-17 22:30:29.243793	2022-11-17 22:30:29.2449	be6f54ee-4f68-4fd8-a95e-ab1b5252b0c1	3501
+3338	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Highly Effective	Highly Effective	Highly Effective	\N	\N	\N	2022-11-17 22:30:29.254754	2022-11-17 22:30:29.255933	abdc8eb4-0efa-4e5d-a52f-74274ddfbc07	3503
+3339	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Effective	Effective	Effective	\N	\N	\N	2022-11-17 22:30:29.265174	2022-11-17 22:30:29.266519	4a61eea8-aa32-4ca4-b769-c607b2baf499	3505
+3340	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Not Demonstrated	Not Demonstrated	Not Demonstrated	\N	\N	\N	2022-11-17 22:30:29.276037	2022-11-17 22:30:29.277211	b70a6e2c-8550-48ee-9218-87976acd6c11	3507
+3341	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Demonstrated	Demonstrated	Demonstrated	\N	\N	\N	2022-11-17 22:30:29.287246	2022-11-17 22:30:29.288429	9c96b510-3bc5-4c80-b419-787e77ec3a22	3509
+3342	uri://tpdm.ed-fi.org/RubricRatingLevelDescriptor	Skilled	Skilled	Skilled	\N	\N	\N	2022-11-17 22:30:29.300482	2022-11-17 22:30:29.302049	2a85546b-8bf5-48f8-a9db-5394c04ea655	3511
 \.
 
 
@@ -48368,6 +54767,8 @@ COPY edfi.educationorganizationcategorydescriptor (educationorganizationcategory
 843
 845
 847
+3212
+3213
 \.
 
 
@@ -48773,6 +55174,15 @@ COPY edfi.gradeleveldescriptor (gradeleveldescriptorid) FROM stdin;
 986
 987
 988
+3291
+3292
+3293
+3294
+3295
+3296
+3297
+3298
+3299
 \.
 
 
@@ -50989,6 +57399,10 @@ COPY edfi.programtypedescriptor (programtypedescriptorid) FROM stdin;
 1938
 1939
 1940
+3328
+3329
+3330
+3331
 \.
 
 
@@ -51144,6 +57558,8 @@ COPY edfi.reasonexiteddescriptor (reasonexiteddescriptorid) FROM stdin;
 2000
 2003
 2006
+3332
+3333
 \.
 
 
@@ -54213,6 +60629,700 @@ COPY public."DeployJournal" (schemaversionsid, scriptname, applied) FROM stdin;
 47	EdFi.Ods.Standard.Artifacts.PgSql.Structure.Ods.Changes.1010-CreateGetMaxChangeVersionFunction.sql	2022-11-17 17:07:18.829223
 48	EdFi.Ods.Standard.Artifacts.PgSql.Structure.Ods.Changes.1020-AuthViewsIncludingDeletes.sql	2022-11-17 17:07:18.841232
 49	EdFi.Ods.Standard.Artifacts.PgSql.Structure.Ods.Changes.1370-AddEducationOrganizationIdToEducationOrganizationIdIndex.sql	2022-11-17 17:07:18.857128
+50	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.0001-EXTENSION-TPDM-SchemasValidation.sql	2022-11-17 22:29:57.590605
+51	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.0010-EXTENSION-TPDM-Schemas.sql	2022-11-17 22:29:57.611165
+52	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.0020-EXTENSION-TPDM-Tables.sql	2022-11-17 22:29:58.345184
+53	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.0030-EXTENSION-TPDM-ForeignKeys.sql	2022-11-17 22:29:59.980278
+54	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.0040-EXTENSION-TPDM-IdColumnUniqueIndexes.sql	2022-11-17 22:30:00.122244
+55	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.0050-EXTENSION-TPDM-ExtendedProperties.sql	2022-11-17 22:30:00.14222
+56	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0010-CreateChangesSchema.sql	2022-11-17 22:30:00.211216
+57	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0020-CreateChangeVersionSequence.sql	2022-11-17 22:30:00.218536
+58	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0030-AddColumnChangeVersionForTables.sql	2022-11-17 22:30:00.289097
+59	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0070-AddIndexChangeVersionForTables.sql	2022-11-17 22:30:00.410759
+60	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0200-CreateTrackedChangeTables.sql	2022-11-17 22:30:00.802666
+61	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0210-CreateTriggersForChangeVersionAndKeyChanges.sql	2022-11-17 22:30:00.826444
+62	EdFi.Suite3.Ods.Extensions.TPDM.Core.1.1.0.6.1.66.Artifacts.PgSql.Structure.Ods.Changes.0220-CreateTriggersForDeleteTracking.sql	2022-11-17 22:30:00.880879
+\.
+
+
+--
+-- Data for Name: accreditationstatusdescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.accreditationstatusdescriptor (accreditationstatusdescriptorid) FROM stdin;
+3155
+3156
+3157
+3158
+3159
+\.
+
+
+--
+-- Data for Name: aidtypedescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.aidtypedescriptor (aidtypedescriptorid) FROM stdin;
+3160
+3161
+3162
+3163
+3164
+3165
+3166
+3167
+3168
+3169
+3170
+3171
+3172
+3173
+3174
+3175
+3176
+3177
+3178
+3179
+3180
+3181
+3182
+3183
+\.
+
+
+--
+-- Data for Name: candidate; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidate (candidateidentifier, personaltitleprefix, firstname, middlename, lastsurname, generationcodesuffix, maidenname, sexdescriptorid, birthdate, birthcity, birthstateabbreviationdescriptorid, birthinternationalprovince, birthcountrydescriptorid, dateenteredus, multiplebirthstatus, birthsexdescriptorid, hispaniclatinoethnicity, economicdisadvantaged, limitedenglishproficiencydescriptorid, displacementstatus, genderdescriptorid, englishlanguageexamdescriptorid, firstgenerationstudent, personid, sourcesystemdescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateaddress; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateaddress (addresstypedescriptorid, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername, apartmentroomsuitenumber, buildingsitenumber, nameofcounty, countyfipscode, latitude, longitude, donotpublishindicator, congressionaldistrict, localedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateaddressperiod; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateaddressperiod (addresstypedescriptorid, begindate, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername, enddate, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidatedisability; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidatedisability (candidateidentifier, disabilitydescriptorid, disabilitydiagnosis, orderofdisability, disabilitydeterminationsourcetypedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidatedisabilitydesignation; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidatedisabilitydesignation (candidateidentifier, disabilitydescriptorid, disabilitydesignationdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateeducatorpreparationprogramassociation; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateeducatorpreparationprogramassociation (begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid, enddate, reasonexiteddescriptorid, eppprogrampathwaydescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateeducatorpreparationprogramassociationcohortyear; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateeducatorpreparationprogramassociationcohortyear (begindate, candidateidentifier, cohortyeartypedescriptorid, educationorganizationid, programname, programtypedescriptorid, schoolyear, termdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateeducatorpreparationprogramassociationdegreespec_2501c4; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4 (begindate, candidateidentifier, educationorganizationid, majorspecialization, programname, programtypedescriptorid, minorspecialization, enddate, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateelectronicmail; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateelectronicmail (candidateidentifier, electronicmailaddress, electronicmailtypedescriptorid, primaryemailaddressindicator, donotpublishindicator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidatelanguage; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidatelanguage (candidateidentifier, languagedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidatelanguageuse; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidatelanguageuse (candidateidentifier, languagedescriptorid, languageusedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateothername; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidateothername (candidateidentifier, othernametypedescriptorid, personaltitleprefix, firstname, middlename, lastsurname, generationcodesuffix, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidatepersonalidentificationdocument; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidatepersonalidentificationdocument (candidateidentifier, identificationdocumentusedescriptorid, personalinformationverificationdescriptorid, documenttitle, documentexpirationdate, issuerdocumentidentificationcode, issuername, issuercountrydescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidaterace; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidaterace (candidateidentifier, racedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidatetelephone; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.candidatetelephone (candidateidentifier, telephonenumber, telephonenumbertypedescriptorid, orderofpriority, textmessagecapabilityindicator, donotpublishindicator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: certificationroutedescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.certificationroutedescriptor (certificationroutedescriptorid) FROM stdin;
+3184
+3185
+3186
+3187
+3188
+3189
+3190
+3191
+3192
+3193
+3194
+\.
+
+
+--
+-- Data for Name: coteachingstyleobserveddescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.coteachingstyleobserveddescriptor (coteachingstyleobserveddescriptorid) FROM stdin;
+3197
+3198
+3199
+3200
+3201
+3202
+3203
+\.
+
+
+--
+-- Data for Name: credentialextension; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.credentialextension (credentialidentifier, stateofissuestateabbreviationdescriptorid, personid, sourcesystemdescriptorid, certificationtitle, certificationroutedescriptorid, boardcertificationindicator, credentialstatusdescriptorid, credentialstatusdate, educatorroledescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: credentialstatusdescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.credentialstatusdescriptor (credentialstatusdescriptorid) FROM stdin;
+3204
+3205
+3206
+3207
+3208
+3209
+3210
+3211
+\.
+
+
+--
+-- Data for Name: credentialstudentacademicrecord; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.credentialstudentacademicrecord (credentialidentifier, educationorganizationid, schoolyear, stateofissuestateabbreviationdescriptorid, studentusi, termdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: educatorpreparationprogram; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.educatorpreparationprogram (educationorganizationid, programname, programtypedescriptorid, programid, accreditationstatusdescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: educatorpreparationprogramgradelevel; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.educatorpreparationprogramgradelevel (educationorganizationid, gradeleveldescriptorid, programname, programtypedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: educatorroledescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.educatorroledescriptor (educatorroledescriptorid) FROM stdin;
+3214
+3215
+3216
+3217
+3218
+3219
+3220
+3221
+3222
+3223
+3224
+3225
+3226
+3227
+3228
+3229
+3230
+3231
+3232
+\.
+
+
+--
+-- Data for Name: englishlanguageexamdescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.englishlanguageexamdescriptor (englishlanguageexamdescriptorid) FROM stdin;
+3233
+3234
+3235
+3236
+\.
+
+
+--
+-- Data for Name: eppprogrampathwaydescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.eppprogrampathwaydescriptor (eppprogrampathwaydescriptorid) FROM stdin;
+3237
+3238
+3239
+3240
+3241
+\.
+
+
+--
+-- Data for Name: evaluation; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluation (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, evaluationdescription, minrating, maxrating, evaluationtypedescriptorid, interraterreliabilityscore, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationelement; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationelement (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, sortorder, minrating, maxrating, evaluationtypedescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationelementrating; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationelementrating (educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, evaluationelementratingleveldescriptorid, areaofrefinement, areaofreinforcement, comments, feedback, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationelementratinglevel; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationelementratinglevel (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationratingleveldescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, minrating, maxrating, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationelementratingleveldescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationelementratingleveldescriptor (evaluationelementratingleveldescriptorid) FROM stdin;
+3242
+3243
+3244
+3245
+3246
+3247
+3248
+3249
+3250
+\.
+
+
+--
+-- Data for Name: evaluationelementratingresult; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationelementratingresult (educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid, resultdatatypetypedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationobjective; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationobjective (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, evaluationobjectivedescription, sortorder, minrating, maxrating, evaluationtypedescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationobjectiverating; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationobjectiverating (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, objectiveratingleveldescriptorid, comments, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationobjectiveratinglevel; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationobjectiveratinglevel (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationratingleveldescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, minrating, maxrating, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationobjectiveratingresult; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationobjectiveratingresult (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid, resultdatatypetypedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationperioddescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationperioddescriptor (evaluationperioddescriptorid) FROM stdin;
+3251
+3252
+3253
+3254
+3255
+3256
+3257
+3258
+3259
+3260
+3261
+\.
+
+
+--
+-- Data for Name: evaluationrating; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationrating (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, evaluationratingleveldescriptorid, sectionidentifier, localcoursecode, sessionname, schoolid, evaluationratingstatusdescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationratinglevel; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationratinglevel (educationorganizationid, evaluationperioddescriptorid, evaluationratingleveldescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, minrating, maxrating, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationratingleveldescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationratingleveldescriptor (evaluationratingleveldescriptorid) FROM stdin;
+3262
+3263
+3264
+3265
+3266
+3267
+3268
+3269
+3270
+\.
+
+
+--
+-- Data for Name: evaluationratingresult; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationratingresult (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid, resultdatatypetypedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationratingreviewer; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationratingreviewer (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, reviewerpersonid, reviewersourcesystemdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationratingreviewerreceivedtraining; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationratingreviewerreceivedtraining (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, receivedtrainingdate, interraterreliabilityscore, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationratingstatusdescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationratingstatusdescriptor (evaluationratingstatusdescriptorid) FROM stdin;
+3271
+3272
+3273
+3274
+3275
+3276
+\.
+
+
+--
+-- Data for Name: evaluationtypedescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.evaluationtypedescriptor (evaluationtypedescriptorid) FROM stdin;
+3277
+3278
+3279
+3280
+3281
+3282
+3283
+3284
+3285
+3286
+\.
+
+
+--
+-- Data for Name: financialaid; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.financialaid (aidtypedescriptorid, begindate, studentusi, enddate, aidconditiondescription, aidamount, pellgrantrecipient, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: genderdescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.genderdescriptor (genderdescriptorid) FROM stdin;
+3287
+3288
+3289
+3290
+\.
+
+
+--
+-- Data for Name: objectiveratingleveldescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.objectiveratingleveldescriptor (objectiveratingleveldescriptorid) FROM stdin;
+3300
+3301
+3302
+3303
+3304
+3305
+3306
+3307
+3308
+\.
+
+
+--
+-- Data for Name: performanceevaluation; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluation (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, performanceevaluationdescription, academicsubjectdescriptorid, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationgradelevel; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationgradelevel (educationorganizationid, evaluationperioddescriptorid, gradeleveldescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationrating; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationrating (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, actualdate, announced, comments, coteachingstyleobserveddescriptorid, actualduration, performanceevaluationratingleveldescriptorid, scheduledate, actualtime, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationratinglevel; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationratinglevel (educationorganizationid, evaluationperioddescriptorid, evaluationratingleveldescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid, minrating, maxrating, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationratingleveldescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationratingleveldescriptor (performanceevaluationratingleveldescriptorid) FROM stdin;
+3309
+3310
+3311
+3312
+3313
+3314
+3315
+3316
+3317
+\.
+
+
+--
+-- Data for Name: performanceevaluationratingresult; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationratingresult (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid, resultdatatypetypedescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationratingreviewer; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationratingreviewer (educationorganizationid, evaluationperioddescriptorid, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, reviewerpersonid, reviewersourcesystemdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationratingreviewerreceivedtraining; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationratingreviewerreceivedtraining (educationorganizationid, evaluationperioddescriptorid, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid, receivedtrainingdate, interraterreliabilityscore, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationtypedescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.performanceevaluationtypedescriptor (performanceevaluationtypedescriptorid) FROM stdin;
+3318
+3319
+3320
+3321
+3322
+3323
+3324
+3325
+3326
+3327
+\.
+
+
+--
+-- Data for Name: rubricdimension; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.rubricdimension (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, rubricrating, schoolyear, termdescriptorid, rubricratingleveldescriptorid, criteriondescription, dimensionorder, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: rubricratingleveldescriptor; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.rubricratingleveldescriptor (rubricratingleveldescriptorid) FROM stdin;
+3334
+3335
+3336
+3337
+3338
+3339
+3340
+3341
+3342
+\.
+
+
+--
+-- Data for Name: schoolextension; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.schoolextension (schoolid, postsecondaryinstitutionid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: surveyresponseextension; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.surveyresponseextension (namespace, surveyidentifier, surveyresponseidentifier, personid, sourcesystemdescriptorid, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: surveyresponsepersontargetassociation; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.surveyresponsepersontargetassociation (namespace, personid, sourcesystemdescriptorid, surveyidentifier, surveyresponseidentifier, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
+\.
+
+
+--
+-- Data for Name: surveysectionresponsepersontargetassociation; Type: TABLE DATA; Schema: tpdm; Owner: postgres
+--
+
+COPY tpdm.surveysectionresponsepersontargetassociation (namespace, personid, sourcesystemdescriptorid, surveyidentifier, surveyresponseidentifier, surveysectiontitle, discriminator, createdate, lastmodifieddate, id, changeversion) FROM stdin;
 \.
 
 
@@ -55097,17 +62207,137 @@ COPY tracked_changes_edfi.surveysectionresponsestafftargetassociation (oldnamesp
 
 
 --
+-- Data for Name: candidate; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.candidate (oldcandidateidentifier, newcandidateidentifier, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: candidateeducatorpreparationprogramassociation; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.candidateeducatorpreparationprogramassociation (oldbegindate, oldcandidateidentifier, oldeducationorganizationid, oldprogramname, oldprogramtypedescriptorid, oldprogramtypedescriptornamespace, oldprogramtypedescriptorcodevalue, newbegindate, newcandidateidentifier, neweducationorganizationid, newprogramname, newprogramtypedescriptorid, newprogramtypedescriptornamespace, newprogramtypedescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: educatorpreparationprogram; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.educatorpreparationprogram (oldeducationorganizationid, oldprogramname, oldprogramtypedescriptorid, oldprogramtypedescriptornamespace, oldprogramtypedescriptorcodevalue, neweducationorganizationid, newprogramname, newprogramtypedescriptorid, newprogramtypedescriptornamespace, newprogramtypedescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluation; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.evaluation (oldeducationorganizationid, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newschoolyear, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationelement; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.evaluationelement (oldeducationorganizationid, oldevaluationelementtitle, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationelementtitle, newevaluationobjectivetitle, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newschoolyear, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationelementrating; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.evaluationelementrating (oldeducationorganizationid, oldevaluationdate, oldevaluationelementtitle, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationdate, newevaluationelementtitle, newevaluationobjectivetitle, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newpersonid, newschoolyear, newsourcesystemdescriptorid, newsourcesystemdescriptornamespace, newsourcesystemdescriptorcodevalue, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationobjective; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.evaluationobjective (oldeducationorganizationid, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationobjectivetitle, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newschoolyear, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationobjectiverating; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.evaluationobjectiverating (oldeducationorganizationid, oldevaluationdate, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationdate, newevaluationobjectivetitle, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newpersonid, newschoolyear, newsourcesystemdescriptorid, newsourcesystemdescriptornamespace, newsourcesystemdescriptorcodevalue, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: evaluationrating; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.evaluationrating (oldeducationorganizationid, oldevaluationdate, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationdate, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newpersonid, newschoolyear, newsourcesystemdescriptorid, newsourcesystemdescriptornamespace, newsourcesystemdescriptorcodevalue, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: financialaid; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.financialaid (oldaidtypedescriptorid, oldaidtypedescriptornamespace, oldaidtypedescriptorcodevalue, oldbegindate, oldstudentusi, oldstudentuniqueid, newaidtypedescriptorid, newaidtypedescriptornamespace, newaidtypedescriptorcodevalue, newbegindate, newstudentusi, newstudentuniqueid, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluation; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.performanceevaluation (oldeducationorganizationid, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newschoolyear, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: performanceevaluationrating; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.performanceevaluationrating (oldeducationorganizationid, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldpersonid, oldschoolyear, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newpersonid, newschoolyear, newsourcesystemdescriptorid, newsourcesystemdescriptornamespace, newsourcesystemdescriptorcodevalue, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: rubricdimension; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.rubricdimension (oldeducationorganizationid, oldevaluationelementtitle, oldevaluationobjectivetitle, oldevaluationperioddescriptorid, oldevaluationperioddescriptornamespace, oldevaluationperioddescriptorcodevalue, oldevaluationtitle, oldperformanceevaluationtitle, oldperformanceevaluationtypedescriptorid, oldperformanceevaluationtypedescriptornamespace, oldperformanceevaluationtypedescriptorcodevalue, oldrubricrating, oldschoolyear, oldtermdescriptorid, oldtermdescriptornamespace, oldtermdescriptorcodevalue, neweducationorganizationid, newevaluationelementtitle, newevaluationobjectivetitle, newevaluationperioddescriptorid, newevaluationperioddescriptornamespace, newevaluationperioddescriptorcodevalue, newevaluationtitle, newperformanceevaluationtitle, newperformanceevaluationtypedescriptorid, newperformanceevaluationtypedescriptornamespace, newperformanceevaluationtypedescriptorcodevalue, newrubricrating, newschoolyear, newtermdescriptorid, newtermdescriptornamespace, newtermdescriptorcodevalue, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: surveyresponsepersontargetassociation; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.surveyresponsepersontargetassociation (oldnamespace, oldpersonid, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldsurveyidentifier, oldsurveyresponseidentifier, newnamespace, newpersonid, newsourcesystemdescriptorid, newsourcesystemdescriptornamespace, newsourcesystemdescriptorcodevalue, newsurveyidentifier, newsurveyresponseidentifier, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
+-- Data for Name: surveysectionresponsepersontargetassociation; Type: TABLE DATA; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+COPY tracked_changes_tpdm.surveysectionresponsepersontargetassociation (oldnamespace, oldpersonid, oldsourcesystemdescriptorid, oldsourcesystemdescriptornamespace, oldsourcesystemdescriptorcodevalue, oldsurveyidentifier, oldsurveyresponseidentifier, oldsurveysectiontitle, newnamespace, newpersonid, newsourcesystemdescriptorid, newsourcesystemdescriptornamespace, newsourcesystemdescriptorcodevalue, newsurveyidentifier, newsurveyresponseidentifier, newsurveysectiontitle, id, changeversion, discriminator, createdate) FROM stdin;
+\.
+
+
+--
 -- Name: changeversionsequence; Type: SEQUENCE SET; Schema: changes; Owner: postgres
 --
 
-SELECT pg_catalog.setval('changes.changeversionsequence', 3150, true);
+SELECT pg_catalog.setval('changes.changeversionsequence', 3511, true);
 
 
 --
 -- Name: descriptor_descriptorid_seq; Type: SEQUENCE SET; Schema: edfi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('edfi.descriptor_descriptorid_seq', 3150, true);
+SELECT pg_catalog.setval('edfi.descriptor_descriptorid_seq', 3342, true);
 
 
 --
@@ -55135,7 +62365,7 @@ SELECT pg_catalog.setval('edfi.student_studentusi_seq', 1, false);
 -- Name: DeployJournal_schemaversionsid_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."DeployJournal_schemaversionsid_seq"', 49, true);
+SELECT pg_catalog.setval('public."DeployJournal_schemaversionsid_seq"', 62, true);
 
 
 --
@@ -59779,6 +67009,518 @@ ALTER TABLE ONLY public."DeployJournal"
 
 
 --
+-- Name: accreditationstatusdescriptor accreditationstatusdescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.accreditationstatusdescriptor
+    ADD CONSTRAINT accreditationstatusdescriptor_pk PRIMARY KEY (accreditationstatusdescriptorid);
+
+
+--
+-- Name: aidtypedescriptor aidtypedescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.aidtypedescriptor
+    ADD CONSTRAINT aidtypedescriptor_pk PRIMARY KEY (aidtypedescriptorid);
+
+
+--
+-- Name: candidate candidate_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT candidate_pk PRIMARY KEY (candidateidentifier);
+
+
+--
+-- Name: candidateaddress candidateaddress_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddress
+    ADD CONSTRAINT candidateaddress_pk PRIMARY KEY (addresstypedescriptorid, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername);
+
+
+--
+-- Name: candidateaddressperiod candidateaddressperiod_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddressperiod
+    ADD CONSTRAINT candidateaddressperiod_pk PRIMARY KEY (addresstypedescriptorid, begindate, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername);
+
+
+--
+-- Name: candidatedisability candidatedisability_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisability
+    ADD CONSTRAINT candidatedisability_pk PRIMARY KEY (candidateidentifier, disabilitydescriptorid);
+
+
+--
+-- Name: candidatedisabilitydesignation candidatedisabilitydesignation_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisabilitydesignation
+    ADD CONSTRAINT candidatedisabilitydesignation_pk PRIMARY KEY (candidateidentifier, disabilitydescriptorid, disabilitydesignationdescriptorid);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation candidateeducatorpreparationprogramassociation_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociation
+    ADD CONSTRAINT candidateeducatorpreparationprogramassociation_pk PRIMARY KEY (begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationcohortyear candidateeducatorpreparationprogramassociationcohortyear_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationcohortyear
+    ADD CONSTRAINT candidateeducatorpreparationprogramassociationcohortyear_pk PRIMARY KEY (begindate, candidateidentifier, cohortyeartypedescriptorid, educationorganizationid, programname, programtypedescriptorid, schoolyear);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationdegreespec_2501c4 candidateeducatorpreparationprogramassociationdegr_2501c4_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4
+    ADD CONSTRAINT candidateeducatorpreparationprogramassociationdegr_2501c4_pk PRIMARY KEY (begindate, candidateidentifier, educationorganizationid, majorspecialization, programname, programtypedescriptorid);
+
+
+--
+-- Name: candidateelectronicmail candidateelectronicmail_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateelectronicmail
+    ADD CONSTRAINT candidateelectronicmail_pk PRIMARY KEY (candidateidentifier, electronicmailaddress, electronicmailtypedescriptorid);
+
+
+--
+-- Name: candidatelanguage candidatelanguage_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatelanguage
+    ADD CONSTRAINT candidatelanguage_pk PRIMARY KEY (candidateidentifier, languagedescriptorid);
+
+
+--
+-- Name: candidatelanguageuse candidatelanguageuse_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatelanguageuse
+    ADD CONSTRAINT candidatelanguageuse_pk PRIMARY KEY (candidateidentifier, languagedescriptorid, languageusedescriptorid);
+
+
+--
+-- Name: candidateothername candidateothername_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateothername
+    ADD CONSTRAINT candidateothername_pk PRIMARY KEY (candidateidentifier, othernametypedescriptorid);
+
+
+--
+-- Name: candidatepersonalidentificationdocument candidatepersonalidentificationdocument_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatepersonalidentificationdocument
+    ADD CONSTRAINT candidatepersonalidentificationdocument_pk PRIMARY KEY (candidateidentifier, identificationdocumentusedescriptorid, personalinformationverificationdescriptorid);
+
+
+--
+-- Name: candidaterace candidaterace_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidaterace
+    ADD CONSTRAINT candidaterace_pk PRIMARY KEY (candidateidentifier, racedescriptorid);
+
+
+--
+-- Name: candidatetelephone candidatetelephone_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatetelephone
+    ADD CONSTRAINT candidatetelephone_pk PRIMARY KEY (candidateidentifier, telephonenumber, telephonenumbertypedescriptorid);
+
+
+--
+-- Name: certificationroutedescriptor certificationroutedescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.certificationroutedescriptor
+    ADD CONSTRAINT certificationroutedescriptor_pk PRIMARY KEY (certificationroutedescriptorid);
+
+
+--
+-- Name: coteachingstyleobserveddescriptor coteachingstyleobserveddescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.coteachingstyleobserveddescriptor
+    ADD CONSTRAINT coteachingstyleobserveddescriptor_pk PRIMARY KEY (coteachingstyleobserveddescriptorid);
+
+
+--
+-- Name: credentialextension credentialextension_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialextension
+    ADD CONSTRAINT credentialextension_pk PRIMARY KEY (credentialidentifier, stateofissuestateabbreviationdescriptorid);
+
+
+--
+-- Name: credentialstatusdescriptor credentialstatusdescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialstatusdescriptor
+    ADD CONSTRAINT credentialstatusdescriptor_pk PRIMARY KEY (credentialstatusdescriptorid);
+
+
+--
+-- Name: credentialstudentacademicrecord credentialstudentacademicrecord_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialstudentacademicrecord
+    ADD CONSTRAINT credentialstudentacademicrecord_pk PRIMARY KEY (credentialidentifier, educationorganizationid, schoolyear, stateofissuestateabbreviationdescriptorid, studentusi, termdescriptorid);
+
+
+--
+-- Name: educatorpreparationprogram educatorpreparationprogram_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogram
+    ADD CONSTRAINT educatorpreparationprogram_pk PRIMARY KEY (educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: educatorpreparationprogramgradelevel educatorpreparationprogramgradelevel_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogramgradelevel
+    ADD CONSTRAINT educatorpreparationprogramgradelevel_pk PRIMARY KEY (educationorganizationid, gradeleveldescriptorid, programname, programtypedescriptorid);
+
+
+--
+-- Name: educatorroledescriptor educatorroledescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorroledescriptor
+    ADD CONSTRAINT educatorroledescriptor_pk PRIMARY KEY (educatorroledescriptorid);
+
+
+--
+-- Name: englishlanguageexamdescriptor englishlanguageexamdescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.englishlanguageexamdescriptor
+    ADD CONSTRAINT englishlanguageexamdescriptor_pk PRIMARY KEY (englishlanguageexamdescriptorid);
+
+
+--
+-- Name: eppprogrampathwaydescriptor eppprogrampathwaydescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.eppprogrampathwaydescriptor
+    ADD CONSTRAINT eppprogrampathwaydescriptor_pk PRIMARY KEY (eppprogrampathwaydescriptorid);
+
+
+--
+-- Name: evaluation evaluation_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluation
+    ADD CONSTRAINT evaluation_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationelement evaluationelement_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelement
+    ADD CONSTRAINT evaluationelement_pk PRIMARY KEY (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationelementrating evaluationelementrating_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementrating
+    ADD CONSTRAINT evaluationelementrating_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationelementratinglevel evaluationelementratinglevel_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratinglevel
+    ADD CONSTRAINT evaluationelementratinglevel_pk PRIMARY KEY (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationratingleveldescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationelementratingleveldescriptor evaluationelementratingleveldescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratingleveldescriptor
+    ADD CONSTRAINT evaluationelementratingleveldescriptor_pk PRIMARY KEY (evaluationelementratingleveldescriptorid);
+
+
+--
+-- Name: evaluationelementratingresult evaluationelementratingresult_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratingresult
+    ADD CONSTRAINT evaluationelementratingresult_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationobjective evaluationobjective_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjective
+    ADD CONSTRAINT evaluationobjective_pk PRIMARY KEY (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationobjectiverating evaluationobjectiverating_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiverating
+    ADD CONSTRAINT evaluationobjectiverating_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationobjectiveratinglevel evaluationobjectiveratinglevel_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiveratinglevel
+    ADD CONSTRAINT evaluationobjectiveratinglevel_pk PRIMARY KEY (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationratingleveldescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationobjectiveratingresult evaluationobjectiveratingresult_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiveratingresult
+    ADD CONSTRAINT evaluationobjectiveratingresult_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationperioddescriptor evaluationperioddescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationperioddescriptor
+    ADD CONSTRAINT evaluationperioddescriptor_pk PRIMARY KEY (evaluationperioddescriptorid);
+
+
+--
+-- Name: evaluationrating evaluationrating_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationrating
+    ADD CONSTRAINT evaluationrating_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationratinglevel evaluationratinglevel_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratinglevel
+    ADD CONSTRAINT evaluationratinglevel_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, evaluationratingleveldescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationratingleveldescriptor evaluationratingleveldescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingleveldescriptor
+    ADD CONSTRAINT evaluationratingleveldescriptor_pk PRIMARY KEY (evaluationratingleveldescriptorid);
+
+
+--
+-- Name: evaluationratingresult evaluationratingresult_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingresult
+    ADD CONSTRAINT evaluationratingresult_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationratingreviewer evaluationratingreviewer_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingreviewer
+    ADD CONSTRAINT evaluationratingreviewer_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationratingreviewerreceivedtraining evaluationratingreviewerreceivedtraining_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingreviewerreceivedtraining
+    ADD CONSTRAINT evaluationratingreviewerreceivedtraining_pk PRIMARY KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationratingstatusdescriptor evaluationratingstatusdescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingstatusdescriptor
+    ADD CONSTRAINT evaluationratingstatusdescriptor_pk PRIMARY KEY (evaluationratingstatusdescriptorid);
+
+
+--
+-- Name: evaluationtypedescriptor evaluationtypedescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationtypedescriptor
+    ADD CONSTRAINT evaluationtypedescriptor_pk PRIMARY KEY (evaluationtypedescriptorid);
+
+
+--
+-- Name: financialaid financialaid_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.financialaid
+    ADD CONSTRAINT financialaid_pk PRIMARY KEY (aidtypedescriptorid, begindate, studentusi);
+
+
+--
+-- Name: genderdescriptor genderdescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.genderdescriptor
+    ADD CONSTRAINT genderdescriptor_pk PRIMARY KEY (genderdescriptorid);
+
+
+--
+-- Name: objectiveratingleveldescriptor objectiveratingleveldescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.objectiveratingleveldescriptor
+    ADD CONSTRAINT objectiveratingleveldescriptor_pk PRIMARY KEY (objectiveratingleveldescriptorid);
+
+
+--
+-- Name: performanceevaluation performanceevaluation_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT performanceevaluation_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationgradelevel performanceevaluationgradelevel_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationgradelevel
+    ADD CONSTRAINT performanceevaluationgradelevel_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, gradeleveldescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationrating performanceevaluationrating_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationrating
+    ADD CONSTRAINT performanceevaluationrating_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationratinglevel performanceevaluationratinglevel_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratinglevel
+    ADD CONSTRAINT performanceevaluationratinglevel_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, evaluationratingleveldescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationratingleveldescriptor performanceevaluationratingleveldescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingleveldescriptor
+    ADD CONSTRAINT performanceevaluationratingleveldescriptor_pk PRIMARY KEY (performanceevaluationratingleveldescriptorid);
+
+
+--
+-- Name: performanceevaluationratingresult performanceevaluationratingresult_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingresult
+    ADD CONSTRAINT performanceevaluationratingresult_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, rating, ratingresulttitle, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationratingreviewer performanceevaluationratingreviewer_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingreviewer
+    ADD CONSTRAINT performanceevaluationratingreviewer_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationratingreviewerreceivedtraining performanceevaluationratingreviewerreceivedtraining_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingreviewerreceivedtraining
+    ADD CONSTRAINT performanceevaluationratingreviewerreceivedtraining_pk PRIMARY KEY (educationorganizationid, evaluationperioddescriptorid, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationtypedescriptor performanceevaluationtypedescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationtypedescriptor
+    ADD CONSTRAINT performanceevaluationtypedescriptor_pk PRIMARY KEY (performanceevaluationtypedescriptorid);
+
+
+--
+-- Name: rubricdimension rubricdimension_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.rubricdimension
+    ADD CONSTRAINT rubricdimension_pk PRIMARY KEY (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, rubricrating, schoolyear, termdescriptorid);
+
+
+--
+-- Name: rubricratingleveldescriptor rubricratingleveldescriptor_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.rubricratingleveldescriptor
+    ADD CONSTRAINT rubricratingleveldescriptor_pk PRIMARY KEY (rubricratingleveldescriptorid);
+
+
+--
+-- Name: schoolextension schoolextension_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.schoolextension
+    ADD CONSTRAINT schoolextension_pk PRIMARY KEY (schoolid);
+
+
+--
+-- Name: surveyresponseextension surveyresponseextension_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveyresponseextension
+    ADD CONSTRAINT surveyresponseextension_pk PRIMARY KEY (namespace, surveyidentifier, surveyresponseidentifier);
+
+
+--
+-- Name: surveyresponsepersontargetassociation surveyresponsepersontargetassociation_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveyresponsepersontargetassociation
+    ADD CONSTRAINT surveyresponsepersontargetassociation_pk PRIMARY KEY (namespace, personid, sourcesystemdescriptorid, surveyidentifier, surveyresponseidentifier);
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation surveysectionresponsepersontargetassociation_pk; Type: CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveysectionresponsepersontargetassociation
+    ADD CONSTRAINT surveysectionresponsepersontargetassociation_pk PRIMARY KEY (namespace, personid, sourcesystemdescriptorid, surveyidentifier, surveyresponseidentifier, surveysectiontitle);
+
+
+--
 -- Name: academicweek academicweek_pk; Type: CONSTRAINT; Schema: tracked_changes_edfi; Owner: postgres
 --
 
@@ -60656,6 +68398,126 @@ ALTER TABLE ONLY tracked_changes_edfi.surveysectionresponseeducationorganization
 
 ALTER TABLE ONLY tracked_changes_edfi.surveysectionresponsestafftargetassociation
     ADD CONSTRAINT surveysectionresponsestafftargetassociation_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: candidate candidate_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.candidate
+    ADD CONSTRAINT candidate_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation candidateeducatorpreparationprogramassociation_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.candidateeducatorpreparationprogramassociation
+    ADD CONSTRAINT candidateeducatorpreparationprogramassociation_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: educatorpreparationprogram educatorpreparationprogram_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.educatorpreparationprogram
+    ADD CONSTRAINT educatorpreparationprogram_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: evaluation evaluation_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.evaluation
+    ADD CONSTRAINT evaluation_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: evaluationelement evaluationelement_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.evaluationelement
+    ADD CONSTRAINT evaluationelement_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: evaluationelementrating evaluationelementrating_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.evaluationelementrating
+    ADD CONSTRAINT evaluationelementrating_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: evaluationobjective evaluationobjective_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.evaluationobjective
+    ADD CONSTRAINT evaluationobjective_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: evaluationobjectiverating evaluationobjectiverating_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.evaluationobjectiverating
+    ADD CONSTRAINT evaluationobjectiverating_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: evaluationrating evaluationrating_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.evaluationrating
+    ADD CONSTRAINT evaluationrating_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: financialaid financialaid_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.financialaid
+    ADD CONSTRAINT financialaid_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: performanceevaluation performanceevaluation_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.performanceevaluation
+    ADD CONSTRAINT performanceevaluation_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: performanceevaluationrating performanceevaluationrating_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.performanceevaluationrating
+    ADD CONSTRAINT performanceevaluationrating_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: rubricdimension rubricdimension_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.rubricdimension
+    ADD CONSTRAINT rubricdimension_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: surveyresponsepersontargetassociation surveyresponsepersontargetassociation_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.surveyresponsepersontargetassociation
+    ADD CONSTRAINT surveyresponsepersontargetassociation_pk PRIMARY KEY (changeversion);
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation surveysectionresponsepersontargetassociation_pk; Type: CONSTRAINT; Schema: tracked_changes_tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tracked_changes_tpdm.surveysectionresponsepersontargetassociation
+    ADD CONSTRAINT surveysectionresponsepersontargetassociation_pk PRIMARY KEY (changeversion);
 
 
 --
@@ -68569,6 +76431,1007 @@ CREATE UNIQUE INDEX ux_f9457e_id ON edfi.surveyresponsestafftargetassociation US
 
 
 --
+-- Name: fk_09c531_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_09c531_candidate ON tpdm.candidatetelephone USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_09c531_telephonenumbertypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_09c531_telephonenumbertypedescriptor ON tpdm.candidatetelephone USING btree (telephonenumbertypedescriptorid);
+
+
+--
+-- Name: fk_15d685_academicsubjectdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_15d685_academicsubjectdescriptor ON tpdm.performanceevaluation USING btree (academicsubjectdescriptorid);
+
+
+--
+-- Name: fk_15d685_educationorganization; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_15d685_educationorganization ON tpdm.performanceevaluation USING btree (educationorganizationid);
+
+
+--
+-- Name: fk_15d685_evaluationperioddescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_15d685_evaluationperioddescriptor ON tpdm.performanceevaluation USING btree (evaluationperioddescriptorid);
+
+
+--
+-- Name: fk_15d685_performanceevaluationtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_15d685_performanceevaluationtypedescriptor ON tpdm.performanceevaluation USING btree (performanceevaluationtypedescriptorid);
+
+
+--
+-- Name: fk_15d685_schoolyeartype; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_15d685_schoolyeartype ON tpdm.performanceevaluation USING btree (schoolyear);
+
+
+--
+-- Name: fk_15d685_termdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_15d685_termdescriptor ON tpdm.performanceevaluation USING btree (termdescriptorid);
+
+
+--
+-- Name: fk_160329_addresstypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_160329_addresstypedescriptor ON tpdm.candidateaddress USING btree (addresstypedescriptorid);
+
+
+--
+-- Name: fk_160329_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_160329_candidate ON tpdm.candidateaddress USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_160329_localedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_160329_localedescriptor ON tpdm.candidateaddress USING btree (localedescriptorid);
+
+
+--
+-- Name: fk_160329_stateabbreviationdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_160329_stateabbreviationdescriptor ON tpdm.candidateaddress USING btree (stateabbreviationdescriptorid);
+
+
+--
+-- Name: fk_163e44_evaluationtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_163e44_evaluationtypedescriptor ON tpdm.evaluation USING btree (evaluationtypedescriptorid);
+
+
+--
+-- Name: fk_163e44_performanceevaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_163e44_performanceevaluation ON tpdm.evaluation USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_17e793_candidateaddress; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_17e793_candidateaddress ON tpdm.candidateaddressperiod USING btree (addresstypedescriptorid, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername);
+
+
+--
+-- Name: fk_195935_accreditationstatusdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_195935_accreditationstatusdescriptor ON tpdm.educatorpreparationprogram USING btree (accreditationstatusdescriptorid);
+
+
+--
+-- Name: fk_195935_educationorganization; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_195935_educationorganization ON tpdm.educatorpreparationprogram USING btree (educationorganizationid);
+
+
+--
+-- Name: fk_195935_programtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_195935_programtypedescriptor ON tpdm.educatorpreparationprogram USING btree (programtypedescriptorid);
+
+
+--
+-- Name: fk_1d984c_evaluationobjective; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_1d984c_evaluationobjective ON tpdm.evaluationobjectiveratinglevel USING btree (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_1d984c_evaluationratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_1d984c_evaluationratingleveldescriptor ON tpdm.evaluationobjectiveratinglevel USING btree (evaluationratingleveldescriptorid);
+
+
+--
+-- Name: fk_2199be_postsecondaryinstitution; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_2199be_postsecondaryinstitution ON tpdm.schoolextension USING btree (postsecondaryinstitutionid);
+
+
+--
+-- Name: fk_236ee4_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_236ee4_candidate ON tpdm.candidatedisability USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_236ee4_disabilitydescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_236ee4_disabilitydescriptor ON tpdm.candidatedisability USING btree (disabilitydescriptorid);
+
+
+--
+-- Name: fk_236ee4_disabilitydeterminationsourcetypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_236ee4_disabilitydeterminationsourcetypedescriptor ON tpdm.candidatedisability USING btree (disabilitydeterminationsourcetypedescriptorid);
+
+
+--
+-- Name: fk_2501c4_candidateeducatorpreparationprogramassociation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_2501c4_candidateeducatorpreparationprogramassociation ON tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4 USING btree (begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: fk_268283_evaluationrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_268283_evaluationrating ON tpdm.evaluationratingresult USING btree (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_268283_resultdatatypetypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_268283_resultdatatypetypedescriptor ON tpdm.evaluationratingresult USING btree (resultdatatypetypedescriptorid);
+
+
+--
+-- Name: fk_2d29eb_evaluationrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_2d29eb_evaluationrating ON tpdm.evaluationratingreviewer USING btree (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_2d29eb_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_2d29eb_person ON tpdm.evaluationratingreviewer USING btree (reviewerpersonid, reviewersourcesystemdescriptorid);
+
+
+--
+-- Name: fk_3f00b1_candidatelanguage; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_3f00b1_candidatelanguage ON tpdm.candidatelanguageuse USING btree (candidateidentifier, languagedescriptorid);
+
+
+--
+-- Name: fk_3f00b1_languageusedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_3f00b1_languageusedescriptor ON tpdm.candidatelanguageuse USING btree (languageusedescriptorid);
+
+
+--
+-- Name: fk_4479ea_evaluationelement; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_4479ea_evaluationelement ON tpdm.evaluationelementrating USING btree (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_4479ea_evaluationelementratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_4479ea_evaluationelementratingleveldescriptor ON tpdm.evaluationelementrating USING btree (evaluationelementratingleveldescriptorid);
+
+
+--
+-- Name: fk_4479ea_evaluationobjectiverating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_4479ea_evaluationobjectiverating ON tpdm.evaluationelementrating USING btree (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_4521bb_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_4521bb_candidate ON tpdm.candidateothername USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_4521bb_othernametypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_4521bb_othernametypedescriptor ON tpdm.candidateothername USING btree (othernametypedescriptorid);
+
+
+--
+-- Name: fk_477526_performanceevaluationrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_477526_performanceevaluationrating ON tpdm.performanceevaluationratingreviewer USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_477526_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_477526_person ON tpdm.performanceevaluationratingreviewer USING btree (reviewerpersonid, reviewersourcesystemdescriptorid);
+
+
+--
+-- Name: fk_520027_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_520027_person ON tpdm.surveyresponsepersontargetassociation USING btree (personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: fk_520027_surveyresponse; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_520027_surveyresponse ON tpdm.surveyresponsepersontargetassociation USING btree (namespace, surveyidentifier, surveyresponseidentifier);
+
+
+--
+-- Name: fk_5b9d31_gradeleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_5b9d31_gradeleveldescriptor ON tpdm.performanceevaluationgradelevel USING btree (gradeleveldescriptorid);
+
+
+--
+-- Name: fk_5b9d31_performanceevaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_5b9d31_performanceevaluation ON tpdm.performanceevaluationgradelevel USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_620d03_candidateeducatorpreparationprogramassociation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_620d03_candidateeducatorpreparationprogramassociation ON tpdm.candidateeducatorpreparationprogramassociationcohortyear USING btree (begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: fk_620d03_cohortyeartypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_620d03_cohortyeartypedescriptor ON tpdm.candidateeducatorpreparationprogramassociationcohortyear USING btree (cohortyeartypedescriptorid);
+
+
+--
+-- Name: fk_620d03_schoolyeartype; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_620d03_schoolyeartype ON tpdm.candidateeducatorpreparationprogramassociationcohortyear USING btree (schoolyear);
+
+
+--
+-- Name: fk_620d03_termdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_620d03_termdescriptor ON tpdm.candidateeducatorpreparationprogramassociationcohortyear USING btree (termdescriptorid);
+
+
+--
+-- Name: fk_643c81_evaluationelement; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_643c81_evaluationelement ON tpdm.rubricdimension USING btree (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_643c81_rubricratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_643c81_rubricratingleveldescriptor ON tpdm.rubricdimension USING btree (rubricratingleveldescriptorid);
+
+
+--
+-- Name: fk_6aa942_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6aa942_candidate ON tpdm.candidaterace USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_6aa942_racedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6aa942_racedescriptor ON tpdm.candidaterace USING btree (racedescriptorid);
+
+
+--
+-- Name: fk_6edb1d_candidatedisability; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6edb1d_candidatedisability ON tpdm.candidatedisabilitydesignation USING btree (candidateidentifier, disabilitydescriptorid);
+
+
+--
+-- Name: fk_6edb1d_disabilitydesignationdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6edb1d_disabilitydesignationdescriptor ON tpdm.candidatedisabilitydesignation USING btree (disabilitydesignationdescriptorid);
+
+
+--
+-- Name: fk_6fae52_certificationroutedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6fae52_certificationroutedescriptor ON tpdm.credentialextension USING btree (certificationroutedescriptorid);
+
+
+--
+-- Name: fk_6fae52_credentialstatusdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6fae52_credentialstatusdescriptor ON tpdm.credentialextension USING btree (credentialstatusdescriptorid);
+
+
+--
+-- Name: fk_6fae52_educatorroledescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6fae52_educatorroledescriptor ON tpdm.credentialextension USING btree (educatorroledescriptorid);
+
+
+--
+-- Name: fk_6fae52_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_6fae52_person ON tpdm.credentialextension USING btree (personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: fk_7052f8_evaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_7052f8_evaluation ON tpdm.evaluationratinglevel USING btree (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_7052f8_evaluationratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_7052f8_evaluationratingleveldescriptor ON tpdm.evaluationratinglevel USING btree (evaluationratingleveldescriptorid);
+
+
+--
+-- Name: fk_73e151_credential; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_73e151_credential ON tpdm.credentialstudentacademicrecord USING btree (credentialidentifier, stateofissuestateabbreviationdescriptorid);
+
+
+--
+-- Name: fk_73e151_studentacademicrecord; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_73e151_studentacademicrecord ON tpdm.credentialstudentacademicrecord USING btree (educationorganizationid, schoolyear, studentusi, termdescriptorid);
+
+
+--
+-- Name: fk_759abe_coteachingstyleobserveddescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_759abe_coteachingstyleobserveddescriptor ON tpdm.performanceevaluationrating USING btree (coteachingstyleobserveddescriptorid);
+
+
+--
+-- Name: fk_759abe_performanceevaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_759abe_performanceevaluation ON tpdm.performanceevaluationrating USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_759abe_performanceevaluationratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_759abe_performanceevaluationratingleveldescriptor ON tpdm.performanceevaluationrating USING btree (performanceevaluationratingleveldescriptorid);
+
+
+--
+-- Name: fk_759abe_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_759abe_person ON tpdm.performanceevaluationrating USING btree (personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: fk_7ae19d_evaluationobjective; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_7ae19d_evaluationobjective ON tpdm.evaluationobjectiverating USING btree (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_7ae19d_evaluationrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_7ae19d_evaluationrating ON tpdm.evaluationobjectiverating USING btree (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_7ae19d_objectiveratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_7ae19d_objectiveratingleveldescriptor ON tpdm.evaluationobjectiverating USING btree (objectiveratingleveldescriptorid);
+
+
+--
+-- Name: fk_863fa4_performanceevaluationrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_863fa4_performanceevaluationrating ON tpdm.performanceevaluationratingresult USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_863fa4_resultdatatypetypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_863fa4_resultdatatypetypedescriptor ON tpdm.performanceevaluationratingresult USING btree (resultdatatypetypedescriptorid);
+
+
+--
+-- Name: fk_90ed3d_evaluationratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_90ed3d_evaluationratingleveldescriptor ON tpdm.performanceevaluationratinglevel USING btree (evaluationratingleveldescriptorid);
+
+
+--
+-- Name: fk_90ed3d_performanceevaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_90ed3d_performanceevaluation ON tpdm.performanceevaluationratinglevel USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_93a227_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_93a227_candidate ON tpdm.candidatepersonalidentificationdocument USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_93a227_countrydescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_93a227_countrydescriptor ON tpdm.candidatepersonalidentificationdocument USING btree (issuercountrydescriptorid);
+
+
+--
+-- Name: fk_93a227_identificationdocumentusedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_93a227_identificationdocumentusedescriptor ON tpdm.candidatepersonalidentificationdocument USING btree (identificationdocumentusedescriptorid);
+
+
+--
+-- Name: fk_93a227_personalinformationverificationdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_93a227_personalinformationverificationdescriptor ON tpdm.candidatepersonalidentificationdocument USING btree (personalinformationverificationdescriptorid);
+
+
+--
+-- Name: fk_a465f2_aidtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_a465f2_aidtypedescriptor ON tpdm.financialaid USING btree (aidtypedescriptorid);
+
+
+--
+-- Name: fk_a465f2_student; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_a465f2_student ON tpdm.financialaid USING btree (studentusi);
+
+
+--
+-- Name: fk_afbeb2_evaluationelement; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_afbeb2_evaluationelement ON tpdm.evaluationelementratinglevel USING btree (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_afbeb2_evaluationratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_afbeb2_evaluationratingleveldescriptor ON tpdm.evaluationelementratinglevel USING btree (evaluationratingleveldescriptorid);
+
+
+--
+-- Name: fk_b2452d_countrydescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_countrydescriptor ON tpdm.candidate USING btree (birthcountrydescriptorid);
+
+
+--
+-- Name: fk_b2452d_englishlanguageexamdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_englishlanguageexamdescriptor ON tpdm.candidate USING btree (englishlanguageexamdescriptorid);
+
+
+--
+-- Name: fk_b2452d_genderdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_genderdescriptor ON tpdm.candidate USING btree (genderdescriptorid);
+
+
+--
+-- Name: fk_b2452d_limitedenglishproficiencydescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_limitedenglishproficiencydescriptor ON tpdm.candidate USING btree (limitedenglishproficiencydescriptorid);
+
+
+--
+-- Name: fk_b2452d_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_person ON tpdm.candidate USING btree (personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: fk_b2452d_sexdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_sexdescriptor ON tpdm.candidate USING btree (sexdescriptorid);
+
+
+--
+-- Name: fk_b2452d_sexdescriptor1; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_sexdescriptor1 ON tpdm.candidate USING btree (birthsexdescriptorid);
+
+
+--
+-- Name: fk_b2452d_stateabbreviationdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_b2452d_stateabbreviationdescriptor ON tpdm.candidate USING btree (birthstateabbreviationdescriptorid);
+
+
+--
+-- Name: fk_beeccb_evaluationobjectiverating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_beeccb_evaluationobjectiverating ON tpdm.evaluationobjectiveratingresult USING btree (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_beeccb_resultdatatypetypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_beeccb_resultdatatypetypedescriptor ON tpdm.evaluationobjectiveratingresult USING btree (resultdatatypetypedescriptorid);
+
+
+--
+-- Name: fk_bfaa20_evaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_bfaa20_evaluation ON tpdm.evaluationrating USING btree (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_bfaa20_evaluationratingleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_bfaa20_evaluationratingleveldescriptor ON tpdm.evaluationrating USING btree (evaluationratingleveldescriptorid);
+
+
+--
+-- Name: fk_bfaa20_evaluationratingstatusdescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_bfaa20_evaluationratingstatusdescriptor ON tpdm.evaluationrating USING btree (evaluationratingstatusdescriptorid);
+
+
+--
+-- Name: fk_bfaa20_performanceevaluationrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_bfaa20_performanceevaluationrating ON tpdm.evaluationrating USING btree (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_bfaa20_section; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_bfaa20_section ON tpdm.evaluationrating USING btree (localcoursecode, schoolid, schoolyear, sectionidentifier, sessionname);
+
+
+--
+-- Name: fk_c5124f_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_c5124f_candidate ON tpdm.candidateelectronicmail USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_c5124f_electronicmailtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_c5124f_electronicmailtypedescriptor ON tpdm.candidateelectronicmail USING btree (electronicmailtypedescriptorid);
+
+
+--
+-- Name: fk_c5877a_evaluationelementrating; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_c5877a_evaluationelementrating ON tpdm.evaluationelementratingresult USING btree (educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: fk_c5877a_resultdatatypetypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_c5877a_resultdatatypetypedescriptor ON tpdm.evaluationelementratingresult USING btree (resultdatatypetypedescriptorid);
+
+
+--
+-- Name: fk_d3a222_educatorpreparationprogram; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_d3a222_educatorpreparationprogram ON tpdm.educatorpreparationprogramgradelevel USING btree (educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: fk_d3a222_gradeleveldescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_d3a222_gradeleveldescriptor ON tpdm.educatorpreparationprogramgradelevel USING btree (gradeleveldescriptorid);
+
+
+--
+-- Name: fk_d4565d_evaluation; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_d4565d_evaluation ON tpdm.evaluationobjective USING btree (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_d4565d_evaluationtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_d4565d_evaluationtypedescriptor ON tpdm.evaluationobjective USING btree (evaluationtypedescriptorid);
+
+
+--
+-- Name: fk_e21e4b_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_e21e4b_person ON tpdm.surveysectionresponsepersontargetassociation USING btree (personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: fk_e21e4b_surveysectionresponse; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_e21e4b_surveysectionresponse ON tpdm.surveysectionresponsepersontargetassociation USING btree (namespace, surveyidentifier, surveyresponseidentifier, surveysectiontitle);
+
+
+--
+-- Name: fk_e5239b_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_e5239b_candidate ON tpdm.candidatelanguage USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_e5239b_languagedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_e5239b_languagedescriptor ON tpdm.candidatelanguage USING btree (languagedescriptorid);
+
+
+--
+-- Name: fk_e53186_evaluationobjective; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_e53186_evaluationobjective ON tpdm.evaluationelement USING btree (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: fk_e53186_evaluationtypedescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_e53186_evaluationtypedescriptor ON tpdm.evaluationelement USING btree (evaluationtypedescriptorid);
+
+
+--
+-- Name: fk_fa906d_person; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_fa906d_person ON tpdm.surveyresponseextension USING btree (personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: fk_fc61b2_candidate; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_fc61b2_candidate ON tpdm.candidateeducatorpreparationprogramassociation USING btree (candidateidentifier);
+
+
+--
+-- Name: fk_fc61b2_educatorpreparationprogram; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_fc61b2_educatorpreparationprogram ON tpdm.candidateeducatorpreparationprogramassociation USING btree (educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: fk_fc61b2_eppprogrampathwaydescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_fc61b2_eppprogrampathwaydescriptor ON tpdm.candidateeducatorpreparationprogramassociation USING btree (eppprogrampathwaydescriptorid);
+
+
+--
+-- Name: fk_fc61b2_reasonexiteddescriptor; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX fk_fc61b2_reasonexiteddescriptor ON tpdm.candidateeducatorpreparationprogramassociation USING btree (reasonexiteddescriptorid);
+
+
+--
+-- Name: ux_15d685_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_15d685_changeversion ON tpdm.performanceevaluation USING btree (changeversion);
+
+
+--
+-- Name: ux_15d685_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_15d685_id ON tpdm.performanceevaluation USING btree (id);
+
+
+--
+-- Name: ux_163e44_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_163e44_changeversion ON tpdm.evaluation USING btree (changeversion);
+
+
+--
+-- Name: ux_163e44_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_163e44_id ON tpdm.evaluation USING btree (id);
+
+
+--
+-- Name: ux_195935_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_195935_changeversion ON tpdm.educatorpreparationprogram USING btree (changeversion);
+
+
+--
+-- Name: ux_195935_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_195935_id ON tpdm.educatorpreparationprogram USING btree (id);
+
+
+--
+-- Name: ux_4479ea_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_4479ea_changeversion ON tpdm.evaluationelementrating USING btree (changeversion);
+
+
+--
+-- Name: ux_4479ea_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_4479ea_id ON tpdm.evaluationelementrating USING btree (id);
+
+
+--
+-- Name: ux_520027_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_520027_changeversion ON tpdm.surveyresponsepersontargetassociation USING btree (changeversion);
+
+
+--
+-- Name: ux_520027_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_520027_id ON tpdm.surveyresponsepersontargetassociation USING btree (id);
+
+
+--
+-- Name: ux_643c81_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_643c81_changeversion ON tpdm.rubricdimension USING btree (changeversion);
+
+
+--
+-- Name: ux_643c81_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_643c81_id ON tpdm.rubricdimension USING btree (id);
+
+
+--
+-- Name: ux_759abe_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_759abe_changeversion ON tpdm.performanceevaluationrating USING btree (changeversion);
+
+
+--
+-- Name: ux_759abe_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_759abe_id ON tpdm.performanceevaluationrating USING btree (id);
+
+
+--
+-- Name: ux_7ae19d_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_7ae19d_changeversion ON tpdm.evaluationobjectiverating USING btree (changeversion);
+
+
+--
+-- Name: ux_7ae19d_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_7ae19d_id ON tpdm.evaluationobjectiverating USING btree (id);
+
+
+--
+-- Name: ux_a465f2_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_a465f2_changeversion ON tpdm.financialaid USING btree (changeversion);
+
+
+--
+-- Name: ux_a465f2_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_a465f2_id ON tpdm.financialaid USING btree (id);
+
+
+--
+-- Name: ux_b2452d_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_b2452d_changeversion ON tpdm.candidate USING btree (changeversion);
+
+
+--
+-- Name: ux_b2452d_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_b2452d_id ON tpdm.candidate USING btree (id);
+
+
+--
+-- Name: ux_bfaa20_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_bfaa20_changeversion ON tpdm.evaluationrating USING btree (changeversion);
+
+
+--
+-- Name: ux_bfaa20_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_bfaa20_id ON tpdm.evaluationrating USING btree (id);
+
+
+--
+-- Name: ux_d4565d_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_d4565d_changeversion ON tpdm.evaluationobjective USING btree (changeversion);
+
+
+--
+-- Name: ux_d4565d_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_d4565d_id ON tpdm.evaluationobjective USING btree (id);
+
+
+--
+-- Name: ux_e21e4b_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_e21e4b_changeversion ON tpdm.surveysectionresponsepersontargetassociation USING btree (changeversion);
+
+
+--
+-- Name: ux_e21e4b_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_e21e4b_id ON tpdm.surveysectionresponsepersontargetassociation USING btree (id);
+
+
+--
+-- Name: ux_e53186_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_e53186_changeversion ON tpdm.evaluationelement USING btree (changeversion);
+
+
+--
+-- Name: ux_e53186_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_e53186_id ON tpdm.evaluationelement USING btree (id);
+
+
+--
+-- Name: ux_fc61b2_changeversion; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE INDEX ux_fc61b2_changeversion ON tpdm.candidateeducatorpreparationprogramassociation USING btree (changeversion);
+
+
+--
+-- Name: ux_fc61b2_id; Type: INDEX; Schema: tpdm; Owner: postgres
+--
+
+CREATE UNIQUE INDEX ux_fc61b2_id ON tpdm.candidateeducatorpreparationprogramassociation USING btree (id);
+
+
+--
 -- Name: communityorganization deleteauthtuples; Type: TRIGGER; Schema: edfi; Owner: postgres
 --
 
@@ -71709,6 +80572,342 @@ CREATE TRIGGER updatechangeversion BEFORE UPDATE ON edfi.surveysectionresponseed
 --
 
 CREATE TRIGGER updatechangeversion BEFORE UPDATE ON edfi.surveysectionresponsestafftargetassociation FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: accreditationstatusdescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.accreditationstatusdescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.accreditationstatusdescriptor_deleted();
+
+
+--
+-- Name: aidtypedescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.aidtypedescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.aidtypedescriptor_deleted();
+
+
+--
+-- Name: candidate trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.candidate FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.candidate_deleted();
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.candidateeducatorpreparationprogramassociation FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.candidateeducatorpreparationprogramassociation_deleted();
+
+
+--
+-- Name: certificationroutedescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.certificationroutedescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.certificationroutedescriptor_deleted();
+
+
+--
+-- Name: coteachingstyleobserveddescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.coteachingstyleobserveddescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.coteachingstyleobserveddescriptor_deleted();
+
+
+--
+-- Name: credentialstatusdescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.credentialstatusdescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.credentialstatusdescriptor_deleted();
+
+
+--
+-- Name: educatorpreparationprogram trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.educatorpreparationprogram FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.educatorpreparationprogram_deleted();
+
+
+--
+-- Name: educatorroledescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.educatorroledescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.educatorroledescriptor_deleted();
+
+
+--
+-- Name: englishlanguageexamdescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.englishlanguageexamdescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.englishlanguageexamdescriptor_deleted();
+
+
+--
+-- Name: eppprogrampathwaydescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.eppprogrampathwaydescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.eppprogrampathwaydescriptor_deleted();
+
+
+--
+-- Name: evaluation trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluation FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluation_deleted();
+
+
+--
+-- Name: evaluationelement trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationelement FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationelement_deleted();
+
+
+--
+-- Name: evaluationelementrating trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationelementrating FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationelementrating_deleted();
+
+
+--
+-- Name: evaluationelementratingleveldescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationelementratingleveldescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationelementratingleveldescriptor_deleted();
+
+
+--
+-- Name: evaluationobjective trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationobjective FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationobjective_deleted();
+
+
+--
+-- Name: evaluationobjectiverating trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationobjectiverating FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationobjectiverating_deleted();
+
+
+--
+-- Name: evaluationperioddescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationperioddescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationperioddescriptor_deleted();
+
+
+--
+-- Name: evaluationrating trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationrating FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationrating_deleted();
+
+
+--
+-- Name: evaluationratingleveldescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationratingleveldescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationratingleveldescriptor_deleted();
+
+
+--
+-- Name: evaluationratingstatusdescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationratingstatusdescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationratingstatusdescriptor_deleted();
+
+
+--
+-- Name: evaluationtypedescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.evaluationtypedescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.evaluationtypedescriptor_deleted();
+
+
+--
+-- Name: financialaid trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.financialaid FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.financialaid_deleted();
+
+
+--
+-- Name: genderdescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.genderdescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.genderdescriptor_deleted();
+
+
+--
+-- Name: objectiveratingleveldescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.objectiveratingleveldescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.objectiveratingleveldescriptor_deleted();
+
+
+--
+-- Name: performanceevaluation trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.performanceevaluation FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.performanceevaluation_deleted();
+
+
+--
+-- Name: performanceevaluationrating trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.performanceevaluationrating FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.performanceevaluationrating_deleted();
+
+
+--
+-- Name: performanceevaluationratingleveldescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.performanceevaluationratingleveldescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.performanceevaluationratingleveldescriptor_deleted();
+
+
+--
+-- Name: performanceevaluationtypedescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.performanceevaluationtypedescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.performanceevaluationtypedescriptor_deleted();
+
+
+--
+-- Name: rubricdimension trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.rubricdimension FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.rubricdimension_deleted();
+
+
+--
+-- Name: rubricratingleveldescriptor trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.rubricratingleveldescriptor FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.rubricratingleveldescriptor_deleted();
+
+
+--
+-- Name: surveyresponsepersontargetassociation trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.surveyresponsepersontargetassociation FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.surveyresponsepersontargetassociation_deleted();
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation trackdeletes; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER trackdeletes AFTER DELETE ON tpdm.surveysectionresponsepersontargetassociation FOR EACH ROW EXECUTE FUNCTION tracked_changes_tpdm.surveysectionresponsepersontargetassociation_deleted();
+
+
+--
+-- Name: candidate updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.candidate FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.candidateeducatorpreparationprogramassociation FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: educatorpreparationprogram updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.educatorpreparationprogram FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: evaluation updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.evaluation FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: evaluationelement updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.evaluationelement FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: evaluationelementrating updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.evaluationelementrating FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: evaluationobjective updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.evaluationobjective FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: evaluationobjectiverating updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.evaluationobjectiverating FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: evaluationrating updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.evaluationrating FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: financialaid updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.financialaid FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: performanceevaluation updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.performanceevaluation FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: performanceevaluationrating updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.performanceevaluationrating FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: rubricdimension updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.rubricdimension FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: surveyresponsepersontargetassociation updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.surveyresponsepersontargetassociation FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation updatechangeversion; Type: TRIGGER; Schema: tpdm; Owner: postgres
+--
+
+CREATE TRIGGER updatechangeversion BEFORE UPDATE ON tpdm.surveysectionresponsepersontargetassociation FOR EACH ROW EXECUTE FUNCTION changes.updatechangeversion();
 
 
 --
@@ -80781,6 +89980,1094 @@ ALTER TABLE ONLY interop.operationalcontextdescriptorusage
 
 ALTER TABLE ONLY interop.operationalcontextdescriptorusage
     ADD CONSTRAINT fk_operationalcontextdescriptorusage_operationalcontext FOREIGN KEY (operationalcontexturi) REFERENCES interop.operationalcontext(operationalcontexturi);
+
+
+--
+-- Name: candidatetelephone fk_09c531_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatetelephone
+    ADD CONSTRAINT fk_09c531_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatetelephone fk_09c531_telephonenumbertypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatetelephone
+    ADD CONSTRAINT fk_09c531_telephonenumbertypedescriptor FOREIGN KEY (telephonenumbertypedescriptorid) REFERENCES edfi.telephonenumbertypedescriptor(telephonenumbertypedescriptorid);
+
+
+--
+-- Name: performanceevaluation fk_15d685_academicsubjectdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT fk_15d685_academicsubjectdescriptor FOREIGN KEY (academicsubjectdescriptorid) REFERENCES edfi.academicsubjectdescriptor(academicsubjectdescriptorid);
+
+
+--
+-- Name: performanceevaluation fk_15d685_educationorganization; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT fk_15d685_educationorganization FOREIGN KEY (educationorganizationid) REFERENCES edfi.educationorganization(educationorganizationid);
+
+
+--
+-- Name: performanceevaluation fk_15d685_evaluationperioddescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT fk_15d685_evaluationperioddescriptor FOREIGN KEY (evaluationperioddescriptorid) REFERENCES tpdm.evaluationperioddescriptor(evaluationperioddescriptorid);
+
+
+--
+-- Name: performanceevaluation fk_15d685_performanceevaluationtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT fk_15d685_performanceevaluationtypedescriptor FOREIGN KEY (performanceevaluationtypedescriptorid) REFERENCES tpdm.performanceevaluationtypedescriptor(performanceevaluationtypedescriptorid);
+
+
+--
+-- Name: performanceevaluation fk_15d685_schoolyeartype; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT fk_15d685_schoolyeartype FOREIGN KEY (schoolyear) REFERENCES edfi.schoolyeartype(schoolyear);
+
+
+--
+-- Name: performanceevaluation fk_15d685_termdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluation
+    ADD CONSTRAINT fk_15d685_termdescriptor FOREIGN KEY (termdescriptorid) REFERENCES edfi.termdescriptor(termdescriptorid);
+
+
+--
+-- Name: candidateaddress fk_160329_addresstypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddress
+    ADD CONSTRAINT fk_160329_addresstypedescriptor FOREIGN KEY (addresstypedescriptorid) REFERENCES edfi.addresstypedescriptor(addresstypedescriptorid);
+
+
+--
+-- Name: candidateaddress fk_160329_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddress
+    ADD CONSTRAINT fk_160329_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidateaddress fk_160329_localedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddress
+    ADD CONSTRAINT fk_160329_localedescriptor FOREIGN KEY (localedescriptorid) REFERENCES edfi.localedescriptor(localedescriptorid);
+
+
+--
+-- Name: candidateaddress fk_160329_stateabbreviationdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddress
+    ADD CONSTRAINT fk_160329_stateabbreviationdescriptor FOREIGN KEY (stateabbreviationdescriptorid) REFERENCES edfi.stateabbreviationdescriptor(stateabbreviationdescriptorid);
+
+
+--
+-- Name: evaluation fk_163e44_evaluationtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluation
+    ADD CONSTRAINT fk_163e44_evaluationtypedescriptor FOREIGN KEY (evaluationtypedescriptorid) REFERENCES tpdm.evaluationtypedescriptor(evaluationtypedescriptorid);
+
+
+--
+-- Name: evaluation fk_163e44_performanceevaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluation
+    ADD CONSTRAINT fk_163e44_performanceevaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.performanceevaluation(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: candidateaddressperiod fk_17e793_candidateaddress; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateaddressperiod
+    ADD CONSTRAINT fk_17e793_candidateaddress FOREIGN KEY (addresstypedescriptorid, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername) REFERENCES tpdm.candidateaddress(addresstypedescriptorid, candidateidentifier, city, postalcode, stateabbreviationdescriptorid, streetnumbername) ON DELETE CASCADE;
+
+
+--
+-- Name: educatorpreparationprogram fk_195935_accreditationstatusdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogram
+    ADD CONSTRAINT fk_195935_accreditationstatusdescriptor FOREIGN KEY (accreditationstatusdescriptorid) REFERENCES tpdm.accreditationstatusdescriptor(accreditationstatusdescriptorid);
+
+
+--
+-- Name: educatorpreparationprogram fk_195935_educationorganization; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogram
+    ADD CONSTRAINT fk_195935_educationorganization FOREIGN KEY (educationorganizationid) REFERENCES edfi.educationorganization(educationorganizationid);
+
+
+--
+-- Name: educatorpreparationprogram fk_195935_programtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogram
+    ADD CONSTRAINT fk_195935_programtypedescriptor FOREIGN KEY (programtypedescriptorid) REFERENCES edfi.programtypedescriptor(programtypedescriptorid);
+
+
+--
+-- Name: evaluationobjectiveratinglevel fk_1d984c_evaluationobjective; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiveratinglevel
+    ADD CONSTRAINT fk_1d984c_evaluationobjective FOREIGN KEY (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluationobjective(educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationobjectiveratinglevel fk_1d984c_evaluationratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiveratinglevel
+    ADD CONSTRAINT fk_1d984c_evaluationratingleveldescriptor FOREIGN KEY (evaluationratingleveldescriptorid) REFERENCES tpdm.evaluationratingleveldescriptor(evaluationratingleveldescriptorid);
+
+
+--
+-- Name: schoolextension fk_2199be_postsecondaryinstitution; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.schoolextension
+    ADD CONSTRAINT fk_2199be_postsecondaryinstitution FOREIGN KEY (postsecondaryinstitutionid) REFERENCES edfi.postsecondaryinstitution(postsecondaryinstitutionid);
+
+
+--
+-- Name: schoolextension fk_2199be_school; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.schoolextension
+    ADD CONSTRAINT fk_2199be_school FOREIGN KEY (schoolid) REFERENCES edfi.school(schoolid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatedisability fk_236ee4_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisability
+    ADD CONSTRAINT fk_236ee4_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatedisability fk_236ee4_disabilitydescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisability
+    ADD CONSTRAINT fk_236ee4_disabilitydescriptor FOREIGN KEY (disabilitydescriptorid) REFERENCES edfi.disabilitydescriptor(disabilitydescriptorid);
+
+
+--
+-- Name: candidatedisability fk_236ee4_disabilitydeterminationsourcetypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisability
+    ADD CONSTRAINT fk_236ee4_disabilitydeterminationsourcetypedescriptor FOREIGN KEY (disabilitydeterminationsourcetypedescriptorid) REFERENCES edfi.disabilitydeterminationsourcetypedescriptor(disabilitydeterminationsourcetypedescriptorid);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationdegreespec_2501c4 fk_2501c4_candidateeducatorpreparationprogramassociation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationdegreespec_2501c4
+    ADD CONSTRAINT fk_2501c4_candidateeducatorpreparationprogramassociation FOREIGN KEY (begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid) REFERENCES tpdm.candidateeducatorpreparationprogramassociation(begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratingresult fk_268283_evaluationrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingresult
+    ADD CONSTRAINT fk_268283_evaluationrating FOREIGN KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationrating(educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratingresult fk_268283_resultdatatypetypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingresult
+    ADD CONSTRAINT fk_268283_resultdatatypetypedescriptor FOREIGN KEY (resultdatatypetypedescriptorid) REFERENCES edfi.resultdatatypetypedescriptor(resultdatatypetypedescriptorid);
+
+
+--
+-- Name: performanceevaluationtypedescriptor fk_2ba831_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationtypedescriptor
+    ADD CONSTRAINT fk_2ba831_descriptor FOREIGN KEY (performanceevaluationtypedescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratingreviewer fk_2d29eb_evaluationrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingreviewer
+    ADD CONSTRAINT fk_2d29eb_evaluationrating FOREIGN KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationrating(educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratingreviewer fk_2d29eb_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingreviewer
+    ADD CONSTRAINT fk_2d29eb_person FOREIGN KEY (reviewerpersonid, reviewersourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: candidatelanguageuse fk_3f00b1_candidatelanguage; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatelanguageuse
+    ADD CONSTRAINT fk_3f00b1_candidatelanguage FOREIGN KEY (candidateidentifier, languagedescriptorid) REFERENCES tpdm.candidatelanguage(candidateidentifier, languagedescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatelanguageuse fk_3f00b1_languageusedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatelanguageuse
+    ADD CONSTRAINT fk_3f00b1_languageusedescriptor FOREIGN KEY (languageusedescriptorid) REFERENCES edfi.languageusedescriptor(languageusedescriptorid);
+
+
+--
+-- Name: certificationroutedescriptor fk_40b601_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.certificationroutedescriptor
+    ADD CONSTRAINT fk_40b601_descriptor FOREIGN KEY (certificationroutedescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationelementrating fk_4479ea_evaluationelement; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementrating
+    ADD CONSTRAINT fk_4479ea_evaluationelement FOREIGN KEY (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluationelement(educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationelementrating fk_4479ea_evaluationelementratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementrating
+    ADD CONSTRAINT fk_4479ea_evaluationelementratingleveldescriptor FOREIGN KEY (evaluationelementratingleveldescriptorid) REFERENCES tpdm.evaluationelementratingleveldescriptor(evaluationelementratingleveldescriptorid);
+
+
+--
+-- Name: evaluationelementrating fk_4479ea_evaluationobjectiverating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementrating
+    ADD CONSTRAINT fk_4479ea_evaluationobjectiverating FOREIGN KEY (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationobjectiverating(educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: candidateothername fk_4521bb_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateothername
+    ADD CONSTRAINT fk_4521bb_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidateothername fk_4521bb_othernametypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateothername
+    ADD CONSTRAINT fk_4521bb_othernametypedescriptor FOREIGN KEY (othernametypedescriptorid) REFERENCES edfi.othernametypedescriptor(othernametypedescriptorid);
+
+
+--
+-- Name: performanceevaluationratingreviewer fk_477526_performanceevaluationrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingreviewer
+    ADD CONSTRAINT fk_477526_performanceevaluationrating FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.performanceevaluationrating(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: performanceevaluationratingreviewer fk_477526_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingreviewer
+    ADD CONSTRAINT fk_477526_person FOREIGN KEY (reviewerpersonid, reviewersourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: evaluationratingstatusdescriptor fk_4b53ea_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingstatusdescriptor
+    ADD CONSTRAINT fk_4b53ea_descriptor FOREIGN KEY (evaluationratingstatusdescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: surveyresponsepersontargetassociation fk_520027_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveyresponsepersontargetassociation
+    ADD CONSTRAINT fk_520027_person FOREIGN KEY (personid, sourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: surveyresponsepersontargetassociation fk_520027_surveyresponse; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveyresponsepersontargetassociation
+    ADD CONSTRAINT fk_520027_surveyresponse FOREIGN KEY (namespace, surveyidentifier, surveyresponseidentifier) REFERENCES edfi.surveyresponse(namespace, surveyidentifier, surveyresponseidentifier);
+
+
+--
+-- Name: genderdescriptor fk_554e4f_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.genderdescriptor
+    ADD CONSTRAINT fk_554e4f_descriptor FOREIGN KEY (genderdescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: performanceevaluationgradelevel fk_5b9d31_gradeleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationgradelevel
+    ADD CONSTRAINT fk_5b9d31_gradeleveldescriptor FOREIGN KEY (gradeleveldescriptorid) REFERENCES edfi.gradeleveldescriptor(gradeleveldescriptorid);
+
+
+--
+-- Name: performanceevaluationgradelevel fk_5b9d31_performanceevaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationgradelevel
+    ADD CONSTRAINT fk_5b9d31_performanceevaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.performanceevaluation(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratingleveldescriptor fk_5fb2ad_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingleveldescriptor
+    ADD CONSTRAINT fk_5fb2ad_descriptor FOREIGN KEY (evaluationratingleveldescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratingreviewerreceivedtraining fk_608112_evaluationratingreviewer; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratingreviewerreceivedtraining
+    ADD CONSTRAINT fk_608112_evaluationratingreviewer FOREIGN KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationratingreviewer(educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationcohortyear fk_620d03_candidateeducatorpreparationprogramassociation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationcohortyear
+    ADD CONSTRAINT fk_620d03_candidateeducatorpreparationprogramassociation FOREIGN KEY (begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid) REFERENCES tpdm.candidateeducatorpreparationprogramassociation(begindate, candidateidentifier, educationorganizationid, programname, programtypedescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationcohortyear fk_620d03_cohortyeartypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationcohortyear
+    ADD CONSTRAINT fk_620d03_cohortyeartypedescriptor FOREIGN KEY (cohortyeartypedescriptorid) REFERENCES edfi.cohortyeartypedescriptor(cohortyeartypedescriptorid);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationcohortyear fk_620d03_schoolyeartype; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationcohortyear
+    ADD CONSTRAINT fk_620d03_schoolyeartype FOREIGN KEY (schoolyear) REFERENCES edfi.schoolyeartype(schoolyear);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociationcohortyear fk_620d03_termdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociationcohortyear
+    ADD CONSTRAINT fk_620d03_termdescriptor FOREIGN KEY (termdescriptorid) REFERENCES edfi.termdescriptor(termdescriptorid);
+
+
+--
+-- Name: rubricdimension fk_643c81_evaluationelement; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.rubricdimension
+    ADD CONSTRAINT fk_643c81_evaluationelement FOREIGN KEY (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluationelement(educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: rubricdimension fk_643c81_rubricratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.rubricdimension
+    ADD CONSTRAINT fk_643c81_rubricratingleveldescriptor FOREIGN KEY (rubricratingleveldescriptorid) REFERENCES tpdm.rubricratingleveldescriptor(rubricratingleveldescriptorid);
+
+
+--
+-- Name: evaluationtypedescriptor fk_67cd19_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationtypedescriptor
+    ADD CONSTRAINT fk_67cd19_descriptor FOREIGN KEY (evaluationtypedescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: accreditationstatusdescriptor fk_69de81_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.accreditationstatusdescriptor
+    ADD CONSTRAINT fk_69de81_descriptor FOREIGN KEY (accreditationstatusdescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidaterace fk_6aa942_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidaterace
+    ADD CONSTRAINT fk_6aa942_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidaterace fk_6aa942_racedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidaterace
+    ADD CONSTRAINT fk_6aa942_racedescriptor FOREIGN KEY (racedescriptorid) REFERENCES edfi.racedescriptor(racedescriptorid);
+
+
+--
+-- Name: performanceevaluationratingreviewerreceivedtraining fk_6e6517_performanceevaluationratingreviewer; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingreviewerreceivedtraining
+    ADD CONSTRAINT fk_6e6517_performanceevaluationratingreviewer FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.performanceevaluationratingreviewer(educationorganizationid, evaluationperioddescriptorid, firstname, lastsurname, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatedisabilitydesignation fk_6edb1d_candidatedisability; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisabilitydesignation
+    ADD CONSTRAINT fk_6edb1d_candidatedisability FOREIGN KEY (candidateidentifier, disabilitydescriptorid) REFERENCES tpdm.candidatedisability(candidateidentifier, disabilitydescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatedisabilitydesignation fk_6edb1d_disabilitydesignationdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatedisabilitydesignation
+    ADD CONSTRAINT fk_6edb1d_disabilitydesignationdescriptor FOREIGN KEY (disabilitydesignationdescriptorid) REFERENCES edfi.disabilitydesignationdescriptor(disabilitydesignationdescriptorid);
+
+
+--
+-- Name: credentialextension fk_6fae52_certificationroutedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialextension
+    ADD CONSTRAINT fk_6fae52_certificationroutedescriptor FOREIGN KEY (certificationroutedescriptorid) REFERENCES tpdm.certificationroutedescriptor(certificationroutedescriptorid);
+
+
+--
+-- Name: credentialextension fk_6fae52_credential; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialextension
+    ADD CONSTRAINT fk_6fae52_credential FOREIGN KEY (credentialidentifier, stateofissuestateabbreviationdescriptorid) REFERENCES edfi.credential(credentialidentifier, stateofissuestateabbreviationdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: credentialextension fk_6fae52_credentialstatusdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialextension
+    ADD CONSTRAINT fk_6fae52_credentialstatusdescriptor FOREIGN KEY (credentialstatusdescriptorid) REFERENCES tpdm.credentialstatusdescriptor(credentialstatusdescriptorid);
+
+
+--
+-- Name: credentialextension fk_6fae52_educatorroledescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialextension
+    ADD CONSTRAINT fk_6fae52_educatorroledescriptor FOREIGN KEY (educatorroledescriptorid) REFERENCES tpdm.educatorroledescriptor(educatorroledescriptorid);
+
+
+--
+-- Name: credentialextension fk_6fae52_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialextension
+    ADD CONSTRAINT fk_6fae52_person FOREIGN KEY (personid, sourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: evaluationratinglevel fk_7052f8_evaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratinglevel
+    ADD CONSTRAINT fk_7052f8_evaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluation(educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationratinglevel fk_7052f8_evaluationratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationratinglevel
+    ADD CONSTRAINT fk_7052f8_evaluationratingleveldescriptor FOREIGN KEY (evaluationratingleveldescriptorid) REFERENCES tpdm.evaluationratingleveldescriptor(evaluationratingleveldescriptorid);
+
+
+--
+-- Name: credentialstudentacademicrecord fk_73e151_credential; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialstudentacademicrecord
+    ADD CONSTRAINT fk_73e151_credential FOREIGN KEY (credentialidentifier, stateofissuestateabbreviationdescriptorid) REFERENCES edfi.credential(credentialidentifier, stateofissuestateabbreviationdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: credentialstudentacademicrecord fk_73e151_studentacademicrecord; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialstudentacademicrecord
+    ADD CONSTRAINT fk_73e151_studentacademicrecord FOREIGN KEY (educationorganizationid, schoolyear, studentusi, termdescriptorid) REFERENCES edfi.studentacademicrecord(educationorganizationid, schoolyear, studentusi, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationrating fk_759abe_coteachingstyleobserveddescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationrating
+    ADD CONSTRAINT fk_759abe_coteachingstyleobserveddescriptor FOREIGN KEY (coteachingstyleobserveddescriptorid) REFERENCES tpdm.coteachingstyleobserveddescriptor(coteachingstyleobserveddescriptorid);
+
+
+--
+-- Name: performanceevaluationrating fk_759abe_performanceevaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationrating
+    ADD CONSTRAINT fk_759abe_performanceevaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.performanceevaluation(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: performanceevaluationrating fk_759abe_performanceevaluationratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationrating
+    ADD CONSTRAINT fk_759abe_performanceevaluationratingleveldescriptor FOREIGN KEY (performanceevaluationratingleveldescriptorid) REFERENCES tpdm.performanceevaluationratingleveldescriptor(performanceevaluationratingleveldescriptorid);
+
+
+--
+-- Name: performanceevaluationrating fk_759abe_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationrating
+    ADD CONSTRAINT fk_759abe_person FOREIGN KEY (personid, sourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: englishlanguageexamdescriptor fk_76d6e8_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.englishlanguageexamdescriptor
+    ADD CONSTRAINT fk_76d6e8_descriptor FOREIGN KEY (englishlanguageexamdescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationobjectiverating fk_7ae19d_evaluationobjective; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiverating
+    ADD CONSTRAINT fk_7ae19d_evaluationobjective FOREIGN KEY (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluationobjective(educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationobjectiverating fk_7ae19d_evaluationrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiverating
+    ADD CONSTRAINT fk_7ae19d_evaluationrating FOREIGN KEY (educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationrating(educationorganizationid, evaluationdate, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationobjectiverating fk_7ae19d_objectiveratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiverating
+    ADD CONSTRAINT fk_7ae19d_objectiveratingleveldescriptor FOREIGN KEY (objectiveratingleveldescriptorid) REFERENCES tpdm.objectiveratingleveldescriptor(objectiveratingleveldescriptorid);
+
+
+--
+-- Name: evaluationperioddescriptor fk_83ff2a_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationperioddescriptor
+    ADD CONSTRAINT fk_83ff2a_descriptor FOREIGN KEY (evaluationperioddescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: performanceevaluationratingresult fk_863fa4_performanceevaluationrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingresult
+    ADD CONSTRAINT fk_863fa4_performanceevaluationrating FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.performanceevaluationrating(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: performanceevaluationratingresult fk_863fa4_resultdatatypetypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingresult
+    ADD CONSTRAINT fk_863fa4_resultdatatypetypedescriptor FOREIGN KEY (resultdatatypetypedescriptorid) REFERENCES edfi.resultdatatypetypedescriptor(resultdatatypetypedescriptorid);
+
+
+--
+-- Name: evaluationelementratingleveldescriptor fk_86df6c_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratingleveldescriptor
+    ADD CONSTRAINT fk_86df6c_descriptor FOREIGN KEY (evaluationelementratingleveldescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: performanceevaluationratinglevel fk_90ed3d_evaluationratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratinglevel
+    ADD CONSTRAINT fk_90ed3d_evaluationratingleveldescriptor FOREIGN KEY (evaluationratingleveldescriptorid) REFERENCES tpdm.evaluationratingleveldescriptor(evaluationratingleveldescriptorid);
+
+
+--
+-- Name: performanceevaluationratinglevel fk_90ed3d_performanceevaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratinglevel
+    ADD CONSTRAINT fk_90ed3d_performanceevaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.performanceevaluation(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: credentialstatusdescriptor fk_91080a_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.credentialstatusdescriptor
+    ADD CONSTRAINT fk_91080a_descriptor FOREIGN KEY (credentialstatusdescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: coteachingstyleobserveddescriptor fk_932c9a_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.coteachingstyleobserveddescriptor
+    ADD CONSTRAINT fk_932c9a_descriptor FOREIGN KEY (coteachingstyleobserveddescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatepersonalidentificationdocument fk_93a227_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatepersonalidentificationdocument
+    ADD CONSTRAINT fk_93a227_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatepersonalidentificationdocument fk_93a227_countrydescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatepersonalidentificationdocument
+    ADD CONSTRAINT fk_93a227_countrydescriptor FOREIGN KEY (issuercountrydescriptorid) REFERENCES edfi.countrydescriptor(countrydescriptorid);
+
+
+--
+-- Name: candidatepersonalidentificationdocument fk_93a227_identificationdocumentusedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatepersonalidentificationdocument
+    ADD CONSTRAINT fk_93a227_identificationdocumentusedescriptor FOREIGN KEY (identificationdocumentusedescriptorid) REFERENCES edfi.identificationdocumentusedescriptor(identificationdocumentusedescriptorid);
+
+
+--
+-- Name: candidatepersonalidentificationdocument fk_93a227_personalinformationverificationdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatepersonalidentificationdocument
+    ADD CONSTRAINT fk_93a227_personalinformationverificationdescriptor FOREIGN KEY (personalinformationverificationdescriptorid) REFERENCES edfi.personalinformationverificationdescriptor(personalinformationverificationdescriptorid);
+
+
+--
+-- Name: financialaid fk_a465f2_aidtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.financialaid
+    ADD CONSTRAINT fk_a465f2_aidtypedescriptor FOREIGN KEY (aidtypedescriptorid) REFERENCES tpdm.aidtypedescriptor(aidtypedescriptorid);
+
+
+--
+-- Name: financialaid fk_a465f2_student; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.financialaid
+    ADD CONSTRAINT fk_a465f2_student FOREIGN KEY (studentusi) REFERENCES edfi.student(studentusi);
+
+
+--
+-- Name: evaluationelementratinglevel fk_afbeb2_evaluationelement; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratinglevel
+    ADD CONSTRAINT fk_afbeb2_evaluationelement FOREIGN KEY (educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluationelement(educationorganizationid, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationelementratinglevel fk_afbeb2_evaluationratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratinglevel
+    ADD CONSTRAINT fk_afbeb2_evaluationratingleveldescriptor FOREIGN KEY (evaluationratingleveldescriptorid) REFERENCES tpdm.evaluationratingleveldescriptor(evaluationratingleveldescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_countrydescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_countrydescriptor FOREIGN KEY (birthcountrydescriptorid) REFERENCES edfi.countrydescriptor(countrydescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_englishlanguageexamdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_englishlanguageexamdescriptor FOREIGN KEY (englishlanguageexamdescriptorid) REFERENCES tpdm.englishlanguageexamdescriptor(englishlanguageexamdescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_genderdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_genderdescriptor FOREIGN KEY (genderdescriptorid) REFERENCES tpdm.genderdescriptor(genderdescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_limitedenglishproficiencydescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_limitedenglishproficiencydescriptor FOREIGN KEY (limitedenglishproficiencydescriptorid) REFERENCES edfi.limitedenglishproficiencydescriptor(limitedenglishproficiencydescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_person FOREIGN KEY (personid, sourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_sexdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_sexdescriptor FOREIGN KEY (sexdescriptorid) REFERENCES edfi.sexdescriptor(sexdescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_sexdescriptor1; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_sexdescriptor1 FOREIGN KEY (birthsexdescriptorid) REFERENCES edfi.sexdescriptor(sexdescriptorid);
+
+
+--
+-- Name: candidate fk_b2452d_stateabbreviationdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidate
+    ADD CONSTRAINT fk_b2452d_stateabbreviationdescriptor FOREIGN KEY (birthstateabbreviationdescriptorid) REFERENCES edfi.stateabbreviationdescriptor(stateabbreviationdescriptorid);
+
+
+--
+-- Name: educatorroledescriptor fk_bc8b94_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorroledescriptor
+    ADD CONSTRAINT fk_bc8b94_descriptor FOREIGN KEY (educatorroledescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationobjectiveratingresult fk_beeccb_evaluationobjectiverating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiveratingresult
+    ADD CONSTRAINT fk_beeccb_evaluationobjectiverating FOREIGN KEY (educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationobjectiverating(educationorganizationid, evaluationdate, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationobjectiveratingresult fk_beeccb_resultdatatypetypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjectiveratingresult
+    ADD CONSTRAINT fk_beeccb_resultdatatypetypedescriptor FOREIGN KEY (resultdatatypetypedescriptorid) REFERENCES edfi.resultdatatypetypedescriptor(resultdatatypetypedescriptorid);
+
+
+--
+-- Name: evaluationrating fk_bfaa20_evaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationrating
+    ADD CONSTRAINT fk_bfaa20_evaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluation(educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationrating fk_bfaa20_evaluationratingleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationrating
+    ADD CONSTRAINT fk_bfaa20_evaluationratingleveldescriptor FOREIGN KEY (evaluationratingleveldescriptorid) REFERENCES tpdm.evaluationratingleveldescriptor(evaluationratingleveldescriptorid);
+
+
+--
+-- Name: evaluationrating fk_bfaa20_evaluationratingstatusdescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationrating
+    ADD CONSTRAINT fk_bfaa20_evaluationratingstatusdescriptor FOREIGN KEY (evaluationratingstatusdescriptorid) REFERENCES tpdm.evaluationratingstatusdescriptor(evaluationratingstatusdescriptorid);
+
+
+--
+-- Name: evaluationrating fk_bfaa20_performanceevaluationrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationrating
+    ADD CONSTRAINT fk_bfaa20_performanceevaluationrating FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.performanceevaluationrating(educationorganizationid, evaluationperioddescriptorid, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid);
+
+
+--
+-- Name: evaluationrating fk_bfaa20_section; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationrating
+    ADD CONSTRAINT fk_bfaa20_section FOREIGN KEY (localcoursecode, schoolid, schoolyear, sectionidentifier, sessionname) REFERENCES edfi.section(localcoursecode, schoolid, schoolyear, sectionidentifier, sessionname) ON UPDATE CASCADE;
+
+
+--
+-- Name: candidateelectronicmail fk_c5124f_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateelectronicmail
+    ADD CONSTRAINT fk_c5124f_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidateelectronicmail fk_c5124f_electronicmailtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateelectronicmail
+    ADD CONSTRAINT fk_c5124f_electronicmailtypedescriptor FOREIGN KEY (electronicmailtypedescriptorid) REFERENCES edfi.electronicmailtypedescriptor(electronicmailtypedescriptorid);
+
+
+--
+-- Name: evaluationelementratingresult fk_c5877a_evaluationelementrating; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratingresult
+    ADD CONSTRAINT fk_c5877a_evaluationelementrating FOREIGN KEY (educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) REFERENCES tpdm.evaluationelementrating(educationorganizationid, evaluationdate, evaluationelementtitle, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, personid, schoolyear, sourcesystemdescriptorid, termdescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: evaluationelementratingresult fk_c5877a_resultdatatypetypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelementratingresult
+    ADD CONSTRAINT fk_c5877a_resultdatatypetypedescriptor FOREIGN KEY (resultdatatypetypedescriptorid) REFERENCES edfi.resultdatatypetypedescriptor(resultdatatypetypedescriptorid);
+
+
+--
+-- Name: eppprogrampathwaydescriptor fk_cde665_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.eppprogrampathwaydescriptor
+    ADD CONSTRAINT fk_cde665_descriptor FOREIGN KEY (eppprogrampathwaydescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: educatorpreparationprogramgradelevel fk_d3a222_educatorpreparationprogram; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogramgradelevel
+    ADD CONSTRAINT fk_d3a222_educatorpreparationprogram FOREIGN KEY (educationorganizationid, programname, programtypedescriptorid) REFERENCES tpdm.educatorpreparationprogram(educationorganizationid, programname, programtypedescriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: educatorpreparationprogramgradelevel fk_d3a222_gradeleveldescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.educatorpreparationprogramgradelevel
+    ADD CONSTRAINT fk_d3a222_gradeleveldescriptor FOREIGN KEY (gradeleveldescriptorid) REFERENCES edfi.gradeleveldescriptor(gradeleveldescriptorid);
+
+
+--
+-- Name: evaluationobjective fk_d4565d_evaluation; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjective
+    ADD CONSTRAINT fk_d4565d_evaluation FOREIGN KEY (educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluation(educationorganizationid, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationobjective fk_d4565d_evaluationtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationobjective
+    ADD CONSTRAINT fk_d4565d_evaluationtypedescriptor FOREIGN KEY (evaluationtypedescriptorid) REFERENCES tpdm.evaluationtypedescriptor(evaluationtypedescriptorid);
+
+
+--
+-- Name: objectiveratingleveldescriptor fk_d49b1f_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.objectiveratingleveldescriptor
+    ADD CONSTRAINT fk_d49b1f_descriptor FOREIGN KEY (objectiveratingleveldescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: aidtypedescriptor fk_d6106a_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.aidtypedescriptor
+    ADD CONSTRAINT fk_d6106a_descriptor FOREIGN KEY (aidtypedescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation fk_e21e4b_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveysectionresponsepersontargetassociation
+    ADD CONSTRAINT fk_e21e4b_person FOREIGN KEY (personid, sourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: surveysectionresponsepersontargetassociation fk_e21e4b_surveysectionresponse; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveysectionresponsepersontargetassociation
+    ADD CONSTRAINT fk_e21e4b_surveysectionresponse FOREIGN KEY (namespace, surveyidentifier, surveyresponseidentifier, surveysectiontitle) REFERENCES edfi.surveysectionresponse(namespace, surveyidentifier, surveyresponseidentifier, surveysectiontitle);
+
+
+--
+-- Name: candidatelanguage fk_e5239b_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatelanguage
+    ADD CONSTRAINT fk_e5239b_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidatelanguage fk_e5239b_languagedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidatelanguage
+    ADD CONSTRAINT fk_e5239b_languagedescriptor FOREIGN KEY (languagedescriptorid) REFERENCES edfi.languagedescriptor(languagedescriptorid);
+
+
+--
+-- Name: evaluationelement fk_e53186_evaluationobjective; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelement
+    ADD CONSTRAINT fk_e53186_evaluationobjective FOREIGN KEY (educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid) REFERENCES tpdm.evaluationobjective(educationorganizationid, evaluationobjectivetitle, evaluationperioddescriptorid, evaluationtitle, performanceevaluationtitle, performanceevaluationtypedescriptorid, schoolyear, termdescriptorid);
+
+
+--
+-- Name: evaluationelement fk_e53186_evaluationtypedescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.evaluationelement
+    ADD CONSTRAINT fk_e53186_evaluationtypedescriptor FOREIGN KEY (evaluationtypedescriptorid) REFERENCES tpdm.evaluationtypedescriptor(evaluationtypedescriptorid);
+
+
+--
+-- Name: performanceevaluationratingleveldescriptor fk_ed7e01_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.performanceevaluationratingleveldescriptor
+    ADD CONSTRAINT fk_ed7e01_descriptor FOREIGN KEY (performanceevaluationratingleveldescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: rubricratingleveldescriptor fk_f24609_descriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.rubricratingleveldescriptor
+    ADD CONSTRAINT fk_f24609_descriptor FOREIGN KEY (rubricratingleveldescriptorid) REFERENCES edfi.descriptor(descriptorid) ON DELETE CASCADE;
+
+
+--
+-- Name: surveyresponseextension fk_fa906d_person; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveyresponseextension
+    ADD CONSTRAINT fk_fa906d_person FOREIGN KEY (personid, sourcesystemdescriptorid) REFERENCES edfi.person(personid, sourcesystemdescriptorid);
+
+
+--
+-- Name: surveyresponseextension fk_fa906d_surveyresponse; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.surveyresponseextension
+    ADD CONSTRAINT fk_fa906d_surveyresponse FOREIGN KEY (namespace, surveyidentifier, surveyresponseidentifier) REFERENCES edfi.surveyresponse(namespace, surveyidentifier, surveyresponseidentifier) ON DELETE CASCADE;
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation fk_fc61b2_candidate; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociation
+    ADD CONSTRAINT fk_fc61b2_candidate FOREIGN KEY (candidateidentifier) REFERENCES tpdm.candidate(candidateidentifier);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation fk_fc61b2_educatorpreparationprogram; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociation
+    ADD CONSTRAINT fk_fc61b2_educatorpreparationprogram FOREIGN KEY (educationorganizationid, programname, programtypedescriptorid) REFERENCES tpdm.educatorpreparationprogram(educationorganizationid, programname, programtypedescriptorid);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation fk_fc61b2_eppprogrampathwaydescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociation
+    ADD CONSTRAINT fk_fc61b2_eppprogrampathwaydescriptor FOREIGN KEY (eppprogrampathwaydescriptorid) REFERENCES tpdm.eppprogrampathwaydescriptor(eppprogrampathwaydescriptorid);
+
+
+--
+-- Name: candidateeducatorpreparationprogramassociation fk_fc61b2_reasonexiteddescriptor; Type: FK CONSTRAINT; Schema: tpdm; Owner: postgres
+--
+
+ALTER TABLE ONLY tpdm.candidateeducatorpreparationprogramassociation
+    ADD CONSTRAINT fk_fc61b2_reasonexiteddescriptor FOREIGN KEY (reasonexiteddescriptorid) REFERENCES edfi.reasonexiteddescriptor(reasonexiteddescriptorid);
 
 
 --
