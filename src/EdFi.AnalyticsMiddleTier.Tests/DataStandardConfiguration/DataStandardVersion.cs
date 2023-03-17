@@ -15,7 +15,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
                     {DataStandard.Ds2, ("2", typeof(DataStandard2.Install))},
                     {DataStandard.Ds31, ("3.1", typeof(DataStandard31.Install))},
                     {DataStandard.Ds32, ("3.2", typeof(DataStandard32.Install))},
-                    {DataStandard.Ds33, ("3.3", typeof(DataStandard33.Install))}
+                    {DataStandard.Ds33, ("3.3", typeof(DataStandard33.Install))},
+                    {DataStandard.Ds40, ("4.0", typeof(DataStandard40.Install))}
                 };
                 return versions;
             }

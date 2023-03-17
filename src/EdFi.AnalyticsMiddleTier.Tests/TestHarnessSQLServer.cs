@@ -33,6 +33,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests
         public static TestHarnessSQLServer DataStandard33 
             = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds33));
 
+        public static TestHarnessSQLServer DataStandard40
+            = new TestHarnessSQLServer(new SqlServerDataStandardSettings(DataStandard.Ds40));
+
         protected TestHarnessSQLServer(IDataStandardSettings dataStandardSettings) : base(dataStandardSettings)
         {
         }

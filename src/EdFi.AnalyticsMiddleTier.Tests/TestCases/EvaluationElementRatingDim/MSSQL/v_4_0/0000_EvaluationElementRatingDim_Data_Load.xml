@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2144','uri://ed-fi.org/SexDescriptor','Not Selected','Not Selected','Not Selected','2021-11-05 19:01:20.7915028','2021-11-05 19:01:20.7903607','8C4D1ED4-D89D-476D-B7AC-27C2F0F4D3FC','2203'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2144'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.SexDescriptor(SexDescriptorId)
+      (SELECT TOP 1'2144'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SexDescriptor WHERE   SexDescriptorId= '2144'));
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000048','Jacqueline','Mast','2144','1960-11-30','01E0D81B0B7A4E80BFCA28BE5BF3931F','2021-11-10 17:58:27.8029747','2021-11-10 10:58:00.1023404','79ED90F4-C143-43C3-BFDB-47B5DF946B84','186712'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000048'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3331','uri://tpdm.ed-fi.org/EvaluationTypeDescriptor','Formal Eval','Formal Eval','Formal evaluation','2021-11-10 17:52:41.1277899','2021-11-10 17:52:41.1303677','94B3C695-CD34-4094-9627-4011D334EEDD','104577'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3331'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.EvaluationTypeDescriptor(EvaluationTypeDescriptorId)
+      (SELECT TOP 1'3331'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationTypeDescriptor WHERE   EvaluationTypeDescriptorId= '3331'));
+
+      INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,Discriminator,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','TU Collge of Education Graduate','edfi.School','2021-11-10 17:52:45.6598509','2021-11-10 17:52:45.6592967','D0F3041D-6CA7-4869-BA21-5C952CDD71C3','104938'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '5'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3305','uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor','MOY','MOY','Mid-Year','2021-11-10 17:52:40.7784732','2021-11-10 17:52:40.7811942','99665FFF-0B78-4819-8F45-3E872CCE9D6D','104525'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3305'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.EvaluationPeriodDescriptor(EvaluationPeriodDescriptorId)
+      (SELECT TOP 1'3305'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationPeriodDescriptor WHERE   EvaluationPeriodDescriptorId= '3305'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3454','uri://tpdm.ed-fi.org/PerformanceEvaluationTypeDescriptor','Formal Eval','Formal Eval','Formal evaluation','2021-11-10 17:52:42.9548982','2021-11-10 17:52:42.9576501','7204032C-3045-4C91-A251-FFD684F92583','104781'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3454'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.PerformanceEvaluationTypeDescriptor(PerformanceEvaluationTypeDescriptorId)
+      (SELECT TOP 1'3454'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluationTypeDescriptor WHERE   PerformanceEvaluationTypeDescriptorId= '3454'));
+
+      INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2022','2021-2022','1','2021-11-05 14:00:39.2866667','2021-11-05 14:00:39.2866667','F4773008-A568-4F19-8836-73319F1445DE','29'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2022'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2404','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester','2021-11-05 19:01:23.5423186','2021-11-05 19:01:23.5410451','05A133C3-4CA4-4C4A-B041-4E8677D1B39F','2463'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2404'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.TermDescriptor(TermDescriptorId)
+      (SELECT TOP 1'2404'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TermDescriptor WHERE   TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.PerformanceEvaluation(EducationOrganizationId,EvaluationPeriodDescriptorId,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3305','Formal Evaluation','3454','2022','2404','2021-11-10 17:58:11.1250733','2021-11-10 17:58:11.1231681','A06E00F7-B629-44A3-B339-E7C3A5E0E59C','146936'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluation WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3305'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.Evaluation(EducationOrganizationId,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,MaxRating,EvaluationTypeDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3305','Formal Observation','Formal Evaluation','3454','2022','2404','100.000','3331','2021-11-10 17:58:18.6935549','2021-11-10 17:58:18.6917413','318765DF-F182-4C77-AE8A-88C76C9C664C','147940'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Evaluation WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationObjective(EducationOrganizationId,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,SortOrder,MaxRating,EvaluationTypeDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','2022','2404','3','100.000','3331','2021-11-10 17:58:25.7779027','2021-12-10 11:58:00','FB5C33CA-52FF-406E-9FA3-A1671C6FB31F','148749'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationObjective WHERE   EducationOrganizationId= '5'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationElement(EducationOrganizationId,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,SortOrder,MinRating,MaxRating,EvaluationTypeDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','2022','2404','3',NULL,'100.000','3331','2021-11-10 17:58:56.8022327','2021-11-10 17:58:56.8020381','FC09D67D-ADA2-48C9-8ADD-D4AAA9445D1E','151227'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElement WHERE   EducationOrganizationId= '5'  AND EvaluationElementTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3301','uri://tpdm.ed-fi.org/EvaluationElementRatingLevelDescriptor','Effective','Effective','Effective','2021-11-10 17:52:40.7169514','2021-11-10 17:52:40.7178058','BC3E9CB2-E177-425B-9601-EB7F39907FDA','104517'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3301'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.EvaluationElementRatingLevelDescriptor(EvaluationElementRatingLevelDescriptorId)
+      (SELECT TOP 1'3301'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElementRatingLevelDescriptor WHERE   EvaluationElementRatingLevelDescriptorId= '3301'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3321','uri://tpdm.ed-fi.org/EvaluationRatingLevelDescriptor','Effective','Effective','Effective','2021-11-10 17:52:40.9755629','2021-11-10 17:52:40.9763764','4EBF3197-7A4F-446A-B225-9246FF612E14','104557'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3321'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.EvaluationRatingLevelDescriptor(EvaluationRatingLevelDescriptorId)
+      (SELECT TOP 1'3321'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationRatingLevelDescriptor WHERE   EvaluationRatingLevelDescriptorId= '3321'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3450','uri://tpdm.ed-fi.org/PerformanceEvaluationRatingLevelDescriptor','Effective','Effective','Effective','2021-11-10 17:52:42.8911223','2021-11-10 17:52:42.8919964','004AE140-4FBF-4387-87EA-952AB8F03915','104773'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3450'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.PerformanceEvaluationRatingLevelDescriptor(PerformanceEvaluationRatingLevelDescriptorId)
+      (SELECT TOP 1'3450'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluationRatingLevelDescriptor WHERE   PerformanceEvaluationRatingLevelDescriptorId= '3450'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2150','uri://ed-fi.org/SourceSystemDescriptor','State','State','State','2021-11-05 19:01:20.8834843','2021-11-05 19:01:20.8822467','84818490-13BD-4ED4-8F0D-29C065082833','2209'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2150'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.SourceSystemDescriptor(SourceSystemDescriptorId)
+      (SELECT TOP 1'2150'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SourceSystemDescriptor WHERE   SourceSystemDescriptorId= '2150'));
+
+      INSERT INTO edfi.Person(PersonId,SourceSystemDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'01E0D81B0B7A4E80BFCA28BE5BF3931F','2150','2021-11-10 17:53:00.9013053','2021-11-10 17:53:00.9012436','6E9C0113-E267-4F4C-863C-BAC10AC6ADC7','105330'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Person WHERE   PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SourceSystemDescriptorId= '2150'));
+
+      INSERT INTO tpdm.PerformanceEvaluationRating(EducationOrganizationId,EvaluationPeriodDescriptorId,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ActualDate,Announced,PerformanceEvaluationRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3305','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','2011-11-01','1','3450','2021-11-10 17:58:18.9514836','2021-11-10 17:58:18.9513607','BDB98DDC-3F26-421F-9B60-61D777644BC1','147959'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluationRating WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3305'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationRating(EducationOrganizationId,EvaluationDate,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,EvaluationRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','3321','2021-11-10 17:59:38.7575071','2021-11-10 17:59:38.7573698','9F2248FE-96DC-4472-A38B-BC68E8A33902','156240'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-01 00:00:00.0000000'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3431','uri://tpdm.ed-fi.org/ObjectiveRatingLevelDescriptor','Effective','Effective','Effective','2021-11-10 17:52:42.5530616','2021-11-10 17:52:42.5539810','F0BE1657-AD50-4E16-87D4-3A5CAF6D2C5B','104735'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3431'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.ObjectiveRatingLevelDescriptor(ObjectiveRatingLevelDescriptorId)
+      (SELECT TOP 1'3431'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.ObjectiveRatingLevelDescriptor WHERE   ObjectiveRatingLevelDescriptorId= '3431'));
+
+      INSERT INTO tpdm.EvaluationObjectiveRating(EducationOrganizationId,EvaluationDate,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ObjectiveRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','3431','2021-11-10 17:59:40.3192313','2021-11-10 17:59:40.3191266','242FEB40-F44F-421D-856D-AA03887D3A21','156410'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationObjectiveRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-01 00:00:00.0000000'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationElementRating(EducationOrganizationId,EvaluationDate,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,EvaluationElementRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','3301','2021-11-10 18:00:01.1891264','2021-11-10 18:00:01.1889878','0E34026C-F16D-4E68-A7AD-FFC6F3584A02','158758'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElementRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-01 00:00:00.0000000'  AND EvaluationElementTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'2066','uri://ed-fi.org/ResultDatatypeTypeDescriptor','Integer','Integer','Integer','2021-11-05 19:01:19.5608153','2021-11-05 19:01:19.5607817','DA6E6FE7-EB8A-4821-8796-09B8935F1109','2125'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2066'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.ResultDatatypeTypeDescriptor(ResultDatatypeTypeDescriptorId)
+      (SELECT TOP 1'2066'  WHERE NOT EXISTS(SELECT  1  FROM edfi.ResultDatatypeTypeDescriptor WHERE   ResultDatatypeTypeDescriptorId= '2066'));
+
+      INSERT INTO tpdm.EvaluationElementRatingResult(EducationOrganizationId,EvaluationDate,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,Rating,RatingResultTitle,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ResultDatatypeTypeDescriptorId,CreateDate)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','61.000','Effective','2022','2150','2404','2066','2021-11-10 18:00:01.2057214'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElementRatingResult WHERE PersonId = '01E0D81B0B7A4E80BFCA28BE5BF3931F'));
+
+      ----
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'3134','uri://tpdm.ed-fi.org/EvaluationPeriodDescriptor','BOY','BOY','Beginning of year','2021-11-10 17:52:40.7784732','2021-11-10 17:52:40.7811942','99665FFF-0B78-4819-8F45-3E872CCE9D6A','104525'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '3134'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO tpdm.EvaluationPeriodDescriptor(EvaluationPeriodDescriptorId)
+      (SELECT TOP 1'3134'  WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationPeriodDescriptor WHERE   EvaluationPeriodDescriptorId= '3134'));
+
+      INSERT INTO tpdm.PerformanceEvaluation(EducationOrganizationId,EvaluationPeriodDescriptorId,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3134','Formal Evaluation','3454','2022','2404','2021-11-10 17:58:11.1250733','2021-11-10 17:58:11.1231681','A06E00F7-B629-44A3-B339-E7C3A5E0E590','146936'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluation WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3134'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.Evaluation(EducationOrganizationId,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,MaxRating,EvaluationTypeDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3134','Formal Observation','Formal Evaluation','3454','2022','2404','100.000','3331','2021-11-10 17:58:18.6935549','2021-11-10 17:58:18.6917413','318765DF-F182-4C77-AE8A-88C76C9C6640','147940'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Evaluation WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3134'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationObjective(EducationOrganizationId,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,SortOrder,MaxRating,EvaluationTypeDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','ADDRESS MISCONCEPTIONS','3134','Formal Observation','Formal Evaluation','3454','2022','2404','3','100.000','3331','2021-11-10 17:58:25.7779027','2021-12-10 11:58:00','FB5C33CA-52FF-406E-9FA3-A1671C6FB310','148749'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationObjective WHERE   EducationOrganizationId= '5'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3134'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationElement(EducationOrganizationId,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,SchoolYear,TermDescriptorId,SortOrder,MinRating,MaxRating,EvaluationTypeDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3134','Formal Observation','Formal Evaluation','3454','2022','2404','3',NULL,'100.000','3331','2021-11-10 17:58:56.8022327','2021-11-10 17:58:56.8020381','FC09D67D-ADA2-48C9-8ADD-D4AAA9445D1C','151227'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElement WHERE   EducationOrganizationId= '5'  AND EvaluationElementTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3134'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND SchoolYear= '2022'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.PerformanceEvaluationRating(EducationOrganizationId,EvaluationPeriodDescriptorId,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ActualDate,Announced,PerformanceEvaluationRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3134','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','2011-11-01','1','3450','2021-11-10 17:58:18.9514836','2021-11-10 17:58:18.9513607','BDB98DDC-3F26-421F-9B60-61D777644BC0','147959'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluationRating WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3134'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationRating(EducationOrganizationId,EvaluationDate,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,EvaluationRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','3134','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','3321','2021-11-10 17:59:38.7575071','2021-11-10 17:59:38.7573698','9F2248FE-96DC-4472-A38B-BC68E8A33900','156240'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-01 00:00:00.0000000'  AND EvaluationPeriodDescriptorId= '3134'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationObjectiveRating(EducationOrganizationId,EvaluationDate,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ObjectiveRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','ADDRESS MISCONCEPTIONS','3134','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','3431','2021-11-10 17:59:40.3192313','2021-11-10 17:59:40.3191266','242FEB40-F44F-421D-856D-AA03887D3A20','156410'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationObjectiveRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-01 00:00:00.0000000'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3134'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationElementRating(EducationOrganizationId,EvaluationDate,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,EvaluationElementRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-01 00:00:00.0000000','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3134','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931F','2022','2150','2404','3301','2021-11-10 18:00:01.1891264','2021-11-10 18:00:01.1889878','0E34026C-F16D-4E68-A7AD-FFC6F3584A03','158758'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElementRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-01 00:00:00.0000000'  AND EvaluationElementTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3134'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931F'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      ----- 1000049
+
+      INSERT INTO tpdm.Candidate(CandidateIdentifier,FirstName,LastSurname,SexDescriptorId,BirthDate,PersonId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'1000049','Kasey','Keler','2144','1960-11-30','01E0D81B0B7A4E80BFCA28BE5BF3931B','2021-11-10 17:58:27.8029747','2022-10-10 10:58:00','79ED90F4-C143-43C3-BFDB-47B5DF946B85','186712'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.Candidate WHERE CandidateIdentifier = '1000049'));
+
+      INSERT INTO edfi.Person(PersonId,SourceSystemDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'01E0D81B0B7A4E80BFCA28BE5BF3931B','2150','2021-11-10 17:53:00.9013053','2021-11-10 17:53:00.9012436','6E9C0113-E267-4F4C-863C-BAC10AC6ADC8','105330'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Person WHERE   PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931B'  AND SourceSystemDescriptorId= '2150'));
+
+      INSERT INTO tpdm.PerformanceEvaluationRating(EducationOrganizationId,EvaluationPeriodDescriptorId,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ActualDate,Announced,PerformanceEvaluationRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','3305','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931B','2022','2150','2404','2011-11-01','1','3450','2021-11-10 17:58:18.9514836','2021-11-10 17:58:18.9513607','BDB98DDC-3F26-421F-9B60-61D777644BC3','147959'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.PerformanceEvaluationRating WHERE   EducationOrganizationId= '5'  AND EvaluationPeriodDescriptorId= '3305'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931B'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationRating(EducationOrganizationId,EvaluationDate,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,EvaluationRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-02 00:00:00.0000000','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931B','2022','2150','2404','3321','2021-11-10 17:59:38.7575071','2021-11-10 17:59:38.7573698','9F2248FE-96DC-4472-A38B-BC68E8A33904','156240'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-02 00:00:00.0000000'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931B'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationObjectiveRating(EducationOrganizationId,EvaluationDate,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ObjectiveRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-02 00:00:00.0000000','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931B','2022','2150','2404','3431','2021-11-10 17:59:40.3192313','2021-11-10 17:59:40.3191266','242FEB40-F44F-421D-856D-AA03887D3A23','156410'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationObjectiveRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-02 00:00:00.0000000'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931B'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationElementRating(EducationOrganizationId,EvaluationDate,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,EvaluationElementRatingLevelDescriptorId,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT TOP 1'5','2011-11-02 00:00:00.0000000','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931B','2022','2150','2404','3301','2021-11-10 18:00:01.1891264','2021-11-10 18:00:01.1889878','0E34026C-F16D-4E68-A7AD-FFC6F3584A04','158758'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElementRating WHERE   EducationOrganizationId= '5'  AND EvaluationDate= '2011-11-02 00:00:00.0000000'  AND EvaluationElementTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationObjectiveTitle= 'ADDRESS MISCONCEPTIONS'  AND EvaluationPeriodDescriptorId= '3305'  AND EvaluationTitle= 'Formal Observation'  AND PerformanceEvaluationTitle= 'Formal Evaluation'  AND PerformanceEvaluationTypeDescriptorId= '3454'  AND PersonId= '01E0D81B0B7A4E80BFCA28BE5BF3931B'  AND SchoolYear= '2022'  AND SourceSystemDescriptorId= '2150'  AND TermDescriptorId= '2404'));
+
+      INSERT INTO tpdm.EvaluationElementRatingResult(EducationOrganizationId,EvaluationDate,EvaluationElementTitle,EvaluationObjectiveTitle,EvaluationPeriodDescriptorId,EvaluationTitle,PerformanceEvaluationTitle,PerformanceEvaluationTypeDescriptorId,PersonId,Rating,RatingResultTitle,SchoolYear,SourceSystemDescriptorId,TermDescriptorId,ResultDatatypeTypeDescriptorId,CreateDate)
+      (SELECT TOP 1'5','2011-11-02 00:00:00.0000000','ADDRESS MISCONCEPTIONS','ADDRESS MISCONCEPTIONS','3305','Formal Observation','Formal Evaluation','3454','01E0D81B0B7A4E80BFCA28BE5BF3931B','61.000','Effective','2022','2150','2404','2066','2021-11-10 18:00:01.2057214'
+      WHERE NOT EXISTS(SELECT  1  FROM tpdm.EvaluationElementRatingResult WHERE PersonId = '01E0D81B0B7A4E80BFCA28BE5BF3931F' and EvaluationDate = '2011-11-02 00:00:00.0000000'));
+
+    </ControlDataInsertion>
+</TestCase>
