@@ -1,9 +1,7 @@
-﻿
-IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics' AND TABLE_NAME = 'engage_AssignmentSubmissionFact')
-BEGIN
-	DROP VIEW analytics.engage_AssignmentSubmissionFact
-END
-GO
+﻿-- SPDX-License-Identifier: Apache-2.0
+-- Licensed to the Ed-Fi Alliance under one or more agreements.
+-- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
+-- See the LICENSE and NOTICES files in the project root for more information.
 
 CREATE VIEW analytics.engage_AssignmentSubmissionFact
 AS

@@ -3,7 +3,7 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-CREATE OR REPLACE VIEW analytics_config.rls_StaffClassificationDescriptorScopeList
+CREATE VIEW analytics_config.rls_StaffClassificationDescriptorScopeList
 AS
 	
 	SELECT DescriptorConstant.ConstantName AS AuthorizationScopeName

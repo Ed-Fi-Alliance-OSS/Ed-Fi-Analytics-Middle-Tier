@@ -3,9 +3,7 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-DROP VIEW IF EXISTS analytics.StudentSectionDim;
-
-CREATE OR REPLACE VIEW analytics.StudentSectionDim
+CREATE VIEW analytics.StudentSectionDim
 AS
     SELECT
       CAST(Student.StudentUniqueId AS VARCHAR) || '-' || CAST(StudentSectionAssociation.SchoolId AS VARCHAR) || '-' || StudentSectionAssociation.LocalCourseCode || '-' || CAST(StudentSectionAssociation.SchoolYear AS VARCHAR) || '-' || StudentSectionAssociation.SectionIdentifier || '-' || StudentSectionAssociation.SessionName || '-' || TO_CHAR(StudentSectionAssociation.BeginDate, 'yyyymmdd') AS StudentSectionKey,

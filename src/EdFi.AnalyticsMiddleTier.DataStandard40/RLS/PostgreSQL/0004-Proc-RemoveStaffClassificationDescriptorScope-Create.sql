@@ -3,7 +3,7 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-CREATE OR REPLACE PROCEDURE analytics_config.rls_RemoveStaffClassificationDescriptorScope(
+CREATE PROCEDURE analytics_config.rls_RemoveStaffClassificationDescriptorScope(
 	StaffDescriptor VARCHAR(50) = NULL,
 	StaffDescriptorId INT = NULL,
 	Scope VARCHAR(50) = NULL,

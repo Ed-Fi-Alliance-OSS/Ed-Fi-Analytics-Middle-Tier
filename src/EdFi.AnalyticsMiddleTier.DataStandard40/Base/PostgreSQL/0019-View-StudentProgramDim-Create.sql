@@ -3,9 +3,6 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
--- Cannot use `CREATE OR REPLACE VIEW` because a column is being removed
-DROP VIEW IF EXISTS analytics.StudentProgramDim;
-
 CREATE VIEW analytics.StudentProgramDim AS
     SELECT  CONCAT (
 			Student.StudentUniqueId,

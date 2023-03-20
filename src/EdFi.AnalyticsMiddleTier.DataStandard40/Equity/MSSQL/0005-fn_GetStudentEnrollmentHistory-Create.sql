@@ -2,16 +2,6 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
-IF EXISTS (
-        SELECT 1
-        FROM INFORMATION_SCHEMA.ROUTINES
-        WHERE ROUTINE_SCHEMA = 'analytics'
-            AND ROUTINE_NAME = 'fn_GetStudentEnrollmentHistory'
-        )
-BEGIN
-    DROP FUNCTION analytics.fn_GetStudentEnrollmentHistory
-END
-GO
 
 CREATE FUNCTION [analytics].[fn_GetStudentEnrollmentHistory] (
     -- Add the parameters for the function here

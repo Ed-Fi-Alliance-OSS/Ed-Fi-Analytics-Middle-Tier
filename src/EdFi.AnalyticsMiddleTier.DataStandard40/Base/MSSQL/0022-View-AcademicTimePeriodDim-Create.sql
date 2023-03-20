@@ -3,12 +3,6 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_SCHEMA = 'analytics' AND TABLE_NAME = 'AcademicTimePeriodDim')
-BEGIN
-    DROP VIEW analytics.AcademicTimePeriodDim
-END
-GO
-
 CREATE VIEW analytics.AcademicTimePeriodDim
 AS
      SELECT

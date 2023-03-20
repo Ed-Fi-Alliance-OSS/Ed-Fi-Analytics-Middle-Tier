@@ -3,17 +3,6 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
-IF EXISTS (
-		SELECT 1
-		FROM INFORMATION_SCHEMA.VIEWS
-		WHERE TABLE_SCHEMA = 'analytics_config'
-			AND TABLE_NAME = 'rls_StaffClassificationDescriptorScopeList'
-		)
-BEGIN
-	DROP VIEW analytics_config.rls_StaffClassificationDescriptorScopeList
-END
-GO
-
 CREATE VIEW [analytics_config].rls_StaffClassificationDescriptorScopeList
 AS
 	SELECT DescriptorConstant.ConstantName AS AuthorizationScopeName
