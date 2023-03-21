@@ -31,7 +31,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
         Ds2,
         Ds31,
         Ds32,
-        Ds33
+        Ds33,
+        Ds40
     }
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public enum Engine

@@ -24,12 +24,14 @@ env:
   SQLSERVER_DATABASE_DS31: "AnalyticsMiddleTier_Testing_Ds31"
   SQLSERVER_DATABASE_DS32: "AnalyticsMiddleTier_Testing_Ds32"
   SQLSERVER_DATABASE_DS33: "AnalyticsMiddleTier_Testing_Ds33"
+  SQLSERVER_DATABASE_DS40: "AnalyticsMiddleTier_Testing_Ds40"
   SQLSERVER_INTEGRATED_SECURITY: "false"
   SQLSERVER_USER: "sa" 
   SQLSERVER_PASS: ${{ secrets.MSSQL_PWD }}
   POSTGRES_HOST: "localhost"
   POSTGRES_DATABASE_DS32: "edfi_ods_tests_ds32"
   POSTGRES_DATABASE_DS33: "edfi_ods_tests_ds33"
+  POSTGRES_DATABASE_DS40: "edfi_ods_tests_ds40"
   POSTGRES_PORT: "5432"
   POSTGRES_USER: "postgres"
   POSTGRES_PASS: ${{ secrets.POSTGRESQL_PWD }}
@@ -117,6 +119,13 @@ jobs:
       - name: Create Postgres DB DS v3.3
         run: |
           .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS33 }} -ds 3.3
+        shell: pwsh
+        env:
+          PGPASSWORD: ${{ env.POSTGRES_PASS }}
+          
+      - name: Create Postgres DB DS v4.0
+        run: |
+          .\eng\CreateTestDbAndSchema.ps1 -port ${{ env.POSTGRES_PORT }} -d ${{ env.POSTGRES_DATABASE_DS40 }} -ds 4.0
         shell: pwsh
         env:
           PGPASSWORD: ${{ env.POSTGRES_PASS }}

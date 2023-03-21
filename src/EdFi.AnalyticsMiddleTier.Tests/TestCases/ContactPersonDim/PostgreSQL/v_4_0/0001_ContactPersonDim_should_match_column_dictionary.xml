@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COLUMN_NAME AS ColumnName,
+        DATA_TYPE AS DataType
+        FROM information_schema.columns
+        WHERE table_schema = 'analytics'
+        AND table_name = 'contactpersondim'
+        ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>uniquekey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactpersonkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactfirstname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactlastname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>relationshiptostudent</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contacthomeaddress</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactphysicaladdress</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactmailingaddress</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactworkaddress</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contacttemporaryaddress</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>homephonenumber</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>mobilephonenumber</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>workphonenumber</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>primaryemailaddress</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>personalemailaddress</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>workemailaddress</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>isprimarycontact</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentliveswith</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>isemergencycontact</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactpriority</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>contactrestrictions</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>lastmodifieddate</ColumnName>
+        <DataType>timestamp without time zone</DataType>
+    </Result>
+    <Result>
+        <ColumnName>postalcode</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+</TestCase>

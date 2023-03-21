@@ -16,6 +16,7 @@ using Ds2 = EdFi.AnalyticsMiddleTier.DataStandard2;
 using Ds31 = EdFi.AnalyticsMiddleTier.DataStandard31;
 using Ds32 = EdFi.AnalyticsMiddleTier.DataStandard32;
 using Ds33 = EdFi.AnalyticsMiddleTier.DataStandard33;
+using Ds40 = EdFi.AnalyticsMiddleTier.DataStandard40;
 using System.Text.RegularExpressions;
 
 namespace EdFi.AnalyticsMiddleTier.Console
@@ -138,6 +139,9 @@ namespace EdFi.AnalyticsMiddleTier.Console
                                 break;
                             case DataStandard.Ds33:
                                 install = new Ds33.Install(migrationStrategy);
+                                break;
+                            case DataStandard.Ds40:
+                                install = new Ds40.Install(migrationStrategy);
                                 break;
                             default:
                                 message = _odsVersionNotSupportedMessage;

@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+
+      --- Cohort Year
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'1526','uri://ed-fi.org/CohortYearTypeDescriptor','Eighth grade','Eighth grade','Eighth grade','42AFEE58-752A-42E7-9816-B07EC1238FD2','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1526'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.CohortYearTypeDescriptor(CohortYearTypeDescriptorId)
+      (SELECT TOP 1'1526'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.CohortYearTypeDescriptor WHERE CohortYearTypeDescriptorId= '1526'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'1527','uri://ed-fi.org/CohortYearTypeDescriptor','Eleventh grade','Eleventh grade','Eleventh grade','42AFEE58-752A-42E7-9816-B07EC1238FD3','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1527'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.CohortYearTypeDescriptor(CohortYearTypeDescriptorId)
+      (SELECT TOP 1'1527'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.CohortYearTypeDescriptor WHERE CohortYearTypeDescriptorId= '1527'));
+
+      INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,CreateDate,LastModifiedDate)
+      (SELECT '2018','2017-2018',0,'FCB17AE4-F68C-49F0-866E-0A9EB15E816B','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM')
+
+      INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,CreateDate,LastModifiedDate)
+      (SELECT '2019','2018-2019',0,'FCB17AE4-F68C-49F0-866E-0A9EB15E816A','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM')
+
+      --- Disability Designation
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'936','uri://ed-fi.org/DisabilityDesignationDescriptor','Other','Other','Other','90043F45-4257-4319-BC45-DD7B983259C5','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '936'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.DisabilityDesignationDescriptor(DisabilityDesignationDescriptorId)
+      (SELECT TOP 1'936'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.DisabilityDesignationDescriptor WHERE DisabilityDesignationDescriptorId= '936'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'937','uri://ed-fi.org/DisabilityDesignationDescriptor','Section 504','Section 504','Section 504','9AAEC12D-24E1-4553-8AE3-B096C24CF52A','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '937'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.DisabilityDesignationDescriptor(DisabilityDesignationDescriptorId)
+      (SELECT TOP 1'937'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.DisabilityDesignationDescriptor WHERE DisabilityDesignationDescriptorId= '937'));
+
+      --- Language
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'468','uri://ed-fi.org/LanguageDescriptor','English','English','English','A755EE79-9BCB-4DD5-848C-1B81FAE9D369','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '468'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.LanguageDescriptor(LanguageDescriptorId)
+      (SELECT TOP 1'468'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.LanguageDescriptor WHERE LanguageDescriptorId= '468'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'469','uri://ed-fi.org/LanguageDescriptor','Persian','Persian','Persian','8012945F-E68F-438A-B0CD-89B717B8082C','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '469'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.LanguageDescriptor(LanguageDescriptorId)
+      (SELECT TOP 1'469'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.LanguageDescriptor WHERE LanguageDescriptorId= '469'));
+
+      --- Language Use
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'1077','uri://ed-fi.org/LanguageUseDescriptor','Correspondence language','Correspondence language','Correspondence language','01CA903A-D389-4E1E-872F-E6E10A530708','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1077'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.LanguageUseDescriptor(LanguageUseDescriptorId)
+      (SELECT TOP 1'1077'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.LanguageUseDescriptor WHERE LanguageUseDescriptorId= '1077'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'1078','uri://ed-fi.org/LanguageUseDescriptor','Dominant language','Dominant language','Dominant language','CCF976D9-3070-4B7D-BF64-C385D98CB608','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1078'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.LanguageUseDescriptor(LanguageUseDescriptorId)
+      (SELECT TOP 1'1078'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.LanguageUseDescriptor WHERE LanguageUseDescriptorId= '1078'));
+
+      --- Race
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'1283','uri://ed-fi.org/RaceDescriptor','Asian','Asian','Asian','0504C0AD-5D12-445D-BF86-247457E9AF2E','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1283'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.RaceDescriptor(RaceDescriptorId)
+      (SELECT TOP 1'1283'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.RaceDescriptor WHERE RaceDescriptorId= '1283'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'1288','uri://ed-fi.org/RaceDescriptor','White','White','White','9616F43C-59C1-4756-8BD7-B4A960A652A6','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1288'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.RaceDescriptor(RaceDescriptorId)
+      (SELECT TOP 1'1288'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.RaceDescriptor WHERE RaceDescriptorId= '1288'));
+
+      --- Tribal Affiliation
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'2280','uri://ed-fi.org/TribalAffiliationDescriptor','Afognak','Afognak','Native Village of Afognak','4F4AEE09-86CC-4AAB-9D3D-707525281399','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2280'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.TribalAffiliationDescriptor(TribalAffiliationDescriptorId)
+      (SELECT TOP 1'2280'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.TribalAffiliationDescriptor WHERE TribalAffiliationDescriptorId = '2280'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'2281','uri://ed-fi.org/TribalAffiliationDescriptor','Agdaagux','Agdaagux','Agdaagux Tribe of King Cove','C552D64C-271D-4691-8CBD-29A2835C044E','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '2281'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.TribalAffiliationDescriptor(TribalAffiliationDescriptorId)
+      (SELECT TOP 1'2281'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.TribalAffiliationDescriptor WHERE TribalAffiliationDescriptorId = '2281'));
+
+      --- Student Characteristic
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'660','uri://ed-fi.org/StudentCharacteristicDescriptor','Migrant','Migrant','Migrant','3150327C-6466-40BF-B940-2D8763EAA694','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '660'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.StudentCharacteristicDescriptor(StudentCharacteristicDescriptorId)
+      (SELECT TOP 1'660'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentCharacteristicDescriptor WHERE StudentCharacteristicDescriptorId = '660'));
+
+      SET IDENTITY_INSERT edfi.Descriptor ON;
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id,LastModifiedDate,CreateDate)
+      (SELECT TOP 1'661','uri://ed-fi.org/StudentCharacteristicDescriptor','Asylee','Asylee','Asylee','BA2F13EF-275B-4AF0-B4B0-8BED0194CE3E','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '661'));
+      SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+      INSERT INTO edfi.StudentCharacteristicDescriptor(StudentCharacteristicDescriptorId)
+      (SELECT TOP 1'661'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentCharacteristicDescriptor WHERE StudentCharacteristicDescriptorId = '661'));
+	  
+        --- Economic Disadvantage
+
+	    SET IDENTITY_INSERT edfi.Descriptor ON;
+	    MERGE INTO edfi.Descriptor AS Target
+	    USING (VALUES
+		    (2242,'uri://ed-fi.org/StudentCharacteristicDescriptor','Economic Disadvantaged','Economic Disadvantaged','Economic Disadvantaged','46732164-BB89-422A-90E0-E32DAF961743')
+	    ) AS Source(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id
+	    )
+	    ON TARGET.DescriptorId = Source.DescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, LastModifiedDate, CreateDate)
+		      VALUES (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+	    MERGE INTO edfi.StudentCharacteristicDescriptor AS Target
+	    USING (VALUES
+		    (2242)
+	    ) AS Source(StudentCharacteristicDescriptorId
+	    )
+	    ON TARGET.StudentCharacteristicDescriptorId = Source.StudentCharacteristicDescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (StudentCharacteristicDescriptorId)
+		      VALUES (StudentCharacteristicDescriptorId)
+	    OUTPUT $action,
+		       inserted.*;
+
+      --- Disability
+	  
+	    SET IDENTITY_INSERT edfi.Descriptor ON;
+	    MERGE INTO edfi.Descriptor AS Target
+	    USING (VALUES
+		    (747,'http://www.ed-fi.org/Descriptor/DisabilityDescriptor.xml','Medical condition','Medical condition','Medical condition','37C5406D-8C92-4646-9038-F0AB9F517FB6'),
+		    (757,'http://www.ed-fi.org/Descriptor/DisabilityDescriptor.xml','Physical Disability','Physical Disability','Physical Disability','B53BB05E-C6E2-4D30-8E60-C1AEAF57D96B')
+	    ) AS Source(DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id
+	    )
+	    ON TARGET.DescriptorId = Source.DescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, LastModifiedDate, CreateDate)
+		      VALUES (DescriptorId,Namespace,CodeValue,ShortDescription,Description,Id, getdate(), getdate())
+	    OUTPUT $action,
+		       inserted.*;
+	    SET IDENTITY_INSERT edfi.Descriptor OFF;
+	
+	    MERGE INTO edfi.DisabilityDescriptor AS Target
+	    USING (VALUES
+		    (747),
+		    (757)
+	    ) AS Source(DisabilityDescriptorId
+	    )
+	    ON TARGET.DisabilityDescriptorId = Source.DisabilityDescriptorId
+		    WHEN NOT MATCHED BY TARGET
+		    THEN
+		      INSERT (DisabilityDescriptorId)
+		      VALUES (DisabilityDescriptorId)
+	    OUTPUT $action,
+		       inserted.*;
+
+    </ControlDataInsertion>
+</TestCase>

@@ -58,9 +58,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             [TestCase()]
             public void Then_result_success_should_be_true()
             {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32) || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds33))
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32) 
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds33) 
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40))
                 {
-                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
+                    Assert.Ignore("The baseline DS32, DS33 and DS40 databases do not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
                 }
                 else
                 {
@@ -71,8 +73,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             [TestCase()]
             public void Then_error_message_should_be_null_or_empty()
             {
-                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32) || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds33)) {
-                    Assert.Ignore("The baseline DS32 database does not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
+                if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32) 
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds33) 
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40))
+                {
+                    Assert.Ignore("The baseline DS32, DS33 and DS40 databases do not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
                 }
                 else {
                     Result.errorMessage.ShouldBeNullOrEmpty();

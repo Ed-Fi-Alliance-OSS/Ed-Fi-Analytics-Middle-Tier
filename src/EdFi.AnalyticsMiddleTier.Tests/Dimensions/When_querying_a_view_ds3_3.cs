@@ -10,9 +10,9 @@ using NUnit.Framework;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    [TestFixtureSource(typeof(DataStandardTestFixtureDs3_3))]
-    public abstract class When_querying_a_view_ds3_3 : When_querying_a_view
+    [TestFixtureSource(typeof(DataStandardTestFixtureDs3_3_and_4_0))]
+    public abstract class When_querying_a_view_ds3_3_and_ds4_0 : When_querying_a_view
     {
-        protected When_querying_a_view_ds3_3() => fixtureList = new DataStandardTestFixtureDs3_3();
+        protected When_querying_a_view_ds3_3_and_ds4_0() => fixtureList = new DataStandardTestFixtureDs3_3_and_4_0();
     }
 }

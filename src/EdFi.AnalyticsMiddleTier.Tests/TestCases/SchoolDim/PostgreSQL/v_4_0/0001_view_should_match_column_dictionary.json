@@ -1,0 +1,62 @@
+{
+  "DBMS": "Any",
+  "Query": "SELECT COLUMN_NAME AS ColumnName, DATA_TYPE AS DataType FROM information_schema.columns WHERE table_schema = 'analytics' AND table_name = 'schooldim' ORDER BY ORDINAL_POSITION ASC;",
+  "Result": [
+    {
+      "ColumnName": "schoolkey",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "schoolname",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "schooltype",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "schooladdress",
+      "DataType": "text"
+    },
+    {
+      "ColumnName": "schoolcity",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "schoolcounty",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "schoolstate",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "localeducationagencyname",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "localeducationagencykey",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "stateeducationagencyname",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "stateeducationagencykey",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "educationservicecentername",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "educationservicecenterkey",
+      "DataType": "character varying"
+    },
+    {
+      "ColumnName": "lastmodifieddate",
+      "DataType": "timestamp without time zone"
+    }
+  ]
+}

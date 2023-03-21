@@ -12,12 +12,22 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         private const string DefaultVersionSeparator = ".";
         private const string FileNameSeparator = "_";
-        
+
         public abstract Engine DatabaseEngine { get; }
         public DataStandard CurrentDataStandard { get; protected set; }
         public string Version { get; protected set; }
+        public string MinVersion { get; protected set; }
         public string VersionFolderName => ($"v{FileNameSeparator}{Version.Replace(DefaultVersionSeparator, FileNameSeparator)}");
-        public string BaseVersionFolderName => $"v{FileNameSeparator}{BaseVersion.Replace(DefaultVersionSeparator, FileNameSeparator)}";
+        public string BaseVersionFolderName
+        {
+            get 
+            {
+                if (string.IsNullOrEmpty(MinVersion))
+                    return  $"v{FileNameSeparator}{BaseVersion.Replace(DefaultVersionSeparator, FileNameSeparator)}";
+
+                return $"v{FileNameSeparator}{MinVersion}";
+            }
+        }
         public string TestDataFolderName => $"{DatabaseEngine}.{VersionFolderName}";
         public string DatabaseBackupFile => String.Format(DatabaseBackupFileFormat, (Version.Equals("2") ? "2.0" : Version));
         public IDatabaseConnection DatabaseConnection { get;protected set; }
@@ -26,7 +36,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         protected string BaseVersion => Version.Split(DefaultVersionSeparator)[0];
         protected abstract string DatabaseBackupFileFormat { get; }
         protected string DatabaseVersionSuffix => $"{Version.Replace(DefaultVersionSeparator, string.Empty)}";
-        protected Dictionary<DataStandard, (string version, Type typeInstall)> SupportedVersion
+        protected Dictionary<DataStandard, (string version, string minVersion, Type typeInstall)> SupportedVersion
             => (new DataStandardVersion()).SupportedVersion;
 
         protected DataStandardSettings()
@@ -38,6 +48,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         {
             CurrentDataStandard = dataStandard;
             Version = SupportedVersion[dataStandard].version;
+            MinVersion = SupportedVersion[dataStandard].minVersion;
             DataStandardInstallType = SupportedVersion[dataStandard].typeInstall;
         }
     }

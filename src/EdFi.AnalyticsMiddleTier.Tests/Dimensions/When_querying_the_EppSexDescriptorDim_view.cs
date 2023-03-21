@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.EppSexDescriptorDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_EppSexDescriptorDim_view : When_querying_a_view_ds3_3
+    public abstract class When_querying_the_EppSexDescriptorDim_view : When_querying_a_view_ds3_3_and_ds4_0
     {
         protected const string TestCasesFolder = "TestCases.EppSexDescriptorDim";
         protected const string TestCasesDataFileName = "0000_SexDescriptorDim_Data_Load.xml";

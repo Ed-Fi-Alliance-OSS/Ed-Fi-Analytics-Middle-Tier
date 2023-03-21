@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+		SELECT COLUMN_NAME AS ColumnName,
+		DATA_TYPE AS DataType
+		FROM information_schema.columns
+		WHERE table_schema = 'analytics'
+		AND table_name = 'allstudentschooldim'
+		ORDER BY ORDINAL_POSITION ASC;
+	</Query>
+    <Result>
+        <ColumnName>allstudentschoolkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentschoolkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolyear</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentfirstname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentmiddlename</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentlastname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>enrollmentdatekey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>gradelevel</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>limitedenglishproficiency</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ishispanic</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>sex</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>internetaccessinresidence</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>internetaccesstypeinresidence</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>internetperformance</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>digitaldevice</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>deviceaccess</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>isenrolled</ColumnName>
+        <DataType>boolean</DataType>
+    </Result>
+    <Result>
+        <ColumnName>exitwithdrawdate</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>lastmodifieddate</ColumnName>
+        <DataType>timestamp without time zone</DataType>
+    </Result>
+    <Result>
+        <ColumnName>birthdate</ColumnName>
+        <DataType>date</DataType>
+    </Result>
+</TestCase>

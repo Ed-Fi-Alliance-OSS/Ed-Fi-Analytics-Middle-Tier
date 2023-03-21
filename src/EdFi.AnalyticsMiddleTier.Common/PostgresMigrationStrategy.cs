@@ -18,13 +18,19 @@ namespace EdFi.AnalyticsMiddleTier.Common
             @"SELECT CASE 
 	            WHEN EXISTS (
 		            SELECT FROM information_schema.tables 
-   			        WHERE  table_schema = 'edfi' AND table_name = 'survey'
-                )
-			    THEN 
-				    'Ds33'
-			    ELSE
-				    'Ds32'
-			    END AS DS";
+		            WHERE  table_schema = 'edfi' AND table_name = 'localbudget'
+	            )
+	            THEN 
+		            'Ds40'
+	            WHEN EXISTS (
+		            SELECT FROM information_schema.tables 
+		            WHERE  table_schema = 'edfi' AND table_name = 'survey'
+	            )
+	            THEN 
+		            'Ds33'
+	            ELSE
+		            'Ds32'
+	            END AS DS";
 
         protected IOrm _orm { get; set; }
         public PostgresMigrationStrategy(IOrm orm)
