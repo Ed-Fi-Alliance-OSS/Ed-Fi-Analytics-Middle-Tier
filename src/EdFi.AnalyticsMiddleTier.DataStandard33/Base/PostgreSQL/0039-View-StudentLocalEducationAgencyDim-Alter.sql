@@ -2,18 +2,19 @@
 -- Licensed to the Ed-Fi Alliance under one or more agreements.
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
+DROP VIEW IF EXISTS analytics.StudentLocalEducationAgencyDim;
 
-CREATE VIEW analytics.StudentLocalEducationAgencyDim
+CREATE OR REPLACE VIEW analytics.StudentLocalEducationAgencyDim
 AS
-    SELECT 
+   SELECT 
            CONCAT(Student.StudentUniqueId, '-', LocalEducationAgency.LocalEducationAgencyId) AS StudentLocalEducationAgencyKey,
-           Student.StudentUniqueId ​AS StudentKey​,
+           Student.StudentUniqueId AS StudentKey,
            CAST(LocalEducationAgency.LocalEducationAgencyId AS VARCHAR) AS LocalEducationAgencyKey, 
            Student.FirstName AS StudentFirstName, 
            COALESCE(Student.MiddleName, '') AS StudentMiddleName, 
            Student.LastSurname AS StudentLastName, 
            COALESCE(LimitedEnglishProficiencyDescriptor.CodeValue, 'Not Applicable') AS LimitedEnglishProficiency, 
-           CAST(COALESCE(StudentEducationOrganizationAssociation.HispanicLatinoEthnicity, 0) as BIT) AS IsHispanic, 
+           COALESCE(StudentEducationOrganizationAssociation.HispanicLatinoEthnicity, false) AS IsHispanic, 
            COALESCE(SexDescriptor.CodeValue, '') AS Sex,
            COALESCE(InternetAccessInResidence.Indicator,'n/a') as InternetAccessInResidence,
            COALESCE(InternetAccessTypeInResidence.Indicator,'n/a') as InternetAccessTypeInResidence,
@@ -69,7 +70,7 @@ AS
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = DigitalDevice.EducationOrganizationId
             AND
-           DigitalDevice.IndicatorName = 'Digital Device'
+            DigitalDevice.IndicatorName = 'Digital Device'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccess ON
             StudentEducationOrganizationAssociation.StudentUSI = DeviceAccess.StudentUSI
@@ -77,5 +78,5 @@ AS
             StudentEducationOrganizationAssociation.EducationOrganizationId = DeviceAccess.EducationOrganizationId
             AND
             DeviceAccess.IndicatorName = 'Device Access'
-    WHERE
-        StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate > GETDATE();    
+   WHERE
+        StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate > NOW();
