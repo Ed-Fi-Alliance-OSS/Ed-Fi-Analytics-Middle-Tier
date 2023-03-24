@@ -133,21 +133,21 @@
         (EducationOrganizationId,StudentUSI,IndicatorName,Indicator)
         VALUES
         -- '100005230' happy path
-        ('867530','100005230','InternetAccessInResidence','Yes'),
-        ('867530','100005230','InternetAccessTypeInResidence','ResidentialBroadband'),
-        ('867530','100005230','InternetPerformance','Yes - No issues'),
-        ('867530','100005230','DigitalDevice','Chromebook'),
-        ('867530','100005230','DeviceAccess','School Provided - Dedicated'),
+        ('867530','100005230','Internet Access In Residence','Yes'),
+        ('867530','100005230','Internet Access Type In Residence','ResidentialBroadband'),
+        ('867530','100005230','Internet Performance','Yes - No issues'),
+        ('867530','100005230','Digital Device','Chromebook'),
+        ('867530','100005230','Device Access','School Provided - Dedicated'),
 
         -- These extra records should be ignored by the view because
         -- they are associated with the School, not the District
-        ('867530011','100005230','InternetAccessInResidence','Yes__'),
-        ('867530011','100005230','InternetAccessTypeInResidence','ResidentialBroadband__'),
-        ('867530011','100005230','InternetPerformance','Yes - No issues__'),
-        ('867530011','100005230','DigitalDevice','Chromebook__'),
-        ('867530011','100005230','DeviceAccess','School Provided - Dedicated__'),
+        ('867530011','100005230','Internet Access In Residence','Yes__'),
+        ('867530011','100005230','Internet Access Type In Residence','ResidentialBroadband__'),
+        ('867530011','100005230','Internet Performance','Yes - No issues__'),
+        ('867530011','100005230','Digital Device','Chromebook__'),
+        ('867530011','100005230','Device Access','School Provided - Dedicated__'),
 
         -- This record is for a different student
-        ('867530','100020850','DeviceAccess','School Provided - DedicatedX');
+        ('867530','100020850','Device Access','School Provided - DedicatedX');
     </ControlDataInsertion>
 </TestCase>

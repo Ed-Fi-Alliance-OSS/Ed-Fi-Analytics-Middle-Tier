@@ -36,7 +36,7 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
     {
         public DataStandardTestFixtureDs3()
         {
-            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessSQLServer.DataStandard40 };
+            FixtureList = new ITestHarnessBase[] { TestHarnessSQLServer.DataStandard31, TestHarnessSQLServer.DataStandard32, TestHarnessSQLServer.DataStandard33, TestHarnessSQLServer.DataStandard40};
         }
     }
 
