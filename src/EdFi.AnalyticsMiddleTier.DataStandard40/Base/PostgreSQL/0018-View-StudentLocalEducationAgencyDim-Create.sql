@@ -69,13 +69,13 @@ AS
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = DigitalDevice.EducationOrganizationId
             AND
-            DigitalDevice.IndicatorName = 'DigitalDevice'
+            DigitalDevice.IndicatorName = 'Digital Device'
     LEFT OUTER JOIN
         edfi.StudentEducationOrganizationAssociationStudentIndicator AS DeviceAccess ON
             StudentEducationOrganizationAssociation.StudentUSI = DeviceAccess.StudentUSI
             AND
             StudentEducationOrganizationAssociation.EducationOrganizationId = DeviceAccess.EducationOrganizationId
             AND
-            DeviceAccess.IndicatorName = 'DeviceAccess'
+            DeviceAccess.IndicatorName = 'Device Access'
    WHERE
         StudentSchoolAssociation.ExitWithdrawDate IS NULL OR StudentSchoolAssociation.ExitWithdrawDate > NOW();
