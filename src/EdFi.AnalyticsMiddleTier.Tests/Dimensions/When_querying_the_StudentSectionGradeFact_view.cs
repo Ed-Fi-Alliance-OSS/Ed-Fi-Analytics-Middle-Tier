@@ -173,11 +173,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_LetterGradeEarned_null()
+            public void Then_should_have_LetterGradeEarned_Empty()
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned_null.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_LetterGradeEarned_empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
@@ -243,11 +243,11 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.StudentSectionGradeFactTestG
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]
-            public void Then_should_have_NumericGradeEarned_null()
+            public void Then_should_have_NumericGradeEarned_Empty()
             {
                 (bool success, string errorMessage) testResult = DataStandard
                     .RunTestCase<StudentSectionGradeFact>(
-                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_NumericGradeEarned_null.xml");
+                        $"{TestCasesFolder}.{DataStandard.DataStandardBaseVersionFolderName}.{_caseIdentifier}_should_have_NumericGradeEarned_Empty.xml");
                 testResult.success.ShouldBe(true, testResult.errorMessage);
             }
             [Test]

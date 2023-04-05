@@ -4,14 +4,15 @@
   <ControlDataInsertion>
   </ControlDataInsertion>
   <Query>
-    SELECT LetterGradeEarned
+    SELECT NumericGradeEarned
     FROM analytics.ews_StudentSectionGradeFact
-    WHERE StudentKey = '189919'
+    WHERE StudentKey = '190966'
       AND SchoolKey = '867530020'
       AND GradingPeriodKey = '54-867530020-20110822'
-      AND StudentSectionKey = '189919-867530020-XLTV41-2012-14142-Traditional-20110822'
-      AND SectionKey = '867530020-XLTV41-2012-14142-Traditional';
+      AND StudentSectionKey = '190966-867530020-NCMR41-2012-7383-Traditional-20110822'
+      AND SectionKey = '867530020-NCMR41-2012-7383-Traditional';
   </Query>
   <Result>
+      <NumericGradeEarned>0.00</NumericGradeEarned>
   </Result>
 </TestCase>

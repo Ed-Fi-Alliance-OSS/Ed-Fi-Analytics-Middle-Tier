@@ -4,7 +4,7 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 DROP VIEW IF EXISTS analytics.ews_StudentSectionGradeFact;
 
-CREATE VIEW analytics.ews_StudentSectionGradeFact
+CREATE OR REPLACE VIEW analytics.ews_StudentSectionGradeFact
 AS
     SELECT
         Student.StudentUniqueId AS StudentKey,
@@ -16,7 +16,7 @@ AS
         CONCAT(Grade.SchoolId, '-', Grade.LocalCourseCode, '-', Grade.SchoolYear, '-', Grade.SectionIdentifier, '-', 
             Grade.SessionName) AS SectionKey,
         COALESCE(Grade.NumericGradeEarned, ews_LetterGradeTranslation.NumericGradeEarned, 0.00) AS NumericGradeEarned,
-        COALESCE(Grade.LetterGradeEarned, '') AS LetterGradeEarned, 
+        COALESCE(Grade.LetterGradeEarned, '') AS LetterGradeEarned,
         GradeType.CodeValue AS GradeType
     FROM
         edfi.Grade
