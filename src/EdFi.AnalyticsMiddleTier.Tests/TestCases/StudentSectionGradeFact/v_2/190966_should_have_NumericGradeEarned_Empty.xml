@@ -13,5 +13,6 @@
       AND SectionKey = '867530020-A02-108-NCMR41-530-2012-7383-1';
   </Query>
   <Result>
-   </Result>
+      <NumericGradeEarned>0.00</NumericGradeEarned>
+  </Result>
 </TestCase>

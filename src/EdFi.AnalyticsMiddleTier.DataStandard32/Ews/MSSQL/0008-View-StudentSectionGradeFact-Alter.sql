@@ -3,6 +3,21 @@
 -- The Ed-Fi Alliance licenses this file to you under the Apache License, Version 2.0.
 -- See the LICENSE and NOTICES files in the project root for more information.
 
+IF EXISTS
+          ( SELECT 
+                   1
+            FROM 
+                 INFORMATION_SCHEMA.VIEWS
+            WHERE
+                    TABLE_SCHEMA = 'analytics'
+                    AND
+                    TABLE_NAME = 'ews_StudentSectionGradeFact'
+          ) 
+    BEGIN
+        DROP VIEW 
+             analytics.ews_StudentSectionGradeFact;
+END;
+GO
 CREATE VIEW analytics.ews_StudentSectionGradeFact
 AS
     SELECT 
@@ -12,7 +27,7 @@ AS
            CONCAT(Student.StudentUniqueId, '-', Grade.SchoolId, '-', Grade.LocalCourseCode, '-', Grade.SchoolYear, '-', Grade.SectionIdentifier, '-', Grade.SessionName, '-', CONVERT(NVARCHAR, Grade.BeginDate, 112)) AS StudentSectionKey, 
            CONCAT(Grade.SchoolId, '-', Grade.LocalCourseCode, '-', Grade.SchoolYear, '-', Grade.SectionIdentifier, '-', Grade.SessionName) AS SectionKey, 
            COALESCE(Grade.NumericGradeEarned, ews_LetterGradeTranslation.NumericGradeEarned, 0.00) AS NumericGradeEarned, 
-           COALESCE(Grade.LetterGradeEarned, '') AS LetterGradeEarned, 
+           COALESCE(Grade.LetterGradeEarned, '') AS LetterGradeEarned,
            GradeType.CodeValue AS GradeType
     FROM 
          edfi.Grade
