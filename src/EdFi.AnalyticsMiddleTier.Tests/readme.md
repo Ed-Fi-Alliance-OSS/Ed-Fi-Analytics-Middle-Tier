@@ -55,6 +55,7 @@ And this is the one for data standard 3.3:
 `POSTGRES_HOST` = The host to connect to.  
 `POSTGRES_DATABASE_DS32` = The PostgreSQL database with Data Standard 3.2 to connect to. Remember, all data here will be deleted.
 `POSTGRES_DATABASE_DS33` = The PostgreSQL database with Data Standard 3.3 to connect to. Remember, all data here will be deleted.
+`POSTGRES_DATABASE_DS40` = The PostgreSQL database with Data Standard 4.0 to connect to. Remember, all data here will be deleted.
 `POSTGRES_PORT` = Port used to get connected to Postgres.  
 `POSTGRES_USER` = The username to connect with.  
 `POSTGRES_PASS` = The password to connect with.  
@@ -80,6 +81,7 @@ This is a very important setting. Internally the project has a hardcoded connect
 `SQLSERVER_DATABASE_DS31` = The database with Data Standard 3.1 to connect to.  
 `SQLSERVER_DATABASE_DS32` = The database with Data Standard 3.2 to connect to.  
 `SQLSERVER_DATABASE_DS33` = The database with Data Standard 3.3 to connect to.  
+`SQLSERVER_DATABASE_DS40` = The database with Data Standard 4.0 to connect to.  
 `SQLSERVER_INTEGRATED_SECURITY` = The type of user authentication. True corresponds to “Windows Authentication”, and False corresponds to “SQL Server Authentication”;  
 `SQLSERVER_USER` = The username to connect with.  
 `SQLSERVER_PASS` = The password to connect with.  
