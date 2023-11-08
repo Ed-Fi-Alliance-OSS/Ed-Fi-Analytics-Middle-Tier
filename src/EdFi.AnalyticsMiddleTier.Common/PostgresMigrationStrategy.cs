@@ -16,6 +16,12 @@ namespace EdFi.AnalyticsMiddleTier.Common
         public const string JournalingVersionsTable = "AnalyticsMiddleTierSchemaVersion";
         public const string DataStandardVersionTemplate =
             @"SELECT CASE 
+				WHEN EXISTS (
+		            SELECT FROM information_schema.tables 
+		            WHERE  table_schema = 'edfi' AND table_name = 'contact'
+	            )
+	            THEN 
+		            'Ds50'
 	            WHEN EXISTS (
 		            SELECT FROM information_schema.tables 
 		            WHERE  table_schema = 'edfi' AND table_name = 'localbudget'

@@ -66,6 +66,9 @@
     <None Update="EdFi_Ods_4.0.dacpac">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="EdFi_Ods_5.0.dacpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
 	<None Include=".env" Condition="Exists('.env')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
