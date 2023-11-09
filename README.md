@@ -7,9 +7,9 @@ For more information, see:
 
 * For a detailed description of the views, the deployment process, and how to get involved, see [Analytics Middle Tier](https://techdocs.ed-fi.org/display/EDFITOOLS/Analytics+Middle+Tier) in Tech Docs
 * For more information about how testing is done in this solution, see the [test project README](https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier/blob/main/src/EdFi.AnalyticsMiddleTier.Tests/readme.md) in this repo
-* [How to Submit an Issue](https://techdocs.ed-fi.org/display/ETKB/How+To%3A+Submit+an+Issue)
-* [How Submit a Feature Request](https://techdocs.ed-fi.org/display/ETKB/How+To%3A+Submit+a+Feature+Request)
-* Review on-going development work at [Link to appropriate Tracker project]
+* [How to Submit an Issue](https://techdocs.ed-fi.org/x/Y8uIBg)
+* [How Submit a Feature Request](https://techdocs.ed-fi.org/x/0YADAQ)
+* [Review on-going development work](https://tracker.ed-fi.org/projects/BIA/issues/BIA-1?filter=allopenissues)
 
 ## Contributing
 
@@ -24,7 +24,7 @@ require in-depth knowledge of the code base and architecture.
 
 ## Legal Information
 
-Copyright (c) 2020 Ed-Fi Alliance, LLC and contributors.
+Copyright (c) 2023 Ed-Fi Alliance, LLC and contributors.
 
 Licensed under the [Apache License, Version 2.0](LICENSE) (the "License").
 
