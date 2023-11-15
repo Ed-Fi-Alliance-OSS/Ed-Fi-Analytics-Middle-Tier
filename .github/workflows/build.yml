@@ -57,6 +57,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
     
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+        dotnet-version: '8.0.x'
+        
       - name: Building AMT
         run: |
           .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
