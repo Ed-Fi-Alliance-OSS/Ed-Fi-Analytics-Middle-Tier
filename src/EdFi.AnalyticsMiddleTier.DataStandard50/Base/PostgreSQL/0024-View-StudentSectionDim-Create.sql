@@ -47,7 +47,10 @@ AS
       INNER JOIN edfi.Course
         ON Course.CourseCode = CourseOffering.CourseCode
         AND Course.EducationOrganizationId = CourseOffering.EducationOrganizationId
+	  LEFT OUTER JOIN edfi.CourseAcademicSubject
+		ON Course.CourseCode = edfi.CourseAcademicSubject.CourseCode
+		AND Course.EducationOrganizationId = edfi.CourseAcademicSubject.EducationOrganizationId
       LEFT OUTER JOIN edfi.AcademicSubjectDescriptor
-        ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Course.AcademicSubjectDescriptorId
+        ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = CourseAcademicSubject.AcademicSubjectDescriptorId
       LEFT OUTER JOIN edfi.Descriptor AS AcademicSubjectType
         ON AcademicSubjectType.DescriptorId = AcademicSubjectDescriptor.AcademicSubjectDescriptorId;

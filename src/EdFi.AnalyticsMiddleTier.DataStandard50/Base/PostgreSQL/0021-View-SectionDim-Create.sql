@@ -56,7 +56,8 @@ CREATE VIEW analytics.SectionDim AS
         AND 
         Course.EducationOrganizationId = CourseOffering.EducationOrganizationId
     LEFT JOIN edfi.School sch ON s.SchoolId = sch.SchoolId
-    LEFT OUTER JOIN edfi.AcademicSubjectDescriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Course.AcademicSubjectDescriptorId
+	LEFT OUTER JOIN	edfi.CourseAcademicSubject ON Course.CourseCode = edfi.CourseAcademicSubject.CourseCode AND Course.EducationOrganizationId = CourseAcademicSubject.EducationOrganizationId
+    LEFT OUTER JOIN edfi.AcademicSubjectDescriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = CourseAcademicSubject.AcademicSubjectDescriptorId
     LEFT OUTER JOIN edfi.Descriptor ON AcademicSubjectDescriptor.AcademicSubjectDescriptorId = Descriptor.DescriptorId
     LEFT JOIN edfi.Descriptor eed ON eed.DescriptorId = s.EducationalEnvironmentDescriptorId
     LEFT JOIN edfi.Session ON 

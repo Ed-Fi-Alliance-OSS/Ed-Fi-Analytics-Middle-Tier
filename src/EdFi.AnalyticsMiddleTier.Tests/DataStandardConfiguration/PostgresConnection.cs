@@ -15,12 +15,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
                   "Host=localhost;Port=5432;" +
                   $"Database={DatabaseName};" +
                   "Pooling=false"
-                : $"User ID=postgres;" +
-                  $"Host=Postgres13;" +
-                  $"Port=5432;" +
+                : $"User ID={DbConnectionStringParameter.User};" +
+                  $"Host={DbConnectionStringParameter.Server};" +
+                  $"Port={DbConnectionStringParameter.Port};" +
                   $"Database={DatabaseName};" +
                   $"Pooling={DbConnectionStringParameter.Pooling};" +
-                  $"password=admin";
+                  $"password={DbConnectionStringParameter.Pass}";
 
         protected override string DefaultDatabaseNamePrefix => "edfi_ods_tests_ds";
 

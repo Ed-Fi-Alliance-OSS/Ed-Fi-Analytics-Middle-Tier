@@ -4,60 +4,60 @@
 -- See the LICENSE and NOTICES files in the project root for more information.
 
 CREATE VIEW analytics.ContactPersonDim AS
-    WITH ParentAddress AS (
-            SELECT ParentAddress.ParentUSI
+    WITH ContactAddress AS (
+            SELECT ContactAddress.ContactUSI
                 ,CONCAT (
-                    COALESCE(ParentAddress.StreetNumberName, '')
-                    ,COALESCE(', ' || ParentAddress.ApartmentRoomSuiteNumber, '')
-                    ,COALESCE(', ' || ParentAddress.City, '')
+                    COALESCE(ContactAddress.StreetNumberName, '')
+                    ,COALESCE(', ' || ContactAddress.ApartmentRoomSuiteNumber, '')
+                    ,COALESCE(', ' || ContactAddress.City, '')
                     ,COALESCE(' ' || StateAbbreviationType.CodeValue, '')
-                    ,COALESCE(' ' || ParentAddress.PostalCode, '')
+                    ,COALESCE(' ' || ContactAddress.PostalCode, '')
                     ) AS Address
                 ,AddressType.CodeValue AS AddressType
                 ,DescriptorConstant.ConstantName
-                ,ParentAddress.CreateDate AS LastModifiedDate
-                ,COALESCE(ParentAddress.PostalCode, '') AS PostalCode
-            FROM edfi.ParentAddress
+                ,ContactAddress.CreateDate AS LastModifiedDate
+                ,COALESCE(ContactAddress.PostalCode, '') AS PostalCode
+            FROM edfi.ContactAddress
             INNER JOIN edfi.Descriptor AS AddressType
-                ON ParentAddress.AddressTypeDescriptorId = AddressType.DescriptorId
+                ON ContactAddress.AddressTypeDescriptorId = AddressType.DescriptorId
             INNER JOIN analytics_config.DescriptorMap
                 ON AddressType.DescriptorId = DescriptorMap.DescriptorId
             INNER JOIN analytics_config.DescriptorConstant
                 ON DescriptorConstant.DescriptorConstantId = DescriptorMap.DescriptorConstantId
-            -- Parent Address does not require a record in Parent Address Period. But if there is one, make sure
+            -- Contact Address does not require a record in Contact Address Period. But if there is one, make sure
             -- that an end date has not been set or is in the future
-            LEFT OUTER JOIN edfi.ParentAddressPeriod
-                ON ParentAddress.AddressTypeDescriptorId = ParentAddressPeriod.AddressTypeDescriptorId
-                    AND ParentAddress.ParentUSI = ParentAddressPeriod.ParentUSI
+            LEFT OUTER JOIN edfi.ContactAddressPeriod
+                ON ContactAddress.AddressTypeDescriptorId = ContactAddressPeriod.AddressTypeDescriptorId
+                    AND ContactAddress.ContactUSI = ContactAddressPeriod.ContactUSI
             INNER JOIN edfi.Descriptor AS StateAbbreviationType
-                ON ParentAddress.StateAbbreviationDescriptorId = StateAbbreviationType.DescriptorId
-            WHERE ParentAddressPeriod.EndDate IS NULL
-                OR ParentAddressPeriod.EndDate > now()
+                ON ContactAddress.StateAbbreviationDescriptorId = StateAbbreviationType.DescriptorId
+            WHERE ContactAddressPeriod.EndDate IS NULL
+                OR ContactAddressPeriod.EndDate > now()
             )
-        ,ParentTelephone AS (
-            SELECT ParentTelephone.ParentUSI
-                ,ParentTelephone.TelephoneNumber
+        ,ContactTelephone AS (
+            SELECT ContactTelephone.ContactUSI
+                ,ContactTelephone.TelephoneNumber
                 ,TelephoneNumberType.CodeValue AS TelephoneNumberType
                 ,DescriptorConstant.ConstantName
-                ,ParentTelephone.CreateDate
-            FROM edfi.ParentTelephone
+                ,ContactTelephone.CreateDate
+            FROM edfi.ContactTelephone
             INNER JOIN edfi.Descriptor AS TelephoneNumberType
-                ON ParentTelephone.TelephoneNumberTypeDescriptorId = TelephoneNumberType.DescriptorId
+                ON ContactTelephone.TelephoneNumberTypeDescriptorId = TelephoneNumberType.DescriptorId
             INNER JOIN analytics_config.DescriptorMap
                 ON TelephoneNumberType.DescriptorId = DescriptorMap.DescriptorId
             INNER JOIN analytics_config.DescriptorConstant
                 ON DescriptorConstant.DescriptorConstantId = DescriptorMap.DescriptorConstantId
             )
-        ,ParentEmail AS (
-            SELECT ParentElectronicMail.ParentUSI
-                ,ParentElectronicMail.ElectronicMailAddress
-                ,ParentElectronicMail.PrimaryEmailAddressIndicator
+        ,ContactEmail AS (
+            SELECT ContactElectronicMail.ContactUSI
+                ,ContactElectronicMail.ElectronicMailAddress
+                ,ContactElectronicMail.PrimaryEmailAddressIndicator
                 ,HomeEmailType.CodeValue AS EmailType
                 ,DescriptorConstant.ConstantName
-                ,ParentElectronicMail.CreateDate
-            FROM edfi.ParentElectronicMail
+                ,ContactElectronicMail.CreateDate
+            FROM edfi.ContactElectronicMail
             LEFT OUTER JOIN edfi.Descriptor AS HomeEmailType
-                ON ParentElectronicMail.ElectronicMailTypeDescriptorId = HomeEmailType.DescriptorId
+                ON ContactElectronicMail.ElectronicMailTypeDescriptorId = HomeEmailType.DescriptorId
             LEFT JOIN analytics_config.DescriptorMap
                 ON HomeEmailType.DescriptorId = DescriptorMap.DescriptorId
             LEFT JOIN analytics_config.DescriptorConstant
@@ -65,14 +65,14 @@ CREATE VIEW analytics.ContactPersonDim AS
             )
 
 SELECT CONCAT (
-        Parent.ParentUniqueId
+        Contact.ContactUniqueId
         ,'-'
         ,Student.StudentUniqueId
         ) AS UniqueKey
-    ,Parent.ParentUniqueId AS ContactPersonKey
+    ,Contact.ContactUniqueId AS ContactPersonKey
     ,Student.StudentUniqueId AS StudentKey
-    ,Parent.FirstName AS ContactFirstName
-    ,Parent.LastSurname AS ContactLastName
+    ,Contact.FirstName AS ContactFirstName
+    ,Contact.LastSurname AS ContactLastName
     ,RelationType.CodeValue AS RelationshipToStudent
     ,COALESCE(HomeAddress.Address, '') AS ContactHomeAddress
     ,COALESCE(PhysicalAddress.Address, '') AS ContactPhysicalAddress
@@ -91,16 +91,16 @@ SELECT CONCAT (
         END AS PrimaryEmailAddress
     ,COALESCE(HomeEmail.ElectronicMailAddress, '') AS PersonalEmailAddress
     ,COALESCE(WorkEmail.ElectronicMailAddress, '') AS WorkEmailAddress
-    ,COALESCE(StudentParentAssociation.PrimaryContactStatus, false) AS IsPrimaryContact
-    ,COALESCE(StudentParentAssociation.LivesWith, false) AS StudentLivesWith
-    ,COALESCE(StudentParentAssociation.EmergencyContactStatus, false) AS IsEmergencyContact
-    ,COALESCE(StudentParentAssociation.ContactPriority, 0) AS ContactPriority
-    ,COALESCE(StudentParentAssociation.ContactRestrictions, '') AS ContactRestrictions
+    ,COALESCE(StudentContactAssociation.PrimaryContactStatus, false) AS IsPrimaryContact
+    ,COALESCE(StudentContactAssociation.LivesWith, false) AS StudentLivesWith
+    ,COALESCE(StudentContactAssociation.EmergencyContactStatus, false) AS IsEmergencyContact
+    ,COALESCE(StudentContactAssociation.ContactPriority, 0) AS ContactPriority
+    ,COALESCE(StudentContactAssociation.ContactRestrictions, '') AS ContactRestrictions
     ,(
         SELECT MAX(MaxLastModifiedDate)
         FROM (
-            VALUES (StudentParentAssociation.LastModifiedDate)
-                ,(Parent.LastModifiedDate)
+            VALUES (StudentContactAssociation.LastModifiedDate)
+                ,(Contact.LastModifiedDate)
                 ,(HomeAddress.LastModifiedDate)
                 ,(PhysicalAddress.LastModifiedDate)
                 ,(MailingAddress.LastModifiedDate)
@@ -114,40 +114,40 @@ SELECT CONCAT (
             ) AS VALUE(MaxLastModifiedDate)
         ) AS LastModifiedDate
     ,COALESCE(HomeAddress.PostalCode, '') AS PostalCode
-FROM edfi.StudentParentAssociation
+FROM edfi.StudentContactAssociation
 INNER JOIN edfi.Student
-    ON StudentParentAssociation.StudentUSI = edfi.Student.StudentUSI
-INNER JOIN edfi.Parent
-    ON StudentParentAssociation.ParentUSI = Parent.ParentUSI
+    ON StudentContactAssociation.StudentUSI = edfi.Student.StudentUSI
+INNER JOIN edfi.Contact
+    ON StudentContactAssociation.ContactUSI = Contact.ContactUSI
 INNER JOIN edfi.Descriptor AS RelationType
-    ON StudentParentAssociation.RelationDescriptorId = RelationType.DescriptorId
-LEFT OUTER JOIN ParentAddress AS HomeAddress
-    ON Parent.ParentUSI = HomeAddress.ParentUSI
+    ON StudentContactAssociation.RelationDescriptorId = RelationType.DescriptorId
+LEFT OUTER JOIN ContactAddress AS HomeAddress
+    ON Contact.ContactUSI = HomeAddress.ContactUSI
         AND HomeAddress.ConstantName = 'Address.Home'
-LEFT OUTER JOIN ParentAddress AS PhysicalAddress
-    ON Parent.ParentUSI = PhysicalAddress.ParentUSI
+LEFT OUTER JOIN ContactAddress AS PhysicalAddress
+    ON Contact.ContactUSI = PhysicalAddress.ContactUSI
         AND PhysicalAddress.ConstantName = 'Address.Physical'
-LEFT OUTER JOIN ParentAddress AS MailingAddress
-    ON Parent.ParentUSI = MailingAddress.ParentUSI
+LEFT OUTER JOIN ContactAddress AS MailingAddress
+    ON Contact.ContactUSI = MailingAddress.ContactUSI
         AND MailingAddress.ConstantName = 'Address.Mailing'
-LEFT OUTER JOIN ParentAddress AS WorkAddress
-    ON Parent.ParentUSI = WorkAddress.ParentUSI
+LEFT OUTER JOIN ContactAddress AS WorkAddress
+    ON Contact.ContactUSI = WorkAddress.ContactUSI
         AND WorkAddress.ConstantName = 'Address.Work'
-LEFT OUTER JOIN ParentAddress AS TemporaryAddress
-    ON Parent.ParentUSI = TemporaryAddress.ParentUSI
+LEFT OUTER JOIN ContactAddress AS TemporaryAddress
+    ON Contact.ContactUSI = TemporaryAddress.ContactUSI
         AND TemporaryAddress.ConstantName = 'Address.Temporary'
-LEFT OUTER JOIN ParentTelephone AS HomeTelephone
-    ON Parent.ParentUSI = HomeTelephone.ParentUSI
+LEFT OUTER JOIN ContactTelephone AS HomeTelephone
+    ON Contact.ContactUSI = HomeTelephone.ContactUSI
         AND HomeTelephone.ConstantName = 'Telephone.Home'
-LEFT OUTER JOIN ParentTelephone AS MobileTelephone
-    ON Parent.ParentUSI = MobileTelephone.ParentUSI
+LEFT OUTER JOIN ContactTelephone AS MobileTelephone
+    ON Contact.ContactUSI = MobileTelephone.ContactUSI
         AND MobileTelephone.ConstantName = 'Telephone.Mobile'
-LEFT OUTER JOIN ParentTelephone AS WorkTelephone
-    ON Parent.ParentUSI = WorkTelephone.ParentUSI
+LEFT OUTER JOIN ContactTelephone AS WorkTelephone
+    ON Contact.ContactUSI = WorkTelephone.ContactUSI
         AND WorkTelephone.ConstantName = 'Telephone.Work'
-LEFT OUTER JOIN ParentEmail AS HomeEmail
-    ON Parent.ParentUSI = HomeEmail.ParentUSI
+LEFT OUTER JOIN ContactEmail AS HomeEmail
+    ON Contact.ContactUSI = HomeEmail.ContactUSI
         AND HomeEmail.ConstantName = 'Email.Personal'
-LEFT OUTER JOIN ParentEmail AS WorkEmail
-    ON Parent.ParentUSI = WorkEmail.ParentUSI
+LEFT OUTER JOIN ContactEmail AS WorkEmail
+    ON Contact.ContactUSI = WorkEmail.ContactUSI
         AND WorkEmail.ConstantName = 'Email.Work';

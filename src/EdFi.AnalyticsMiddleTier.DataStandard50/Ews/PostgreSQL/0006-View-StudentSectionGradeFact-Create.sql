@@ -33,7 +33,7 @@ AS
     ON
         Grade.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
     AND
-        Grade.GradingPeriodSequence = GradingPeriod.PeriodSequence
+        Grade.GradingPeriodName = GradingPeriod.GradingPeriodName
     AND
         Grade.SchoolId = GradingPeriod.SchoolId
     AND

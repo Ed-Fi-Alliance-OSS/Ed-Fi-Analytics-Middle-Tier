@@ -65,7 +65,7 @@ AS
 	ON
 		SessionGradingPeriod.GradingPeriodDescriptorId = GradingPeriod.GradingPeriodDescriptorId
 	AND
-		SessionGradingPeriod.PeriodSequence = GradingPeriod.PeriodSequence
+		SessionGradingPeriod.GradingPeriodName = GradingPeriod.GradingPeriodName
 	AND
 		SessionGradingPeriod.SchoolId = GradingPeriod.SchoolId
 	AND

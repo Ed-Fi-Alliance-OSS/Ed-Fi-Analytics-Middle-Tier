@@ -155,12 +155,12 @@ LEFT OUTER JOIN edfi.StudentSectionAssociation
 LEFT OUTER JOIN descriptorMap AS sectionAttendanceDescriptorMap
     ON StudentSectionAttendanceEvent.AttendanceEventCategoryDescriptorId = sectionAttendanceDescriptorMap.DescriptorId
 -- Behavior
-LEFT OUTER JOIN edfi.StudentDisciplineIncidentAssociation
-    ON StudentSchoolAssociation.StudentUSI = StudentDisciplineIncidentAssociation.StudentUSI
-        AND StudentSchoolAssociation.SchoolId = StudentDisciplineIncidentAssociation.SchoolId
+LEFT OUTER JOIN edfi.StudentDisciplineIncidentBehaviorAssociation
+    ON StudentSchoolAssociation.StudentUSI = StudentDisciplineIncidentBehaviorAssociation.StudentUSI
+        AND StudentSchoolAssociation.SchoolId = StudentDisciplineIncidentBehaviorAssociation.SchoolId
 LEFT OUTER JOIN edfi.DisciplineIncidentBehavior
-    ON DisciplineIncidentBehavior.IncidentIdentifier = StudentDisciplineIncidentAssociation.IncidentIdentifier
-        AND DisciplineIncidentBehavior.SchoolId = StudentDisciplineIncidentAssociation.SchoolId
+    ON DisciplineIncidentBehavior.IncidentIdentifier = StudentDisciplineIncidentBehaviorAssociation.IncidentIdentifier
+        AND DisciplineIncidentBehavior.SchoolId = StudentDisciplineIncidentBehaviorAssociation.SchoolId
 LEFT OUTER JOIN descriptorMap AS behaviorDescriptorMap
     ON DisciplineIncidentBehavior.BehaviorDescriptorId = behaviorDescriptorMap.DescriptorId
 LEFT OUTER JOIN edfi.DisciplineIncident
