@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'epp_candidatedim'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+  <Result>
+    <ColumnName>candidatekey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>firstname</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>lastsurname</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>sexdescriptorkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>sexdescriptor</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>racedescriptorkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>racedescriptor</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>hispaniclatinoethnicity</ColumnName>
+    <DataType>boolean</DataType>
+  </Result>
+  <Result>
+    <ColumnName>economicdisadvantaged</ColumnName>
+    <DataType>boolean</DataType>
+  </Result>
+  <Result>
+    <ColumnName>cohort</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>programcomplete</ColumnName>
+    <DataType>boolean</DataType>
+  </Result>
+  <Result>
+    <ColumnName>studentusi</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>studentkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>programname</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>begindate</ColumnName>
+    <DataType>date</DataType>
+  </Result>
+  <Result>
+    <ColumnName>begindatekey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>educationorganizationid</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>educationorganizationkey</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>personid</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>issuancedate</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>issuancedatekey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>cohortyeartermdescription</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>lastmodifieddate</ColumnName>
+    <DataType>timestamp without time zone</DataType>
+  </Result>
+</TestCase>

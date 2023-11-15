@@ -40,13 +40,13 @@ namespace EdFi.AnalyticsMiddleTier.Tests.DataStandardConfiguration
         }
     }
 
-    public class DataStandardTestFixtureDs3_3_and_4_0 : DataStandardTestFixtureBase
+    public class DataStandardTestFixtureDs3_3_and_4_0_and_5_0 : DataStandardTestFixtureBase
     {
-        public DataStandardTestFixtureDs3_3_and_4_0()
+        public DataStandardTestFixtureDs3_3_and_4_0_and_5_0()
         {
             FixtureList = new ITestHarnessBase[] { 
-                TestHarnessSQLServer.DataStandard33, TestHarnessSQLServer.DataStandard40, 
-                TestHarnessPostgres.DataStandard33PG, TestHarnessPostgres.DataStandard40PG
+                TestHarnessSQLServer.DataStandard33, TestHarnessSQLServer.DataStandard40, TestHarnessSQLServer.DataStandard50,
+                TestHarnessPostgres.DataStandard33PG, TestHarnessPostgres.DataStandard40PG, TestHarnessPostgres.DataStandard50PG
             };
         }
     }
