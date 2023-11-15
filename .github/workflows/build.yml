@@ -110,6 +110,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@3447fd6a9f9e57506b15f895c5b76d3b197dc7c2
+        with:
+            dotnet-version: '8.0.x'
+            
       - name: Start Ubuntu container for SQLServer 2019 Express
         run: |
          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
