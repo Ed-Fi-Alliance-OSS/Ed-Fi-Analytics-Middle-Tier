@@ -33,6 +33,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a
+        with:
+            dotnet-version: '8.0.x'
+        
       - name: Assign release version from .version to Env variable
         run: |
           cat .version >> $GITHUB_ENV

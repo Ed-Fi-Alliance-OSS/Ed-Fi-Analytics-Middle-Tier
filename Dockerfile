@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine
+FROM mcr.microsoft.com/dotnet/sdk:8.0
 
 ENV PACKAGE_URL "https://github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier"
 ENV PACKAGE_NAME "EdFi.AnalyticsMiddleTier"
