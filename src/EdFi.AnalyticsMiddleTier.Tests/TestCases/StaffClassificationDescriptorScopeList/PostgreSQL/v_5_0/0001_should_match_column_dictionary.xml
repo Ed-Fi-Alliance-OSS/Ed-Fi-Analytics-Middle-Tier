@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+		SELECT COLUMN_NAME AS ColumnName,
+		DATA_TYPE AS DataType
+		FROM information_schema.columns
+		WHERE table_schema = 'analytics_config'
+		AND table_name = 'rls_staffclassificationdescriptorscopelist'
+		ORDER BY ORDINAL_POSITION ASC;
+	</Query>
+    <Result>
+        <ColumnName>authorizationscopename</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>codevalue</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+</TestCase>
