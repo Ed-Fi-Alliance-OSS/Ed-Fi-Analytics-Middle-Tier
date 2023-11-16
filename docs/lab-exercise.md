@@ -20,8 +20,7 @@
   * Be sure to customize and add Analysis Services support.
 * An active 2.0, 2.2, or 3.2a data standard database (sample: [Glendale 2.0](https://s3-us-west-2.amazonaws.com/edfidata/ETL+Development/EdFi_Glendale_v20-20180613.7z) or [Glendale 3.2a](https://odsassets.blob.core.windows.net/public/Glendale/EdFi_Ods_Glendale_v33_20200224_Azure.bacpac))
   * Restore this backup file into a database called {{EdFi_Glendale}}
-* [.NET Core SDK 3.0.x](https://dotnet.microsoft.com/download/dotnet-core/3.0)
-* [.NET 4.8 Developer Pack](https://go.microsoft.com/fwlink/?linkid=2088517)
+* [.NET 8.0.x](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 * [NuGet Commandline](https://www.nuget.org/downloads)
 
 If using [chocolately](https://chocolatey.org), install the last three with
@@ -29,7 +28,6 @@ these commands in an Administrative command prompt:
 
 ```powershell
 choco install dotnetcore-sdk -y
-choco install netfx-4.8-devpack -y 
 choco install nuget.commandline  -y
 ```
 

@@ -58,13 +58,13 @@ fails, then the entire install should be rolled back.
 are available in several flavors:
 
 * Raw source code (see build instructions below)
-* `EdFi.AnalyticsMiddleTier.zip` (approx 2 MB) is a .NET Core
-  framework-dependent deployment, meaning that you must have the [.NET Core 3.0
+* `EdFi.AnalyticsMiddleTier.zip` (approx 2 MB) is a .NET
+  framework-dependent deployment, meaning that you must have the [.NET 8.0
   SDK and Runtime](https://www.microsoft.com/net/download) installed on the
   system on which you wish to run the application.
 * `EdFi.AnalyticsMiddleTier-win10.x64.zip` (approx 30 MB) is a self-contained
   deployment, meaning that you can run it without downloading and installing
-  .NET Core 3.0.
+  .NET 8.0.
 
 Choose an appropriate version, download, and unzip the files.
 

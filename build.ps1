@@ -49,9 +49,9 @@ param(
 
     [switch] $SelfContained,
 
-    # Assembly and package version number, defaults 2.6.1
+    # Assembly and package version number, defaults 4.0.0
     [string]
-    $Version = "2.7.1",
+    $Version = "4.0.0",
 
     # Build counter from the automation tool.
     [string]
