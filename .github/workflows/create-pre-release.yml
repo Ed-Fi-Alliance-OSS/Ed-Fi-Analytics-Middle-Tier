@@ -31,10 +31,10 @@ jobs:
    
     steps:
       - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
         
       - name: Setup .NET
-        uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a
+        uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a #v3.0.3
         with:
             dotnet-version: '8.0.x'
         
@@ -43,7 +43,7 @@ jobs:
           cat .version >> $GITHUB_ENV
       
       - name: Caching packages
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84  #v3.3.2
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
