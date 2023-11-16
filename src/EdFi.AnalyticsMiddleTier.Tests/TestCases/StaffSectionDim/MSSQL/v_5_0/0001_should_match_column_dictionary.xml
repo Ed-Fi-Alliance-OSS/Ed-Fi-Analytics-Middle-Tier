@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+        SELECT COLUMN_NAME AS ColumnName,
+        DATA_TYPE AS DataType
+        FROM information_schema.columns
+        WHERE table_schema = 'analytics'
+        AND table_name = 'StaffSectionDim'
+        ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+    <Result>
+        <ColumnName>StaffSectionKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>UserKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SchoolKey</ColumnName>
+        <DataType>varchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>SectionKey</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>PersonalTitlePrefix</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StaffFirstName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StaffMiddleName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>StaffLastName</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>ElectronicMailAddress</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Sex</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>BirthDate</ColumnName>
+        <DataType>varchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>Race</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>HispanicLatinoEthnicity</ColumnName>
+        <DataType>bit</DataType>
+    </Result>
+    <Result>
+        <ColumnName>HighestCompletedLevelOfEducation</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>YearsOfPriorProfessionalExperience</ColumnName>
+        <DataType>decimal</DataType>
+    </Result>
+    <Result>
+        <ColumnName>YearsOfPriorTeachingExperience</ColumnName>
+        <DataType>decimal</DataType>
+    </Result>
+    <Result>
+        <ColumnName>HighlyQualifiedTeacher</ColumnName>
+        <DataType>bit</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LoginId</ColumnName>
+        <DataType>nvarchar</DataType>
+    </Result>
+    <Result>
+        <ColumnName>LastModifiedDate</ColumnName>
+        <DataType>datetime2</DataType>
+    </Result>
+</TestCase>
