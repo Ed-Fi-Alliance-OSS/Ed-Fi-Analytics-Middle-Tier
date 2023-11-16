@@ -40,7 +40,7 @@ jobs:
             dotnet-version: '8.0.x'
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966  # v2.9.2
+        uses: github/codeql-action/init@df32e399139a3050671466d7d9b3cbacc1cfd034   # v2.15.2
         with:
           languages: ${{ matrix.language }}
 
@@ -48,4 +48,4 @@ jobs:
         run: dotnet build --configuration Release ./src/EdFi.AnalyticsMiddleTier.sln
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@1fae5bf71b0ecdc7d0a2ef0d0c28409d99693966  # v2.9.2
+        uses: github/codeql-action/analyze@df32e399139a3050671466d7d9b3cbacc1cfd034  # v2.15.2
