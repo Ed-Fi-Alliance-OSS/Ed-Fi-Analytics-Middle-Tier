@@ -222,6 +222,9 @@
       (SELECT TOP 1'867530022','YTAR11','Animation','1','756BDF71-7011-4617-93D7-35EFC1DDF782','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Course WHERE   CourseCode= 'YTAR11'  AND EducationOrganizationId= '867530022'));
 
+      INSERT INTO edfi.CourseAcademicSubject(EducationOrganizationId,CourseCode,AcademicSubjectDescriptorId,CreateDate)
+      VALUES ('867530022','YTAR11',18,GETDATE());
+
       INSERT INTO edfi.CourseOffering(LocalCourseCode,SchoolId,SchoolYear,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,Id,LastModifiedDate,CreateDate,SessionName,Discriminator)(SELECT TOP 1'YTAR11','867530022','2012','Animation',NULL,'YTAR11','867530022','46E39E57-81F7-4C8B-A988-2A851744AF3D','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','Traditional',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'YTAR11'  AND SchoolId= '867530022'  AND SchoolYear= '2012'  AND SessionName= 'Traditional'));
 
       INSERT INTO edfi.Location(SchoolId,ClassroomIdentificationCode,MaximumNumberOfSeats,OptimalNumberOfSeats,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT TOP 1'867530022','AUDITORIUM',NULL,NULL,'5E3C0282-A5EB-4A5B-95AB-A3F120FB2847','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Location WHERE   ClassroomIdentificationCode= 'AUDITORIUM'  AND SchoolId= '867530022'));
