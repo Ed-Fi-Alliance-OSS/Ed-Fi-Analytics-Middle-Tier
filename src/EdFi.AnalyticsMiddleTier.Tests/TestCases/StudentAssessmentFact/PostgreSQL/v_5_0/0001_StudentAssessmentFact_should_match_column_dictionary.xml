@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+    </ControlDataInsertion>
+    <Query>
+      SELECT COLUMN_NAME AS ColumnName,
+      DATA_TYPE AS DataType
+      FROM information_schema.columns
+      WHERE table_schema = 'analytics'
+      AND table_name = 'asmt_studentassessmentfact'
+      ORDER BY ORDINAL_POSITION ASC;
+    </Query>
+	  <Result>
+		    <ColumnName>studentassessmentfactkey</ColumnName>
+		    <DataType>text</DataType>
+	  </Result>
+    <Result>
+        <ColumnName>studentassessmentkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+      <ColumnName>studentobjectiveassessmentkey</ColumnName>
+      <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>objectiveassessmentkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>assessmentkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>assessmentidentifier</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>namespace</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentidentifier</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentusi</ColumnName>
+        <DataType>integer</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentschoolkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>administrationdate</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+      <ColumnName>administrationdatekey</ColumnName>
+      <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>assessedgradelevel</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentscore</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>resultdatatype</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>reportingmethod</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>performanceresult</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentscore</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentresultdatatype</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentreportingmethod</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentassessmentperformanceresult</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+</TestCase>
