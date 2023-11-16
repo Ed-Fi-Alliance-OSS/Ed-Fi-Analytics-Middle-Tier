@@ -178,6 +178,9 @@
       (SELECT TOP 1'867530022','CAFR41','PE Substitution Athletics 4','1','9C08E2AA-1DA2-4866-822D-961BD37C64D9','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
       WHERE NOT EXISTS(SELECT  1  FROM edfi.Course WHERE   CourseCode= 'CAFR41'  AND EducationOrganizationId= '867530022'));
 
+      INSERT INTO edfi.CourseAcademicSubject(EducationOrganizationId,CourseCode,AcademicSubjectDescriptorId)
+      VALUES ('867530022','CAFR41','9');
+
       INSERT INTO edfi.School(SchoolId,LocalEducationAgencyId,AdministrativeFundingControlDescriptorId,CharterApprovalSchoolYear,CharterApprovalAgencyTypeDescriptorId,CharterStatusDescriptorId,InternetAccessDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,SchoolTypeDescriptorId,TitleIPartASchoolDesignationDescriptorId)(SELECT TOP 1'867530022','867530',NULL,NULL,NULL,NULL,NULL,NULL,'1695',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.School WHERE   SchoolId= '867530022'));
 
       INSERT INTO edfi.Session(SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT TOP 1'867530022','2012','530','Traditional','2011-08-22','2011-12-20','82','8B82C4EC-0C72-40BD-AD56-A7A560A4AB76','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530022'  AND SchoolYear= '2012'  AND SessionName= 'Traditional'));
