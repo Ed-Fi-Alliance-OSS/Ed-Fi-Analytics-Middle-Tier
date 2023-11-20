@@ -60,7 +60,9 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             {
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32) 
                     || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds33) 
-                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40))
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40)
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40)
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds50))
                 {
                     Assert.Ignore("The baseline DS32, DS33 and DS40 databases do not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
                 }
@@ -75,7 +77,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             {
                 if (DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds32) 
                     || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds33) 
-                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40))
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds40)
+                    || DataStandard.DataStandardVersion.Equals(CommonLib.DataStandard.Ds50))
                 {
                     Assert.Ignore("The baseline DS32, DS33 and DS40 databases do not have the extension tables that are required to install the 'Engage' collection. This install will fail.");
                 }
