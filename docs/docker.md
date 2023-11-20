@@ -22,7 +22,7 @@ To create the image go to the root folder, you will see a file with name Dockerf
 Open a terminal on this folder and execute this command.
 
 ```powershell
-docker build -t <imange_name> .
+docker build -t <image_name> .
 ```
 
 Where 

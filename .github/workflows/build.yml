@@ -43,20 +43,25 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
         
       - name: Assign release version from .version to Env variable
         run: |
           cat .version >> $GITHUB_ENV
       
       - name: Caching packages
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84  #v3.3.2
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
     
+      - name: Setup .NET
+        uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a  #v3.0.3
+        with:
+            dotnet-version: '8.0.x'
+        
       - name: Building AMT
         run: |
           .\build.ps1 build -Configuration ${{ env.CONFIGURATION }} -Version ${{ env.BUILD_VERSION }} -BuildCounter ${{ github.run_number }}
@@ -91,20 +96,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
       
       - name: Assign release version from .version to Env variable
         run: |
           cat .version >> $GITHUB_ENV
       
       - name: Caching packages
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84  #v3.3.2
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
         
+      - name: Setup .NET
+        uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a  # v3.0.3
+        with:
+            dotnet-version: '8.0.x'
+            
       - name: Start Ubuntu container for SQLServer 2019 Express
         run: |
          docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=${{ env.SQLSERVER_ADMIN_PASS }}" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest

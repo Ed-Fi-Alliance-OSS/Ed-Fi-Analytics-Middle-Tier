@@ -1,10 +1,11 @@
 # Solution Architecture
 
-* [Projects](#projects)
-* [Naming Conventions](#naming-conventions)
-* [Adding SQL Transitions](#adding-sql-transitions)
-* [Testing](#testing)
-* [Continuous Integration and Publishing](#continuous-integration-and-publishing)
+- [Solution Architecture](#solution-architecture)
+  - [Projects](#projects)
+  - [Naming Conventions](#naming-conventions)
+  - [Adding SQL Transitions](#adding-sql-transitions)
+  - [Testing](#testing)
+  - [Continuous Integration and Publishing](#continuous-integration-and-publishing)
 
 *[Back to main readme](../readme.md)*
 
@@ -12,9 +13,9 @@
 
 | Project | Framework | Dependencies | Purpose |
 | ------- | --------- | ------------ | ------- |
-| `EdFi.AnalyticsMiddleTier.Lib` | .NET Standard 2.0 | DbUp, System.Data.SqlClient | Contains the SQL scripts and DbUp framework for installing them. |
-| `EdFi.AnalyticsMiddleTier.Console` | .NET Core 3.0 | `Lib` project, CommandLineParser | Provides a console interface for executing the `Lib` code |
-| `EdFi.AnalyticsMiddleTier.Tests` | .NET Framework 4.8 | `Lib` project, NUnit3, FluentAssertions, DacFx.x64, System.Data.SqlClient | Integration tests that execute the `Lib` code, bypassing the console |
+| `EdFi.AnalyticsMiddleTier.Lib` | .NET 8.0 | DbUp, System.Data.SqlClient | Contains the SQL scripts and DbUp framework for installing them. |
+| `EdFi.AnalyticsMiddleTier.Console` | .NET 8.0 | `Lib` project, CommandLineParser | Provides a console interface for executing the `Lib` code |
+| `EdFi.AnalyticsMiddleTier.Tests` | .NET 8.0 | `Lib` project, NUnit3, FluentAssertions, DacFx.x64, System.Data.SqlClient | Integration tests that execute the `Lib` code, bypassing the console |
 
 ## Naming Conventions
 
