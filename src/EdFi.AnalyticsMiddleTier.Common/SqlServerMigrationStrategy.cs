@@ -23,10 +23,15 @@ namespace EdFi.AnalyticsMiddleTier.Common
              BEGIN
             	SELECT 'Ds31' AS version
              END
+			 ELSE IF (SELECT OBJECT_ID('edfi.Contact')) IS NOT NULL
+             BEGIN
+            	SELECT 'Ds50' AS version
+             END
 			 ELSE IF (SELECT OBJECT_ID('edfi.LocalBudget')) IS NOT NULL
              BEGIN
             	SELECT 'Ds40' AS version
              END
+
 			 ELSE IF (SELECT OBJECT_ID('edfi.Survey')) IS NOT NULL
              BEGIN
             	SELECT 'Ds33' AS version
@@ -38,7 +43,8 @@ namespace EdFi.AnalyticsMiddleTier.Common
              ELSE
              BEGIN
             	SELECT 'InvalidDs' AS version
-             END";
+             END
+";
 
         private readonly IOrm _orm;
         public SqlServerMigrationStrategy(IOrm orm){

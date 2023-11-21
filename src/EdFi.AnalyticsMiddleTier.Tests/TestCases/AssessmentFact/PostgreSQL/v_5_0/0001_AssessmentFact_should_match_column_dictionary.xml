@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'asmt_assessmentfact'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+  <Result>
+    <ColumnName>assessmentfactkey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>assessmentkey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>assessmentidentifier</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>namespace</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>title</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>version</ColumnName>
+    <DataType>integer</DataType>
+  </Result>
+  <Result>
+    <ColumnName>category</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>assessedgradelevel</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>academicsubject</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>resultdatatype</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>reportingmethod</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>objectiveassessmentkey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>identificationcode</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>parentobjectiveassessmentkey</ColumnName>
+    <DataType>text</DataType>
+  </Result>
+  <Result>
+    <ColumnName>objectiveassessmentdescription</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>percentofassessment</ColumnName>
+    <DataType>numeric</DataType>
+  </Result>
+  <Result>
+    <ColumnName>minscore</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>maxscore</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+  <Result>
+    <ColumnName>learningstandard</ColumnName>
+    <DataType>character varying</DataType>
+  </Result>
+</TestCase>

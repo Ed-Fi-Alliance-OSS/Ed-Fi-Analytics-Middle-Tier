@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT 1 AS NA;
+  </Query>
+  <Result>
+    <NA>1</NA>
+  </Result>
+</TestCase>

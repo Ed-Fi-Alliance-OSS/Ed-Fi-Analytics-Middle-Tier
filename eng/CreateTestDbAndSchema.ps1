@@ -71,7 +71,7 @@ param ( [string][Alias('h')]$pghost="localhost",
 		[string][Alias('u')]$user="postgres",
 		[string][Alias('p')]$port="5432",
         [string][Alias('ds')]
-        [ValidateSet("3.2", "3.3", "4.0")]
+        [ValidateSet("3.2", "3.3", "4.0", "5.0")]
         $datastandard,
 		[string][Alias('d')]$database="edfi_ods_tests_ds32",
         [string][Alias('s')]$script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods32.Minimal.Template.sql")
@@ -87,6 +87,10 @@ elseif($datastandard -eq "3.3"){
 elseif($datastandard -eq "4.0"){
     $script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods40.Minimal.Template.sql"
     $database="edfi_ods_tests_ds40"
+}
+elseif($datastandard -eq "5.0"){
+    $script="$PSScriptRoot/../src/EdFi.AnalyticsMiddleTier.Tests/EdFi.Ods50.Minimal.Template.sql"
+    $database="edfi_ods_tests_ds50"
 }
 
 $dropDatabase = "DROP DATABASE IF EXISTS" +" " + $database +";"

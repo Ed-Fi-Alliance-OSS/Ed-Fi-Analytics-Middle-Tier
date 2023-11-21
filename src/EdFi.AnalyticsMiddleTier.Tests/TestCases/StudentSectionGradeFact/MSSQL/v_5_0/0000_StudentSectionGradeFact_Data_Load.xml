@@ -1,0 +1,1553 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    'http://www.ed-fi.org/Descriptor/GradingPeriodDescriptor.xml',
+    'First Six Weeks',
+    'First Six Weeks',
+    'First Six Weeks',
+    NULL,
+    NULL,
+    NULL,
+    'ABE1098D-9723-48ED-AA29-BEF3E458FC5E',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '54'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.GradingPeriodDescriptor(
+    GradingPeriodDescriptorId)
+    (SELECT TOP 1
+    '54'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriodDescriptor WHERE   GradingPeriodDescriptorId= '54'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '1601',
+    'uri://ed-fi.org/GradeTypeDescriptor',
+    'Grading Period',
+    'Grading Period',
+    'Grading Period',
+    NULL,
+    NULL,
+    NULL,
+    'B28F1950-0205-4C7C-AB23-C35F9E67D4A8',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1601'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.GradeTypeDescriptor(
+    GradeTypeDescriptorId)
+    (
+    SELECT TOP 1
+    1601
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.GradeTypeDescriptor WHERE GradeTypeDescriptorId = 1601)
+    );
+
+    INSERT INTO edfi.EducationOrganization(
+    EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530022',
+    'Hollywood High School',
+    NULL,
+    NULL,
+    NULL,
+    '032A4662-74DA-448B-B881-C88B82DAD04D',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530022'));
+
+    INSERT INTO edfi.EducationOrganization(
+    EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530',
+    'Glendale ISD',
+    NULL,
+    NULL,
+    NULL,
+    '9CC29A49-637C-4882-A7DB-99AD87690CFB',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530'));
+
+    INSERT INTO edfi.EducationOrganization(
+    EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '152950',
+    'ESC Region 17',
+    NULL,
+    NULL,
+    NULL,
+    '03DE6F94-316A-4B06-8C67-2C8748DCA1A9',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '152950'));
+
+    INSERT INTO edfi.EducationServiceCenter(
+    EducationServiceCenterId,StateEducationAgencyId)
+    (SELECT TOP 1
+    '152950',
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationServiceCenter WHERE   EducationServiceCenterId= '152950'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor
+    (DescriptorId, Namespace, CodeValue, ShortDescription, Description,
+    PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (
+    SELECT TOP 1
+    '1086',
+    'uri://ed-fi.org/LocalEducationAgencyCategoryDescriptor',
+    'Independent',
+    'Independent',
+    'Independent',
+    NULL,
+    NULL,
+    NULL,
+    '0A65B4F5-49CC-4ABD-9A3F-41FFA09EF2B3',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1086)
+    );
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.LocalEducationAgencyCategoryDescriptor (LocalEducationAgencyCategoryDescriptorId)
+    (
+    SELECT TOP 1 1086
+    WHERE NOT EXISTS (SELECT 1 FROM edfi.LocalEducationAgencyCategoryDescriptor WHERE LocalEducationAgencyCategoryDescriptorId = 1086)
+    );
+
+    INSERT INTO edfi.LocalEducationAgency(
+    LocalEducationAgencyId,ParentLocalEducationAgencyId,LocalEducationAgencyCategoryDescriptorId,CharterStatusDescriptorId,EducationServiceCenterId,StateEducationAgencyId)
+    (SELECT TOP 1
+    '867530',
+    NULL,
+    '1086',
+    NULL,
+    '152950',
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.LocalEducationAgency WHERE   LocalEducationAgencyId= '867530'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1695',
+    'uri://ed-fi.org/SchoolTypeDescriptor',
+    'Regular',
+    'Regular',
+    'Regular',
+    NULL,
+    NULL,
+    NULL,
+    'F5712765-A14F-4A3D-ABC9-BADFC9134BC1',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1695) );
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.SchoolTypeDescriptor (SchoolTypeDescriptorId) (
+    SELECT TOP 1
+    1695
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.SchoolTypeDescriptor WHERE SchoolTypeDescriptorId = 1695));
+
+    INSERT INTO edfi.School(
+    SchoolId,LocalEducationAgencyId,SchoolTypeDescriptorId,CharterStatusDescriptorId,TitleIPartASchoolDesignationDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,
+    AdministrativeFundingControlDescriptorId,InternetAccessDescriptorId,CharterApprovalAgencyTypeDescriptorId,CharterApprovalSchoolYear)
+    (SELECT TOP 1
+    '867530022',
+    '867530',
+    '1695',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.School WHERE   SchoolId= '867530022'));
+
+    INSERT INTO edfi.SchoolYearType(
+    SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '2012',
+    '2011-2012',
+    '0',
+    '1926BB96-BF8C-493A-93BD-A8E60DBC83E1',
+    'Jun 19 2015 11:40AM',
+    'Jun 19 2015 11:40AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2012'));
+
+    INSERT INTO edfi.SchoolYearType(
+    SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '2013',
+    '2012-2013',
+    '0',
+    '1926BB96-BF8C-493A-93BD-A8E60DBC83E2',
+    'Jun 19 2015 11:40AM',
+    'Jun 19 2015 11:40AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2013'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '867530022',
+    '2011-08-22',
+    '29',
+    '2011-09-30',
+    '1',
+    '1',
+    '2012',
+    '7F4214CF-7CD7-412E-BECB-09738DFC013F',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE   BeginDate= '2011-08-22'  AND GradingPeriodDescriptorId= '54'  AND SchoolId= '867530022'));
+
+    INSERT INTO edfi.ClassPeriod(
+    SchoolId,ClassPeriodName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530022',
+    'A01',
+    'CCB0BFEF-7D8D-43EC-B697-50D9EE0BFD49',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.ClassPeriod WHERE   ClassPeriodName= 'A01'  AND SchoolId= '867530022'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '10',
+    'http://www.ed-fi.org/Descriptor/AcademicSubjectDescriptor.xml',
+    'Science',
+    'Science',
+    'Science',
+    NULL,
+    NULL,
+    NULL,
+    'F967F171-87D7-4B79-B22F-4EB265984472',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '10'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.AcademicSubjectDescriptor(
+    AcademicSubjectDescriptorId)
+    (SELECT TOP 1
+    '10'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.AcademicSubjectDescriptor WHERE   AcademicSubjectDescriptorId= '10'));
+
+    INSERT INTO edfi.Course(
+    EducationOrganizationId,CourseCode,CourseTitle,NumberOfParts,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530022',
+    'XSNP41',
+    'BASIC ENV AW 12',
+    '1',
+    '415AE933-085D-4F72-80B7-56C650A0BA08',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Course WHERE   CourseCode= 'XSNP41'  AND EducationOrganizationId= '867530022'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '530',
+    'http://www.ed-fi.org/Descriptor/TermDescriptor.xml',
+    'Fall Semester',
+    'Fall Semester',
+    'Fall Semester',
+    NULL,
+    NULL,
+    NULL,
+    'E9B77FA3-B4BF-47E6-A21E-5F05334A2DEA',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '530'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.TermDescriptor(
+    TermDescriptorId)
+    (SELECT TOP 1
+    '530'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.TermDescriptor WHERE   TermDescriptorId= '530'));
+
+    INSERT INTO edfi.Session(
+    SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530022',
+    '2012',
+    '530',
+    'Traditional',
+    '2011-08-22',
+    '2011-12-20',
+    '82',
+    '8B82C4EC-0C72-40BD-AD56-A7A560A4AB76',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530022'  AND SchoolYear= '2012'  AND TermDescriptorId= '530'));
+
+    INSERT INTO edfi.EducationOrganization(
+    EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'Beverly Hills High School',
+    NULL,
+    NULL,
+    NULL,
+    '56888B72-8AF0-4741-B6BC-90950E29A276',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530020'));
+
+    INSERT INTO edfi.School(
+    SchoolId,LocalEducationAgencyId,SchoolTypeDescriptorId,CharterStatusDescriptorId,TitleIPartASchoolDesignationDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,
+    AdministrativeFundingControlDescriptorId,InternetAccessDescriptorId,CharterApprovalAgencyTypeDescriptorId,CharterApprovalSchoolYear)
+    (SELECT TOP 1
+    '867530020',
+    '867530',
+    '1695',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.School WHERE   SchoolId= '867530020'));
+
+    INSERT INTO edfi.Session(
+    SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    '2012',
+    '530',
+    'Traditional',
+    '2011-08-22',
+    '2011-12-20','82',
+    '5A3B8E35-D9A0-4BE6-864A-BB435F528198',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530020'  AND SchoolYear= '2012'  AND TermDescriptorId= '530'));
+
+    INSERT INTO edfi.CourseOffering(
+    LocalCourseCode,SchoolId,SchoolYear,SessionName,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,Discriminator,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    'XSNP41',
+    '867530022',
+    '2012',
+    'Traditional',
+    'BASIC ENV AW 12',
+    NULL,
+    'XSNP41',
+    '867530022',
+    NULL,
+    '012BF83D-4AA9-40D4-8DB7-275C729606E9',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'XSNP41'  AND SchoolId= '867530022'  AND SchoolYear= '2012'  AND SessionName= '530'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '950',
+    'uri://ed-fi.org/EducationalEnvironmentDescriptor',
+    'Classroom',
+    'Classroom',
+    'Classroom',
+    NULL,
+    NULL,
+    NULL,
+    'C21062A5-542C-4596-B985-17582EC975F4',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 950) );
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.EducationalEnvironmentDescriptor(
+    EducationalEnvironmentDescriptorId) (
+    SELECT TOP 1
+    950
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.EducationalEnvironmentDescriptor WHERE EducationalEnvironmentDescriptorId = 950));
+
+    INSERT INTO edfi.Location(
+    SchoolId,ClassroomIdentificationCode,MaximumNumberOfSeats,OptimalNumberOfSeats,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530022',
+    '1405',
+    NULL,
+    NULL,
+    'ED4E46EB-47E4-4CC2-A513-DC90A8AF9D4D',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Location WHERE   ClassroomIdentificationCode= '1405'  AND SchoolId= '867530022'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1233',
+    'uri://ed-fi.org/PopulationServedDescriptor',
+    'Special Education Students',
+    'Special Education Students',
+    'Special Education Students',
+    NULL,
+    NULL,
+    NULL,
+    '749196AF-A7F5-4A09-9230-9CA0FD21BD68',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1233));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.PopulationServedDescriptor(
+    PopulationServedDescriptorId) (
+    SELECT TOP 1
+    1233
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.PopulationServedDescriptor WHERE PopulationServedDescriptorId = 1233));
+
+    INSERT INTO edfi.Section(
+    SchoolId,LocalCourseCode,SchoolYear,SectionIdentifier,SessionName,SequenceOfCourse,EducationalEnvironmentDescriptorId,MediumOfInstructionDescriptorId,PopulationServedDescriptorId,
+    AvailableCreditTypeDescriptorId,AvailableCreditConversion,InstructionLanguageDescriptorId,LocationSchoolId,LocationClassroomIdentificationCode,AvailableCredits,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530022',
+    'XSNP41',
+    '2012',
+    '14517',
+    'Traditional',
+    '1',
+    '950',
+    NULL,
+    '1233',
+    NULL,
+    NULL,
+    NULL,
+    '867530022',
+    '1405',
+    '1.00',
+    'D080764D-28BB-4824-B498-505FDEEC6F02',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Section WHERE LocationClassroomIdentificationCode= '1405'  AND LocalCourseCode= 'XSNP41'  AND SchoolId= '867530022'  AND SchoolYear= '2012'
+    AND SequenceOfCourse= '1' AND SessionName = 'Traditional' AND SectionIdentifier = '14517'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '110',
+    'http://www.ed-fi.org/Descriptor/LimitedEnglishProficiencyDescriptor.xml',
+    'Limited',
+    'Limited',
+    'Limited',
+    NULL,
+    NULL,
+    NULL,
+    '29DF3155-D3B9-4605-B80B-50CC9C3FC6DF',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '110'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.LimitedEnglishProficiencyDescriptor(
+    LimitedEnglishProficiencyDescriptorId)
+    (SELECT TOP 1
+    '110'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.LimitedEnglishProficiencyDescriptor WHERE   LimitedEnglishProficiencyDescriptorId= '110'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1167',
+    'uri://ed-fi.org/OldEthnicityDescriptor',
+    'White, Not Of Hispanic Origin',
+    'White, Not Of Hispanic Origin',
+    'White, Not Of Hispanic Origin',
+    NULL,
+    NULL,
+    NULL,
+    '1882389F-FE1E-40ED-8670-5E3C6DEA4607',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1167));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '2892',
+    'uri://ed-fi.org/SchoolFoodServiceProgramServiceDescriptor',
+    'Free Breakfast',
+    'Free Breakfast',
+    'Free Breakfast',
+    NULL,
+    NULL,
+    NULL,
+    'D45C8420-62FD-49AE-964D-1D8DCECE30D5',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 2892));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.SchoolFoodServiceProgramServiceDescriptor(
+    SchoolFoodServiceProgramServiceDescriptorId) (
+    SELECT TOP 1
+    2892
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.SchoolFoodServiceProgramServiceDescriptor WHERE SchoolFoodServiceProgramServiceDescriptorId = 2892));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1395',
+    'uri://ed-fi.org/SexDescriptor',
+    'Female',
+    'Female',
+    'Female',
+    NULL,
+    NULL,
+    NULL,
+    'D047F035-5000-456B-A279-6AF1BD20EB6D',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1395));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.SexDescriptor(
+    SexDescriptorId) (
+    SELECT TOP 1
+    1395
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.SexDescriptor WHERE SexDescriptorId = 1395));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1451',
+    'uri://ed-fi.org/StateAbbreviationDescriptor',
+    'TX',
+    'TX',
+    'TX',
+    NULL,
+    NULL,
+    NULL,
+    '67A24BD2-B27E-42A1-A508-2D45B49C6617',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1451));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.StateAbbreviationDescriptor(
+    StateAbbreviationDescriptorId) (
+    SELECT TOP 1
+    1451
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.StateAbbreviationDescriptor WHERE StateAbbreviationDescriptorId = 1451));
+
+    SET IDENTITY_INSERT edfi.Student ON;
+    INSERT INTO edfi.Student(
+    StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthSexDescriptorId,BirthDate,BirthCity,BirthStateAbbreviationDescriptorId,
+    DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,CitizenshipStatusDescriptorId,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId)
+    (SELECT TOP 1
+    '100014881',
+    NULL,
+    'Cecilia',
+    'D',
+    'Begay',
+    NULL,
+    NULL,
+    '1395',
+    '1989-06-05',
+    'Lubbock',
+    '1451',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    '189889',
+    '989B461B-45DD-4947-B310-51229E2068FC',
+    'Nov 19 2015  4:14PM',
+    'Sep 18 2015 11:34AM',
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100014881'));
+    SET IDENTITY_INSERT edfi.Student OFF;
+
+    INSERT INTO edfi.StudentSectionAssociation(
+    StudentUSI,SchoolId,LocalCourseCode,SchoolYear,BeginDate,EndDate,HomeroomIndicator,RepeatIdentifierDescriptorId,SectionIdentifier,SessionName,AttemptStatusDescriptorId,
+    TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '100014881',
+    '867530022',
+    'XSNP41',
+    '2012',
+    '2011-08-22',
+    '2011-11-02',
+    '0',
+    NULL,
+    '14517',
+    'Traditional',
+    NULL,
+    NULL,
+    '6779BA84-FD0E-45FC-8BF5-327835579D3C',
+    'Sep 18 2015 11:47AM',
+    'Sep 18 2015 11:47AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.StudentSectionAssociation WHERE   BeginDate= '2011-08-22'  AND LocalCourseCode= 'XSNP41' AND SessionName = 'Traditional'
+    AND SchoolId= '867530022'  AND SchoolYear= '2012'  AND StudentUSI= '100014881' AND SectionIdentifier = '14517'));
+
+    INSERT INTO edfi.Grade(
+    GradingPeriodDescriptorId,BeginDate,GradeTypeDescriptorId,PerformanceBaseConversionDescriptorId,StudentUSI,SchoolId,SessionName,GradingPeriodSchoolYear,
+    LocalCourseCode,SectionIdentifier,GradingPeriodName,SchoolYear,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '2011-08-22',
+    '1601',
+    NULL,
+    '100014881',
+    '867530022',
+    'Traditional',
+    '2012',
+    'XSNP41',
+    '14517',
+    '1',
+    '2012',
+    'A',
+    '94.00',
+    NULL,
+    'E079C048-D518-407D-8412-BD6968733E3E',
+    'Sep 18 2015 11:52AM',
+    'Sep 18 2015 11:52AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Grade WHERE id='E079C048-D518-407D-8412-BD6968733E3E'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1602',
+    'uri://ed-fi.org/GradeTypeDescriptor',
+    'Mid-Term Grade',
+    'Mid-Term Grade',
+    'Mid-Term Grade',
+    NULL,
+    NULL,
+    NULL,
+    'B180C713-0E07-497E-8A03-66EA1B82234A',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1602));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.GradeTypeDescriptor(
+    GradeTypeDescriptorId) (
+    SELECT TOP 1
+    1602
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.GradeTypeDescriptor WHERE GradeTypeDescriptorId = 1602));
+
+    INSERT INTO edfi.Grade(
+    GradingPeriodDescriptorId,BeginDate,GradeTypeDescriptorId,PerformanceBaseConversionDescriptorId,StudentUSI,SchoolId,SessionName,GradingPeriodSchoolYear,
+    LocalCourseCode,SectionIdentifier,GradingPeriodName,SchoolYear,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '2011-08-22',
+    '1602',
+    NULL,
+    '100014881',
+    '867530022',
+    'Traditional',
+    '2012',
+    'XSNP41',
+    '14517',
+    '1',
+    '2012',
+    'A',
+    '94.00',
+    NULL,
+    '6A8FEB5B-080D-4200-994A-28B4C1DB4CF6',
+    'Sep 18 2015 11:52AM',
+    'Sep 18 2015 11:52AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Grade WHERE id='6A8FEB5B-080D-4200-994A-28B4C1DB4CF6'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '59',
+    'http://www.ed-fi.org/Descriptor/GradingPeriodDescriptor.xml',
+    'End of Year',
+    'End of Year',
+    'End of Year',
+    NULL,
+    NULL,
+    NULL,
+    '88A27CE8-5624-42ED-9E83-1FAF965364DF',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '59'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.GradingPeriodDescriptor(
+    GradingPeriodDescriptorId)
+    (SELECT TOP 1
+    '59'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriodDescriptor WHERE   GradingPeriodDescriptorId= '59'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '59',
+    '867530022',
+    '2011-08-22',
+    '175',
+    '2012-05-25',
+    '1',
+    '1',
+    '2012',
+    '468EF2D9-FF78-4200-B2AE-3AEB540573E1',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE id='468EF2D9-FF78-4200-B2AE-3AEB540573E1'));
+
+    INSERT INTO edfi.EducationOrganization(
+    EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530007',
+    'Badger Springs',
+    NULL,
+    NULL,
+    NULL,
+    'CA077ACF-2BE3-4F43-809E-67C5843CD736',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530007'));
+
+    INSERT INTO edfi.School(
+    SchoolId,LocalEducationAgencyId,SchoolTypeDescriptorId,CharterStatusDescriptorId,TitleIPartASchoolDesignationDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,
+    AdministrativeFundingControlDescriptorId,InternetAccessDescriptorId,CharterApprovalAgencyTypeDescriptorId,CharterApprovalSchoolYear)
+    (SELECT TOP 1
+    '867530007',
+    '867530',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.School WHERE   SchoolId= '867530007'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '867530007',
+    '2011-08-22',
+    '29',
+    '2011-09-30',
+    '1',
+    '1',
+    '2012',
+    '9E3E8812-C3B1-429B-801B-7D9EC9359AD0',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE id='9E3E8812-C3B1-429B-801B-7D9EC9359AD0'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '867530022',
+    '2011-08-22',
+    '29',
+    '2011-09-30',
+    '1',
+    '1',
+    '2013',
+    'BB27B132-CE54-41E8-9C4D-A0A5177EF7DB',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE id='BB27B132-CE54-41E8-9C4D-A0A5177EF7DB'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '867530022',
+    '2011-08-22',
+    '29',
+    '2011-09-30',
+    '2',
+    '2',
+    '2012',
+    'BB27B132-CE54-41E8-9C4D-A0A5177EF8DB',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE id='BB27B132-CE54-41E8-9C4D-A0A5177EF8DB'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '867530020',
+    '2011-08-22',
+    '29',
+    '2011-09-30',
+    '1',
+    '1',
+    '2012',
+    'D69C9022-AD7B-4D72-BFE7-BB02FA29F5C7',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE   BeginDate= '2011-08-22'  AND GradingPeriodDescriptorId= '54'  AND SchoolId= '867530020'));
+
+    INSERT INTO edfi.ClassPeriod(
+    SchoolId,ClassPeriodName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'A01',
+    'B1B3F2B6-1281-4827-8BE4-343D8BC60169',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.ClassPeriod WHERE   ClassPeriodName= 'A01'  AND SchoolId= '867530020'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '18',
+    'http://www.ed-fi.org/Descriptor/AcademicSubjectDescriptor.xml',
+    'Other',
+    'Other',
+    'Other',
+    NULL,
+    NULL,
+    NULL,
+    '2E655CCA-FF7D-4A97-86B8-ED13CF8BF38E',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '18'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.Course(
+    EducationOrganizationId,CourseCode,CourseTitle,NumberOfParts,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'XLTV41',
+    'FUNCT VOC 12',
+    '1',
+    '77E4317B-95C7-49D0-9606-44B493D41455',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Course WHERE   CourseCode= 'XLTV41'  AND EducationOrganizationId= '867530020'));
+
+    INSERT INTO edfi.CourseOffering(
+    LocalCourseCode,SchoolId,SchoolYear,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,SessionName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    'XLTV41',
+    '867530020',
+    '2012',
+    'FUNCT VOC 12',
+    NULL,
+    'XLTV41',
+    '867530020',
+    'Traditional',
+    '6E004FB8-D563-4B95-B00F-DB493AEA8730',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'XLTV41'  AND SchoolId= '867530020'  AND SchoolYear= '2012' ));
+
+    INSERT INTO edfi.Location(
+    SchoolId,ClassroomIdentificationCode,MaximumNumberOfSeats,OptimalNumberOfSeats,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    '702',
+    NULL,
+    NULL,
+    '22B56E5B-3A76-4472-9095-815D3DFF1F53',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Location WHERE   ClassroomIdentificationCode= '702'  AND SchoolId= '867530020'));
+
+    INSERT INTO edfi.Section(
+    SchoolId,LocalCourseCode,SchoolYear,SectionIdentifier,SequenceOfCourse,EducationalEnvironmentDescriptorId,MediumOfInstructionDescriptorId,SessionName,
+    PopulationServedDescriptorId,AvailableCreditTypeDescriptorId,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'XLTV41',
+    '2012',
+    '14142',
+    '1',
+    '950',
+    NULL,
+    'Traditional',
+    '1233',
+    NULL,
+    NULL,
+    NULL,
+    '1.00',
+    'C5D44864-6A22-4D8D-84ED-434933862587',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Section WHERE  LocalCourseCode= 'XLTV41'  AND SchoolId= '867530020' AND SchoolYear= '2012'  AND SequenceOfCourse= '1'  AND SectionIdentifier= '14142'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1166',
+    'uri://ed-fi.org/OldEthnicityDescriptor',
+    'Hispanic',
+    'Hispanic',
+    'Hispanic',
+    NULL,
+    NULL,
+    NULL,
+    '3F337FB4-C428-4B2B-9281-8158BA97B9F0',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1166));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    SET IDENTITY_INSERT edfi.Student ON;
+    INSERT INTO edfi.Student(
+    StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthSexDescriptorId,BirthDate,BirthCity,BirthStateAbbreviationDescriptorId,DateEnteredUS,
+    MultipleBirthStatus,BirthInternationalProvince,CitizenshipStatusDescriptorId,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId)
+    (SELECT TOP 1
+    '100020850',
+    NULL,
+    'Deeanna',
+    'M',
+    'Haight',
+    NULL,
+    NULL,
+    '1395',
+    '1989-07-19',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    '189919',
+    '32C24FB8-E425-453B-B476-E014BB2F1528',
+    'Nov 19 2015  4:14PM',
+    'Sep 18 2015 11:34AM',
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100020850'));
+    SET IDENTITY_INSERT edfi.Student OFF;
+
+    INSERT INTO edfi.StudentSectionAssociation(
+    StudentUSI,SchoolId,LocalCourseCode,SectionIdentifier,SchoolYear,SessionName,
+    BeginDate,EndDate,HomeroomIndicator,RepeatIdentifierDescriptorId,TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '100020850',
+    '867530020',
+    'XLTV41',
+    '14142',
+    '2012',
+    'Traditional',
+    '2011-08-22',
+    '2011-12-20',
+    NULL,
+    NULL,
+    NULL,
+    'AF5E4900-37D7-4EC9-A50A-7DAF73C0D322',
+    'Sep 18 2015 11:47AM',
+    'Sep 18 2015 11:47AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.StudentSectionAssociation WHERE   BeginDate= '2011-08-22'  AND LocalCourseCode= 'XLTV41'
+    AND SchoolId= '867530020'  AND SchoolYear= '2012'  AND StudentUSI= '100020850'  AND SectionIdentifier= '14142'));
+
+    INSERT INTO edfi.Grade(
+    GradingPeriodDescriptorId,BeginDate,GradeTypeDescriptorId,PerformanceBaseConversionDescriptorId,StudentUSI,SchoolId,GradingPeriodSchoolYear,SessionName,
+    LocalCourseCode,SectionIdentifier,GradingPeriodName,SchoolYear,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '2011-08-22',
+    '1601',
+    NULL,
+    '100020850',
+    '867530020',
+    '2012',
+    'Traditional',
+    'XLTV41',
+    '14142',
+    '1',
+    '2012',
+    NULL,
+    '90.00',
+    NULL,
+    'C7D765CC-2FD9-43EA-B115-201EEE385923',
+    'Sep 18 2015 11:52AM',
+    'Sep 18 2015 11:52AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Grade WHERE id='C7D765CC-2FD9-43EA-B115-201EEE385923'));
+
+    INSERT INTO edfi.ClassPeriod(
+    SchoolId,ClassPeriodName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'A02',
+    '3BBC94D6-5A23-4A15-B06B-ADB42F867110',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.ClassPeriod WHERE   ClassPeriodName= 'A02'  AND SchoolId= '867530020'));
+
+    SET IDENTITY_INSERT edfi.Descriptor ON;
+    INSERT INTO edfi.Descriptor(
+    DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '12',
+    'http://www.ed-fi.org/Descriptor/AcademicSubjectDescriptor.xml',
+    'Fine and Performing Arts',
+    'Fine and Performing Arts',
+    'Fine and Performing Arts',
+    NULL,
+    NULL,
+    NULL,
+    '525A7098-A705-4E54-822B-D41279D56CF2',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '12'));
+    SET IDENTITY_INSERT edfi.Descriptor OFF;
+
+    INSERT INTO edfi.Course(EducationOrganizationId,CourseCode,CourseTitle,NumberOfParts,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'NCMR41',
+    'Music Iv Choir (1 Unit)',
+    '1',
+    '89E9EF42-89CB-45B8-8A10-E0ADD3469468',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Course WHERE   CourseCode= 'NCMR41'  AND EducationOrganizationId= '867530020'));
+
+    INSERT INTO edfi.CourseOffering(
+    LocalCourseCode,SchoolId,SchoolYear,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,SessionName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    'NCMR41',
+    '867530020',
+    '2012',
+    'Music Iv Choir (1 Unit)',
+    NULL,
+    'NCMR41',
+    '867530020',
+    'Traditional',
+    'F87ECD3C-701E-47F3-BE73-5914F8B1843E',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'NCMR41'  AND SchoolId= '867530020'  AND SchoolYear= '2012' ));
+
+    INSERT INTO edfi.Location(
+    SchoolId,ClassroomIdentificationCode,MaximumNumberOfSeats,OptimalNumberOfSeats,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    '108',
+    NULL,
+    NULL,
+    '0A58614A-A9CD-4461-8535-1A5360FC359E',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Location WHERE   ClassroomIdentificationCode= '108'  AND SchoolId= '867530020'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1232',
+    'uri://ed-fi.org/PopulationServedDescriptor',
+    'Regular Students',
+    'Regular Students',
+    'Regular Students',
+    NULL,
+    NULL,
+    NULL,
+    'E989F2DD-66C2-47CE-804C-A0E3EE5C7624',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1232));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.PopulationServedDescriptor(
+    PopulationServedDescriptorId) (
+    SELECT TOP 1
+    1232
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.PopulationServedDescriptor WHERE PopulationServedDescriptorId = 1232));
+
+    INSERT INTO edfi.Section(
+    SchoolId,LocalCourseCode,SchoolYear,SectionIdentifier,SequenceOfCourse, EducationalEnvironmentDescriptorId,MediumOfInstructionDescriptorId,PopulationServedDescriptorId,
+    SessionName,AvailableCreditTypeDescriptorId,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530020',
+    'NCMR41',
+    '2012',
+    '7383',
+    '1',
+    '950',
+    NULL,
+    '1232',
+    'Traditional',
+    NULL,
+    NULL,
+    NULL,
+    '1.00',
+    'F6844930-16BB-4CF5-BB1E-6F2A1EABC1F9',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Section WHERE  LocalCourseCode= 'NCMR41'  AND SchoolId= '867530020'
+    AND SchoolYear= '2012'  AND SequenceOfCourse= '1' AND SectionIdentifier= '7383'));
+
+    SET IDENTITY_INSERT edfi.Student ON;
+    INSERT INTO edfi.Student(
+    StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthSexDescriptorId,BirthDate,BirthCity,
+    BirthStateAbbreviationDescriptorId,DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,CitizenshipStatusDescriptorId,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId)
+    (SELECT TOP 1
+    '100044935',
+    NULL,
+    'Michelle',
+    'X',
+    'Trejo',
+    NULL,
+    NULL,
+    '1395',
+    '1993-11-28',
+    'Lubbock',
+    '1451',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    '190966',
+    '45B66EF1-2E81-444C-AC01-9BA36FDCE4C9',
+    'Nov 19 2015  4:14PM',
+    'Sep 18 2015 11:34AM',NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100044935'));
+    SET IDENTITY_INSERT edfi.Student OFF;
+
+    INSERT INTO edfi.StudentSectionAssociation(
+    StudentUSI,SchoolId,LocalCourseCode,SectionIdentifier,SchoolYear,SessionName,
+    BeginDate,EndDate,HomeroomIndicator,RepeatIdentifierDescriptorId,TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '100044935',
+    '867530020',
+    'NCMR41',
+    '7383',
+    '2012',
+    'Traditional',
+    '2011-08-22',
+    '2011-12-20',
+    '1',
+    NULL,
+    NULL,
+    'F5D4524E-ED83-4C53-B766-890051FE3F9B',
+    'Sep 18 2015 11:47AM',
+    'Sep 18 2015 11:47AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.StudentSectionAssociation WHERE   BeginDate= '2011-08-22'  AND LocalCourseCode= 'NCMR41'
+    AND SchoolId= '867530020'  AND SchoolYear= '2012' AND StudentUSI= '100044935' ));
+
+    INSERT INTO edfi.Grade(
+    GradingPeriodDescriptorId,BeginDate,GradeTypeDescriptorId,PerformanceBaseConversionDescriptorId,StudentUSI,SchoolId,GradingPeriodSchoolYear,GradingPeriodName,
+    SessionName,LocalCourseCode,SectionIdentifier,SchoolYear,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '2011-08-22',
+    '1601',
+    NULL,
+    '100044935',
+    '867530020',
+    '2012',
+    '1',
+    'Traditional',
+    'NCMR41',
+    '7383',
+    '2012',
+    'P',
+    NULL,
+    NULL,
+    '2052B8BE-5B0B-439E-8DE7-115E026FC25F',
+    'Sep 18 2015 11:52AM',
+    'Sep 18 2015 11:52AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Grade WHERE id='2052B8BE-5B0B-439E-8DE7-115E026FC25F'));
+
+    INSERT INTO edfi.EducationOrganization(
+    EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,OperationalStatusDescriptorId,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530188',
+    'Olive Elementary School',
+    NULL,
+    NULL,
+    NULL,
+    '4C2A15D8-0244-491D-9963-13A91B0E5888',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530188'));
+
+    INSERT INTO edfi.School(
+    SchoolId,LocalEducationAgencyId,SchoolTypeDescriptorId,CharterStatusDescriptorId,TitleIPartASchoolDesignationDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,
+    AdministrativeFundingControlDescriptorId,InternetAccessDescriptorId,CharterApprovalAgencyTypeDescriptorId,CharterApprovalSchoolYear)
+    (SELECT TOP 1
+    '867530188',
+    '867530',
+    '1695',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.School WHERE   SchoolId= '867530188'));
+
+    INSERT INTO edfi.GradingPeriod(
+    GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,SchoolYear,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '867530188',
+    '2011-08-22',
+    '29',
+    '2011-09-30',
+    '1',
+    '1',
+    '2012',
+    '34227554-0200-4297-B47F-9FBE862326D3',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.GradingPeriod WHERE   BeginDate= '2011-08-22'  AND GradingPeriodDescriptorId= '54'  AND SchoolId= '867530188'));
+
+    INSERT INTO edfi.ClassPeriod
+    (SchoolId,ClassPeriodName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530188',
+    'TAR',
+    '13829E23-354A-438F-8432-05933168EE27',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.ClassPeriod WHERE   ClassPeriodName= 'TAR'  AND SchoolId= '867530188'));
+
+    INSERT INTO edfi.Course(
+    EducationOrganizationId,CourseCode,CourseTitle,NumberOfParts,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530188',
+    'ART020',
+    'Art, Grade 2',
+    '1',
+    '21E088E3-462A-48B7-8765-0F2938FE7B5A',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Course WHERE   CourseCode= 'ART020'  AND EducationOrganizationId= '867530188'));
+
+    INSERT INTO edfi.Session(
+    SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530188',
+    '2012',
+    '530',
+    'Traditional',
+    '2011-08-22',
+    '2011-12-20',
+    '82',
+    'D4F5B18D-C97D-4F58-84A3-8AE062FF5339',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530188'  AND SchoolYear= '2012'  AND TermDescriptorId= '530'));
+
+    INSERT INTO edfi.CourseOffering(
+    LocalCourseCode,SchoolId,SchoolYear,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,SessionName,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    'ART020',
+    '867530188',
+    '2012',
+    'Art, Grade 2',
+    NULL,
+    'ART020',
+    '867530188',
+    'Traditional',
+    '44B1DCDD-2D06-4956-A333-5BBFA4F9EC7F',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'ART020'  AND SchoolId= '867530188'  AND SchoolYear= '2012' ));
+
+    INSERT INTO edfi.Location(
+    SchoolId,ClassroomIdentificationCode,MaximumNumberOfSeats,OptimalNumberOfSeats,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530188',
+    '21',
+    NULL,
+    NULL,
+    '46ABB630-6AF4-423F-93E4-700D1560466D',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Location WHERE   ClassroomIdentificationCode= '21'  AND SchoolId= '867530188'));
+
+    INSERT INTO edfi.Section(
+    SchoolId,LocalCourseCode,SchoolYear,SectionIdentifier,SequenceOfCourse,EducationalEnvironmentDescriptorId,SessionName,
+    MediumOfInstructionDescriptorId,PopulationServedDescriptorId,AvailableCreditTypeDescriptorId,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '867530188',
+    'ART020',
+    '2012',
+    '363',
+    '1',
+    '950',
+    'Traditional',
+    NULL,
+    '1232',
+    NULL,
+    NULL,
+    NULL,
+    '0.00',
+    '5539D8B7-9DCA-4167-8922-BC107A8D62D2',
+    'Sep 18 2015 11:34AM',
+    'Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Section WHERE  LocalCourseCode= 'ART020'  AND SchoolId= '867530188'  AND SchoolYear= '2012'  AND SequenceOfCourse= '1'  AND SectionIdentifier= '363'));
+
+    SET IDENTITY_INSERT edfi.descriptor ON;
+    INSERT INTO edfi.descriptor(
+    DescriptorId, Namespace, CodeValue, ShortDescription, Description, 	PriorDescriptorId, EffectiveBeginDate, EffectiveEndDate, Id, LastModifiedDate, CreateDate)
+    (SELECT TOP 1
+    '1396',
+    'uri://ed-fi.org/SexDescriptor',
+    'Male',
+    'Male',
+    'Male',
+    NULL,
+    NULL,
+    NULL,
+    '64E51D5B-8249-45FE-8B6D-4347F525B2FB',
+    'Jun 19 2015 11:42AM',
+    'Jun 19 2015 11:42AM'
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.descriptor WHERE descriptorid = 1396));
+    SET IDENTITY_INSERT edfi.descriptor OFF;
+
+    INSERT INTO edfi.SexDescriptor(
+    SexDescriptorId) (
+    SELECT TOP 1
+    1396
+    WHERE NOT EXISTS (
+    SELECT 1 FROM edfi.SexDescriptor WHERE SexDescriptorId = 1396));
+
+    SET IDENTITY_INSERT edfi.Student ON;
+    INSERT INTO edfi.Student(
+    StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthSexDescriptorId,BirthDate,BirthCity,BirthStateAbbreviationDescriptorId,
+    DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,CitizenshipStatusDescriptorId,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId)
+    (SELECT TOP 1
+    '100019485',
+    NULL,
+    'Ty',
+    'J',
+    'Arenas',
+    NULL,
+    NULL,
+    '1396',
+    '2004-02-09',
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    '189914',
+    '71782D5B-A947-4E53-B1BA-D059864A6F7C',
+    'Nov 19 2015  4:14PM',
+    'Sep 18 2015 11:34AM',
+    NULL
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100019485'));
+    SET IDENTITY_INSERT edfi.Student OFF;
+
+    INSERT INTO edfi.StudentSectionAssociation(
+    StudentUSI,SchoolId,LocalCourseCode,SectionIdentifier,SchoolYear,SessionName,
+    BeginDate,EndDate,HomeroomIndicator,RepeatIdentifierDescriptorId,TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '100019485',
+    '867530188',
+    'ART020',
+    '363',
+    '2012',
+    'Traditional',
+    '2011-08-22',
+    '2011-12-20',
+    '0',
+    NULL,
+    NULL,
+    '93705E11-BA34-4125-962B-1D2F47BD523D',
+    'Sep 18 2015 11:47AM',
+    'Sep 18 2015 11:47AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.StudentSectionAssociation WHERE   BeginDate= '2011-08-22'  AND LocalCourseCode= 'ART020'
+    AND SchoolId= '867530188'  AND SchoolYear= '2012'  AND StudentUSI= '100019485'  AND SectionIdentifier= '363'));
+
+    INSERT INTO edfi.Grade(
+    GradingPeriodDescriptorId,BeginDate,GradeTypeDescriptorId,PerformanceBaseConversionDescriptorId,StudentUSI,SchoolId,GradingPeriodSchoolYear,GradingPeriodName,SessionName,
+    LocalCourseCode,SectionIdentifier,SchoolYear,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1
+    '54',
+    '2011-08-22',
+    '1601',
+    NULL,
+    '100019485',
+    '867530188',
+    '2012',
+    '1',
+    'Traditional',
+    'ART020',
+    '363',
+    '2012',
+    'D',
+    NULL,
+    NULL,
+    '94D4CDA9-C902-4D27-81DE-01683C0BFFA9',
+    'Sep 18 2015 11:52AM',
+    'Sep 18 2015 11:52AM'
+    WHERE NOT EXISTS(
+    SELECT  1  FROM edfi.Grade WHERE id='94D4CDA9-C902-4D27-81DE-01683C0BFFA9'));
+    ----------------
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1600','uri://ed-fi.org/GradeTypeDescriptor','Final','Final','Final',NULL,NULL,NULL,'4F208B5F-040E-4D49-AB1C-505D9C553E67','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1600'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.GradeTypeDescriptor(GradeTypeDescriptorId)(SELECT TOP 1'1600'  WHERE NOT EXISTS(SELECT  1  FROM edfi.GradeTypeDescriptor WHERE   GradeTypeDescriptorId= '1600'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'59','uri://ed-fi.org/GradingPeriodDescriptor','End of Year','End of Year','End of Year',NULL,NULL,NULL,'88A27CE8-5624-42ED-9E83-1FAF965364DF','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '59'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.GradingPeriodDescriptor(GradingPeriodDescriptorId)(SELECT TOP 1'59'  WHERE NOT EXISTS(SELECT  1  FROM edfi.GradingPeriodDescriptor WHERE   GradingPeriodDescriptorId= '59'));
+    INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT TOP 1'867530068','James Monroe Middle School',NULL,NULL,'3706C153-5CE2-429D-B73E-139496548673','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.School'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530068'));
+    INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT TOP 1'867530','Glendale ISD',NULL,NULL,'9CC29A49-637C-4882-A7DB-99AD87690CFB','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.LocalEducationAgency'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '867530'));
+    INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,ShortNameOfInstitution,WebSite,Id,LastModifiedDate,CreateDate,OperationalStatusDescriptorId,Discriminator)(SELECT TOP 1'152950','ESC Region 17',NULL,NULL,'03DE6F94-316A-4B06-8C67-2C8748DCA1A9','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL,'edfi.EducationServiceCenter'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '152950'));
+    INSERT INTO edfi.EducationServiceCenter(EducationServiceCenterId,StateEducationAgencyId)(SELECT TOP 1'152950',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationServiceCenter WHERE   EducationServiceCenterId= '152950'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1086','uri://ed-fi.org/LocalEducationAgencyCategoryDescriptor','Independent','Independent','Independent',NULL,NULL,NULL,'0A65B4F5-49CC-4ABD-9A3F-41FFA09EF2B3','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1086'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.LocalEducationAgencyCategoryDescriptor(LocalEducationAgencyCategoryDescriptorId)(SELECT TOP 1'1086'  WHERE NOT EXISTS(SELECT  1  FROM edfi.LocalEducationAgencyCategoryDescriptor WHERE   LocalEducationAgencyCategoryDescriptorId= '1086'));
+    INSERT INTO edfi.LocalEducationAgency(LocalEducationAgencyId,ParentLocalEducationAgencyId,EducationServiceCenterId,StateEducationAgencyId,CharterStatusDescriptorId,LocalEducationAgencyCategoryDescriptorId)(SELECT TOP 1'867530',NULL,'152950',NULL,NULL,'1086'  WHERE NOT EXISTS(SELECT  1  FROM edfi.LocalEducationAgency WHERE   LocalEducationAgencyId= '867530'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1695','uri://ed-fi.org/SchoolTypeDescriptor','Regular','Regular','Regular',NULL,NULL,NULL,'F5712765-A14F-4A3D-ABC9-BADFC9134BC1','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1695'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.SchoolTypeDescriptor(SchoolTypeDescriptorId)(SELECT TOP 1'1695'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolTypeDescriptor WHERE   SchoolTypeDescriptorId= '1695'));
+    INSERT INTO edfi.School(SchoolId,LocalEducationAgencyId,AdministrativeFundingControlDescriptorId,CharterApprovalSchoolYear,CharterApprovalAgencyTypeDescriptorId,CharterStatusDescriptorId,InternetAccessDescriptorId,MagnetSpecialProgramEmphasisSchoolDescriptorId,SchoolTypeDescriptorId,TitleIPartASchoolDesignationDescriptorId)(SELECT TOP 1'867530068','867530',NULL,NULL,NULL,NULL,NULL,NULL,'1695',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.School WHERE   SchoolId= '867530068'));
+    INSERT INTO edfi.SchoolYearType(SchoolYear,SchoolYearDescription,CurrentSchoolYear,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'2012','2011-2012','0','1926BB96-BF8C-493A-93BD-A8E60DBC83E1','Jun 19 2015 11:40AM','Jun 19 2015 11:40AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.SchoolYearType WHERE   SchoolYear= '2012'));
+    INSERT INTO edfi.GradingPeriod(GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,Id,LastModifiedDate,CreateDate,SchoolYear,Discriminator)(SELECT TOP 1'59','867530068','2011-08-22','175','2012-05-25','1','1','1D0BE116-AB28-486F-BDA8-56E843C205A8','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','2012',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.GradingPeriod WHERE   GradingPeriodDescriptorId= '59'  AND PeriodSequence= '1'  AND SchoolId= '867530068'  AND SchoolYear= '2012'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'12','uri://ed-fi.org/AcademicSubjectDescriptor','Fine and Performing Arts','Fine and Performing Arts','Fine and Performing Arts',NULL,NULL,NULL,'525A7098-A705-4E54-822B-D41279D56CF2','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '12'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.Course(EducationOrganizationId,CourseCode,CourseTitle,NumberOfParts,Id,LastModifiedDate,CreateDate)
+    (SELECT TOP 1'867530068','ACER08','Art, Grade 8','1','8D4C96E1-5768-4506-8CFB-DE4F7B1741E4','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM'
+    WHERE NOT EXISTS(SELECT  1  FROM edfi.Course WHERE   CourseCode= 'ACER08'  AND EducationOrganizationId= '867530068'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'535','uri://ed-fi.org/TermDescriptor','Spring Semester','Spring Semester','Spring Semester',NULL,NULL,NULL,'E4B7411A-CA94-4D46-912F-9057E4D65B3A','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '535'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.TermDescriptor(TermDescriptorId)(SELECT TOP 1'535'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TermDescriptor WHERE   TermDescriptorId= '535'));
+    INSERT INTO edfi.Session(SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT TOP 1'867530068','2012','535','Traditional-Spring Semester','2012-01-05','2012-05-25','93','A8DFF608-36BB-4137-AA36-278CFB830BD6','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530068'  AND SchoolYear= '2012'  AND SessionName= 'Traditional-Spring Semester'));
+    INSERT INTO edfi.CourseOffering(LocalCourseCode,SchoolId,SchoolYear,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,Id,LastModifiedDate,CreateDate,SessionName,Discriminator)(SELECT TOP 1'ACER08','867530068','2012','Art, Grade 8',NULL,'ACER08','867530068','27A5F21F-9F9D-4CF7-AA35-7CE701A04837','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','Traditional-Spring Semester',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'ACER08'  AND SchoolId= '867530068'  AND SchoolYear= '2012'  AND SessionName= 'Traditional-Spring Semester'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'950','uri://ed-fi.org/EducationalEnvironmentDescriptor','Classroom','Classroom','Classroom',NULL,NULL,NULL,'C21062A5-542C-4596-B985-17582EC975F4','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '950'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.EducationalEnvironmentDescriptor(EducationalEnvironmentDescriptorId)(SELECT TOP 1'950'  WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationalEnvironmentDescriptor WHERE   EducationalEnvironmentDescriptorId= '950'));
+    INSERT INTO edfi.Location(SchoolId,ClassroomIdentificationCode,MaximumNumberOfSeats,OptimalNumberOfSeats,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT TOP 1'867530068','107',NULL,NULL,'3192FE88-7579-4413-BF39-00314A4B30F1','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Location WHERE   ClassroomIdentificationCode= '107'  AND SchoolId= '867530068'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1232','uri://ed-fi.org/PopulationServedDescriptor','Regular Students','Regular Students','Regular Students',NULL,NULL,NULL,'E989F2DD-66C2-47CE-804C-A0E3EE5C7624','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1232'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.PopulationServedDescriptor(PopulationServedDescriptorId)(SELECT TOP 1'1232'  WHERE NOT EXISTS(SELECT  1  FROM edfi.PopulationServedDescriptor WHERE   PopulationServedDescriptorId= '1232'));
+    INSERT INTO edfi.Section(SchoolId,LocalCourseCode,SchoolYear,SequenceOfCourse,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate,SessionName,SectionIdentifier,LocationSchoolId,LocationClassroomIdentificationCode,PopulationServedDescriptorId,MediumOfInstructionDescriptorId,EducationalEnvironmentDescriptorId,AvailableCreditTypeDescriptorId,Discriminator)(SELECT TOP 1'867530068','ACER08','2012','1',NULL,NULL,'0.000','E252B3B6-DACA-4830-A64B-A12BCB4568E1','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','Traditional-Spring Semester','1','867530068','107','1232',NULL,'950',NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Section WHERE   LocalCourseCode= 'ACER08'  AND SchoolId= '867530068'  AND SchoolYear= '2012'  AND SectionIdentifier= '1'  AND SessionName= 'Traditional-Spring Semester'));
+    SET IDENTITY_INSERT edfi.Student ON;INSERT INTO edfi.Student(StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,BirthCity,DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId,BirthSexDescriptorId,BirthStateAbbreviationDescriptorId,CitizenshipStatusDescriptorId,Discriminator)(SELECT TOP 1'100078622',NULL,'Justin','A','Camarillo',NULL,NULL,'1997-01-12','Lubbock',NULL,NULL,NULL,'203451','E1C23D05-CAAA-4EB1-9954-78EF6BC038F8','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM',NULL,NULL,NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100078622'));SET IDENTITY_INSERT edfi.Student OFF;
+    INSERT INTO edfi.StudentSectionAssociation(StudentUSI,SchoolId,LocalCourseCode,SchoolYear,BeginDate,EndDate,HomeroomIndicator,TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,AttemptStatusDescriptorId,RepeatIdentifierDescriptorId,Discriminator)(SELECT TOP 1'100078622','867530068','ACER08','2012','2012-01-04','2012-05-25','1',NULL,'A5D89F06-0694-4974-B24E-88E9C947900B','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','1','Traditional-Spring Semester',NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAssociation WHERE   BeginDate= '2012-01-04'  AND LocalCourseCode= 'ACER08'  AND SchoolId= '867530068'  AND SchoolYear= '2012'  AND SectionIdentifier= '1'  AND SessionName= 'Traditional-Spring Semester'  AND StudentUSI= '100078622'));
+    INSERT INTO edfi.Grade(GradingPeriodDescriptorId,StudentUSI,SchoolId,LocalCourseCode,SchoolYear,BeginDate,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,GradingPeriodName,GradingPeriodSchoolYear,PerformanceBaseConversionDescriptorId,GradeTypeDescriptorId,Discriminator)(SELECT TOP 1'59','100078622','867530068','ACER08','2012','2012-01-04',NULL,'90.00',NULL,'18E2B445-9093-46F9-9D10-6D07B542739C','Sep 18 2015 11:52AM','Sep 18 2015 11:52AM','1','Traditional-Spring Semester','1','2012',NULL,'1600',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Grade WHERE Id='18E2B445-9093-46F9-9D10-6D07B542739C'));
+    SET IDENTITY_INSERT edfi.Student ON;INSERT INTO edfi.Student(StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,BirthCity,DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId,BirthSexDescriptorId,BirthStateAbbreviationDescriptorId,CitizenshipStatusDescriptorId,Discriminator)(SELECT TOP 1'100078622',NULL,'Justin','A','Camarillo',NULL,NULL,'1997-01-12','Lubbock',NULL,NULL,NULL,'203451','E1C23D05-CAAA-4EB1-9954-78EF6BC038F8','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM',NULL,NULL,NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUniqueId='203451'));SET IDENTITY_INSERT edfi.Student OFF;
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'1604','uri://ed-fi.org/GradeTypeDescriptor','Semester','Semester','Semester',NULL,NULL,NULL,'9CEB375F-144C-426B-B7FD-38D682765585','Dec 13 2018  2:31PM','Dec 13 2018  2:31PM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '1604'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.GradeTypeDescriptor(GradeTypeDescriptorId)(SELECT TOP 1'1604'  WHERE NOT EXISTS(SELECT  1  FROM edfi.GradeTypeDescriptor WHERE   GradeTypeDescriptorId= '1604'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'60','uri://ed-fi.org/GradingPeriodDescriptor','First Semester','First Semester','First Semester',NULL,NULL,NULL,'95B5EB9C-FFC1-4EBB-B5A2-87EFD10628B6','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '60'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.GradingPeriodDescriptor(GradingPeriodDescriptorId)(SELECT TOP 1'60'  WHERE NOT EXISTS(SELECT  1  FROM edfi.GradingPeriodDescriptor WHERE   GradingPeriodDescriptorId= '60'));
+    INSERT INTO edfi.GradingPeriod(GradingPeriodDescriptorId,SchoolId,BeginDate,TotalInstructionalDays,EndDate,GradingPeriodName,PeriodSequence,Id,LastModifiedDate,CreateDate,SchoolYear,Discriminator)(SELECT TOP 1'60','867530068','2011-08-22','82','2011-12-20','1','1','C8B4D6D9-D1BD-4BDD-ADDF-12D3561501F5','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','2012',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.GradingPeriod WHERE   GradingPeriodDescriptorId= '60'  AND PeriodSequence= '1'  AND SchoolId= '867530068'  AND SchoolYear= '2012'));
+    SET IDENTITY_INSERT edfi.Descriptor ON;INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,PriorDescriptorId,EffectiveBeginDate,EffectiveEndDate,Id,LastModifiedDate,CreateDate)(SELECT TOP 1'530','uri://ed-fi.org/TermDescriptor','Fall Semester','Fall Semester','Fall Semester',NULL,NULL,NULL,'E9B77FA3-B4BF-47E6-A21E-5F05334A2DEA','Jun 19 2015 11:42AM','Jun 19 2015 11:42AM'  WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE   DescriptorId= '530'));SET IDENTITY_INSERT edfi.Descriptor OFF;
+    INSERT INTO edfi.TermDescriptor(TermDescriptorId)(SELECT TOP 1'530'  WHERE NOT EXISTS(SELECT  1  FROM edfi.TermDescriptor WHERE   TermDescriptorId= '530'));
+    INSERT INTO edfi.Session(SchoolId,SchoolYear,TermDescriptorId,SessionName,BeginDate,EndDate,TotalInstructionalDays,Id,LastModifiedDate,CreateDate,Discriminator)(SELECT TOP 1'867530068','2012','530','Traditional','2011-08-22','2011-12-20','82','BBBBF7A7-84AD-4642-9B65-997222EEBA3E','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Session WHERE   SchoolId= '867530068'  AND SchoolYear= '2012'  AND SessionName= 'Traditional'));
+    INSERT INTO edfi.CourseOffering(LocalCourseCode,SchoolId,SchoolYear,LocalCourseTitle,InstructionalTimePlanned,CourseCode,EducationOrganizationId,Id,LastModifiedDate,CreateDate,SessionName,Discriminator)(SELECT TOP 1'ACER08','867530068','2012','Art, Grade 8',NULL,'ACER08','867530068','9A6DB0F3-2F28-4953-9D11-3EBAAFC230B5','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','Traditional',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.CourseOffering WHERE   LocalCourseCode= 'ACER08'  AND SchoolId= '867530068'  AND SchoolYear= '2012'  AND SessionName= 'Traditional'));
+    INSERT INTO edfi.Section(SchoolId,LocalCourseCode,SchoolYear,SequenceOfCourse,AvailableCreditConversion,InstructionLanguageDescriptorId,AvailableCredits,Id,LastModifiedDate,CreateDate,SessionName,SectionIdentifier,LocationSchoolId,LocationClassroomIdentificationCode,PopulationServedDescriptorId,MediumOfInstructionDescriptorId,EducationalEnvironmentDescriptorId,AvailableCreditTypeDescriptorId,Discriminator)(SELECT TOP 1'867530068','ACER08','2012','1',NULL,NULL,'0.000','159AC833-F3DE-404B-BD74-08F5DC5F8ACF','Sep 18 2015 11:34AM','Sep 18 2015 11:34AM','Traditional','1','867530068','107','1232',NULL,'950',NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Section WHERE   LocalCourseCode= 'ACER08'  AND SchoolId= '867530068'  AND SchoolYear= '2012'  AND SectionIdentifier= '1'  AND SessionName= 'Traditional'));
+    SET IDENTITY_INSERT edfi.Student ON;INSERT INTO edfi.Student(StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,BirthCity,DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId,BirthSexDescriptorId,BirthStateAbbreviationDescriptorId,CitizenshipStatusDescriptorId,Discriminator)(SELECT TOP 1'100083479',NULL,'Timothy','J','Pellum',NULL,NULL,'1997-11-21','Lubbock',NULL,NULL,NULL,'205689','1730E5EB-AC8D-497A-A6AE-230D37C1F5F9','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM',NULL,NULL,NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE   StudentUSI= '100083479'));SET IDENTITY_INSERT edfi.Student OFF;
+    INSERT INTO edfi.StudentSectionAssociation(StudentUSI,SchoolId,LocalCourseCode,SchoolYear,BeginDate,EndDate,HomeroomIndicator,TeacherStudentDataLinkExclusion,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,AttemptStatusDescriptorId,RepeatIdentifierDescriptorId,Discriminator)(SELECT TOP 1'100083479','867530068','ACER08','2012','2011-08-22','2011-12-20','1',NULL,'D6F99342-3B09-4D34-A726-1388B7122E7D','Sep 18 2015 11:47AM','Sep 18 2015 11:47AM','1','Traditional',NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.StudentSectionAssociation WHERE   BeginDate= '2011-08-22'  AND LocalCourseCode= 'ACER08'  AND SchoolId= '867530068'  AND SchoolYear= '2012'  AND SectionIdentifier= '1'  AND SessionName= 'Traditional'  AND StudentUSI= '100083479'));
+    INSERT INTO edfi.Grade(GradingPeriodDescriptorId,StudentUSI,SchoolId,LocalCourseCode,SchoolYear,BeginDate,LetterGradeEarned,NumericGradeEarned,DiagnosticStatement,Id,LastModifiedDate,CreateDate,SectionIdentifier,SessionName,GradingPeriodName,GradingPeriodSchoolYear,PerformanceBaseConversionDescriptorId,GradeTypeDescriptorId,Discriminator)(SELECT TOP 1'60','100083479','867530068','ACER08','2012','2011-08-22',NULL,'79.00',NULL,'95FF5252-69CB-43E8-91DD-CB60AF3659E1','Sep 18 2015 11:52AM','Sep 18 2015 11:52AM','1','Traditional','1','2012',NULL,'1604',NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Grade WHERE Id='95FF5252-69CB-43E8-91DD-CB60AF3659E1'));
+    SET IDENTITY_INSERT edfi.Student ON;INSERT INTO edfi.Student(StudentUSI,PersonalTitlePrefix,FirstName,MiddleName,LastSurname,GenerationCodeSuffix,MaidenName,BirthDate,BirthCity,DateEnteredUS,MultipleBirthStatus,BirthInternationalProvince,StudentUniqueId,Id,LastModifiedDate,CreateDate,BirthCountryDescriptorId,BirthSexDescriptorId,BirthStateAbbreviationDescriptorId,CitizenshipStatusDescriptorId,Discriminator)(SELECT TOP 1'100083479',NULL,'Timothy','J','Pellum',NULL,NULL,'1997-11-21','Lubbock',NULL,NULL,NULL,'205689','1730E5EB-AC8D-497A-A6AE-230D37C1F5F9','Nov 19 2015  4:14PM','Sep 18 2015 11:34AM',NULL,NULL,NULL,NULL,NULL  WHERE NOT EXISTS(SELECT  1  FROM edfi.Student WHERE StudentUniqueId='205689'));SET IDENTITY_INSERT edfi.Student OFF;
+  </ControlDataInsertion>
+</TestCase>

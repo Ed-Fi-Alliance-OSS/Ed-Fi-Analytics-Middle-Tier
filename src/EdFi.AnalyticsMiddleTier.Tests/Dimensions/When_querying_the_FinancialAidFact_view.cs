@@ -14,7 +14,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.FinancialAidFactTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_FinancialAidFact_view : When_querying_a_view_ds3_3_and_ds4_0
+    public abstract class When_querying_the_FinancialAidFact_view : When_querying_a_view_ds3_3_and_ds4_0_and_ds5_0
     {
         protected const string TestCasesFolder = "TestCases.FinancialAidFact";
         protected const string TestCasesDataFileName = "0000_FinancialAidFact_Data_Load.xml";

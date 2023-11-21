@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'EPP_CandidateDim'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+  <Result>
+    <ColumnName>CandidateKey</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>FirstName</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>LastSurname</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>SexDescriptorKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>SexDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>RaceDescriptorKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>RaceDescriptor</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>HispanicLatinoEthnicity</ColumnName>
+    <DataType>bit</DataType>
+  </Result>
+  <Result>
+    <ColumnName>EconomicDisadvantaged</ColumnName>
+    <DataType>bit</DataType>
+  </Result>
+  <Result>
+    <ColumnName>Cohort</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>ProgramComplete</ColumnName>
+    <DataType>bit</DataType>
+  </Result>
+  <Result>
+    <ColumnName>StudentUSI</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>StudentKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>ProgramName</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>BeginDate</ColumnName>
+    <DataType>date</DataType>
+  </Result>
+  <Result>
+    <ColumnName>BeginDateKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>EducationOrganizationId</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>EducationOrganizationKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>PersonId</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>IssuanceDate</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>IssuanceDateKey</ColumnName>
+    <DataType>varchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>CohortYearTermDescription</ColumnName>
+    <DataType>nvarchar</DataType>
+  </Result>
+  <Result>
+    <ColumnName>LastModifiedDate</ColumnName>
+    <DataType>datetime2</DataType>
+  </Result>
+</TestCase>

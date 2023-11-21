@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+  <DBMS>Any</DBMS>
+  <ControlDataInsertion>
+  </ControlDataInsertion>
+  <Query>
+    SELECT COLUMN_NAME AS ColumnName,
+    DATA_TYPE AS DataType
+    FROM information_schema.columns
+    WHERE table_schema = 'analytics'
+    AND table_name = 'studentprogramdim'
+    ORDER BY ORDINAL_POSITION ASC;
+  </Query>
+    <Result>
+        <ColumnName>studentschoolprogramkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>begindatekey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+      <ColumnName>educationorganizationid</ColumnName>
+      <DataType>character varying</DataType>
+    </Result>
+    <Result>
+      <ColumnName>educationorganizationkey</ColumnName>
+      <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>programname</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>schoolkey</ColumnName>
+        <DataType>character varying</DataType>
+    </Result>
+    <Result>
+        <ColumnName>studentschoolkey</ColumnName>
+        <DataType>text</DataType>
+    </Result>
+    <Result>
+        <ColumnName>lastmodifieddate</ColumnName>
+        <DataType>timestamp without time zone</DataType>
+    </Result>
+</TestCase>

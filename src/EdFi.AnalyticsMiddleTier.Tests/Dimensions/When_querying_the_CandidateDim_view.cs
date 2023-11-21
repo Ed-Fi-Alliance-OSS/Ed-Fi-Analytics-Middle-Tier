@@ -13,7 +13,7 @@ using Shouldly;
 namespace EdFi.AnalyticsMiddleTier.Tests.Dimensions.CandidateDimTestGroup
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public abstract class When_querying_the_CandidateDim_View : When_querying_a_view_ds3_3_and_ds4_0
+    public abstract class When_querying_the_CandidateDim_View : When_querying_a_view_ds3_3_and_ds4_0_and_ds5_0
     {
         protected const string TestCasesFolder = "TestCases.CandidateDim";
         protected const string TestCasesDataFileName = "0000_CandidateDim_Data_Load.xml";

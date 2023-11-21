@@ -45,6 +45,7 @@
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard32\EdFi.AnalyticsMiddleTier.DataStandard32.csproj" />
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard33\EdFi.AnalyticsMiddleTier.DataStandard33.csproj" />
     <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard40\EdFi.AnalyticsMiddleTier.DataStandard40.csproj" />
+    <ProjectReference Include="..\EdFi.AnalyticsMiddleTier.DataStandard50\EdFi.AnalyticsMiddleTier.DataStandard50.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,8 +67,11 @@
     <None Update="EdFi_Ods_4.0.dacpac">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-	<None Include=".env" Condition="Exists('.env')">
+    <None Update="EdFi_Ods_5.0.dacpac">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+	<None Include=".env" Condition="Exists('.env')">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

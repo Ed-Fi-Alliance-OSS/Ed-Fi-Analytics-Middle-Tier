@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestCase>
+    <DBMS>Any</DBMS>
+    <ControlDataInsertion>
+
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '3094','uri://tpdm.ed-fi.org/EducationOrganizationCategoryDescriptor','Educator Preparation Provider','Educator Preparation Provider','Educator Preparation Provider','2021-11-05 19:47:02.9215844','2021-11-05 19:47:02','8A464F3E-804A-427F-9B60-ACDF1A8CB218','104119'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE DescriptorId = 3094));
+
+      INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,Discriminator,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '5','UT Austin College of Education Graduate','edfi.School','2021-11-05 19:47:05.8879304','2021-11-05 19:47:05','15531BBF-D061-4207-B5D6-519ED9FADDBE','104364'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '5'));
+
+      INSERT INTO edfi.EducationOrganizationCategoryDescriptor(EducationOrganizationCategoryDescriptorId)
+      (SELECT '3094'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganizationCategoryDescriptor WHERE   EducationOrganizationCategoryDescriptorId= '3094'));
+
+      INSERT INTO edfi.EducationOrganizationCategory(EducationOrganizationCategoryDescriptorId,EducationOrganizationId,CreateDate)
+      (SELECT '3094','5','2021-11-05 19:47:05.9224286'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganizationCategory WHERE EducationOrganizationCategoryDescriptorId = 3094 and EducationOrganizationId = 5));
+
+      ---
+
+      INSERT INTO edfi.Descriptor(DescriptorId,Namespace,CodeValue,ShortDescription,Description,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '3095','uri://tpdm.ed-fi.org/EducationOrganizationCategoryDescriptor','Something else','Something else','Something else','2021-11-05 19:47:02.9215844','2021-11-05 19:47:02','8A464F3E-804A-427F-9B60-ACDF1A8CB219','104119'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.Descriptor WHERE DescriptorId = 3095));
+
+      INSERT INTO edfi.EducationOrganizationCategoryDescriptor(EducationOrganizationCategoryDescriptorId)
+      (SELECT '3095'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganizationCategoryDescriptor WHERE   EducationOrganizationCategoryDescriptorId= '3095'));
+
+      INSERT INTO edfi.EducationOrganization(EducationOrganizationId,NameOfInstitution,Discriminator,CreateDate,LastModifiedDate,Id,ChangeVersion)
+      (SELECT '6','Texas College of Education Graduate','edfi.School','2021-11-05 19:47:05.8879304','2021-11-05 19:47:05','15531BBF-D061-4207-B5D6-519ED9FADDBA','104364'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganization WHERE   EducationOrganizationId= '6'));
+
+      INSERT INTO edfi.EducationOrganizationCategory(EducationOrganizationCategoryDescriptorId,EducationOrganizationId,CreateDate)
+      (SELECT '3095','6','2021-11-05 19:47:05.9224286'
+      WHERE NOT EXISTS(SELECT  1  FROM edfi.EducationOrganizationCategory WHERE EducationOrganizationCategoryDescriptorId = 3095 and EducationOrganizationId = 6));
+
+    </ControlDataInsertion>
+</TestCase>
