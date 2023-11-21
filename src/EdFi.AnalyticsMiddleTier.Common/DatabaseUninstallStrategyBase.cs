@@ -47,6 +47,7 @@ namespace EdFi.AnalyticsMiddleTier.Common
                 DropTable(AnalyticsConfigSchema, DescriptorConstant);
                 DropTable(SchemaDefault, JournalingVersionsTable);
                 RemoveAllStoredProcedures(AnalyticsConfigSchema);
+                RemoveAllFunctions(AnalyticsSchema);
                 if (uninstallAll)
                 {
                     DropSchema(AnalyticsSchema);
@@ -91,6 +92,11 @@ namespace EdFi.AnalyticsMiddleTier.Common
             return $"DROP VIEW IF EXISTS {schema}.{view};DROP VIEW IF EXISTS {schema.ToLower()}.{view.ToLower()};";
         }
 
+        public virtual string GetDropFunctionTemplate(string schema, string function)
+        {
+            return $"DROP FUNCTION IF EXISTS {schema}.{function};DROP FUNCTION IF EXISTS {schema.ToLower()}.{function.ToLower()};";
+        }
+
         public virtual string GetQueryIndexesTemplate(string schema)
         {
             return $"IF (SELECT OBJECT_ID('[{schema.ToLower()}].[IndexJournal]')) IS NOT NULL"
@@ -112,6 +118,11 @@ namespace EdFi.AnalyticsMiddleTier.Common
         public virtual string GetQueryTablesTemplate(string schema)
         {
             return $"SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{schema.ToLower()}'";
+        }
+
+        public virtual string GetQueryFunctionsTemplate(string schema)
+        {
+            return $"SELECT SPECIFIC_NAME FROM INFORMATION_SCHEMA.ROUTINES where ROUTINE_TYPE = 'FUNCTION' AND SPECIFIC_SCHEMA = '{schema.ToLower()}'";
         }
 
         /// <summary>
@@ -138,6 +149,12 @@ namespace EdFi.AnalyticsMiddleTier.Common
         /// <param name="schema">Schema to filter.</param>
         public int RemoveAllStoredProcedures(string schema)=> RemoveDbObjectsBySchema(GetQueryStoredProceduresTemplate, GetDropStoredProceduresTemplate, schema);
 
+        /// <summary>
+        /// Remove all Functions in a schema.
+        /// This applies for Data Stardard 4.0 and 5.0
+        /// </summary>
+        /// <param name="schema">Schema to filter.</param>
+        public int RemoveAllFunctions(string schema) => RemoveDbObjectsBySchema(GetQueryFunctionsTemplate, GetDropFunctionTemplate, schema);
 
         protected int RemoveDbObjectsBySchema(Func<string, string>queryTemplate, Func<string, string, string>DropTemplate, string schema)
         {
