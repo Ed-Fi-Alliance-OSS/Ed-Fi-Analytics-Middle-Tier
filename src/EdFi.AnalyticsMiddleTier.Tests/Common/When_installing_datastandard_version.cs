@@ -39,7 +39,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         new object[] { DataStandard.Ds31 },
         new object[] { DataStandard.Ds32 },
         new object[] { DataStandard.Ds33 },
-        new object[] { DataStandard.Ds40 }
+        new object[] { DataStandard.Ds40 },
+        new object[] { DataStandard.Ds50 }
         };
         public Given_SqlServer_database_with_a_valid_datastandard_version(DataStandard dataStandard) {
             _dataStandard = dataStandard;
@@ -132,7 +133,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         static object[] FixtureArgs = {
             new object[] { DataStandard.Ds32 },
             new object[] { DataStandard.Ds33 },
-            new object[] { DataStandard.Ds40 }
+            new object[] { DataStandard.Ds40 },
+            new object[] { DataStandard.Ds50 }
         };
         readonly DataStandard _dataStandard;
         DataStandard _result;
@@ -145,11 +147,8 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Common
         public void Act()
         {
             postgresqlServerMigrationStrategy = new PostgresMigrationStrategy(Orm);
-            //
             string statement = PostgresMigrationStrategy.DataStandardVersionTemplate;
             A.CallTo(() => Orm.ExecuteScalar<string>(statement)).Returns(_dataStandard.ToString());
-            //
-            //_result = postgresqlServerMigrationStrategy?.GetDataStandardVersion() ?? DataStandard.InvalidDs;
             _result = postgresqlServerMigrationStrategy.GetDataStandardVersion();
         }
         [Test]
