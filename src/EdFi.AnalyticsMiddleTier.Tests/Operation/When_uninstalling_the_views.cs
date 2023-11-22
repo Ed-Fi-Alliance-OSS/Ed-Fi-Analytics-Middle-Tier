@@ -70,5 +70,12 @@ namespace EdFi.AnalyticsMiddleTier.Tests.Operation
             const string sql = "select count(1) from INFORMATION_SCHEMA.ROUTINES where specific_schema = 'analytics_config'";
             DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
         }
+
+        [Test]
+        public void Then_should_remove_the_functions()
+        {
+            const string sql = "SELECT count(1) FROM INFORMATION_SCHEMA.ROUTINES where ROUTINE_TYPE = 'FUNCTION' AND specific_schema = 'analytics'";
+            DataStandard.ExecuteScalarQuery<int>(sql).ShouldBe(0);
+        }
     }
 }
