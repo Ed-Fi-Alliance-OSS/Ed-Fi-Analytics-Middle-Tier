@@ -136,7 +136,7 @@ function Publish {
 		if ($SelfContained) {
             CleanPublishScdOutputDirectory
             Write-Host "Self contained." -ForegroundColor Cyan
-            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o "$publishScdOutputDirectory" --self-contained -r win10-x64 --nologo
+            dotnet publish $project -c $Configuration /p:EnvironmentName=Production -o "$publishScdOutputDirectory" --self-contained -r win-x64 --nologo
         }
         else 
         {
