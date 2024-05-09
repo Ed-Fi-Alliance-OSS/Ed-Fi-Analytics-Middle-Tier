@@ -1,5 +1,7 @@
 # Ed-Fi-Analytics-Middle-Tier
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier/badge)](https://securityscorecards.dev/viewer/?uri=github.com/Ed-Fi-Alliance-OSS/Ed-Fi-Analytics-Middle-Tier)
+
 The Analytics Middle Tier is a set of denormalized analytics views over the Ed-Fi ODS database tables, satisfying the user story:
 > As a district data analyst, I want to build intelligent reporting on the Ed-Fi ODS with minimal learning curve and low risk of breaking changes, so that I can deliver timely data to educators and administrators.
 
