@@ -21,6 +21,8 @@ on:
         required: true
         default: 'false'
 
+permissions: read-all
+
 env:
   CONFIGURATION: "Release"
   PUBLISH_FOLDER: "./publish/"
