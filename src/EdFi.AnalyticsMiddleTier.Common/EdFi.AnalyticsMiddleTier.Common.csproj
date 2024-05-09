@@ -9,7 +9,7 @@
     <PackageReference Include="dbup-core" Version="5.0.37" />
     <PackageReference Include="dbup-postgresql" Version="5.0.37" />
     <PackageReference Include="dbup-sqlserver" Version="5.0.37" />
-    <PackageReference Include="Npgsql" Version="7.0.6" />
+    <PackageReference Include="Npgsql" Version="8.0.3" />
   </ItemGroup>
 
 </Project>

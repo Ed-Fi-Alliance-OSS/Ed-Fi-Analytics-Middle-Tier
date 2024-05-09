@@ -44,7 +44,7 @@
 param(
     # Command to execute, defaults to "Build".
     [string]
-    [ValidateSet("Clean", "Build", "Publish", "CreateZip", "UnitTest", "IntegrationTest")]
+    [ValidateSet("DotnetClean", "Build", "Publish", "CreateZip", "UnitTest", "IntegrationTest")]
     $Command = "Build",
 
     [switch] $SelfContained,
@@ -78,7 +78,7 @@ $publishFddZipFile = "$publishFddDirectoryName-$Version.zip"
 $publishScdZipFile = "$publishScdDirectoryName-$Version.zip"
 $testProjectName = "EdFi.AnalyticsMiddleTier.Tests"
 
-function Clean {
+function DotnetClean {
     Invoke-Execute { dotnet clean $solutionRoot -c $Configuration --nologo -v minimal }
 }
 
@@ -198,7 +198,7 @@ function IntegrationTests {
 
 function Invoke-Build {
     Write-Host "Building Version $Version" -ForegroundColor Cyan
-    Invoke-Step { Clean }
+    Invoke-Step { DotnetClean }
     Invoke-Step { AssemblyInfo }
     Invoke-Step { Compile }
 }
@@ -209,7 +209,7 @@ function Invoke-Publish {
 }
 
 function Invoke-Clean {
-    Invoke-Step { Clean }
+    Invoke-Step { DotnetClean }
 }
 
 function Invoke-PublishClean {
@@ -231,7 +231,7 @@ function Invoke-CreateZip {
 
 Invoke-Main {
     switch ($Command) {
-        Clean { 
+        DotnetClean { 
             Invoke-Clean
             Invoke-PublishClean
         }
